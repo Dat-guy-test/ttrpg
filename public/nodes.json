@@ -51,7 +51,7 @@
       "theta": 27,
       "requires": [],
       "cost": 0,
-      "temperature": 4000,
+      "temperature": 4500,
       "exclGroup": "origins",
       "effects": [
         {
@@ -86,11 +86,11 @@
       "name": "Krasnolud",
       "desc": "Jesteś krasnoludem.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 9\nSiła Woli: 12\n\nSzybkość: 4\n\nDodatkowe umiejętności:\nUparci:\nPo każdej godzinie odpoczynku odzyskujesz 1d4 Punktów Energii\n\nAdaptowalny wzrok:\nKonstrukcja krasnoludzkich oczu umożliwia im widzenie w ciemności, choć nie są w stanie rozpoznawać w jej kolorów.\n\nCechy Fizyczne:\nWzrost: od 0,6 do 1 jednostki\nRozmiar: Mały\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 22 lat\nWiek starczy: 110 lat,\nŚrednia Długość Życia: 125 lat (średnia),\nMaksymalna Długość Życia: 150 lat",
       "hoverText": "",
-      "fi": 22.27,
+      "fi": 22.270000000000007,
       "theta": 24,
       "requires": [],
       "cost": 5,
-      "temperature": 5000,
+      "temperature": 2000,
       "exclGroup": "origins",
       "effects": [
         {
@@ -130,11 +130,11 @@
       "name": "Elf",
       "desc": "Jesteś elfem.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 12\nSiła Woli: 9\n\nSzybkość: 10\n\nDodatkowe umiejętności:\nSzybcy jak wiatr\nMożesz jako darmowa akcja nadwyrężyć się zyskując Punkty Akcji w liczbie połowy swojej Zwinności (Czyli w liczbie połowy Maksymalnych Punktów Akcji, zaokrąglonych w dół). Po godzinie odpoczynku jesteś w stanie ponownie nadwyrężyć swój organizm w ten sposób.\n\nCzernogrzywi wzrok:\nKonstrukcja elfich oczu umożliwia im widzenie małych detali, których nie widzą inni. Zywkujesz 2 poziomy doświadczenia i 1 poziom improwizacji w umiejętności Spostrzegawczość.\n\nCechy Fizyczne:\nWzrost: od 1,3 do 1,7 jednostki\nRozmiar: Średni lub Duży\n\nDługość życia:\nWiek dojrzałości fizycznej: od 20 do 26 lat\nWiek starczy: 125 lat,\nŚrednia Długość Życia: 150 lat (średnia),\nMaksymalna Długość Życia: 200 lat",
       "hoverText": "",
-      "fi": 25.73,
+      "fi": 25.729999999999997,
       "theta": 24,
       "requires": [],
       "cost": 5,
-      "temperature": 5000,
+      "temperature": 8000,
       "exclGroup": "origins",
       "effects": [
         {
@@ -268,11 +268,11 @@
       "name": "Niziołek",
       "desc": "Jesteś nizołkiem\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 8\nSiła Woli: 11\n\nSzybkość: 5\n\nDodatkowe umiejętności:\nSavant:\nNiziołki często są nizwykle wybitne w jednej lub paru bardzo interesujących ich dziedzinach. Otrzymujesz trzy poziomy doświadczenia i dwa poziomy improwizacji w  wybranych umiejętnościach.\n\nTrudni do trafienia:\nZ racji na swoją niewielką formę niziołki potrafią być zaskakująco trudne do trafienia. Gdy twój rozmiar jest Mały zyskujesz +2 do ewazji.\n\nCechy Fizyczne:\nWzrost: od 0,9 do 1,5 jednostki\nRozmiar: Mały lub Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 21 do 23 lat\nWiek starczy: 80 lat,\nŚrednia Długość Życia: 100 lat (średnia),\nMaksymalna Długość Życia: 140 lat",
       "hoverText": "",
-      "fi": 22.27,
-      "theta": 26.000000000000004,
+      "fi": 22.270000000000003,
+      "theta": 26.000000000000007,
       "requires": [],
       "cost": 4,
-      "temperature": 8000,
+      "temperature": 3500,
       "exclGroup": "origins",
       "effects": [
         {
@@ -304,6 +304,11 @@
           "type": "skillImprovisationPoints",
           "key": null,
           "amount": 2
+        },
+        {
+          "type": "attribute",
+          "key": "Trudni do trafienia",
+          "description": "Z racji na swoją niewielką formę niziołki potrafią być zaskakująco trudne do trafienia. Gdy twój rozmiar jest Mały zyskujesz +2 do ewazji."
         }
       ]
     },
@@ -453,11 +458,11 @@
       "name": "Półelf",
       "desc": "Jesteś półelfem\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 11\nSiła Woli: 8\n\nSzybkość: 9\n\nDodatkowe umiejętności:\nOdporni:\nOrganizmy półelfów są niezwykle odporne na choroby i trucizny. Po każdej godzinie odpoczynku zaleczasz 1d6 obrażeń krytycznych od chrób i trucizn, po czym leczysz 1d4 zaleczonych obrażeń tego typu.\n\nCharyzmatyczni:\nPółelfy są naturalnie uzdolnione w spokojnym rozwiązywaniu sporów. Zyskujesz 1 Poziom Doświadczenia i 1 Poziom Improwizacji w umiejętnościach: Charyzma, Determinacja i Instynkt.\n\nCechy Fizyczne:\nWzrost: od 1,2 do 1,5 jednostki\nRozmiar: Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 24 lat\nWiek starczy: 100 lat,\nŚrednia Długość Życia: 135 lat (średnia),\nMaksymalna Długość Życia: 170 lat",
       "hoverText": "",
-      "fi": 25.73,
-      "theta": 26.000000000000004,
+      "fi": 25.729999999999997,
+      "theta": 26.000000000000007,
       "requires": [],
       "cost": 4,
-      "temperature": 6000,
+      "temperature": 6500,
       "exclGroup": "origins",
       "effects": [
         {
@@ -560,7 +565,7 @@
       "theta": 20,
       "requires": [],
       "cost": 6,
-      "temperature": 6000,
+      "temperature": 1800,
       "exclGroup": null,
       "effects": [
         {
@@ -932,7 +937,7 @@
       "name": "Mistrz Boleści",
       "desc": "Uczysz się panować nad zadanym ci bólem, dzięki czemu staje się on dla ciebie bardziej motywacją niż przeszkodą.\n\nZyskujesz Atrybut:\n\nMistrz Boleści\nMożesz zadeklarować wykonanie kontry do następnej akcji atakującego lub zakończenia jego tury jeśli nie wykona w niej kolejnej akcji w momencie otrzymania od niego obrażeń. Atak bronią białą wykonany w ramach tej kontry zadaje o tyle punktów obrażeń każdego typu więcej ile w sumie otrzymała twoja postać w ostatnim otrzymanym ataklu lub maksimum możliwych do zadania obrażeń ‒ przy czym wybierasz mniejszą z tych dwóch wartości.",
       "hoverText": "",
-      "fi": 52.00000000000001,
+      "fi": 52.000000000000014,
       "theta": 41,
       "requires": [
         "100007"
@@ -975,7 +980,7 @@
       "desc": "Technika Cieśli skupia się na opanowaniu trejektorii głowni. \n\nRozwijając swoją kontrolę nad bronią zyskujesz jeden poziom improwizacji w krótkiej broni drzewcowej.",
       "hoverText": "",
       "fi": 50,
-      "theta": 43,
+      "theta": 43.00000000000001,
       "requires": [
         "100017"
       ],
@@ -1032,7 +1037,7 @@
       "desc": "Dobrze zaplanowana obrona zaczyna się daleko przed walką i składa się z ćwiczeń ciała, umysłu i ducha.\n\nZyskujesz dwa poziomy improwizacji w dowolnych umiejętnościach.",
       "hoverText": "",
       "fi": 47,
-      "theta": 43,
+      "theta": 43.00000000000001,
       "requires": [
         "100020"
       ],
@@ -1093,7 +1098,7 @@
       "name": "Sztuka Ucieczki",
       "desc": "Nie każda walka kończy się wygraną, lecz przegrana bitwa nie musi oznaczać końca wojny.\n\nZyskujesz jeden poziom szybkości.",
       "hoverText": "",
-      "fi": 43,
+      "fi": 43.00000000000001,
       "theta": 45,
       "requires": [
         "100023"
@@ -1114,7 +1119,7 @@
       "name": "Szutka Repozycjonowania",
       "desc": "Nie każde wycofanie się musi oznaczać ucieczkę. Czasami najlepszą obroną jest wybranie innej walki.\n\nZdobywasz dwa poziomy szybkości.",
       "hoverText": "",
-      "fi": 43,
+      "fi": 43.00000000000001,
       "theta": 45.75,
       "requires": [
         "100024"
@@ -1135,7 +1140,7 @@
       "name": "Sztuka Wygrywania",
       "desc": "Nawet po wygranej potyczce zebranie wszystkich łupów czy wykończenie wszystkich przeciwników wymaga szybkiego działania.\n\nZyskujesz trzy poziomy szybkości.",
       "hoverText": "",
-      "fi": 43,
+      "fi": 43.00000000000001,
       "theta": 46.49999999999999,
       "requires": [
         "100025"
@@ -1178,12 +1183,12 @@
       "label": "origins",
       "max": 1,
       "members": [
+        "100001",
+        "-1004",
         "-1002",
         "-1005",
-        "-1004",
         "-1001",
         "100002",
-        "100001",
         "-1003"
       ]
     }

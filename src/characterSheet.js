@@ -87,7 +87,6 @@ function render() {
     ${renderProficienciesSection()}
     ${renderAttributesSection()}
     ${renderPerksSection()}
-    ${renderPointPoolsSection()}
     </div>
     `;
 
@@ -194,32 +193,6 @@ function renderDamageTable() {
     </tr>
     </tbody>
     </table>
-    </section>
-    `;
-}
-
-/** Summary boxes: how many points each pool has granted vs. how many are still unspent. */
-function renderPointPoolsSection() {
-    const boxes = POINT_POOLS_CONFIG.map(cfg => {
-        const granted   = computeStatValue(CharacterState.pointPools[cfg.key].granted).value;
-        const available = computePoolAvailable(cfg.key);
-        return `
-        <div class="statWrapper charResourceBox">
-        <div class="statLabel">${escapeHtml(cfg.label)}</div>
-        <div class="statValue charResourceBox-value">
-        <span class="charStat-readonly">${available}</span>
-        <span class="charResourceBox-slash">/</span>
-        <span class="charStat-readonly charResourceBox-max">${granted}</span>
-        </div>
-        </div>
-        `;
-    }).join('');
-
-    return `
-    <section class="charSection">
-    <h2 class="charSection-title">Punkty do Rozdania</h2>
-    <div class="charResourceGroup">${boxes}</div>
-    <p class="charSection-hint">Przyznawane przez perki. Rozdzielaj je przyciskami +/- przy Charakterystykach i Umiejętnościach poniżej.</p>
     </section>
     `;
 }
@@ -337,7 +310,7 @@ function renderProficienciesList() {
         return `
         <li class="charListRow">
         <span>${escapeHtml(e.name)}</span>
-        <span class="charStat-readonly" ${title ? `title="${title}"` : ''}>${formatImprovisation(e.value)}</span>
+        <span class="charStat-readonly" ${title ? `title="${title}"` : ''}>${formatImprovisation(e.value + 1)}</span>
         </li>
         `;
     }).join('') + '</ul>';

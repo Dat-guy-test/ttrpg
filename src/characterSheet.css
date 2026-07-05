@@ -134,22 +134,6 @@
     margin-bottom: 0;
 }
 
-/* ---- Punkty do Rozdania summary boxes (unchanged by the table redesign) --- */
-.charResourceGroup {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-}
-.charResourceBox { width: 12em; }
-.charResourceBox-value {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4em;
-}
-.charResourceBox-slash { color: #9a9a94; }
-.charResourceBox-max { font-size: 1.2em; }
-
 /* ---- Sleek stat tables (Zasoby / Charakterystyki / Umiejętności) --- */
 /* Replaces the old one-frame-per-stat boxes with a compact table: one
  *   row per stat, one column per number it carries. Much less vertical
@@ -245,6 +229,7 @@
     border: 1px solid #e2e0d8;
     border-radius: 0.3em;
     background-color: #faf9f5;
+    gap: 1em;
 }
 
 /* ============================================================
