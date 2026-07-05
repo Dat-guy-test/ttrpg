@@ -1,4 +1,4 @@
-// ==============================================================
+// =============================================================
 // MAIN  —  application entry point
 //
 // This file's only jobs are:
@@ -25,7 +25,7 @@
 //   equipmentState ← items.json (no local module imports)
 //   equipmentSheet ← equipmentState
 //   main           ← all of the above
-// =============================================================
+// ============================================================
 
 import AppState from './appState.js';
 import { initScene } from './sceneSetup.js';
