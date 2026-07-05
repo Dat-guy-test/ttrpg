@@ -1,0 +1,286 @@
+/* ============================================================
+ *   CHARACTER SHEET  (Character Data tab)
+ *   Reuses .statWrapper/.statLabel/.statValue from style.css so the
+ *   resource boxes and stat fields match the visual language already
+ *   established there; everything else is new.
+ *   ============================================================ */
+
+.charSheet {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 56em;
+    margin: 0 auto;
+    padding: 1.5em 2em 3em;
+    font-family: sans-serif;
+    color: #2c2c2a;
+}
+
+.charSheet-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75em;
+    margin-bottom: 1em;
+}
+
+.charBtn {
+    background-color: rgb(187, 128, 241);
+    color: #ffffff;
+    border: 1px solid rgb(146, 92, 199);
+    border-radius: 0.4em;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+.charBtn:hover { background-color: rgb(166, 104, 224); }
+.charBtn-danger { background-color: #a0455a; border-color: #7a2f3f; }
+.charBtn-danger:hover { background-color: #b85468; }
+.charBtn-small { padding: 0.15em 0.5em; font-size: 0.85em; }
+
+/* ---- Header --------------------------------------------------- */
+.charHeader {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    align-items: flex-end;
+    padding: 1em 1.25em;
+    margin-bottom: 1.5em;
+}
+
+.charField {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+}
+.charField-name { flex: 1 1 16em; min-width: 12em; }
+
+.charField-label {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6a6a66;
+}
+
+.charField input,
+.charSheet input[type="text"],
+.charSheet input[type="number"] {
+    box-sizing: border-box;
+    border: 1px solid rgb(187, 128, 241);
+    border-radius: 0.3em;
+    padding: 0.4em 0.6em;
+    font-size: 1em;
+    font-family: inherit;
+}
+.charField-name input { font-size: 1.2em; font-weight: 600; }
+
+/* ---- Generic section wrapper ----------------------------------- */
+.charSection {
+    margin-bottom: 2em;
+}
+
+.charSection-title {
+    font-size: 1.1em;
+    margin: 0 0 0.75em;
+    padding-bottom: 0.3em;
+    border-bottom: 0.15em solid rgb(187, 128, 241);
+}
+
+.charSection-hint {
+    font-size: 0.85em;
+    color: #7a7a76;
+    font-style: italic;
+    margin: 0.5em 0 0;
+}
+
+.charSection-addRow {
+    display: flex;
+    gap: 0.5em;
+    margin-top: 0.75em;
+}
+.charSection-addRow input { flex: 1; }
+
+/* ---- Read-only, perk-driven values ------------------------------- */
+/* Used for Charakterystyki, Umiejętności (both tracks), and resource
+ *   maxima — anything only the perk tree can change. A dashed underline
+ *   plus help cursor hints there's a tooltip breakdown when a perk is
+ *   actually contributing; with no modifiers it's just a plain number. */
+.charStat-readonly {
+    display: inline-block;
+    min-width: 1.1em;
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: 600;
+    padding: 0.1em 0.15em;
+}
+.charStat-readonly[title] {
+    cursor: help;
+    border-bottom: 0.15em dashed rgb(187, 128, 241);
+}
+
+/* ---- Two-column section layout ---------------------------------- */
+/* Wraps a pair of sections (Zasoby+Obrażenia, Charakterystyki+Umiejętności)
+ *   so they sit side by side on wide screens instead of stacking. Each
+ *   child section is flex-basis 20em and wraps to a full-width stack once
+ *   the viewport gets too narrow for two columns. */
+.charRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    align-items: flex-start;
+    margin-bottom: 0.5em;
+}
+.charRow > .charSection {
+    flex: 1 1 20em;
+    min-width: 18em;
+    margin-bottom: 0;
+}
+
+/* ---- Punkty do Rozdania summary boxes (unchanged by the table redesign) --- */
+.charResourceGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+.charResourceBox { width: 12em; }
+.charResourceBox-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4em;
+}
+.charResourceBox-slash { color: #9a9a94; }
+.charResourceBox-max { font-size: 1.2em; }
+
+/* ---- Sleek stat tables (Zasoby / Charakterystyki / Umiejętności) --- */
+/* Replaces the old one-frame-per-stat boxes with a compact table: one
+ *   row per stat, one column per number it carries. Much less vertical
+ *   space than the old .statWrapper-based grid. */
+.charTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+.charTable th, .charTable td {
+    border: 1px solid #cfcfc8;
+    padding: 0.1em 0.2em;
+    text-align: center;
+}
+.charTable th {
+    background-color: #f1eee8;
+    font-weight: 600;
+    font-size: 0.85em;
+}
+.charTable-rowLabel {
+    text-align: left;
+    font-weight: 600;
+    background-color: #faf9f5;
+    width: 8em;         /* caps the label column */
+    font-size: 0.9em;
+}
+.charTable td .charStat-readonly {
+    margin-right: 0.3em;
+}
+
+/* Resource "current" inputs sit inline in their table cell */
+.charTable-resources input.charResource-input {
+    width: 4em;
+    text-align: center;
+    border-color: transparent;
+    background: transparent;
+}
+
+/* ---- Damage table -------------------------------------------------- */
+.dmgTable {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 30em;
+}
+.dmgTable th, .dmgTable td {
+    border: 1px solid #cfcfc8;
+    padding: 0.35em 0.6em;
+    text-align: center;
+}
+.dmgTable th { background-color: #f1eee8; font-weight: 600; font-size: 0.85em; }
+.dmgTable .dmgTable-rowLabel { text-align: left; font-weight: 600; }
+.dmgTable-input {
+    width: 3.5em;
+    text-align: center;
+    border: none;
+    background: transparent;
+}
+.dmgTable-critical { background-color: #f7dede; }
+.dmgTable-critical .dmgTable-rowLabel { color: #7a1f1f; }
+.dmgTable-totalRow { background-color: #f1eee8; font-weight: 600; }
+.dmgTable-totalRow output { font-size: 1.1em; }
+
+/* +/- buttons for spending pooled points into a Charakterystyka/Umiejętność */
+.charSpend-btn {
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid rgb(187, 128, 241);
+    background-color: #ffffff;
+    color: rgb(146, 92, 199);
+    font-weight: 700;
+    font-size: 0.75em;
+    cursor: pointer;
+}
+.charSpend-btn:hover:not(:disabled) { background-color: rgb(232, 172, 255); }
+.charSpend-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* ---- Lists (Wprawa / Perki) ------------------------------------------- */
+.charListRows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+}
+.charListRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.35em 0.6em;
+    border: 1px solid #e2e0d8;
+    border-radius: 0.3em;
+    background-color: #faf9f5;
+}
+
+/* ============================================================
+ *   PRINT
+ *   Hides the 3D scene / tab chrome / editor controls entirely and
+ *   lets the character sheet flow as normal paginated content.
+ *   ============================================================ */
+@media print {
+    body * { visibility: hidden; }
+
+    #characterPage, #characterPage * { visibility: visible; }
+
+    #characterPage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    border: none;
+    background: #ffffff;
+    }
+
+    .charSheet { max-width: 100%; padding: 0; color: #000000; }
+    .charSheet-toolbar { display: none; }
+
+    .charField input, .charSheet input[type="text"], .charSheet input[type="number"] {
+        border-color: #999999;
+        color: #000000;
+    }
+    .charStat-readonly[title] { border-bottom-color: #999999; }
+    .charSpend-btn { display: none; }
+
+    .charRow { display: block; }
+    .charSection { break-inside: avoid; }
+    .dmgTable, .charTable { break-inside: avoid; }
+
+    .dmgTable-critical { background-color: #eeeeee !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+

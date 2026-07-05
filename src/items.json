@@ -1,0 +1,14 @@
+{
+  "items": [
+    { "id": "zestaw-biedny",    "name": "Biedny Zestaw Startowy",  "price": 0,  "category": "Zestaw",      "desc": "Podstawowy zestaw dla najbiedniejszych: łatana derka, hubka i krzemień, drewniana miska i niewielki nóż." },
+    { "id": "zestaw-skromny",   "name": "Skromny Zestaw Startowy", "price": 0,  "category": "Zestaw",      "desc": "Solidniejszy zestaw startowy: sakwa, koc, podróżny nóż, hubka i krzemień, mała ilość prowiantu." },
+    { "id": "sztylet",          "name": "Sztylet",                 "price": 5,  "category": "Broń",        "desc": "Lekka, krótka broń biała. Łatwa do ukrycia, przydatna zarówno w walce jak i codziennym użyciu." },
+    { "id": "miecz-krotki",     "name": "Krótki Miecz",             "price": 15, "category": "Broń",        "desc": "Zbalansowana broń jednoręczna, popularna wśród podróżników ze względu na uniwersalność." },
+    { "id": "luk-krotki",       "name": "Krótki Łuk",               "price": 20, "category": "Broń",        "desc": "Broń miotająca średniego zasięgu, wymaga strzał jako amunicji." },
+    { "id": "tarcza-drewniana", "name": "Tarcza Drewniana",         "price": 10, "category": "Tarcza",      "desc": "Okuta metalem tarcza z drewna. Zapewnia solidną osłonę przy niewielkim ciężarze." },
+    { "id": "zbroja-skorzana",  "name": "Zbroja Skórzana",          "price": 25, "category": "Zbroja",      "desc": "Utwardzana skóra zapewniająca podstawową ochronę bez znacznego ograniczenia ruchów." },
+    { "id": "pochodnia",        "name": "Pochodnia",                "price": 1,  "category": "Wyposażenie", "desc": "Pali się około godziny, dając światło w niewielkim promieniu." },
+    { "id": "linka",            "name": "Linka (15m)",              "price": 3,  "category": "Wyposażenie", "desc": "Wytrzymała linka przydatna do wspinaczki i wiązania." },
+    { "id": "prowiant",         "name": "Prowiant (1 dzień)",       "price": 2,  "category": "Wyposażenie", "desc": "Suszone mięso, chleb i owoce — wystarczy na jeden dzień podróży." }
+  ]
+}

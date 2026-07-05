@@ -1,0 +1,19 @@
+/* ---- Atrybuty rows -------------------------------------------------- */
+/* Unlike other .charListRow entries (name + short value, one line),
+ *   an Atrybut pairs a name with a free-text description that can run
+ *   long, so its row stacks vertically instead of spreading name/value
+ *   across a single line. */
+.charListRow-attribute {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25em;
+}
+.charAttribute-name {
+    font-weight: 600;
+}
+.charAttribute-desc {
+    font-size: 0.9em;
+    color: #55524c;
+    white-space: pre-line; /* respects any line breaks the perk's description text contains */
+}
+

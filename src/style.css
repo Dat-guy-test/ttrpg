@@ -1,0 +1,430 @@
+#canvas {
+	padding: 0px;
+	margin: 0px;
+	width: 50vw;
+	height: 95vh;
+}
+#text {
+  padding: 1vh;
+	margin: 0px;
+	width: 50vw;
+	height: 95vh;
+  background-color: rgb(232, 172, 255);
+}
+#listTree {
+  padding: 1vh;
+	margin: 0px;
+	width: 50vw;
+	height: 95vh;
+  background-color: rgb(26, 199, 141);
+}
+#bor{
+  padding: 1vh;
+  margin: 0px;
+  width: 50vw;
+	height: 95vh;
+  background-color: rgb(74, 74, 87);
+}
+#wrap{
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  height: 95vh;
+}
+#characterPage{
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0.2em;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: 0px;
+  padding: 0px;
+  width: 50 em;
+  height: 97vh;
+  overflow-y: auto;
+  align-items: start;
+  background-color: rgb(255, 255, 255);
+}
+#characterWrapper{
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  height: 97vh;
+  align-items: start;
+  justify-content: center;
+  background-color: rgb(187, 128, 241);
+}
+#equipmentWrapper{
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  height: 97vh;
+  align-items: start;
+  justify-content: center;
+  background-color: rgb(128, 241, 207);
+}
+#equipmentPage{
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0.2em;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: 0px;
+  padding: 0px;
+  width: 50em;
+  height: 97vh;
+  overflow-y: auto;
+  align-items: start;
+  background-color: rgb(255, 255, 255);
+}
+#manualWrapper{
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  height: 97vh;
+  background-color: rgb(92, 64, 117);
+}
+#spellCraftWrapper{
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  height: 97vh;
+  background-color: rgb(255, 255, 255);
+}
+#reportIssueWrapper{
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  height: 97vh;
+  background-color: rgb(91, 50, 129);
+}
+#statistics{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: 0px;
+  padding: 0px;
+  width: 50em;
+  height: 97vh;
+  background-color: rgb(255, 255, 255);
+  color: #000000;
+}
+.statsGroup{
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  width: 100em;
+  height: 5em;
+  background-color: rgb(255, 255, 255);
+}
+
+#characterNameWrapper{
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0px;
+  padding: 0px;
+  width: 50em;
+  height: 5em;
+  background-color: rgb(255, 255, 255);
+  border-style: outset;
+  border-width: 0.2em;
+  border-radius: 0.5em;
+}
+
+.statWrapper{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: 0px;
+  padding: 0px;
+  width: 16.6666666em;
+  height: 5em;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  border-style: outset;
+  border-width: 0.2em;
+  border-radius: 0.5em;
+}
+
+.statLabel{
+  box-sizing: border-box;
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  width: 16.6666666em;
+  height: 4em;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  border-style: outset;
+  border-width: 0.2em;
+  border-radius: 0.5em;
+}
+
+.statValue{
+  box-sizing: border-box;
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  width: 16.6666666em;
+  height: 6em;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  border-style: outset;
+  border-width: 0.2em;
+  border-radius: 0.5em;
+}
+
+/* #equipment{
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  width: 50vw;
+  height: 97vh;
+  background-color: rgb(128, 241, 207);
+} */
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+
+/* .centered {
+  border: 5px solid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+} */
+
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  /*border: 1px solid #ccc;*/
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  line-height: 1vh;
+  padding: 1vh;
+  width: 20vw;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 0px 0px;
+  border: 0px solid #ccc;
+  border-top: none;
+} 
+
+/* ============================================================
+   EDIT MODE — inspector panel (editMode.js)
+   ============================================================ */
+.editor-panel {
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  width: 20em;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: rgba(20, 20, 28, 0.92);
+  color: #f0f0f0;
+  border: 1px solid #6a6a8a;
+  border-radius: 0.5em;
+  padding: 0.75em 1em;
+  font-family: sans-serif;
+  font-size: 0.85em;
+  z-index: 1000;
+}
+
+.editor-panel.editor-hidden {
+  display: none;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid #6a6a8a;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.editor-hint {
+  font-size: 0.8em;
+  color: #b0b0c0;
+}
+
+.editor-hint kbd {
+  background-color: #333347;
+  border: 1px solid #6a6a8a;
+  border-radius: 0.25em;
+  padding: 0 0.35em;
+}
+
+.editor-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.editor-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+}
+
+.editor-label {
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9a9ac0;
+}
+
+/* ---- Edit-mode additions: toolbar, status, form fields ---- */
+
+.editor-toolbar {
+  display: flex;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.editor-btn {
+  background-color: #33334a;
+  color: #f0f0f0;
+  border: 1px solid #6a6a8a;
+  border-radius: 0.35em;
+  padding: 0.4em 0.7em;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.editor-btn:hover {
+  background-color: #44446a;
+}
+
+.editor-save-btn {
+  width: 100%;
+  margin-top: 0.25em;
+  background-color: #3a5a3a;
+  border-color: #5a8a5a;
+}
+
+.editor-save-btn:hover {
+  background-color: #4a7a4a;
+}
+
+.editor-status {
+  min-height: 1.2em;
+  font-size: 0.8em;
+  color: #9adf9a;
+  margin-bottom: 0.25em;
+}
+
+.editor-status-error {
+  color: #e08a8a;
+}
+
+.editor-body input[type="text"],
+.editor-body input[type="number"],
+.editor-body select,
+.editor-body textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #1c1c26;
+  color: #f0f0f0;
+  border: 1px solid #55556e;
+  border-radius: 0.3em;
+  padding: 0.35em 0.5em;
+  font-family: inherit;
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+}
+
+.editor-body textarea {
+  resize: vertical;
+}
+
+.editor-row {
+  display: flex;
+  gap: 0.5em;
+}
+
+.editor-row > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.editor-field.readonly {
+  opacity: 0.85;
+}
+
+/* ---- Edit-mode additions: mode buttons, requirement list ---- */
+
+.editor-mode-btn.active {
+  background-color: #5a5a8a;
+  border-color: #9a9ad0;
+}
+
+.editor-req-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.25em 0;
+  border-bottom: 1px solid #33334a;
+  font-size: 0.85em;
+}
+
+.editor-btn-small {
+  padding: 0.15em 0.5em;
+  font-size: 0.85em;
+}
+
+.editor-body .editor-hint {
+  display: block;
+  margin: 0.25em 0 0.5em;
+}
+
+.editor-btn-danger {
+  background-color: #5a2a2a;
+  border-color: #a05a5a;
+}
+
+.editor-btn-danger:hover {
+  background-color: #7a3a3a;
+}
+
+.editor-row .editor-save-btn,
+.editor-row .editor-btn-danger {
+  flex: 1;
+  margin-top: 0.25em;
+}

@@ -1,0 +1,1191 @@
+{
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Podróżnik",
+      "desc": "Twoja postać wkroczyła na drogę, która doprowadzi ją do zostania podróżnikiem.\n\nTen Atut jest wymagany, by zakończyć tworzenie postaci.\n\nTen atut wymaga wybrania jednego Atutu pochodzenia i przynajmniej jednego Atutu przeszłości (atuty te znajdują się poniżej tego atutu i są z nim połączone liniami.",
+      "hoverText": "",
+      "fi": 20,
+      "theta": 29.999999999999996,
+      "requires": [
+        [
+          "-1001",
+          "-1005",
+          "-1002",
+          "-1004",
+          "100002",
+          "100001",
+          "-1003"
+        ],
+        [
+          "31",
+          "32",
+          "33",
+          "34"
+        ]
+      ],
+      "cost": 0,
+      "temperature": 12000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "-3",
+      "name": "Innate caster",
+      "desc": "You always had some profficiency in manipulating the world around you via magic.",
+      "hoverText": "Grants access to Witchery tree and basic magic.",
+      "fi": 25,
+      "theta": 20,
+      "requires": [],
+      "cost": 5,
+      "temperature": 13000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "-1001",
+      "name": "Człowiek",
+      "desc": "Jesteś człowiekiem, rasą słynącą z swojej trwałej formy fizycznej.\n\nStartowe Charakterystyki:\nForma: 12\nBystorść: 9\nSiła Woli: 9\n\nSzybkość: 7\n\nDodatkowe umiejętności:\nWytrwali:\nPo każdej godzinie odpoczynku zaleczasz 1d4 Punkt Niezaleczonych Zwykłych Obrażeń, po czym odzyskujesz 1 Punkt Zaleczonych Zwykłych Obrażeń.\n\nCechy Fizyczne:\nWzrost: od 1 do 1,5 jednostki\nRozmiar: Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 16 do 20 lat\nWiek starczy: 60 lat,\nŚrednia Długość Życia: 80 lat (średnia),\nMaksymalna Długość Życia: 125 lat",
+      "hoverText": "Grants Human traits.",
+      "fi": 24,
+      "theta": 27,
+      "requires": [],
+      "cost": 0,
+      "temperature": 4000,
+      "exclGroup": "origins",
+      "effects": [
+        {
+          "type": "characteristic",
+          "key": "forma",
+          "amount": 12
+        },
+        {
+          "type": "characteristic",
+          "key": "bystrosc",
+          "amount": 9
+        },
+        {
+          "type": "characteristic",
+          "key": "silaWoli",
+          "amount": 9
+        },
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 12
+        },
+        {
+          "type": "attribute",
+          "key": "Wytrwali",
+          "description": "Po każdej godzinie odpoczynku zaleczasz 1d4 Punkt Niezaleczonych Zwykłych Obrażeń, po czym odzyskujesz 1 Punkt Zaleczonych Zwykłych Obrażeń."
+        }
+      ]
+    },
+    {
+      "id": "-1002",
+      "name": "Krasnolud",
+      "desc": "Jesteś krasnoludem.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 9\nSiła Woli: 12\n\nSzybkość: 4\n\nDodatkowe umiejętności:\nUparci:\nPo każdej godzinie odpoczynku odzyskujesz 1d4 Punktów Energii\n\nAdaptowalny wzrok:\nKonstrukcja krasnoludzkich oczu umożliwia im widzenie w ciemności, choć nie są w stanie rozpoznawać w jej kolorów.\n\nCechy Fizyczne:\nWzrost: od 0,6 do 1 jednostki\nRozmiar: Mały\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 22 lat\nWiek starczy: 110 lat,\nŚrednia Długość Życia: 125 lat (średnia),\nMaksymalna Długość Życia: 150 lat",
+      "hoverText": "",
+      "fi": 22.27,
+      "theta": 24,
+      "requires": [],
+      "cost": 5,
+      "temperature": 5000,
+      "exclGroup": "origins",
+      "effects": [
+        {
+          "type": "characteristic",
+          "key": "forma",
+          "amount": 9
+        },
+        {
+          "type": "characteristic",
+          "key": "bystrosc",
+          "amount": 9
+        },
+        {
+          "type": "characteristic",
+          "key": "silaWoli",
+          "amount": 12
+        },
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 9
+        },
+        {
+          "type": "attribute",
+          "key": "Adaptowalny wzrok",
+          "description": "Konstrukcja krasnoludzkich oczu umożliwia im widzenie w ciemności, choć nie są w stanie rozpoznawać w jej kolorów."
+        },
+        {
+          "type": "attribute",
+          "key": "Uparci",
+          "description": "Po każdej godzinie odpoczynku odzyskujesz 1d4 Punktów Energii."
+        }
+      ]
+    },
+    {
+      "id": "-1003",
+      "name": "Elf",
+      "desc": "Jesteś elfem.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 12\nSiła Woli: 9\n\nSzybkość: 10\n\nDodatkowe umiejętności:\nSzybcy jak wiatr\nMożesz jako darmowa akcja nadwyrężyć się zyskując Punkty Akcji w liczbie połowy swojej Zwinności (Czyli w liczbie połowy Maksymalnych Punktów Akcji, zaokrąglonych w dół). Po godzinie odpoczynku jesteś w stanie ponownie nadwyrężyć swój organizm w ten sposób.\n\nCzernogrzywi wzrok:\nKonstrukcja elfich oczu umożliwia im widzenie małych detali, których nie widzą inni. Zywkujesz 2 poziomy doświadczenia i 1 poziom improwizacji w umiejętności Spostrzegawczość.\n\nCechy Fizyczne:\nWzrost: od 1,3 do 1,7 jednostki\nRozmiar: Średni lub Duży\n\nDługość życia:\nWiek dojrzałości fizycznej: od 20 do 26 lat\nWiek starczy: 125 lat,\nŚrednia Długość Życia: 150 lat (średnia),\nMaksymalna Długość Życia: 200 lat",
+      "hoverText": "",
+      "fi": 25.73,
+      "theta": 24,
+      "requires": [],
+      "cost": 5,
+      "temperature": 5000,
+      "exclGroup": "origins",
+      "effects": [
+        {
+          "type": "characteristic",
+          "key": "forma",
+          "amount": 9
+        },
+        {
+          "type": "characteristic",
+          "key": "bystrosc",
+          "amount": 12
+        },
+        {
+          "type": "characteristic",
+          "key": "silaWoli",
+          "amount": 9
+        },
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 15
+        },
+        {
+          "type": "skillExperience",
+          "key": "spostrzegawczosc",
+          "amount": 2
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "spostrzegawczosc",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Szybcy jak wiatr",
+          "description": "Możesz jako darmowa akcja nadwyrężyć się zyskując Punkty Akcji w liczbie połowy swojej Zwinności (Czyli w liczbie połowy Maksymalnych Punktów Akcji, zaokrąglonych w dół). Po godzinie odpoczynku jesteś w stanie ponownie nadwyrężyć swój organizm w ten sposób."
+        }
+      ]
+    },
+    {
+      "id": "-1004",
+      "name": "Gnom",
+      "desc": "Jesteś Gnomem.\n\nStartowe Charakterystyki:\nForma: 8\nBystorść: 11\nSiła Woli: 11\n\nSzybkość: 6\n\nDodatkowe umiejętności:\nUmysł Mędrca:\nZyskujesz 1 poziom doświadczenia w umiejętnościach: Wiedza Medyczna, Alchemia, Inżynieria, Majsterkowanie, Metalurgia, Zaklinanie, Badawczość, Uczenie się, Wiedza Powszechna i Wiedza Magicza.\n\nMistrzowie Magii:\nPodczas co najmniej godzinnego odpoczynku możesz przygotować jedną akcję zużywającą maksymalnie 3 Punkty Energii. Wykonanie przygotowanej akcji po raz pierwszy od jej przygotowania nie zużywa energii. Po wykonaniu dowolnej akcji posiadającej koszt w energii przygotowana akcja przestaje być przygotowana.\n\nCechy Fizyczne:\nWzrost: od 0,9 do 1,3 jednostki\nRozmiar: Mały lub Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 16 do 24 lat\nWiek starczy: 70 lat,\nŚrednia Długość Życia: 130 lat (średnia),\nMaksymalna Długość Życia: 160 lat",
+      "hoverText": "",
+      "fi": 24,
+      "theta": 23,
+      "requires": [],
+      "cost": 4,
+      "temperature": 7000,
+      "exclGroup": "origins",
+      "effects": [
+        {
+          "type": "characteristic",
+          "key": "forma",
+          "amount": 8
+        },
+        {
+          "type": "characteristic",
+          "key": "bystrosc",
+          "amount": 11
+        },
+        {
+          "type": "characteristic",
+          "key": "silaWoli",
+          "amount": 11
+        },
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 11
+        },
+        {
+          "type": "skillExperience",
+          "key": "wiedzaMedyczna",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "alchemia",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "inzynieria",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "majsterkowanie",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "metalurgia",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "zaklinanie",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "badawczosc",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "uczenieSie",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "wiedzaPowszechna",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "wiedzaMagiczna",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Mistrzowie Magii",
+          "description": "Podczas co najmniej godzinnego odpoczynku możesz przygotować jedną akcję zużywającą maksymalnie 3 Punkty Energii. Wykonanie przygotowanej akcji po raz pierwszy od jej przygotowania nie zużywa energii. Po wykonaniu dowolnej akcji posiadającej koszt w energii przygotowana akcja przestaje być przygotowana."
+        }
+      ]
+    },
+    {
+      "id": "-1005",
+      "name": "Niziołek",
+      "desc": "Jesteś nizołkiem\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 8\nSiła Woli: 11\n\nSzybkość: 5\n\nDodatkowe umiejętności:\nSavant:\nNiziołki często są nizwykle wybitne w jednej lub paru bardzo interesujących ich dziedzinach. Otrzymujesz trzy poziomy doświadczenia i dwa poziomy improwizacji w  wybranych umiejętnościach.\n\nTrudni do trafienia:\nZ racji na swoją niewielką formę niziołki potrafią być zaskakująco trudne do trafienia. Gdy twój rozmiar jest Mały zyskujesz +2 do ewazji.\n\nCechy Fizyczne:\nWzrost: od 0,9 do 1,5 jednostki\nRozmiar: Mały lub Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 21 do 23 lat\nWiek starczy: 80 lat,\nŚrednia Długość Życia: 100 lat (średnia),\nMaksymalna Długość Życia: 140 lat",
+      "hoverText": "",
+      "fi": 22.27,
+      "theta": 26.000000000000004,
+      "requires": [],
+      "cost": 4,
+      "temperature": 8000,
+      "exclGroup": "origins",
+      "effects": [
+        {
+          "type": "characteristic",
+          "key": "forma",
+          "amount": 11
+        },
+        {
+          "type": "characteristic",
+          "key": "bystrosc",
+          "amount": 8
+        },
+        {
+          "type": "characteristic",
+          "key": "silaWoli",
+          "amount": 11
+        },
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 10
+        },
+        {
+          "type": "skillExperiencePoints",
+          "key": null,
+          "amount": 3
+        },
+        {
+          "type": "skillImprovisationPoints",
+          "key": null,
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Secrets of the World",
+      "desc": "You begin to uncover the mysteries of the universe.",
+      "hoverText": "Grants intellect related skills.",
+      "fi": 0,
+      "theta": 37.14,
+      "requires": [
+        "1"
+      ],
+      "cost": 1,
+      "temperature": 5000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "3",
+      "name": "Student of the Arcane",
+      "desc": "You begin to study magic arts.",
+      "hoverText": "Grants access to basic magic.",
+      "fi": 10,
+      "theta": 42.86,
+      "requires": [
+        "2"
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "4",
+      "name": "Explorer",
+      "desc": "Begin to explore the world.",
+      "hoverText": "Grants access to the exploration tree.",
+      "fi": 20,
+      "theta": 37.14,
+      "requires": [
+        "1"
+      ],
+      "cost": 1,
+      "temperature": 5000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "5",
+      "name": "Diplomat",
+      "desc": "Be more persuasive.",
+      "hoverText": "Grants access to the exploration tree.",
+      "fi": 29.999999999999996,
+      "theta": 37.14,
+      "requires": [
+        "1"
+      ],
+      "cost": 1,
+      "temperature": 5000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "6",
+      "name": "Sztuka Walki",
+      "desc": "Twoja postać miała okzaję uczesniczyć w wielu treningowych lub realnych potyczkach.\n\nZ racji na to doświadczenie zyskujesz jeden poziom doświadczenia w umiejętności czas reakcji.",
+      "hoverText": "",
+      "fi": 35,
+      "theta": 37,
+      "requires": [
+        "1"
+      ],
+      "cost": 1,
+      "temperature": 5000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "czasReakcji",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Resourceful",
+      "desc": "You got a little better at making the most out of what you have in any given situation. <D><D> Your ingenuity increases by 1.",
+      "hoverText": "+1 to ingenuity.",
+      "fi": 8,
+      "theta": 42.86,
+      "requires": [
+        "2"
+      ],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "8",
+      "name": "Creative",
+      "desc": "You became a bit more creative. <D><D> Your ingenuity increases by 1. <D> Damage you deal with improvised weapons increases by 1d4 of a type that this weapon already deals (you can choose a different one each attack).",
+      "hoverText": "+1 to ingenuity. Your improvised weapon attacks deal more damage.",
+      "fi": 8,
+      "theta": 48.57,
+      "requires": [
+        "7"
+      ],
+      "cost": 2,
+      "temperature": 4000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "9",
+      "name": "Improvised weapon adept",
+      "desc": "You focus your martial training at what you have at hand. <D> You gain an additional bonus to hit rolls made with improvised weapons equal to your ingenuity stat. <D> You also gain +1 ingenuity.",
+      "hoverText": "+1 to ingenuity. Your improvised weapon attacks become more accurate.",
+      "fi": 6,
+      "theta": 54.29,
+      "requires": [
+        "8"
+      ],
+      "cost": 1,
+      "temperature": 4000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "10",
+      "name": "Improvised weapon master",
+      "desc": "You master the art of using all sorts of mundane objects to fight. <D> Damage you deal with improvised weapons increases by an additional 1d6 of a type that this weapon already deals (you can choose a different one each attack). <D> You also gain +1 ingenuity.",
+      "hoverText": "+1 to ingenuity. Your improvised weapon attacks deal even more damage.",
+      "fi": 6,
+      "theta": 59.99999999999999,
+      "requires": [
+        "9"
+      ],
+      "cost": 1,
+      "temperature": 4000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "100001",
+      "name": "Półelf",
+      "desc": "Jesteś półelfem\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 11\nSiła Woli: 8\n\nSzybkość: 9\n\nDodatkowe umiejętności:\nOdporni:\nOrganizmy półelfów są niezwykle odporne na choroby i trucizny. Po każdej godzinie odpoczynku zaleczasz 1d6 obrażeń krytycznych od chrób i trucizn, po czym leczysz 1d4 zaleczonych obrażeń tego typu.\n\nCharyzmatyczni:\nPółelfy są naturalnie uzdolnione w spokojnym rozwiązywaniu sporów. Zyskujesz 1 Poziom Doświadczenia i 1 Poziom Improwizacji w umiejętnościach: Charyzma, Determinacja i Instynkt.\n\nCechy Fizyczne:\nWzrost: od 1,2 do 1,5 jednostki\nRozmiar: Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 24 lat\nWiek starczy: 100 lat,\nŚrednia Długość Życia: 135 lat (średnia),\nMaksymalna Długość Życia: 170 lat",
+      "hoverText": "",
+      "fi": 25.73,
+      "theta": 26.000000000000004,
+      "requires": [],
+      "cost": 4,
+      "temperature": 6000,
+      "exclGroup": "origins",
+      "effects": [
+        {
+          "type": "characteristic",
+          "key": "forma",
+          "amount": 11
+        },
+        {
+          "type": "characteristic",
+          "key": "bystrosc",
+          "amount": 11
+        },
+        {
+          "type": "characteristic",
+          "key": "silaWoli",
+          "amount": 8
+        },
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 14
+        },
+        {
+          "type": "skillExperience",
+          "key": "charyzma",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "determinacja",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "instynkt",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "charyzma",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "determinacja",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "instynkt",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Odporni",
+          "description": "Organizmy półelfów są niezwykle odporne na choroby i trucizny. Po każdej godzinie odpoczynku zaleczasz 1d6 obrażeń krytycznych od chrób i trucizn, po czym leczysz 1d4 zaleczonych obrażeń tego typu."
+        }
+      ]
+    },
+    {
+      "id": "100002",
+      "name": "Odmieniec",
+      "desc": "Jesteś odmieńcem\n\nStartowe Charakterystyki:\nRozdaj 30 poziomów między Formę, Bystrość i Siłę Woli, gdzie żadna z tych charakterystyk nie może być poniżej 8 i żadna nie może być powyżej 14.\n\nSzybkość: 8\n\nDodatkowe umiejętności:\nWybierz dwie spośród dodatkowych umiejętności innych pochodzeń.\n\nCechy Fizyczne:\nWzrost: od 0,7 do 1,8 jednostki\nRozmiar: Mały, Średni lub Duży\n\nDługość życia:\nWiek dojrzałości fizycznej: od 16 do 27 lat\nWiek starczy: 150 lat,\nŚrednia Długość Życia: 175 lat (średnia),\nMaksymalna Długość Życia: 216 lat",
+      "hoverText": "",
+      "fi": 24,
+      "theta": 25,
+      "requires": [],
+      "cost": 6,
+      "temperature": 6000,
+      "exclGroup": "origins",
+      "effects": [
+        {
+          "type": "characteristic",
+          "key": "forma",
+          "amount": 8
+        },
+        {
+          "type": "characteristic",
+          "key": "bystrosc",
+          "amount": 8
+        },
+        {
+          "type": "characteristic",
+          "key": "silaWoli",
+          "amount": 8
+        },
+        {
+          "type": "characteristicPoints",
+          "key": null,
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "100003",
+      "name": "Wampir",
+      "desc": "Z racji na warunki urodzenia lub mniej lub bardziej dobrowolne uczestnictwo w mrocznym rytuale jesteś Wampirem: jednym z kilku typów stworzeń będącymi połączeniem śmiertelnika i demona. Wampiry mają bladą skórą, słabe tętno i wolny puls. Żyją zwykle o połowę dłużej niż zwykli śmiertelnicy o ich pochodzeniu, i praktycznie nie starzeją się nawet do momentu śmierci, gdzie zwykle umierają przez zawał.\n\nBędąc Wampirem:\n\nZyskujesz atrybut:\nŻądza Krwi:\nJeżeli nie wypijesz przynajmniej litra krwi od czasu twojego ostatniego pełnego odpoczynku i wykonujesz pełen odpoczynek, nie wpływa on na twój poziom wyczerpania (wyczerpanie zmniejsza Maksymalną ilość Punktów Akcji, Energii oraz Wytrzymałość o 1 na każdy poziom wyczerpania. Zyskujesz 1 poziom wyczerpania co 24 godziny, chyba, że ukończyłeś w ciągu ostatnich 28 godzin pełny odpoczynek). Odpoczywanie nie zmniejsza poziomu wyczerpania jeżeli od ostatniego odpoczynku nie wypiłeś litra krwi.\n\nPrzeciętny śmiertelnik ma dwa litry krwi. Wbicie się w żyłę by pobrać krew zadaje 1 obrażenie krytyczne od głębokich ran. Każde 50 ml wypitej krwi zwiększa poziom wykrwawienia o 1 (czyli wypicie litra zwiększa wykrwawienie o 20).\n\nGdy nie jesteś wyczerpany twoja Wytrzymałość, Zwinność, Potęga i Szybkość zwiększają się o 1 za każdy litr krwi wypity od ostatniego pełnego odpoczynku.",
+      "hoverText": "",
+      "fi": 18,
+      "theta": 20,
+      "requires": [],
+      "cost": 6,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Żądza Krwi",
+          "description": "Jeżeli nie wypijesz przynajmniej litra krwi od czasu twojego ostatniego pełnego odpoczynku i wykonujesz pełen odpoczynek, nie wpływa on na twój poziom wyczerpania (wyczerpanie zmniejsza Maksymalną ilość Punktów Akcji, Energii oraz Wytrzymałość o 1 na każdy poziom wyczerpania. Zyskujesz 1 poziom wyczerpania co 24 godziny, chyba, że ukończyłeś w ciągu ostatnich 28 godzin pełny odpoczynek). Odpoczywanie nie zmniejsza poziomu wyczerpania jeżeli od ostatniego odpoczynku nie wypiłeś litra krwi.\n\nPrzeciętny śmiertelnik ma dwa litry krwi. Wbicie się w żyłę by pobrać krew zadaje 1 obrażenie krytyczne od głębokich ran. Każde 50 ml wypitej krwi zwiększa poziom wykrwawienia o 1 (czyli wypicie litra zwiększa wykrwawienie o 20).\n\nGdy nie jesteś wyczerpany twoja Wytrzymałość, Zwinność, Potęga i Szybkość zwiększają się o 1 za każdy litr krwi wypity od ostatniego pełnego odpoczynku."
+        }
+      ]
+    },
+    {
+      "id": "100000",
+      "name": "Fechtunek",
+      "desc": "Udało ci się zdobyć niewielkie doświadczenie w walce kilkoma brońmi białymi.\n\nZ racji na swój trening zyskujesz jeden poziom doświadczenia w umiejętności siła.",
+      "hoverText": "",
+      "fi": 40,
+      "theta": 38,
+      "requires": [
+        "6"
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "sila",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "100005",
+      "name": "Szkoła Makira",
+      "desc": "Szkoła Makira to szkoła fechtunku skupiająca się na wykorzystywaniu mieczy. Skupia się ona na zbalansowanym podejściu do walki.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz poziom swojej wprawy w walce mieczami.",
+      "hoverText": "",
+      "fi": 40,
+      "theta": 40,
+      "requires": [
+        "100000"
+      ],
+      "cost": 5,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Miecze",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "100006",
+      "name": "Szkoła Wiwerny",
+      "desc": "Szkoła Wiwerny to szkoła fechtunku kładąca nacisk na mobilność, szybkość i zabójczo precyzyjne ataki.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz poziom swojej wprawy w korzystaniu z sztyletów.",
+      "hoverText": "",
+      "fi": 35,
+      "theta": 40,
+      "requires": [
+        "100000"
+      ],
+      "cost": 3,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Sztylety",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "100004",
+      "name": "Szkoła Damh",
+      "desc": "Szkoła Damh podkreśla wagę obrony, uniwersalnie efektywnych ataków, a także kładzie nacisk na umiejętność walki bez broni. Jej przewodnią myśl dobrze ujmuje zdanie: jeżeli przeciwnik nie może cię skrzywdzić, wygrasz każdą walkę, nawet bez porządnej broni.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz poziom wprawy w atakach bez broni.",
+      "hoverText": "",
+      "fi": 45,
+      "theta": 40,
+      "requires": [
+        "100000"
+      ],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Ataki Bez Broni",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "100007",
+      "name": "Szkoła Squamy",
+      "desc": "Szkołą Squamy, zwana także Szkołą Smoka, skupia się na zadawaniu druzgocących obrażeń.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz swoją biegłość w krótkich broniach drzewcowych.",
+      "hoverText": "",
+      "fi": 50,
+      "theta": 40,
+      "requires": [
+        "100000"
+      ],
+      "cost": 4,
+      "temperature": 3000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Krótka Broń Drzewcowa",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "100008",
+      "name": "Szkołą Scairp",
+      "desc": "Szkołą Scairp, zwana także Szkołą Czarnogrzywa skupia się na zadawaniu ataków z przewagą dystansu.\n\nRozpoczynając trening w nucie tej szkoły zwiększasz poziom swojej wprawy w walce długą bronią drzewcową.",
+      "hoverText": "",
+      "fi": 29.999999999999996,
+      "theta": 40,
+      "requires": [
+        "100000"
+      ],
+      "cost": 4,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Długa Broń Drzewcowa",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "100009",
+      "name": "Walka na dystans",
+      "desc": "Po nabyciu niewielkiego doświadczenia z bronią miotaną lub miotającą jesteś w stanie zwykle trafić w duży nieruchomy cel.\n\nZ racji na swój trening, poziom doświadczenia twojej zręczności zwiększa się o 1.",
+      "hoverText": "",
+      "fi": 29.999999999999996,
+      "theta": 38,
+      "requires": [
+        "6"
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "sila",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "100010",
+      "name": "Szkołą Sytmpha",
+      "desc": "Szkoła Stympha skupia się na doskonaleniu używania oszczepów, włóczni, lotek i innych podobnych broni miotanych.",
+      "hoverText": "",
+      "fi": 25,
+      "theta": 40,
+      "requires": [
+        "100009"
+      ],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Broń Miotana",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "100011",
+      "name": "Szkołą Strzelca",
+      "desc": "Szkołą Strzelca, skupia się na używaniu łuków tj. broni miotającej używającej strzał jako amunicję.\n\n",
+      "hoverText": "",
+      "fi": 20,
+      "theta": 40,
+      "requires": [
+        "100009"
+      ],
+      "cost": 3,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Łuki",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "31",
+      "name": "Biedak",
+      "desc": "Znacząca część towjego życia polegała na życiu z datków bogatszych, zasobów społeczności czy z bardzo źle płatnej pracy.\n\nZyskujesz 2 pierścienie konstansjum lub ekwipunek o równoważnej wartości.\nZyskujesz Biedny Zestaw Startowy.",
+      "hoverText": "",
+      "fi": 17,
+      "theta": 24,
+      "requires": [],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "currency",
+          "amount": 2
+        },
+        {
+          "type": "item",
+          "key": "zestaw-biedny",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "32",
+      "name": "Rolnik",
+      "desc": "Przez znaczącą część swojego życia twój dobrobyt zależał od uprawianej przez ciebie ziemi.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności majsterkowanie.\n\nZyskujesz 5 pierścieni lub ekwipunek o takiej wartości.\nZyskujesz Skromny Zestaw Startowy.",
+      "hoverText": "",
+      "fi": 14.999999999999998,
+      "theta": 25,
+      "requires": [],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "majsterkowanie",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "majsterkowanie",
+          "amount": 1
+        },
+        {
+          "type": "currency",
+          "amount": 5
+        },
+        {
+          "type": "item",
+          "key": "zestaw-skromny",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "33",
+      "name": "Wiejski Rzemieślnik",
+      "desc": "Jako rzemieślnik pracujący w małej miejscowości twoją pracę stanowiło wszystko co choćby minimalnie dotyczyło twojej profesji.\n\nZyskujesz 2 poziomy doświadczenia i improwizacji w umiejętności majsterkowanie.\n\nZyskujesz 10 pierścieni lub ekwipunek o takiej wartości.\nZyskujesz Skromny Zestaw Startowy.",
+      "hoverText": "",
+      "fi": 17,
+      "theta": 25,
+      "requires": [],
+      "cost": 4,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "currency",
+          "amount": 10
+        },
+        {
+          "type": "item",
+          "key": "zestaw-skromny",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "34",
+      "name": "Stróż",
+      "desc": "Przez znaczącą część swojego życia twoim zadaniem było strzeżenie zwierząt, mienia czy życia innych ludzi w twojej społeczności.\n\nZyskujesz poziom doświadczenia w umiejętnościach siła, wigor i zręczność.\n\nZyskujesz 6 pierścieni lub ekwipunek o takiej wartości.\nZyskujesz Skromny Zestaw Startowy.",
+      "hoverText": "",
+      "fi": 19,
+      "theta": 25,
+      "requires": [],
+      "cost": 3,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "sila",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "wigor",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "zrecznosc",
+          "amount": 1
+        },
+        {
+          "type": "currency",
+          "amount": 6
+        },
+        {
+          "type": "item",
+          "key": "zestaw-skromny",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "100013",
+      "name": "Szkoła Procarza",
+      "desc": "Szkoła ta specjalizuje się w używaniu broni miotającej okrągłymi pociskami.",
+      "hoverText": "",
+      "fi": 14.999999999999998,
+      "theta": 40,
+      "requires": [
+        "100009"
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "100014",
+      "name": "Potężne Uderzenie",
+      "desc": "Wojownicy specjalizujący się w Szkole Squamy uczą się wkładać maksymalną ilość siły w każdy atak.\n\nZyskujesz atrybut:\n\nPotężny cios:\nDeklarując atak możesz wydać 1 punkt energii. Jeżeli trafisz i zadasz obrażenia, zadajesz o jedno więcej obrażenie każdego zadanego typu.",
+      "hoverText": "",
+      "fi": 48,
+      "theta": 41,
+      "requires": [
+        "100007"
+      ],
+      "cost": 5,
+      "temperature": 5000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "100015",
+      "name": "Technika Drwala",
+      "desc": "Jedną z pierwszych technik, do których dochodzą istoty uczące się fechtunku zgodnie z myślami Szkoły Squamy jest technika drwala. Jest ona tożsama z naturalnym pojęciem gdzie znajduje się i jak szybko porusza się głownia dzierżonej broni.\n\nZyskujesz jeden poziom wprawy w krótkich broniach drzewcowych.",
+      "hoverText": "",
+      "fi": 50,
+      "theta": 41,
+      "requires": [
+        "100007"
+      ],
+      "cost": 4,
+      "temperature": 4000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Krótka Broń Drzewcowa",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "100016",
+      "name": "Mistrz Boleści",
+      "desc": "Uczysz się panować nad zadanym ci bólem, dzięki czemu staje się on dla ciebie bardziej motywacją niż przeszkodą.\n\nZyskujesz Atrybut:\n\nMistrz Boleści\nMożesz zadeklarować wykonanie kontry do następnej akcji atakującego lub zakończenia jego tury jeśli nie wykona w niej kolejnej akcji w momencie otrzymania od niego obrażeń. Atak bronią białą wykonany w ramach tej kontry zadaje o tyle punktów obrażeń każdego typu więcej ile w sumie otrzymała twoja postać w ostatnim otrzymanym ataklu lub maksimum możliwych do zadania obrażeń ‒ przy czym wybierasz mniejszą z tych dwóch wartości.",
+      "hoverText": "",
+      "fi": 52.00000000000001,
+      "theta": 41,
+      "requires": [
+        "100007"
+      ],
+      "cost": 5,
+      "temperature": 3000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Mistrz Boleści",
+          "description": "Możesz zadeklarować wykonanie kontry do następnej akcji atakującego lub zakończenia jego tury jeśli nie wykona w niej kolejnej akcji w momencie otrzymania od niego obrażeń. Atak bronią białą wykonany w ramach tej kontry zadaje o tyle punktów obrażeń każdego typu więcej ile w sumie otrzymała twoja postać w ostatnim otrzymanym ataklu lub maksimum możliwych do zadania obrażeń ‒ przy czym wybierasz mniejszą z tych dwóch wartości."
+        }
+      ]
+    },
+    {
+      "id": "100017",
+      "name": "Technika Kowala",
+      "desc": "Technika Kowala mówi o skupieniu się na utrzymaniu stałego tępa walki, tak jak kowal utrzymuje stałe tępo uderzeń młota. Pozwala to na zmniejszenie zmęczenia ciała i pomaga rozwijać kontrolę nad własnymi ruchami co pozwala na wykonywanie większej ilości ataków.\n\nZyskujesz jeden poziom Bystrości.",
+      "hoverText": "",
+      "fi": 50,
+      "theta": 42,
+      "requires": [
+        "100015"
+      ],
+      "cost": 3,
+      "temperature": 5000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "characteristic",
+          "key": "bystrosc",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "100018",
+      "name": "Technika Cieśli",
+      "desc": "Technika Cieśli skupia się na opanowaniu trejektorii głowni. \n\nRozwijając swoją kontrolę nad bronią zyskujesz jeden poziom improwizacji w krótkiej broni drzewcowej.",
+      "hoverText": "",
+      "fi": 50,
+      "theta": 43,
+      "requires": [
+        "100017"
+      ],
+      "cost": 4,
+      "temperature": 5000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Krótka Broń Drzewcowa",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "100019",
+      "name": "Pan Cierpienia",
+      "desc": "Rozwijając swoją kontrolę nad bólem jesteś w stanie walczyć w sytuacjach, gdy inni stracili by już przytomność.\n\nZyskujesz Atut:\n\nPan Cierpienia\nGdy łączna ilość posiadanych przez twoją postać punktów obrażeń staje się równa lub większa od twojej wytrzymałości zamiast natychmiastowego stracenia przytomności możesz walczyć dalej. W takiej sytuacji w momencie zadeklarowania chęci skorzystania z tego atrybutu i na początku każdej twojej tury tracisz Punkty Energii w ilości równej Łącznej Ilości Obrażeń – Wytrzymałość + 1. W momencie, w którym ilość twoich Punktów Energii osiągnie 0 tracisz ptzytomność i zyskujesz jeden punkt zaleczonych krytycznych obrażeń wewnętrznych, będących skutkiem tak wycieńczającego manewru.",
+      "hoverText": "",
+      "fi": 54,
+      "theta": 41,
+      "requires": [
+        "100016"
+      ],
+      "cost": 6,
+      "temperature": 2000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Pan Cierpienia",
+          "description": "Gdy łączna ilość posiadanych przez twoją postać punktów obrażeń staje się równa lub większa od twojej wytrzymałości zamiast natychmiastowego stracenia przytomności możesz walczyć dalej. W takiej sytuacji w momencie zadeklarowania chęci skorzystania z tego atrybutu i na początku każdej twojej tury tracisz Punkty Energii w ilości równej Łącznej Ilości Obrażeń – Wytrzymałość + 1. W momencie, w którym ilość twoich Punktów Energii osiągnie 0 tracisz ptzytomność i zyskujesz jeden punkt zaleczonych krytycznych obrażeń wewnętrznych, będących skutkiem tak wycieńczającego manewru."
+        }
+      ]
+    },
+    {
+      "id": "100020",
+      "name": "Oszałamiające uderzenie",
+      "desc": "Czasami najlepszą obroną jest atak, w szczególności jeżeli spowoduje on, iż nie staniesz się celem kolejnego ataku.\n\nZyskujesz Atrybut:\n\nOszałamiające uderzenie:\nW odpowiedzi na zadeklarowanie ataku w towją postać możesz wydać 3 punkty energii i 3 punkty akcji by wykonać oszałamiającą kontrę, podczas której wykonujesz akcję ataku w dowolnym nieuzbrojonym trybie. Jeżeli trafisz (nie musisz zadać obrażeń, tylko trafić w przeciwnika) broń przeciwnika wypada mu z rąk i lądując 0.5 jednostki przed nim. W przypadku krytycznego sukcesu broń ląduje pod tobą nie zadając Ci obrażeń.",
+      "hoverText": "",
+      "fi": 45,
+      "theta": 42,
+      "requires": [
+        "100004"
+      ],
+      "cost": 6,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "100021",
+      "name": "Przygotowanie do walki",
+      "desc": "Dobrze zaplanowana obrona zaczyna się daleko przed walką i składa się z ćwiczeń ciała, umysłu i ducha.\n\nZyskujesz dwa poziomy improwizacji w dowolnych umiejętnościach.",
+      "hoverText": "",
+      "fi": 47,
+      "theta": 43,
+      "requires": [
+        "100020"
+      ],
+      "cost": 5,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillImprovisationPoints",
+          "key": null,
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "100022",
+      "name": "Zawsze Gotowy",
+      "desc": "Życie jest ciągłą walką, stąd zawsze powinniśmy dbać o swoje umiejętności.\n\nZyskujesz 1 poziom improwizacji w dowolnej umiejętności.",
+      "hoverText": "",
+      "fi": 47,
+      "theta": 43.99999999999999,
+      "requires": [
+        "100021"
+      ],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "100023",
+      "name": "Adept Dam‒hu",
+      "desc": "Opanowywujesz sztukę przekierowywania ataków własnymi rękoma i zwiększasz swoje zrozumienie sztuki walki nieuzbrojonej.\n\nZyskujesz jeden poziom wprawy w atakach nieuzbrojonych.\n\nZdobywasz atrybut:\n\nAdept Dam‒hu\n\nUczysz się bezpiecznie przekierowywać ataki własnymi dłońmi. Każda z twoich dłoni zyskuje +3 bonusu do odbicia i +1 bonusu do blokowania.\nDodatkowo Ataki nieuzbrojone zadają 1d6 obrażeń obuchowych.",
+      "hoverText": "",
+      "fi": 45,
+      "theta": 43.99999999999999,
+      "requires": [
+        "100020"
+      ],
+      "cost": 7,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Ataki Bez Broni",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Adept Dam‒hu",
+          "description": "Uczysz się bezpiecznie przekierowywać ataki własnymi dłońmi. Każda z twoich dłoni zyskuje +3 bonusu do odbicia i +1 bonusu do blokowania.\nDodatkowo Ataki nieuzbrojone zadają 1d6 obrażeń obuchowych."
+        }
+      ]
+    },
+    {
+      "id": "100024",
+      "name": "Sztuka Ucieczki",
+      "desc": "Nie każda walka kończy się wygraną, lecz przegrana bitwa nie musi oznaczać końca wojny.\n\nZyskujesz jeden poziom szybkości.",
+      "hoverText": "",
+      "fi": 43,
+      "theta": 45,
+      "requires": [
+        "100023"
+      ],
+      "cost": 3,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "100025",
+      "name": "Szutka Repozycjonowania",
+      "desc": "Nie każde wycofanie się musi oznaczać ucieczkę. Czasami najlepszą obroną jest wybranie innej walki.\n\nZdobywasz dwa poziomy szybkości.",
+      "hoverText": "",
+      "fi": 43,
+      "theta": 45.75,
+      "requires": [
+        "100024"
+      ],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "100026",
+      "name": "Sztuka Wygrywania",
+      "desc": "Nawet po wygranej potyczce zebranie wszystkich łupów czy wykończenie wszystkich przeciwników wymaga szybkiego działania.\n\nZyskujesz trzy poziomy szybkości.",
+      "hoverText": "",
+      "fi": 43,
+      "theta": 46.49999999999999,
+      "requires": [
+        "100025"
+      ],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "100027",
+      "name": "Sztuka Obrony",
+      "desc": "Gdy przciwnicy dobierają potężną broń, należy potężnie zwiększyć swoją obronę.\n\nZyskujesz poziom wprawy w używaniu tarcz.\n",
+      "hoverText": "",
+      "fi": 45,
+      "theta": 45,
+      "requires": [
+        "100023"
+      ],
+      "cost": 3,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Tarcze",
+          "amount": 1
+        }
+      ]
+    }
+  ],
+  "mutuallyExclusive": [
+    {
+      "label": "origins",
+      "max": 1,
+      "members": [
+        "-1002",
+        "-1005",
+        "-1004",
+        "-1001",
+        "100002",
+        "100001",
+        "-1003"
+      ]
+    }
+  ]
+}

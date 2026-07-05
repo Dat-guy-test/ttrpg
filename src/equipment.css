@@ -1,0 +1,95 @@
+/* ============================================================
+   EQUIPMENT SHEET  (Equipment tab)
+   Reuses .charSheet/.charSection/.charBtn/.statWrapper from
+   characterSheet.css/style.css so it matches the Character Data
+   tab's look; only the list/detail-specific bits are new.
+   ============================================================ */
+
+.equipSheet {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 56em;
+  margin: 0 auto;
+  padding: 1.5em 2em 3em;
+  font-family: sans-serif;
+  color: #2c2c2a;
+}
+
+.equipSheet-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75em;
+  margin-bottom: 1em;
+}
+
+.equipMoneyRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  margin-bottom: 1em;
+}
+.equipMoneyRow input {
+  width: 6em;
+  box-sizing: border-box;
+  border: 1px solid rgb(187, 128, 241);
+  border-radius: 0.3em;
+  padding: 0.4em 0.6em;
+  font-size: 1em;
+}
+
+.equipListRows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+.equipListRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 0.75em;
+  border: 1px solid #e2e0d8;
+  border-radius: 0.3em;
+  background-color: #faf9f5;
+  cursor: pointer;
+}
+.equipListRow:hover { background-color: rgb(232, 172, 255); }
+.equipListRow-name { font-weight: 600; }
+.equipListRow-price, .equipListRow-qty { color: #6a6a66; }
+
+.equipDetail-category {
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6a6a66;
+  margin: 0 0 0.75em;
+}
+.equipDetail-desc {
+  white-space: pre-line;
+  margin-bottom: 1em;
+}
+
+#equip-buy-btn { margin-top: 1em; }
+
+@media print {
+  body * { visibility: hidden; }
+
+  #equipmentPage, #equipmentPage * { visibility: visible; }
+
+  #equipmentPage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    border: none;
+    background: #ffffff;
+  }
+
+  .equipSheet { max-width: 100%; padding: 0; color: #000000; }
+  .equipSheet-toolbar { display: none; }
+  .equipListRow { break-inside: avoid; cursor: default; }
+  .charSpend-btn { display: none; }
+}

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/siteIcon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>System</title>
+  </head>
+  <body>
+      <noscript>
+        You need to enable JavaScript to run this.
+      </noscript>
+      
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'skillTree')">Skill Tree</button>
+        <button class="tablinks" onclick="openTab(event, 'character')">Character Data</button>
+        <button class="tablinks" onclick="openTab(event, 'equipment')">Equipment</button>
+        <button class="tablinks" onclick="openTab(event, 'manual')">Manual</button>
+        <button class="tablinks" onclick="openTab(event, 'spellCrafring')">Spellcrafting</button>
+        <button class="tablinks" onclick="openTab(event, 'reportIssue')">Report Issue</button>
+      </div>
+
+      <div id="skillTree" class="tabcontent">
+        <div id ="wrap">
+          <div id="bor">
+            <div id="canvas"></div>
+          </div>
+          <div id="text">
+            <p>
+              <span id="nodeName">Wybierz Cuś</span>
+            </p>
+            <p>
+              <span id="nodeDesc">Opis cusia</span>
+            </p>
+            <p>
+              <span id="nodeCost">Koszt Cusia</span>
+            </p>
+            <p>
+              Perk points: <span id="perkPoints">Punkty</span>
+            </p>
+          </div>
+          <div id="listTree">
+          </div>
+          </div>
+      </div>
+
+      <div id="character" class="tabcontent">
+        <div id ="characterWrapper">
+          <div id = "characterPage">
+            <div id = "characterNameWrapper">Character name:
+              <input type="text" id="characterName" name="fname" value="Name"><br>
+            </div>
+            <div id = "statistics" class = "centered">
+
+              <div id="staticStats" class="statsGroup">
+                <div id = "originWrapper" class="statWrapper">
+                  <div id = "originLabel" class="statLabel">Evasion</div>
+                  <div id = "originValue" class="statValue">5</div>
+                </div>
+                 <div id = "originWrapper" class="statWrapper">
+                  <div id = "originLabel" class="statLabel">Deflection Bonus</div>
+                  <div id = "originValue" class="statValue">+1</div>
+                </div>
+                <div id = "baseSpeedWrapper" class="statWrapper">
+                  <div id = "baseSpeedLabel" class="statLabel">Armour Bonus</div>
+                  <div id = "baseSpeedValue" class="statValue">+2</div>
+                </div>
+              </div>
+
+              <div id="greaterResources" class="statsGroup">
+                  <div id = "resolvePointsWrapper" class="statWrapper">
+                  <div id = "resolvePointsLabel" class="statLabel">Resolve Points</div>
+                  <div id = "resolvePointsValue" class="statValue">x</div>
+                </div>
+                <div id = "characterPointsWrapper" class="statWrapper">
+                  <div id = "characterPointsLabel" class="statLabel">Character Points</div>
+                  <div id = "characterPointsValue" class="statValue">x/y</div>
+                </div>
+                <div id = "actionPointsWrapper" class="statWrapper">
+                  <div id = "actionPointsLabel" class="statLabel">Speed (in standard units)</div>
+                  <div id = "actionPointsValue" class="statValue">x</div>
+                </div>
+              </div>
+
+              <div id="lesserResources" class="statsGroup">
+                <div id = "healthtPointsWrapper" class="statWrapper">
+                  <div id = "healthtPointsLabel" class="statLabel">Health Points</div>
+                  <div id = "healthtPointsValue" class="statValue">20</div>
+                </div>
+                <div id = "powerPointsWrapper" class="statWrapper">
+                  <div id = "powerPointsLabel" class="statLabel">Power</div>
+                  <div id = "powerPointsValue" class="statValue">0/100</div>
+                </div>
+                <div id = "actionPointsWrapper" class="statWrapper">
+                  <div id = "actionPointsLabel" class="statLabel">Action Points</div>
+                  <div id = "actionPointsValue" class="statValue">x/3</div>
+                </div>
+              </div>
+              <div id = "phyWrapper"></div>
+              <div id = "mainStats" class="statsGroup">
+                <div id = "physiqueLevelWrapper" class="statWrapper">
+                  <div id = "physiqueLevelLabel" class="statLabel">Physique</div>
+                  <div id = "physiqueLevelValue" class="statValue">69</div>
+                </div>
+                <div id = "intellectLevelWrapper" class="statWrapper">
+                  <div id = "intellectLevelLabel" class="statLabel">Intellect</div>
+                  <div id = "intellectLevelValue" class="statValue">420</div>
+                </div>
+                <div id = "willLevelWrapper" class="statWrapper">
+                  <div id = "willLevelLabel" class="statLabel">Willpower</div>
+                  <div id = "willLevelValue" class="statValue">2137</div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        </div>
+      </div>
+
+      <div id="equipment" class="tabcontent">
+        <div id ="equipmentWrapper">
+          <div id="equipmentPage"></div>
+        </div>
+      </div>
+
+      <div id="manual" class="tabcontent"><div id ="manualWrapper">TBD</div></div>
+      <div id="spellCrafring" class="tabcontent"><div id ="spellCraftWrapper">TBD</div></div>
+      <div id="reportIssue" class="tabcontent"><div id ="reportIssueWrapper">Napiszcie do mnie XD</div></div>
+
+
+      <script>
+        function openTab(evt, tabName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          document.getElementById(tabName).style.display = "block";
+          if(evt != undefined) {evt.currentTarget.className += " active"};
+        }
+        openTab(event, 'skillTree')
+        </script>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
