@@ -28,14 +28,14 @@
   gap: 0.75em;
   margin-bottom: 1em;
 }
-.equipMoneyRow input {
+.equipMoneyRow span {
   width: 6em;
   box-sizing: border-box;
   border: 1px solid rgb(187, 128, 241);
   border-radius: 0.3em;
   padding: 0.4em 0.6em;
   font-size: 1em;
-}
+} /*Will need to revamp this, there needs to be a single button for adding/substracting currency*/ 
 
 .equipListRows {
   list-style: none;

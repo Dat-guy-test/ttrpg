@@ -29,8 +29,11 @@
 // ============================================================
 
 import AppState from './appState.js';
-import { EFFECT_TYPES } from './characterState.js';
+import { EFFECT_TYPES, CHARACTERISTICS_CONFIG } from './characterState.js';
 
+function isCharacteristicReq(req) {
+    return !!req && typeof req === 'object' && !Array.isArray(req) && req.type === 'characteristic';
+}
 
 let panelEl  = null;
 let bodyEl   = null; // re-rendered per selection / submode
@@ -417,6 +420,16 @@ function wireAddEffectForm(idPrefix, onAdd) {
     });
 }
 
+function addCharacteristicRequirement(node) {
+    const stat = bodyEl.querySelector('#ed-new-req-char').value;
+    const min  = Number(bodyEl.querySelector('#ed-new-req-char-min').value);
+
+    if (!Number.isFinite(min)) { setStatus('Podaj liczbową wartość minimalną.', true); return; }
+
+    const ok = AppState.tr.addRequirement(node.nodeId, { type: 'characteristic', stat, min });
+    setStatus(ok ? `Dodano wymóg charakterystyki do "${node.nodeName}".` : 'Nie udało się dodać wymogu.', !ok);
+    renderInspector();
+}
 
 // ============================================================
 // Existing-node form (properties + requirements + effect)
@@ -428,12 +441,20 @@ function renderExistingNodeForm(node) {
     const requiresRows = (node.requires.length === 0)
         ? '<em>No requirements.</em>'
         : node.requires.map((req, i) => {
-            const label = Array.isArray(req) ? `OR: ${req.join(', ')}` : `AND: ${req}`;
+            let label;
+            if (Array.isArray(req)) {
+                label = `OR: ${req.join(', ')}`;
+            } else if (isCharacteristicReq(req)) {
+                const cfg = CHARACTERISTICS_CONFIG.find(c => c.key === req.stat);
+                label = `Charakterystyka: ${cfg ? cfg.label : req.stat} ≥ ${req.min}`;
+            } else {
+                label = `AND: ${req}`;
+            }
             return `<div class="editor-req-row">
                 <span>${escapeHtml(label)}</span>
                 <button class="editor-btn editor-btn-small" data-remove-req="${i}">✕</button>
             </div>`;
-        }).join('');
+    }).join('');
 
     bodyEl.innerHTML = `
         <div class="editor-field readonly">
@@ -482,7 +503,13 @@ function renderExistingNodeForm(node) {
             <input id="ed-new-req" type="text" placeholder="id — or id1,id2 for OR" />
             <button class="editor-btn editor-btn-small" id="ed-add-req">Add</button>
         </div>
-        <div class="editor-hint">Tip: you can also switch to Connect mode and click nodes directly.</div>
+        <div class="editor-row">
+            <select id="ed-new-req-char">
+                ${CHARACTERISTICS_CONFIG.map(c => `<option value="${c.key}">${escapeHtml(c.label)}</option>`).join('')}
+            </select>
+            <input id="ed-new-req-char-min" type="number" placeholder="Min" />
+            <button class="editor-btn editor-btn-small" id="ed-add-req-char">Add Charakterystykę</button>
+        </div>
 
         <label class="editor-label">Efekty perku (wpływ na arkusz postaci)</label>
         <div id="ed-effects-list">${renderEffectsList(node.effects)}</div>
@@ -546,6 +573,7 @@ function renderExistingNodeForm(node) {
     bodyEl.querySelector('#ed-save').addEventListener('click', () => saveNode(node));
     bodyEl.querySelector('#ed-delete').addEventListener('click', () => deleteNodeWithConfirm(node));
     bodyEl.querySelector('#ed-add-req').addEventListener('click', () => addRequirementFromInput(node));
+    bodyEl.querySelector('#ed-add-req-char').addEventListener('click', () => addCharacteristicRequirement(node));
     bodyEl.querySelectorAll('[data-remove-req]').forEach(btn => {
         btn.addEventListener('click', () => {
             AppState.tr.removeRequirement(node.nodeId, Number(btn.dataset.removeReq));

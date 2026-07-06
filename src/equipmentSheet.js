@@ -21,7 +21,7 @@ import {
     ITEMS,
     getItemById,
     getCurrency,
-    setCurrency,
+    //setCurrency,
     getOwnedItems,
     getItemQuantity,
     setItemQuantity,
@@ -83,8 +83,12 @@ function renderListPage() {
         <section class="charSection">
             <h2 class="charSection-title">Ekwipunek</h2>
             <div class="equipMoneyRow">
-                <label class="charField-label" for="equip-currency">Pierścienie</label>
-                <input type="number" id="equip-currency" value="${getCurrency()}" />
+                <label class="charField-label" for="equip-currency">Sztuki Konstancjum</label>
+                <span type="number" id="equip-currency" value="${Math.floor(getCurrency() / 500)}" />
+                <label class="charField-label" for="equip-currency">Pierścienie Konstancjum</label>
+                <span type="number" id="equip-currency" value="${Math.floor((getCurrency() % 500 - getCurrency() % 5)/5)}" />
+                <label class="charField-label" for="equip-currency">Nitki Konstancjum</label>
+                <span type="number" id="equip-currency" value="${getCurrency() % 5}" />
             </div>
             <div class="equipSheet-toolbar">
                 <button class="charBtn" id="equip-market-toggle">${view.marketMode ? 'Wróć do ekwipunku' : 'Otwórz rynek'}</button>
@@ -142,9 +146,9 @@ function attachHandlers() {
     });
 
     if (view.page === 'list') {
-        rootEl.querySelector('#equip-currency').addEventListener('input', (e) => {
+        /**rootEl.querySelector('#equip-currency').addEventListener('input', (e) => {
             setCurrency(e.target.value);
-        });
+        });//Will need to revamp this there needs to be a single button for adding/substracting currency.**/
         rootEl.querySelector('#equip-market-toggle').addEventListener('click', () => {
             view.marketMode = !view.marketMode;
             render();

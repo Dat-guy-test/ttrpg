@@ -49,7 +49,12 @@ import { computePanCamera } from './cameraControls.js';
 import { NODE_DATA_URL } from './constants.js';
 import { handleTreesphereClick, handleEditModeConnectionClick } from './editMode.js';
 import { applyNodeEffect, removeNodeEffect, refreshPerksTaken } from './perkEffects.js';
+import { CharacterState, computeStatValue } from './characterState.js';
 
+// small helper, used in a couple of places
+function isCharacteristicReq(req) {
+    return !!req && typeof req === 'object' && !Array.isArray(req) && req.type === 'characteristic';
+}
 
 /**
  * Reads a node's effects off either the current array format
@@ -149,12 +154,17 @@ export class Tree {
     areReqsMet(reqs) {
         for (const req of reqs) {
             if (Array.isArray(req)) {
-                // OR group — ALL inactive (or unresolved) → fail
                 const allInactive = req.every(id => {
                     const node = this.resolveNode(id);
                     return !node || !node.nodeActive;
                 });
                 if (allInactive) return false;
+
+            } else if (isCharacteristicReq(req)) {
+                const field = CharacterState.characteristics[req.stat];
+                const { value } = computeStatValue(field);
+                if (!(value >= req.min)) return false;
+
             } else {
                 const node = this.resolveNode(req);
                 if (!node || !node.nodeActive) return false;
@@ -341,7 +351,8 @@ export class Tree {
 
         for (let i = 0; i < this.nodes.length; i++) {
             for (let j = 0; j < this.nodes[i].requires.length; j++) {
-                const req  = this.nodes[i].requires[j];
+                const req = this.nodes[i].requires[j];
+                if (isCharacteristicReq(req)) continue; // no node-to-node arc for a stat gate
                 const endD = new THREE.Vector3();
                 this.nodes[i].star.getWorldPosition(endD);
 

@@ -73,6 +73,28 @@ for (const n of nodes) {
     });
 }
 
+const VALID_CHARACTERISTIC_KEYS = ['forma', 'bystrosc', 'silaWoli', 'szybkosc', 'udzwig'];
+
+requires.forEach((req, j) => {
+    if (Array.isArray(req)) {
+        // ...unchanged OR-group handling
+    } else if (req && typeof req === 'object') {
+        if (req.type !== 'characteristic') {
+            errors.push(`Node "${id}": requires[${j}] is an object with unknown type "${req.type}" (expected "characteristic").`);
+        } else {
+            if (!VALID_CHARACTERISTIC_KEYS.includes(req.stat)) {
+                errors.push(`Node "${id}": requires[${j}] targets unknown characteristic "${req.stat}".`);
+            }
+            if (typeof req.min !== 'number') {
+                errors.push(`Node "${id}": requires[${j}] (characteristic requirement) needs a numeric "min", got ${JSON.stringify(req.min)}.`);
+            }
+        }
+    } else {
+        if (!idSet.has(String(req))) {
+            errors.push(`Node "${id}": requires[${j}] references unknown id "${req}".`);
+        }
+    }
+});
 // ---- Check mutuallyExclusive groups -------------------------------
 const groupLabels = new Set();
 for (const g of groups) {

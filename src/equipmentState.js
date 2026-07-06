@@ -85,12 +85,12 @@ export function addCurrency(amount) {
     saveEquipmentState();
 }
 
-/** Player directly typing a new balance (e.g. after a trade adjudicated by the GM). */
-export function setCurrency(value) {
+/** Player directly typing a new balance (e.g. after a trade adjudicated by the GM). - will have to revamp this, there needs to be a single button for adding or substracting currency.*/
+/**export function setCurrency(value) {
     const n = Number(value);
     EquipmentState.currency = Number.isFinite(n) ? n : 0;
     saveEquipmentState();
-}
+}**/
 
 // ---- Inventory --------------------------------------------------------------
 
