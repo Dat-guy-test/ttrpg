@@ -34,9 +34,9 @@
 // ============================================================
 
 import * as THREE from 'three';
-import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+import { Text } from 'troika-three-text';
 import AppState from './appState.js';
-import { BLOOM_LAYER } from './constants.js';
+import { BLOOM_LAYER, LABEL_FONT_URL, LABEL_MIN_SCALE } from './constants.js';
 import { StarModel } from './StarModel.js';
 import { computePanCamera } from './cameraControls.js';
 import { handleEditModeNodeClick } from './editMode.js';
@@ -85,33 +85,35 @@ export class TreeNode extends THREE.Mesh {
         });
         this.position.set(posX, posY, posZ);
 
-        // ---- 3D text label -------------------------------------------
-        this.nameTextGeometry = new TextGeometry(anodeName, {
-            font:            AppState.hellishFont,
-            size:            0.02,
-            depth:           0.0,
-            curveSegments:   12,
-            bevelEnabled:    false,
-            bevelThickness:  0.03,
-            bevelSize:       0.02,
-            bevelOffset:     0,
-            bevelSegments:   5,
-        });
-        this.nameTextMaterials = [
-            new THREE.MeshBasicMaterial({ color: 0xfafafa }), // front face
-            new THREE.MeshBasicMaterial({ color: 0x00aaaa }), // side/depth face
-        ];
-        this.nameText = new THREE.Mesh(this.nameTextGeometry, this.nameTextMaterials);
-
-        this.nameTextGeometry.computeBoundingBox();
-        this.centerOffset = 0.5 * (
-            this.nameTextGeometry.boundingBox.max.y -
-            this.nameTextGeometry.boundingBox.min.y
-        );
+        // ---- 3D text label ---------------------------------------------
+        // Rendered via troika-three-text (SDF text sampled from a real
+        // font file — see constants.js's LABEL_FONT_URL) instead of
+        // three's TextGeometry + a pre-baked typeface JSON. This fixes
+        // two things at once: the font file can be any real TTF/OTF (so
+        // it actually contains Polish diacritics like ą/ę/ł/ó/ż/ź/ć/ś/ń,
+        // which the old hand-converted typeface JSON was simply missing),
+        // and its geometry is regenerated cheaply, so restyling (colour,
+        // outline, size) never needs a manual TextGeometry rebuild.
+        //
+        // anchorX: 'left' / anchorY: 'middle' replace the old manual
+        // `centerOffset` bounding-box math — troika centers/aligns the
+        // glyphs relative to `.position` for us, so `.position` can just
+        // be "the point on the sphere surface next to the node" exactly
+        // as before, with no extra vertical offset needed.
+        this.nameText = new Text();
+        this.nameText.text        = anodeName;
+        this.nameText.font        = LABEL_FONT_URL;
+        this.nameText.fontSize    = 0.02;      // baseline size — see LABEL_MIN_SCALE in constants.js
+        this.nameText.color       = 0xfafafa;
+        this.nameText.outlineWidth = '8%';      // stands in for the old side/depth face colour
+        this.nameText.outlineColor = 0xaa2bef;
+        this.nameText.anchorX     = 'left';
+        this.nameText.anchorY     = 'middle';
+        this.nameText.sync();
 
         this.nameText.position.set(
             this.position.x + (this.nodeSize + 0.01) * Math.sin(this.fi),
-                                   this.position.y - this.centerOffset,
+                                   this.position.y,
                                    this.position.z + (this.nodeSize + 0.01) * Math.cos(this.fi)
         );
         // Face the label toward the origin (where the camera sits) at any latitude.
@@ -120,6 +122,9 @@ export class TreeNode extends THREE.Mesh {
         // front face) back toward the origin, matching the original intent.
         const outward = this.position.clone().multiplyScalar(0.5);
         this.nameText.lookAt(outward);
+        // Zoom-driven size (see updateLabelScale() below / main.js's animate())
+        // starts at the floor — i.e. today's on-screen size at full zoom-in.
+        this.nameText.scale.setScalar(LABEL_MIN_SCALE);
         AppState.scene.add(this.nameText);
 
         // ---- StarModel (async texture load + lava shader) ------------
@@ -161,7 +166,7 @@ export class TreeNode extends THREE.Mesh {
 
                     this.nameText.position.set(
                         this.position.x + (this.nodeSize + 0.01) * Math.sin(this.fi) * this.scale.x,
-                                               this.position.y - this.centerOffset,
+                                               this.position.y,
                                                this.position.z + (this.nodeSize + 0.01) * Math.cos(this.fi) * this.scale.z
                     );
 
@@ -187,9 +192,21 @@ export class TreeNode extends THREE.Mesh {
 
                     this.nameText.position.set(
                         this.position.x + (this.nodeSize + 0.01) * Math.sin(this.fi),
-                                               this.position.y - this.centerOffset,
+                                               this.position.y,
                                                this.position.z + (this.nodeSize + 0.01) * Math.cos(this.fi)
                     );
+                }
+
+                /**
+                 * Rescales just the nameText label (not the node's
+                 * hit-sphere/star) based on the current zoom level. Cheap —
+                 * it's a plain Object3D.scale write, no re-layout/re-sync of
+                 * the underlying troika text geometry — so it's safe to call
+                 * every frame for every node (see main.js's animate() loop).
+                 * @param {number} scaleFactor
+                 */
+                updateLabelScale(scaleFactor) {
+                    this.nameText.scale.setScalar(scaleFactor);
                 }
 
                 // ----------------------------------------------------------------
@@ -337,7 +354,7 @@ export class TreeNode extends THREE.Mesh {
 
                     this.nameText.position.set(
                         this.position.x + (this.nodeSize + 0.01) * Math.sin(this.fi),
-                                               this.position.y - this.centerOffset,
+                                               this.position.y,
                                                this.position.z + (this.nodeSize + 0.01) * Math.cos(this.fi)
                     );
                     const outward = this.position.clone().multiplyScalar(0.5);

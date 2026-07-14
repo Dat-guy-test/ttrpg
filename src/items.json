@@ -1,14 +1,700 @@
 {
   "items": [
-    { "id": "zestaw-biedny",    "name": "Biedny Zestaw Startowy",  "price": 0,  "category": "Zestaw",      "desc": "Podstawowy zestaw dla najbiedniejszych: łatana derka, hubka i krzemień, drewniana miska i niewielki nóż." },
-    { "id": "zestaw-skromny",   "name": "Skromny Zestaw Startowy", "price": 0,  "category": "Zestaw",      "desc": "Solidniejszy zestaw startowy: sakwa, koc, podróżny nóż, hubka i krzemień, mała ilość prowiantu." },
-    { "id": "sztylet",          "name": "Sztylet",                 "price": 5,  "category": "Broń",        "desc": "Lekka, krótka broń biała. Łatwa do ukrycia, przydatna zarówno w walce jak i codziennym użyciu." },
-    { "id": "miecz-krotki",     "name": "Krótki Miecz",             "price": 15, "category": "Broń",        "desc": "Zbalansowana broń jednoręczna, popularna wśród podróżników ze względu na uniwersalność." },
-    { "id": "luk-krotki",       "name": "Krótki Łuk",               "price": 20, "category": "Broń",        "desc": "Broń miotająca średniego zasięgu, wymaga strzał jako amunicji." },
-    { "id": "tarcza-drewniana", "name": "Tarcza Drewniana",         "price": 10, "category": "Tarcza",      "desc": "Okuta metalem tarcza z drewna. Zapewnia solidną osłonę przy niewielkim ciężarze." },
-    { "id": "zbroja-skorzana",  "name": "Zbroja Skórzana",          "price": 25, "category": "Zbroja",      "desc": "Utwardzana skóra zapewniająca podstawową ochronę bez znacznego ograniczenia ruchów." },
-    { "id": "pochodnia",        "name": "Pochodnia",                "price": 1,  "category": "Wyposażenie", "desc": "Pali się około godziny, dając światło w niewielkim promieniu." },
-    { "id": "linka",            "name": "Linka (15m)",              "price": 3,  "category": "Wyposażenie", "desc": "Wytrzymała linka przydatna do wspinaczki i wiązania." },
-    { "id": "prowiant",         "name": "Prowiant (1 dzień)",       "price": 2,  "category": "Wyposażenie", "desc": "Suszone mięso, chleb i owoce — wystarczy na jeden dzień podróży." }
+    {
+      "id": "custom-1783416208650-cdo0z",
+      "name": "Lep (Pół Dziennej Porcji)",
+      "price": "notForSale",
+      "bulk": 0.08,
+      "type": "misc",
+      "desc": "Leip, nazwyany potocznie lepem to pożywna masa o słabym, mdlącym smaku o lekko ziarnistej konsystencji (podobnej do mieszaniny chałwy z kredą) i beżowym kolorze. To najtańsza forma wyżywnienia wytwarzana z prostych składników tworzonych ex nihilum w rytuałach przez magów kreacji. Większość istot jest w stanie przetrwać długie miesiące na samym Leipie, choć każda szanująca się istota unika jego spożywania z racji na mdlący smak, lub korzysta z niego jak z neutralnej bazy do posiłków, spożywając go z warzywami, mięsem czy serami. Schłodzony, leip psuje się dopiero po długich latach lub w ciągu kilku tygodni jeżeli trzymany jest w cieple i wilogci. Na potrzeby rozgrywki możesz przyjąć, iż Leip nie psuje się.\n\nTa porcja to niewielkie zawiniątko, wielkości małej dłoni, zawierające ilość leipu odpowiadającą połowie dziennego zapotrzebowania na żywność humanoidalnej istoty. Często leip je się na pół z świerzym jedzeniem, by zmniejszyć koszty wyżywienia nie odrzucając przyjemności jaką jest jedzenie czegoś co smakuje dobrze.\n\nJeżeli masz do dyspozycji inne posiłki, każde spożycie leipu wiąże się z potrzebą wykonania testu na determinację (Poziom Trudności 2). Poziom Trudności tego testu wzrasta o 1 za każdy dzień od ostatniego dnia, gdzie przynajmniej połowa spożytych posiłków nie była leipem. Przy porażce w teście twoja postać nie może zjeść więcej niż pół dnia racji leipu tego dnia.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": []
+    },
+    {
+      "id": "custom-1783416314259-uoz0k",
+      "name": "Lep (Dzienna Porcja)",
+      "price": "notForSale",
+      "bulk": 0.15,
+      "type": "misc",
+      "desc": "Leip, nazwyany potocznie lepem to pożywna masa o słabym, mdlącym smaku o lekko ziarnistej konsystencji (podobnej do mieszaniny chałwy z kredą) i beżowym kolorze. To najtańsza forma wyżywnienia wytwarzana z prostych składników tworzonych ex nihilum w rytuałach przez magów kreacji. Większość istot jest w stanie przetrwać długie miesiące na samym Leipie, choć każda szanująca się istota unika jego spożywania z racji na mdlący smak, lub korzysta z niego jak z neutralnej bazy do posiłków, spożywając go z warzywami, mięsem czy serami. Schłodzony, leip psuje się dopiero po długich latach lub w ciągu kilku tygodni jeżeli trzymany jest w cieple i wilogci. Na potrzeby rozgrywki możesz przyjąć, iż Leip nie psuje się.\n\nTa porcja to zawiniątko, wielkości dużej dłoni, pozwalające najeść się do syta ciężko pracującej fizycznie istocie przez całą dobę. Porcję tą można łatwo podzielić na dwie, co najczęściej robi się w celu spożycia z świeżym jedzeniem.\n\nJeżeli masz do dyspozycji inne posiłki, każde spożycie leipu wiąże się z potrzebą wykonania testu na determinację (Poziom Trudności 2). Poziom Trudności tego testu wzrasta o 1 za każdy dzień od ostatniego dnia, gdzie przynajmniej połowa spożytych posiłków nie była leipem. Przy porażce w teście twoja postać nie może zjeść więcej niż pół dnia racji leipu tego dnia.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1783416208650-cdo0z",
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "id": "custom-1783458345228-gyqao",
+      "name": "Lep (Tygodniowa Porcja)",
+      "price": 1,
+      "bulk": 1,
+      "type": "misc",
+      "desc": "Leip, nazwyany potocznie lepem to pożywna masa o słabym, mdlącym smaku o lekko ziarnistej konsystencji (podobnej do mieszaniny chałwy z kredą) i beżowym kolorze. To najtańsza forma wyżywnienia wytwarzana z prostych składników tworzonych ex nihilum w rytuałach przez magów kreacji. Większość istot jest w stanie przetrwać długie miesiące na samym Leipie, choć każda szanująca się istota unika jego spożywania z racji na mdlący smak, lub korzysta z niego jak z neutralnej bazy do posiłków, spożywając go z warzywami, mięsem czy serami. Schłodzony, leip psuje się dopiero po długich latach lub w ciągu kilku tygodni jeżeli trzymany jest w cieple i wilogci. Na potrzeby rozgrywki możesz przyjąć, iż Leip nie psuje się.\n\nTa porcja zawiera siedem mniejszych zawiniątek odpowiadających standardowej dziennej porcji leipu.\n\nJeżeli masz do dyspozycji inne posiłki, każde spożycie leipu wiąże się z potrzebą wykonania testu na determinację (Poziom Trudności 2). Poziom Trudności tego testu wzrasta o 1 za każdy dzień od ostatniego dnia, gdzie przynajmniej połowa spożytych posiłków nie była leipem. Przy porażce w teście twoja postać nie może zjeść więcej niż pół dnia racji leipu tego dnia.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1783416314259-uoz0k",
+          "quantity": 7
+        }
+      ]
+    },
+    {
+      "id": "custom-1783459693915-jb864",
+      "name": "Uboga Tunika",
+      "price": 5,
+      "bulk": 1,
+      "type": "clothing",
+      "desc": "",
+      "state": "unequipped",
+      "hitPoints": 2,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "requirements": [],
+      "equipSlots": [
+        "leftLeg",
+        "rightLeg",
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "underwear",
+        "clothes"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 0,
+      "equipTimeActionPoints": 0,
+      "unequipTimeSeconds": 0,
+      "unequipTimeActionPoints": 0
+    },
+    {
+      "id": "custom-1783459779302-rkzpx",
+      "name": "Ubogie Trzewiki",
+      "price": 10,
+      "bulk": 1,
+      "type": "clothing",
+      "desc": "",
+      "state": "unequipped",
+      "hitPoints": 3,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "requirements": [],
+      "equipSlots": [
+        "leftFoot",
+        "rightFoot"
+      ],
+      "equipLayers": [
+        "clothes"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 0,
+      "equipTimeActionPoints": 0,
+      "unequipTimeSeconds": 0,
+      "unequipTimeActionPoints": 0
+    },
+    {
+      "id": "custom-1784056048918-s9c8n",
+      "name": "Nóż",
+      "price": 3,
+      "bulk": 1,
+      "type": "weapon",
+      "desc": "Niewielkie narzędzie używane do cięcia z ostrym końcem, które można wykorzystać jako broń.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "requirements": [
+        {
+          "skill": "zrecznosc",
+          "min": 0
+        }
+      ],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee",
+        "thrown"
+      ],
+      "proficiencyCategory": "Sztylety",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Pchnięcie Nożem",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 1,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Cięcie Nożem",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Rzut Nożem",
+          "modeType": "throw",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 10,
+          "spread": {
+            "count": 1,
+            "dice": "d4",
+            "modifier": 0
+          },
+          "effectiveRange": 5,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Rękojeścią Noża",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1784056473608-9efaz",
+      "name": "Prosty Sztylet",
+      "price": 5,
+      "bulk": 1,
+      "type": "weapon",
+      "desc": "Przypominająca nóż broń, zaostrzona z obydwu stron, dobrze wyważona o ostrym końcu klingi.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "requirements": [
+        {
+          "skill": "zrecznosc",
+          "min": 1
+        }
+      ],
+      "block": 1,
+      "deflection": 2,
+      "weaponKinds": [
+        "melee",
+        "thrown"
+      ],
+      "proficiencyCategory": "Sztylety",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Pchnięcie Sztyletem",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 3,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": "Zabójcze wykończenie: Jeżeli cel ataku jest pochwycony przez Ciebie lub Twojego sojusznika, lub jest unieruchomiony podstawowa celność tego ataku wynosi 7."
+        },
+        {
+          "name": "Cięcie Sztyletem",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Rzut Sztyletem",
+          "modeType": "throw",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 12,
+          "spread": {
+            "count": 1,
+            "dice": "d4",
+            "modifier": 0
+          },
+          "effectiveRange": 7,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Rękojeścią Sztyletu",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1784057113716-4runr",
+      "name": "Lewak",
+      "price": 15,
+      "bulk": 1,
+      "type": "weapon",
+      "desc": "Lewak to sztylet zaprojektowany z myślą o obronie, zwykle trzymany w lewej dłoni przez osoby praworęczne (stąd nazwa): posiada on rozbudowaną rękojeść i długie, grube jak na sztylet ostrze. Niestety z racji na swój duży rozmiar i rozbudowaną rękojeść słabo sprawuje się on w roli broni miotanej.",
+      "state": "unequipped",
+      "hitPoints": 4,
+      "toughness": 3,
+      "isSet": false,
+      "setMembers": [],
+      "requirements": [
+        {
+          "skill": "zrecznosc",
+          "min": 3
+        }
+      ],
+      "block": 3,
+      "deflection": 7,
+      "weaponKinds": [
+        "melee",
+        "thrown"
+      ],
+      "proficiencyCategory": "Sztylety",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Pchnięcie Lewakiem",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": "Zabójcze wykończenie: Jeżeli cel ataku jest pochwycony przez Ciebie lub Twojego sojusznika, lub jest unieruchomiony podstawowa celność tego ataku wynosi 7."
+        },
+        {
+          "name": "Cięcie Lewakiem",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Rzut Lewakiem",
+          "modeType": "throw",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 6,
+          "spread": {
+            "count": 1,
+            "dice": "d4",
+            "modifier": 0
+          },
+          "effectiveRange": 3,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Rękojeścią Lewaka",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1784057878596-fti9i",
+      "name": "Łamacz Mieczy",
+      "price": 30,
+      "bulk": 1,
+      "type": "weapon",
+      "desc": "Łamacz mieczy to sztylet o trzech ostrzach, wykonany z dobrej jakości, twardej stali. Osteza te wraz z rozbudowaną metalową rękojeścią mogą być używane przez wprawnego fechmistrza do skutecznego blokowania ataków, odbijania ich, lub wyrywania broni przeciwnikowi. Konstrukcja ta jednak niemalże całkowicie pozbawia ten rodzaj sztyletu możliwości wykonywania celnych ataków i utrudnia zadawanie poważnych obrażeń.",
+      "state": "unequipped",
+      "hitPoints": 5,
+      "toughness": 4,
+      "isSet": false,
+      "setMembers": [],
+      "requirements": [
+        {
+          "skill": "zrecznosc",
+          "min": 4
+        }
+      ],
+      "block": 6,
+      "deflection": 5,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Sztylety",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Pchnięcie Łamaczem Mieczy",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Cięcie Łamaczem Mieczy",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": "Łamanie Broni: Jeżeli wykonujesz atak w tym trybie w ramach kontry przeciw atakowi przeciwnika, którego wybrany tryb ataku zadaje obrażenia kłóte lub cięte możesz zamiast zadeklarować próbę rozbrojenia przeciwnika (zastępuje to wtedy wykonywany przez Ciebie atak):\nRozstrzygnij konkurs twojej zręczności przeciw zręczności lub sile przeciwnika. W przypadku sukcesu broń wypada z rąk przeciwnika, spadając mu pod nogi. W przypadku krytycznego sukcesu broń spada pod Twoje nogi lub broń otrzymuje 2d6 + 2 obrażeń obuchowych (twój wybór)."
+        },
+        {
+          "name": "Rzut Łamaczem Mieczy",
+          "modeType": "throw",
+          "handedness": "one",
+          "baseAccuracy": -2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": -1,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 4,
+          "spread": {
+            "count": 1,
+            "dice": "d4",
+            "modifier": -1
+          },
+          "effectiveRange": 2,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Rękojeścią Łamacza Mieczy",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1784058054971-57l4h",
+      "name": "Mizerykordia",
+      "price": 20,
+      "bulk": 1,
+      "type": "weapon",
+      "desc": "Mizerykordia to sztylet przypominający szpikulec. Jej główną funkcją jest dobijanie pochwyconych, nieprzytomnych lub unieruchomionych przeciwników.",
+      "state": "unequipped",
+      "hitPoints": 2,
+      "toughness": 3,
+      "isSet": false,
+      "setMembers": [],
+      "requirements": [
+        {
+          "skill": "zrecznosc",
+          "min": 3
+        }
+      ],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee",
+        "thrown"
+      ],
+      "proficiencyCategory": "",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Pchnięcie Mizerykordią",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": "Niezwykle zabójcze wykończenie: Jeżeli cel ataku jest pochwycony przez Ciebie lub Twojego sojusznika, lub jest unieruchomiony podstawowa celność tego ataku wynosi 12. Dodatkowo w przypadku trafienia, cel otrzymuje 1d6 kłótych obrażeń krytycznych."
+        },
+        {
+          "name": "Cięcie Mizerykordią",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": -1,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Rzut Mizerykordią",
+          "modeType": "throw",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": -1,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 4,
+          "spread": {
+            "count": 1,
+            "dice": "d4",
+            "modifier": 0
+          },
+          "effectiveRange": 3,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Rękojeścią Mizerykordii",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1784068774618-dh6oe",
+      "name": "Sakiewka",
+      "price": 3,
+      "bulk": 0,
+      "type": "storage",
+      "desc": "Niewielka skórzana lub materiałowa sakiewka. Wielu nosi takie u pasa, trzymając w nich monety czy inne drobne przedmioty.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "requirements": [],
+      "equipSlots": [
+        "belt"
+      ],
+      "equipLayers": [
+        "outerAttach"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 0,
+      "equipTimeActionPoints": 0,
+      "unequipTimeSeconds": 0,
+      "unequipTimeActionPoints": 0,
+      "capacity": 5
+    },
+    {
+      "id": "custom-1784069295220-vneqw",
+      "name": "Sakwa",
+      "price": 6,
+      "bulk": 0.02,
+      "type": "storage",
+      "desc": "Średniej wielkości skórzana lub materiałowa sakwa, ułatwiająca przetrzymywanie i przenoszenie przedmiotów. Sakwa tej wielkości jest idealnym akcesorium dla średniej wielkości wierzchowca.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "requirements": [],
+      "equipSlots": [],
+      "equipLayers": [],
+      "effectDescription": "",
+      "equipTimeSeconds": 0,
+      "equipTimeActionPoints": 0,
+      "unequipTimeSeconds": 0,
+      "unequipTimeActionPoints": 0,
+      "capacity": 0
+    }
   ]
 }

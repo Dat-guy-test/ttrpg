@@ -2,7 +2,7 @@
    EQUIPMENT SHEET  (Equipment tab)
    Reuses .charSheet/.charSection/.charBtn/.statWrapper from
    characterSheet.css/style.css so it matches the Character Data
-   tab's look; only the list/detail-specific bits are new.
+   tab's look; only the list/detail/editor-specific bits are new.
    ============================================================ */
 
 .equipSheet {
@@ -22,20 +22,27 @@
   margin-bottom: 1em;
 }
 
+/* ---- Currency row (Sztuki / Pierścienie / Nitki Konstancjum) ---- */
 .equipMoneyRow {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 0.75em;
   margin-bottom: 1em;
 }
-.equipMoneyRow span {
-  width: 6em;
+.equipMoneyDenom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25em;
   box-sizing: border-box;
   border: 1px solid rgb(187, 128, 241);
   border-radius: 0.3em;
-  padding: 0.4em 0.6em;
-  font-size: 1em;
-} /*Will need to revamp this, there needs to be a single button for adding/substracting currency*/ 
+  padding: 0.4em 0.75em;
+  min-width: 8em;
+}
+.equipMoneyDenom .charStat-readonly {
+  font-size: 1.2em;
+}
 
 .equipListRows {
   list-style: none;
@@ -70,8 +77,42 @@
   white-space: pre-line;
   margin-bottom: 1em;
 }
+.equipDetail-extra {
+  margin-top: 1em;
+  padding-top: 0.75em;
+  border-top: 1px solid #e2e0d8;
+}
+.equipDetail-extra p { margin: 0.35em 0; }
+.equipDetail-extra ul { margin: 0.35em 0 0.75em; padding-left: 1.3em; }
 
 #equip-buy-btn { margin-top: 1em; }
+
+/* ---- Item Editor (Tryb Edycji) ---------------------------------- */
+.itemEditor-typeSection {
+  margin-top: 1em;
+  padding-top: 0.75em;
+  border-top: 1px dashed rgb(187, 128, 241);
+}
+.itemEditor-subform {
+  margin-top: 0.75em;
+  padding: 0.75em;
+  border: 1px solid #e2e0d8;
+  border-radius: 0.4em;
+  background-color: #faf9f5;
+}
+.editor-checkboxGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25em 1em;
+  margin-bottom: 0.75em;
+  font-size: 0.9em;
+}
+.editor-checkboxGroup label {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  white-space: nowrap;
+}
 
 @media print {
   body * { visibility: hidden; }
@@ -92,4 +133,5 @@
   .equipSheet-toolbar { display: none; }
   .equipListRow { break-inside: avoid; cursor: default; }
   .charSpend-btn { display: none; }
+  .itemEditor-typeSection, .itemEditor-subform { display: none !important; }
 }

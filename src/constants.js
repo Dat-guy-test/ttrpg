@@ -23,3 +23,36 @@ export const BLOOM_LAYER = 2;
  */
 export const NODE_DATA_URL = `${import.meta.env.BASE_URL}nodes.json`;
 
+/**
+ * Real font file (.ttf/.otf/.woff) used to render every node's
+ * nameText label via troika-three-text (see TreeNode.js). Unlike the
+ * old typeface-JSON approach, troika loads this directly at runtime —
+ * so it must live in `public/` (served as-is) rather than be
+ * imported from `src/`, same reasoning as NODE_DATA_URL above:
+ * import.meta.env.BASE_URL keeps the path correct in both
+ * `npm run dev` ('/') and a GitHub Pages build ('/repo-name/').
+ *
+ * Any font with full Unicode/Latin-Extended-A coverage works here —
+ * that's what actually fixes the missing Polish diacritics (ą, ę, ł,
+ * ó, ż, ź, ć, ś, ń); the old .typeface.json was simply missing those
+ * glyphs. Drop your chosen font file at public/fonts/<name>, and
+ * update the filename below to match.
+ */
+export const LABEL_FONT_URL = `${import.meta.env.BASE_URL}fonts/MedievalSharp-Regular.ttf`;
+
+/**
+ * Node nameText labels are rescaled every frame based on the current
+ * zoom level (see main.js's animate() loop and TreeNode.updateLabelScale()),
+ * so they stay legible when zoomed out instead of shrinking into
+ * illegibility along with everything else in the perspective view.
+ *
+ * LABEL_MIN_SCALE is the floor — 1.0 means "never smaller than the
+ * label's current baked-in fontSize" (see TreeNode.js's `fontSize: 0.02`),
+ * i.e. today's look at full zoom-in.
+ * LABEL_MAX_SCALE is the ceiling reached at full zoom-out — tune this
+ * upward until labels are comfortably readable zoomed all the way
+ * out, then back off until neighbouring labels stop overlapping.
+ */
+export const LABEL_MIN_SCALE = 1.0;
+export const LABEL_MAX_SCALE = 10.0;
+

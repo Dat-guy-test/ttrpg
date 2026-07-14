@@ -41,6 +41,7 @@ import {
 } from './cameraControls.js';
 import { registerInputHandlers } from './inputHandlers.js';
 import { initEditMode } from './editMode.js';
+import { LABEL_MIN_SCALE, LABEL_MAX_SCALE } from './constants.js';
 
 
 // ============================================================
@@ -98,8 +99,9 @@ sec();
 //   3. Zoom animation
 //   4. Arrow-key momentum rotation (main camera)
 //   5. Star shader time uniform updates
-//   6. WASD / Space / Shift free-camera translation
-//   7. Render through the bloom post-processing pipeline
+//   6. Node nameText label rescaling vs. current zoom level
+//   7. WASD / Space / Shift free-camera translation
+//   8. Render through the bloom post-processing pipeline
 // ============================================================
 function animate() {
   AppState.stats.begin();
@@ -122,6 +124,22 @@ function animate() {
   for (const star of AppState.starClasses) {
     if (star.isModelReady()) {
       star.customUniforms.time.value += delta;
+    }
+  }
+
+  // --- Node label scale vs. zoom level ---------------------------
+  // AppState.zoomStage ranges 0 (fully zoomed in) .. 60 (fully zoomed
+  // out) — see inputHandlers.js's '='/'-'/wheel handlers. Labels are
+  // kept at LABEL_MIN_SCALE (today's size) at full zoom-in and grow
+  // toward LABEL_MAX_SCALE as the camera zooms out, so they stay
+  // legible instead of shrinking away with everything else in the
+  // perspective view. Cheap: TreeNode.updateLabelScale() only touches
+  // Object3D.scale, no text re-layout.
+  if (AppState.tr) {
+    const zoomT = AppState.zoomStage / 60; // 0 = zoomed in, 1 = zoomed out
+    const labelScale = LABEL_MIN_SCALE + (LABEL_MAX_SCALE - LABEL_MIN_SCALE) * zoomT;
+    for (const node of AppState.tr.nodes) {
+      node.updateLabelScale(labelScale);
     }
   }
 

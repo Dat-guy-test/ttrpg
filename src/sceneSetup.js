@@ -16,9 +16,7 @@ import './equipment.css';
 import * as THREE from 'three';
 import { WebGLRenderer } from 'three';
 import { EffectComposer, EffectPass, RenderPass, SelectiveBloomEffect } from 'postprocessing';
-import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import HelvetikerFont from './fonts/helvetiker_regular.typeface.json';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
 import AppState from './appState.js';
@@ -86,9 +84,6 @@ export function initScene() {
 
     // ---- Stats overlay (toggle with Tab) -------------------------
     AppState.stats = new Stats();
-
-    // ---- Font (shared by all TreeNode text labels) ---------------
-    AppState.hellishFont = new FontLoader().parse(HelvetikerFont);
 
     // ---- Renderer ------------------------------------------------
     AppState.renderer = new WebGLRenderer({
