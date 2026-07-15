@@ -1,9 +1,25 @@
 /* ============================================================
  *   CHARACTER SHEET  (Character Data tab)
- *   Reuses .statWrapper/.statLabel/.statValue from style.css so the
- *   resource boxes and stat fields match the visual language already
- *   established there; everything else is new.
+ *
+ *   Shares the parchment token set (--parchment-ink, --parchment-seal,
+ *   etc.) and the MedievalSharp @font-face declared in style.css —
+ *   this file relies on style.css being loaded first (it is: see
+ *   sceneSetup.js's import order). Two font ROLES are used here
+ *   rather than one: MedievalSharp for headings/labels/buttons
+ *   (display), and a plain serif book-face stack for the dense
+ *   tables and inputs (body) — running a decorative face through
+ *   every number on this page would hurt legibility in a way it
+ *   didn't for the short node-info panel.
  *   ============================================================ */
+
+:root {
+    --parchment-line:      #8a6432;              /* replaces the old purple rgb(187,128,241) borders/rules */
+    --parchment-line-soft: rgba(138, 100, 50, 0.35);
+    --parchment-hover:     #ecdcb0;               /* warm highlight for hover/alternating rows */
+    --parchment-card:      rgba(255, 250, 235, 0.6); /* translucent card so text stays legible over the texture */
+    --font-display: 'MedievalSharp', 'Luminari', fantasy, serif;
+    --font-body: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+}
 
 .charSheet {
     box-sizing: border-box;
@@ -11,8 +27,8 @@
     max-width: 56em;
     margin: 0 auto;
     padding: 1.5em 2em 3em;
-    font-family: sans-serif;
-    color: #2c2c2a;
+    font-family: var(--font-body);
+    color: var(--parchment-ink);
 }
 
 .charSheet-toolbar {
@@ -23,17 +39,19 @@
 }
 
 .charBtn {
-    background-color: rgb(187, 128, 241);
-    color: #ffffff;
-    border: 1px solid rgb(146, 92, 199);
+    background-color: var(--parchment-seal);
+    color: #f3e6c8;
+    border: 1px solid var(--parchment-seal-dark);
     border-radius: 0.4em;
     padding: 0.5em 1em;
-    font-size: 0.9em;
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+    font-size: 0.95em;
     cursor: pointer;
 }
-.charBtn:hover { background-color: rgb(166, 104, 224); }
-.charBtn-danger { background-color: #a0455a; border-color: #7a2f3f; }
-.charBtn-danger:hover { background-color: #b85468; }
+.charBtn:hover { background-color: #63188f; }
+.charBtn-danger { background-color: #3d094a; border-color: #21052c; }
+.charBtn-danger:hover { background-color: #510e62; }
 .charBtn-small { padding: 0.15em 0.5em; font-size: 0.85em; }
 
 /* ---- Header --------------------------------------------------- */
@@ -44,6 +62,9 @@
     align-items: flex-end;
     padding: 1em 1.25em;
     margin-bottom: 1.5em;
+    background: var(--parchment-card);
+    border: 1px solid var(--parchment-line-soft);
+    border-radius: 0.5em;
 }
 
 .charField {
@@ -54,23 +75,26 @@
 .charField-name { flex: 1 1 16em; min-width: 12em; }
 
 .charField-label {
-    font-size: 0.75em;
+    font-family: var(--font-display);
+    font-size: 0.8em;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: #6a6a66;
+    color: var(--parchment-ink-soft);
 }
 
 .charField input,
 .charSheet input[type="text"],
 .charSheet input[type="number"] {
     box-sizing: border-box;
-    border: 1px solid rgb(187, 128, 241);
+    background: rgba(255, 253, 245, 0.55);
+    border: 1px solid var(--parchment-line);
     border-radius: 0.3em;
     padding: 0.4em 0.6em;
     font-size: 1em;
-    font-family: inherit;
+    font-family: var(--font-body);
+    color: var(--parchment-ink);
 }
-.charField-name input { font-size: 1.2em; font-weight: 600; }
+.charField-name input { font-size: 1.2em; font-weight: 600; font-family: var(--font-display); }
 
 /* ---- Generic section wrapper ----------------------------------- */
 .charSection {
@@ -78,15 +102,18 @@
 }
 
 .charSection-title {
-    font-size: 1.1em;
+    font-family: var(--font-display);
+    font-size: 1.25em;
+    letter-spacing: 0.02em;
     margin: 0 0 0.75em;
     padding-bottom: 0.3em;
-    border-bottom: 0.15em solid rgb(187, 128, 241);
+    border-bottom: 0.15em solid var(--parchment-line);
+    color: var(--parchment-ink);
 }
 
 .charSection-hint {
     font-size: 0.85em;
-    color: #7a7a76;
+    color: var(--parchment-ink-soft);
     font-style: italic;
     margin: 0.5em 0 0;
 }
@@ -107,13 +134,14 @@
     display: inline-block;
     min-width: 1.1em;
     text-align: center;
-    font-size: 0.9em;
+    font-size: 0.95em;
     font-weight: 600;
     padding: 0.1em 0.15em;
+    color: var(--parchment-ink);
 }
 .charStat-readonly[title] {
     cursor: help;
-    border-bottom: 0.15em dashed rgb(187, 128, 241);
+    border-bottom: 0.15em dashed var(--parchment-seal);
 }
 
 /* ---- Two-column section layout ---------------------------------- */
@@ -135,27 +163,27 @@
 }
 
 /* ---- Sleek stat tables (Zasoby / Charakterystyki / Umiejętności) --- */
-/* Replaces the old one-frame-per-stat boxes with a compact table: one
- *   row per stat, one column per number it carries. Much less vertical
- *   space than the old .statWrapper-based grid. */
 .charTable {
     border-collapse: collapse;
     width: 100%;
+    background: var(--parchment-card);
 }
 .charTable th, .charTable td {
-    border: 1px solid #cfcfc8;
-    padding: 0.1em 0.2em;
+    border: 1px solid var(--parchment-line-soft);
+    padding: 0.15em 0.3em;
     text-align: center;
 }
 .charTable th {
-    background-color: #f1eee8;
+    font-family: var(--font-display);
+    background-color: rgba(138, 100, 50, 0.16);
     font-weight: 600;
     font-size: 0.85em;
+    color: var(--parchment-ink);
 }
 .charTable-rowLabel {
     text-align: left;
     font-weight: 600;
-    background-color: #faf9f5;
+    background-color: rgba(138, 100, 50, 0.08);
     width: 8em;         /* caps the label column */
     font-size: 0.9em;
 }
@@ -169,6 +197,7 @@
     text-align: center;
     border-color: transparent;
     background: transparent;
+    color: var(--parchment-ink);
 }
 
 /* ---- Damage table -------------------------------------------------- */
@@ -176,24 +205,26 @@
     border-collapse: collapse;
     width: 100%;
     max-width: 30em;
+    background: var(--parchment-card);
 }
 .dmgTable th, .dmgTable td {
-    border: 1px solid #cfcfc8;
+    border: 1px solid var(--parchment-line-soft);
     padding: 0.35em 0.6em;
     text-align: center;
 }
-.dmgTable th { background-color: #f1eee8; font-weight: 600; font-size: 0.85em; }
+.dmgTable th { font-family: var(--font-display); background-color: rgba(138, 100, 50, 0.16); font-weight: 600; font-size: 0.85em; }
 .dmgTable .dmgTable-rowLabel { text-align: left; font-weight: 600; }
 .dmgTable-input {
     width: 3.5em;
     text-align: center;
     border: none;
     background: transparent;
+    color: var(--parchment-ink);
 }
-.dmgTable-critical { background-color: #f7dede; }
-.dmgTable-critical .dmgTable-rowLabel { color: #7a1f1f; }
-.dmgTable-totalRow { background-color: #f1eee8; font-weight: 600; }
-.dmgTable-totalRow output { font-size: 1.1em; }
+.dmgTable-critical { background-color: rgba(122, 31, 20, 0.16); }
+.dmgTable-critical .dmgTable-rowLabel { color: var(--parchment-seal-dark); }
+.dmgTable-totalRow { background-color: rgba(138, 100, 50, 0.16); font-weight: 600; }
+.dmgTable-totalRow output { font-size: 1.1em; color: var(--parchment-ink); }
 
 /* +/- buttons for spending pooled points into a Charakterystyka/Umiejętność */
 .charSpend-btn {
@@ -202,14 +233,14 @@
     line-height: 1;
     padding: 0;
     border-radius: 50%;
-    border: 1px solid rgb(187, 128, 241);
-    background-color: #ffffff;
-    color: rgb(146, 92, 199);
+    border: 1px solid var(--parchment-seal-dark);
+    background-color: var(--parchment-seal);
+    color: #f3e6c8;
     font-weight: 700;
     font-size: 0.75em;
     cursor: pointer;
 }
-.charSpend-btn:hover:not(:disabled) { background-color: rgb(232, 172, 255); }
+.charSpend-btn:hover:not(:disabled) { background-color: #8f2618; }
 .charSpend-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
 /* ---- Lists (Wprawa / Perki) ------------------------------------------- */
@@ -226,9 +257,9 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.35em 0.6em;
-    border: 1px solid #e2e0d8;
+    border: 1px solid var(--parchment-line-soft);
     border-radius: 0.3em;
-    background-color: #faf9f5;
+    background-color: var(--parchment-card);
     gap: 1em;
 }
 
@@ -258,6 +289,7 @@
     .charField input, .charSheet input[type="text"], .charSheet input[type="number"] {
         border-color: #999999;
         color: #000000;
+        background: transparent;
     }
     .charStat-readonly[title] { border-bottom-color: #999999; }
     .charSpend-btn { display: none; }
@@ -266,6 +298,8 @@
     .charSection { break-inside: avoid; }
     .dmgTable, .charTable { break-inside: avoid; }
 
+    .charTable, .dmgTable, .charListRow, .charHeader { background: transparent; }
+    .charTable th, .dmgTable th, .charTable-rowLabel { background: transparent !important; }
+
     .dmgTable-critical { background-color: #eeeeee !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
-

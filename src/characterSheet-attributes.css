@@ -8,11 +8,12 @@
     align-items: flex-start;
 }
 .charAttribute-name {
+    font-family: var(--font-display, 'MedievalSharp', fantasy, serif);
     font-weight: 600;
+    color: var(--parchment-ink, #33183b);
 }
 .charAttribute-desc {
     font-size: 0.9em;
-    color: #55524c;
+    color: var(--parchment-ink-soft, #60286b);
     white-space: pre-line; /* respects any line breaks the perk's description text contains */
 }
-

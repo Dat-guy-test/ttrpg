@@ -268,7 +268,7 @@
       "name": "Niziołek",
       "desc": "Jesteś nizołkiem\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 8\nSiła Woli: 11\n\nSzybkość: 5\n\nDodatkowe umiejętności:\nSavant:\nNiziołki często są nizwykle wybitne w jednej lub paru bardzo interesujących ich dziedzinach. Otrzymujesz trzy poziomy doświadczenia i dwa poziomy improwizacji w  wybranych umiejętnościach.\n\nTrudni do trafienia:\nZ racji na swoją niewielką formę niziołki potrafią być zaskakująco trudne do trafienia. Gdy twój rozmiar jest Mały zyskujesz +2 do ewazji.\n\nCechy Fizyczne:\nWzrost: od 0,9 do 1,5 jednostki\nRozmiar: Mały lub Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 21 do 23 lat\nWiek starczy: 80 lat,\nŚrednia Długość Życia: 100 lat (średnia),\nMaksymalna Długość Życia: 140 lat",
       "hoverText": "",
-      "fi": 22.270000000000003,
+      "fi": 22.270000000000007,
       "theta": 26.000000000000007,
       "requires": [],
       "cost": 4,
@@ -767,7 +767,7 @@
     {
       "id": "31",
       "name": "Biedak",
-      "desc": "Znacząca część towjego życia polegała na życiu z datków bogatszych, zasobów społeczności czy z bardzo źle płatnej pracy.\n\nZyskujesz 2 pierścienie konstansjum lub ekwipunek o równoważnej wartości.\nZyskujesz Biedny Zestaw Startowy.",
+      "desc": "Znacząca część towjego życia polegała na życiu z datków bogatszych, zasobów społeczności czy z bardzo źle płatnej pracy.\n\nZyskujesz zestaw przedmiotów: Własność Biedaka\nZyskujesz walutę: 3 Nitki Konstansjum",
       "hoverText": "",
       "fi": 17,
       "theta": 24,
@@ -777,13 +777,14 @@
       "exclGroup": null,
       "effects": [
         {
-          "type": "currency",
-          "amount": 2
+          "type": "item",
+          "key": "custom-1784131534754-cbqni",
+          "amount": 1
         },
         {
-          "type": "item",
-          "key": "zestaw-biedny",
-          "amount": 1
+          "type": "currency",
+          "key": null,
+          "amount": 2
         }
       ]
     },

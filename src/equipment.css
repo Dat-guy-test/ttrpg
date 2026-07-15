@@ -2,7 +2,9 @@
    EQUIPMENT SHEET  (Equipment tab)
    Reuses .charSheet/.charSection/.charBtn/.statWrapper from
    characterSheet.css/style.css so it matches the Character Data
-   tab's look; only the list/detail/editor-specific bits are new.
+   tab's look — including the parchment tokens and MedievalSharp/
+   body-serif font pairing declared there. This file must load
+   after characterSheet.css (see sceneSetup.js's import order).
    ============================================================ */
 
 .equipSheet {
@@ -11,8 +13,8 @@
   max-width: 56em;
   margin: 0 auto;
   padding: 1.5em 2em 3em;
-  font-family: sans-serif;
-  color: #2c2c2a;
+  font-family: var(--font-body, Georgia, serif);
+  color: var(--parchment-ink, #35183b);
 }
 
 .equipSheet-toolbar {
@@ -35,13 +37,17 @@
   align-items: center;
   gap: 0.25em;
   box-sizing: border-box;
-  border: 1px solid rgb(187, 128, 241);
+  background: var(--parchment-card, rgba(249, 235, 255, 0.6));
+  border: 1px solid var(--parchment-line, #78328a);
   border-radius: 0.3em;
   padding: 0.4em 0.75em;
   min-width: 8em;
 }
+.equipMoneyDenom .charField-label {
+  font-size: 0.75em;
+}
 .equipMoneyDenom .charStat-readonly {
-  font-size: 1.2em;
+  font-size: 1.3em;
 }
 
 .equipListRows {
@@ -57,20 +63,21 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5em 0.75em;
-  border: 1px solid #e2e0d8;
+  border: 1px solid var(--parchment-line-soft, rgba(138, 100, 50, 0.35));
   border-radius: 0.3em;
-  background-color: #faf9f5;
+  background-color: var(--parchment-card, rgba(255, 250, 235, 0.6));
   cursor: pointer;
 }
-.equipListRow:hover { background-color: rgb(232, 172, 255); }
+.equipListRow:hover { background-color: var(--parchment-hover, #e0b0ec); }
 .equipListRow-name { font-weight: 600; }
-.equipListRow-price, .equipListRow-qty { color: #6a6a66; }
+.equipListRow-price, .equipListRow-qty { color: var(--parchment-ink-soft, #58286b); }
 
 .equipDetail-category {
+  font-family: var(--font-display, 'MedievalSharp', fantasy, serif);
   font-size: 0.85em;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #6a6a66;
+  color: var(--parchment-ink-soft, #58286b);
   margin: 0 0 0.75em;
 }
 .equipDetail-desc {
@@ -80,7 +87,7 @@
 .equipDetail-extra {
   margin-top: 1em;
   padding-top: 0.75em;
-  border-top: 1px solid #e2e0d8;
+  border-top: 1px solid var(--parchment-line-soft, rgba(113, 50, 138, 0.35));
 }
 .equipDetail-extra p { margin: 0.35em 0; }
 .equipDetail-extra ul { margin: 0.35em 0 0.75em; padding-left: 1.3em; }
@@ -91,14 +98,14 @@
 .itemEditor-typeSection {
   margin-top: 1em;
   padding-top: 0.75em;
-  border-top: 1px dashed rgb(187, 128, 241);
+  border-top: 1px dashed var(--parchment-line, #75328a);
 }
 .itemEditor-subform {
   margin-top: 0.75em;
   padding: 0.75em;
-  border: 1px solid #e2e0d8;
+  border: 1px solid var(--parchment-line-soft, rgba(117, 50, 138, 0.35));
   border-radius: 0.4em;
-  background-color: #faf9f5;
+  background-color: var(--parchment-card, rgba(247, 235, 255, 0.6));
 }
 .editor-checkboxGroup {
   display: flex;
@@ -131,7 +138,8 @@
 
   .equipSheet { max-width: 100%; padding: 0; color: #000000; }
   .equipSheet-toolbar { display: none; }
-  .equipListRow { break-inside: avoid; cursor: default; }
+  .equipListRow { break-inside: avoid; cursor: default; background: transparent; }
+  .equipMoneyDenom { background: transparent; border-color: #999999; }
   .charSpend-btn { display: none; }
   .itemEditor-typeSection, .itemEditor-subform { display: none !important; }
 }

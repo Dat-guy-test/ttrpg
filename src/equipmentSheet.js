@@ -326,9 +326,7 @@ function renderDetailPage() {
                 <div class="statWrapper charResourceBox">
                     <div class="statLabel">Posiadane</div>
                     <div class="statValue">
-                        <button class="charSpend-btn" id="equip-qty-minus" ${owned <= 0 ? 'disabled' : ''}>–</button>
                         <span>${owned}</span>
-                        <button class="charSpend-btn" id="equip-qty-plus">+</button>
                     </div>
                 </div>
             </div>

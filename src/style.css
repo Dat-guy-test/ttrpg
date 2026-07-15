@@ -4,13 +4,159 @@
 	width: 50vw;
 	height: 95vh;
 }
-#text {
-  padding: 1vh;
-	margin: 0px;
-	width: 50vw;
-	height: 95vh;
-  background-color: rgb(232, 172, 255);
+
+/* ============================================================
+ *   PARCHMENT SCROLL — Skill Node Info Panel (#text)
+ * ------------------------------------------------------------
+ *   NOTE ON ASSETS:
+ *   Both files below (parchment.jpg + MedievalSharp-Regular.ttf)
+ *   are expected to sit in the SAME FOLDER as this style.css —
+ *   NOT in /public. Reasoning: this project's /public assets
+ *   (fonts, grass.jpg, nodes.json) all need the
+ *   import.meta.env.BASE_URL prefix trick in JS, because Vite's
+ *   `base: '/ttrpg/'` (see vite.config.js) shifts the site root
+ *   in the GitHub Pages build. Plain CSS has no equivalent of
+ *   import.meta.env, so a hardcoded "/fonts/…" url() here would
+ *   work in `npm run dev` and then 404 in the deployed build.
+ *   A *relative* url() pointing at a file Vite actually bundles
+ *   (i.e. living under src/, not public/) gets its base rewritten
+ *   automatically in both environments — so that's where these
+ *   two files should live. Rename the url()s below if your real
+ *   filenames differ.
+ *   ============================================================ */
+@font-face {
+    font-family: 'MedievalSharp';
+    src: url('./MedievalSharp-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
+
+:root {
+    --parchment-ink:    #34183b; /* main text colour — dark iron-gall ink */
+    --parchment-ink-soft: #58286b;
+    --parchment-seal:   #5d147a; /* wax-seal red */
+    --parchment-seal-dark: #32094a;
+    --parchment-gold:   #b8b5b0;
+    --parchment-shadow: rgba(46, 24, 59, 0.5);
+}
+
+#text {
+    box-sizing: border-box;
+    position: relative;
+    margin: 0px;
+    padding: 2.75em 2.25em 3.5em;
+    width: 50vw;
+    height: 97vh;
+
+    background-image: url('./parchment.jpg');
+    background-size: cover;
+    background-position: center;
+
+    color: var(--parchment-ink);
+    font-family: 'MedievalSharp', 'Luminari', fantasy, serif;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* Aged vignette + a hairline inner edge, standing in for a
+     * physical border without needing a separate border asset. */
+    box-shadow:
+        inset 0 0 5em var(--parchment-shadow),
+        inset 0 0 0 2px rgba(52, 24, 59, 0.28);
+}
+
+/* Slim, thematic scrollbar instead of the default chrome. */
+#text {
+    scrollbar-width: thin;
+    scrollbar-color: var(--parchment-ink-soft) transparent;
+}
+#text::-webkit-scrollbar {
+    width: 10px;
+}
+#text::-webkit-scrollbar-track {
+    background: transparent;
+}
+#text::-webkit-scrollbar-thumb {
+    background-color: var(--parchment-ink-soft);
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+/* ---- Signature element: a wax-seal medallion, top-right --------
+ *   Echoes the star-textured skill nodes from the 3D scene, so the
+ *   info panel feels like part of the same object rather than a
+ *   bolted-on UI card. Pure CSS: no image asset needed. */
+#text::before {
+    content: '\2726'; /* ✦ */
+    position: absolute;
+    top: 0.9em;
+    right: 1em;
+    width: 2.4em;
+    height: 2.4em;
+    line-height: 2.4em;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1.1em;
+    color: var(--parchment-gold);
+    background: radial-gradient(circle at 35% 30%, var(--parchment-seal) 0%, var(--parchment-seal-dark) 75%);
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.45),
+        inset 0 0 0 2px rgba(0, 0, 0, 0.25),
+        inset 0 1px 2px rgba(255, 255, 255, 0.25);
+    pointer-events: none;
+}
+
+/* ---- Paragraphs -------------------------------------------------- */
+#text p {
+    margin: 0 0 0.9em;
+    line-height: 1.5;
+}
+
+/* First paragraph = node name heading */
+#text p:first-child {
+    margin-right: 3em; /* keep clear of the wax seal */
+    padding-bottom: 0.35em;
+    border-bottom: 1px solid rgba(59, 42, 24, 0.35);
+}
+#nodeName {
+    display: inline-block;
+    font-size: 1.6em;
+    letter-spacing: 0.03em;
+    color: var(--parchment-ink);
+    text-shadow:
+        1px 1px 0 rgba(255, 255, 255, 0.25),
+        -1px -1px 0 rgba(59, 42, 24, 0.35);
+}
+
+#nodeDesc {
+    display: block;
+    font-size: 1.05em;
+    color: var(--parchment-ink-soft);
+}
+
+#nodeCost {
+    font-weight: bold;
+    color: var(--parchment-seal-dark);
+}
+
+/* ---- Perk points — pinned footer, always legible while scrolling -- */
+#text p:last-child {
+    position: sticky;
+    bottom: -3.5em; /* cancels #text's own bottom padding so it sits flush */
+    margin: 1.5em -2.25em -3.5em;
+    padding: 0.75em 2.25em;
+    background: rgba(232, 220, 190, 0.72);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border-top: 1px solid rgba(59, 42, 24, 0.35);
+    font-weight: bold;
+}
+#perkPoints {
+    color: var(--parchment-seal-dark);
+}
+
 #listTree {
   padding: 1vh;
 	margin: 0px;
@@ -35,6 +181,7 @@
   box-sizing: border-box;
   border-style: solid;
   border-width: 0.2em;
+  border-color: var(--parchment-ink-soft, #5e286b);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -44,7 +191,8 @@
   height: 97vh;
   overflow-y: auto;
   align-items: start;
-  background-color: rgb(255, 255, 255);
+  background-image: url('./parchment.jpg');
+  background-size: cover;
 }
 #characterWrapper{
   display: flex;
@@ -53,7 +201,7 @@
   height: 97vh;
   align-items: start;
   justify-content: center;
-  background-color: rgb(187, 128, 241);
+  background-color: #201024; /* dark leather/wood backdrop behind the scroll */
 }
 #equipmentWrapper{
   display: flex;
@@ -62,12 +210,13 @@
   height: 97vh;
   align-items: start;
   justify-content: center;
-  background-color: rgb(128, 241, 207);
+  background-color: #1e1024;
 }
 #equipmentPage{
   box-sizing: border-box;
   border-style: solid;
   border-width: 0.2em;
+  border-color: var(--parchment-ink-soft, #6b4a28);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -77,7 +226,8 @@
   height: 97vh;
   overflow-y: auto;
   align-items: start;
-  background-color: rgb(255, 255, 255);
+  background-image: url('./parchment.jpg');
+  background-size: cover;
 }
 #manualWrapper{
   display: flex;
@@ -128,10 +278,8 @@
   padding: 0px;
   width: 50em;
   height: 5em;
-  background-color: rgb(255, 255, 255);
-  border-style: outset;
-  border-width: 0.2em;
-  border-radius: 0.5em;
+  background: transparent;
+  border: none;
 }
 
 .statWrapper{
@@ -145,10 +293,8 @@
   height: 5em;
   align-items: center;
   justify-content: center;
-  background-color: rgb(255, 255, 255);
-  border-style: outset;
-  border-width: 0.2em;
-  border-radius: 0.5em;
+  background-color: transparent;
+  border-style: none;
 }
 
 .statLabel{
@@ -160,10 +306,8 @@
   height: 4em;
   align-items: center;
   justify-content: center;
-  background-color: rgb(255, 255, 255);
-  border-style: outset;
-  border-width: 0.2em;
-  border-radius: 0.5em;
+  background-color: transpaerent;
+  border-style: none;
 }
 
 .statValue{
@@ -175,10 +319,8 @@
   height: 6em;
   align-items: center;
   justify-content: center;
-  background-color: rgb(255, 255, 255);
-  border-style: outset;
-  border-width: 0.2em;
-  border-radius: 0.5em;
+  background-color: transparent;
+  border-style: none;
 }
 
 /* #equipment{
@@ -318,9 +460,9 @@ body {
 }
 
 .editor-btn {
-  background-color: #33334a;
+  background-color: #43334a;
   color: #f0f0f0;
-  border: 1px solid #6a6a8a;
+  border: 1px solid #826a8a;
   border-radius: 0.35em;
   padding: 0.4em 0.7em;
   font-size: 0.9em;
@@ -415,12 +557,12 @@ body {
 }
 
 .editor-btn-danger {
-  background-color: #5a2a2a;
-  border-color: #a05a5a;
+  background-color: #522a5a;
+  border-color: #7e5aa0;
 }
 
 .editor-btn-danger:hover {
-  background-color: #7a3a3a;
+  background-color: #6d3a7a;
 }
 
 .editor-row .editor-save-btn,

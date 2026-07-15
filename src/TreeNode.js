@@ -181,7 +181,7 @@ export class TreeNode extends THREE.Mesh {
                         if (i < parts.length - 1) nodeDescEl.appendChild(br);
                     }
 
-                    document.getElementById('nodeCost').textContent  = 'Cost: ' + this.nodeCost;
+                    document.getElementById('nodeCost').textContent  = 'Koszt: ' + this.nodeCost + ' punktów potencjału.';
                     document.getElementById('perkPoints').textContent = computePotentialAvailable();
                 }
 

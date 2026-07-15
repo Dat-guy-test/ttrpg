@@ -108,7 +108,7 @@
       "id": "custom-1784056048918-s9c8n",
       "name": "Nóż",
       "price": 3,
-      "bulk": 1,
+      "bulk": 0.5,
       "type": "weapon",
       "desc": "Niewielkie narzędzie używane do cięcia z ostrym końcem, które można wykorzystać jako broń.",
       "state": "unequipped",
@@ -695,6 +695,87 @@
       "unequipTimeSeconds": 0,
       "unequipTimeActionPoints": 0,
       "capacity": 0
+    },
+    {
+      "id": "custom-1784122371430-9zst3",
+      "name": "Materiałowy Pas",
+      "price": 1,
+      "bulk": 0.5,
+      "type": "clothing",
+      "desc": "Materiałowy pas. Pozwala na przytwierdzenie sakiewek lub pochew na bronie.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "requirements": [],
+      "equipSlots": [
+        "belt"
+      ],
+      "equipLayers": [
+        "clothes"
+      ],
+      "effectDescription": "Pozwala na przytwierdzenie do 5 sakiewek lub pochw na bronie.",
+      "equipTimeSeconds": 2,
+      "equipTimeActionPoints": 3,
+      "unequipTimeSeconds": 1,
+      "unequipTimeActionPoints": 1
+    },
+    {
+      "id": "custom-1784122666811-pxqsh",
+      "name": "Ubogie Odzienie",
+      "price": 16,
+      "bulk": 2.5,
+      "type": "misc",
+      "desc": "Komplet odzienia noszony przez najuboższych: Materiałowa tunika przewiązana pasem i słabej jakości trzewiki.",
+      "state": "unequipped",
+      "hitPoints": 3,
+      "toughness": 0,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1783459693915-jb864",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1783459779302-rkzpx",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1784122371430-9zst3",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "custom-1784131534754-cbqni",
+      "name": "Własność Biedaka",
+      "price": 22,
+      "bulk": 3.45,
+      "type": "misc",
+      "desc": "Zestaw ten reprezentuje przedmioty posiadane przez najuboższych.",
+      "state": "unequipped",
+      "hitPoints": 3,
+      "toughness": 0,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1784122666811-pxqsh",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1783416314259-uoz0k",
+          "quantity": 3
+        },
+        {
+          "itemId": "custom-1784068774618-dh6oe",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1784056048918-s9c8n",
+          "quantity": 1
+        }
+      ]
     }
   ]
 }
