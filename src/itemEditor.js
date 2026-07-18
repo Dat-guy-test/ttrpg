@@ -21,7 +21,16 @@
 //
 // The Set flag/members list (Zestaw) applies to every item type, so
 // it's rendered once, above the type-specific sections, instead of
-// being part of the Armour-family block.
+// being part of the Armour-family block. The Rozmiar Akcesorium
+// select (accessorySize) is the same story — it applies to every
+// item type, so it lives in the base fields, not a type-specific
+// section.
+//
+// Obrażenia and Rozrzut entries may use DAMAGE_DICE's 'none' sentinel
+// for a flat, dice-less value (see itemSchema.js's
+// formatDiceExpression()) — the "Ilość" (count) field next to each
+// dice picker is disabled whenever 'none' is selected, since count is
+// meaningless for a flat value.
 //
 // Editing: resetItemEditor(existingItem) loads an existing item into
 // the form — every scalar field's HTML is generated from the current
@@ -54,7 +63,8 @@
 import {
     ITEM_TYPES, ITEM_STATES, WEAPON_KINDS, ATTACK_MODE_TYPES,
     HANDEDNESS_OPTIONS, DAMAGE_DICE, DAMAGE_TYPES, EQUIP_SLOTS, EQUIP_LAYERS,
-    EQUIP_REQUIREMENT_SKILLS, typeUsesArmourFields, makeDefaultItem,
+    EQUIP_REQUIREMENT_SKILLS, ACCESSORY_SIZES, typeUsesArmourFields, makeDefaultItem,
+    formatDiceLabel, formatDiceExpression,
 } from './itemSchema.js';
 import {
     addCustomItem, updateCustomItem, removeCustomItem, getAllItems, getItemById,
@@ -192,6 +202,13 @@ function baseFieldsHTML() {
             ${ITEM_TYPES.map(t => `<option value="${t.value}" ${it && it.type === t.value ? 'selected' : ''}>${escapeHtml(t.label)}</option>`).join('')}
         </select>
 
+        <label class="charField-label" for="ie-accessory-size">Rozmiar Akcesorium</label>
+        <select id="ie-accessory-size">
+            <option value="">— Brak —</option>
+            ${ACCESSORY_SIZES.map(s => `<option value="${s.value}" ${it && it.accessorySize === s.value ? 'selected' : ''}>${escapeHtml(s.label)}</option>`).join('')}
+        </select>
+        <p class="charSection-hint">Jeśli ten przedmiot ma zajmować slot akcesoriów w schowku (patrz Typ „Schowek”), wybierz jego rozmiar.</p>
+
         <div class="editor-row">
             <div>
                 <label class="charField-label" for="ie-price">Cena (Nitki Konstancjum)</label>
@@ -306,19 +323,21 @@ function attackModeFormHTML() {
             <div id="item-editor-atkdamage-list">${renderPendingDamageList()}</div>
             <div class="editor-row">
                 <input id="ie-dmg-count" type="number" min="1" step="1" value="1" style="max-width:4em;" />
-                <select id="ie-dmg-dice">${DAMAGE_DICE.map(d => `<option value="${d}">${d}</option>`).join('')}</select>
+                <select id="ie-dmg-dice">${DAMAGE_DICE.map(d => `<option value="${d}">${escapeHtml(formatDiceLabel(d))}</option>`).join('')}</select>
                 <input id="ie-dmg-mod" type="number" step="1" value="0" placeholder="Mod." style="max-width:5em;" />
                 <select id="ie-dmg-type">${DAMAGE_TYPES.map(t => `<option value="${t.value}">${escapeHtml(t.label)}</option>`).join('')}</select>
                 <button class="editor-btn editor-btn-small" id="ie-dmg-add-btn">Dodaj</button>
             </div>
+            <p class="charSection-hint">Wybierz „Brak (wartość stała)” zamiast kości, by to obrażenie było zawsze stałą liczbą (Mod.) — pole Ilość jest wtedy nieużywane.</p>
 
             <div id="item-editor-atk-spread-wrap" style="display:none;">
                 <label class="charField-label">Rozrzut</label>
                 <div class="editor-row">
                     <input id="ie-atk-spread-count" type="number" min="1" step="1" value="1" style="max-width:4em;" />
-                    <select id="ie-atk-spread-dice">${DAMAGE_DICE.map(d => `<option value="${d}">${d}</option>`).join('')}</select>
+                    <select id="ie-atk-spread-dice">${DAMAGE_DICE.map(d => `<option value="${d}">${escapeHtml(formatDiceLabel(d))}</option>`).join('')}</select>
                     <input id="ie-atk-spread-mod" type="number" step="1" value="0" placeholder="Mod." />
                 </div>
+                <p class="charSection-hint">Wybierz „Brak (wartość stała)”, by Rozrzut był zawsze stałą liczbą zamiast rzutu kością.</p>
 
                 <label class="charField-label" for="ie-atk-effrange">Efektywny Zasięg</label>
                 <input id="ie-atk-effrange" type="number" min="1" step="1" value="1" />
@@ -386,6 +405,25 @@ function armourFieldsHTML() {
             <label class="charField-label" for="ie-capacity">Pojemność</label>
             <input id="ie-capacity" type="number" min="0" step="0.1" value="${it?.capacity ?? 0}" />
         </div>
+
+        <div id="item-editor-accessoryslots-wrap" style="display:none;">
+            <label class="charField-label">Sloty na Akcesoria</label>
+            <div class="editor-row">
+                <div>
+                    <label class="charField-label" for="ie-accslot-small">Małe</label>
+                    <input id="ie-accslot-small" type="number" min="0" step="1" value="${it?.accessorySlots?.small ?? 0}" />
+                </div>
+                <div>
+                    <label class="charField-label" for="ie-accslot-medium">Średnie</label>
+                    <input id="ie-accslot-medium" type="number" min="0" step="1" value="${it?.accessorySlots?.medium ?? 0}" />
+                </div>
+                <div>
+                    <label class="charField-label" for="ie-accslot-large">Duże</label>
+                    <input id="ie-accslot-large" type="number" min="0" step="1" value="${it?.accessorySlots?.large ?? 0}" />
+                </div>
+            </div>
+            <p class="charSection-hint">Liczba slotów danego rozmiaru dostępnych w tym schowku, dla przedmiotów oznaczonych odpowiednim Rozmiarem Akcesorium.</p>
+        </div>
     `;
 }
 
@@ -426,15 +464,9 @@ function renderUpgradesList() {
     `).join('');
 }
 
-function describeDiceModifier(d) {
-    const sign = d.modifier > 0 ? '+' : '';
-    const modPart = d.modifier ? `${sign}${d.modifier}` : '';
-    return `${d.count}${d.dice}${modPart}`;
-}
-
 function describeDamageEntry(d) {
     const typeLabel = (DAMAGE_TYPES.find(t => t.value === d.type) || {}).label || d.type;
-    return `${describeDiceModifier(d)} (${typeLabel})`;
+    return `${formatDiceExpression(d)} (${typeLabel})`;
 }
 
 function renderPendingDamageList() {
@@ -453,7 +485,7 @@ function renderAttackModesList() {
         const typeLabel = (ATTACK_MODE_TYPES.find(t => t.value === m.modeType) || {}).label || m.modeType;
         const handLabel = (HANDEDNESS_OPTIONS.find(h => h.value === m.handedness) || {}).label || m.handedness;
         const dmgSummary = m.damage.length ? m.damage.map(describeDamageEntry).join(', ') : '—';
-        const spreadSummary = m.spread ? `; Rozrzut: ${describeDiceModifier(m.spread)}` : '';
+        const spreadSummary = m.spread ? `; Rozrzut: ${formatDiceExpression(m.spread)}` : '';
         const effRangeSummary = (m.modeType === 'throw' || m.modeType === 'shot') && m.effectiveRange
             ? `; Efektywny Zasięg: ${m.effectiveRange}` : '';
         return `
@@ -491,6 +523,7 @@ export function wireItemEditorHandlers(rootEl, onSaved) {
 
         rootEl.querySelector('#item-editor-armourlevel-wrap').style.display = (type === 'armour') ? '' : 'none';
         rootEl.querySelector('#item-editor-capacity-wrap').style.display = (type === 'storage') ? '' : 'none';
+        rootEl.querySelector('#item-editor-accessoryslots-wrap').style.display = (type === 'storage') ? '' : 'none';
 
         const effectLabel = rootEl.querySelector('#ie-effectdesc-label');
         if (effectLabel) {
@@ -555,6 +588,16 @@ export function wireItemEditorHandlers(rootEl, onSaved) {
         updateSpreadVisibility();
     }
 
+    // "Brak" (none) dice for the Rozrzut mini-form disables its own
+    // Ilość field, same reasoning as the Obrażenia one below.
+    const spreadDiceSelect = rootEl.querySelector('#ie-atk-spread-dice');
+    const spreadCountInput = rootEl.querySelector('#ie-atk-spread-count');
+    if (spreadDiceSelect && spreadCountInput) {
+        const updateSpreadCountState = () => { spreadCountInput.disabled = spreadDiceSelect.value === 'none'; };
+        spreadDiceSelect.addEventListener('change', updateSpreadCountState);
+        updateSpreadCountState();
+    }
+
     // ---- Wymagania (requirements) -----------------------------------
     function refreshRequirementsList() {
         const listEl = rootEl.querySelector('#item-editor-requirements-list');
@@ -612,10 +655,21 @@ export function wireItemEditorHandlers(rootEl, onSaved) {
         });
     }
     refreshDamageList();
+
+    // "Brak" (none) dice means a flat value — the Ilość (count) field
+    // is meaningless then, so disable it to make that clear.
+    const dmgDiceSelect = rootEl.querySelector('#ie-dmg-dice');
+    const dmgCountInput = rootEl.querySelector('#ie-dmg-count');
+    function updateDmgCountState() {
+        dmgCountInput.disabled = dmgDiceSelect.value === 'none';
+    }
+    dmgDiceSelect.addEventListener('change', updateDmgCountState);
+    updateDmgCountState();
+
     const dmgAddBtn = rootEl.querySelector('#ie-dmg-add-btn');
     if (dmgAddBtn) dmgAddBtn.addEventListener('click', () => {
-        const count = Number(rootEl.querySelector('#ie-dmg-count').value) || 1;
-        const dice = rootEl.querySelector('#ie-dmg-dice').value;
+        const dice = dmgDiceSelect.value;
+        const count = dice === 'none' ? 0 : (Number(dmgCountInput.value) || 1);
         const modifier = Number(rootEl.querySelector('#ie-dmg-mod').value) || 0;
         const type = rootEl.querySelector('#ie-dmg-type').value;
         pendingDamage.push({ count, dice, modifier, type });
@@ -650,9 +704,10 @@ export function wireItemEditorHandlers(rootEl, onSaved) {
         let spread = null;
         let effectiveRange = null;
         if (modeType === 'throw' || modeType === 'shot') {
+            const spreadDice = rootEl.querySelector('#ie-atk-spread-dice').value;
             spread = {
-                count: Number(rootEl.querySelector('#ie-atk-spread-count').value) || 1,
-                dice: rootEl.querySelector('#ie-atk-spread-dice').value,
+                count: spreadDice === 'none' ? 0 : (Number(rootEl.querySelector('#ie-atk-spread-count').value) || 1),
+                dice: spreadDice,
                 modifier: Number(rootEl.querySelector('#ie-atk-spread-mod').value) || 0,
             };
             effectiveRange = Number(rootEl.querySelector('#ie-atk-effrange').value);
@@ -686,6 +741,7 @@ export function wireItemEditorHandlers(rootEl, onSaved) {
     rootEl.querySelector('#item-editor-create-btn').addEventListener('click', () => {
         const type = typeSelect.value;
         const name = rootEl.querySelector('#ie-name').value.trim();
+        const accessorySize = rootEl.querySelector('#ie-accessory-size').value || null;
         const notForSale = rootEl.querySelector('#ie-notforsale').checked;
         const bulk = Number(rootEl.querySelector('#ie-bulk').value);
         const state = rootEl.querySelector('#ie-state').value;
@@ -704,7 +760,7 @@ export function wireItemEditorHandlers(rootEl, onSaved) {
         if (!Number.isFinite(hitPoints) || hitPoints < 1 || !Number.isInteger(hitPoints)) { setStatus('Wytrzymałość musi być dodatnią liczbą całkowitą.', true); return; }
         if (!Number.isFinite(toughness) || !Number.isInteger(toughness)) { setStatus('Twardość musi być liczbą całkowitą.', true); return; }
 
-        const item = { ...makeDefaultItem(type), name, price, bulk, state, hitPoints, toughness, desc };
+        const item = { ...makeDefaultItem(type), name, price, bulk, state, hitPoints, toughness, desc, accessorySize };
 
         // The Set flag/members list applies to every item type. Each
         // entry is {itemId, quantity} — quantity may be > 1, so a set
@@ -736,7 +792,14 @@ export function wireItemEditorHandlers(rootEl, onSaved) {
             item.unequipTimeSeconds = Number(rootEl.querySelector('#ie-unequip-sec').value) || 0;
             item.unequipTimeActionPoints = Number(rootEl.querySelector('#ie-unequip-ap').value) || 0;
             if (type === 'armour') item.armourLevel = Number(rootEl.querySelector('#ie-armourlevel').value) || 1;
-            if (type === 'storage') item.capacity = Number(rootEl.querySelector('#ie-capacity').value) || 0;
+            if (type === 'storage') {
+                item.capacity = Number(rootEl.querySelector('#ie-capacity').value) || 0;
+                item.accessorySlots = {
+                    small: Number(rootEl.querySelector('#ie-accslot-small').value) || 0,
+                    medium: Number(rootEl.querySelector('#ie-accslot-medium').value) || 0,
+                    large: Number(rootEl.querySelector('#ie-accslot-large').value) || 0,
+                };
+            }
         }
 
         if (type === 'utility') {

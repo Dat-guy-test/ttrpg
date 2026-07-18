@@ -29,7 +29,7 @@
 // ============================================================
 
 import AppState from './appState.js';
-import { EFFECT_TYPES, CHARACTERISTICS_CONFIG } from './characterState.js';
+import { EFFECT_TYPES, CHARACTERISTICS_CONFIG, ABILITIES_CONFIG, ATTRIBUTE_BONUS_KINDS } from './characterState.js';
 
 function isCharacteristicReq(req) {
     return !!req && typeof req === 'object' && !Array.isArray(req) && req.type === 'characteristic';
@@ -91,6 +91,7 @@ export function toggleEditMode() {
     AppState.selectedNode = null;
     AppState.connectSourceNode = null;
     AppState.pendingNewNodePos = null;
+    resetAttributeChoiceDraft();
 
     if (panelEl) panelEl.classList.toggle('editor-hidden', !AppState.editMode);
     updateModeButtons();
@@ -145,6 +146,7 @@ export function handleEditModeNodeClick(node) {
     // node instead of empty sphere) both just select it for inspection.
     AppState.selectedNode = node;
     AppState.pendingNewNodePos = null;
+    resetAttributeChoiceDraft();
     setStatus('');
     renderInspector();
 }
@@ -258,6 +260,15 @@ function renderInspector() {
 // the node's "Save Changes" button.
 // ============================================================
 
+/**
+ * Staged {key, kind, amount} ability bonuses for the plain "Nadaj
+ * Atrybut" effect form (addEffectFormTemplate/wireAddEffectForm) —
+ * only relevant while that form's type is 'attribute'. Reset
+ * alongside attributeChoiceDraft (see resetAttributeChoiceDraft()),
+ * since both are per-node/per-form scratch state.
+ */
+let attributeBonusDraft = [];
+
 /** Options for the "target" dropdown, given a chosen effect type. */
 function effectFieldOptions(type) {
     const cfg = EFFECT_TYPES.find(e => e.value === type);
@@ -274,15 +285,87 @@ function populateEffectKeyOptions(selectEl, type, selectedKey) {
 }
 
 /**
+ * Renders a staged list of {key, kind, amount} ability bonuses as
+ * removable rows — shared by the plain "Nadaj Atrybut" effect form
+ * and the "Atrybut do Wyboru" per-option builder, both of which let
+ * an Atrybut carry numeric Doświadczenie/Improwizacja bonuses
+ * alongside its free-text description.
+ * @param {{key:string, kind:string, amount:number}[]} bonuses
+ * @param {string} removeAttr — data-attribute name for this list's remove button
+ */
+function renderBonusRows(bonuses, removeAttr) {
+    if (!bonuses || bonuses.length === 0) return '<em>Brak bonusów.</em>';
+    return bonuses.map((b, i) => {
+        const abilityCfg = ABILITIES_CONFIG.find(a => a.key === b.key);
+        const kindCfg = ATTRIBUTE_BONUS_KINDS.find(k => k.value === b.kind);
+        const sign = b.amount > 0 ? '+' : '';
+        return `
+            <div class="editor-req-row">
+                <span>${sign}${b.amount} ${escapeHtml(kindCfg ? kindCfg.label : b.kind)} — ${escapeHtml(abilityCfg ? abilityCfg.label : b.key)}</span>
+                <button class="editor-btn editor-btn-small" data-${removeAttr}="${i}">✕</button>
+            </div>
+        `;
+    }).join('');
+}
+
+/** Markup for a small "add one ability bonus" row — an ability select, a Doświadczenie/Improwizacja select, an amount input, and an add button. */
+function bonusBuilderRowHTML(idPrefix) {
+    return `
+        <select id="${idPrefix}-bonus-ability">
+            ${ABILITIES_CONFIG.map(a => `<option value="${a.key}">${escapeHtml(a.label)}</option>`).join('')}
+        </select>
+        <select id="${idPrefix}-bonus-kind">
+            ${ATTRIBUTE_BONUS_KINDS.map(k => `<option value="${k.value}">${escapeHtml(k.label)}</option>`).join('')}
+        </select>
+        <input id="${idPrefix}-bonus-amount" type="number" step="1" value="1" placeholder="Ilość" style="max-width:5em;" />
+        <button class="editor-btn editor-btn-small" id="${idPrefix}-bonus-add-btn">Dodaj bonus</button>
+    `;
+}
+
+/**
+ * Reads one bonus out of a bonusBuilderRowHTML() row and pushes it
+ * onto `targetArray`, then calls `onChanged()` to re-render whatever
+ * list is showing it. Validation errors go through setStatus().
+ * @param {string} idPrefix
+ * @param {object[]} targetArray
+ * @param {function} onChanged
+ */
+function wireBonusBuilderRow(idPrefix, targetArray, onChanged) {
+    const addBtn = bodyEl.querySelector(`#${idPrefix}-bonus-add-btn`);
+    if (!addBtn) return;
+    addBtn.addEventListener('click', () => {
+        const key    = bodyEl.querySelector(`#${idPrefix}-bonus-ability`).value;
+        const kind   = bodyEl.querySelector(`#${idPrefix}-bonus-kind`).value;
+        const amount = Number(bodyEl.querySelector(`#${idPrefix}-bonus-amount`).value);
+        if (!Number.isFinite(amount) || amount === 0) { setStatus('Bonus wymaga niezerowej wartości „Ilość”.', true); return; }
+        targetArray.push({ key, kind, amount });
+        onChanged();
+        setStatus('');
+    });
+}
+
+/**
  * Renders the current effects list as removable rows (reuses the
  * Requirements row styling). Most effect types show "Label — Target:
  * ±Amount"; effect types marked `needsDescription` (currently just
  * 'attribute') show "Label — Name: “description text”" instead,
- * since they don't carry a numeric amount at all.
+ * since they don't carry a numeric amount at all — any ability
+ * bonuses that Atrybut also carries are appended in brackets.
  */
 function renderEffectsList(effects) {
     if (!effects || effects.length === 0) return '<em>Brak efektów.</em>';
     return effects.map((eff, i) => {
+        if (eff.type === 'attributeChoice') {
+            const names = (eff.options || []).map(o => o.name).join(', ');
+            const count = Math.max(1, Number(eff.count) || 1);
+            return `
+                <div class="editor-req-row">
+                    <span>Atrybut do Wyboru — gracz wybiera ${count} z: ${escapeHtml(names || '(brak opcji)')}</span>
+                    <button class="editor-btn editor-btn-small" data-remove-effect="${i}">✕</button>
+                </div>
+            `;
+        }
+
         const def = EFFECT_TYPES.find(e => e.value === eff.type);
         const defLabel = def ? def.label : eff.type;
         const needsKey = def ? def.needsKey !== false : true;
@@ -299,9 +382,17 @@ function renderEffectsList(effects) {
         let line;
         if (needsDescription) {
             const descText = escapeHtml(eff.description || '');
+            const bonusText = (eff.bonuses && eff.bonuses.length)
+                ? ' [' + eff.bonuses.map(b => {
+                    const abilityCfg = ABILITIES_CONFIG.find(a => a.key === b.key);
+                    const kindCfg = ATTRIBUTE_BONUS_KINDS.find(k => k.value === b.kind);
+                    const sign = b.amount > 0 ? '+' : '';
+                    return `${sign}${b.amount} ${kindCfg ? kindCfg.label : b.kind} ${abilityCfg ? abilityCfg.label : b.key}`;
+                }).join(', ') + ']'
+                : '';
             line = targetLabel
-                ? `${escapeHtml(defLabel)} — ${escapeHtml(targetLabel)}: “${descText}”`
-                : `${escapeHtml(defLabel)}: “${descText}”`;
+                ? `${escapeHtml(defLabel)} — ${escapeHtml(targetLabel)}: “${descText}”${escapeHtml(bonusText)}`
+                : `${escapeHtml(defLabel)}: “${descText}”${escapeHtml(bonusText)}`;
         } else {
             const sign = eff.amount > 0 ? '+' : '';
             line = targetLabel
@@ -333,7 +424,7 @@ function addEffectFormTemplate(idPrefix) {
             <div>
                 <select id="${idPrefix}-add-effect-type">
                     <option value="">Wybierz typ…</option>
-                    ${EFFECT_TYPES.map(t => `<option value="${t.value}">${escapeHtml(t.label)}</option>`).join('')}
+                    ${EFFECT_TYPES.filter(t => !t.custom).map(t => `<option value="${t.value}">${escapeHtml(t.label)}</option>`).join('')}
                 </select>
             </div>
             <div>
@@ -342,6 +433,11 @@ function addEffectFormTemplate(idPrefix) {
             </div>
         </div>
         <textarea id="${idPrefix}-add-effect-desc" rows="3" placeholder="Opis atrybutu…" style="display:none;"></textarea>
+        <div id="${idPrefix}-add-effect-bonuses-wrap" style="display:none;">
+            <label class="editor-label">Bonusy do Umiejętności przyznawane przez ten Atrybut (opcjonalnie)</label>
+            <div id="${idPrefix}-add-effect-bonuses-list">${renderBonusRows(attributeBonusDraft, 'remove-attr-bonus')}</div>
+            <div class="editor-row">${bonusBuilderRowHTML(`${idPrefix}-add-effect`)}</div>
+        </div>
         <div class="editor-row">
             <input id="${idPrefix}-add-effect-amount" type="number" step="1" value="1" placeholder="Ilość" />
             <button class="editor-btn editor-btn-small" id="${idPrefix}-add-effect-btn">Dodaj efekt</button>
@@ -387,10 +483,27 @@ function wireAddEffectForm(idPrefix, onAdd) {
 
         descInput.style.display   = needsDescription ? '' : 'none';
         amountInput.style.display = needsAmount ? '' : 'none';
+
+        const bonusesWrap = bodyEl.querySelector(`#${idPrefix}-add-effect-bonuses-wrap`);
+        if (bonusesWrap) bonusesWrap.style.display = needsDescription ? '' : 'none';
     }
 
     updateFieldVisibility();
     typeSelect.addEventListener('change', updateFieldVisibility);
+
+    function refreshBonusList() {
+        const listEl = bodyEl.querySelector(`#${idPrefix}-add-effect-bonuses-list`);
+        if (!listEl) return;
+        listEl.innerHTML = renderBonusRows(attributeBonusDraft, 'remove-attr-bonus');
+        listEl.querySelectorAll('[data-remove-attr-bonus]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                attributeBonusDraft.splice(Number(btn.dataset.removeAttrBonus), 1);
+                refreshBonusList();
+            });
+        });
+    }
+    refreshBonusList();
+    wireBonusBuilderRow(`${idPrefix}-add-effect`, attributeBonusDraft, refreshBonusList);
 
     addBtn.addEventListener('click', () => {
         const type              = typeSelect.value;
@@ -411,12 +524,153 @@ function wireAddEffectForm(idPrefix, onAdd) {
 
         const effect = { type, key };
         if (needsAmount) effect.amount = amount;
-        if (needsDescription) effect.description = description;
+        if (needsDescription) {
+            effect.description = description;
+            effect.bonuses = attributeBonusDraft.map(b => ({ ...b }));
+        }
 
         onAdd(effect);
 
         if (isFreeform) keyTextInput.value = '';
-        if (needsDescription) descInput.value = '';
+        if (needsDescription) {
+            descInput.value = '';
+            attributeBonusDraft = [];
+            refreshBonusList();
+        }
+    });
+}
+
+// ============================================================
+// Attribute-choice effect builder ("Atrybut do Wyboru")
+// ------------------------------------------------------------
+// Unlike every other effect type, this one needs its OWN small list
+// of {name, description} options staged before it can be added as a
+// single effect — so it gets a dedicated mini-editor instead of going
+// through addEffectFormTemplate/wireAddEffectForm. Mirrors
+// itemEditor.js's pattern for building up a sub-list (e.g. Tryby
+// Ataku) before submitting it as one unit.
+// ============================================================
+let attributeChoiceDraft = { count: 1, options: [] };
+
+/**
+ * Staged {key, kind, amount} ability bonuses for the option CURRENTLY
+ * being built in the "Atrybut do Wyboru" mini-editor, before it's
+ * pushed onto attributeChoiceDraft.options as that option's own
+ * `bonuses` list. Reset whenever attributeChoiceDraft itself resets,
+ * and after each option is added to the list.
+ */
+let attributeChoiceOptionBonusDraft = [];
+
+function resetAttributeChoiceDraft() {
+    attributeChoiceDraft = { count: 1, options: [] };
+    attributeChoiceOptionBonusDraft = [];
+    attributeBonusDraft = [];
+}
+
+function attributeChoiceOptionsListHTML() {
+    if (attributeChoiceDraft.options.length === 0) return '<em>Brak opcji.</em>';
+    return attributeChoiceDraft.options.map((o, i) => {
+        const bonusText = (o.bonuses && o.bonuses.length)
+            ? ' [' + o.bonuses.map(b => {
+                const abilityCfg = ABILITIES_CONFIG.find(a => a.key === b.key);
+                const kindCfg = ATTRIBUTE_BONUS_KINDS.find(k => k.value === b.kind);
+                const sign = b.amount > 0 ? '+' : '';
+                return `${sign}${b.amount} ${kindCfg ? kindCfg.label : b.kind} ${abilityCfg ? abilityCfg.label : b.key}`;
+            }).join(', ') + ']'
+            : '';
+        return `
+        <div class="editor-req-row">
+            <span><strong>${escapeHtml(o.name)}</strong>${o.description ? ` — ${escapeHtml(o.description)}` : ''}${escapeHtml(bonusText)}</span>
+            <button class="editor-btn editor-btn-small" data-remove-attrchoice-opt="${i}">✕</button>
+        </div>
+    `;
+    }).join('');
+}
+
+function attributeChoiceFormTemplate(idPrefix) {
+    return `
+        <label class="editor-label">Atrybut do Wyboru — opcje, spośród których gracz wybierze</label>
+        <div id="${idPrefix}-attrchoice-options-list">${attributeChoiceOptionsListHTML()}</div>
+        <input id="${idPrefix}-attrchoice-name" type="text" placeholder="Nazwa atrybutu…" />
+        <textarea id="${idPrefix}-attrchoice-desc" rows="2" placeholder="Opis atrybutu…"></textarea>
+        <div class="editor-hint">Bonusy do Umiejętności dla TEJ opcji (opcjonalnie) — dodaj przed „Dodaj opcję do listy”:</div>
+        <div id="${idPrefix}-attrchoice-opt-bonuses-list">${renderBonusRows(attributeChoiceOptionBonusDraft, 'remove-attrchoice-opt-bonus')}</div>
+        <div class="editor-row">${bonusBuilderRowHTML(`${idPrefix}-attrchoice-opt`)}</div>
+        <div class="editor-row">
+            <button class="editor-btn editor-btn-small" id="${idPrefix}-attrchoice-addopt-btn">Dodaj opcję do listy</button>
+        </div>
+        <div class="editor-row">
+            <input id="${idPrefix}-attrchoice-count" type="number" min="1" value="${attributeChoiceDraft.count}" placeholder="Ile wybiera gracz" />
+            <button class="editor-btn editor-btn-small" id="${idPrefix}-attrchoice-create-btn">Dodaj efekt „Atrybut do Wyboru”</button>
+        </div>
+    `;
+}
+
+/**
+ * Wires the "Atrybut do Wyboru" mini-editor built by
+ * attributeChoiceFormTemplate(). `onAdd(effect)` is called with a
+ * validated { type: 'attributeChoice', count, options } effect once
+ * the player clicks "Dodaj efekt…"; the draft is left for the caller
+ * to reset (resetAttributeChoiceDraft()) since new-node vs
+ * existing-node forms differ on when that should happen.
+ */
+function wireAttributeChoiceForm(idPrefix, onAdd) {
+    function refreshOptionsList() {
+        const listEl = bodyEl.querySelector(`#${idPrefix}-attrchoice-options-list`);
+        if (!listEl) return;
+        listEl.innerHTML = attributeChoiceOptionsListHTML();
+        listEl.querySelectorAll('[data-remove-attrchoice-opt]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                attributeChoiceDraft.options.splice(Number(btn.dataset.removeAttrchoiceOpt), 1);
+                refreshOptionsList();
+            });
+        });
+    }
+    refreshOptionsList();
+
+    const nameInput  = bodyEl.querySelector(`#${idPrefix}-attrchoice-name`);
+    const descInput  = bodyEl.querySelector(`#${idPrefix}-attrchoice-desc`);
+    const countInput = bodyEl.querySelector(`#${idPrefix}-attrchoice-count`);
+
+    function refreshOptionBonusList() {
+        const listEl = bodyEl.querySelector(`#${idPrefix}-attrchoice-opt-bonuses-list`);
+        if (!listEl) return;
+        listEl.innerHTML = renderBonusRows(attributeChoiceOptionBonusDraft, 'remove-attrchoice-opt-bonus');
+        listEl.querySelectorAll('[data-remove-attrchoice-opt-bonus]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                attributeChoiceOptionBonusDraft.splice(Number(btn.dataset.removeAttrchoiceOptBonus), 1);
+                refreshOptionBonusList();
+            });
+        });
+    }
+    refreshOptionBonusList();
+    wireBonusBuilderRow(`${idPrefix}-attrchoice-opt`, attributeChoiceOptionBonusDraft, refreshOptionBonusList);
+
+    bodyEl.querySelector(`#${idPrefix}-attrchoice-addopt-btn`).addEventListener('click', () => {
+        const name = nameInput.value.trim();
+        const description = descInput.value.trim();
+        if (!name) { setStatus('Opcja atrybutu wymaga nazwy.', true); return; }
+        attributeChoiceDraft.options.push({ name, description, bonuses: attributeChoiceOptionBonusDraft.map(b => ({ ...b })) });
+        nameInput.value = '';
+        descInput.value = '';
+        attributeChoiceOptionBonusDraft = [];
+        refreshOptionBonusList();
+        refreshOptionsList();
+        setStatus('');
+    });
+
+    bodyEl.querySelector(`#${idPrefix}-attrchoice-create-btn`).addEventListener('click', () => {
+        const count = Number(countInput.value);
+        if (attributeChoiceDraft.options.length === 0) { setStatus('Dodaj przynajmniej jedną opcję atrybutu.', true); return; }
+        if (!Number.isFinite(count) || count < 1) { setStatus('Liczba wyboru musi być dodatnią liczbą całkowitą.', true); return; }
+
+        const effect = {
+            type: 'attributeChoice',
+            count: Math.min(Math.round(count), attributeChoiceDraft.options.length),
+            options: attributeChoiceDraft.options.map(o => ({ ...o })),
+        };
+        onAdd(effect);
+        resetAttributeChoiceDraft();
     });
 }
 
@@ -516,6 +770,9 @@ function renderExistingNodeForm(node) {
         ${addEffectFormTemplate('ed')}
         <div class="editor-hint">Jeden perk może mieć wiele efektów — dodaj kolejne po kolei. Zmiany są zapisywane od razu, bez „Save Changes”.</div>
 
+        ${attributeChoiceFormTemplate('ed')}
+        <div class="editor-hint">Powyższe „Atrybut do Wyboru” pozwala graczowi samodzielnie wybrać (przy aktywacji perku) jeden lub więcej atrybutów spośród podanych opcji.</div>
+
         <label class="editor-label" for="ed-exclgroup">Mutual-exclusion group</label>
         <select id="ed-exclgroup">
             <option value="">None</option>
@@ -546,6 +803,10 @@ function renderExistingNodeForm(node) {
     wireAddEffectForm('ed', (effect) => {
         AppState.tr.addNodeEffect(node.nodeId, effect);
         renderInspector(); // re-render the node form, same as adding a Requirement does today
+    });
+    wireAttributeChoiceForm('ed', (effect) => {
+        AppState.tr.addNodeEffect(node.nodeId, effect);
+        renderInspector();
     });
     bodyEl.querySelectorAll('[data-remove-effect]').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -655,6 +916,7 @@ let pendingNewNodeEffects = [];
 
 function renderNewNodeForm(fiDeg, thetaDeg) {
     pendingNewNodeEffects = [];
+    resetAttributeChoiceDraft();
 
     bodyEl.innerHTML = `
         <div class="editor-field readonly">
@@ -689,11 +951,18 @@ function renderNewNodeForm(fiDeg, thetaDeg) {
         <div id="new-effects-list"><em>Brak efektów.</em></div>
         ${addEffectFormTemplate('new')}
 
+        ${attributeChoiceFormTemplate('new')}
+
         <button class="editor-btn editor-save-btn" id="new-create">Create Node</button>
         <button class="editor-btn" id="new-cancel">Cancel</button>
     `;
 
     wireAddEffectForm('new', (effect) => {
+        pendingNewNodeEffects.push(effect);
+        renderPendingEffectsList();
+        setStatus('');
+    });
+    wireAttributeChoiceForm('new', (effect) => {
         pendingNewNodeEffects.push(effect);
         renderPendingEffectsList();
         setStatus('');

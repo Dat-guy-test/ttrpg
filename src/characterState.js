@@ -53,6 +53,8 @@
 // branch, same pattern as 'attribute'.
 // ============================================================
 
+import { INITIAL_PERK_POINTS } from './constants.js';
+
 const STORAGE_KEY = 'ttrpgCharacterSheet.v2'; // bumped: v1 sheets had editable base stats
 
 import { ITEMS_CONFIG } from './equipmentState.js';
@@ -266,6 +268,23 @@ export const EFFECT_TYPES = [
         fieldPath: (key) => `attribute:${key}`,
     },
     {
+        value: 'attributeChoice',
+        label: 'Nadaj Atrybut do Wyboru (gracz wybiera spośród opcji)',
+        options: [],
+        needsKey: false,
+        needsAmount: false,
+        // This effect type isn't built through the generic key/amount
+        // mini-form (editMode.js's addEffectFormTemplate/wireAddEffectForm) —
+        // it needs its own preset options list + pick-count editor instead.
+        // See editMode.js's attributeChoiceFormTemplate/wireAttributeChoiceForm.
+        custom: true,
+        // Not used by setPerkModifier() — resolved at activation time via a
+        // player prompt, then routed to setAttributeSource()/
+        // clearAttributeSource() same as a plain 'attribute'. See
+        // perkEffects.js's applyAttributeChoiceEffect().
+        fieldPath: () => 'attributeChoice',
+    },
+    {
         value: 'characteristicPoints',
         label: 'Przyznaj Punkty Charakterystyki (Forma / Bystrość / Siła Woli)',
         options: [],
@@ -334,7 +353,7 @@ function buildDefaultState() {
 
     return {
         name: '',
-        potential:  { total: MIN_POTENTIAL }, // 'available' is derived, never stored — see computePotentialAvailable()
+        potential:  { total: INITIAL_PERK_POINTS }, // starting budget — see constants.js
         resources: {
             // No 'max' fields here — resource maxima are read live off a
             // linked Charakterystyka, see RESOURCE_MAX_SOURCES/computeResourceMax().
@@ -700,29 +719,55 @@ export function adjustPoolAllocation(poolKey, fieldPath, delta) {
 // Free-text traits granted by perks — e.g. "Żądza Krwi" with a full
 // description paragraph (see nodes.json's Wampir origin for a
 // real-world example of this kind of text). Unlike every perk-only
-// field above, an Atrybut isn't a number that adds up: it's simply
-// present or absent, and its name must stay unique — CharacterState
-// .attributes is a plain object keyed by name, so that uniqueness is
-// automatic (an object can't have two entries with the same key).
+// field above, an Atrybut isn't itself a number that adds up: it's
+// simply present or absent, and its name must stay unique —
+// CharacterState.attributes is a plain object keyed by name, so that
+// uniqueness is automatic (an object can't have two entries with the
+// same key).
+//
+// An Atrybut CAN, however, additionally carry one or more numeric
+// "bonuses" — e.g. "+1 Doświadczenia Siły" — that bump an ability's
+// Doświadczenie or Improwizacja the moment the Atrybut is granted.
+// These bonuses are NOT part of the free-text display; they're
+// applied through the exact same setPerkModifier()/clearPerkModifiers()
+// machinery every other numeric perk effect in this file uses (see
+// ABILITIES_CONFIG's experience/improvisation fields), just triggered
+// from setAttributeSource()/clearAttributeSource() instead of being a
+// standalone EFFECT_TYPES entry — because the bonus only exists as
+// part of granting the Atrybut, not on its own.
 //
 // Storage shape:
 //   CharacterState.attributes = {
 //     [name]: {
-//       description: string,             // the text currently shown on the sheet
-//       sources: { [sourceId]: string }, // every perk currently granting
-//                                        // it, and the description text
-//                                        // THAT perk supplied
+//       description: string,   // the text currently shown on the sheet
+//       sources: {
+//         [sourceId]: {
+//           description: string,                                  // this source's text for this Atrybut
+//           bonuses: {key:string, kind:'experience'|'improvisation', amount:number}[], // this source's numeric grants, if any
+//         },
+//       },
 //     }
 //   }
 //
 // Multiple perks can grant the SAME name — each gets its own entry in
 // `sources`, so deactivating one doesn't remove the attribute as long
 // as another source still grants it (falls back to that source's
-// text instead). The attribute entry itself is only deleted once its
-// `sources` dict goes empty. This mirrors the "many modifiers, one
-// sourceId per contributor" shape used everywhere else in this file,
-// just without the numeric summing.
+// text instead, and its bonuses are unaffected). The attribute entry
+// itself is only deleted once its `sources` dict goes empty. This
+// mirrors the "many modifiers, one sourceId per contributor" shape
+// used everywhere else in this file.
 // ------------------------------------------------------------
+
+/** Valid targets for an Atrybut's numeric ability bonuses. */
+export const ATTRIBUTE_BONUS_KINDS = [
+    { value: 'experience',    label: 'Doświadczenie' },
+    { value: 'improvisation', label: 'Improwizacja' },
+];
+
+/** @param {string} key — an ABILITIES_CONFIG key @param {string} kind — an ATTRIBUTE_BONUS_KINDS value */
+function abilityBonusFieldPath(key, kind) {
+    return `abilities.${key}.${kind}`;
+}
 
 /**
  * Finds (creating if necessary) the entry for one named Atrybut.
@@ -740,32 +785,59 @@ function ensureAttributeEntry(name) {
 }
 
 /**
- * Grants (or updates) one perk's contribution to a named Atrybut.
- * Safe to call repeatedly for the same sourceId — each call replaces
- * that source's previous text for this name instead of duplicating
- * it. The displayed `description` always reflects whichever source
- * was applied most recently (same "last write for this sourceId
- * wins, but every source keeps its own copy" idea as setPerkModifier,
- * just without the summing).
+ * Grants (or updates) one perk's contribution to a named Atrybut,
+ * optionally including one or more numeric ability bonuses. Safe to
+ * call repeatedly for the same sourceId — each call replaces that
+ * source's previous text AND bonuses for this name instead of
+ * duplicating them. The displayed `description` always reflects
+ * whichever source was applied most recently (same "last write for
+ * this sourceId wins, but every source keeps its own copy" idea as
+ * setPerkModifier).
+ *
+ * Each valid bonus is applied immediately via setPerkModifier(),
+ * under its own derived source id (`attr:<sourceId>:<bonusIndex>`) so
+ * several bonuses from the same Atrybut grant apply independently.
+ * Invalid entries (missing key, unrecognised kind, or a zero/NaN
+ * amount) are silently dropped rather than applied as a no-op modifier.
  *
  * @param {string} name
  * @param {string} sourceId    — e.g. `node:<nodeId>:<effectIndex>`
  * @param {string} description
+ * @param {{key:string, kind:'experience'|'improvisation', amount:number}[]} [bonuses]
  */
-export function setAttributeSource(name, sourceId, description) {
+export function setAttributeSource(name, sourceId, description, bonuses = []) {
     const entry = ensureAttributeEntry(name);
     if (!entry) return;
-    entry.sources[sourceId] = description || '';
-    entry.description = entry.sources[sourceId];
+
+    const cleanBonuses = Array.isArray(bonuses)
+        ? bonuses.filter(b => b && b.key
+            && (b.kind === 'experience' || b.kind === 'improvisation')
+            && Number.isFinite(Number(b.amount)) && Number(b.amount) !== 0)
+        .map(b => ({ key: b.key, kind: b.kind, amount: Number(b.amount) }))
+        : [];
+
+    entry.sources[sourceId] = { description: description || '', bonuses: cleanBonuses };
+    entry.description = description || '';
+
+    cleanBonuses.forEach((bonus, i) => {
+        setPerkModifier(
+            abilityBonusFieldPath(bonus.key, bonus.kind),
+            `attr:${sourceId}:${i}`,
+            bonus.amount,
+            `Atrybut: ${name}`
+        );
+    });
 }
 
 /**
  * Removes one source's grant from every Atrybut it contributed to
  * (a single perk node could in principle grant more than one named
- * Atrybut across its effects list, so this checks all of them). If an
- * attribute still has other sources after removing this one, it
- * falls back to showing one of their descriptions instead of going
- * blank; if none remain, the whole attribute entry is deleted —
+ * Atrybut across its effects list, so this checks all of them),
+ * clearing any numeric ability bonuses that source's grant carried
+ * along with it. If an attribute still has other sources after
+ * removing this one, it falls back to showing one of their
+ * descriptions instead of going blank (their own bonuses are
+ * untouched); if none remain, the whole attribute entry is deleted —
  * matching clearPerkModifiers()'s "the source's contribution
  * disappears" behaviour for numeric fields.
  *
@@ -776,13 +848,19 @@ export function clearAttributeSource(sourceId) {
         const entry = CharacterState.attributes[name];
         if (!(sourceId in entry.sources)) continue;
 
+        const removed = entry.sources[sourceId];
         delete entry.sources[sourceId];
+
+        const removedBonuses = (removed && removed.bonuses) || [];
+        removedBonuses.forEach((bonus, i) => {
+            setPerkModifier(abilityBonusFieldPath(bonus.key, bonus.kind), `attr:${sourceId}:${i}`, 0);
+        });
 
         const remaining = Object.values(entry.sources);
         if (remaining.length === 0) {
             delete CharacterState.attributes[name];
         } else {
-            entry.description = remaining[remaining.length - 1];
+            entry.description = remaining[remaining.length - 1].description;
         }
     }
 }

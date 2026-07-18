@@ -16,13 +16,19 @@
 //                           equipSlots, equipLayers, effectDescription,
 //                           equip/unequip timing
 //   'clothing','storage' — same as 'armour' minus armourLevel;
-//                           'storage' additionally gets capacity
+//                           'storage' additionally gets capacity and
+//                           accessorySlots (see ACCESSORY_SIZES below)
 //   'utility'            — + useCondition, useEffect
 //   'misc'               — no extra fields
 //
 // Only Umiejętności (abilities) may be required to equip something —
 // EQUIP_REQUIREMENT_SKILLS is literally ABILITIES_CONFIG, re-exported
 // under a name that makes that restriction obvious at the call site.
+//
+// Every item (regardless of type) may also carry `accessorySize` —
+// see ACCESSORY_SIZES — flagging it as a small/medium/large
+// accessory that can occupy a matching slot in a 'storage' item's
+// `accessorySlots`.
 // ============================================================
 
 import { ABILITIES_CONFIG } from './characterState.js';
@@ -59,8 +65,39 @@ export const HANDEDNESS_OPTIONS = [
     { value: 'two', label: 'Atak Dwuręczny' },
 ];
 
-/** Dice sizes usable for Obrażenia/Rozrzut entries. */
-export const DAMAGE_DICE = ['d4', 'd6', 'd8', 'd10', 'd12', 'd20'];
+/**
+ * Dice sizes usable for Obrażenia/Rozrzut entries. 'none' is a
+ * sentinel meaning "no dice — flat value only": a weapon that deals
+ * (or spreads) purely fixed damage uses this instead of picking an
+ * arbitrary die. See formatDiceExpression() for how a 'none' entry
+ * is displayed, and formatDiceLabel() for its <option> text.
+ */
+export const DAMAGE_DICE = ['none', 'd4', 'd6', 'd8', 'd10', 'd12', 'd20'];
+
+/** Human-readable label for a DAMAGE_DICE value, for <option> text. */
+export function formatDiceLabel(dice) {
+    return dice === 'none' ? 'Brak (wartość stała)' : dice;
+}
+
+/**
+ * Formats one Obrażenia/Rozrzut entry ({count, dice, modifier}) into
+ * its display string. When `dice` is the 'none' sentinel (or falsy —
+ * covers older saved data with no dice field at all), `count` is
+ * ignored entirely and `modifier` alone is shown as a flat amount, so
+ * a "no dice" entry reads as a plain number instead of a malformed
+ * dice expression like "1none+2".
+ * @param {{count:number, dice:string, modifier:number}} entry
+ * @returns {string}
+ */
+export function formatDiceExpression(entry) {
+    if (!entry) return '';
+    if (!entry.dice || entry.dice === 'none') {
+        return `${entry.modifier || 0}`;
+    }
+    const sign = entry.modifier > 0 ? '+' : '';
+    const modPart = entry.modifier ? `${sign}${entry.modifier}` : '';
+    return `${entry.count}${entry.dice}${modPart}`;
+}
 
 export const DAMAGE_TYPES = [
     { value: 'slashing',    label: 'Obrażenia Cięte' },
@@ -95,6 +132,19 @@ export const EQUIP_LAYERS = [
     { value: 'outerAttach', label: 'Noszone Na Wierzchu' },
 ];
 
+/**
+ * Sizes an item may be flagged as via `accessorySize` — any item, of
+ * any type, may carry one of these (or none). A 'storage' item's
+ * `accessorySlots` counts how many accessories of each size it can
+ * hold; nothing here enforces that relationship automatically, it's
+ * just the shared vocabulary both sides read from.
+ */
+export const ACCESSORY_SIZES = [
+    { value: 'small',  label: 'Mały' },
+    { value: 'medium', label: 'Średni' },
+    { value: 'large',  label: 'Duży' },
+];
+
 /** Requirement entries for equipping — { skill: <ABILITIES_CONFIG key>, min: number }. Only Umiejętności may be required (never Charakterystyki, Wprawa, etc). */
 export const EQUIP_REQUIREMENT_SKILLS = ABILITIES_CONFIG;
 
@@ -105,7 +155,7 @@ export function typeUsesArmourFields(type) {
 
 // ---- Default-shape builders --------------------------------------------
 
-/** One entry in an attack mode's Obrażenia (or Rozrzut) list: e.g. 2d6+1 Cięte. */
+/** One entry in an attack mode's Obrażenia (or Rozrzut) list: e.g. 2d6+1 Cięte, or a flat 3 (dice: 'none'). */
 export function makeDamageEntry() {
     return { count: 1, dice: 'd6', modifier: 0, type: 'slashing' };
 }
@@ -120,7 +170,7 @@ export function makeAttackMode() {
         damage: [],              // makeDamageEntry()[]
         minRange: 0,
         maxRange: 0,
-        spread: null,            // { count, dice, modifier } — only meaningful for 'throw'/'shot'
+        spread: null,            // { count, dice, modifier } — only meaningful for 'throw'/'shot'; dice may be 'none' for a flat spread
         effectiveRange: null,    // positive integer — only meaningful for 'throw'/'shot'
         specialEffect: '',
     };
@@ -148,6 +198,11 @@ export function makeDefaultItem(type) {
         // daggers is just as much a "set" as a suit of armour.
         isSet: false,
         setMembers: [],     // item ids this set splits into (only shown/used when isSet)
+        // Applies to every item type — flags this item as a small/medium/
+        // large accessory so it can occupy a matching slot on a 'storage'
+        // container's accessorySlots (see ACCESSORY_SIZES above).
+        // null/'' = not an accessory.
+        accessorySize: null,
     };
 
     if (type === 'weapon') {
@@ -175,7 +230,10 @@ export function makeDefaultItem(type) {
             equipTimeActionPoints: 0,
             unequipTimeSeconds: 0,
             unequipTimeActionPoints: 0,
-            ...(type === 'storage' ? { capacity: 0 } : {}),
+            // Only 'storage' containers carry accessory slot counts —
+            // how many small/medium/large accessories (see
+            // accessorySize above) this container can hold.
+            ...(type === 'storage' ? { capacity: 0, accessorySlots: { small: 0, medium: 0, large: 0 } } : {}),
         };
     }
 

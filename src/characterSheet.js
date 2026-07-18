@@ -21,6 +21,9 @@
 //                             CharacterState changes in bulk.
 // ============================================================
 
+import AppState from './appState.js';
+import { getStage, getStageDisplayName, getStageButtonLabel, advanceStage, isRootNodeActive, STAGES } from './progressionState.js';
+
 import {
     CharacterState,
     saveCharacterState,
@@ -115,6 +118,11 @@ function renderHeader() {
     <label class="charField-label">Dostępny Potencjał</label>
     <span class="charStat-readonly" id="char-potential-available">${available}</span>
     </div>
+    <div class="charField">
+    <label class="charField-label">Etap Postaci</label>
+    <span class="charStat-readonly">${escapeHtml(getStageDisplayName())}</span>
+    </div>
+    <button class="charBtn" id="char-stage-btn">${escapeHtml(getStageButtonLabel())}</button>
     </section>
     `;
 }
@@ -322,9 +330,19 @@ function renderProficienciesList() {
  * is a plain { [name]: {description, sources} } dict; a name only
  * appears here while at least one perk still grants it (see
  * characterState.js's setAttributeSource()/clearAttributeSource() and
- * perkEffects.js's routing of the 'attribute' effect type). Object
- * keys are unique by construction, so a given name can never appear
- * twice even though multiple perks may be the ones granting it.
+ * perkEffects.js's routing of the 'attribute'/'attributeChoice' effect
+ * types). Object keys are unique by construction, so a given name can
+ * never appear twice even though multiple perks may be the ones
+ * granting it.
+ *
+ * An Atrybut can ALSO carry one or more numeric Doświadczenie/
+ * Improwizacja bonuses (see characterState.js's ATTRIBUTE_BONUS_KINDS)
+ * — those are already reflected live in the Umiejętności table above
+ * (as an ordinary perk modifier, tooltip-labelled "Atrybut: <name>"),
+ * so they don't need their own spending/interaction here. This section
+ * just surfaces a short read-only summary alongside the description,
+ * so it's clear at a glance which Atrybuty are "just flavour" and
+ * which are also doing mechanical work.
  */
 function renderAttributesSection() {
     return `
@@ -336,18 +354,40 @@ function renderAttributesSection() {
     `;
 }
 
+/** Every {key, kind, amount} bonus any currently-active source of this Atrybut carries, flattened into one list. */
+function collectAttributeBonuses(entry) {
+    return Object.values(entry.sources).flatMap(s => (s && s.bonuses) || []);
+}
+
+/** Short "+1 Doświadczenia (Siła), +1 Improwizacji (Wigor)" style summary, or '' if this Atrybut carries no numeric bonuses. */
+function formatAttributeBonuses(entry) {
+    const bonuses = collectAttributeBonuses(entry);
+    if (bonuses.length === 0) return '';
+    return bonuses.map(b => {
+        const abilityCfg = ABILITIES_CONFIG.find(a => a.key === b.key);
+        const label = abilityCfg ? abilityCfg.label : b.key;
+        const kindLabel = b.kind === 'improvisation' ? 'Improwizacji' : 'Doświadczenia';
+        const sign = b.amount > 0 ? '+' : '';
+        return `${sign}${b.amount} ${kindLabel} (${escapeHtml(label)})`;
+    }).join(', ');
+}
+
 function renderAttributesList() {
     const entries = Object.entries(CharacterState.attributes);
 
     if (entries.length === 0) {
         return '<p class="charSection-hint">Brak atrybutów — aktywuj odpowiednie perki w drzewku umiejętności.</p>';
     }
-    return '<ul class="charListRows charListRows-attributes">' + entries.map(([name, entry]) => `
+    return '<ul class="charListRows charListRows-attributes">' + entries.map(([name, entry]) => {
+        const bonusSummary = formatAttributeBonuses(entry);
+        return `
     <li class="charListRow charListRow-attribute">
     <span class="charAttribute-name">${escapeHtml(name)}</span>
     <span class="charAttribute-desc">${escapeHtml(entry.description)}</span>
+    ${bonusSummary ? `<span class="charAttribute-bonus">${bonusSummary}</span>` : ''}
     </li>
-    `).join('') + '</ul>';
+    `;
+    }).join('') + '</ul>';
 }
 
 function renderPerksSection() {
@@ -405,6 +445,30 @@ function attachHandlers() {
             e.target.value = CharacterState.potential.total;
         }
         potentialAvailable.textContent = computePotentialAvailable();
+    });
+
+    //Stage button wiring
+    const stageBtn = rootEl.querySelector('#char-stage-btn');
+    if (stageBtn) stageBtn.addEventListener('click', () => {
+        const tr = AppState.tr;
+        if (!tr) { window.alert('Drzewko umiejętności jeszcze się nie załadowało.'); return; }
+
+        const stage = getStage();
+
+        if (stage === STAGES.CREATION && !isRootNodeActive(tr)) {
+            window.alert('Musisz najpierw wybrać perk "Podróżnik", zanim zakończysz Tworzenie Postaci.');
+            return;
+        }
+
+        let confirmMsg = null;
+        if (stage === STAGES.CREATION) {
+            confirmMsg = 'Zakończyć Tworzenie Postaci? Każdy aktualnie wybrany perk o niższej wartości theta niż węzeł "Podróżnik" zostanie trwale zablokowany i nie będzie już mógł zostać cofnięty.';
+        } else if (stage === STAGES.LEVELUP) {
+            confirmMsg = 'Zakończyć wybór atrybutów? Każdy perk wybrany podczas tego etapu Rozwoju Postaci zostanie trwale zablokowany.';
+        }
+        if (confirmMsg && !window.confirm(confirmMsg)) return;
+
+        if (advanceStage(tr)) render();
     });
 
     // ---- Resources ("current" only — "max" is derived from Charakterystyki) ----

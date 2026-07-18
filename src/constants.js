@@ -56,3 +56,18 @@ export const LABEL_FONT_URL = `${import.meta.env.BASE_URL}fonts/MedievalSharp-Re
 export const LABEL_MIN_SCALE = 1.0;
 export const LABEL_MAX_SCALE = 10.0;
 
+/**
+ * Starting perk-point budget for the Character Creation stage (see
+ * progressionState.js). Hard-coded rather than player-editable so
+ * every new character begins from the same baseline.
+ */
+export const INITIAL_PERK_POINTS = 20;
+
+/**
+ * Node id treated as the root of the "Character Creation" branch of
+ * the skill tree (nodes.json's "Podróżnik"). Any node whose `requires`
+ * chain traces back to this id — directly or transitively — is a
+ * candidate for permanent locking when Character Creation ends. See
+ * progressionState.js's finishCharacterCreation().
+ */
+export const CHARACTER_CREATION_ROOT_ID = '1';

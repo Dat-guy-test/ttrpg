@@ -31,6 +31,12 @@
 // perkEffects.js and characterState.js's EFFECT_TYPES for the
 // available types. applyNodeEffect()/removeNodeEffect() are called
 // from onClick() below, on activation/deactivation respectively.
+//
+// A node whose effects include granted currency/items can only be
+// DEACTIVATED (i.e. its perk "revoked") while the player still has
+// at least as much of that currency/item as was originally granted —
+// see perkEffects.js's canRevokeNodeEffect(), checked below before
+// removeNodeEffect() is ever called.
 // ============================================================
 
 import * as THREE from 'three';
@@ -40,8 +46,9 @@ import { BLOOM_LAYER, LABEL_FONT_URL, LABEL_MIN_SCALE } from './constants.js';
 import { StarModel } from './StarModel.js';
 import { computePanCamera } from './cameraControls.js';
 import { handleEditModeNodeClick } from './editMode.js';
-import { applyNodeEffect, removeNodeEffect, refreshPerksTaken } from './perkEffects.js';
+import { applyNodeEffect, removeNodeEffect, refreshPerksTaken, canRevokeNodeEffect } from './perkEffects.js';
 import { computePotentialAvailable } from './characterState.js';
+import { canPickPerks, canRevokePerk, getStage, STAGES } from './progressionState.js';
 
 export class TreeNode extends THREE.Mesh {
     /**
@@ -272,30 +279,39 @@ export class TreeNode extends THREE.Mesh {
                     }
 
                     if (this.nodeActive && !isNextActive(this.nodeId)) {
-                        // Deactivate — restore invisible material, remove this
-                        // node's contribution to the character sheet, and drop
-                        // it from the "Wybrane Perki" list. (Refunding its cost
-                        // happens implicitly: refreshPerksTaken() below rebuilds
-                        // CharacterState.perksTaken without this node, which is
-                        // what computePotentialAvailable() sums against.)
-                        this.nodeActive   = false;
-                        this.star.material = new THREE.MeshBasicMaterial({
-                            color: 0x000000, opacity: 0.0, transparent: true, depthWrite: false,
-                        });
-                        removeNodeEffect(this);
-                        refreshPerksTaken();
+                        // Deactivate — gated first by the current progression
+                        // stage (progressionState.js): nothing may be revoked
+                        // during 'usage', and a node permanently locked by a
+                        // past Character Creation or Level Up session can
+                        // never be revoked again, regardless of stage. Only
+                        // once that passes do we fall back to the existing
+                        // currency/item refund check.
+                        if (!canRevokePerk(this.nodeId)) {
+                            window.alert(
+                                getStage() === STAGES.USAGE
+                                ? `Nie można cofnąć perku "${this.nodeName}" — wybór perków jest zablokowany podczas etapu Użytkowania.`
+                                : `Nie można cofnąć perku "${this.nodeName}" — został on trwale zablokowany we wcześniejszym etapie.`
+                            );
+                        } else if (!canRevokeNodeEffect(this)) {
+                            window.alert(
+                                `Nie można cofnąć perku "${this.nodeName}" — przyznana waluta lub przedmioty zostały już częściowo wydane/zużyte. Odzyskaj wystarczającą ilość, by móc go cofnąć.`
+                            );
+                        } else {
+                            this.nodeActive   = false;
+                            this.star.material = new THREE.MeshBasicMaterial({
+                                color: 0x000000, opacity: 0.0, transparent: true, depthWrite: false,
+                            });
+                            removeNodeEffect(this);
+                            refreshPerksTaken();
+                        }
 
                     } else if (
+                        canPickPerks() &&
                         computePotentialAvailable() >= this.nodeCost &&
-                        tr.areReqsMet(this.requires) &&          // ← method on Tree (avoids circular import)
+                        tr.areReqsMet(this.requires) &&
                         isMutExclCritMet(this.nodeId) &&
                         !this.nodeActive
                     ) {
-                        // Activate — spend cost (implicitly, via refreshPerksTaken()
-                        // below adding this node into CharacterState.perksTaken),
-                        // apply the lava-shader material, apply this node's effect
-                        // (if any) to the character sheet, and add it to the
-                        // "Wybrane Perki" list.
                         this.nodeActive    = true;
                         this.star.material  = AppState.starClasses[this.starID].customMaterial;
                         applyNodeEffect(this);

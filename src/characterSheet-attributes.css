@@ -17,3 +17,8 @@
     color: var(--parchment-ink-soft, #60286b);
     white-space: pre-line; /* respects any line breaks the perk's description text contains */
 }
+.charAttribute-bonus {
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--parchment-seal-dark, #32094a);
+}

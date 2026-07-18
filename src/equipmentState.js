@@ -57,6 +57,32 @@ if (!Array.isArray(itemsData) && !Array.isArray(itemsData?.items)) {
     console.error('EquipmentState: items.json is neither a bare array nor a { items: [...] } object — treating it as empty. Check the file\'s shape.');
 }
 
+/**
+ * Sells one owned copy of an item: removes it from the inventory and
+ * adds currency. Used by the Equipment tab's sell buttons — the
+ * price paid depends on the current progression stage (see
+ * progressionState.js's getSellMode()): full value in Character
+ * Creation, half value (rounded up) or a GM-approved custom amount
+ * in Usage. The caller computes and passes whichever applies as
+ * `priceOverride`; when omitted, the item's own listed price is used
+ * (0 for a "Nie Sprzedawany" item). Refuses — returning false — if
+ * the player doesn't own at least one copy.
+ * @param {string} itemId
+ * @param {number} [priceOverride]
+ * @returns {boolean}
+ */
+export function sellItem(itemId, priceOverride) {
+    const item = getItemById(itemId);
+    if (!item) return false;
+    if (getItemQuantity(itemId) <= 0) return false;
+    const price = Number.isFinite(priceOverride)
+    ? Math.max(0, Math.trunc(priceOverride))
+    : (isNotForSale(item.price) ? 0 : Math.max(0, Math.trunc(item.price)));
+    addItemQuantity(itemId, -1);
+    addCurrency(price);
+    return true;
+}
+
 // ITEMS_CONFIG is intentionally a *mutable* array (never reassigned)
 // — characterState.js's EFFECT_TYPES 'item' entry holds a direct
 // reference to this exact array as its `options` list. Pushing new

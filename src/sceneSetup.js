@@ -21,6 +21,7 @@ import Stats from 'three/examples/jsm/libs/stats.module.js';
 
 import AppState from './appState.js';
 import { BLOOM_LAYER } from './constants.js';
+import { computeStarHSL, hslToRgb } from './colorScience.js';
 
 
 // ============================================================
@@ -32,6 +33,129 @@ import { BLOOM_LAYER } from './constants.js';
 export function addToBloom(obj) {
     obj.layers.set(BLOOM_LAYER);
     AppState.bloomEffect.selection.add(obj);
+}
+
+
+// ============================================================
+// STARFIELD  (purely cosmetic — background stars outside the tree sphere)
+//
+// A single THREE.Points cloud. Because the main camera only ever
+// rotates (never translates — see AppState.camera.position, fixed at
+// the origin), this behaves exactly like the skybox: placed at any
+// radius outside the tree sphere (30) it reads as "infinitely far
+// away", so there's no need to push it out anywhere near the
+// skybox's radius of 100000.
+//
+// Each star's colour comes from the SAME blackbody pipeline
+// StarModel.js uses for perk nodes (computeStarHSL → hslToRgb), fed
+// a temperature randomised between 1000 K (deep red) and 10000 K
+// (blue-white) per star, instead of a flat white/tinted colour. This
+// keeps the whole scene's "every glowing point is a blackbody star"
+// visual language consistent between the perk tree and the backdrop.
+// ============================================================
+
+const STARFIELD_MIN_TEMPERATURE = 1000;  // Kelvin — deep red
+const STARFIELD_MAX_TEMPERATURE = 10000; // Kelvin — blue-white
+
+/**
+ * Builds a soft, glowing dot texture on a canvas, used as the sprite
+ * for every point in the starfield. This bakes the "glow" directly
+ * into the texture (a bright core fading through a wide, soft halo)
+ * rather than relying on the postprocessing library's selective
+ * bloom — SelectiveBloomEffect's internal masking/luminance passes
+ * are written and tested against ordinary triangle-based Mesh
+ * geometry, and don't reliably preserve THREE.Points' GL_POINTS
+ * rendering (gl_PointSize logic lives in PointsMaterial specifically),
+ * which was making every star vanish entirely once bloomed. Paired
+ * with additive blending (see createStarfield() below), this reads as
+ * "glowing" on its own, with no dependency on that pipeline.
+ */
+function createStarSprite() {
+    const canvas = document.createElement('canvas');
+    canvas.width = canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+    const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grad.addColorStop(0,    'rgba(255,255,255,1)');
+    grad.addColorStop(0.15, 'rgba(255,255,255,0.9)');
+    grad.addColorStop(0.4,  'rgba(255,255,255,0.35)');
+    grad.addColorStop(0.7,  'rgba(255,255,255,0.08)');
+    grad.addColorStop(1,    'rgba(255,255,255,0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 64, 64);
+    return new THREE.CanvasTexture(canvas);
+}
+
+/**
+ * Builds the background starfield as one THREE.Points cloud.
+ *
+ * Positions: uniformly distributed on a spherical shell (Marsaglia's
+ * method via inverse-cosine on `v`, not a naive lat/long grid, so
+ * stars don't bunch up at the poles) with a little radial jitter for
+ * subtle depth variation.
+ *
+ * Colours: EACH star gets its own random temperature in
+ * [STARFIELD_MIN_TEMPERATURE, STARFIELD_MAX_TEMPERATURE], run through
+ * colorScience.js's computeStarHSL()/hslToRgb() — the exact same
+ * Planck-spectrum → CIE XYZ → RGB pipeline StarModel.js uses to tint
+ * an activated perk node. This is a one-time cost at scene-build time
+ * (not per-frame): computeStarHSL() internally integrates an 81-sample
+ * spectrum, so `count` stars costs roughly `count * 81` cheap
+ * arithmetic ops once, then never runs again.
+ *
+ * @param {number} count  — number of stars
+ * @param {number} radius — shell radius (world units); must clear the
+ *   tree sphere's radius of 30 comfortably, but — since the main
+ *   camera never translates — doesn't need to be anywhere near the
+ *   skybox's 100000.
+ *
+ * NOT added to the SelectiveBloomEffect selection: THREE.Points
+ * rendered invisible once bloomed (see createStarSprite()'s comment
+ * above for why) — the glow here comes entirely from the baked-in
+ * halo texture plus additive blending instead.
+ */
+function createStarfield(count = 12000, radius = 400) {
+    const positions = new Float32Array(count * 3);
+    const colors    = new Float32Array(count * 3);
+
+    for (let i = 0; i < count; i++) {
+        // ---- Position: uniform point on a spherical shell -----------
+        const u = Math.random(), v = Math.random();
+        const theta = u * Math.PI * 2;
+        const phi   = Math.acos(2 * v - 1);
+        const r     = radius * (0.85 + Math.random() * 0.3); // slight depth variance
+
+        positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
+        positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+        positions[i * 3 + 2] = r * Math.cos(phi);
+
+        // ---- Colour: randomised blackbody temperature ----------------
+        const temperature = STARFIELD_MIN_TEMPERATURE
+            + Math.random() * (STARFIELD_MAX_TEMPERATURE - STARFIELD_MIN_TEMPERATURE);
+        const [h, s, l]  = computeStarHSL(temperature);
+        const [r_, g_, b_] = hslToRgb(h, s, l);
+
+        colors[i * 3]     = r_;
+        colors[i * 3 + 1] = g_;
+        colors[i * 3 + 2] = b_;
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color',    new THREE.BufferAttribute(colors, 3));
+
+    const material = new THREE.PointsMaterial({
+        size:            3,
+        map:             createStarSprite(),
+        vertexColors:    true,
+        transparent:     true,
+        depthWrite:      false,
+        sizeAttenuation: false,       // constant pixel size — correct for something "infinitely far away"
+        blending:        THREE.AdditiveBlending, // makes the halo texture read as a glow, and lets overlapping stars punch through brighter
+    });
+
+    const stars = new THREE.Points(geometry, material);
+    stars.layers.set(0); // default layer — deliberately NOT bloomed, see the header comment above
+    return stars;
 }
 
 
@@ -145,6 +269,9 @@ export function initScene() {
         `,
     });
     AppState.scene.add(new THREE.Mesh(skyGeo, skyMat));
+
+    // ---- Starfield (purely cosmetic — see createStarfield() above) --
+    AppState.scene.add(createStarfield());
 
     // ---- Ground plane (grass) ------------------------------------
     // Assets live in public/, so their URL must be built from the

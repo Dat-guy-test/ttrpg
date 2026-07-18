@@ -1177,6 +1177,40 @@
           "amount": 1
         }
       ]
+    },
+    {
+      "id": "1000",
+      "name": "Bliskowzroczność",
+      "desc": "Posiadasz poważną wadę wzroku, utrudniającą spostrzeganie detali z wyjątkiem tych, które znajdują się bardzo blisko.\n\nTwój poziom doświadczenia w umiejętności spostrzegawczość zmniejsza się o 3.",
+      "hoverText": "",
+      "fi": 27.99,
+      "theta": 22.31,
+      "requires": [],
+      "cost": -2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "1001",
+      "name": "Okularnik",
+      "desc": "Udało Ci się zdobyć okulary prawie całkowicie korygujące twoją wadę wzroku.\n\nZyskujesz przedmiot: Okulary\n\nOkulary zwiększają twój poziom doświadczenia w umiejętności spostrzegawczość o 2.",
+      "hoverText": "",
+      "fi": 28.03,
+      "theta": 22.789999999999996,
+      "requires": [
+        "1000"
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "item",
+          "key": "custom-1784306371402-kkzqh",
+          "amount": 1
+        }
+      ]
     }
   ],
   "mutuallyExclusive": [

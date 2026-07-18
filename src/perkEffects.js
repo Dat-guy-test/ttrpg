@@ -35,12 +35,15 @@
 // numeric-modifier machinery.
 //
 // applyNodeEffect(node)  — called from TreeNode.onClick on activation
-// removeNodeEffect(node) — called from TreeNode.onClick on deactivation,
-//                          and from Tree's addNodeEffect()/
+// removeNodeEffect(node) — called from TreeNode.onClick on deactivation
+//                          (but only once canRevokeNodeEffect() below
+//                          has confirmed it's safe — see its header
+//                          comment), and from Tree's addNodeEffect()/
 //                          removeNodeEffectAt() when an active node's
-//                          effects list is edited
+//                          effects list is edited directly in edit mode.
 //
-// Both are safe to call on a node with no effects (no-op).
+// Both apply/removeNodeEffect are safe to call on a node with no
+// effects (no-op).
 //
 // refreshPerksTaken() rebuilds the sheet's "Wybrane Perki" list from
 // scratch based on which tree nodes are CURRENTLY active — called
@@ -64,9 +67,114 @@ import {
     clearAttributeSource,
     EFFECT_TYPES,
 } from './characterState.js';
-import { addCurrency, addItemQuantity } from './equipmentState.js';
+import { addCurrency, addItemQuantity, getCurrency, getItemQuantity } from './equipmentState.js';
 import { refreshCharacterSheet } from './characterSheet.js';
 import { refreshEquipmentSheet } from './equipmentSheet.js';
+
+/**
+ * A perk that granted currency or items is only allowed to be
+ * revoked (deactivated) while the player still has at least as much
+ * of that currency/item as the perk originally granted — otherwise
+ * it's already been spent/used, and there's nothing left to take
+ * back. Returns true immediately for a node with no currency/item
+ * effects (or no effects at all); every other effect type is
+ * revocable regardless of current character-sheet state.
+ *
+ * Called from TreeNode.onClick BEFORE deactivating a node and BEFORE
+ * calling removeNodeEffect() — if this returns false, the node should
+ * stay active and removeNodeEffect() must not be called.
+ *
+ * @param {import('./TreeNode.js').TreeNode} node
+ * @returns {boolean}
+ */
+export function canRevokeNodeEffect(node) {
+    if (!Array.isArray(node.effects) || node.effects.length === 0) return true;
+
+    return node.effects.every(effect => {
+        if (!effect || !effect.type) return true;
+        const amount = Number(effect.amount) || 0;
+
+        if (effect.type === 'currency') {
+            return getCurrency() >= amount;
+        }
+        if (effect.type === 'item') {
+            return getItemQuantity(effect.key) >= amount;
+        }
+        return true;
+    });
+}
+
+/**
+ * Handles an 'attributeChoice' effect on activation: prompts the
+ * player to pick `count` options (each {name, description}) from the
+ * node's preset `options` list, then grants each chosen one as an
+ * Atrybut via setAttributeSource() — same underlying store as a
+ * plain 'attribute' effect, just with the specific name resolved at
+ * activation time instead of being baked into the node.
+ *
+ * The player's choice is remembered on the TreeNode INSTANCE itself
+ * (node._attributeChoiceSelections[effectIndex] = [optionIndex, …]) —
+ * this is runtime-only bookkeeping so removeNodeEffect() can find and
+ * clear exactly the sources this activation granted. It's never
+ * serialized (TreeNode.toJSON() only ever exports node.effects), and
+ * — matching how every other perk modifier already behaves in this
+ * app — the player re-picks each time they (re)activate the node in
+ * a session, since nothing about active nodes is persisted anyway.
+ *
+ * @param {import('./TreeNode.js').TreeNode} node
+ * @param {{type:string, count:number, options:{name:string,description:string}[]}} effect
+ * @param {number} index — this effect's position in node.effects
+ */
+function applyAttributeChoiceEffect(node, effect, index) {
+    const options = Array.isArray(effect.options) ? effect.options : [];
+    if (options.length === 0) return;
+    const count = Math.max(1, Math.min(Number(effect.count) || 1, options.length));
+
+    if (!node._attributeChoiceSelections) node._attributeChoiceSelections = {};
+    const chosenIndexes = promptAttributeChoice(node.nodeName, options, count);
+    node._attributeChoiceSelections[index] = chosenIndexes;
+
+    chosenIndexes.forEach(optIdx => {
+        const opt = options[optIdx];
+        if (!opt) return;
+        setAttributeSource(opt.name, `node:${node.nodeId}:${index}:${optIdx}`, opt.description || '', opt.bonuses || []);
+    });
+}
+
+/**
+ * Prompts the player (via window.prompt, one number at a time) to pick
+ * `count` distinct options out of `options`. Cancelling the prompt
+ * stops asking and returns whatever's been picked so far (possibly
+ * fewer than `count`, possibly none) rather than blocking activation.
+ * @returns {number[]} chosen option indexes
+ */
+function promptAttributeChoice(nodeName, options, count) {
+    const listText = options.map((o, i) => `${i + 1}. ${o.name}`).join('\n');
+    const chosen = new Set();
+
+    while (chosen.size < count) {
+        const remaining = count - chosen.size;
+        const alreadyText = chosen.size > 0
+            ? `\nWybrane: ${[...chosen].map(i => options[i].name).join(', ')}`
+            : '';
+        const answer = window.prompt(
+            `"${nodeName}" — wybierz jeszcze ${remaining} atrybut${remaining === 1 ? '' : 'y'} spośród:\n${listText}${alreadyText}\n\nWpisz numer opcji:`
+        );
+        if (answer === null) break; // cancelled — keep whatever was already picked
+
+        const n = Number(String(answer).trim());
+        if (!Number.isInteger(n) || n < 1 || n > options.length) {
+            window.alert('Nieprawidłowy numer — spróbuj ponownie.');
+            continue;
+        }
+        if (chosen.has(n - 1)) {
+            window.alert('Ten atrybut został już wybrany.');
+            continue;
+        }
+        chosen.add(n - 1);
+    }
+    return [...chosen];
+}
 
 /** @param {import('./TreeNode.js').TreeNode} node */
 export function applyNodeEffect(node) {
@@ -89,7 +197,12 @@ export function applyNodeEffect(node) {
             // so they're granted through their own source-tracked store
             // instead of setPerkModifier(). See characterState.js's
             // setAttributeSource()/CharacterState.attributes.
-            setAttributeSource(effect.key, sourceId, effect.description || '');
+            setAttributeSource(effect.key, sourceId, effect.description || '', effect.bonuses || []);
+        } else if (effect.type === 'attributeChoice') {
+            // Player picks `count` named attributes out of this effect's
+            // preset `options` list, resolved right now via a prompt. See
+            // applyAttributeChoiceEffect() below.
+            applyAttributeChoiceEffect(node, effect, index);
         } else if (effect.type === 'currency') {
             // Fungible — just add to the pool. See equipmentState.js's
             // module-level comment for why this isn't a {base,modifiers}
@@ -111,7 +224,19 @@ export function applyNodeEffect(node) {
     refreshEquipmentSheet();
 }
 
-/** @param {import('./TreeNode.js').TreeNode} node */
+/**
+ * @param {import('./TreeNode.js').TreeNode} node
+ *
+ * NOTE: for a node reached via a normal deactivation click, the
+ * caller (TreeNode.onClick) must have already checked
+ * canRevokeNodeEffect(node) and only call this when it returned true
+ * — currency/item effects are otherwise refunded unconditionally
+ * here (best-effort, can go negative), which is exactly the
+ * behaviour that check exists to prevent from being reached in the
+ * normal play flow. Edit-mode's live effect editing (Tree.js's
+ * addNodeEffect()/removeNodeEffectAt()) intentionally bypasses that
+ * gate — it's a data-editing tool, not "revoking a perk".
+ */
 export function removeNodeEffect(node) {
     if (!Array.isArray(node.effects) || node.effects.length === 0) return;
 
@@ -123,9 +248,21 @@ export function removeNodeEffect(node) {
             // comment: if the player already spent below this amount the
             // balance can go negative rather than being clamped, since
             // clamping would silently make deactivating a perk "free".
+            // In the normal play flow this branch only runs once
+            // canRevokeNodeEffect() has confirmed sufficient balance.
             addCurrency(-(Number(effect.amount) || 0));
         } else if (effect && effect.type === 'item') {
             addItemQuantity(effect.key, -(Number(effect.amount) || 0));
+        } else if (effect && effect.type === 'attributeChoice') {
+            // Clear exactly the option(s) THIS activation granted — see
+            // applyAttributeChoiceEffect()'s comment on
+            // node._attributeChoiceSelections for why that bookkeeping
+            // lives on the TreeNode instance rather than in effect data.
+            const chosenIndexes = (node._attributeChoiceSelections && node._attributeChoiceSelections[index]) || [];
+            chosenIndexes.forEach(optIdx => {
+                clearAttributeSource(`node:${node.nodeId}:${index}:${optIdx}`);
+            });
+            if (node._attributeChoiceSelections) delete node._attributeChoiceSelections[index];
         } else {
             // Harmless no-op if this particular effect wasn't of the
             // matching kind — a numeric effect's sourceId was never

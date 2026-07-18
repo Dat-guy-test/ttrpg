@@ -22,36 +22,24 @@
 // Exports:
 //   initEquipmentSheet()    — call once, after #equipmentPage exists.
 //   refreshEquipmentSheet() — full re-render; called by perkEffects.js
-//                             whenever a perk grants/revokes currency
-//                             or an item.
+//                             whenever a perk's modifier grants/revokes
+//                             currency or an item.
 // ============================================================
 
+
+import { getSellMode } from './progressionState.js';
+
 import {
-    getAllItems,
-    getCustomItems,
-    getItemById,
-    getCurrency,
-    formatCurrencyParts,
-    formatItemPrice,
-    isNotForSale,
-    getOwnedItems,
-    getItemQuantity,
-    setItemQuantity,
-    buyItem,
-    canAssembleSet,
-    assembleSet,
-    splitSet,
-    resetEquipmentState,
-    isBuiltInItemId,
-    hasBuiltInOverride,
-    resetBuiltInItemOverride,
-    getDeletedBuiltInItems,
-    restoreBuiltInItem,
+    getAllItems, getCustomItems, getItemById, getCurrency, formatCurrencyParts,
+    formatItemPrice, isNotForSale, getOwnedItems, getItemQuantity, setItemQuantity,
+        buyItem, sellItem, canAssembleSet, assembleSet, splitSet, resetEquipmentState,
+        isBuiltInItemId, hasBuiltInOverride, resetBuiltInItemOverride,
+        getDeletedBuiltInItems, restoreBuiltInItem,
 } from './equipmentState.js';
 import {
     ITEM_TYPES, ITEM_STATES, WEAPON_KINDS, ATTACK_MODE_TYPES,
     HANDEDNESS_OPTIONS, DAMAGE_TYPES, EQUIP_SLOTS, EQUIP_LAYERS,
-    EQUIP_REQUIREMENT_SKILLS,
+    EQUIP_REQUIREMENT_SKILLS, ACCESSORY_SIZES, formatDiceExpression,
 } from './itemSchema.js';
 import { resetItemEditor, renderItemEditorHTML, wireItemEditorHandlers } from './itemEditor.js';
 
@@ -208,6 +196,28 @@ function labelOf(list, value) {
     const entry = list.find(o => o.value === value || o.key === value);
     return entry ? entry.label : value;
 }
+// small helper, next to the other render* helpers:
+function renderSellSection(item, owned, sellMode, halfPrice) {
+    if (owned <= 0) return '';
+    if (sellMode === null) {
+        return `<p class="charSection-hint">Sprzedaż przedmiotów jest niedostępna podczas etapu Rozwoju Postaci.</p>`;
+    }
+    if (sellMode === 'full') {
+        if (isNotForSale(item.price)) return '';
+        return `
+        <div class="equipSheet-toolbar" style="justify-content:flex-start;">
+        <button class="charBtn" id="equip-sell-full-btn">Sprzedaj za ${escapeHtml(formatItemPrice(item.price))}</button>
+        </div>
+        `;
+    }
+    return `
+    <div class="equipSheet-toolbar" style="justify-content:flex-start;">
+    <button class="charBtn" id="equip-sell-half-btn">Sprzedaj za połowę (${halfPrice})</button>
+    <input id="equip-sell-custom-price" type="number" min="0" step="1" placeholder="Cena zaakceptowana przez MG" style="max-width:10em;" />
+    <button class="charBtn" id="equip-sell-custom-btn">Sprzedaj za cenę MG</button>
+    </div>
+    `;
+}
 
 function renderRequirementsBlock(requirements) {
     if (!requirements || requirements.length === 0) return '';
@@ -218,11 +228,8 @@ function renderRequirementsBlock(requirements) {
 function renderAttackModesBlock(attackModes) {
     if (!attackModes || attackModes.length === 0) return '';
     const rows = attackModes.map(m => {
-        const dmg = (m.damage || []).map(d => {
-            const sign = d.modifier > 0 ? '+' : '';
-            return `${d.count}${d.dice}${d.modifier ? sign + d.modifier : ''} (${escapeHtml(labelOf(DAMAGE_TYPES, d.type))})`;
-        }).join(', ') || '—';
-        const spread = m.spread ? `; Rozrzut: ${m.spread.count}${m.spread.dice}${m.spread.modifier ? (m.spread.modifier > 0 ? '+' : '') + m.spread.modifier : ''}` : '';
+        const dmg = (m.damage || []).map(d => `${formatDiceExpression(d)} (${escapeHtml(labelOf(DAMAGE_TYPES, d.type))})`).join(', ') || '—';
+        const spread = m.spread ? `; Rozrzut: ${formatDiceExpression(m.spread)}` : '';
         const effRange = (m.modeType === 'throw' || m.modeType === 'shot') && m.effectiveRange ? `; Efektywny Zasięg: ${m.effectiveRange}` : '';
         return `
             <li>
@@ -270,6 +277,7 @@ function renderItemExtraDetails(item) {
             <div class="equipDetail-extra">
                 ${item.armourLevel !== undefined ? `<p>Poziom Pancerza: ${item.armourLevel}</p>` : ''}
                 ${item.capacity !== undefined ? `<p>Pojemność: ${item.capacity}</p>` : ''}
+                ${item.accessorySlots ? `<p>Sloty na Akcesoria: Małe ${item.accessorySlots.small ?? 0} · Średnie ${item.accessorySlots.medium ?? 0} · Duże ${item.accessorySlots.large ?? 0}</p>` : ''}
                 ${item.equipSlots && item.equipSlots.length ? `<p>Miejsce Wyposażenia: ${item.equipSlots.map(s => escapeHtml(labelOf(EQUIP_SLOTS, s))).join(', ')}</p>` : ''}
                 ${item.equipLayers && item.equipLayers.length ? `<p>Warstwa: ${item.equipLayers.map(l => escapeHtml(labelOf(EQUIP_LAYERS, l))).join(', ')}</p>` : ''}
                 ${item.effectDescription ? `<p>${item.isSet ? 'Efekt Zestawu Pancerza' : 'Efekt Części Pancerza'}: ${escapeHtml(item.effectDescription)}</p>` : ''}
@@ -293,6 +301,8 @@ function renderItemExtraDetails(item) {
 
 function renderDetailPage() {
     const item = getItemById(view.selectedItemId);
+    const sellMode = getSellMode();
+    const halfPrice = isNotForSale(item.price) ? 0 : Math.ceil((Number(item.price) || 0) / 2);
     if (!item) {
         return `
             <section class="charSection">
@@ -317,6 +327,7 @@ function renderDetailPage() {
             <button class="charBtn" id="equip-back-btn">&larr; Wróć do listy</button>
             <h2 class="charSection-title">${escapeHtml(item.name)}${isOverriddenBuiltIn ? ' (zmodyfikowany)' : ''}</h2>
             <p class="equipDetail-category">${escapeHtml(typeLabel)}</p>
+            ${item.accessorySize ? `<p class="equipDetail-category">Rozmiar Akcesorium: ${escapeHtml(labelOf(ACCESSORY_SIZES, item.accessorySize))}</p>` : ''}
             <p class="equipDetail-desc">${escapeHtml(item.desc)}</p>
             <div class="charRow">
                 <div class="statWrapper charResourceBox">
@@ -334,16 +345,17 @@ function renderDetailPage() {
             ${renderSetBlock(item)}
             ${renderItemExtraDetails(item)}
             <div class="equipSheet-toolbar" style="justify-content:flex-start;">
-                ${view.marketMode
-                    ? (notForSale
-                        ? `<p class="charSection-hint">Ten przedmiot nie jest sprzedawany.</p>`
-                        : `<button class="charBtn" id="equip-buy-btn" ${canBuy ? '' : 'disabled'}>Kup za ${escapeHtml(formatItemPrice(item.price))}</button>`)
-                    : ''}
+            ${view.marketMode
+                ? (notForSale
+                ? `<p class="charSection-hint">Ten przedmiot nie jest sprzedawany.</p>`
+                : `<button class="charBtn" id="equip-buy-btn" ${canBuy ? '' : 'disabled'}>Kup za ${escapeHtml(formatItemPrice(item.price))}</button>`)
+                : ''}
                 ${item.isSet ? `<button class="charBtn" id="equip-split-btn" ${owned > 0 ? '' : 'disabled'} title="Rozłóż jeden zestaw na jego elementy">Rozłóż zestaw</button>` : ''}
                 ${item.isSet ? `<button class="charBtn" id="equip-assemble-btn" ${canAssembleSet(item.id) ? '' : 'disabled'} title="Złóż zestaw z posiadanych elementów">Złóż zestaw</button>` : ''}
                 ${isEditable ? `<button class="charBtn" id="equip-edit-item-btn">Edytuj przedmiot</button>` : ''}
                 ${isOverriddenBuiltIn ? `<button class="charBtn charBtn-danger" id="equip-reset-override-btn" title="Odrzuć zmiany i przywróć wersję z items.json">Przywróć oryginał</button>` : ''}
-            </div>
+                </div>
+                ${renderSellSection(item, owned, sellMode, halfPrice)}
         </section>
     `;
 }
@@ -399,6 +411,22 @@ function attachHandlers() {
             render();
         });
     } else {
+        const sellFullBtn = rootEl.querySelector('#equip-sell-full-btn');
+        if (sellFullBtn) sellFullBtn.addEventListener('click', () => {
+            if (sellItem(item.id)) render();
+        });
+            const sellHalfBtn = rootEl.querySelector('#equip-sell-half-btn');
+            if (sellHalfBtn) sellHalfBtn.addEventListener('click', () => {
+                const half = isNotForSale(item.price) ? 0 : Math.ceil((Number(item.price) || 0) / 2);
+                if (sellItem(item.id, half)) render();
+            });
+                const sellCustomBtn = rootEl.querySelector('#equip-sell-custom-btn');
+                if (sellCustomBtn) sellCustomBtn.addEventListener('click', () => {
+                    const input = rootEl.querySelector('#equip-sell-custom-price');
+                    const val = Number(input.value);
+                    if (!Number.isFinite(val) || val < 0) { window.alert('Podaj poprawną, nieujemną cenę zaakceptowaną przez MG.'); return; }
+                    if (sellItem(item.id, val)) render();
+                });
         rootEl.querySelector('#equip-back-btn').addEventListener('click', () => {
             view.page = 'list';
             render();
@@ -410,7 +438,8 @@ function attachHandlers() {
                 setItemQuantity(item.id, getItemQuantity(item.id) - 1);
                 render();
             });
-            rootEl.querySelector('#equip-qty-plus').addEventListener('click', () => {
+            const plusBtn = rootEl.querySelector('#equip-qty-plus');
+            if (plusBtn) plusBtn.addEventListener('click', () => {
                 setItemQuantity(item.id, getItemQuantity(item.id) + 1);
                 render();
             });
@@ -418,28 +447,28 @@ function attachHandlers() {
             if (buyBtn) buyBtn.addEventListener('click', () => {
                 if (buyItem(item.id)) render();
             });
-            const splitBtn = rootEl.querySelector('#equip-split-btn');
-            if (splitBtn) splitBtn.addEventListener('click', () => {
-                if (splitSet(item.id)) render();
-            });
-            const assembleBtn = rootEl.querySelector('#equip-assemble-btn');
-            if (assembleBtn) assembleBtn.addEventListener('click', () => {
-                if (assembleSet(item.id)) render();
-            });
-            const editBtn = rootEl.querySelector('#equip-edit-item-btn');
-            if (editBtn) editBtn.addEventListener('click', () => {
-                view.editingItemId = item.id;
-                resetItemEditor(item);
-                view.page = 'edit';
-                render();
-            });
-            const resetOverrideBtn = rootEl.querySelector('#equip-reset-override-btn');
-            if (resetOverrideBtn) resetOverrideBtn.addEventListener('click', () => {
-                if (window.confirm(`Przywrócić oryginalną wersję "${item.name}" z items.json? Twoje zmiany do tego przedmiotu zostaną utracone.`)) {
-                    resetBuiltInItemOverride(item.id);
-                    render();
-                }
-            });
+                const splitBtn = rootEl.querySelector('#equip-split-btn');
+                if (splitBtn) splitBtn.addEventListener('click', () => {
+                    if (splitSet(item.id)) render();
+                });
+                    const assembleBtn = rootEl.querySelector('#equip-assemble-btn');
+                    if (assembleBtn) assembleBtn.addEventListener('click', () => {
+                        if (assembleSet(item.id)) render();
+                    });
+                        const editBtn = rootEl.querySelector('#equip-edit-item-btn');
+                        if (editBtn) editBtn.addEventListener('click', () => {
+                            view.editingItemId = item.id;
+                            resetItemEditor(item);
+                            view.page = 'edit';
+                            render();
+                        });
+                        const resetOverrideBtn = rootEl.querySelector('#equip-reset-override-btn');
+                        if (resetOverrideBtn) resetOverrideBtn.addEventListener('click', () => {
+                            if (window.confirm(`Przywrócić oryginalną wersję "${item.name}" z items.json? Twoje zmiany do tego przedmiotu zostaną utracone.`)) {
+                                resetBuiltInItemOverride(item.id);
+                                render();
+                            }
+                        });
         }
     }
 }

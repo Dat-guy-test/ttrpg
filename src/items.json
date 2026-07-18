@@ -776,6 +776,32 @@
           "quantity": 1
         }
       ]
+    },
+    {
+      "id": "custom-1784306371402-kkzqh",
+      "name": "Okulary",
+      "price": 100,
+      "bulk": 0.05,
+      "type": "clothing",
+      "desc": "Wyposażone zwiększają poziom doświadczenia w umiejętności percepcja o 2, jeżel posiadasz atut \"Bliskowzroczność\".",
+      "state": "unequipped",
+      "hitPoints": 3,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "requirements": [],
+      "equipSlots": [
+        "face"
+      ],
+      "equipLayers": [
+        "clothes"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 2,
+      "equipTimeActionPoints": 1,
+      "unequipTimeSeconds": 2,
+      "unequipTimeActionPoints": 1
     }
   ]
 }
