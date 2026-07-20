@@ -244,12 +244,26 @@ export function registerInputHandlers() {
     // frame regardless of input source. That reuse is what gives a swipe
     // the same "glide to a stop" inertia arrow-key panning already has,
     // with no separate decay logic needed here.
+    //
+    // A one-finger touch only counts as a "swipe" once it's moved past
+    // SWIPE_DRAG_THRESHOLD px from where it started. Below that, nothing
+    // is touched (no acceleration, no preventDefault()) — this is what
+    // lets an ordinary tap on a node still reach it: preventDefault()ing
+    // touchmove (even for a couple of jittery pixels) stops the browser
+    // from ever synthesizing the click event TreeNode.onClick() relies
+    // on, which is what was turning every tap into a tiny, node-swallowing
+    // slide instead of an activation.
     // ============================================================
 
     let pinchStartDistance  = null;
     let pinchStartZoomStage = null;
-    let swipeLastX = null;
-    let swipeLastY = null;
+    let touchStartX = null;
+    let touchStartY = null;
+    let swipeLastX  = null;
+    let swipeLastY  = null;
+    let isSwiping   = false;
+
+    const SWIPE_DRAG_THRESHOLD = 10; // px
 
     function touchDistance(touches) {
         const dx = touches[0].clientX - touches[1].clientX;
@@ -257,15 +271,22 @@ export function registerInputHandlers() {
         return Math.hypot(dx, dy);
     }
 
+    function resetSwipeTracking() {
+        touchStartX = touchStartY = null;
+        swipeLastX  = swipeLastY  = null;
+        isSwiping   = false;
+    }
+
     AppState.container.addEventListener('touchstart', (e) => {
         if (e.touches.length === 2) {
             pinchStartDistance      = touchDistance(e.touches);
             pinchStartZoomStage     = AppState.zoomStage;
             AppState.zoomOutVelocity = 0; // a deliberate pinch takes over from any wheel/key momentum
-            swipeLastX = swipeLastY = null;
+            resetSwipeTracking();
         } else if (e.touches.length === 1) {
-            swipeLastX = e.touches[0].clientX;
-            swipeLastY = e.touches[0].clientY;
+            touchStartX = swipeLastX = e.touches[0].clientX;
+            touchStartY = swipeLastY = e.touches[0].clientY;
+            isSwiping   = false;
         }
     }, { passive: true });
 
@@ -279,11 +300,27 @@ export function registerInputHandlers() {
             AppState.camera.updateProjectionMatrix();
 
         } else if (e.touches.length === 1 && swipeLastX !== null && !AppState.panCamBool) {
-            e.preventDefault();
-            const dx = e.touches[0].clientX - swipeLastX;
-            const dy = e.touches[0].clientY - swipeLastY;
-            swipeLastX = e.touches[0].clientX;
-            swipeLastY = e.touches[0].clientY;
+            const clientX = e.touches[0].clientX;
+            const clientY = e.touches[0].clientY;
+
+            if (!isSwiping) {
+                const totalDx = clientX - touchStartX;
+                const totalDy = clientY - touchStartY;
+                if (Math.hypot(totalDx, totalDy) < SWIPE_DRAG_THRESHOLD) {
+                    return; // still within tap tolerance — leave it for the browser's own click synthesis
+                }
+                isSwiping = true;
+                // Start the delta fresh from here rather than from touchstart,
+                // so crossing the threshold doesn't itself cause a jump.
+                swipeLastX = clientX;
+                swipeLastY = clientY;
+            }
+
+            e.preventDefault(); // now a deliberate drag — stop the page from scrolling with it
+            const dx = clientX - swipeLastX;
+            const dy = clientY - swipeLastY;
+            swipeLastX = clientX;
+            swipeLastY = clientY;
 
             const TOUCH_PAN_SENSITIVITY = 0.003; // tuned so a typical swipe feels comparable to a couple of arrow-key taps
             AppState.cameraAccelerationX -= dy * TOUCH_PAN_SENSITIVITY;
@@ -297,19 +334,20 @@ export function registerInputHandlers() {
             pinchStartZoomStage = null;
         }
         if (e.touches.length === 0) {
-            swipeLastX = swipeLastY = null;
+            resetSwipeTracking();
         } else if (e.touches.length === 1) {
             // Dropped from two fingers to one — restart swipe tracking from here
             // instead of using the stale two-finger position on the next move.
-            swipeLastX = e.touches[0].clientX;
-            swipeLastY = e.touches[0].clientY;
+            touchStartX = swipeLastX = e.touches[0].clientX;
+            touchStartY = swipeLastY = e.touches[0].clientY;
+            isSwiping = false;
         }
     }, { passive: true });
 
     AppState.container.addEventListener('touchcancel', () => {
         pinchStartDistance  = null;
         pinchStartZoomStage = null;
-        swipeLastX = swipeLastY = null;
+        resetSwipeTracking();
     }, { passive: true });
 
 

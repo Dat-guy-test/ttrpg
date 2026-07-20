@@ -203,16 +203,28 @@ export function updateZoomInertia(DT) {
 
 const REFERENCE_ASPECT = 1.0;  // aspect ratios at/above this need no compensation
 const MIN_ASPECT_FLOOR  = 0.15; // guards against a division blow-up on an extremely sliver-thin window
-const ASPECT_COMPENSATION_SCALE = 25; // tuned so typical mobile-portrait aspects (~0.35-0.55) land in a comfortable zoomed-out range
+const ASPECT_COMPENSATION_SCALE = 16; // how fast the compensation ramps up as aspect shrinks
+
+// zoomStage's hard bounds are [0, 60] (see updateZoomInertia()/the wheel and
+// pinch handlers), but the computed compensation above is deliberately
+// capped well short of that ceiling — a very narrow phone screen would
+// otherwise round to something close to 60 (see the earlier, too-aggressive
+// version of this function), starting the player almost fully zoomed OUT
+// with nowhere left to zoom back IN. Capping at half the range instead
+// guarantees at least this many zoomStage units of "room to zoom in" no
+// matter how extreme the window's aspect ratio gets.
+const MAX_INITIAL_ZOOM_STAGE = 30;
 
 /**
  * Picks a starting AppState.zoomStage based on the current skill-tree
  * viewport's width/height, so a full node (and its label) is visible
- * even on a small, narrow (typically mobile) window. Returns 0 — the
- * normal default — for a roughly square-or-wider viewport.
+ * even on a small, narrow (typically mobile) window — without eating so
+ * far into the zoom range that zooming back in becomes impractical or
+ * impossible. Returns 0 — the normal default — for a roughly
+ * square-or-wider viewport.
  * @param {number} containerWidth  — current #canvas clientWidth, in px
  * @param {number} containerHeight — current #canvas clientHeight, in px
- * @returns {number} a zoomStage in [0, 60]
+ * @returns {number} a zoomStage in [0, MAX_INITIAL_ZOOM_STAGE]
  */
 export function computeInitialZoomStage(containerWidth, containerHeight) {
     const aspect = containerWidth / Math.max(containerHeight, 1);
@@ -220,7 +232,7 @@ export function computeInitialZoomStage(containerWidth, containerHeight) {
 
     const compensation = (REFERENCE_ASPECT / Math.max(aspect, MIN_ASPECT_FLOOR)) - 1; // grows as the window gets narrower
     const zoomStage = Math.round(compensation * ASPECT_COMPENSATION_SCALE);
-    return Math.max(0, Math.min(60, zoomStage));
+    return Math.max(0, Math.min(MAX_INITIAL_ZOOM_STAGE, zoomStage));
 }
 
 
