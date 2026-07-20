@@ -1,0 +1,70 @@
+/* ============================================================
+   ARKANA SHEET  (Arkana tab)
+   Reuses .charSheet/.charSection/.charBtn/.equipListRow tokens from
+   characterSheet.css/equipment.css/style.css so it matches the other
+   tabs' look. This file must load after those (see sceneSetup.js's
+   import order).
+   ============================================================ */
+
+.arcanaSheet {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 56em;
+    margin: 0 auto;
+    padding: 1.5em 2em 3em;
+    font-family: var(--font-body, Georgia, serif);
+    color: var(--parchment-ink, #34183b);
+}
+
+.arcanaSheet-subtabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin-bottom: 1.25em;
+    padding-bottom: 0.75em;
+    border-bottom: 0.15em solid var(--parchment-line, #8a6432);
+}
+
+.arcanaSubtab-btn {
+    opacity: 0.7;
+}
+.arcanaSubtab-btn.active {
+    opacity: 1;
+    background-color: #63188f;
+}
+
+.arcanaSpellCard {
+    box-sizing: border-box;
+    padding: 1em 1.25em;
+    margin-bottom: 1em;
+    background: var(--parchment-card, rgba(255, 250, 235, 0.6));
+    border: 1px solid var(--parchment-line-soft, rgba(138, 100, 50, 0.35));
+    border-radius: 0.5em;
+}
+.arcanaSpellCard p {
+    margin: 0.35em 0;
+}
+.arcanaSpellCard ul {
+    margin: 0.35em 0 0.75em;
+    padding-left: 1.3em;
+}
+
+@media print {
+    body * { visibility: hidden; }
+
+    #arcanaPage, #arcanaPage * { visibility: visible; }
+
+    #arcanaPage {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        border: none;
+        background: #ffffff;
+    }
+
+    .arcanaSheet { max-width: 100%; padding: 0; color: #000000; }
+    .arcanaSheet-subtabs, .equipSheet-toolbar, .itemEditor-typeSection, .itemEditor-subform { display: none !important; }
+    .arcanaSpellCard { background: transparent; break-inside: avoid; }
+}

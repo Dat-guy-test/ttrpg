@@ -203,6 +203,14 @@ export function makeDefaultItem(type) {
         // container's accessorySlots (see ACCESSORY_SIZES above).
         // null/'' = not an accessory.
         accessorySize: null,
+        // Freeform label identifying what "kind" of preparation this item
+        // needs (e.g. 'Miecze', 'Strzała'). Empty = this item can never be
+        // prepared, regardless of anything else owned. See
+        // equipmentState.js's "EQUIP / PREPARE STATE" section.
+        prepareType: '',
+        // string[] of prepareType values that simply OWNING this item
+        // enables the player to prepare (e.g. a quiver enabling 'Strzała').
+        enablesPrepareTypes: [],
     };
 
     if (type === 'weapon') {

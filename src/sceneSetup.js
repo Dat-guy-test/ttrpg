@@ -13,6 +13,7 @@
 import './style.css'
 import './characterSheet.css';
 import './equipment.css';
+import './arcana.css';
 import * as THREE from 'three';
 import { WebGLRenderer } from 'three';
 import { EffectComposer, EffectPass, RenderPass, SelectiveBloomEffect } from 'postprocessing';

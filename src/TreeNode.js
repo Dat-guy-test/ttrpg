@@ -37,6 +37,19 @@
 // at least as much of that currency/item as was originally granted —
 // see perkEffects.js's canRevokeNodeEffect(), checked below before
 // removeNodeEffect() is ever called.
+//
+// ------------------------------------------------------------
+// PERSISTENCE (see treePersistence.js)
+// ------------------------------------------------------------
+// Every activation/deactivation in onClick() below also calls
+// markNodeActive()/markNodeInactive() so a page reload knows which
+// nodes to bring back. restoreActive() (called from
+// treePersistence.js's restoreActiveNodes(), itself called once from
+// main.js's sec() at boot) re-activates a node the same way onClick's
+// activation branch does, but WITHOUT re-checking requirements/cost/
+// mutual-exclusion (already valid when originally picked), WITHOUT
+// panning the camera, and WITHOUT re-prompting for an
+// 'attributeChoice' effect (reuses the saved selection instead).
 // ============================================================
 
 import * as THREE from 'three';
@@ -49,6 +62,7 @@ import { handleEditModeNodeClick } from './editMode.js';
 import { applyNodeEffect, removeNodeEffect, refreshPerksTaken, canRevokeNodeEffect } from './perkEffects.js';
 import { computePotentialAvailable } from './characterState.js';
 import { canPickPerks, canRevokePerk, getStage, STAGES } from './progressionState.js';
+import { markNodeActive, markNodeInactive } from './treePersistence.js';
 
 export class TreeNode extends THREE.Mesh {
     /**
@@ -302,6 +316,7 @@ export class TreeNode extends THREE.Mesh {
                                 color: 0x000000, opacity: 0.0, transparent: true, depthWrite: false,
                             });
                             removeNodeEffect(this);
+                            markNodeInactive(this.nodeId); // persist across reloads — see treePersistence.js
                             refreshPerksTaken();
                         }
 
@@ -315,6 +330,7 @@ export class TreeNode extends THREE.Mesh {
                         this.nodeActive    = true;
                         this.star.material  = AppState.starClasses[this.starID].customMaterial;
                         applyNodeEffect(this);
+                        markNodeActive(this.nodeId); // persist across reloads — see treePersistence.js
                         refreshPerksTaken();
                     }
 
@@ -330,6 +346,28 @@ export class TreeNode extends THREE.Mesh {
                             this.fi - Math.PI / 2
                         );
                     }
+                }
+
+                /**
+                 * Re-activates this node WITHOUT checking requirements/cost/
+                 * mutual-exclusion, WITHOUT panning the camera, and WITHOUT
+                 * prompting for an 'attributeChoice' effect — used ONLY to
+                 * restore a previously-active node after a page reload (see
+                 * treePersistence.js's restoreActiveNodes(), called once from
+                 * main.js's sec() right after AppState.tr.init()). The node was
+                 * already validly active before the reload; this just rebuilds
+                 * its visuals and character-sheet effects to match.
+                 *
+                 * Does NOT call markNodeActive() itself — the node is already
+                 * recorded as active in treePersistence.js (that's WHY it's
+                 * being restored), so there's nothing new to persist here.
+                 *
+                 * @param {{[effectIndex:string]:number[]}|null} savedChoices — this node's persisted attributeChoice selections, if any (see treePersistence.js's getSavedChoicesForNode())
+                 */
+                restoreActive(savedChoices) {
+                    this.nodeActive   = true;
+                    this.star.material = AppState.starClasses[this.starID].customMaterial;
+                    applyNodeEffect(this, { restoring: true, savedChoices });
                 }
 
                 getFi()    { return this.fi;    }

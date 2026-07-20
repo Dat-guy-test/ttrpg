@@ -91,6 +91,10 @@ export function resetItemEditor(existingItem) {
             ? existingItem.requirements.map(r => ({ ...r })) : [],
         upgrades: existingItem && Array.isArray(existingItem.upgrades)
             ? [...existingItem.upgrades] : [],
+        // string[] of prepareType values this item's ownership enables —
+        // see itemSchema.js's `enablesPrepareTypes` field.
+        enablesPrepareTypes: existingItem && Array.isArray(existingItem.enablesPrepareTypes)
+            ? [...existingItem.enablesPrepareTypes] : [],
         // {itemId, quantity}[] — normalizeSetMembers() also accepts the
         // older plain-id-string shape, so a set saved before this
         // feature loads in cleanly instead of needing a manual fixup.
@@ -240,6 +244,18 @@ function baseFieldsHTML() {
 
         <label class="charField-label" for="ie-desc">Opis</label>
         <textarea id="ie-desc" rows="3">${escapeHtml(it?.desc || '')}</textarea>
+
+        <label class="charField-label" for="ie-preparetype">Typ Przygotowania</label>
+        <input id="ie-preparetype" type="text" value="${escapeHtml(it?.prepareType || '')}" placeholder="np. Miecze, Strzała…" />
+        <p class="charSection-hint">Jeśli ten przedmiot wymaga „przygotowania” przed użyciem, podaj tu jego typ — przedmiot będzie można Przygotować tylko posiadając inny przedmiot, który umożliwia przygotowanie tego typu (patrz niżej). Puste pole = tego przedmiotu nigdy nie można przygotować.</p>
+
+        <label class="charField-label">Umożliwia Przygotowanie Typów</label>
+        <div id="item-editor-enablesprepare-list">${renderEnablesPrepareTypesList()}</div>
+        <div class="editor-row">
+            <input id="ie-enablesprepare-text" type="text" placeholder="Typ przygotowania, np. Strzała…" />
+            <button class="editor-btn editor-btn-small" id="ie-enablesprepare-add-btn">Dodaj</button>
+        </div>
+        <p class="charSection-hint">Jeśli POSIADANIE tego przedmiotu (np. kołczanu, pochwy) ma umożliwiać przygotowanie przedmiotów o podanym Typie Przygotowania, dodaj tu ten typ.</p>
     `;
 }
 
@@ -464,6 +480,17 @@ function renderUpgradesList() {
     `).join('');
 }
 
+/** Current staged enablesPrepareTypes entries, each shown with a remove button. */
+function renderEnablesPrepareTypesList() {
+    if (draft.enablesPrepareTypes.length === 0) return '<em>Brak.</em>';
+    return draft.enablesPrepareTypes.map((t, i) => `
+        <div class="editor-req-row">
+            <span>${escapeHtml(t)}</span>
+            <button class="editor-btn editor-btn-small" data-remove-enablesprepare="${i}">✕</button>
+        </div>
+    `).join('');
+}
+
 function describeDamageEntry(d) {
     const typeLabel = (DAMAGE_TYPES.find(t => t.value === d.type) || {}).label || d.type;
     return `${formatDiceExpression(d)} (${typeLabel})`;
@@ -642,6 +669,29 @@ export function wireItemEditorHandlers(rootEl, onSaved) {
         refreshUpgradesList();
     });
 
+    // ---- Umożliwia Przygotowanie Typów --------------------------------
+    function refreshEnablesPrepareList() {
+        const listEl = rootEl.querySelector('#item-editor-enablesprepare-list');
+        if (!listEl) return;
+        listEl.innerHTML = renderEnablesPrepareTypesList();
+        listEl.querySelectorAll('[data-remove-enablesprepare]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                draft.enablesPrepareTypes.splice(Number(btn.dataset.removeEnablesprepare), 1);
+                refreshEnablesPrepareList();
+            });
+        });
+    }
+    refreshEnablesPrepareList();
+    const enablesPrepareAddBtn = rootEl.querySelector('#ie-enablesprepare-add-btn');
+    if (enablesPrepareAddBtn) enablesPrepareAddBtn.addEventListener('click', () => {
+        const input = rootEl.querySelector('#ie-enablesprepare-text');
+        const text = input.value.trim();
+        if (!text) return;
+        draft.enablesPrepareTypes.push(text);
+        input.value = '';
+        refreshEnablesPrepareList();
+    });
+
     // ---- staged Obrażenia (for the attack-mode-in-progress mini-form) --
     function refreshDamageList() {
         const listEl = rootEl.querySelector('#item-editor-atkdamage-list');
@@ -761,6 +811,9 @@ export function wireItemEditorHandlers(rootEl, onSaved) {
         if (!Number.isFinite(toughness) || !Number.isInteger(toughness)) { setStatus('Twardość musi być liczbą całkowitą.', true); return; }
 
         const item = { ...makeDefaultItem(type), name, price, bulk, state, hitPoints, toughness, desc, accessorySize };
+
+        item.prepareType = rootEl.querySelector('#ie-preparetype').value.trim();
+        item.enablesPrepareTypes = [...draft.enablesPrepareTypes];
 
         // The Set flag/members list applies to every item type. Each
         // entry is {itemId, quantity} — quantity may be > 1, so a set

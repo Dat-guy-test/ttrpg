@@ -13,6 +13,18 @@
 // displayed read-only here. See characterState.js for how each is
 // computed.
 //
+// Toolbar also hosts the app-wide "character data" actions:
+//   - "Resetuj Wszystko" — see resetAll.js's resetEverything(). Wipes
+//     tree progress (perks taken), the character sheet, equipment,
+//     known spells, AND the Tworzenie Postaci/Użytkowanie/Level Up
+//     stage, all together — this is the one reset button that
+//     actually resets everything a character would otherwise leave
+//     stale (see treePersistence.js's header comment for why that
+//     used to be inconsistent).
+//   - "Eksportuj Postać" / "Importuj Postać" — see characterExport.js.
+//     Bundles the same full set of character state into one
+//     downloadable .json file, and can load one back in.
+//
 // Exports:
 //   initCharacterSheet()    — call once, after #characterPage exists.
 //   refreshCharacterSheet() — full re-render; called by perkEffects.js
@@ -44,6 +56,8 @@ import {
         getFieldPoolAllocation,
         adjustPoolAllocation,
 } from './characterState.js';
+import { resetEverything } from './resetAll.js';
+import { downloadCharacterExport, importCharacterFromObject } from './characterExport.js';
 
 const CHARACTERISTIC_POOL = POINT_POOLS_CONFIG.find(p => p.key === 'characteristicPoints');
 
@@ -75,7 +89,10 @@ function render() {
     <div class="charSheet">
     <div class="charSheet-toolbar">
     <button class="charBtn" id="char-print-btn"><span>Drukuj</span></button>
-    <button class="charBtn charBtn-danger" id="char-reset-btn"><span>Resetuj arkusz</span></button>
+    <button class="charBtn" id="char-export-btn"><span>Eksportuj Postać</span></button>
+    <button class="charBtn" id="char-import-btn"><span>Importuj Postać</span></button>
+    <input type="file" id="char-import-file" accept="application/json,.json" style="display:none;" />
+    <button class="charBtn charBtn-danger" id="char-reset-btn"><span>Resetuj Wszystko</span></button>
     </div>
 
     ${renderHeader()}
@@ -418,10 +435,52 @@ function modifierBreakdown(modifiers) {
 // ============================================================
 function attachHandlers() {
     rootEl.querySelector('#char-print-btn').addEventListener('click', () => window.print());
+
+    // ---- Resetuj Wszystko ------------------------------------------
+    // The ONE reset button — see resetAll.js's resetEverything() for
+    // exactly what this wipes (tree progress/perks, character sheet,
+    // equipment, known spells, and the progression stage). Reloads the
+    // page itself once done, so no local render() call is needed here.
     rootEl.querySelector('#char-reset-btn').addEventListener('click', () => {
-        if (window.confirm('Zresetować cały arkusz postaci? Tej operacji nie można cofnąć.')) {
-            resetCharacterState();
-            render();
+        const ok = window.confirm(
+            'Zresetować WSZYSTKO: wybrane perki, kartę postaci, ekwipunek, znane zaklęcia oraz etap gry (Tworzenie Postaci/Użytkowanie/Level Up)? Tej operacji nie można cofnąć.'
+        );
+        if (ok) resetEverything();
+    });
+
+    // ---- Eksportuj / Importuj Postać --------------------------------
+    rootEl.querySelector('#char-export-btn').addEventListener('click', () => {
+        downloadCharacterExport();
+    });
+
+    const importInput = rootEl.querySelector('#char-import-file');
+    rootEl.querySelector('#char-import-btn').addEventListener('click', () => importInput.click());
+    importInput.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        try {
+            const text = await file.text();
+            const parsed = JSON.parse(text);
+
+            const ok = window.confirm(
+                'Zaimportować tę postać? Nadpisze to WSZYSTKIE obecne dane postaci — wybrane perki, kartę postaci, ekwipunek, znane zaklęcia i etap gry. Tej operacji nie można cofnąć.'
+            );
+            if (!ok) return;
+
+            const result = importCharacterFromObject(parsed);
+            if (!result.ok) {
+                window.alert(`Nie udało się zaimportować postaci: ${result.error}`);
+                return;
+            }
+            // Reload so every module's own load()/mergeWithDefaults()
+            // picks up the freshly-written localStorage keys, same as
+            // resetAll.js's resetEverything().
+            window.location.reload();
+        } catch (err) {
+            window.alert(`Nie udało się odczytać pliku postaci: ${err.message}`);
+        } finally {
+            importInput.value = '';
         }
     });
 
@@ -513,4 +572,3 @@ function escapeHtml(str) {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;');
 }
-

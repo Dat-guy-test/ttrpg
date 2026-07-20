@@ -34,13 +34,42 @@
 // explicit branches rather than trying to force them through the
 // numeric-modifier machinery.
 //
-// applyNodeEffect(node)  — called from TreeNode.onClick on activation
+// applyNodeEffect(node, opts)  — called from TreeNode.onClick on
+//                          activation, and from TreeNode.restoreActive()
+//                          when re-activating a node that was already
+//                          active in a previous session (see below).
 // removeNodeEffect(node) — called from TreeNode.onClick on deactivation
 //                          (but only once canRevokeNodeEffect() below
 //                          has confirmed it's safe — see its header
 //                          comment), and from Tree's addNodeEffect()/
 //                          removeNodeEffectAt() when an active node's
 //                          effects list is edited directly in edit mode.
+//
+// ------------------------------------------------------------
+// RESTORING A PREVIOUS SESSION
+// ------------------------------------------------------------
+// treePersistence.js now remembers which nodes were active across a
+// reload (see its header comment) and re-activates them via
+// TreeNode.restoreActive(), which calls applyNodeEffect(node,
+// { restoring: true, savedChoices }) instead of the plain
+// applyNodeEffect(node) a fresh click uses. Two effect types need to
+// behave differently while restoring:
+//   - 'currency' / 'item': SKIPPED while restoring. Unlike every
+//     other effect type, these aren't idempotent (calling
+//     addCurrency()/addItemQuantity() twice adds twice) — but
+//     equipmentState.js's currency/inventory are ALREADY fully
+//     persisted on their own, so re-granting them here on every
+//     reload would double them. Every other effect type IS
+//     idempotent (setPerkModifier()/setAttributeSource()/
+//     addKnownSpell()/addSpellSchoolGrant() all replace-by-sourceId),
+//     so those are always re-applied — that's in fact the ONLY thing
+//     that rebuilds Charakterystyki/Umiejętności modifiers, Wprawa,
+//     and Atrybuty after a reload, since those are deliberately never
+//     written to characterState.js's own localStorage key.
+//   - 'attributeChoice': normally prompts the player to pick. While
+//     restoring, `opts.savedChoices` (keyed by this effect's index)
+//     is used instead, so the player is never re-asked just because
+//     the page reloaded.
 //
 // Both apply/removeNodeEffect are safe to call on a node with no
 // effects (no-op).
@@ -53,9 +82,10 @@
 //
 // This module imports appState.js (a pure leaf — see its own header
 // comment — so this creates no cycle) plus characterState.js,
-// equipmentState.js, characterSheet.js, and equipmentSheet.js — none
-// of which import anything tree-related — so TreeNode.js and Tree.js
-// can import this without creating a circular import.
+// equipmentState.js, characterSheet.js, equipmentSheet.js, and
+// treePersistence.js — none of which import anything tree-related —
+// so TreeNode.js and Tree.js can import this without creating a
+// circular import.
 // ============================================================
 
 import AppState from './appState.js';
@@ -68,8 +98,11 @@ import {
     EFFECT_TYPES,
 } from './characterState.js';
 import { addCurrency, addItemQuantity, getCurrency, getItemQuantity } from './equipmentState.js';
+import { addKnownSpell, removeKnownSpell, addSpellSchoolGrant, removeSpellSchoolGrant } from './spellState.js';
 import { refreshCharacterSheet } from './characterSheet.js';
 import { refreshEquipmentSheet } from './equipmentSheet.js';
+import { refreshArcanaSheet } from './arcanaSheet.js';
+import { saveAttributeChoiceSelection, clearAttributeChoiceSelection } from './treePersistence.js';
 
 /**
  * A perk that granted currency or items is only allowed to be
@@ -105,34 +138,41 @@ export function canRevokeNodeEffect(node) {
 }
 
 /**
- * Handles an 'attributeChoice' effect on activation: prompts the
- * player to pick `count` options (each {name, description}) from the
- * node's preset `options` list, then grants each chosen one as an
- * Atrybut via setAttributeSource() — same underlying store as a
- * plain 'attribute' effect, just with the specific name resolved at
- * activation time instead of being baked into the node.
+ * Handles an 'attributeChoice' effect on activation: either prompts
+ * the player to pick `count` options (each {name, description}) from
+ * the node's preset `options` list, or — when `presetIndexes` is
+ * given (restoring a previous session; see treePersistence.js) —
+ * reuses those exact indexes without prompting at all. Either way,
+ * each chosen option is granted as an Atrybut via setAttributeSource()
+ * — same underlying store as a plain 'attribute' effect, just with
+ * the specific name resolved at activation (or restore) time instead
+ * of being baked into the node.
  *
  * The player's choice is remembered on the TreeNode INSTANCE itself
- * (node._attributeChoiceSelections[effectIndex] = [optionIndex, …]) —
- * this is runtime-only bookkeeping so removeNodeEffect() can find and
- * clear exactly the sources this activation granted. It's never
- * serialized (TreeNode.toJSON() only ever exports node.effects), and
- * — matching how every other perk modifier already behaves in this
- * app — the player re-picks each time they (re)activate the node in
- * a session, since nothing about active nodes is persisted anyway.
+ * (node._attributeChoiceSelections[effectIndex] = [optionIndex, …])
+ * so removeNodeEffect() can find and clear exactly the sources this
+ * activation granted, AND persisted via
+ * treePersistence.js's saveAttributeChoiceSelection() so a future
+ * reload can restore the exact same choice without re-prompting.
  *
  * @param {import('./TreeNode.js').TreeNode} node
  * @param {{type:string, count:number, options:{name:string,description:string}[]}} effect
  * @param {number} index — this effect's position in node.effects
+ * @param {number[]} [presetIndexes] — reuse these option indexes instead of prompting (used when restoring a previous session)
  */
-function applyAttributeChoiceEffect(node, effect, index) {
+function applyAttributeChoiceEffect(node, effect, index, presetIndexes) {
     const options = Array.isArray(effect.options) ? effect.options : [];
     if (options.length === 0) return;
     const count = Math.max(1, Math.min(Number(effect.count) || 1, options.length));
 
     if (!node._attributeChoiceSelections) node._attributeChoiceSelections = {};
-    const chosenIndexes = promptAttributeChoice(node.nodeName, options, count);
+
+    const chosenIndexes = Array.isArray(presetIndexes)
+        ? presetIndexes.filter(i => Number.isInteger(i) && i >= 0 && i < options.length)
+        : promptAttributeChoice(node.nodeName, options, count);
+
     node._attributeChoiceSelections[index] = chosenIndexes;
+    saveAttributeChoiceSelection(node.nodeId, index, chosenIndexes);
 
     chosenIndexes.forEach(optIdx => {
         const opt = options[optIdx];
@@ -176,9 +216,17 @@ function promptAttributeChoice(nodeName, options, count) {
     return [...chosen];
 }
 
-/** @param {import('./TreeNode.js').TreeNode} node */
-export function applyNodeEffect(node) {
+/**
+ * @param {import('./TreeNode.js').TreeNode} node
+ * @param {{restoring?:boolean, savedChoices?:{[effectIndex:string]:number[]}}} [opts]
+ *   `restoring: true` skips re-granting 'currency'/'item' effects
+ *   (equipmentState.js already persists those directly — see this
+ *   module's header comment) and `savedChoices` supplies
+ *   'attributeChoice' picks so restoring never re-prompts.
+ */
+export function applyNodeEffect(node, opts = {}) {
     if (!Array.isArray(node.effects) || node.effects.length === 0) return;
+    const restoring = !!opts.restoring;
 
     node.effects.forEach((effect, index) => {
         if (!effect || !effect.type) return;
@@ -196,21 +244,45 @@ export function applyNodeEffect(node) {
             // Atrybuty are non-numeric — name + free-text description —
             // so they're granted through their own source-tracked store
             // instead of setPerkModifier(). See characterState.js's
-            // setAttributeSource()/CharacterState.attributes.
+            // setAttributeSource()/CharacterState.attributes. Idempotent
+            // by sourceId, so safe to re-run every restore.
             setAttributeSource(effect.key, sourceId, effect.description || '', effect.bonuses || []);
         } else if (effect.type === 'attributeChoice') {
             // Player picks `count` named attributes out of this effect's
-            // preset `options` list, resolved right now via a prompt. See
+            // preset `options` list — resolved right now via a prompt, or
+            // reused from a saved choice while restoring. See
             // applyAttributeChoiceEffect() below.
-            applyAttributeChoiceEffect(node, effect, index);
+            applyAttributeChoiceEffect(node, effect, index, opts.savedChoices ? opts.savedChoices[index] : undefined);
         } else if (effect.type === 'currency') {
             // Fungible — just add to the pool. See equipmentState.js's
             // module-level comment for why this isn't a {base,modifiers}
-            // field like everything else.
-            addCurrency(effect.amount);
+            // field like everything else. NOT idempotent (adds every
+            // call) — equipmentState.js's currency is already fully
+            // persisted on its own, so this must be skipped while
+            // restoring a previous session or it would double up.
+            if (!restoring) addCurrency(effect.amount);
         } else if (effect.type === 'item') {
-            addItemQuantity(effect.key, effect.amount);
+            // Same reasoning as 'currency' — skip while restoring.
+            if (!restoring) addItemQuantity(effect.key, effect.amount);
+        } else if (effect.type === 'spellUnlock') {
+            // Grants access to one specific compendium spell. Presence-only
+            // (known or not), same reasoning as 'attribute' — routed to its
+            // own store instead of setPerkModifier(). See spellState.js.
+            // Idempotent by sourceId, safe to re-run every restore.
+            addKnownSpell(sourceId, effect.key);
+        } else if (effect.type === 'spellSchoolUnlock') {
+            // Grants access to any compendium spell matching one or more
+            // schools up to a max complexity. Resolved at "Znane zaklęcia"
+            // read-time (see spellState.js's getKnownSpells()), so nothing
+            // numeric to add up here either. Idempotent by sourceId.
+            addSpellSchoolGrant(sourceId, effect.schools || [], effect.maxComplexity);
         } else {
+            // Every remaining EFFECT_TYPES entry (characteristic,
+            // skillExperience, skillImprovisation, proficiency, and the
+            // point-pool grants) goes through setPerkModifier(), which
+            // REPLACES this sourceId's modifier rather than stacking a
+            // new one — idempotent, so safe (in fact necessary) to
+            // re-apply every time a session restores.
             setPerkModifier(
                 effectDef.fieldPath(effect.key),
                 sourceId,
@@ -222,6 +294,7 @@ export function applyNodeEffect(node) {
 
     refreshCharacterSheet();
     refreshEquipmentSheet();
+    refreshArcanaSheet();
 }
 
 /**
@@ -253,6 +326,10 @@ export function removeNodeEffect(node) {
             addCurrency(-(Number(effect.amount) || 0));
         } else if (effect && effect.type === 'item') {
             addItemQuantity(effect.key, -(Number(effect.amount) || 0));
+        } else if (effect && effect.type === 'spellUnlock') {
+            removeKnownSpell(sourceId);
+        } else if (effect && effect.type === 'spellSchoolUnlock') {
+            removeSpellSchoolGrant(sourceId);
         } else if (effect && effect.type === 'attributeChoice') {
             // Clear exactly the option(s) THIS activation granted — see
             // applyAttributeChoiceEffect()'s comment on
@@ -263,6 +340,11 @@ export function removeNodeEffect(node) {
                 clearAttributeSource(`node:${node.nodeId}:${index}:${optIdx}`);
             });
             if (node._attributeChoiceSelections) delete node._attributeChoiceSelections[index];
+            // Also drop the persisted selection (see treePersistence.js) —
+            // otherwise a stale choice would linger in storage and could
+            // be replayed if this same node were ever reactivated after a
+            // reload before this session's in-memory state caught up.
+            clearAttributeChoiceSelection(node.nodeId, index);
         } else {
             // Harmless no-op if this particular effect wasn't of the
             // matching kind — a numeric effect's sourceId was never
@@ -274,6 +356,7 @@ export function removeNodeEffect(node) {
 
     refreshCharacterSheet();
     refreshEquipmentSheet();
+    refreshArcanaSheet();
 }
 
 /**
@@ -282,6 +365,8 @@ export function removeNodeEffect(node) {
  * after every activation/deactivation — unlike apply/removeNodeEffect,
  * it doesn't matter whether the node carries any stat effects; a
  * perk with no stat effect at all should still show up in this list.
+ * Also called once from main.js's sec() after treePersistence.js's
+ * restoreActiveNodes() re-activates a previous session's perks.
  */
 export function refreshPerksTaken() {
     if (!AppState.tr) return;

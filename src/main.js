@@ -18,7 +18,8 @@
 //   StarModel      ← THREE, colorScience
 //   cameraControls ← appState
 //   sceneSetup     ← appState, constants, THREE, postprocessing
-//   TreeNode       ← appState, constants, THREE, StarModel, cameraControls, editMode
+//   treePersistence ← (no local imports)
+//   TreeNode       ← appState, constants, THREE, StarModel, cameraControls, editMode, perkEffects, treePersistence
 //   Tree           ← appState, THREE, TreeNode, cameraControls
 //   inputHandlers  ← appState, cameraControls, editMode
 //   editMode       ← appState
@@ -31,6 +32,7 @@ import AppState from './appState.js';
 import { initScene } from './sceneSetup.js';
 import { initCharacterSheet } from './characterSheet.js';
 import { initEquipmentSheet } from './equipmentSheet.js';
+import { initArcanaSheet } from './arcanaSheet.js';
 import { Tree, treeGen } from './Tree.js';
 import {
   panCamera,
@@ -42,6 +44,8 @@ import {
 import { registerInputHandlers } from './inputHandlers.js';
 import { initEditMode } from './editMode.js';
 import { LABEL_MIN_SCALE, LABEL_MAX_SCALE } from './constants.js';
+import { restoreActiveNodes } from './treePersistence.js';
+import { refreshPerksTaken } from './perkEffects.js';
 
 
 // ============================================================
@@ -63,14 +67,26 @@ initEditMode();
 initCharacterSheet();
 // 3c. Build the equipment sheet module
 initEquipmentSheet();
+// 3d. Build the Arkana (spells) sheet module
+initArcanaSheet();
 // 4. Attach all DOM event listeners
 registerInputHandlers();
 
-// 5. Fetch node data, instantiate TreeNodes, draw arcs,
-//    then orient the camera toward the root node (ID 1).
+// 5. Fetch node data, instantiate TreeNodes, draw arcs, restore
+//    whichever perks were active in a previous session, then orient
+//    the camera toward the root node (ID 1).
 async function sec() {
   await treeGen(AppState.tr);
   AppState.tr.init();
+
+  // Bring back every node that was active before the last reload —
+  // see treePersistence.js's header comment for why this (rather than
+  // characterState.js's own storage) is what makes perks taken,
+  // Charakterystyki/Umiejętności modifiers, Wprawa, and Atrybuty
+  // survive a reload. Must run after tr.init() (so nodes/arcs exist)
+  // and before anything reads "Wybrane Perki" or the character sheet.
+  restoreActiveNodes(AppState.tr);
+  refreshPerksTaken();
 
   const vec = AppState.tr.getNodeSphericalCoordinates(1);
   AppState.camera.rotation.set(

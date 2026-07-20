@@ -8,7 +8,9 @@
 //   'list'   — owned items + currency (default), or every item in
 //              the game + its price when Rynek (market mode) is on
 //   'detail' — full description of one item, reached by clicking a
-//              row on either list. Shows a Buy button in market mode.
+//              row on either list. Shows a Buy button in market mode,
+//              plus Sprzedaj (sell)/Wyrzuć (discard) buttons for
+//              anything currently owned.
 //   'edit'   — "Tryb Edycji": the item form from itemEditor.js, for
 //              creating a brand-new custom item, editing an existing
 //              CUSTOM item, or editing an EXISTING items.json
@@ -32,9 +34,10 @@ import { getSellMode } from './progressionState.js';
 import {
     getAllItems, getCustomItems, getItemById, getCurrency, formatCurrencyParts,
     formatItemPrice, isNotForSale, getOwnedItems, getItemQuantity, setItemQuantity,
-        buyItem, sellItem, canAssembleSet, assembleSet, splitSet, resetEquipmentState,
+        buyItem, sellItem, discardItem, canAssembleSet, assembleSet, splitSet, resetEquipmentState,
         isBuiltInItemId, hasBuiltInOverride, resetBuiltInItemOverride,
         getDeletedBuiltInItems, restoreBuiltInItem,
+        getItemState, canEquipItem, equipItem, canPrepareItem, prepareItem, unequipItem,
 } from './equipmentState.js';
 import {
     ITEM_TYPES, ITEM_STATES, WEAPON_KINDS, ATTACK_MODE_TYPES,
@@ -92,10 +95,13 @@ function renderListPage() {
         ? `<p class="charSection-hint">${view.marketMode ? 'Brak przedmiotów w bazie danych.' : 'Nie posiadasz jeszcze żadnych przedmiotów.'}</p>`
         : `<ul class="equipListRows">${items.map(i => `
             <li class="equipListRow" data-open-item="${escapeHtml(i.id)}">
-                <span class="equipListRow-name">${escapeHtml(i.name)}</span>
-                ${view.marketMode
-                    ? `<span class="equipListRow-price">${escapeHtml(formatItemPrice(i.price))}</span>`
-                    : `<span class="equipListRow-qty">x${i.quantity}</span>`}
+                <span class="equipListRow-name">${escapeHtml(i.name)}${!view.marketMode ? renderStateSuffix(i.id) : ''}</span>
+                <span style="display:flex; align-items:center; gap:0.5em;">
+                    ${view.marketMode
+                        ? `<span class="equipListRow-price">${escapeHtml(formatItemPrice(i.price))}</span>`
+                        : `<span class="equipListRow-qty">x${i.quantity}</span>`}
+                    ${!view.marketMode ? renderQuickEquipButtons(i) : ''}
+                </span>
             </li>
         `).join('')}</ul>`;
 
@@ -215,6 +221,76 @@ function renderSellSection(item, owned, sellMode, halfPrice) {
     <button class="charBtn" id="equip-sell-half-btn">Sprzedaj za połowę (${halfPrice})</button>
     <input id="equip-sell-custom-price" type="number" min="0" step="1" placeholder="Cena zaakceptowana przez MG" style="max-width:10em;" />
     <button class="charBtn" id="equip-sell-custom-btn">Sprzedaj za cenę MG</button>
+    </div>
+    `;
+}
+
+/**
+ * "Wyrzuć" (discard) button — always available for anything currently
+ * owned, regardless of progression stage or market mode, since it
+ * grants NOTHING in return (no currency, no other items) and so
+ * doesn't need the same stage-gating renderSellSection() applies to
+ * selling. Discards exactly one copy per click; owning more than one
+ * just means clicking (and confirming) it again. The actual
+ * confirmation prompt lives in attachHandlers() below, since it needs
+ * window.confirm() at click time, not render time.
+ */
+function renderDiscardSection(owned) {
+    if (owned <= 0) return '';
+    return `
+    <div class="equipSheet-toolbar" style="justify-content:flex-start;">
+    <button class="charBtn charBtn-danger" id="equip-discard-btn">Wyrzuć 1 sztukę (bez żadnego zysku)</button>
+    </div>
+    `;
+}
+
+/** " (Wyposażony)"/" (Przygotowany)" suffix next to an owned item's name on the list page; '' if unequipped. */
+function renderStateSuffix(itemId) {
+    const state = getItemState(itemId);
+    if (state === 'unequipped') return '';
+    return state === 'equipped' ? ' (Wyposażony)' : ' (Przygotowany)';
+}
+
+/**
+ * Small Wyposaż/Przygotuj buttons shown inline on an owned item's list
+ * row, so equipping/preparing common items doesn't require opening the
+ * detail page every time. Only shown while the item is 'unequipped'
+ * (see renderEquipSection() for the detail page's equivalent, which
+ * also handles the equipped/prepared → Zdejmij case). Click handlers
+ * stop propagation (see attachHandlers()) so clicking them doesn't also
+ * open the detail page underneath.
+ */
+function renderQuickEquipButtons(item) {
+    if (getItemState(item.id) !== 'unequipped') return '';
+    const canEquip = canEquipItem(item.id);
+    const canPrepare = canPrepareItem(item.id);
+    return `
+        <button class="charBtn charBtn-small" data-quick-equip="${escapeHtml(item.id)}" ${canEquip ? '' : 'disabled'} title="${canEquip ? 'Wyposaż' : 'Konflikt Miejsca Wyposażenia/Warstwy, lub brak wolnych slotów akcesoriów.'}">Wyposaż</button>
+        ${item.prepareType ? `<button class="charBtn charBtn-small" data-quick-prepare="${escapeHtml(item.id)}" ${canPrepare ? '' : 'disabled'} title="${canPrepare ? 'Przygotuj' : 'Potrzebujesz innego posiadanego przedmiotu, który umożliwia przygotowanie tego typu.'}">Przygotuj</button>` : ''}
+    `;
+}
+
+/** Equip/Prepare/Zdejmij controls on an item's detail page — only shown for owned items. */
+function renderEquipSection(item, owned) {
+    if (owned <= 0) return '';
+    const state = getItemState(item.id);
+
+    if (state !== 'unequipped') {
+        const stateLabel = state === 'equipped' ? 'Wyposażony' : 'Przygotowany';
+        return `
+        <div class="equipSheet-toolbar" style="justify-content:flex-start;">
+            <span class="charSection-hint">Stan: ${escapeHtml(stateLabel)}</span>
+            <button class="charBtn" id="equip-unequip-btn">Zdejmij</button>
+        </div>
+        `;
+    }
+
+    const canEquip = canEquipItem(item.id);
+    const canPrepare = canPrepareItem(item.id);
+    return `
+    <div class="equipSheet-toolbar" style="justify-content:flex-start;">
+        <button class="charBtn" id="equip-equip-btn" ${canEquip ? '' : 'disabled'} title="${canEquip ? '' : 'Konflikt Miejsca Wyposażenia/Warstwy z innym wyposażonym przedmiotem, lub brak wolnych slotów akcesoriów.'}">Wyposaż</button>
+        ${item.prepareType ? `<button class="charBtn" id="equip-prepare-btn" ${canPrepare ? '' : 'disabled'} title="${canPrepare ? '' : 'Potrzebujesz innego posiadanego przedmiotu, który umożliwia przygotowanie tego typu przedmiotu.'}">Przygotuj</button>` : ''}
     </div>
     `;
 }
@@ -355,7 +431,9 @@ function renderDetailPage() {
                 ${isEditable ? `<button class="charBtn" id="equip-edit-item-btn">Edytuj przedmiot</button>` : ''}
                 ${isOverriddenBuiltIn ? `<button class="charBtn charBtn-danger" id="equip-reset-override-btn" title="Odrzuć zmiany i przywróć wersję z items.json">Przywróć oryginał</button>` : ''}
                 </div>
+                ${renderEquipSection(item, owned)}
                 ${renderSellSection(item, owned, sellMode, halfPrice)}
+                ${renderDiscardSection(owned)}
         </section>
     `;
 }
@@ -385,6 +463,18 @@ function attachHandlers() {
                 view.selectedItemId = row.dataset.openItem;
                 view.page = 'detail';
                 render();
+            });
+        });
+        rootEl.querySelectorAll('[data-quick-equip]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (equipItem(btn.dataset.quickEquip)) render();
+            });
+        });
+        rootEl.querySelectorAll('[data-quick-prepare]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (prepareItem(btn.dataset.quickPrepare)) render();
             });
         });
     } else if (view.page === 'edit') {
@@ -468,6 +558,31 @@ function attachHandlers() {
                                 resetBuiltInItemOverride(item.id);
                                 render();
                             }
+                        });
+                        const equipBtn = rootEl.querySelector('#equip-equip-btn');
+                        if (equipBtn) equipBtn.addEventListener('click', () => {
+                            if (equipItem(item.id)) render();
+                        });
+                        const prepareBtn = rootEl.querySelector('#equip-prepare-btn');
+                        if (prepareBtn) prepareBtn.addEventListener('click', () => {
+                            if (prepareItem(item.id)) render();
+                        });
+                        const unequipBtn = rootEl.querySelector('#equip-unequip-btn');
+                        if (unequipBtn) unequipBtn.addEventListener('click', () => {
+                            if (unequipItem(item.id)) render();
+                        });
+                        // "Wyrzuć" (discard) — no monetary gain whatsoever; ALWAYS
+                        // confirms first (per-click, not just once), since it's
+                        // irreversible and grants nothing in return. See
+                        // equipmentState.js's discardItem() and
+                        // renderDiscardSection() above.
+                        const discardBtn = rootEl.querySelector('#equip-discard-btn');
+                        if (discardBtn) discardBtn.addEventListener('click', () => {
+                            const ok = window.confirm(
+                                `Na pewno wyrzucić 1 sztukę przedmiotu "${item.name}"? Nie otrzymasz w zamian żadnej waluty ani innych przedmiotów. Tej operacji nie można cofnąć.`
+                            );
+                            if (!ok) return;
+                            if (discardItem(item.id, 1)) render();
                         });
         }
     }

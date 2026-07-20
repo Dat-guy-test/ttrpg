@@ -30,6 +30,7 @@
 
 import AppState from './appState.js';
 import { EFFECT_TYPES, CHARACTERISTICS_CONFIG, ABILITIES_CONFIG, ATTRIBUTE_BONUS_KINDS } from './characterState.js';
+import { SPELL_SCHOOLS } from './spellSchema.js';
 
 function isCharacteristicReq(req) {
     return !!req && typeof req === 'object' && !Array.isArray(req) && req.type === 'characteristic';
@@ -92,6 +93,7 @@ export function toggleEditMode() {
     AppState.connectSourceNode = null;
     AppState.pendingNewNodePos = null;
     resetAttributeChoiceDraft();
+    resetSpellSchoolUnlockDraft();
 
     if (panelEl) panelEl.classList.toggle('editor-hidden', !AppState.editMode);
     updateModeButtons();
@@ -147,6 +149,7 @@ export function handleEditModeNodeClick(node) {
     AppState.selectedNode = node;
     AppState.pendingNewNodePos = null;
     resetAttributeChoiceDraft();
+    resetSpellSchoolUnlockDraft();
     setStatus('');
     renderInspector();
 }
@@ -366,6 +369,16 @@ function renderEffectsList(effects) {
             `;
         }
 
+        if (eff.type === 'spellSchoolUnlock') {
+            const schoolLabels = (eff.schools || []).map(s => (SPELL_SCHOOLS.find(o => o.value === s) || {}).label || s).join(', ');
+            return `
+                <div class="editor-req-row">
+                    <span>Odblokowanie Zaklęć wg Szkoły — ${escapeHtml(schoolLabels || '(brak szkół)')} (maks. złożoność ${eff.maxComplexity ?? 0})</span>
+                    <button class="editor-btn editor-btn-small" data-remove-effect="${i}">✕</button>
+                </div>
+            `;
+        }
+
         const def = EFFECT_TYPES.find(e => e.value === eff.type);
         const defLabel = def ? def.label : eff.type;
         const needsKey = def ? def.needsKey !== false : true;
@@ -373,6 +386,7 @@ function renderEffectsList(effects) {
         // against a fixed options list — eff.key IS the display name already.
         const isFreeform = !!(def && def.freeform);
         const needsDescription = !!(def && def.needsDescription);
+        const needsAmount = !def || def.needsAmount !== false;
         const targetLabel = needsKey
             ? (isFreeform
                 ? eff.key
@@ -393,6 +407,11 @@ function renderEffectsList(effects) {
             line = targetLabel
                 ? `${escapeHtml(defLabel)} — ${escapeHtml(targetLabel)}: “${descText}”${escapeHtml(bonusText)}`
                 : `${escapeHtml(defLabel)}: “${descText}”${escapeHtml(bonusText)}`;
+        } else if (!needsAmount) {
+            // Presence-only effect (e.g. 'spellUnlock') — no numeric amount to show.
+            line = targetLabel
+                ? `${escapeHtml(defLabel)} — ${escapeHtml(targetLabel)}`
+                : `${escapeHtml(defLabel)}`;
         } else {
             const sign = eff.amount > 0 ? '+' : '';
             line = targetLabel
@@ -674,6 +693,53 @@ function wireAttributeChoiceForm(idPrefix, onAdd) {
     });
 }
 
+// ============================================================
+// Spell-school-unlock effect builder ("Odblokuj Zaklęcia wg Szkoły")
+// ------------------------------------------------------------
+// Like 'attributeChoice', this effect type needs its own small
+// picker (schools + a max-complexity number) staged before it can be
+// added as a single effect — so it gets a dedicated mini-editor
+// instead of going through addEffectFormTemplate/wireAddEffectForm.
+// ============================================================
+let spellSchoolUnlockDraft = { schools: [], maxComplexity: 1 };
+
+function resetSpellSchoolUnlockDraft() {
+    spellSchoolUnlockDraft = { schools: [], maxComplexity: 1 };
+}
+
+function spellSchoolUnlockFormTemplate(idPrefix) {
+    return `
+        <label class="editor-label">Odblokuj Zaklęcia wg Szkoły — szkoła(y) i maksymalna złożoność</label>
+        <div class="editor-checkboxGroup">
+            ${SPELL_SCHOOLS.map(s => `
+                <label><input type="checkbox" class="${idPrefix}-spellschool-cb" value="${s.value}" ${spellSchoolUnlockDraft.schools.includes(s.value) ? 'checked' : ''}/> ${escapeHtml(s.label)}</label>
+            `).join('')}
+        </div>
+        <div class="editor-row">
+            <input id="${idPrefix}-spellschool-maxcomplexity" type="number" min="0" step="1" value="${spellSchoolUnlockDraft.maxComplexity}" placeholder="Maks. Złożoność" />
+            <button class="editor-btn editor-btn-small" id="${idPrefix}-spellschool-create-btn">Dodaj efekt „Odblokuj Zaklęcia wg Szkoły”</button>
+        </div>
+    `;
+}
+
+/**
+ * Wires the "Odblokuj Zaklęcia wg Szkoły" mini-editor. `onAdd(effect)`
+ * is called with a validated { type: 'spellSchoolUnlock', schools,
+ * maxComplexity } effect once the player clicks the button.
+ */
+function wireSpellSchoolUnlockForm(idPrefix, onAdd) {
+    bodyEl.querySelector(`#${idPrefix}-spellschool-create-btn`).addEventListener('click', () => {
+        const schools = Array.from(bodyEl.querySelectorAll(`.${idPrefix}-spellschool-cb:checked`)).map(cb => cb.value);
+        const maxComplexity = Number(bodyEl.querySelector(`#${idPrefix}-spellschool-maxcomplexity`).value);
+
+        if (schools.length === 0) { setStatus('Wybierz przynajmniej jedną szkołę magii.', true); return; }
+        if (!Number.isFinite(maxComplexity) || maxComplexity < 0) { setStatus('Maksymalna złożoność musi być nieujemną liczbą.', true); return; }
+
+        onAdd({ type: 'spellSchoolUnlock', schools, maxComplexity: Math.round(maxComplexity) });
+        resetSpellSchoolUnlockDraft();
+    });
+}
+
 function addCharacteristicRequirement(node) {
     const stat = bodyEl.querySelector('#ed-new-req-char').value;
     const min  = Number(bodyEl.querySelector('#ed-new-req-char-min').value);
@@ -773,6 +839,9 @@ function renderExistingNodeForm(node) {
         ${attributeChoiceFormTemplate('ed')}
         <div class="editor-hint">Powyższe „Atrybut do Wyboru” pozwala graczowi samodzielnie wybrać (przy aktywacji perku) jeden lub więcej atrybutów spośród podanych opcji.</div>
 
+        ${spellSchoolUnlockFormTemplate('ed')}
+        <div class="editor-hint">Powyższe „Odblokuj Zaklęcia wg Szkoły” daje dostęp do KAŻDEGO zaklęcia z Wielkiej Księgi pasującego do wybranych szkół, o złożoności nie większej niż podana.</div>
+
         <label class="editor-label" for="ed-exclgroup">Mutual-exclusion group</label>
         <select id="ed-exclgroup">
             <option value="">None</option>
@@ -805,6 +874,10 @@ function renderExistingNodeForm(node) {
         renderInspector(); // re-render the node form, same as adding a Requirement does today
     });
     wireAttributeChoiceForm('ed', (effect) => {
+        AppState.tr.addNodeEffect(node.nodeId, effect);
+        renderInspector();
+    });
+    wireSpellSchoolUnlockForm('ed', (effect) => {
         AppState.tr.addNodeEffect(node.nodeId, effect);
         renderInspector();
     });
@@ -917,6 +990,7 @@ let pendingNewNodeEffects = [];
 function renderNewNodeForm(fiDeg, thetaDeg) {
     pendingNewNodeEffects = [];
     resetAttributeChoiceDraft();
+    resetSpellSchoolUnlockDraft();
 
     bodyEl.innerHTML = `
         <div class="editor-field readonly">
@@ -953,6 +1027,8 @@ function renderNewNodeForm(fiDeg, thetaDeg) {
 
         ${attributeChoiceFormTemplate('new')}
 
+        ${spellSchoolUnlockFormTemplate('new')}
+
         <button class="editor-btn editor-save-btn" id="new-create">Create Node</button>
         <button class="editor-btn" id="new-cancel">Cancel</button>
     `;
@@ -963,6 +1039,11 @@ function renderNewNodeForm(fiDeg, thetaDeg) {
         setStatus('');
     });
     wireAttributeChoiceForm('new', (effect) => {
+        pendingNewNodeEffects.push(effect);
+        renderPendingEffectsList();
+        setStatus('');
+    });
+    wireSpellSchoolUnlockForm('new', (effect) => {
         pendingNewNodeEffects.push(effect);
         renderPendingEffectsList();
         setStatus('');

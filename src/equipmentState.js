@@ -83,6 +83,28 @@ export function sellItem(itemId, priceOverride) {
     return true;
 }
 
+/**
+ * Discards owned copies of an item with NO monetary compensation
+ * whatsoever — for junk, cursed items, or anything else the player
+ * wants gone without bothering to sell it. Unlike sellItem(), never
+ * touches currency. Refuses — returning false, changing nothing — if
+ * the player doesn't currently own at least `quantity` copies.
+ *
+ * The Equipment tab's "Wyrzuć" button (see equipmentSheet.js) always
+ * confirms with the player via window.confirm() before calling this,
+ * since it's irreversible and grants nothing in return.
+ *
+ * @param {string} itemId
+ * @param {number} [quantity=1]
+ * @returns {boolean}
+ */
+export function discardItem(itemId, quantity = 1) {
+    const qty = Math.max(1, Math.trunc(Number(quantity) || 1));
+    if (getItemQuantity(itemId) < qty) return false;
+    addItemQuantity(itemId, -qty);
+    return true;
+}
+
 // ITEMS_CONFIG is intentionally a *mutable* array (never reassigned)
 // — characterState.js's EFFECT_TYPES 'item' entry holds a direct
 // reference to this exact array as its `options` list. Pushing new
@@ -180,6 +202,7 @@ function buildDefaultState() {
     return {
         currency: 0,
         inventory: {}, // { [itemId]: quantity }
+        itemStates: {}, // { [itemId]: 'unequipped'|'prepared'|'equipped' } — see "EQUIP / PREPARE STATE" section below
     };
 }
 
@@ -194,6 +217,12 @@ function load() {
             for (const [itemId, qty] of Object.entries(saved.inventory)) {
                 const n = Number(qty) || 0;
                 if (n !== 0) out.inventory[itemId] = n;
+            }
+        }
+        if (saved.itemStates && typeof saved.itemStates === 'object') {
+            const VALID_STATES = ['unequipped', 'prepared', 'equipped'];
+            for (const [itemId, state] of Object.entries(saved.itemStates)) {
+                if (VALID_STATES.includes(state)) out.itemStates[itemId] = state;
             }
         }
         return out;
@@ -575,6 +604,7 @@ export function addItemQuantity(itemId, amount) {
     const next = getItemQuantity(itemId) + (Number(amount) || 0);
     if (next <= 0) {
         delete EquipmentState.inventory[itemId];
+        delete EquipmentState.itemStates[itemId]; // no longer owned — an equip/prepare override is meaningless
     } else {
         EquipmentState.inventory[itemId] = next;
     }
@@ -689,5 +719,156 @@ export function splitSet(itemId) {
     if (members.length === 0) return false;
     addItemQuantity(itemId, -1);
     for (const m of members) addItemQuantity(m.itemId, m.quantity);
+    return true;
+}
+
+
+// ------------------------------------------------------------
+// EQUIP / PREPARE STATE
+// ------------------------------------------------------------
+// Whether an owned item is currently 'unequipped' / 'prepared' /
+// 'equipped' is tracked HERE, per item id, separately from
+// item.state (which is just the item DEFINITION's default starting
+// state, edited via itemEditor.js's "Stan" field and shared by every
+// owner of that item type). getItemState() falls back to that
+// definition default only for an item id whose live state has never
+// been explicitly touched this session; every actual equip/prepare
+// action below writes a real override into EquipmentState.itemStates.
+//
+// Like currency/inventory, this tracks one state per item ID, not
+// per individual copy — owning three arrows and equipping "arrow"
+// marks the whole stack equipped as one conceptual unit.
+//
+// EQUIPPING RULES
+//   - Weapons and Utility/Misc items (no equipSlots/equipLayers of
+//     their own) have nothing to conflict with — always equippable
+//     once owned.
+//   - Armour/Clothing/Storage ("the armour family" — mirrors
+//     itemSchema.js's typeUsesArmourFields(); reimplemented here as
+//     isArmourFamily() since this file must never import FROM
+//     itemSchema.js, see the module header comment) conflict with
+//     each other whenever they share at least one Miejsce
+//     Wyposażenia (equipSlots) AND at least one Warstwa
+//     (equipLayers) with an already-equipped item.
+//   - An accessory (any item with `accessorySize` set) instead needs
+//     an EQUIPPED 'storage' item sharing at least one slot AND one
+//     layer with it, with spare accessorySlots[size] capacity after
+//     accounting for other currently-equipped accessories of the
+//     same size competing for that same slot+layer group.
+//
+// PREPARING RULES
+//   - An item can only ever be prepared if it declares a non-empty
+//     `prepareType` — most items have none and can never be prepared.
+//   - Preparing it additionally requires owning a DIFFERENT item
+//     (quantity > 0) whose own `enablesPrepareTypes` list includes
+//     this item's prepareType.
+// ------------------------------------------------------------
+
+/** @returns {'unequipped'|'prepared'|'equipped'} this item's current live state. */
+export function getItemState(itemId) {
+    if (Object.prototype.hasOwnProperty.call(EquipmentState.itemStates, itemId)) {
+        return EquipmentState.itemStates[itemId];
+    }
+    const item = getItemById(itemId);
+    return (item && item.state) || 'unequipped';
+}
+
+function setItemStateRaw(itemId, state) {
+    EquipmentState.itemStates[itemId] = state;
+    saveEquipmentState();
+}
+
+function arraysIntersect(a, b) {
+    const arrA = Array.isArray(a) ? a : [];
+    const arrB = Array.isArray(b) ? b : [];
+    return arrA.some(x => arrB.includes(x));
+}
+
+/** Mirrors itemSchema.js's typeUsesArmourFields() — see this file's header comment for why it can't just import that instead. */
+function isArmourFamily(type) {
+    return type === 'armour' || type === 'clothing' || type === 'storage';
+}
+
+/** @returns {object[]} every currently-equipped owned item's full data. */
+function getEquippedItems() {
+    return getOwnedItems().filter(i => getItemState(i.id) === 'equipped');
+}
+
+/** Armour/Clothing/Storage slot+layer conflict check. */
+function canEquipSlotItem(item) {
+    return getEquippedItems().every(other =>
+        other.id === item.id || !isArmourFamily(other.type) ||
+        !arraysIntersect(item.equipSlots, other.equipSlots) ||
+        !arraysIntersect(item.equipLayers, other.equipLayers)
+    );
+}
+
+/** Accessory-slot capacity check. */
+function canEquipAccessory(item) {
+    const size = item.accessorySize;
+    if (!size) return false;
+    const equipped = getEquippedItems();
+
+    const containers = equipped.filter(o =>
+        o.type === 'storage' &&
+        arraysIntersect(item.equipSlots, o.equipSlots) &&
+        arraysIntersect(item.equipLayers, o.equipLayers)
+    );
+    if (containers.length === 0) return false;
+
+    const totalCapacity = containers.reduce((sum, c) => sum + (Number(c.accessorySlots?.[size]) || 0), 0);
+
+    const usedCount = equipped.filter(o =>
+        o.id !== item.id &&
+        o.accessorySize === size &&
+        arraysIntersect(item.equipSlots, o.equipSlots) &&
+        arraysIntersect(item.equipLayers, o.equipLayers)
+    ).length;
+
+    return usedCount < totalCapacity;
+}
+
+/** @returns {boolean} whether `itemId` could be equipped right now. */
+export function canEquipItem(itemId) {
+    const item = getItemById(itemId);
+    if (!item) return false;
+    if (getItemQuantity(itemId) <= 0) return false;
+    if (getItemState(itemId) === 'equipped') return false;
+
+    if (item.accessorySize) return canEquipAccessory(item);
+    if (isArmourFamily(item.type)) return canEquipSlotItem(item);
+    return true; // weapons/utility/misc have no slot/layer to conflict over
+}
+
+export function equipItem(itemId) {
+    if (!canEquipItem(itemId)) return false;
+    setItemStateRaw(itemId, 'equipped');
+    return true;
+}
+
+/** @returns {boolean} whether `itemId` could be prepared right now. */
+export function canPrepareItem(itemId) {
+    const item = getItemById(itemId);
+    if (!item || !item.prepareType) return false;
+    if (getItemQuantity(itemId) <= 0) return false;
+    if (getItemState(itemId) === 'prepared') return false;
+
+    return getOwnedItems().some(owned =>
+        owned.id !== itemId &&
+        Array.isArray(owned.enablesPrepareTypes) &&
+        owned.enablesPrepareTypes.includes(item.prepareType)
+    );
+}
+
+export function prepareItem(itemId) {
+    if (!canPrepareItem(itemId)) return false;
+    setItemStateRaw(itemId, 'prepared');
+    return true;
+}
+
+/** Returns an equipped/prepared item to 'unequipped'. No-op if already unequipped. */
+export function unequipItem(itemId) {
+    if (getItemState(itemId) === 'unequipped') return false;
+    setItemStateRaw(itemId, 'unequipped');
     return true;
 }

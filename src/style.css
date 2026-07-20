@@ -229,6 +229,32 @@
   background-image: url('./parchment.jpg');
   background-size: cover;
 }
+#arcanaWrapper{
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  height: 97vh;
+  align-items: start;
+  justify-content: center;
+  background-color: #1e1a24; /* dark backdrop, matching character/equipment wrappers */
+}
+#arcanaPage{
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0.2em;
+  border-color: var(--parchment-ink-soft, #5e286b);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: 0px;
+  padding: 0px;
+  width: 50em;
+  height: 97vh;
+  overflow-y: auto;
+  align-items: start;
+  background-image: url('./parchment.jpg');
+  background-size: cover;
+}
 #manualWrapper{
   display: flex;
   margin: 0px;

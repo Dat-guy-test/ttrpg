@@ -58,6 +58,12 @@ import { INITIAL_PERK_POINTS } from './constants.js';
 const STORAGE_KEY = 'ttrpgCharacterSheet.v2'; // bumped: v1 sheets had editable base stats
 
 import { ITEMS_CONFIG } from './equipmentState.js';
+import { SPELLS_CONFIG } from './spellState.js';
+// Only imports constants.js itself, so this creates no cycle — needed so
+// setPotentialTotal() below can cap "Potencjał" at INITIAL_PERK_POINTS
+// while the character is still in the Character Creation stage (see that
+// function's comment).
+import { getStage, STAGES } from './progressionState.js';
 
 // ---- Static config: edit these arrays to add/rename/reorder fields ----
 
@@ -323,6 +329,32 @@ export const EFFECT_TYPES = [
         // Not used by setPerkModifier() — routed to equipmentState.js's
         // addItemQuantity() instead; see perkEffects.js.
         fieldPath: (key) => `equipment:item:${key}`,
+    },
+    {
+        value: 'spellUnlock',
+        label: 'Odblokuj Zaklęcie (konkretne)',
+        options: SPELLS_CONFIG,
+        needsKey: true,
+        needsAmount: false, // known-or-not, not additive
+        // Not used by setPerkModifier() — routed to spellState.js's
+        // addKnownSpell()/removeKnownSpell() instead; see perkEffects.js.
+        fieldPath: (key) => `spell:${key}`,
+    },
+    {
+        value: 'spellSchoolUnlock',
+        label: 'Odblokuj Zaklęcia wg Szkoły (szkoła(y) + maks. złożoność)',
+        options: [],
+        needsKey: false,
+        needsAmount: false,
+        // Like 'attributeChoice', this effect type isn't built through the
+        // generic key/amount mini-form — it needs its own school-picker +
+        // max-complexity editor instead. See editMode.js's
+        // spellSchoolUnlockFormTemplate/wireSpellSchoolUnlockForm.
+        custom: true,
+        // Not used by setPerkModifier() — routed to spellState.js's
+        // addSpellSchoolGrant()/removeSpellSchoolGrant() instead; see
+        // perkEffects.js.
+        fieldPath: () => 'spellSchoolUnlock',
     },
 ];
 
@@ -612,13 +644,27 @@ export function computePotentialAvailable() {
  * unchanged — if the new total would be lower than what's already
  * spent (i.e. would make "Dostępny Potencjał" negative).
  *
+ * While the character is still in the Character Creation stage (see
+ * progressionState.js), the total is ALSO capped at
+ * INITIAL_PERK_POINTS — a player can't inflate their own starting
+ * budget (and therefore how much they can spend on perks) above the
+ * fixed amount every character begins with, just by typing a bigger
+ * number into "Potencjał". This cap only applies during Character
+ * Creation: once the stage moves on to Usage/Level Up, later stages
+ * are expected to grant additional Potencjał on top of that starting
+ * amount (e.g. a future Level Up flow), so the cap is not applied
+ * there.
+ *
  * @param {number|string} newTotal
  * @returns {boolean}
  */
 export function setPotentialTotal(newTotal) {
     const spent  = computePerkPointsSpent();
     const parsed = Number(newTotal);
-    const clamped = Math.max(MIN_POTENTIAL, Math.round(Number.isFinite(parsed) ? parsed : MIN_POTENTIAL));
+    let clamped = Math.max(MIN_POTENTIAL, Math.round(Number.isFinite(parsed) ? parsed : MIN_POTENTIAL));
+    if (getStage() === STAGES.CREATION) {
+        clamped = Math.min(clamped, INITIAL_PERK_POINTS);
+    }
     if (clamped < spent) return false;
     CharacterState.potential.total = clamped;
     saveCharacterState();

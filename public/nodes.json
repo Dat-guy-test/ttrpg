@@ -84,9 +84,9 @@
     {
       "id": "-1002",
       "name": "Krasnolud",
-      "desc": "Jesteś krasnoludem.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 9\nSiła Woli: 12\n\nSzybkość: 4\n\nDodatkowe umiejętności:\nUparci:\nPo każdej godzinie odpoczynku odzyskujesz 1d4 Punktów Energii\n\nAdaptowalny wzrok:\nKonstrukcja krasnoludzkich oczu umożliwia im widzenie w ciemności, choć nie są w stanie rozpoznawać w jej kolorów.\n\nCechy Fizyczne:\nWzrost: od 0,6 do 1 jednostki\nRozmiar: Mały\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 22 lat\nWiek starczy: 110 lat,\nŚrednia Długość Życia: 125 lat (średnia),\nMaksymalna Długość Życia: 150 lat",
+      "desc": "Jesteś krasnoludem.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 9\nSiła Woli: 12\n\nSzybkość: 4\n\nZyskujesz Atrybuty:\nUparci:\nPo każdej godzinie odpoczynku odzyskujesz 1d4 Punktów Energii\n\nAdaptowalny wzrok:\nKonstrukcja krasnoludzkich oczu umożliwia im widzenie w ciemności, choć nie są w stanie rozpoznawać w jej kolorów.\n\nCechy Fizyczne:\nWzrost: od 0,6 do 1 jednostki\nRozmiar: Mały\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 22 lat\nWiek starczy: 110 lat,\nŚrednia Długość Życia: 125 lat (średnia),\nMaksymalna Długość Życia: 150 lat",
       "hoverText": "",
-      "fi": 22.270000000000007,
+      "fi": 22.270000000000003,
       "theta": 24,
       "requires": [],
       "cost": 5,
@@ -128,7 +128,7 @@
     {
       "id": "-1003",
       "name": "Elf",
-      "desc": "Jesteś elfem.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 12\nSiła Woli: 9\n\nSzybkość: 10\n\nDodatkowe umiejętności:\nSzybcy jak wiatr\nMożesz jako darmowa akcja nadwyrężyć się zyskując Punkty Akcji w liczbie połowy swojej Zwinności (Czyli w liczbie połowy Maksymalnych Punktów Akcji, zaokrąglonych w dół). Po godzinie odpoczynku jesteś w stanie ponownie nadwyrężyć swój organizm w ten sposób.\n\nCzernogrzywi wzrok:\nKonstrukcja elfich oczu umożliwia im widzenie małych detali, których nie widzą inni. Zywkujesz 2 poziomy doświadczenia i 1 poziom improwizacji w umiejętności Spostrzegawczość.\n\nCechy Fizyczne:\nWzrost: od 1,3 do 1,7 jednostki\nRozmiar: Średni lub Duży\n\nDługość życia:\nWiek dojrzałości fizycznej: od 20 do 26 lat\nWiek starczy: 125 lat,\nŚrednia Długość Życia: 150 lat (średnia),\nMaksymalna Długość Życia: 200 lat",
+      "desc": "Jesteś elfem.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 12\nSiła Woli: 9\n\nSzybkość: 10\n\nZyskujesz atrybuty:\nSzybcy jak wiatr\nMożesz jako darmowa akcja nadwyrężyć się zyskując Punkty Akcji w liczbie połowy swojej Zwinności (Czyli w liczbie połowy Maksymalnych Punktów Akcji, zaokrąglonych w dół). Po godzinie odpoczynku jesteś w stanie ponownie nadwyrężyć swój organizm w ten sposób.\n\nCzarnogrzywi wzrok:\nKonstrukcja elfich oczu umożliwia im widzenie małych detali, których nie widzą inni. Zyskujesz 2 poziomy doświadczenia i 1 poziom improwizacji w umiejętności Spostrzegawczość.\n\nCechy Fizyczne:\nWzrost: od 1,3 do 1,7 jednostki\nRozmiar: Średni lub Duży\n\nDługość życia:\nWiek dojrzałości fizycznej: od 20 do 26 lat\nWiek starczy: 125 lat,\nŚrednia Długość Życia: 150 lat (średnia),\nMaksymalna Długość Życia: 200 lat",
       "hoverText": "",
       "fi": 25.729999999999997,
       "theta": 24,
@@ -158,26 +158,33 @@
           "amount": 15
         },
         {
-          "type": "skillExperience",
-          "key": "spostrzegawczosc",
-          "amount": 2
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "spostrzegawczosc",
-          "amount": 1
-        },
-        {
           "type": "attribute",
           "key": "Szybcy jak wiatr",
           "description": "Możesz jako darmowa akcja nadwyrężyć się zyskując Punkty Akcji w liczbie połowy swojej Zwinności (Czyli w liczbie połowy Maksymalnych Punktów Akcji, zaokrąglonych w dół). Po godzinie odpoczynku jesteś w stanie ponownie nadwyrężyć swój organizm w ten sposób."
+        },
+        {
+          "type": "attribute",
+          "key": "Czarnogrzywi wzrok",
+          "description": "Konstrukcja elfich oczu umożliwia im widzenie małych detali, których nie widzą inni. Zyskujesz 2 poziomy doświadczenia i 1 poziom improwizacji w umiejętności Spostrzegawczość.",
+          "bonuses": [
+            {
+              "key": "spostrzegawczosc",
+              "kind": "experience",
+              "amount": 2
+            },
+            {
+              "key": "spostrzegawczosc",
+              "kind": "improvisation",
+              "amount": 1
+            }
+          ]
         }
       ]
     },
     {
       "id": "-1004",
       "name": "Gnom",
-      "desc": "Jesteś Gnomem.\n\nStartowe Charakterystyki:\nForma: 8\nBystorść: 11\nSiła Woli: 11\n\nSzybkość: 6\n\nDodatkowe umiejętności:\nUmysł Mędrca:\nZyskujesz 1 poziom doświadczenia w umiejętnościach: Wiedza Medyczna, Alchemia, Inżynieria, Majsterkowanie, Metalurgia, Zaklinanie, Badawczość, Uczenie się, Wiedza Powszechna i Wiedza Magicza.\n\nMistrzowie Magii:\nPodczas co najmniej godzinnego odpoczynku możesz przygotować jedną akcję zużywającą maksymalnie 3 Punkty Energii. Wykonanie przygotowanej akcji po raz pierwszy od jej przygotowania nie zużywa energii. Po wykonaniu dowolnej akcji posiadającej koszt w energii przygotowana akcja przestaje być przygotowana.\n\nCechy Fizyczne:\nWzrost: od 0,9 do 1,3 jednostki\nRozmiar: Mały lub Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 16 do 24 lat\nWiek starczy: 70 lat,\nŚrednia Długość Życia: 130 lat (średnia),\nMaksymalna Długość Życia: 160 lat",
+      "desc": "Jesteś Gnomem.\n\nStartowe Charakterystyki:\nForma: 8\nBystorść: 11\nSiła Woli: 11\n\nSzybkość: 6\n\nZyskujesz Atrybuty:\nUmysł Mędrca:\nZyskujesz 1 poziom doświadczenia w umiejętnościach: Wiedza Medyczna, Alchemia, Inżynieria, Majsterkowanie, Metalurgia, Zaklinanie, Wiedza Powszechna i Wiedza Tajemna.\n\nMistrzowie Magii:\nPodczas co najmniej godzinnego odpoczynku możesz przygotować jedną akcję zużywającą maksymalnie 3 Punkty Energii. Wykonanie przygotowanej akcji po raz pierwszy od jej przygotowania nie zużywa energii. Po wykonaniu dowolnej akcji posiadającej koszt w energii przygotowana akcja przestaje być przygotowana.\n\nCechy Fizyczne:\nWzrost: od 0,9 do 1,3 jednostki\nRozmiar: Mały lub Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 16 do 24 lat\nWiek starczy: 70 lat,\nŚrednia Długość Życia: 130 lat (średnia),\nMaksymalna Długość Życia: 160 lat",
       "hoverText": "",
       "fi": 24,
       "theta": 23,
@@ -207,59 +214,46 @@
           "amount": 11
         },
         {
-          "type": "skillExperience",
-          "key": "wiedzaMedyczna",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "alchemia",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "inzynieria",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "majsterkowanie",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "metalurgia",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "zaklinanie",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "badawczosc",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "uczenieSie",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "wiedzaPowszechna",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "wiedzaMagiczna",
-          "amount": 1
-        },
-        {
           "type": "attribute",
           "key": "Mistrzowie Magii",
           "description": "Podczas co najmniej godzinnego odpoczynku możesz przygotować jedną akcję zużywającą maksymalnie 3 Punkty Energii. Wykonanie przygotowanej akcji po raz pierwszy od jej przygotowania nie zużywa energii. Po wykonaniu dowolnej akcji posiadającej koszt w energii przygotowana akcja przestaje być przygotowana."
+        },
+        {
+          "type": "attribute",
+          "key": "Umysł Mędrca",
+          "description": "Zyskujesz 1 poziom doświadczenia w umiejętnościach: Wiedza Medyczna, Alchemia, Inżynieria, Majsterkowanie, Metalurgia, Zaklinanie, Wiedza Powszechna i Wiedza Tajemna.",
+          "bonuses": [
+            {
+              "key": "alchemia",
+              "kind": "experience",
+              "amount": 1
+            },
+            {
+              "key": "majsterkowanie",
+              "kind": "experience",
+              "amount": 1
+            },
+            {
+              "key": "zaklinanie",
+              "kind": "experience",
+              "amount": 1
+            },
+            {
+              "key": "wiedzaMedyczna",
+              "kind": "experience",
+              "amount": 1
+            },
+            {
+              "key": "wiedzaPowszechna",
+              "kind": "experience",
+              "amount": 1
+            },
+            {
+              "key": "wiedzaMagiczna",
+              "kind": "experience",
+              "amount": 1
+            }
+          ]
         }
       ]
     },
@@ -268,7 +262,7 @@
       "name": "Niziołek",
       "desc": "Jesteś nizołkiem\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 8\nSiła Woli: 11\n\nSzybkość: 5\n\nDodatkowe umiejętności:\nSavant:\nNiziołki często są nizwykle wybitne w jednej lub paru bardzo interesujących ich dziedzinach. Otrzymujesz trzy poziomy doświadczenia i dwa poziomy improwizacji w  wybranych umiejętnościach.\n\nTrudni do trafienia:\nZ racji na swoją niewielką formę niziołki potrafią być zaskakująco trudne do trafienia. Gdy twój rozmiar jest Mały zyskujesz +2 do ewazji.\n\nCechy Fizyczne:\nWzrost: od 0,9 do 1,5 jednostki\nRozmiar: Mały lub Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 21 do 23 lat\nWiek starczy: 80 lat,\nŚrednia Długość Życia: 100 lat (średnia),\nMaksymalna Długość Życia: 140 lat",
       "hoverText": "",
-      "fi": 22.270000000000007,
+      "fi": 22.270000000000003,
       "theta": 26.000000000000007,
       "requires": [],
       "cost": 4,
@@ -309,6 +303,12 @@
           "type": "attribute",
           "key": "Trudni do trafienia",
           "description": "Z racji na swoją niewielką formę niziołki potrafią być zaskakująco trudne do trafienia. Gdy twój rozmiar jest Mały zyskujesz +2 do ewazji."
+        },
+        {
+          "type": "attribute",
+          "key": "Savant",
+          "description": "Niziołki często są nizwykle wybitne w jednej lub paru bardzo interesujących ich dziedzinach. Otrzymujesz trzy poziomy doświadczenia i dwa poziomy improwizacji w wybranych umiejętnościach.",
+          "bonuses": []
         }
       ]
     },
@@ -456,7 +456,7 @@
     {
       "id": "100001",
       "name": "Półelf",
-      "desc": "Jesteś półelfem\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 11\nSiła Woli: 8\n\nSzybkość: 9\n\nDodatkowe umiejętności:\nOdporni:\nOrganizmy półelfów są niezwykle odporne na choroby i trucizny. Po każdej godzinie odpoczynku zaleczasz 1d6 obrażeń krytycznych od chrób i trucizn, po czym leczysz 1d4 zaleczonych obrażeń tego typu.\n\nCharyzmatyczni:\nPółelfy są naturalnie uzdolnione w spokojnym rozwiązywaniu sporów. Zyskujesz 1 Poziom Doświadczenia i 1 Poziom Improwizacji w umiejętnościach: Charyzma, Determinacja i Instynkt.\n\nCechy Fizyczne:\nWzrost: od 1,2 do 1,5 jednostki\nRozmiar: Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 24 lat\nWiek starczy: 100 lat,\nŚrednia Długość Życia: 135 lat (średnia),\nMaksymalna Długość Życia: 170 lat",
+      "desc": "Jesteś półelfem\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 11\nSiła Woli: 8\n\nSzybkość: 9\n\nZyskujesz atrybuty:\nOdporni:\nOrganizmy półelfów są niezwykle odporne na choroby i trucizny. Po każdej godzinie odpoczynku zaleczasz 1d6 obrażeń krytycznych od chrób i trucizn, po czym leczysz 1d4 zaleczonych obrażeń tego typu.\n\nCharyzmatyczni:\nPółelfy są naturalnie uzdolnione w spokojnym rozwiązywaniu sporów. Zyskujesz 1 Poziom Doświadczenia i 1 Poziom Improwizacji w umiejętnościach: Charyzma, Determinacja i Instynkt.\n\nCechy Fizyczne:\nWzrost: od 1,2 do 1,5 jednostki\nRozmiar: Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 24 lat\nWiek starczy: 100 lat,\nŚrednia Długość Życia: 135 lat (średnia),\nMaksymalna Długość Życia: 170 lat",
       "hoverText": "",
       "fi": 25.729999999999997,
       "theta": 26.000000000000007,
@@ -486,46 +486,43 @@
           "amount": 14
         },
         {
-          "type": "skillExperience",
-          "key": "charyzma",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "determinacja",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "instynkt",
-          "amount": 1
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "charyzma",
-          "amount": 1
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "determinacja",
-          "amount": 1
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "instynkt",
-          "amount": 1
-        },
-        {
           "type": "attribute",
           "key": "Odporni",
           "description": "Organizmy półelfów są niezwykle odporne na choroby i trucizny. Po każdej godzinie odpoczynku zaleczasz 1d6 obrażeń krytycznych od chrób i trucizn, po czym leczysz 1d4 zaleczonych obrażeń tego typu."
+        },
+        {
+          "type": "attribute",
+          "key": "Charyzmatyczni",
+          "description": "Półelfy są naturalnie uzdolnione w spokojnym rozwiązywaniu sporów. Zyskujesz 1 Poziom Doświadczenia i 1 Poziom Improwizacji w umiejętnościach: Determinacja i Instynkt.",
+          "bonuses": [
+            {
+              "key": "determinacja",
+              "kind": "experience",
+              "amount": 1
+            },
+            {
+              "key": "instynkt",
+              "kind": "experience",
+              "amount": 1
+            },
+            {
+              "key": "instynkt",
+              "kind": "improvisation",
+              "amount": 1
+            },
+            {
+              "key": "determinacja",
+              "kind": "improvisation",
+              "amount": 1
+            }
+          ]
         }
       ]
     },
     {
       "id": "100002",
       "name": "Odmieniec",
-      "desc": "Jesteś odmieńcem\n\nStartowe Charakterystyki:\nRozdaj 30 poziomów między Formę, Bystrość i Siłę Woli, gdzie żadna z tych charakterystyk nie może być poniżej 8 i żadna nie może być powyżej 14.\n\nSzybkość: 8\n\nDodatkowe umiejętności:\nWybierz dwie spośród dodatkowych umiejętności innych pochodzeń.\n\nCechy Fizyczne:\nWzrost: od 0,7 do 1,8 jednostki\nRozmiar: Mały, Średni lub Duży\n\nDługość życia:\nWiek dojrzałości fizycznej: od 16 do 27 lat\nWiek starczy: 150 lat,\nŚrednia Długość Życia: 175 lat (średnia),\nMaksymalna Długość Życia: 216 lat",
+      "desc": "Jesteś odmieńcem\n\nStartowe Charakterystyki:\nRozdaj 30 poziomów między Formę, Bystrość i Siłę Woli, gdzie żadna z tych charakterystyk nie może być poniżej 8 i żadna nie może być powyżej 14.\n\nSzybkość: 8\n\nZyskujesz Atrybuty:\nWybierasz dwa spośród następujących atrybutówi innych pochodzeń:\nWytrwali, Odporni, Charyzmatyczni, Szybcy jak Wiatr, Czarnogrzywi Wzrok, Umysł Mędrca, Mistrzowie Magii, Adaptowalny Wzrok, Uparci, Trudni do Trafienia.\n\nCechy Fizyczne:\nWzrost: od 0,7 do 1,8 jednostki\nRozmiar: Mały, Średni lub Duży\n\nDługość życia:\nWiek dojrzałości fizycznej: od 16 do 27 lat\nWiek starczy: 150 lat,\nŚrednia Długość Życia: 175 lat (średnia),\nMaksymalna Długość Życia: 216 lat",
       "hoverText": "",
       "fi": 24,
       "theta": 25,
@@ -1197,7 +1194,7 @@
       "desc": "Udało Ci się zdobyć okulary prawie całkowicie korygujące twoją wadę wzroku.\n\nZyskujesz przedmiot: Okulary\n\nOkulary zwiększają twój poziom doświadczenia w umiejętności spostrzegawczość o 2.",
       "hoverText": "",
       "fi": 28.03,
-      "theta": 22.789999999999996,
+      "theta": 22.789999999999992,
       "requires": [
         "1000"
       ],
@@ -1211,6 +1208,74 @@
           "amount": 1
         }
       ]
+    },
+    {
+      "id": "103",
+      "name": "Postawa Defensywna",
+      "desc": "Blokowanie ciosów przeciwników i umiejętność sprawnego kontratakowania jest kluczowym elementem walki mieczem.\n\nZyskujesz atrybut:\n\nPostawa Defensywna\nZużywając jeden Punkt Akcji możesz przybrać Postawę Defensywną. W Postawie Defensywnej:\nAkcja Blokowania i Akcja Kontrakcji zużywa o 1 Punkt Akcji mniej.\nZyskujesz bonus do blokowania równy poziomowi wprawy w jednej trzymanej broni (wybierasz przy każdej akcji blokowania).\nTwoja szybkość spada o 2.\n\nNa końcu każdej swojej tury tracisz 1 Punkt Energii.\nJeżeli ilosć twoich Punktów Energii osiągnie 0 wychodzisz z Postawy Defensywnej.\nMożesz wyjść z Postawy Defensywnej w dowolnym momencie.",
+      "hoverText": "",
+      "fi": 38,
+      "theta": 41,
+      "requires": [
+        "100005"
+      ],
+      "cost": 4,
+      "temperature": 9000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Postawa Defensywna",
+          "description": "Zużywając jeden Punkt Akcji możesz przybrać Postawę Defensywną. W Postawie Defensywnej:\nAkcja Blokowania i Akcja Kontrakcji zużywa o 1 Punkt Akcji mniej.\nZyskujesz bonus do blokowania równy poziomowi wprawy w jednej trzymanej broni (wybierasz przy każdej akcji blokowania).\nTwoja szybkość spada o 2.\n\nNa końcu każdej swojej tury tracisz 1 Punkt Energii.\nJeżeli ilosć twoich Punktów Energii osiągnie 0 wychodzisz z Postawy Defensywnej.\nMożesz wyjść z Postawy Defensywnej w dowolnym momencie.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "104",
+      "name": "Postawa Ofensywna",
+      "desc": "Blokowanie ciosów przeciwników i umiejętność sprawnego kontratakowania jest kluczowym elementem walki mieczem.\n\nZyskujesz atrybut:\n\nPostawa Ofensywna\nZużywając jeden Punkt Akcji możesz przybrać Postawę Ofensywną. W Postawie Ofensywnej:\nAkcja Blokowania i Akcja Kontrakcji zużywa o 1 Punkt Akcji więcej.\nZyskujesz bonus do obrażeń równy poziomowi wprawy w jednej trzymanej broni (wybierasz przy każdej akcji ataku).\nTwoja szybkość wzrasta o 2.\n\nNa końcu każdej swojej tury tracisz 1 Punkt Energii.\nJeżeli ilosć twoich Punktów Energii osiągnie 0 wychodzisz z Postawy Ofensywnej.\nMożesz wyjść z Postawy Ofensywnej w dowolnym momencie.",
+      "hoverText": "",
+      "fi": 42,
+      "theta": 41,
+      "requires": [
+        "100005"
+      ],
+      "cost": 4,
+      "temperature": 2000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "106",
+      "name": "Adept Walki Mieczem",
+      "desc": "Pogłębiasz swoją wiedzę o walce mieczem. Treningi pozwoliły Ci także rozwinąć się fizycznie.\n\nZyskujesz poziom wprawy w walce mieczami oraz poziom dośiadczenia w umiejętnościach: Siła i Zręczność.",
+      "hoverText": "",
+      "fi": 40,
+      "theta": 42,
+      "requires": [
+        "100005"
+      ],
+      "cost": 5,
+      "temperature": 7000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Miecze",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "sila",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "zrecznosc",
+          "amount": 1
+        }
+      ]
     }
   ],
   "mutuallyExclusive": [
@@ -1218,13 +1283,13 @@
       "label": "origins",
       "max": 1,
       "members": [
-        "100001",
-        "-1004",
-        "-1002",
-        "-1005",
-        "-1001",
         "100002",
-        "-1003"
+        "-1002",
+        "-1004",
+        "-1003",
+        "100001",
+        "-1001",
+        "-1005"
       ]
     }
   ]
