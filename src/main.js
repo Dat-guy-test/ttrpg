@@ -16,12 +16,12 @@
 //   constants      ← (no local imports)
 //   colorScience   ← (no local imports)
 //   StarModel      ← THREE, colorScience
-//   cameraControls ← appState
+//   cameraControls ← appState, constants
 //   sceneSetup     ← appState, constants, THREE, postprocessing
 //   treePersistence ← (no local imports)
 //   TreeNode       ← appState, constants, THREE, StarModel, cameraControls, editMode, perkEffects, treePersistence
 //   Tree           ← appState, THREE, TreeNode, cameraControls
-//   inputHandlers  ← appState, cameraControls, editMode
+//   inputHandlers  ← appState, cameraControls, editMode, constants
 //   editMode       ← appState
 //   equipmentState ← items.json (no local module imports)
 //   equipmentSheet ← equipmentState
@@ -37,13 +37,15 @@ import { Tree, treeGen } from './Tree.js';
 import {
   panCamera,
   zoomCamera,
+  updateZoomInertia,
+  computeInitialZoomStage,
   freeCameraMovement,
   freeCameraPositionUpdate,
   computeZoomCamera,
 } from './cameraControls.js';
 import { registerInputHandlers } from './inputHandlers.js';
 import { initEditMode } from './editMode.js';
-import { LABEL_MIN_SCALE, LABEL_MAX_SCALE } from './constants.js';
+import { LABEL_MIN_SCALE, LABEL_MAX_SCALE, BASE_CAMERA_FOV } from './constants.js';
 import { restoreActiveNodes } from './treePersistence.js';
 import { refreshPerksTaken } from './perkEffects.js';
 
@@ -88,6 +90,19 @@ async function sec() {
   restoreActiveNodes(AppState.tr);
   refreshPerksTaken();
 
+  // ---- Initial zoom level, adapted to the current window size --------
+  // A narrow viewport (typically mobile, where #canvas ends up tall and
+  // thin — see style.css) squeezes the camera's effective HORIZONTAL
+  // field of view well below its vertical one, which can clip a node's
+  // label outside the visible frustum even though the node itself is
+  // on-screen. computeInitialZoomStage() starts the camera more zoomed
+  // out in that case so a full node (sphere + label) stays visible —
+  // see cameraControls.js for the underlying reasoning. This also
+  // becomes the pan animation's "restore to" FOV (AppState.iniPanCamFov),
+  // so it sticks after the very first pan too, not just at boot.
+  AppState.zoomStage    = computeInitialZoomStage(AppState.container.clientWidth, AppState.container.clientHeight);
+  AppState.iniPanCamFov = BASE_CAMERA_FOV + AppState.zoomStage;
+
   const vec = AppState.tr.getNodeSphericalCoordinates(1);
   AppState.camera.rotation.set(
     vec.y,
@@ -112,12 +127,13 @@ sec();
 //   1. Pan animation
 //   2. Queued zoom-out (fired if a zoom-out was requested while
 //      another animation was running)
-//   3. Zoom animation
-//   4. Arrow-key momentum rotation (main camera)
-//   5. Star shader time uniform updates
-//   6. Node nameText label rescaling vs. current zoom level
-//   7. WASD / Space / Shift free-camera translation
-//   8. Render through the bloom post-processing pipeline
+//   3. Zoom-in animation (immediate/snappy step)
+//   4. Zoom-out inertia (momentum from the wheel / '-' key / pinch)
+//   5. Arrow-key / touch-swipe momentum rotation (main camera)
+//   6. Star shader time uniform updates
+//   7. Node nameText label rescaling vs. current zoom level
+//   8. WASD / Space / Shift free-camera translation
+//   9. Render through the bloom post-processing pipeline
 // ============================================================
 function animate() {
   AppState.stats.begin();
@@ -133,7 +149,10 @@ function animate() {
   }
   if (AppState.zoomComputeBool) zoomCamera();
 
-  // --- Main camera arrow-key momentum ---------------------------
+  // --- Zoom-out momentum (mouse wheel / '-' key — see inputHandlers.js) --
+  updateZoomInertia(delta);
+
+  // --- Main camera arrow-key / touch-swipe momentum ---------------
   freeCameraMovement();
 
   // --- Star shader time uniforms --------------------------------
@@ -145,8 +164,8 @@ function animate() {
 
   // --- Node label scale vs. zoom level ---------------------------
   // AppState.zoomStage ranges 0 (fully zoomed in) .. 60 (fully zoomed
-  // out) — see inputHandlers.js's '='/'-'/wheel handlers. Labels are
-  // kept at LABEL_MIN_SCALE (today's size) at full zoom-in and grow
+  // out) — see inputHandlers.js's '='/'-'/wheel/pinch handlers. Labels
+  // are kept at LABEL_MIN_SCALE (today's size) at full zoom-in and grow
   // toward LABEL_MAX_SCALE as the camera zooms out, so they stay
   // legible instead of shrinking away with everything else in the
   // perspective view. Cheap: TreeNode.updateLabelScale() only touches

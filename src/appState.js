@@ -106,6 +106,15 @@ const AppState = {
     zoomCamFov:      0,      // working FOV value mutated each frame
     queuedZoomOut:   false,  // zoom-out was requested mid-animation; fire next frame
 
+    // zoomOutVelocity: momentum (in zoomStage units/second) for zooming
+    // OUT via mouse wheel or the '-' key — see inputHandlers.js (which
+    // adds to this instead of jumping the FOV immediately) and
+    // cameraControls.js's updateZoomInertia() (which applies + decays it
+    // every frame), so a fast scroll/keypress flick keeps gliding the
+    // view outward briefly before coasting to a stop, instead of
+    // snapping to a fixed step. Zooming IN stays immediate/snappy.
+    zoomOutVelocity: 0,
+
     // ---- Pan animation state ---------------------------------------
     panCamBool:     false,  // true while pan animation is running
     panComputeBool: false,  // true while per-frame pan interpolation executes
@@ -132,4 +141,3 @@ const AppState = {
 };
 
 export default AppState;
-

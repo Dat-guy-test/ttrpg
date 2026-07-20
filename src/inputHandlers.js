@@ -17,12 +17,16 @@
 //   mousedown   — begin free-camera drag
 //   mouseup     — end free-camera drag
 //   mousemove   — free-camera drag rotation
+//   touchstart/touchmove/touchend/touchcancel (on #canvas)
+//               — two-finger pinch-to-zoom, and one-finger swipe-to-pan
+//                 (mirrors the wheel/arrow-key behavior for touch devices)
 //   resize      — camera aspect + renderer size
 // ============================================================
 
 import AppState from './appState.js';
 import { computeZoomCamera, computePanCamera } from './cameraControls.js';
 import { toggleEditMode } from './editMode.js';
+import { BASE_CAMERA_FOV } from './constants.js';
 
 export function registerInputHandlers() {
 
@@ -104,7 +108,7 @@ export function registerInputHandlers() {
                 break;
 
             case '=':
-                // Zoom in — decrease FOV by one step
+                // Zoom in — decrease FOV by one step (kept immediate/snappy)
                 if (AppState.zoomStage > 0 && !AppState.zoomCamBool && !AppState.panCamBool) {
                     AppState.zoomStage   -= 1;
                     AppState.zoomCamBool  = true;
@@ -114,12 +118,13 @@ export function registerInputHandlers() {
                 break;
 
             case '-':
-                // Zoom out — increase FOV by one step (max 60 steps)
-                if (AppState.zoomStage < 60 && !AppState.zoomCamBool && !AppState.panCamBool) {
-                    AppState.zoomStage   += 1;
-                    AppState.zoomCamBool  = true;
-                    computeZoomCamera(1);
-                    AppState.camera.updateProjectionMatrix();
+                // Zoom out — adds momentum instead of an immediate step (see
+                // cameraControls.js's updateZoomInertia(), run every frame
+                // from main.js's animate()), so holding/repeatedly tapping
+                // '-' keeps the view gliding outward briefly before coasting
+                // to a stop, the same "inertia" feel the wheel gets below.
+                if (AppState.zoomStage < 60 && !AppState.panCamBool) {
+                    AppState.zoomOutVelocity = Math.min(AppState.zoomOutVelocity + 6, 40);
                 }
                 break;
 
@@ -173,15 +178,17 @@ export function registerInputHandlers() {
 
     // ============================================================
     // MOUSE WHEEL — ZOOM
-    // Each wheel tick is treated as one zoom step, identical to
-    // pressing = or -. Events are ignored while any animation is
-    // running so one tick stays close to one step.
+    // Each wheel tick is treated as one zoom step for zooming IN
+    // (identical to pressing '='). Zooming OUT (scroll down) instead
+    // adds momentum — see cameraControls.js's updateZoomInertia() —
+    // so a fast scroll flick keeps gliding the view outward briefly
+    // after the wheel stops, the way trackpad momentum scrolling feels.
     // ============================================================
     window.addEventListener('wheel', function (e) {
         e.preventDefault();
 
         if (e.deltaY < 0) {
-            // Scroll up → zoom in
+            // Scroll up → zoom in (immediate/snappy — unchanged)
             if (AppState.zoomStage > 0 && !AppState.zoomCamBool && !AppState.panCamBool) {
                 AppState.zoomStage   -= 1;
                 AppState.zoomCamBool  = true;
@@ -189,12 +196,9 @@ export function registerInputHandlers() {
                 AppState.camera.updateProjectionMatrix();
             }
         } else if (e.deltaY > 0) {
-            // Scroll down → zoom out
-            if (AppState.zoomStage < 60 && !AppState.zoomCamBool && !AppState.panCamBool) {
-                AppState.zoomStage   += 1;
-                AppState.zoomCamBool  = true;
-                computeZoomCamera(1);
-                AppState.camera.updateProjectionMatrix();
+            // Scroll down → zoom out, with inertia (see updateZoomInertia())
+            if (!AppState.panCamBool) {
+                AppState.zoomOutVelocity = Math.min(AppState.zoomOutVelocity + 6, 40);
             }
         }
     }, { passive: false }); // passive: false required so preventDefault() works
@@ -225,6 +229,91 @@ export function registerInputHandlers() {
 
 
     // ============================================================
+    // TOUCH — pinch-to-zoom (2 fingers) and swipe-to-pan (1 finger)
+    // ------------------------------------------------------------
+    // Attached to #canvas specifically (not window) so touches over UI
+    // overlays (edit-mode panel, etc.) are left alone.
+    //
+    // Two fingers moving apart/together directly drives AppState.zoomStage
+    // /camera.fov, continuously (not stepped) — the touch equivalent of
+    // the wheel, but tracked live rather than tick-by-tick.
+    //
+    // One finger dragging instead feeds AppState.cameraAccelerationX/Y —
+    // the EXACT same momentum fields the arrow keys drive in
+    // cameraControls.js's freeCameraMovement(), which already runs every
+    // frame regardless of input source. That reuse is what gives a swipe
+    // the same "glide to a stop" inertia arrow-key panning already has,
+    // with no separate decay logic needed here.
+    // ============================================================
+
+    let pinchStartDistance  = null;
+    let pinchStartZoomStage = null;
+    let swipeLastX = null;
+    let swipeLastY = null;
+
+    function touchDistance(touches) {
+        const dx = touches[0].clientX - touches[1].clientX;
+        const dy = touches[0].clientY - touches[1].clientY;
+        return Math.hypot(dx, dy);
+    }
+
+    AppState.container.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+            pinchStartDistance      = touchDistance(e.touches);
+            pinchStartZoomStage     = AppState.zoomStage;
+            AppState.zoomOutVelocity = 0; // a deliberate pinch takes over from any wheel/key momentum
+            swipeLastX = swipeLastY = null;
+        } else if (e.touches.length === 1) {
+            swipeLastX = e.touches[0].clientX;
+            swipeLastY = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
+    AppState.container.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2 && pinchStartDistance) {
+            e.preventDefault(); // stop the browser's own page-zoom/scroll gesture
+            const ratio = pinchStartDistance / touchDistance(e.touches); // fingers spreading apart (zoom in) -> ratio < 1
+            const targetStage = pinchStartZoomStage + (ratio - 1) * 60;
+            AppState.zoomStage  = Math.max(0, Math.min(60, targetStage));
+            AppState.camera.fov = BASE_CAMERA_FOV + AppState.zoomStage;
+            AppState.camera.updateProjectionMatrix();
+
+        } else if (e.touches.length === 1 && swipeLastX !== null && !AppState.panCamBool) {
+            e.preventDefault();
+            const dx = e.touches[0].clientX - swipeLastX;
+            const dy = e.touches[0].clientY - swipeLastY;
+            swipeLastX = e.touches[0].clientX;
+            swipeLastY = e.touches[0].clientY;
+
+            const TOUCH_PAN_SENSITIVITY = 0.003; // tuned so a typical swipe feels comparable to a couple of arrow-key taps
+            AppState.cameraAccelerationX -= dy * TOUCH_PAN_SENSITIVITY;
+            AppState.cameraAccelerationY -= dx * TOUCH_PAN_SENSITIVITY;
+        }
+    }, { passive: false });
+
+    AppState.container.addEventListener('touchend', (e) => {
+        if (e.touches.length < 2) {
+            pinchStartDistance  = null;
+            pinchStartZoomStage = null;
+        }
+        if (e.touches.length === 0) {
+            swipeLastX = swipeLastY = null;
+        } else if (e.touches.length === 1) {
+            // Dropped from two fingers to one — restart swipe tracking from here
+            // instead of using the stale two-finger position on the next move.
+            swipeLastX = e.touches[0].clientX;
+            swipeLastY = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
+    AppState.container.addEventListener('touchcancel', () => {
+        pinchStartDistance  = null;
+        pinchStartZoomStage = null;
+        swipeLastX = swipeLastY = null;
+    }, { passive: true });
+
+
+    // ============================================================
     // WINDOW RESIZE
     // Updates camera aspect ratio and renderer dimensions.
     // ============================================================
@@ -239,4 +328,3 @@ export function registerInputHandlers() {
         AppState.renderer.setPixelRatio(window.devicePixelRatio);
     });
 }
-

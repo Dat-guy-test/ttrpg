@@ -21,7 +21,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
 import AppState from './appState.js';
-import { BLOOM_LAYER } from './constants.js';
+import { BLOOM_LAYER, BASE_CAMERA_FOV } from './constants.js';
 import { computeStarHSL, hslToRgb } from './colorScience.js';
 
 
@@ -174,7 +174,7 @@ export function initScene() {
     // ---- Main camera (skill-tree view) ---------------------------
     // Fixed at the origin; the player navigates by rotating it.
     AppState.camera = new THREE.PerspectiveCamera(
-        30,
+        BASE_CAMERA_FOV,
         AppState.container.clientWidth / AppState.container.clientHeight,
         1,
         100000
@@ -185,7 +185,7 @@ export function initScene() {
 
     // ---- Free camera (debug / exploration) -----------------------
     AppState.freeCamera = new THREE.PerspectiveCamera(
-        30,
+        BASE_CAMERA_FOV,
         AppState.container.clientWidth / AppState.container.clientHeight,
         0.00001,
         100000

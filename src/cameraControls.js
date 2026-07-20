@@ -1,14 +1,18 @@
 // ============================================================
 // CAMERA CONTROLS
 //
-// Exports six functions called from main.js (animate loop) and
-// from inputHandlers.js (keyboard / wheel events):
-//
+// Exports:
 //   computePanCamera()        — begin a pan animation
 //   panCamera()               — per-frame pan interpolation
-//   computeZoomCamera()       — begin a zoom animation
+//   computeZoomCamera()       — begin a zoom animation (zooming IN;
+//                               kept immediate/snappy)
 //   zoomCamera()              — per-frame zoom interpolation
-//   freeCameraMovement()      — apply arrow-key momentum to main camera
+//   updateZoomInertia()       — per-frame momentum for zooming OUT
+//                               (mouse wheel / '-' key) — see below.
+//   computeInitialZoomStage() — picks a starting zoomStage based on the
+//                               skill-tree window's current size/aspect.
+//   freeCameraMovement()      — apply arrow-key/touch-swipe momentum to
+//                               the main camera
 //   freeCameraPositionUpdate()— apply WASD position movement to free camera
 //
 // All state (pan/zoom booleans, delta values, clocks, …) lives in
@@ -17,6 +21,7 @@
 // ============================================================
 
 import AppState from './appState.js';
+import { BASE_CAMERA_FOV } from './constants.js';
 
 
 // ============================================================
@@ -87,6 +92,8 @@ export function panCamera() {
 // ============================================================
 // ZOOM CAMERA — SETUP
 // Called once to begin a smooth FOV change of `amount` degrees.
+// Used for zooming IN (mouse wheel scroll-up / '=' key), which stays
+// immediate/snappy — see updateZoomInertia() below for zooming OUT.
 // ============================================================
 
 /**
@@ -128,10 +135,102 @@ export function zoomCamera() {
 
 
 // ============================================================
-// FREE CAMERA MOVEMENT — ARROW KEY MOMENTUM
+// ZOOM-OUT INERTIA
+// ------------------------------------------------------------
+// Zooming OUT (mouse wheel scroll-down, or the '-' key — see
+// inputHandlers.js) no longer jumps the FOV by a fixed step. Instead,
+// each trigger adds to AppState.zoomOutVelocity (a "how many zoomStage
+// units per second" momentum value), and this function — called every
+// frame from main.js's animate(), the same way freeCameraMovement()
+// is — advances zoomStage/FOV by that velocity and exponentially decays
+// it, so a fast flick keeps gliding the view outward briefly before
+// coasting to a stop, instead of a sharp, discrete jump. Zooming IN
+// stays on the old immediate computeZoomCamera()/zoomCamera() path,
+// since only zooming out asked for this "inertia" feel.
+// ============================================================
+
+const ZOOM_OUT_DECAY = 2.5; // 1/seconds — same exponential-decay shape as freeCameraMovement()'s arrow-key momentum
+
+/**
+ * Advances AppState.zoomStage/camera.fov by the current zoom-out
+ * momentum and decays that momentum toward zero. No-op while a pan or
+ * the immediate zoom-in animation is running, so they don't fight over
+ * `camera.fov` in the same frame.
+ * @param {number} DT — per-frame delta time, in seconds
+ */
+export function updateZoomInertia(DT) {
+    if (AppState.panCamBool || AppState.zoomComputeBool) return;
+
+    if (Math.abs(AppState.zoomOutVelocity) < 0.01) {
+        AppState.zoomOutVelocity = 0;
+        return;
+    }
+
+    const nextStage = Math.max(0, Math.min(60, AppState.zoomStage + AppState.zoomOutVelocity * DT));
+    const applied   = nextStage - AppState.zoomStage;
+
+    AppState.zoomStage   = nextStage;
+    AppState.camera.fov += applied;
+    AppState.camera.updateProjectionMatrix();
+
+    if (nextStage <= 0 || nextStage >= 60) {
+        AppState.zoomOutVelocity = 0; // hit a limit — nothing left to coast into
+    } else {
+        AppState.zoomOutVelocity -= ZOOM_OUT_DECAY * AppState.zoomOutVelocity * DT;
+    }
+}
+
+
+// ============================================================
+// INITIAL ZOOM — adapt to the skill-tree window's size
+// ------------------------------------------------------------
+// The skill-tree canvas (#canvas, sized via #bor/#wrap in style.css)
+// can end up tall and narrow on a small/mobile screen. Since
+// AppState.camera.fov is the VERTICAL field of view, a narrow aspect
+// ratio (width / height) compresses the camera's effective HORIZONTAL
+// field of view well below its vertical one:
+//
+//   horizontalFov = 2 * atan(tan(verticalFov / 2) * aspect)
+//
+// A node's label (see TreeNode.js) extends sideways from the node
+// itself, so on a narrow-aspect viewport it can end up clipped outside
+// that squeezed horizontal frustum even though the node's sphere is
+// fully visible. Starting more zoomed OUT (a larger vertical FOV)
+// compensates by widening the horizontal FOV too, so a whole node
+// (sphere + label) stays visible on a small window. Desktop-style
+// (roughly square or wider) windows are left at the normal default.
+// ============================================================
+
+const REFERENCE_ASPECT = 1.0;  // aspect ratios at/above this need no compensation
+const MIN_ASPECT_FLOOR  = 0.15; // guards against a division blow-up on an extremely sliver-thin window
+const ASPECT_COMPENSATION_SCALE = 25; // tuned so typical mobile-portrait aspects (~0.35-0.55) land in a comfortable zoomed-out range
+
+/**
+ * Picks a starting AppState.zoomStage based on the current skill-tree
+ * viewport's width/height, so a full node (and its label) is visible
+ * even on a small, narrow (typically mobile) window. Returns 0 — the
+ * normal default — for a roughly square-or-wider viewport.
+ * @param {number} containerWidth  — current #canvas clientWidth, in px
+ * @param {number} containerHeight — current #canvas clientHeight, in px
+ * @returns {number} a zoomStage in [0, 60]
+ */
+export function computeInitialZoomStage(containerWidth, containerHeight) {
+    const aspect = containerWidth / Math.max(containerHeight, 1);
+    if (aspect >= REFERENCE_ASPECT) return 0;
+
+    const compensation = (REFERENCE_ASPECT / Math.max(aspect, MIN_ASPECT_FLOOR)) - 1; // grows as the window gets narrower
+    const zoomStage = Math.round(compensation * ASPECT_COMPENSATION_SCALE);
+    return Math.max(0, Math.min(60, zoomStage));
+}
+
+
+// ============================================================
+// FREE CAMERA MOVEMENT — ARROW KEY / TOUCH-SWIPE MOMENTUM
 // Applied to the main (skill-tree) camera each frame.
-// Arrow keys build up cameraAcceleration; values decay
-// multiplicatively so the camera glides to a stop.
+// Arrow keys AND a one-finger touch swipe (see inputHandlers.js) both
+// build up cameraAcceleration; values decay multiplicatively so the
+// camera glides to a stop either way — a swipe gets the exact same
+// inertia feel arrow-key panning already had.
 // ============================================================
 
 export function freeCameraMovement() {
@@ -172,4 +271,3 @@ export function freeCameraPositionUpdate() {
     if (k[' '])     { AppState.freeCamera.position.y += speed; }
     if (k['Shift']) { AppState.freeCamera.position.y -= speed; }
 }
-

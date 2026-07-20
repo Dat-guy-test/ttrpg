@@ -11,6 +11,18 @@
 export const BLOOM_LAYER = 2;
 
 /**
+ * Base (zoomStage = 0) vertical field of view, in degrees, used for
+ * both the main skill-tree camera and the debug free-fly camera (see
+ * sceneSetup.js's initScene()). AppState.zoomStage (0-60) is added on
+ * top of this as whole FOV-degree steps — cameraControls.js's
+ * computeZoomCamera()/zoomCamera()/updateZoomInertia(),
+ * computeInitialZoomStage(), and inputHandlers.js's wheel/keyboard/touch
+ * zoom handlers all assume `camera.fov === BASE_CAMERA_FOV + zoomStage`
+ * whenever no pan/zoom animation is actively mid-flight.
+ */
+export const BASE_CAMERA_FOV = 30;
+
+/**
  * Where treeGen() fetches the skill-tree data from.
  *
  * nodes.json lives in `public/nodes.json`. Vite serves everything in
