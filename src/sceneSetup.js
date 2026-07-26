@@ -14,6 +14,7 @@ import './style.css'
 import './characterSheet.css';
 import './equipment.css';
 import './arcana.css';
+import './manual.css';
 import * as THREE from 'three';
 import { WebGLRenderer } from 'three';
 import { EffectComposer, EffectPass, RenderPass, SelectiveBloomEffect } from 'postprocessing';
@@ -53,10 +54,40 @@ export function addToBloom(obj) {
 // (blue-white) per star, instead of a flat white/tinted colour. This
 // keeps the whole scene's "every glowing point is a blackbody star"
 // visual language consistent between the perk tree and the backdrop.
+//
+// PERFORMANCE / STABILITY NOTE (read before touching `count`):
+// computeStarHSL() is NOT cheap — it integrates an 81-sample Planck
+// spectrum (several Math.pow/Math.exp calls per sample) to get one
+// colour. Calling it once per star (as an earlier version of this
+// file did) means `count * 81` of those expensive samples running
+// synchronously inside initScene(), before the render loop even
+// starts. At count = 12000 that's ~972,000 spectral samples on the
+// main thread in one uninterrupted block — long enough on many
+// GPU/driver combinations to stall frame submission and cause the
+// browser to reclaim/reset the WebGL context. Once that happens,
+// Three.js's internal render-list/object bookkeeping can end up
+// inconsistent, which is what surfaces later as the renderer
+// crashing deep in projectObject() (reading a property off an
+// object it expected to still be valid) — plus the whole page
+// visibly hangs while the computation runs.
+//
+// The fix is buildStarColorLUT() below: it runs computeStarHSL()
+// only STARFIELD_COLOR_LUT_SIZE times (a small fixed number) to build
+// a lookup table spanning the min/max temperature range once, and
+// every star just picks a random entry from that table. Visually
+// this is indistinguishable from computing every star individually
+// (temperature was already uniform-random across the same range),
+// but the cost drops from `count * 81` to `LUT_SIZE * 81` — roughly
+// a 250x reduction at the default count/LUT size.
 // ============================================================
 
 const STARFIELD_MIN_TEMPERATURE = 1000;  // Kelvin — deep red
 const STARFIELD_MAX_TEMPERATURE = 10000; // Kelvin — blue-white
+
+// How many distinct blackbody colours to precompute for the starfield.
+// Large enough that stars don't visibly repeat in clumps, small enough
+// that building it is effectively instantaneous (see the perf note above).
+const STARFIELD_COLOR_LUT_SIZE = 48;
 
 /**
  * Builds a soft, glowing dot texture on a canvas, used as the sprite
@@ -87,6 +118,24 @@ function createStarSprite() {
 }
 
 /**
+ * Precomputes STARFIELD_COLOR_LUT_SIZE blackbody colours evenly
+ * spaced across [STARFIELD_MIN_TEMPERATURE, STARFIELD_MAX_TEMPERATURE],
+ * ONE TIME — see the perf note in the STARFIELD header comment above
+ * for why this replaced calling computeStarHSL() per star.
+ * @returns {[number,number,number][]} LUT_SIZE entries of [r, g, b] in [0,1]
+ */
+function buildStarColorLUT() {
+    const lut = [];
+    for (let i = 0; i < STARFIELD_COLOR_LUT_SIZE; i++) {
+        const t = STARFIELD_MIN_TEMPERATURE
+            + (i / Math.max(1, STARFIELD_COLOR_LUT_SIZE - 1)) * (STARFIELD_MAX_TEMPERATURE - STARFIELD_MIN_TEMPERATURE);
+        const [h, s, l] = computeStarHSL(t);
+        lut.push(hslToRgb(h, s, l));
+    }
+    return lut;
+}
+
+/**
  * Builds the background starfield as one THREE.Points cloud.
  *
  * Positions: uniformly distributed on a spherical shell (Marsaglia's
@@ -94,14 +143,11 @@ function createStarSprite() {
  * stars don't bunch up at the poles) with a little radial jitter for
  * subtle depth variation.
  *
- * Colours: EACH star gets its own random temperature in
- * [STARFIELD_MIN_TEMPERATURE, STARFIELD_MAX_TEMPERATURE], run through
- * colorScience.js's computeStarHSL()/hslToRgb() — the exact same
- * Planck-spectrum → CIE XYZ → RGB pipeline StarModel.js uses to tint
- * an activated perk node. This is a one-time cost at scene-build time
- * (not per-frame): computeStarHSL() internally integrates an 81-sample
- * spectrum, so `count` stars costs roughly `count * 81` cheap
- * arithmetic ops once, then never runs again.
+ * Colours: each star picks a random entry from a small precomputed
+ * blackbody colour LUT (see buildStarColorLUT() above) instead of
+ * running the full spectral integration per star — see the
+ * PERFORMANCE / STABILITY NOTE above this section for why that
+ * matters.
  *
  * @param {number} count  — number of stars
  * @param {number} radius — shell radius (world units); must clear the
@@ -112,11 +158,14 @@ function createStarSprite() {
  * NOT added to the SelectiveBloomEffect selection: THREE.Points
  * rendered invisible once bloomed (see createStarSprite()'s comment
  * above for why) — the glow here comes entirely from the baked-in
- * halo texture plus additive blending instead.
+ * halo texture plus additive blending instead. initScene() below
+ * also explicitly deletes it from bloomEffect.selection, mirroring
+ * the ground plane, as cheap insurance against ever being included.
  */
 function createStarfield(count = 12000, radius = 400) {
     const positions = new Float32Array(count * 3);
     const colors    = new Float32Array(count * 3);
+    const colorLUT  = buildStarColorLUT();
 
     for (let i = 0; i < count; i++) {
         // ---- Position: uniform point on a spherical shell -----------
@@ -129,11 +178,8 @@ function createStarfield(count = 12000, radius = 400) {
         positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
         positions[i * 3 + 2] = r * Math.cos(phi);
 
-        // ---- Colour: randomised blackbody temperature ----------------
-        const temperature = STARFIELD_MIN_TEMPERATURE
-            + Math.random() * (STARFIELD_MAX_TEMPERATURE - STARFIELD_MIN_TEMPERATURE);
-        const [h, s, l]  = computeStarHSL(temperature);
-        const [r_, g_, b_] = hslToRgb(h, s, l);
+        // ---- Colour: random pick from the precomputed blackbody LUT --
+        const [r_, g_, b_] = colorLUT[(Math.random() * colorLUT.length) | 0];
 
         colors[i * 3]     = r_;
         colors[i * 3 + 1] = g_;
@@ -155,7 +201,10 @@ function createStarfield(count = 12000, radius = 400) {
     });
 
     const stars = new THREE.Points(geometry, material);
-    stars.layers.set(0); // default layer — deliberately NOT bloomed, see the header comment above
+    stars.layers.set(0);
+    stars.raycast = () => {}; // opt this object out of raycasting entirely
+    stars.frustumCulled  = false; // it's a giant static shell around the camera — always visible, never worth the bounding-sphere test
+    stars.matrixAutoUpdate = false; // never moves/rotates/scales after creation — skip the per-frame matrix recompute
     return stars;
 }
 
@@ -272,7 +321,11 @@ export function initScene() {
     AppState.scene.add(new THREE.Mesh(skyGeo, skyMat));
 
     // ---- Starfield (purely cosmetic — see createStarfield() above) --
-    AppState.scene.add(createStarfield());
+    const starfield = createStarfield();
+    AppState.scene.add(starfield);
+    // Defensive/explicit — mirrors the ground plane below. Cheap insurance
+    // against the starfield ever being picked up by the bloom selection.
+    AppState.bloomEffect.selection.delete(starfield);
 
     // ---- Ground plane (grass) ------------------------------------
     // Assets live in public/, so their URL must be built from the

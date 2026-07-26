@@ -61,7 +61,7 @@ const AppState = {
     // ---- Tree ------------------------------------------------------
     tr:                          null,  // Tree instance; assigned in main.js after initScene()
     cameraRotationOffsetFromTree: 0,    // set to -π/2 after treeGen() loads data
-
+    
     // ---- Game state ------------------------------------------------
     // perkPoints was removed — the perk-point budget now lives entirely
     // in characterState.js (CharacterState.potential.total / spent /
@@ -106,14 +106,16 @@ const AppState = {
     zoomCamFov:      0,      // working FOV value mutated each frame
     queuedZoomOut:   false,  // zoom-out was requested mid-animation; fire next frame
 
-    // zoomOutVelocity: momentum (in zoomStage units/second) for zooming
-    // OUT via mouse wheel or the '-' key — see inputHandlers.js (which
-    // adds to this instead of jumping the FOV immediately) and
-    // cameraControls.js's updateZoomInertia() (which applies + decays it
-    // every frame), so a fast scroll/keypress flick keeps gliding the
-    // view outward briefly before coasting to a stop, instead of
-    // snapping to a fixed step. Zooming IN stays immediate/snappy.
-    zoomOutVelocity: 0,
+    // zoomVelocity: momentum (in zoomStage units/second) for zooming,
+    // in EITHER direction — mouse wheel, '=', '-', and pinch all add
+    // to this (see inputHandlers.js) instead of jumping the FOV
+    // immediately, and cameraControls.js's updateZoomInertia() applies
+    // + decays it every frame, so a fast scroll/keypress/pinch flick
+    // keeps gliding the view briefly before coasting to a stop, instead
+    // of snapping to a fixed step. Positive = zooming OUT (zoomStage
+    // increasing toward 60); negative = zooming IN (zoomStage
+    // decreasing toward 0).
+    zoomVelocity: 0,
 
     // ---- Pan animation state ---------------------------------------
     panCamBool:     false,  // true while pan animation is running
@@ -139,5 +141,4 @@ const AppState = {
     isMouseDown:       false,
     lastMousePosition: { x: 0, y: 0 },
 };
-
 export default AppState;

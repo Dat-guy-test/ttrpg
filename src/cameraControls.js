@@ -4,11 +4,14 @@
 // Exports:
 //   computePanCamera()        — begin a pan animation
 //   panCamera()               — per-frame pan interpolation
-//   computeZoomCamera()       — begin a zoom animation (zooming IN;
-//                               kept immediate/snappy)
-//   zoomCamera()              — per-frame zoom interpolation
-//   updateZoomInertia()       — per-frame momentum for zooming OUT
-//                               (mouse wheel / '-' key) — see below.
+//   computeZoomCamera()       — begin an immediate zoom animation; no
+//                               longer used by keyboard/wheel/pinch zoom
+//                               (see updateZoomInertia() below) — kept
+//                               for the queued-zoom-out path in main.js.
+//   zoomCamera()              — per-frame interpolation for the above
+//   updateZoomInertia()       — per-frame momentum for zooming in AND
+//                               out (mouse wheel / '=' / '-' keys /
+//                               pinch) — see below.
 //   computeInitialZoomStage() — picks a starting zoomStage based on the
 //                               skill-tree window's current size/aspect.
 //   freeCameraMovement()      — apply arrow-key/touch-swipe momentum to
@@ -135,38 +138,39 @@ export function zoomCamera() {
 
 
 // ============================================================
-// ZOOM-OUT INERTIA
+// ZOOM INERTIA  (both directions)
 // ------------------------------------------------------------
-// Zooming OUT (mouse wheel scroll-down, or the '-' key — see
-// inputHandlers.js) no longer jumps the FOV by a fixed step. Instead,
-// each trigger adds to AppState.zoomOutVelocity (a "how many zoomStage
-// units per second" momentum value), and this function — called every
-// frame from main.js's animate(), the same way freeCameraMovement()
-// is — advances zoomStage/FOV by that velocity and exponentially decays
-// it, so a fast flick keeps gliding the view outward briefly before
-// coasting to a stop, instead of a sharp, discrete jump. Zooming IN
-// stays on the old immediate computeZoomCamera()/zoomCamera() path,
-// since only zooming out asked for this "inertia" feel.
+// Zooming — mouse wheel, the '=' key, the '-' key, or a two-finger
+// pinch (see inputHandlers.js) — no longer jumps the FOV by a fixed
+// step in either direction. Instead, each trigger adds to
+// AppState.zoomVelocity (a "how many zoomStage units per second"
+// momentum value — positive = zooming OUT, negative = zooming IN),
+// and this function — called every frame from main.js's animate(),
+// the same way freeCameraMovement() is — advances zoomStage/FOV by
+// that velocity and exponentially decays it toward zero, so a fast
+// flick in either direction keeps gliding the view briefly before
+// coasting to a stop, instead of a sharp, discrete jump.
 // ============================================================
 
-const ZOOM_OUT_DECAY = 2.5; // 1/seconds — same exponential-decay shape as freeCameraMovement()'s arrow-key momentum
+const ZOOM_DECAY = 2.5; // 1/seconds — same exponential-decay shape as freeCameraMovement()'s arrow-key momentum
 
 /**
- * Advances AppState.zoomStage/camera.fov by the current zoom-out
- * momentum and decays that momentum toward zero. No-op while a pan or
- * the immediate zoom-in animation is running, so they don't fight over
- * `camera.fov` in the same frame.
+ * Advances AppState.zoomStage/camera.fov by the current zoom
+ * momentum (either direction) and decays that momentum toward zero.
+ * No-op while a pan or the immediate zoom animation (computeZoomCamera()/
+ * zoomCamera() — still used by the queued-zoom-out path in main.js) is
+ * running, so they don't fight over `camera.fov` in the same frame.
  * @param {number} DT — per-frame delta time, in seconds
  */
 export function updateZoomInertia(DT) {
     if (AppState.panCamBool || AppState.zoomComputeBool) return;
 
-    if (Math.abs(AppState.zoomOutVelocity) < 0.01) {
-        AppState.zoomOutVelocity = 0;
+    if (Math.abs(AppState.zoomVelocity) < 0.01) {
+        AppState.zoomVelocity = 0;
         return;
     }
 
-    const nextStage = Math.max(0, Math.min(60, AppState.zoomStage + AppState.zoomOutVelocity * DT));
+    const nextStage = Math.max(0, Math.min(60, AppState.zoomStage + AppState.zoomVelocity * DT));
     const applied   = nextStage - AppState.zoomStage;
 
     AppState.zoomStage   = nextStage;
@@ -174,9 +178,9 @@ export function updateZoomInertia(DT) {
     AppState.camera.updateProjectionMatrix();
 
     if (nextStage <= 0 || nextStage >= 60) {
-        AppState.zoomOutVelocity = 0; // hit a limit — nothing left to coast into
+        AppState.zoomVelocity = 0; // hit a limit — nothing left to coast into
     } else {
-        AppState.zoomOutVelocity -= ZOOM_OUT_DECAY * AppState.zoomOutVelocity * DT;
+        AppState.zoomVelocity -= ZOOM_DECAY * AppState.zoomVelocity * DT;
     }
 }
 

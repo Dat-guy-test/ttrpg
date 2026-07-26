@@ -41,10 +41,40 @@ export class StarModel {
         this.bumpScale   = 0.0025; // Magnitude of per-vertex displacement
 
         this.isReady = false; // Becomes true once textures are loaded and material built
+        this._readyCallbacks = []; // queued via onReady(); flushed once isReady flips true
 
         this.loadTextures()
-        .then(() => { this.createMaterial(); this.isReady = true; })
+        .then(() => {
+            this.createMaterial();
+            this.isReady = true;
+            const callbacks = this._readyCallbacks;
+            this._readyCallbacks = [];
+            callbacks.forEach(cb => cb());
+        })
         .catch(err => console.error('StarModel: error loading textures:', err));
+    }
+
+    /**
+     * Registers a callback to run once this StarModel's textures and
+     * `customMaterial` actually exist — invoked immediately
+     * (synchronously) if that's already the case.
+     *
+     * Exists because assigning `.customMaterial` to a mesh BEFORE it's
+     * built sets that mesh's `.material` to `undefined`, and Three.js's
+     * renderer crashes the very next frame trying to read
+     * `material.visible` with no guard for that case (see TreeNode.js's
+     * _applyActiveStarVisual(), the only caller of this). Since texture
+     * loading is asynchronous, code that activates a node can't assume
+     * its StarModel is ready yet — this is what lets that code defer
+     * safely instead of assigning undefined.
+     * @param {() => void} callback
+     */
+    onReady(callback) {
+        if (this.isReady) {
+            callback();
+        } else {
+            this._readyCallbacks.push(callback);
+        }
     }
 
     // ------------------------------------------------------------------

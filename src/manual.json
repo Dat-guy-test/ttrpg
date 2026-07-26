@@ -1,0 +1,20 @@
+{
+  "pages": [
+    {
+      "id": "jak-korzystac",
+      "title": "Jak korzystać z Instrukcji",
+      "sections": [
+        {
+          "id": "wyszukiwanie",
+          "name": "Wyszukiwanie",
+          "content": "Wpisz tytuł strony lub nazwę sekcji w polu wyszukiwania powyżej. Pasujące wyniki pojawią się na liście poniżej — kliknij jeden z nich, by otworzyć odpowiednią stronę. Jeśli kliknięty wynik to sekcja (a nie cała strona), widok automatycznie przewinie się do tej sekcji."
+        },
+        {
+          "id": "tryb-edycji",
+          "name": "Tryb Edycji",
+          "content": "Kliknij „Tryb Edycji” w prawym górnym rogu, by dodać nową stronę lub edytować istniejącą (wbudowaną lub własną). Każda strona ma tytuł oraz dowolną liczbę sekcji — każda sekcja ma własną nazwę (widoczną większą czcionką) i treść.\n\nEdycja strony wbudowanej nie nadpisuje pliku manual.json — tworzy lokalne nadpisanie, które ma pierwszeństwo dopóki go nie cofniesz. Przycisk „Eksportuj manual.json” pobiera gotowy plik łączący wszystkie strony (wbudowane, z nadpisaniami, plus własne), którym można podmienić plik w projekcie."
+        }
+      ]
+    }
+  ]
+}

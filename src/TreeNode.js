@@ -328,7 +328,7 @@ export class TreeNode extends THREE.Mesh {
                         !this.nodeActive
                     ) {
                         this.nodeActive    = true;
-                        this.star.material  = AppState.starClasses[this.starID].customMaterial;
+                        this._applyActiveStarVisual();
                         applyNodeEffect(this);
                         markNodeActive(this.nodeId); // persist across reloads — see treePersistence.js
                         refreshPerksTaken();
@@ -366,8 +366,39 @@ export class TreeNode extends THREE.Mesh {
                  */
                 restoreActive(savedChoices) {
                     this.nodeActive   = true;
-                    this.star.material = AppState.starClasses[this.starID].customMaterial;
+                    this._applyActiveStarVisual();
                     applyNodeEffect(this, { restoring: true, savedChoices });
+                }
+
+                /**
+                 * Safely swaps this node's star mesh onto its StarModel's
+                 * animated lava material — but only once that material
+                 * actually exists.
+                 *
+                 * StarModel loads its textures asynchronously (two image
+                 * fetches — see StarModel.js), so at the exact moment a
+                 * node is activated (onClick()) or restored
+                 * (restoreActive(), which runs for every previously-active
+                 * perk right at boot) its StarModel may not be ready yet.
+                 * Assigning `customMaterial` before it exists would set
+                 * `this.star.material` to `undefined` — and Three.js's
+                 * renderer crashes on the very next frame trying to read
+                 * `material.visible`, with no guard for a single (non-array)
+                 * material being undefined. If the model isn't ready, this
+                 * instead queues the assignment via StarModel.onReady() and
+                 * re-checks `this.nodeActive` once it fires, so a node that
+                 * gets deactivated again before its textures finish loading
+                 * doesn't have its material stomped back on afterward.
+                 */
+                _applyActiveStarVisual() {
+                    const starModel = AppState.starClasses[this.starID];
+                    if (starModel.isModelReady()) {
+                        this.star.material = starModel.customMaterial;
+                    } else {
+                        starModel.onReady(() => {
+                            if (this.nodeActive) this.star.material = starModel.customMaterial;
+                        });
+                    }
                 }
 
                 getFi()    { return this.fi;    }

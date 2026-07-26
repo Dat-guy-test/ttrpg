@@ -24,7 +24,7 @@
 // ============================================================
 
 import AppState from './appState.js';
-import { computeZoomCamera, computePanCamera } from './cameraControls.js';
+import { computePanCamera } from './cameraControls.js';
 import { toggleEditMode } from './editMode.js';
 import { BASE_CAMERA_FOV } from './constants.js';
 
@@ -108,23 +108,35 @@ export function registerInputHandlers() {
                 break;
 
             case '=':
-                // Zoom in — decrease FOV by one step (kept immediate/snappy)
-                if (AppState.zoomStage > 0 && !AppState.zoomCamBool && !AppState.panCamBool) {
-                    AppState.zoomStage   -= 1;
-                    AppState.zoomCamBool  = true;
-                    computeZoomCamera(-1);
-                    AppState.camera.updateProjectionMatrix();
+                // Zoom in — adds inward momentum instead of an immediate
+                // step (see cameraControls.js's updateZoomInertia(), run
+                // every frame from main.js's animate()), so holding/
+                // repeatedly tapping '=' keeps the view gliding inward
+                // briefly before coasting to a stop — the same "inertia"
+                // feel '-'/zoom-out already had.
+                if (AppState.zoomStage > 0 && !AppState.panCamBool) {
+                    // A deliberate zoom-in takes over from any outward
+                    // momentum still coasting from a previous scroll-down/
+                    // '-' press, instead of having to fight it off — see
+                    // touchstart's identical reset for pinch-to-zoom.
+                    if (AppState.zoomVelocity > 0) AppState.zoomVelocity = 0;
+                    AppState.zoomVelocity = Math.max(AppState.zoomVelocity - 6, -40);
                 }
                 break;
 
             case '-':
-                // Zoom out — adds momentum instead of an immediate step (see
-                // cameraControls.js's updateZoomInertia(), run every frame
-                // from main.js's animate()), so holding/repeatedly tapping
-                // '-' keeps the view gliding outward briefly before coasting
-                // to a stop, the same "inertia" feel the wheel gets below.
+                // Zoom out — adds outward momentum instead of an immediate
+                // step (see cameraControls.js's updateZoomInertia(), run
+                // every frame from main.js's animate()), so holding/
+                // repeatedly tapping '-' keeps the view gliding outward
+                // briefly before coasting to a stop, the same "inertia"
+                // feel the wheel gets below.
                 if (AppState.zoomStage < 60 && !AppState.panCamBool) {
-                    AppState.zoomOutVelocity = Math.min(AppState.zoomOutVelocity + 6, 40);
+                    // A deliberate zoom-out takes over from any inward
+                    // momentum still coasting from a previous scroll-up/'='
+                    // press, instead of having to fight it off.
+                    if (AppState.zoomVelocity < 0) AppState.zoomVelocity = 0;
+                    AppState.zoomVelocity = Math.min(AppState.zoomVelocity + 6, 40);
                 }
                 break;
 
@@ -178,27 +190,31 @@ export function registerInputHandlers() {
 
     // ============================================================
     // MOUSE WHEEL — ZOOM
-    // Each wheel tick is treated as one zoom step for zooming IN
-    // (identical to pressing '='). Zooming OUT (scroll down) instead
-    // adds momentum — see cameraControls.js's updateZoomInertia() —
-    // so a fast scroll flick keeps gliding the view outward briefly
-    // after the wheel stops, the way trackpad momentum scrolling feels.
+    // Both directions add momentum instead of jumping the FOV directly
+    // — see cameraControls.js's updateZoomInertia() — so a fast scroll
+    // flick keeps gliding the view in or out briefly after the wheel
+    // stops, the way trackpad momentum scrolling feels.
     // ============================================================
     window.addEventListener('wheel', function (e) {
         e.preventDefault();
 
         if (e.deltaY < 0) {
-            // Scroll up → zoom in (immediate/snappy — unchanged)
-            if (AppState.zoomStage > 0 && !AppState.zoomCamBool && !AppState.panCamBool) {
-                AppState.zoomStage   -= 1;
-                AppState.zoomCamBool  = true;
-                computeZoomCamera(-1);
-                AppState.camera.updateProjectionMatrix();
+            // Scroll up → zoom in, with inertia (see updateZoomInertia())
+            if (AppState.zoomStage > 0 && !AppState.panCamBool) {
+                // A deliberate zoom-in takes over from any zoom-out momentum
+                // still coasting from a previous scroll-down — without this,
+                // updateZoomInertia() would keep applying that leftover
+                // outward velocity on top of the new inward one, fighting it.
+                if (AppState.zoomVelocity > 0) AppState.zoomVelocity = 0;
+                AppState.zoomVelocity = Math.max(AppState.zoomVelocity - 6, -40);
             }
         } else if (e.deltaY > 0) {
             // Scroll down → zoom out, with inertia (see updateZoomInertia())
-            if (!AppState.panCamBool) {
-                AppState.zoomOutVelocity = Math.min(AppState.zoomOutVelocity + 6, 40);
+            if (AppState.zoomStage < 60 && !AppState.panCamBool) {
+                // Same reasoning in reverse — a deliberate zoom-out takes
+                // over from any leftover inward momentum.
+                if (AppState.zoomVelocity < 0) AppState.zoomVelocity = 0;
+                AppState.zoomVelocity = Math.min(AppState.zoomVelocity + 6, 40);
             }
         }
     }, { passive: false }); // passive: false required so preventDefault() works
@@ -281,7 +297,7 @@ export function registerInputHandlers() {
         if (e.touches.length === 2) {
             pinchStartDistance      = touchDistance(e.touches);
             pinchStartZoomStage     = AppState.zoomStage;
-            AppState.zoomOutVelocity = 0; // a deliberate pinch takes over from any wheel/key momentum
+            AppState.zoomVelocity = 0; // a deliberate pinch takes over from any wheel/key momentum
             resetSwipeTracking();
         } else if (e.touches.length === 1) {
             touchStartX = swipeLastX = e.touches[0].clientX;

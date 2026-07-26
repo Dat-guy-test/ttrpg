@@ -1,0 +1,87 @@
+/* ============================================================
+   INSTRUKCJA OBSŁUGI  (Manual tab)
+   Reuses .charSheet/.charSection/.charBtn/.equipListRow tokens from
+   characterSheet.css/equipment.css/style.css so it matches the other
+   tabs' look — including the parchment tokens and MedievalSharp/
+   body-serif font pairing declared there. This file must load after
+   characterSheet.css (see sceneSetup.js's import order).
+   ============================================================ */
+
+.manualSheet {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 56em;
+    margin: 0 auto;
+    padding: 1.5em 2em 3em;
+    font-family: var(--font-body, Georgia, serif);
+    color: var(--parchment-ink, #34183b);
+}
+
+.manualSheet-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75em;
+    margin-bottom: 1em;
+}
+
+.manualSearch-input {
+    box-sizing: border-box;
+    width: 100%;
+    background: rgba(255, 253, 245, 0.55);
+    border: 1px solid var(--parchment-line, #8a6432);
+    border-radius: 0.3em;
+    padding: 0.6em 0.8em;
+    font-size: 1.05em;
+    font-family: var(--font-body, Georgia, serif);
+    color: var(--parchment-ink, #34183b);
+}
+
+.manualPage-title {
+    font-family: var(--font-display, 'MedievalSharp', fantasy, serif);
+    font-size: 1.8em;
+    letter-spacing: 0.02em;
+    margin: 0.75em 0 1em;
+    padding-bottom: 0.3em;
+    border-bottom: 0.15em solid var(--parchment-line, #8a6432);
+    color: var(--parchment-ink, #34183b);
+}
+
+.manualSection {
+    margin-bottom: 1.5em;
+    /* Keeps the section heading clear of the top edge when scrolled to
+       via search — see manualSheet.js's scroll-to-section handling. */
+    scroll-margin-top: 1.5em;
+}
+
+.manualSection-name {
+    font-family: var(--font-display, 'MedievalSharp', fantasy, serif);
+    font-size: 1.25em;
+    letter-spacing: 0.02em;
+    margin: 0 0 0.4em;
+    color: var(--parchment-ink, #34183b);
+}
+
+.manualSection-content {
+    white-space: pre-line; /* blank lines in the source text become paragraph breaks */
+    margin: 0;
+    line-height: 1.6;
+}
+
+@media print {
+    body * { visibility: hidden; }
+
+    #manualPage, #manualPage * { visibility: visible; }
+
+    #manualPage {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        border: none;
+        background: #ffffff;
+    }
+
+    .manualSheet { max-width: 100%; padding: 0; color: #000000; }
+    .manualSheet-toolbar, .manualSearch-input, .itemEditor-typeSection, .itemEditor-subform { display: none !important; }
+}

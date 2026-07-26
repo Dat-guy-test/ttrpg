@@ -25,6 +25,8 @@
 //   editMode       ← appState
 //   equipmentState ← items.json (no local module imports)
 //   equipmentSheet ← equipmentState
+//   manualState    ← manual.json (no local module imports)
+//   manualSheet    ← manualState, manualEditor
 //   main           ← all of the above
 // ============================================================
 
@@ -33,6 +35,7 @@ import { initScene } from './sceneSetup.js';
 import { initCharacterSheet } from './characterSheet.js';
 import { initEquipmentSheet } from './equipmentSheet.js';
 import { initArcanaSheet } from './arcanaSheet.js';
+import { initManualSheet } from './manualSheet.js';
 import { Tree, treeGen } from './Tree.js';
 import {
   panCamera,
@@ -71,6 +74,8 @@ initCharacterSheet();
 initEquipmentSheet();
 // 3d. Build the Arkana (spells) sheet module
 initArcanaSheet();
+// 3e. Build the Instrukcja Obsługi (manual) module
+initManualSheet();
 // 4. Attach all DOM event listeners
 registerInputHandlers();
 

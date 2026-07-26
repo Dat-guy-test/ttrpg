@@ -20,7 +20,7 @@ export const BLOOM_LAYER = 2;
  * zoom handlers all assume `camera.fov === BASE_CAMERA_FOV + zoomStage`
  * whenever no pan/zoom animation is actively mid-flight.
  */
-export const BASE_CAMERA_FOV = 30;
+export const BASE_CAMERA_FOV = 1;
 
 /**
  * Where treeGen() fetches the skill-tree data from.

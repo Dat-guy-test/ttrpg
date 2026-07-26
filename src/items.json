@@ -783,13 +783,15 @@
       "price": 100,
       "bulk": 0.05,
       "type": "clothing",
-      "desc": "Wyposażone zwiększają poziom doświadczenia w umiejętności percepcja o 2, jeżel posiadasz atut \"Bliskowzroczność\".",
+      "desc": "Wyposażone zwiększają poziom doświadczenia w umiejętności spostrzegwaczość o 2, jeżel posiadasz atut \"Bliskowzroczność\".",
       "state": "unequipped",
       "hitPoints": 3,
       "toughness": 0,
       "isSet": false,
       "setMembers": [],
       "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
       "requirements": [],
       "equipSlots": [
         "face"
@@ -802,6 +804,742 @@
       "equipTimeActionPoints": 1,
       "unequipTimeSeconds": 2,
       "unequipTimeActionPoints": 1
+    },
+    {
+      "id": "custom-1785020652629-9ldtr",
+      "name": "Miecz Krótki",
+      "price": 15,
+      "bulk": 2,
+      "type": "weapon",
+      "desc": "Krótki Miecz, dzierżony w jednej dłoni, to uniwersalna broń łącząca",
+      "state": "unequipped",
+      "hitPoints": 3,
+      "toughness": 3,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Miecze",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "block": 2,
+      "deflection": 3,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Miecze",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Rąbnięcie Mieczem",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 1,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Mieczem",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 3,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Mieczem (Półmiecz)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 4,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 2,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Głowicą Miecza (Półmiecz)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 4,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Głowicą Miecza",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785023224596-bbdth",
+      "name": "Miecz Długi",
+      "price": 25,
+      "bulk": 3,
+      "type": "weapon",
+      "desc": "Miecz Długi to niezwykle uniwersalna broń, która sprawdza się świetnie zarówno jako broń jednoręczna jak i jako broń dwuręczna.",
+      "state": "unequipped",
+      "hitPoints": 4,
+      "toughness": 3,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Miecze",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 1
+        }
+      ],
+      "block": 3,
+      "deflection": 2,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Rąbnięcie Mieczem",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 0,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Mieczem",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Głowicą Miecza",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 1,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Rąbnięcie Mieczem (Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d8",
+              "modifier": 1,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Mieczem (Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 3,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d8",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Głowicą Miecza (Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 2,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Mieczem (Półmiecz)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 4,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d8",
+              "modifier": 2,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Głowicą Miecza (Półmiecz)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 4,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 1,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785023614659-h32fn",
+      "name": "Miecz Dwuręczny",
+      "price": 40,
+      "bulk": 5,
+      "type": "weapon",
+      "desc": "",
+      "state": "unequipped",
+      "hitPoints": 6,
+      "toughness": 3,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Miecz Dwuręczny",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 3
+        }
+      ],
+      "block": 4,
+      "deflection": 2,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Miecze",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Rąbnięcie Mieczem (Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 2,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Mieczem (Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 3,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Głowicą Miecza (Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 1,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Mieczem (Półmiecz)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 4,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 2,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Głowicą Miecza (Półmiecz)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 4,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 2,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785099081253-smsbs",
+      "name": "Szabla",
+      "price": 35,
+      "bulk": 2,
+      "type": "weapon",
+      "desc": "Szabla to miecz opracowany z myślą o cięciu.",
+      "state": "unequipped",
+      "hitPoints": 3,
+      "toughness": 3,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Miecze",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "zrecznosc",
+          "min": 2
+        },
+        {
+          "skill": "sila",
+          "min": 1
+        }
+      ],
+      "block": 2,
+      "deflection": 2,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Miecze",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Cięcie Szablą (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 5,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Cięcie Szablą (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 4,
+          "damage": [
+            {
+              "count": 2,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785099530104-n5psc",
+      "name": "Rapier",
+      "price": 40,
+      "bulk": 1.5,
+      "type": "weapon",
+      "desc": "Rapier to broń zaprojektowana do zadawania druzgocących ran kłótych. Brak ostrej krawędzi uniemożliwia jednak wykonywania cięć.",
+      "state": "unequipped",
+      "hitPoints": 3,
+      "toughness": 5,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Miecze",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "zrecznosc",
+          "min": 3
+        }
+      ],
+      "block": 4,
+      "deflection": 4,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Miecze",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Pchnięcie Rapierem (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 5,
+          "damage": [
+            {
+              "count": 3,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Głowicą Rapiera (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Rapierem (Chwyt „Półmiecz”)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 4,
+          "damage": [
+            {
+              "count": 2,
+              "dice": "d8",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 0,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785100004573-cn6zy",
+      "name": "Puklerz",
+      "price": 20,
+      "bulk": 3,
+      "type": "weapon",
+      "desc": "Puklerz to mała, zwykle metalowa tarcza, używana jako dopełnienie wyposażenia wojownika walczącego bronią jednoręczną.",
+      "state": "unequipped",
+      "hitPoints": 12,
+      "toughness": 4,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Tarcze",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "block": 3,
+      "deflection": 3,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Tarcze",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Uderzenie Puklerzem (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 3,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785100453110-d0jox",
+      "name": "Tarcza Bojowa",
+      "price": 40,
+      "bulk": 4,
+      "type": "weapon",
+      "desc": "Okrągła tarcza średniej wielkości, używana głównie przez piechurów. \n\nMając taką tarczę możesz blokować ataki dystansowe.",
+      "state": "unequipped",
+      "hitPoints": 20,
+      "toughness": 3,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 2
+        }
+      ],
+      "block": 5,
+      "deflection": 5,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Tarcze",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Uderzenie Tarczą",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785100940588-zt3z7",
+      "name": "Pełna Tarcza",
+      "price": 60,
+      "bulk": 0,
+      "type": "weapon",
+      "desc": "Ogromna, pięciokątna metalowa tarcza używana przez piechotę imperialną. Jest ona wystarczająco duża by całkowicie osłonić użytkownika.\n\nJeżeli tarcza ta jest wyposażona, możesz blokować ataki dystansowe.\n\nDodatkowo możesz użyć unikatowej akcji: „Schowaj się za tarczą”:\nSchowaj się za tarczą:\nKoszt: 2 Punkty Akcji\nJeżeli zadeklarujesz tą akcję w odpowiedzi na atak rozstrzygnij konkurs czasu reakcji między Tobą a atakującym. W przypadku sukcesu lub krytycznego sukcesu atak nie może trafić w Ciebie i Pełna Tarcza staje się celem ataku.",
+      "state": "unequipped",
+      "hitPoints": 36,
+      "toughness": 6,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Pełne Tarcze",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 5
+        }
+      ],
+      "block": 7,
+      "deflection": 6,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Tarcze",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Uderzenie Tarczą (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 3,
+          "damage": [
+            {
+              "count": 2,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": "Chroniony:\nJeżeli w trakcie wykonywania tego ataku zostaniesz zaatakowany przez cel, Pełna Tarcza staje się celem ataku zamiast Ciebie."
+        }
+      ]
     }
   ]
 }
