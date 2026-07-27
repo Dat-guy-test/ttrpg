@@ -1540,6 +1540,1215 @@
           "specialEffect": "Chroniony:\nJeżeli w trakcie wykonywania tego ataku zostaniesz zaatakowany przez cel, Pełna Tarcza staje się celem ataku zamiast Ciebie."
         }
       ]
+    },
+    {
+      "id": "custom-1785138427383-vb9hl",
+      "name": "Topór Bojowy",
+      "price": 30,
+      "bulk": 2,
+      "type": "weapon",
+      "desc": "Topór Bojowy to prosta krótka broń drzewcowa. Możesz także używać toporka jako narzędzie do obróbki drewna.",
+      "state": "unequipped",
+      "hitPoints": 4,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Krótka Broń Drzewcowa",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Krótka Broń Drzewcowa",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Rąbnięcie Toporem (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Obuchem Głowicy Topora (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 1,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Rąbnięcie Toporem (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d8",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Obuchem Głowicy Topora (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 1,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785139385766-gokr3",
+      "name": "Młot Bojowy",
+      "price": 30,
+      "bulk": 2,
+      "type": "weapon",
+      "desc": "Młot Bojowy wyposażony w zaostrzony obuch świetnie sprawdza się przeciwko opancerzonym przeciwnikom.",
+      "state": "unequipped",
+      "hitPoints": 4,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Krótka Broń Drzewcowa",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Krótka Broń Drzewcowa",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Uderzenie Młotem (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d8",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Zaostrzonym Obuchem Młota (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d8",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Młotem (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Zaostrzonym Obuchem Młota (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785139680589-s5eri",
+      "name": "Obuch",
+      "price": 25,
+      "bulk": 2.5,
+      "type": "weapon",
+      "desc": "Metalowa masa przytwierdzona na końcu drewnianego drąga, stanowi niepozorną lecz druzgocącą broń.",
+      "state": "unequipped",
+      "hitPoints": 6,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Krótka Broń Drzewcowa",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "block": 2,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Krótka Broń Drzewcowa",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Uderzenie Obuchem (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Obuchem (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d12",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785140036954-qan2a",
+      "name": "Gwiazda Zaranna",
+      "price": 45,
+      "bulk": 3.5,
+      "type": "weapon",
+      "desc": "Obuch z przytwierdzonymi kolcami stanowi przerażającą broń.",
+      "state": "unequipped",
+      "hitPoints": 4,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Krótka Broń Drzewcowa",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "block": 2,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Krótka Broń Drzewcowa",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Uderzenie Gwiazdą Zaranną (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": "Wiele ran: Efektywny Trafiony atak dodaje jeden poizom wykrwawienia u celu."
+        },
+        {
+          "name": "Uderzenie Rękojeścią (Chwyt Jednoręczny",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Gwiazdą Zaranną (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d12",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Rękojeścią (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 1,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785140927710-mjh55",
+      "name": "Włócznia",
+      "price": 5,
+      "bulk": 2,
+      "type": "weapon",
+      "desc": "Włócznia to długa broń drzewcowa o prostym metalowym grocie. To tania i uniwersalna broń.",
+      "state": "unequipped",
+      "hitPoints": 3,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Długa Broń Drzewcowa",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 1
+        }
+      ],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee",
+        "thrown"
+      ],
+      "proficiencyCategory": "Długa Broń Drzewcowa",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Pchnięcie Włócznią (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 2,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Drzewcem Włóczni (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 4,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 2,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Rzut Włócznią (Chwyt Jednoręczny)",
+          "modeType": "throw",
+          "handedness": "one",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d8",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 3,
+          "maxRange": 10,
+          "spread": {
+            "count": 1,
+            "dice": "d4",
+            "modifier": 0
+          },
+          "effectiveRange": 5,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Włócznią (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d8",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 2,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Drzewcem Włóczni (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 5,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 1,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 2,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785144049957-0qkd2",
+      "name": "Partyzana",
+      "price": 15,
+      "bulk": 3.5,
+      "type": "weapon",
+      "desc": "Cięższa wersja włóczni o rozbudowanym rozgałęzionym grocie ułatwiającym obronę.\n\nAtrybut Broni: Broń Ciężka: Ataki tą bronią wymagają wydania dodatkowego Punktu Akcji.",
+      "state": "unequipped",
+      "hitPoints": 4,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Długa Broń Drzewcowa",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 2
+        }
+      ],
+      "block": 3,
+      "deflection": 2,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Długa Broń Drzewcowa",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Pchnięcie Partyzaną (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d8",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 2,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Drzewcem Partyzany (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 3,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 2,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Partyzaną (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 3,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 2,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Drzewcem Partyzany (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 4,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 1,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 2,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785144528234-ghy3r",
+      "name": "Młot Wielki",
+      "price": 25,
+      "bulk": 4,
+      "type": "weapon",
+      "desc": "Młot natknięty na długi drzewiec to świetna broń obuchowa, o dużym zasięgu.\n\nAtrybut Broni: Broń Ciężka: Ataki tą bronią wymagają wydania dodatkowego Punktu Akcji.",
+      "state": "unequipped",
+      "hitPoints": 5,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Długa Broń Drzewcowa",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 3
+        }
+      ],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Długa Broń Drzewcowa",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Uderzenie Młotem Wielkim (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 3,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d12",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 2,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Ostrym Obuchem Młota Wielkiego (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d12",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 2,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785144909888-61a90",
+      "name": "Halabarda",
+      "price": 30,
+      "bulk": 5,
+      "type": "weapon",
+      "desc": "Halabarda to długa broń drzewcowa zakończona dwoma szpikulcami i toporem. Jest to niezwykle skuteczna broń wymagająca sporej siły.\n\nAtrybut Broni: Broń Ciężka: Ataki tą bronią wymagają wydania dodatkowego Punktu Akcji.",
+      "state": "unequipped",
+      "hitPoints": 5,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Długa Broń Drzewcowa",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 4
+        }
+      ],
+      "block": 2,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Długa Broń Drzewcowa",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Rąbnięcie Halabardą (Chyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 3,
+          "damage": [
+            {
+              "count": 2,
+              "dice": "d6",
+              "modifier": 1,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 2,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Halabardą (Chyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 4,
+          "damage": [
+            {
+              "count": 2,
+              "dice": "d4",
+              "modifier": 1,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 2,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Ostrym Obuchem Halabardy (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 2,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 2,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Drzewcem Halabardy (Chyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 4,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 1,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 2,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785145210190-mlmdk",
+      "name": "Pika",
+      "price": 20,
+      "bulk": 4,
+      "type": "weapon",
+      "desc": "Pika to najdłuższa broń drzewcowa używana w imperium.\n\nAtrybut Broni: Broń Ciężka: Ataki tą bronią wymagają wydania dodatkowego Punktu Akcji.",
+      "state": "unequipped",
+      "hitPoints": 3,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Długa Broń Drzewcowa",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 4
+        }
+      ],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Długa Broń Drzewcowa",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Pchnięcie Piką (Chyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 2,
+          "maxRange": 3,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Drzewcem Piki (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 0,
+              "dice": "none",
+              "modifier": 1,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 3,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Piką (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 3,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d8",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 2,
+          "maxRange": 3,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Drzewcem Piki (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 0,
+              "dice": "none",
+              "modifier": 2,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 3,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785148772647-siv96",
+      "name": "Oszczep",
+      "price": 10,
+      "bulk": 1,
+      "type": "weapon",
+      "desc": "Krótka włócznia wyważona z myślą o rzucaniu nią.",
+      "state": "unequipped",
+      "hitPoints": 3,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Oszczep",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 1
+        }
+      ],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee",
+        "thrown"
+      ],
+      "proficiencyCategory": "Broń Miotana",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Rzut Oszczepem (Chwyt Jednoręczny)",
+          "modeType": "throw",
+          "handedness": "one",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 11,
+          "spread": {
+            "count": 1,
+            "dice": "d4",
+            "modifier": 0
+          },
+          "effectiveRange": 6,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Oszczepem (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d8",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Drzewcem Oszczepu (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785148971534-kfyli",
+      "name": "Rzutka",
+      "price": 2,
+      "bulk": 0.05,
+      "type": "weapon",
+      "desc": "Krótka strzałka wyważona i skonstuowana z myślą o rzucaniu ją ręką.",
+      "state": "unequipped",
+      "hitPoints": 2,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Rzutki",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "block": 0,
+      "deflection": 0,
+      "weaponKinds": [
+        "melee",
+        "thrown"
+      ],
+      "proficiencyCategory": "Broń Miotana",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Rzut Rzutką (Chwyt Jednoręczny)",
+          "modeType": "throw",
+          "handedness": "one",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 2,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 6,
+          "spread": {
+            "count": 0,
+            "dice": "none",
+            "modifier": 1
+          },
+          "effectiveRange": 5,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Rzutką (Chyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 0,
+              "dice": "none",
+              "modifier": 2,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785149372744-1kd1e",
+      "name": "Nożyk do Rzucania",
+      "price": 1,
+      "bulk": 0.1,
+      "type": "weapon",
+      "desc": "Mały wyważony nożyk do rzucania.",
+      "state": "unequipped",
+      "hitPoints": 2,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Nożyki do Rzucania",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "zrecznosc",
+          "min": 1
+        }
+      ],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee",
+        "thrown"
+      ],
+      "proficiencyCategory": "Broń Miotana",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Rzut Nożykiem do Rzucania (Chwyt Jednoręczny)",
+          "modeType": "throw",
+          "handedness": "one",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 2,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 10,
+          "spread": {
+            "count": 0,
+            "dice": "none",
+            "modifier": 1
+          },
+          "effectiveRange": 4,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785149636738-y8k11",
+      "name": "Łuk Krótki",
+      "price": 40,
+      "bulk": 0,
+      "type": "weapon",
+      "desc": "",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Łuk",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 1
+        },
+        {
+          "skill": "zrecznosc",
+          "min": 1
+        }
+      ],
+      "block": 0,
+      "deflection": 0,
+      "weaponKinds": [],
+      "proficiencyCategory": "Broń Miotająca",
+      "upgrades": [],
+      "attackModes": []
+    },
+    {
+      "id": "custom-1785149651255-1h251",
+      "name": "Łuk Długi",
+      "price": 75,
+      "bulk": 0,
+      "type": "weapon",
+      "desc": "",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "block": 0,
+      "deflection": 0,
+      "weaponKinds": [],
+      "proficiencyCategory": "",
+      "upgrades": [],
+      "attackModes": []
+    },
+    {
+      "id": "custom-1785149659540-6vojx",
+      "name": "Proca",
+      "price": 3,
+      "bulk": 0,
+      "type": "weapon",
+      "desc": "",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "block": 0,
+      "deflection": 0,
+      "weaponKinds": [],
+      "proficiencyCategory": "",
+      "upgrades": [],
+      "attackModes": []
+    },
+    {
+      "id": "custom-1785149674967-9mq9z",
+      "name": "Toporek do Rzucania",
+      "price": 6,
+      "bulk": 0,
+      "type": "weapon",
+      "desc": "",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "block": 0,
+      "deflection": 0,
+      "weaponKinds": [],
+      "proficiencyCategory": "",
+      "upgrades": [],
+      "attackModes": []
     }
   ]
 }

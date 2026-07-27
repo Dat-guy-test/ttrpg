@@ -36,6 +36,7 @@ import {
 
 let draft = null;        // { effects: [] } — staged Efekty Zaklęcia
 let editingSpell = null; // the spell (built-in OR custom) currently being edited, or null when creating new
+let editingEffectIndex = null; // index into draft.effects currently loaded into the Efekty Zaklęcia mini-form for editing, or null when the mini-form is in "add new" mode
 
 export function resetSpellEditor(existingSpell) {
     editingSpell = existingSpell || null;
@@ -44,6 +45,7 @@ export function resetSpellEditor(existingSpell) {
             ? existingSpell.effects.map(e => ({ ...e, types: [...(e.types || [])] }))
             : [],
     };
+    editingEffectIndex = null;
 }
 resetSpellEditor();
 
@@ -126,7 +128,10 @@ export function renderSpellEditorHTML() {
                 <input id="se-eff-range" type="number" min="0" step="1" value="0" />
                 <label class="charField-label" for="se-eff-desc">Opis efektu</label>
                 <textarea id="se-eff-desc" rows="2"></textarea>
-                <button class="editor-btn editor-btn-small" id="se-eff-add-btn">Dodaj Efekt</button>
+                <div class="editor-row">
+                    <button class="editor-btn editor-btn-small" id="se-eff-add-btn">Dodaj Efekt</button>
+                    <button class="editor-btn editor-btn-small" id="se-eff-cancel-btn" style="display:none;">Anuluj edycję</button>
+                </div>
             </div>
 
             <div class="editor-row" style="margin-top:1em;">
@@ -149,7 +154,10 @@ function renderSpellEffectsList() {
             <div class="editor-req-row" style="flex-direction:column; align-items:flex-start; gap:0.2em;">
                 <span><strong>${escapeHtml(typeLabels || '(brak typu)')}</strong> — Zasięg Ogniska: ${e.maxFocalRange}</span>
                 ${e.description ? `<span>${escapeHtml(e.description)}</span>` : ''}
-                <button class="editor-btn editor-btn-small" data-remove-spelleffect="${i}">✕ Usuń efekt</button>
+                <div class="editor-row">
+                    <button class="editor-btn editor-btn-small" data-edit-spelleffect="${i}">Edytuj efekt</button>
+                    <button class="editor-btn editor-btn-small" data-remove-spelleffect="${i}">✕ Usuń efekt</button>
+                </div>
             </div>
         `;
     }).join('');
@@ -176,20 +184,60 @@ export function wireSpellEditorHandlers(rootEl, onSaved) {
     });
 
     // ---- Efekty Zaklęcia --------------------------------------------
+    const effAddBtn    = rootEl.querySelector('#se-eff-add-btn');
+    const effCancelBtn = rootEl.querySelector('#se-eff-cancel-btn');
+
+    /** Resets the Efekty Zaklęcia mini-form back to "add a new effect" mode. */
+    function resetSpellEffectMiniForm() {
+        editingEffectIndex = null;
+        rootEl.querySelectorAll('.se-efftype-cb').forEach(cb => { cb.checked = false; });
+        rootEl.querySelector('#se-eff-range').value = 0;
+        rootEl.querySelector('#se-eff-desc').value = '';
+        effAddBtn.textContent = 'Dodaj Efekt';
+        effCancelBtn.style.display = 'none';
+    }
+
     function refreshEffectsList() {
         const listEl = rootEl.querySelector('#spell-editor-effects-list');
         if (!listEl) return;
         listEl.innerHTML = renderSpellEffectsList();
         listEl.querySelectorAll('[data-remove-spelleffect]').forEach(btn => {
             btn.addEventListener('click', () => {
-                draft.effects.splice(Number(btn.dataset.removeSpelleffect), 1);
+                const idx = Number(btn.dataset.removeSpelleffect);
+                draft.effects.splice(idx, 1);
+                // Removing the effect currently loaded for editing (or one
+                // before it) would otherwise silently save over the wrong
+                // entry — safest is to just drop back to "add new".
+                if (editingEffectIndex !== null && idx <= editingEffectIndex) resetSpellEffectMiniForm();
                 refreshEffectsList();
+            });
+        });
+        listEl.querySelectorAll('[data-edit-spelleffect]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const idx = Number(btn.dataset.editSpelleffect);
+                const effect = draft.effects[idx];
+                if (!effect) return;
+
+                editingEffectIndex = idx;
+                const types = new Set(effect.types || []);
+                rootEl.querySelectorAll('.se-efftype-cb').forEach(cb => { cb.checked = types.has(cb.value); });
+                rootEl.querySelector('#se-eff-range').value = effect.maxFocalRange;
+                rootEl.querySelector('#se-eff-desc').value = effect.description || '';
+
+                effAddBtn.textContent = 'Zapisz Efekt';
+                effCancelBtn.style.display = '';
+                setStatus('');
             });
         });
     }
     refreshEffectsList();
 
-    rootEl.querySelector('#se-eff-add-btn').addEventListener('click', () => {
+    effCancelBtn.addEventListener('click', () => {
+        resetSpellEffectMiniForm();
+        setStatus('');
+    });
+
+    effAddBtn.addEventListener('click', () => {
         const types = Array.from(rootEl.querySelectorAll('.se-efftype-cb:checked')).map(cb => cb.value);
         const maxFocalRange = Number(rootEl.querySelector('#se-eff-range').value);
         const description = rootEl.querySelector('#se-eff-desc').value.trim();
@@ -197,10 +245,13 @@ export function wireSpellEditorHandlers(rootEl, onSaved) {
         if (types.length === 0) { setStatus('Efekt zaklęcia wymaga przynajmniej jednego Typu.', true); return; }
         if (!Number.isFinite(maxFocalRange) || maxFocalRange < 0) { setStatus('Maksymalny Zasięg Ogniska musi być nieujemną liczbą.', true); return; }
 
-        draft.effects.push({ types, maxFocalRange, description });
-        rootEl.querySelectorAll('.se-efftype-cb').forEach(cb => { cb.checked = false; });
-        rootEl.querySelector('#se-eff-range').value = 0;
-        rootEl.querySelector('#se-eff-desc').value = '';
+        if (editingEffectIndex !== null) {
+            draft.effects[editingEffectIndex] = { types, maxFocalRange, description };
+        } else {
+            draft.effects.push({ types, maxFocalRange, description });
+        }
+
+        resetSpellEffectMiniForm();
         refreshEffectsList();
         setStatus('');
     });

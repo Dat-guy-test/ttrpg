@@ -31,6 +31,7 @@ import {
 
 let draft = null;       // { sections: [] } — staged sections
 let editingPage = null; // the page (built-in OR custom) currently being edited, or null when creating a new one
+let editingSectionIndex = null; // index into draft.sections currently loaded into the Sekcje mini-form for editing, or null when the mini-form is in "add new" mode
 
 /**
  * Resets the form. Pass an existing page (built-in or custom) to
@@ -44,6 +45,7 @@ export function resetManualEditor(existingPage) {
             ? existingPage.sections.map(s => ({ ...s }))
             : [],
     };
+    editingSectionIndex = null;
 }
 resetManualEditor();
 
@@ -68,7 +70,10 @@ export function renderManualEditorHTML() {
                 <input id="me-sec-name" type="text" placeholder="np. Charakterystyki" />
                 <label class="charField-label" for="me-sec-content">Treść sekcji</label>
                 <textarea id="me-sec-content" rows="6" placeholder="Treść… (puste linie = nowy akapit)"></textarea>
-                <button class="editor-btn editor-btn-small" id="me-sec-add-btn">Dodaj Sekcję</button>
+                <div class="editor-row">
+                    <button class="editor-btn editor-btn-small" id="me-sec-add-btn">Dodaj Sekcję</button>
+                    <button class="editor-btn editor-btn-small" id="me-sec-cancel-btn" style="display:none;">Anuluj edycję</button>
+                </div>
             </div>
 
             <div class="editor-row" style="margin-top:1em;">
@@ -89,7 +94,10 @@ function renderSectionsList() {
         <div class="editor-req-row" style="flex-direction:column; align-items:flex-start; gap:0.2em;">
             <span><strong>${escapeHtml(s.name)}</strong></span>
             <span>${escapeHtml(truncate(s.content, 140))}</span>
-            <button class="editor-btn editor-btn-small" data-remove-section="${i}">✕ Usuń sekcję</button>
+            <div class="editor-row">
+                <button class="editor-btn editor-btn-small" data-edit-section="${i}">Edytuj sekcję</button>
+                <button class="editor-btn editor-btn-small" data-remove-section="${i}">✕ Usuń sekcję</button>
+            </div>
         </div>
     `).join('');
 }
@@ -108,33 +116,75 @@ export function wireManualEditorHandlers(rootEl, onSaved) {
     };
 
     // ---- Sekcje ---------------------------------------------------
+    const secAddBtn    = rootEl.querySelector('#me-sec-add-btn');
+    const secCancelBtn = rootEl.querySelector('#me-sec-cancel-btn');
+    const secNameInput    = rootEl.querySelector('#me-sec-name');
+    const secContentInput = rootEl.querySelector('#me-sec-content');
+
+    /** Resets the Sekcje mini-form back to "add a new section" mode. */
+    function resetSectionMiniForm() {
+        editingSectionIndex = null;
+        secNameInput.value = '';
+        secContentInput.value = '';
+        secAddBtn.textContent = 'Dodaj Sekcję';
+        secCancelBtn.style.display = 'none';
+    }
+
     function refreshSectionsList() {
         const listEl = rootEl.querySelector('#manual-editor-sections-list');
         if (!listEl) return;
         listEl.innerHTML = renderSectionsList();
         listEl.querySelectorAll('[data-remove-section]').forEach(btn => {
             btn.addEventListener('click', () => {
-                draft.sections.splice(Number(btn.dataset.removeSection), 1);
+                const idx = Number(btn.dataset.removeSection);
+                draft.sections.splice(idx, 1);
+                // Removing the section currently loaded for editing (or one
+                // before it) would otherwise silently save over the wrong
+                // entry — safest is to just drop back to "add new".
+                if (editingSectionIndex !== null && idx <= editingSectionIndex) resetSectionMiniForm();
                 refreshSectionsList();
+            });
+        });
+        listEl.querySelectorAll('[data-edit-section]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const idx = Number(btn.dataset.editSection);
+                const section = draft.sections[idx];
+                if (!section) return;
+                editingSectionIndex = idx;
+                secNameInput.value = section.name;
+                secContentInput.value = section.content;
+                secAddBtn.textContent = 'Zapisz Sekcję';
+                secCancelBtn.style.display = '';
+                setStatus('');
             });
         });
     }
     refreshSectionsList();
 
-    rootEl.querySelector('#me-sec-add-btn').addEventListener('click', () => {
-        const nameInput    = rootEl.querySelector('#me-sec-name');
-        const contentInput = rootEl.querySelector('#me-sec-content');
-        const name    = nameInput.value.trim();
-        const content = contentInput.value;
+    secCancelBtn.addEventListener('click', () => {
+        resetSectionMiniForm();
+        setStatus('');
+    });
+
+    secAddBtn.addEventListener('click', () => {
+        const name    = secNameInput.value.trim();
+        const content = secContentInput.value;
 
         if (!name) { setStatus('Sekcja wymaga nazwy.', true); return; }
 
-        const existingIds = draft.sections.map(s => s.id);
-        const id = makeSectionId(name, existingIds);
-        draft.sections.push({ id, name, content });
+        if (editingSectionIndex !== null) {
+            // Keep the section's existing id (rather than regenerating it
+            // from the possibly-changed name) so its scroll-target anchor
+            // stays stable — see manualSchema.js's makeSectionId() comment.
+            const existing = draft.sections[editingSectionIndex];
+            draft.sections[editingSectionIndex] = { ...existing, name, content };
+        } else {
+            const existingIds = draft.sections.map(s => s.id);
+            const id = makeSectionId(name, existingIds);
+            draft.sections.push({ id, name, content });
+        }
 
-        nameInput.value = '';
-        contentInput.value = '';
+        resetSectionMiniForm();
         refreshSectionsList();
         setStatus('');
     });

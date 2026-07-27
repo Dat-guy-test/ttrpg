@@ -75,6 +75,7 @@ import {
 let draft = null;         // { requirements: [], upgrades: [], attackModes: [] }
 let pendingDamage = [];   // Obrażenia entries staged for the attack-mode-in-progress mini-form
 let editingItem = null;   // the item (built-in OR custom) currently being edited, or null when creating a brand-new one
+let editingAttackModeIndex = null; // index into draft.attackModes currently loaded into the Tryby Ataku mini-form for editing, or null when the mini-form is in "add new" mode
 
 /**
  * Resets the form. Pass an existing item (built-in or custom) to
@@ -108,6 +109,7 @@ export function resetItemEditor(existingItem) {
             : [],
     };
     pendingDamage = [];
+    editingAttackModeIndex = null;
 }
 resetItemEditor();
 
@@ -362,7 +364,10 @@ function attackModeFormHTML() {
             <label class="charField-label" for="ie-atk-special">Efekt Specjalny</label>
             <textarea id="ie-atk-special" rows="2"></textarea>
 
-            <button class="editor-btn editor-btn-small" id="ie-atk-add-btn">Dodaj Tryb Ataku</button>
+            <div class="editor-row">
+                <button class="editor-btn editor-btn-small" id="ie-atk-add-btn">Dodaj Tryb Ataku</button>
+                <button class="editor-btn editor-btn-small" id="ie-atk-cancel-btn" style="display:none;">Anuluj edycję</button>
+            </div>
         </div>
     `;
 }
@@ -520,7 +525,10 @@ function renderAttackModesList() {
                 <span><strong>${escapeHtml(m.name || '(bez nazwy)')}</strong> — ${escapeHtml(typeLabel)}, ${escapeHtml(handLabel)}, Celność ${m.baseAccuracy}, Zasięg ${m.minRange}–${m.maxRange}${escapeHtml(effRangeSummary)}</span>
                 <span>Obrażenia: ${escapeHtml(dmgSummary)}${escapeHtml(spreadSummary)}</span>
                 ${m.specialEffect ? `<span>Efekt: ${escapeHtml(m.specialEffect)}</span>` : ''}
-                <button class="editor-btn editor-btn-small" data-remove-atkmode="${i}">✕ Usuń tryb</button>
+                <div class="editor-row">
+                    <button class="editor-btn editor-btn-small" data-edit-atkmode="${i}">Edytuj tryb</button>
+                    <button class="editor-btn editor-btn-small" data-remove-atkmode="${i}">✕ Usuń tryb</button>
+                </div>
             </div>
         `;
     }).join('');
@@ -727,19 +735,85 @@ export function wireItemEditorHandlers(rootEl, onSaved) {
     });
 
     // ---- Tryby Ataku ----------------------------------------------------
+    const atkAddBtn    = rootEl.querySelector('#ie-atk-add-btn');
+    const atkCancelBtn = rootEl.querySelector('#ie-atk-cancel-btn');
+
+    /** Resets the Tryby Ataku mini-form (incl. its staged Obrażenia) back to "add a new mode" mode. */
+    function resetAttackModeMiniForm() {
+        editingAttackModeIndex = null;
+        pendingDamage = [];
+        rootEl.querySelector('#ie-atk-name').value = '';
+        rootEl.querySelector('#ie-atk-modetype').value = 'melee';
+        rootEl.querySelector('#ie-atk-modetype').dispatchEvent(new Event('change'));
+        rootEl.querySelector('#ie-atk-hand').value = 'one';
+        rootEl.querySelector('#ie-atk-acc').value = 0;
+        rootEl.querySelector('#ie-atk-minrange').value = 0;
+        rootEl.querySelector('#ie-atk-maxrange').value = 0;
+        rootEl.querySelector('#ie-atk-spread-count').value = 1;
+        rootEl.querySelector('#ie-atk-spread-dice').value = DAMAGE_DICE[0];
+        rootEl.querySelector('#ie-atk-spread-mod').value = 0;
+        rootEl.querySelector('#ie-atk-effrange').value = 1;
+        rootEl.querySelector('#ie-atk-special').value = '';
+        if (atkAddBtn) atkAddBtn.textContent = 'Dodaj Tryb Ataku';
+        if (atkCancelBtn) atkCancelBtn.style.display = 'none';
+        refreshDamageList();
+    }
+
     function refreshAttackModesList() {
         const listEl = rootEl.querySelector('#item-editor-atkmodes-list');
         if (!listEl) return;
         listEl.innerHTML = renderAttackModesList();
         listEl.querySelectorAll('[data-remove-atkmode]').forEach(btn => {
             btn.addEventListener('click', () => {
-                draft.attackModes.splice(Number(btn.dataset.removeAtkmode), 1);
+                const idx = Number(btn.dataset.removeAtkmode);
+                draft.attackModes.splice(idx, 1);
+                // Removing the mode currently loaded for editing (or one
+                // before it) would otherwise silently save over the wrong
+                // entry — safest is to just drop back to "add new".
+                if (editingAttackModeIndex !== null && idx <= editingAttackModeIndex) resetAttackModeMiniForm();
                 refreshAttackModesList();
+            });
+        });
+        listEl.querySelectorAll('[data-edit-atkmode]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const idx = Number(btn.dataset.editAtkmode);
+                const mode = draft.attackModes[idx];
+                if (!mode) return;
+
+                editingAttackModeIndex = idx;
+                rootEl.querySelector('#ie-atk-name').value = mode.name;
+                rootEl.querySelector('#ie-atk-modetype').value = mode.modeType;
+                rootEl.querySelector('#ie-atk-modetype').dispatchEvent(new Event('change')); // toggles the spread/effrange section's visibility
+                rootEl.querySelector('#ie-atk-hand').value = mode.handedness;
+                rootEl.querySelector('#ie-atk-acc').value = mode.baseAccuracy;
+                rootEl.querySelector('#ie-atk-minrange').value = mode.minRange;
+                rootEl.querySelector('#ie-atk-maxrange').value = mode.maxRange;
+
+                if (mode.spread) {
+                    rootEl.querySelector('#ie-atk-spread-count').value = mode.spread.count;
+                    rootEl.querySelector('#ie-atk-spread-dice').value = mode.spread.dice;
+                    rootEl.querySelector('#ie-atk-spread-dice').dispatchEvent(new Event('change')); // toggles the spread Ilość field's disabled state
+                    rootEl.querySelector('#ie-atk-spread-mod').value = mode.spread.modifier;
+                }
+                rootEl.querySelector('#ie-atk-effrange').value = mode.effectiveRange || 1;
+                rootEl.querySelector('#ie-atk-special').value = mode.specialEffect || '';
+
+                pendingDamage = (mode.damage || []).map(d => ({ ...d }));
+                refreshDamageList();
+
+                if (atkAddBtn) atkAddBtn.textContent = 'Zapisz Tryb Ataku';
+                if (atkCancelBtn) atkCancelBtn.style.display = '';
+                setStatus('');
             });
         });
     }
     refreshAttackModesList();
-    const atkAddBtn = rootEl.querySelector('#ie-atk-add-btn');
+
+    if (atkCancelBtn) atkCancelBtn.addEventListener('click', () => {
+        resetAttackModeMiniForm();
+        setStatus('');
+    });
+
     if (atkAddBtn) atkAddBtn.addEventListener('click', () => {
         const name = rootEl.querySelector('#ie-atk-name').value.trim();
         const modeType = rootEl.querySelector('#ie-atk-modetype').value;
@@ -767,22 +841,19 @@ export function wireItemEditorHandlers(rootEl, onSaved) {
             }
         }
 
-        draft.attackModes.push({
+        const mode = {
             name, modeType, handedness, baseAccuracy,
             damage: pendingDamage.map(d => ({ ...d })),
             minRange, maxRange, spread, effectiveRange, specialEffect,
-        });
+        };
 
-        // Reset the mini-form for the next mode
-        pendingDamage = [];
-        rootEl.querySelector('#ie-atk-name').value = '';
-        rootEl.querySelector('#ie-atk-acc').value = 0;
-        rootEl.querySelector('#ie-atk-minrange').value = 0;
-        rootEl.querySelector('#ie-atk-maxrange').value = 0;
-        rootEl.querySelector('#ie-atk-effrange').value = 1;
-        rootEl.querySelector('#ie-atk-special').value = '';
+        if (editingAttackModeIndex !== null) {
+            draft.attackModes[editingAttackModeIndex] = mode;
+        } else {
+            draft.attackModes.push(mode);
+        }
 
-        refreshDamageList();
+        resetAttackModeMiniForm();
         refreshAttackModesList();
         setStatus('');
     });

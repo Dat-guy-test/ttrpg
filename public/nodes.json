@@ -31,8 +31,8 @@
     },
     {
       "id": "-3",
-      "name": "Innate caster",
-      "desc": "You always had some profficiency in manipulating the world around you via magic.",
+      "name": "Urodzony Czarownik",
+      "desc": "Od urodzenia potrzfisz rzucać zaklęcia. Wybierz 2 zaklęcia o maksymalnej złożoności 1. Znasz te zaklęcia na pamięć i zawsze możesz je rzucić o ile spełniasz wymagania rzucenia owych czarów.",
       "hoverText": "Grants access to Witchery tree and basic magic.",
       "fi": 25,
       "theta": 20,
@@ -86,7 +86,7 @@
       "name": "Krasnolud",
       "desc": "Jesteś krasnoludem.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 9\nSiła Woli: 12\n\nSzybkość: 4\n\nZyskujesz Atrybuty:\nUparci:\nPo każdej godzinie odpoczynku odzyskujesz 1d4 Punktów Energii\n\nAdaptowalny wzrok:\nKonstrukcja krasnoludzkich oczu umożliwia im widzenie w ciemności, choć nie są w stanie rozpoznawać w jej kolorów.\n\nCechy Fizyczne:\nWzrost: od 0,6 do 1 jednostki\nRozmiar: Mały\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 22 lat\nWiek starczy: 110 lat,\nŚrednia Długość Życia: 125 lat (średnia),\nMaksymalna Długość Życia: 150 lat",
       "hoverText": "",
-      "fi": 22.270000000000003,
+      "fi": 22.270000000000007,
       "theta": 24,
       "requires": [],
       "cost": 5,
@@ -262,7 +262,7 @@
       "name": "Niziołek",
       "desc": "Jesteś nizołkiem\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 8\nSiła Woli: 11\n\nSzybkość: 5\n\nDodatkowe umiejętności:\nSavant:\nNiziołki często są nizwykle wybitne w jednej lub paru bardzo interesujących ich dziedzinach. Otrzymujesz trzy poziomy doświadczenia i dwa poziomy improwizacji w  wybranych umiejętnościach.\n\nTrudni do trafienia:\nZ racji na swoją niewielką formę niziołki potrafią być zaskakująco trudne do trafienia. Gdy twój rozmiar jest Mały zyskujesz +2 do ewazji.\n\nCechy Fizyczne:\nWzrost: od 0,9 do 1,5 jednostki\nRozmiar: Mały lub Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 21 do 23 lat\nWiek starczy: 80 lat,\nŚrednia Długość Życia: 100 lat (średnia),\nMaksymalna Długość Życia: 140 lat",
       "hoverText": "",
-      "fi": 22.270000000000003,
+      "fi": 22.270000000000007,
       "theta": 26.000000000000007,
       "requires": [],
       "cost": 4,
@@ -313,66 +313,6 @@
       ]
     },
     {
-      "id": "2",
-      "name": "Secrets of the World",
-      "desc": "You begin to uncover the mysteries of the universe.",
-      "hoverText": "Grants intellect related skills.",
-      "fi": 0,
-      "theta": 37.14,
-      "requires": [
-        "1"
-      ],
-      "cost": 1,
-      "temperature": 5000,
-      "exclGroup": null,
-      "effects": []
-    },
-    {
-      "id": "3",
-      "name": "Student of the Arcane",
-      "desc": "You begin to study magic arts.",
-      "hoverText": "Grants access to basic magic.",
-      "fi": 10,
-      "theta": 42.86,
-      "requires": [
-        "2"
-      ],
-      "cost": 1,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": []
-    },
-    {
-      "id": "4",
-      "name": "Explorer",
-      "desc": "Begin to explore the world.",
-      "hoverText": "Grants access to the exploration tree.",
-      "fi": 20,
-      "theta": 37.14,
-      "requires": [
-        "1"
-      ],
-      "cost": 1,
-      "temperature": 5000,
-      "exclGroup": null,
-      "effects": []
-    },
-    {
-      "id": "5",
-      "name": "Diplomat",
-      "desc": "Be more persuasive.",
-      "hoverText": "Grants access to the exploration tree.",
-      "fi": 29.999999999999996,
-      "theta": 37.14,
-      "requires": [
-        "1"
-      ],
-      "cost": 1,
-      "temperature": 5000,
-      "exclGroup": null,
-      "effects": []
-    },
-    {
       "id": "6",
       "name": "Sztuka Walki",
       "desc": "Twoja postać miała okzaję uczesniczyć w wielu treningowych lub realnych potyczkach.\n\nZ racji na to doświadczenie zyskujesz jeden poziom doświadczenia w umiejętności czas reakcji.",
@@ -392,66 +332,6 @@
           "amount": 1
         }
       ]
-    },
-    {
-      "id": "7",
-      "name": "Resourceful",
-      "desc": "You got a little better at making the most out of what you have in any given situation. <D><D> Your ingenuity increases by 1.",
-      "hoverText": "+1 to ingenuity.",
-      "fi": 8,
-      "theta": 42.86,
-      "requires": [
-        "2"
-      ],
-      "cost": 2,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": []
-    },
-    {
-      "id": "8",
-      "name": "Creative",
-      "desc": "You became a bit more creative. <D><D> Your ingenuity increases by 1. <D> Damage you deal with improvised weapons increases by 1d4 of a type that this weapon already deals (you can choose a different one each attack).",
-      "hoverText": "+1 to ingenuity. Your improvised weapon attacks deal more damage.",
-      "fi": 8,
-      "theta": 48.57,
-      "requires": [
-        "7"
-      ],
-      "cost": 2,
-      "temperature": 4000,
-      "exclGroup": null,
-      "effects": []
-    },
-    {
-      "id": "9",
-      "name": "Improvised weapon adept",
-      "desc": "You focus your martial training at what you have at hand. <D> You gain an additional bonus to hit rolls made with improvised weapons equal to your ingenuity stat. <D> You also gain +1 ingenuity.",
-      "hoverText": "+1 to ingenuity. Your improvised weapon attacks become more accurate.",
-      "fi": 6,
-      "theta": 54.29,
-      "requires": [
-        "8"
-      ],
-      "cost": 1,
-      "temperature": 4000,
-      "exclGroup": null,
-      "effects": []
-    },
-    {
-      "id": "10",
-      "name": "Improvised weapon master",
-      "desc": "You master the art of using all sorts of mundane objects to fight. <D> Damage you deal with improvised weapons increases by an additional 1d6 of a type that this weapon already deals (you can choose a different one each attack). <D> You also gain +1 ingenuity.",
-      "hoverText": "+1 to ingenuity. Your improvised weapon attacks deal even more damage.",
-      "fi": 6,
-      "theta": 59.99999999999999,
-      "requires": [
-        "9"
-      ],
-      "cost": 1,
-      "temperature": 4000,
-      "exclGroup": null,
-      "effects": []
     },
     {
       "id": "100001",
