@@ -23,7 +23,6 @@ import Stats from 'three/examples/jsm/libs/stats.module.js';
 
 import AppState from './appState.js';
 import { BLOOM_LAYER, BASE_CAMERA_FOV } from './constants.js';
-import { computeStarHSL, hslToRgb } from './colorScience.js';
 
 
 // ============================================================
@@ -37,176 +36,6 @@ export function addToBloom(obj) {
     AppState.bloomEffect.selection.add(obj);
 }
 
-
-// ============================================================
-// STARFIELD  (purely cosmetic — background stars outside the tree sphere)
-//
-// A single THREE.Points cloud. Because the main camera only ever
-// rotates (never translates — see AppState.camera.position, fixed at
-// the origin), this behaves exactly like the skybox: placed at any
-// radius outside the tree sphere (30) it reads as "infinitely far
-// away", so there's no need to push it out anywhere near the
-// skybox's radius of 100000.
-//
-// Each star's colour comes from the SAME blackbody pipeline
-// StarModel.js uses for perk nodes (computeStarHSL → hslToRgb), fed
-// a temperature randomised between 1000 K (deep red) and 10000 K
-// (blue-white) per star, instead of a flat white/tinted colour. This
-// keeps the whole scene's "every glowing point is a blackbody star"
-// visual language consistent between the perk tree and the backdrop.
-//
-// PERFORMANCE / STABILITY NOTE (read before touching `count`):
-// computeStarHSL() is NOT cheap — it integrates an 81-sample Planck
-// spectrum (several Math.pow/Math.exp calls per sample) to get one
-// colour. Calling it once per star (as an earlier version of this
-// file did) means `count * 81` of those expensive samples running
-// synchronously inside initScene(), before the render loop even
-// starts. At count = 12000 that's ~972,000 spectral samples on the
-// main thread in one uninterrupted block — long enough on many
-// GPU/driver combinations to stall frame submission and cause the
-// browser to reclaim/reset the WebGL context. Once that happens,
-// Three.js's internal render-list/object bookkeeping can end up
-// inconsistent, which is what surfaces later as the renderer
-// crashing deep in projectObject() (reading a property off an
-// object it expected to still be valid) — plus the whole page
-// visibly hangs while the computation runs.
-//
-// The fix is buildStarColorLUT() below: it runs computeStarHSL()
-// only STARFIELD_COLOR_LUT_SIZE times (a small fixed number) to build
-// a lookup table spanning the min/max temperature range once, and
-// every star just picks a random entry from that table. Visually
-// this is indistinguishable from computing every star individually
-// (temperature was already uniform-random across the same range),
-// but the cost drops from `count * 81` to `LUT_SIZE * 81` — roughly
-// a 250x reduction at the default count/LUT size.
-// ============================================================
-
-const STARFIELD_MIN_TEMPERATURE = 1000;  // Kelvin — deep red
-const STARFIELD_MAX_TEMPERATURE = 10000; // Kelvin — blue-white
-
-// How many distinct blackbody colours to precompute for the starfield.
-// Large enough that stars don't visibly repeat in clumps, small enough
-// that building it is effectively instantaneous (see the perf note above).
-const STARFIELD_COLOR_LUT_SIZE = 48;
-
-/**
- * Builds a soft, glowing dot texture on a canvas, used as the sprite
- * for every point in the starfield. This bakes the "glow" directly
- * into the texture (a bright core fading through a wide, soft halo)
- * rather than relying on the postprocessing library's selective
- * bloom — SelectiveBloomEffect's internal masking/luminance passes
- * are written and tested against ordinary triangle-based Mesh
- * geometry, and don't reliably preserve THREE.Points' GL_POINTS
- * rendering (gl_PointSize logic lives in PointsMaterial specifically),
- * which was making every star vanish entirely once bloomed. Paired
- * with additive blending (see createStarfield() below), this reads as
- * "glowing" on its own, with no dependency on that pipeline.
- */
-function createStarSprite() {
-    const canvas = document.createElement('canvas');
-    canvas.width = canvas.height = 64;
-    const ctx = canvas.getContext('2d');
-    const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-    grad.addColorStop(0,    'rgba(255,255,255,1)');
-    grad.addColorStop(0.15, 'rgba(255,255,255,0.9)');
-    grad.addColorStop(0.4,  'rgba(255,255,255,0.35)');
-    grad.addColorStop(0.7,  'rgba(255,255,255,0.08)');
-    grad.addColorStop(1,    'rgba(255,255,255,0)');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 64, 64);
-    return new THREE.CanvasTexture(canvas);
-}
-
-/**
- * Precomputes STARFIELD_COLOR_LUT_SIZE blackbody colours evenly
- * spaced across [STARFIELD_MIN_TEMPERATURE, STARFIELD_MAX_TEMPERATURE],
- * ONE TIME — see the perf note in the STARFIELD header comment above
- * for why this replaced calling computeStarHSL() per star.
- * @returns {[number,number,number][]} LUT_SIZE entries of [r, g, b] in [0,1]
- */
-function buildStarColorLUT() {
-    const lut = [];
-    for (let i = 0; i < STARFIELD_COLOR_LUT_SIZE; i++) {
-        const t = STARFIELD_MIN_TEMPERATURE
-            + (i / Math.max(1, STARFIELD_COLOR_LUT_SIZE - 1)) * (STARFIELD_MAX_TEMPERATURE - STARFIELD_MIN_TEMPERATURE);
-        const [h, s, l] = computeStarHSL(t);
-        lut.push(hslToRgb(h, s, l));
-    }
-    return lut;
-}
-
-/**
- * Builds the background starfield as one THREE.Points cloud.
- *
- * Positions: uniformly distributed on a spherical shell (Marsaglia's
- * method via inverse-cosine on `v`, not a naive lat/long grid, so
- * stars don't bunch up at the poles) with a little radial jitter for
- * subtle depth variation.
- *
- * Colours: each star picks a random entry from a small precomputed
- * blackbody colour LUT (see buildStarColorLUT() above) instead of
- * running the full spectral integration per star — see the
- * PERFORMANCE / STABILITY NOTE above this section for why that
- * matters.
- *
- * @param {number} count  — number of stars
- * @param {number} radius — shell radius (world units); must clear the
- *   tree sphere's radius of 30 comfortably, but — since the main
- *   camera never translates — doesn't need to be anywhere near the
- *   skybox's 100000.
- *
- * NOT added to the SelectiveBloomEffect selection: THREE.Points
- * rendered invisible once bloomed (see createStarSprite()'s comment
- * above for why) — the glow here comes entirely from the baked-in
- * halo texture plus additive blending instead. initScene() below
- * also explicitly deletes it from bloomEffect.selection, mirroring
- * the ground plane, as cheap insurance against ever being included.
- */
-function createStarfield(count = 12000, radius = 400) {
-    const positions = new Float32Array(count * 3);
-    const colors    = new Float32Array(count * 3);
-    const colorLUT  = buildStarColorLUT();
-
-    for (let i = 0; i < count; i++) {
-        // ---- Position: uniform point on a spherical shell -----------
-        const u = Math.random(), v = Math.random();
-        const theta = u * Math.PI * 2;
-        const phi   = Math.acos(2 * v - 1);
-        const r     = radius * (0.85 + Math.random() * 0.3); // slight depth variance
-
-        positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
-        positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-        positions[i * 3 + 2] = r * Math.cos(phi);
-
-        // ---- Colour: random pick from the precomputed blackbody LUT --
-        const [r_, g_, b_] = colorLUT[(Math.random() * colorLUT.length) | 0];
-
-        colors[i * 3]     = r_;
-        colors[i * 3 + 1] = g_;
-        colors[i * 3 + 2] = b_;
-    }
-
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color',    new THREE.BufferAttribute(colors, 3));
-
-    const material = new THREE.PointsMaterial({
-        size:            3,
-        map:             createStarSprite(),
-        vertexColors:    true,
-        transparent:     true,
-        depthWrite:      false,
-        sizeAttenuation: false,       // constant pixel size — correct for something "infinitely far away"
-        blending:        THREE.AdditiveBlending, // makes the halo texture read as a glow, and lets overlapping stars punch through brighter
-    });
-
-    const stars = new THREE.Points(geometry, material);
-    stars.layers.set(0);
-    stars.raycast = () => {}; // opt this object out of raycasting entirely
-    stars.frustumCulled  = false; // it's a giant static shell around the camera — always visible, never worth the bounding-sphere test
-    stars.matrixAutoUpdate = false; // never moves/rotates/scales after creation — skip the per-frame matrix recompute
-    return stars;
-}
 
 
 // ============================================================
@@ -291,11 +120,54 @@ export function initScene() {
     AppState.effectPass.renderToScreen = true;
     AppState.composer.addPass(AppState.effectPass);
 
-    // ---- Skybox (procedural gradient) ----------------------------
-    // A giant inside-rendered sphere with a dark-teal-to-black gradient.
+    // ---- Skybox + procedural starfield ----------------------------
+    // A giant inside-rendered sphere with a dark-teal-to-black gradient
+    // AND the decorative background stars, both painted directly in
+    // this ONE fragment shader, per-pixel.
+    //
+    // ROOT-CAUSE FIX — "stars visible only facing a certain, seemingly
+    // random direction":
+    // The stars used to be a separate THREE.Points cloud with a FIXED
+    // number of stars (12000) scattered across the WHOLE sphere (4π
+    // steradians). BASE_CAMERA_FOV is only 1° at full zoom-in (this is
+    // deliberately a "looking through a telescope eyepiece" view — see
+    // constants.js), and even a generously zoomed-out view only reaches
+    // ~30-60°. A camera view cone that narrow covers a tiny fraction of
+    // the sphere's total solid angle, so whether any given direction
+    // happened to contain one of those 12000 fixed points was basically
+    // a coin flip — most directions showed nothing at all, and only the
+    // rare, essentially random direction that lined up with an actual
+    // star showed one. (An earlier attempt fixed a real but secondary
+    // depth-precision issue between the skybox and that Points cloud —
+    // see depthWrite/depthTest below — but that never addressed this
+    // sparse-coverage problem, which is why stars stayed effectively
+    // invisible in most directions afterward.)
+    //
+    // The fix: stop relying on a finite, pre-placed point cloud and a
+    // separate render pass entirely. Instead, generate the stars
+    // PROCEDURALLY, per-pixel, from a hash of the normalized view
+    // direction (`vPosition` on this giant enclosing sphere IS that
+    // direction, up to scale) — directly inside the same shader that
+    // already reliably paints the sky gradient in every direction. This
+    // has no "count" to run out of: whatever slice of the sky is
+    // actually on screen gets its own fair sampling of star cells, so
+    // density no longer depends on how narrow the FOV happens to be,
+    // and there's no separate object whose culling/blending/z-fighting
+    // against the skybox can go wrong.
+    //
+    // (The skybox itself still keeps depthWrite/depthTest disabled and
+    // a very low renderOrder — with near=1/far=100000 giving a
+    // 100,000:1 depth ratio, this opaque, camera-enclosing sphere would
+    // otherwise be able to needlessly win/lose depth tests against
+    // other far-away geometry by pure floating-point rounding. Doesn't
+    // matter for the stars anymore since they're part of this same
+    // shader now, but it's still correct practice for a skybox and
+    // costs nothing to keep.)
     const skyGeo = new THREE.SphereGeometry(100000, 25, 25);
     const skyMat = new THREE.ShaderMaterial({
         side: THREE.BackSide,
+        depthWrite: false,
+        depthTest: false,
         uniforms: {
             color1: { value: new THREE.Color(0x002f2f) }, // dark teal — horizon
                                             color2: { value: new THREE.Color(0x000000) }, // black    — zenith
@@ -311,21 +183,58 @@ export function initScene() {
         uniform vec3 color1;
         uniform vec3 color2;
         varying vec3 vPosition;
+
+        // Cheap 3D hash → pseudo-random float in [0, 1). Deterministic
+        // per input vector, so a given sky direction always hashes to
+        // the same value — this is what makes stars hold still as the
+        // camera rotates instead of flickering/shifting per frame.
+        float hash3(vec3 p) {
+            p = fract(p * vec3(443.8975, 397.2973, 491.1871));
+            p += dot(p, p.yzx + 19.19);
+            return fract((p.x + p.y) * p.z);
+        }
+
         void main() {
             float gradient = (vPosition.y + 100000.0) / 200000.0;
             gradient       = smoothstep(-1.0, 1.0, gradient);
-            gl_FragColor   = vec4(mix(color1, color2, gradient), 1.0);
+            vec3 skyColor  = mix(color1, color2, gradient);
+
+            // Direction from the origin (camera never translates — see
+            // appState.js — so this sphere's local position already IS
+            // the view direction, just scaled by the 100000-unit radius).
+            vec3 dir = normalize(vPosition);
+
+            // A 3D grid over direction-space. Multiple octaves at
+            // different cell sizes give a mix of common small/dim stars
+            // and rarer big/bright ones, all resolved per-pixel — no
+            // fixed "star count" to be too sparse for a narrow FOV.
+            float stars = 0.0;
+            vec3 starColor = vec3(1.0);
+
+            for (int i = 0; i < 3; i++) {
+                float cellSize = 300.0 + float(i) * 900.0; // finer grid each octave
+                vec3 cell = floor(dir * cellSize);
+                float h = hash3(cell + float(i) * 13.0);
+                float brightnessThreshold = 0.9975 - float(i) * 0.001; // rarer stars each octave, roughly balances density
+                float b = smoothstep(brightnessThreshold, 1.0, h) * (1.0 - float(i) * 0.25);
+                if (b > stars) {
+                    stars = b;
+                    // Warm-to-cool tint per star, from a second hash so
+                    // colour doesn't correlate with brightness.
+                    float tint = hash3(cell + float(i) * 13.0 + 7.0);
+                    starColor = mix(vec3(0.75, 0.82, 1.0), vec3(1.0, 0.93, 0.8), tint);
+                }
+            }
+
+            vec3 finalColor = skyColor + starColor * stars;
+            gl_FragColor = vec4(finalColor, 1.0);
         }
         `,
     });
-    AppState.scene.add(new THREE.Mesh(skyGeo, skyMat));
-
-    // ---- Starfield (purely cosmetic — see createStarfield() above) --
-    const starfield = createStarfield();
-    AppState.scene.add(starfield);
-    // Defensive/explicit — mirrors the ground plane below. Cheap insurance
-    // against the starfield ever being picked up by the bloom selection.
-    AppState.bloomEffect.selection.delete(starfield);
+    const skyboxMesh = new THREE.Mesh(skyGeo, skyMat);
+    skyboxMesh.renderOrder = -1000; // draw before everything else — see the note above
+    skyboxMesh.frustumCulled = false; // camera-enclosing shell, always visible regardless of view direction
+    AppState.scene.add(skyboxMesh);
 
     // ---- Ground plane (grass) ------------------------------------
     // Assets live in public/, so their URL must be built from the

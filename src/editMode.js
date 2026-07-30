@@ -299,12 +299,13 @@ function populateEffectKeyOptions(selectEl, type, selectedKey) {
 function renderBonusRows(bonuses, removeAttr) {
     if (!bonuses || bonuses.length === 0) return '<em>Brak bonusów.</em>';
     return bonuses.map((b, i) => {
-        const abilityCfg = ABILITIES_CONFIG.find(a => a.key === b.key);
+        const abilityCfg = b.key ? ABILITIES_CONFIG.find(a => a.key === b.key) : null;
+        const abilityLabel = b.key ? (abilityCfg ? abilityCfg.label : b.key) : 'Dowolna umiejętność (gracz wybiera)';
         const kindCfg = ATTRIBUTE_BONUS_KINDS.find(k => k.value === b.kind);
         const sign = b.amount > 0 ? '+' : '';
         return `
             <div class="editor-req-row">
-                <span>${sign}${b.amount} ${escapeHtml(kindCfg ? kindCfg.label : b.kind)} — ${escapeHtml(abilityCfg ? abilityCfg.label : b.key)}</span>
+                <span>${sign}${b.amount} ${escapeHtml(kindCfg ? kindCfg.label : b.kind)} — ${escapeHtml(abilityLabel)}</span>
                 <button class="editor-btn editor-btn-small" data-${removeAttr}="${i}">✕</button>
             </div>
         `;
@@ -315,6 +316,7 @@ function renderBonusRows(bonuses, removeAttr) {
 function bonusBuilderRowHTML(idPrefix) {
     return `
         <select id="${idPrefix}-bonus-ability">
+            <option value="">— Dowolna umiejętność (gracz wybiera) —</option>
             ${ABILITIES_CONFIG.map(a => `<option value="${a.key}">${escapeHtml(a.label)}</option>`).join('')}
         </select>
         <select id="${idPrefix}-bonus-kind">
@@ -337,7 +339,12 @@ function wireBonusBuilderRow(idPrefix, targetArray, onChanged) {
     const addBtn = bodyEl.querySelector(`#${idPrefix}-bonus-add-btn`);
     if (!addBtn) return;
     addBtn.addEventListener('click', () => {
-        const key    = bodyEl.querySelector(`#${idPrefix}-bonus-ability`).value;
+        // Empty selection = "Dowolna umiejętność (gracz wybiera)" — stored
+        // as a null key, which routes this bonus into the shared Punkty
+        // Doświadczenia/Improwizacji pool instead of a fixed ability (see
+        // characterState.js's attributeBonusFieldPath()).
+        const rawKey = bodyEl.querySelector(`#${idPrefix}-bonus-ability`).value;
+        const key    = rawKey || null;
         const kind   = bodyEl.querySelector(`#${idPrefix}-bonus-kind`).value;
         const amount = Number(bodyEl.querySelector(`#${idPrefix}-bonus-amount`).value);
         if (!Number.isFinite(amount) || amount === 0) { setStatus('Bonus wymaga niezerowej wartości „Ilość”.', true); return; }
@@ -398,10 +405,11 @@ function renderEffectsList(effects) {
             const descText = escapeHtml(eff.description || '');
             const bonusText = (eff.bonuses && eff.bonuses.length)
                 ? ' [' + eff.bonuses.map(b => {
-                    const abilityCfg = ABILITIES_CONFIG.find(a => a.key === b.key);
+                    const abilityCfg = b.key ? ABILITIES_CONFIG.find(a => a.key === b.key) : null;
+                    const abilityLabel = b.key ? (abilityCfg ? abilityCfg.label : b.key) : 'dowolna umiejętność';
                     const kindCfg = ATTRIBUTE_BONUS_KINDS.find(k => k.value === b.kind);
                     const sign = b.amount > 0 ? '+' : '';
-                    return `${sign}${b.amount} ${kindCfg ? kindCfg.label : b.kind} ${abilityCfg ? abilityCfg.label : b.key}`;
+                    return `${sign}${b.amount} ${kindCfg ? kindCfg.label : b.kind} ${abilityLabel}`;
                 }).join(', ') + ']'
                 : '';
             line = targetLabel
@@ -553,7 +561,12 @@ function wireAddEffectForm(idPrefix, onAdd) {
         if (isFreeform) keyTextInput.value = '';
         if (needsDescription) {
             descInput.value = '';
-            attributeBonusDraft = [];
+            // Clear IN PLACE (not `= []`) — wireBonusBuilderRow()'s "Dodaj
+            // bonus" button closed over this exact array object. Reassigning
+            // the variable to a new array would leave that button pushing
+            // into an orphaned array nothing renders any more, silently
+            // breaking every bonus added after this reset.
+            attributeBonusDraft.length = 0;
             refreshBonusList();
         }
     });
@@ -582,8 +595,11 @@ let attributeChoiceOptionBonusDraft = [];
 
 function resetAttributeChoiceDraft() {
     attributeChoiceDraft = { count: 1, options: [] };
-    attributeChoiceOptionBonusDraft = [];
-    attributeBonusDraft = [];
+    // These two must be cleared IN PLACE (`.length = 0`), never reassigned
+    // (`= []`) — see wireBonusBuilderRow()'s comment below for why a
+    // reassignment here silently breaks the "Dodaj bonus" button.
+    attributeChoiceOptionBonusDraft.length = 0;
+    attributeBonusDraft.length = 0;
 }
 
 function attributeChoiceOptionsListHTML() {
@@ -591,10 +607,11 @@ function attributeChoiceOptionsListHTML() {
     return attributeChoiceDraft.options.map((o, i) => {
         const bonusText = (o.bonuses && o.bonuses.length)
             ? ' [' + o.bonuses.map(b => {
-                const abilityCfg = ABILITIES_CONFIG.find(a => a.key === b.key);
+                const abilityCfg = b.key ? ABILITIES_CONFIG.find(a => a.key === b.key) : null;
+                const abilityLabel = b.key ? (abilityCfg ? abilityCfg.label : b.key) : 'dowolna umiejętność';
                 const kindCfg = ATTRIBUTE_BONUS_KINDS.find(k => k.value === b.kind);
                 const sign = b.amount > 0 ? '+' : '';
-                return `${sign}${b.amount} ${kindCfg ? kindCfg.label : b.kind} ${abilityCfg ? abilityCfg.label : b.key}`;
+                return `${sign}${b.amount} ${kindCfg ? kindCfg.label : b.kind} ${abilityLabel}`;
             }).join(', ') + ']'
             : '';
         return `
@@ -672,7 +689,13 @@ function wireAttributeChoiceForm(idPrefix, onAdd) {
         attributeChoiceDraft.options.push({ name, description, bonuses: attributeChoiceOptionBonusDraft.map(b => ({ ...b })) });
         nameInput.value = '';
         descInput.value = '';
-        attributeChoiceOptionBonusDraft = [];
+        // IN PLACE, not `= []` — the "Dodaj bonus" button wired via
+        // wireBonusBuilderRow() above closed over this exact array object.
+        // Reassigning the variable here would leave that button pushing
+        // into an orphaned array nothing renders any more, so every bonus
+        // added for the NEXT option would silently vanish — this was the
+        // actual bug: bonuses only ever worked for an option's first save.
+        attributeChoiceOptionBonusDraft.length = 0;
         refreshOptionBonusList();
         refreshOptionsList();
         setStatus('');

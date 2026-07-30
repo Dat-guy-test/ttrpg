@@ -19,9 +19,9 @@
         ],
         [
           "31",
+          "32",
           "33",
-          "41412",
-          "12415"
+          "34"
         ]
       ],
       "cost": 0,
@@ -40,44 +40,7 @@
       "cost": 5,
       "temperature": 13000,
       "exclGroup": null,
-      "effects": [
-        {
-          "type": "spellSchoolUnlock",
-          "schools": [
-            "creation",
-            "projection",
-            "transmutation",
-            "summoning",
-            "destruction"
-          ],
-          "maxComplexity": 1
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "kreacja",
-          "amount": 1
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "projekcja",
-          "amount": 1
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "transmutacja",
-          "amount": 1
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "przywolywanie",
-          "amount": 1
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "destrukcja",
-          "amount": 1
-        }
-      ]
+      "effects": []
     },
     {
       "id": "-1001",
@@ -123,7 +86,7 @@
       "name": "Krasnolud",
       "desc": "Jesteś krasnoludem. Krasnoludy to stworzenia o małej formie fizycznej, której lekceważenie regularnie przyczynia się do przypominania społeczeństwu o ich wielkiej wewnętrznej sile woli.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 9\nSiła Woli: 12\n\nSzybkość: 4\n\nZyskujesz Atrybuty:\nUparci:\nPo każdej godzinie odpoczynku odzyskujesz 1d4 Punktów Energii\n\nAdaptowalny wzrok:\nKonstrukcja krasnoludzkich oczu umożliwia im widzenie w ciemności, choć nie są w stanie rozpoznawać w jej kolorów.\n\nCechy Fizyczne:\nWzrost: od 0,6 do 1 jednostki\nRozmiar: Mały\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 22 lat\nWiek starczy: 110 lat,\nŚrednia Długość Życia: 125 lat (średnia),\nMaksymalna Długość Życia: 150 lat",
       "hoverText": "",
-      "fi": 22.270000000000007,
+      "fi": 22.270000000000003,
       "theta": 24,
       "requires": [],
       "cost": 5,
@@ -329,7 +292,7 @@
       "name": "Niziołek",
       "desc": "Jesteś nizołkiem. Niziołki to niewielkie stworzenia, mające tendencje do obsesyjnego zainteresowywania się jedną dziedziną. Często jednak ich zainteresowania wypychają je na przygody w celu poszukiwania wiedzy czy mitycznych artefaktów.\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 8\nSiła Woli: 11\n\nSzybkość: 5\n\nDodatkowe umiejętności:\nSavant:\nNiziołki często są nizwykle wybitne w jednej lub paru bardzo interesujących ich dziedzinach. Otrzymujesz trzy poziomy doświadczenia i dwa poziomy improwizacji w  wybranych umiejętnościach.\n\nTrudni do trafienia:\nZ racji na swoją niewielką formę niziołki potrafią być zaskakująco trudne do trafienia. Gdy twój rozmiar jest Mały zyskujesz +2 do ewazji.\n\nCechy Fizyczne:\nWzrost: od 0,9 do 1,5 jednostki\nRozmiar: Mały lub Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 21 do 23 lat\nWiek starczy: 80 lat,\nŚrednia Długość Życia: 100 lat (średnia),\nMaksymalna Długość Życia: 140 lat",
       "hoverText": "",
-      "fi": 22.270000000000007,
+      "fi": 22.270000000000003,
       "theta": 26.000000000000007,
       "requires": [],
       "cost": 4,
@@ -835,7 +798,7 @@
     {
       "id": "100010",
       "name": "Szkoła Sytmpha",
-      "desc": "Szkoła Stympha skupia się na doskonaleniu używania oszczepów, włóczni, lotek i innych podobnych broni miotanych.\n\nRozpoczynając praktykę umiejętności związanych z tą szkołą zyskujesz jeden poziom wprawy w broniach miotanych.",
+      "desc": "Szkoła Stympha skupia się na doskonaleniu używania oszczepów, włóczni, lotek i innych podobnych broni miotanych.",
       "hoverText": "",
       "fi": 25,
       "theta": 40,
@@ -856,7 +819,7 @@
     {
       "id": "100011",
       "name": "Szkoła Mitto",
-      "desc": "Szkołą Mitto, skupia się na używaniu łuków i proc: broni miotających używających strzał, metalowych kulek czy innych pocisków jako amunicję.\n\nDecydując się na trening z brońmi miotającymi zyskujesz jeden poziom wprawy w używaniu broni miotających.\n\n",
+      "desc": "Szkołą Mitto, skupia się na używaniu łuków i proc: broni miotających używających strzał, metalowych kulek czy innych pocisków jako amunicję.\n\n",
       "hoverText": "",
       "fi": 20,
       "theta": 40,
@@ -869,7 +832,7 @@
       "effects": [
         {
           "type": "proficiency",
-          "key": "Broń Miotająca",
+          "key": "Łuki",
           "amount": 1
         }
       ]
@@ -877,7 +840,7 @@
     {
       "id": "31",
       "name": "Żebrak",
-      "desc": "Znacząca część towjego życia polegała na życiu z datków bogatszych, zasobów społeczności czy z bardzo źle płatnej pracy.\n\nZyskujesz zestaw przedmiotów: Własność Ubogiego\nZyskujesz walutę: 3 Nitki Konstansjum",
+      "desc": "Znacząca część towjego życia polegała na życiu z datków bogatszych, zasobów społeczności czy z bardzo źle płatnej pracy.\n\nZyskujesz zestaw przedmiotów: Własność Biedaka\nZyskujesz walutę: 3 Nitki Konstansjum",
       "hoverText": "",
       "fi": 17,
       "theta": 24,
@@ -887,26 +850,59 @@
       "exclGroup": null,
       "effects": [
         {
+          "type": "item",
+          "key": "custom-1784131534754-cbqni",
+          "amount": 1
+        },
+        {
           "type": "currency",
           "key": null,
-          "amount": 3
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "32",
+      "name": "Rolnik",
+      "desc": "Przez znaczącą część swojego życia twój dobrobyt zależał od uprawianej przez ciebie ziemi.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności majsterkowanie.\n\nZyskujesz 5 pierścieni lub ekwipunek o takiej wartości.\nZyskujesz Skromny Zestaw Startowy.",
+      "hoverText": "",
+      "fi": 14.999999999999998,
+      "theta": 25,
+      "requires": [],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "majsterkowanie",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "majsterkowanie",
+          "amount": 1
+        },
+        {
+          "type": "currency",
+          "amount": 5
         },
         {
           "type": "item",
-          "key": "custom-1784131534754-cbqni",
+          "key": "zestaw-skromny",
           "amount": 1
         }
       ]
     },
     {
       "id": "33",
-      "name": "Mieszkaniec Wsi",
-      "desc": "Jako mieszkaniec małej miejscowości, bądź osoba żyjąca na odludziu większość posiadanych przez Ciebie przedmiotów jest bezwartościowa. Życie w spokoju zostaiwło Ci jednak czas na rozwijanie swoich umiejętności.\n\nZyskujesz dwa poziomy doświadczenia i improwizacji w dowolnych umiejętnościach.\n\nZyskujesz 10 pierścieni.\nZyskujesz Własność Ubogiego i Porządne Buty.",
+      "name": "Wiejski Rzemieślnik",
+      "desc": "Jako rzemieślnik pracujący w małej miejscowości twoją pracę stanowiło wszystko co choćby minimalnie dotyczyło twojej profesji.\n\nZyskujesz 2 poziomy doświadczenia i improwizacji w umiejętności majsterkowanie.\n\nZyskujesz 10 pierścieni lub ekwipunek o takiej wartości.\nZyskujesz Skromny Zestaw Startowy.",
       "hoverText": "",
       "fi": 17,
-      "theta": 26.000000000000004,
+      "theta": 25,
       "requires": [],
-      "cost": 3,
+      "cost": 4,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
@@ -916,12 +912,45 @@
         },
         {
           "type": "item",
-          "key": "custom-1784131534754-cbqni",
+          "key": "zestaw-skromny",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "34",
+      "name": "Stróż",
+      "desc": "Przez znaczącą część swojego życia twoim zadaniem było strzeżenie zwierząt, mienia czy życia innych ludzi w twojej społeczności.\n\nZyskujesz poziom doświadczenia w umiejętnościach siła, wigor i zręczność.\n\nZyskujesz 6 pierścieni lub ekwipunek o takiej wartości.\nZyskujesz Skromny Zestaw Startowy.",
+      "hoverText": "",
+      "fi": 19,
+      "theta": 25,
+      "requires": [],
+      "cost": 3,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "sila",
           "amount": 1
         },
         {
+          "type": "skillExperience",
+          "key": "wigor",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "zrecznosc",
+          "amount": 1
+        },
+        {
+          "type": "currency",
+          "amount": 6
+        },
+        {
           "type": "item",
-          "key": "custom-1785417727287-zgwgx",
+          "key": "zestaw-skromny",
           "amount": 1
         }
       ]
@@ -1244,10 +1273,10 @@
     {
       "id": "103",
       "name": "Postawa Defensywna",
-      "desc": "Blokowanie ciosów przeciwników i umiejętność sprawnego kontratakowania jest kluczowym elementem walki mieczem.\n\nZyskujesz atrybut:\n\nPostawa Defensywna\nZużywając jeden Punkt Akcji możesz przybrać Postawę Defensywną. W Postawie Defensywnej:\nAkcja Blokowania i Akcja Kontrakcji zużywa o 1 Punkt Akcji mniej.\nZyskujesz bonus do blokowania równy poziomowi wprawy w jednej trzymanej broni (wybierasz przy każdej akcji blokowania).\nTwoja szybkość spada o 2.\n\nNa końcu każdej swojej tury tracisz 1 Punkt Energii.\nJeżeli ilosć twoich Punktów Energii osiągnie 0 wychodzisz z Postawy Defensywnej.\nMożesz wyjść z Postawy Defensywnej w dowolnym momencie.\n\nBez atrybutu Zaawansowane Postawy Bojowe możesz być tylko w jednej postawie jednocześnie!",
+      "desc": "Blokowanie ciosów przeciwników i umiejętność sprawnego kontratakowania jest kluczowym elementem walki mieczem.\n\nZyskujesz atrybut:\n\nPostawa Defensywna\nZużywając jeden Punkt Akcji możesz przybrać Postawę Defensywną. W Postawie Defensywnej:\nAkcja Blokowania i Akcja Kontrakcji zużywa o 1 Punkt Akcji mniej.\nZyskujesz bonus do blokowania równy poziomowi wprawy w jednej trzymanej broni (wybierasz przy każdej akcji blokowania).\nTwoja szybkość spada o 2.\n\nNa końcu każdej swojej tury tracisz 1 Punkt Energii.\nJeżeli ilosć twoich Punktów Energii osiągnie 0 wychodzisz z Postawy Defensywnej.\nMożesz wyjść z Postawy Defensywnej w dowolnym momencie.",
       "hoverText": "",
-      "fi": 40,
-      "theta": 42,
+      "fi": 38,
+      "theta": 41,
       "requires": [
         "100005"
       ],
@@ -1268,10 +1297,10 @@
       "name": "Postawa Ofensywna",
       "desc": "Blokowanie ciosów przeciwników i umiejętność sprawnego kontratakowania jest kluczowym elementem walki mieczem.\n\nZyskujesz atrybut:\n\nPostawa Ofensywna\nZużywając jeden Punkt Akcji możesz przybrać Postawę Ofensywną. W Postawie Ofensywnej:\nAkcja Blokowania i Akcja Kontrakcji zużywa o 1 Punkt Akcji więcej.\nZyskujesz bonus do obrażeń równy poziomowi wprawy w jednej trzymanej broni (wybierasz przy każdej akcji ataku).\nTwoja szybkość wzrasta o 2.\n\nNa końcu każdej swojej tury tracisz 1 Punkt Energii.\nJeżeli ilosć twoich Punktów Energii osiągnie 0 wychodzisz z Postawy Ofensywnej.\nMożesz wyjść z Postawy Ofensywnej w dowolnym momencie.",
       "hoverText": "",
-      "fi": 40,
-      "theta": 46,
+      "fi": 42,
+      "theta": 41,
       "requires": [
-        "116"
+        "100005"
       ],
       "cost": 4,
       "temperature": 2000,
@@ -1280,11 +1309,11 @@
     },
     {
       "id": "106",
-      "name": "Trening Walki Mieczem",
-      "desc": "Przykładając się do regularnych treningów udało Ci się pogłębić swoją wiedzę o walce mieczem. Treningi pozwoliły Ci także rozwinąć się fizycznie.\n\nZyskujesz poziom wprawy w walce mieczami oraz poziom dośiadczenia w umiejętnościach: Siła i Zręczność.",
+      "name": "Adept Walki Mieczem",
+      "desc": "Pogłębiasz swoją wiedzę o walce mieczem. Treningi pozwoliły Ci także rozwinąć się fizycznie.\n\nZyskujesz poziom wprawy w walce mieczami oraz poziom dośiadczenia w umiejętnościach: Siła i Zręczność.",
       "hoverText": "",
-      "fi": 38,
-      "theta": 41,
+      "fi": 40,
+      "theta": 42,
       "requires": [
         "100005"
       ],
@@ -1312,12 +1341,12 @@
     {
       "id": "116",
       "name": "Postawa Mnicha",
-      "desc": "Zużywając jeden Punkt Akcji możesz przybrać Postawę Mnicha. W Postawie Mnicha:\nTracisz 1 Punkt Energii gdy przybierasz Postawę Mnicha i na początku każdej następnej tury, do momentu wyjścia z Postawy Mnicha.\n\nNa początku każdej tury, po zyskaniu punktów akcji na początku tury zyskujesz ilość Punktów Akcji równą ilości Punktów Akcji, które Twoja postać posiadała przed otrzymaniem Punktów Akcji w tej turze.\n\nJeżeli zyskanie Punktów Akcji spowodowałoby, że masz więcej Punktów Akcji niż dwukrotność Twojej Biegłości, ilość twoich Punktów Akcji jest równa dwukrotności Twojej bystrości.",
+      "desc": "Zużywając jeden Punkt Akcji możesz przybrać Postawę Mnicha. W Postawie Mnicha:\nTracisz 1 Punkt Energii gdy przybierasz Postawę Mnicha i na początku każdej następnej tury, do momentu wyjścia z Postawy Mnicha.\n\nNa początku każdej tury, po zyskaniu punktów akcji na początku tury zyskujesz ilość Punktów Akcji równą ilości Punktów Akcji, które Twoja postać posiadała przed otrzymaniem Punktów Akcji w tej turze.\n\nJeżeli zyskanie Punktów Akcji spowodowałoby, że masz więcej Punktów Akcji niż dwukrotność Twojej Biegłości, ilość twoich Punktów Akcji jest równa dwukrotności Twojej biegłości.",
       "hoverText": "",
       "fi": 40,
       "theta": 43.99999999999999,
       "requires": [
-        "103"
+        "106"
       ],
       "cost": 5,
       "temperature": 6000,
@@ -1326,898 +1355,16 @@
     },
     {
       "id": "117",
-      "name": "Zaawansowane Postawy Bojowe",
-      "desc": "Uczysz się łączyć różne postawy bojowe\nZyskujesz poziom wprawy w używaniu mieczy.",
+      "name": "Zaawansowane Techniki Bojowe",
+      "desc": "Uczysz się łączyć różne postawy bojowe\nZyskujesz poziom wprawy wmieczach.",
       "hoverText": "",
-      "fi": 42,
-      "theta": 41,
-      "requires": [
-        "100005"
-      ],
-      "cost": 5,
+      "fi": 40.52,
+      "theta": 46.120000000000005,
+      "requires": [],
+      "cost": 1,
       "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "proficiency",
-          "key": "Miecze",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "120",
-      "name": "Sztuczka Łotra",
-      "desc": "Uczysz się odwracać uwagę swoich przeciwników w trakcie walki.  Zyskujesz atrybut „Sztuczka Łotra”:\nSztuczka Łotra:\nJako reakcję na bycie zaatakowanym możesz wydać jeden punkt akcji i jeden punkt energii, żeby wykonać zaskakująco gwałtowny ruch zmylający swojego przeciwnika. Rozstrzygnij konkurs swojego czasu reakcji przeciwko celności ataku:\nW przypadku krytycznego sukcesu atak nie może trafić i przeciwnik zyskuje poziom wytrącenia z równowagi.\nW przypadku sukcesu atak nie może trafić.\nW przypadku porażki atak może trafić (choć możesz nadal wykonać akcje uniku, kontry, blokowania czy odbicia).\nW przypadku krytycznej porażki atak trafia.\n\nZyskujesz także poziom improwiazcji w umiejętności czas reakcji.",
-      "hoverText": "",
-      "fi": 35,
-      "theta": 41,
-      "requires": [
-        "100006"
-      ],
-      "cost": 4,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "attribute",
-          "key": "Sztuczka Łotra",
-          "description": "Jako reakcję na bycie zaatakowanym możesz wydać jeden punkt akcji i jeden punkt energii, żeby wykonać zaskakująco gwałtowny ruch zmylający swojego przeciwnika. Rozstrzygnij konkurs swojego czasu reakcji przeciwko celności ataku:\nW przypadku krytycznego sukcesu atak nie może trafić i przeciwnik zyskuje poziom wytrącenia z równowagi.\nW przypadku sukcesu atak nie może trafić.\nW przypadku porażki atak może trafić (choć możesz nadal wykonać akcje uniku, kontry, blokowania czy odbicia).\nW przypadku krytycznej porażki atak trafia.",
-          "bonuses": []
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "czasReakcji",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "121",
-      "name": "Szarogrzywie Oko",
-      "desc": "Dzięki intensywnym ćwiczeniom jesteś w stanie o wiele łatwiej spostrzec słabe punkty obrony przeciwnika.\nZyskujesz poziom wprawy w sztyletach.",
-      "hoverText": "",
-      "fi": 37,
-      "theta": 40.5,
-      "requires": [
-        "120"
-      ],
-      "cost": 3,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "proficiency",
-          "key": "Sztylety",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "122",
-      "name": "Siódmy Zmysł",
-      "desc": "Pakując się w kolejne tarapaty zaczynasz mieć pojęcie kiedy coś zaczyna iść nie tak.\nZyskujesz poziom doświadczenia i improwizacji w umiejętności instynkt oraz poziom improwizacji w umiejętności czas reakcji.",
-      "hoverText": "",
-      "fi": 33,
-      "theta": 40.5,
-      "requires": [
-        "120"
-      ],
-      "cost": 3,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "skillImprovisation",
-          "key": "instynkt",
-          "amount": 1
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "czasReakcji",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "instynkt",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "123",
-      "name": "Sztuczka Uciekania",
-      "desc": "Pogłębiasz niezwykle honorową sztukę uciekania gdy coś pójdzie nie tak.\nZyskujesz atrybut „Taktyczny Odwrót”:\nTaktyczny Odwrót:\nJako reakcja na zakończenie akcji, w której poniosłeś porażkę w dowolnym teście lub konkursie możesz wydać dwa punkty energii by wykonać darmową akcję ruchu.\n\nDodatkowo zyskujesz poziom doświadczenia w umiejętności zręczność i twoja szybkość zwiększa się o 1.",
-      "hoverText": "",
-      "fi": 35,
-      "theta": 43.00000000000001,
-      "requires": [
-        "120"
-      ],
-      "cost": 5,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "attribute",
-          "key": "Taktyczny Odwrót",
-          "description": "Jako reakcja na zakończenie akcji, w której poniosłeś porażkę w dowolnym teście lub konkursie możesz wydać dwa punkty energii by wykonać darmową akcję ruchu.",
-          "bonuses": []
-        },
-        {
-          "type": "characteristic",
-          "key": "szybkosc",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "zrecznosc",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "124",
-      "name": "Sztuczka Wiwerny",
-      "desc": "Uczysz się forsowania swoich własnych zmysłów. Zyskujesz atrybut „Celność Wiwerny”:\nCelność Wiwerny:\nPrzed wykonaniem rzutu na celność ataku możesz wydać do pięciu punktów energii. Za każdy wydany punkt energii zwiększ podstawową celność wykorzystywanego trybu ataku o 1.\n\nDodatkowo zwiększasz swój poziom wprawy w sztyletach o 1.",
-      "hoverText": "",
-      "fi": 35,
-      "theta": 45,
-      "requires": [
-        "123"
-      ],
-      "cost": 5,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "attribute",
-          "key": "Celność Wiwerny",
-          "description": "Przed wykonaniem rzutu na celność ataku możesz wydać do pięciu punktów energii. Za każdy wydany punkt energii zwiększ podstawową celność wykorzystywanego trybu ataku o 1.",
-          "bonuses": []
-        },
-        {
-          "type": "proficiency",
-          "key": "Sztylety",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "125",
-      "name": "Sposób na Siłę",
-      "desc": "Ciągłe używanie ciężkich broni to świetny sposób na zakwasy, a co za tym idzie trening siłowy.\nZyskujesz 2 poziomy doświadczenia i jeden poziom improwizacji w umiejętności siła.",
-      "hoverText": "",
-      "fi": 29.999999999999996,
-      "theta": 42,
-      "requires": [
-        "100008"
-      ],
-      "cost": 3,
-      "temperature": 8000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "skillExperience",
-          "key": "sila",
-          "amount": 2
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "sila",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "126",
-      "name": "Sposób na Wprawę",
-      "desc": "Rygorystyczne ćwiczenia z odpowiednio oddaloną kukłą pozwalają Ci długich broni drzewcowych jako do wytrącania przeciwników z równowagi.\n\nZyskujesz poziom wprawy w używaniu długich broni drzewcocyh oraz atut „Hakier”:\nHakier:\nUżywając hakopodobnych obuchów długich broni drzewcowych, konkretniej Partyzany, Halabardy i Młota Wielkiego możesz wykonać akcję:\nPrzewróć przeciwnika (koszt 2 Punkty Akcji): rozstrzygnij konkurs celności twojego ataku i zręczności przeciwnika.\nW przypadku krytycznego sukcesu, przewracasz przeciwnika zadając mu 1d4 obrażeń obuchowych LUB pozbawiasz przeciwnika jednego z wyposażonych w dłoniach przedmiotów: zahaczony przedmiot ląduje u twoich stóp.\nW przypadku sukcesu: przeciwnik otrzymuje 2 poziomy wytrącenia z równowagi LUB wytrącasz wyposażony przez przeciwnika przedmiot, który ląduje 1 jednostkę od przeciwnika (w losowym kierunku).\nW przypadku porażki: nic się nie dzieje.\nW przypadku krytycznej porażki: twoja broń, której użyłeś w tej akcji wyślizguje Ci się z rąk spadając pod stopami przeciwnika LUB zyskujesz 2 poziomy wytrącenia z równowagi (twój wybór).",
-      "hoverText": "",
-      "fi": 29.999999999999996,
-      "theta": 43.99999999999999,
-      "requires": [
-        "125"
-      ],
-      "cost": 3,
-      "temperature": 8000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "attribute",
-          "key": "Hakier",
-          "description": "Używając hakopodobnych obuchów długich broni drzewcowych, konkretniej Partyzany, Halabardy i Młota Wielkiego możesz wykonać akcję:\nPrzewróć przeciwnika (koszt 2 Punkty Akcji): rozstrzygnij konkurs celności twojego ataku i zręczności przeciwnika.\nW przypadku krytycznego sukcesu, przewracasz przeciwnika zadając mu 1d4 obrażeń obuchowych LUB pozbawiasz przeciwnika jednego z wyposażonych w dłoniach przedmiotów: zahaczony przedmiot ląduje u twoich stóp.\nW przypadku sukcesu: przeciwnik otrzymuje 2 poziomy wytrącenia z równowagi LUB wytrącasz wyposażony przez przeciwnika przedmiot, który ląduje 1 jednostkę od przeciwnika (w losowym kierunku).\nW przypadku porażki: nic się nie dzieje.\nW przypadku krytycznej porażki: twoja broń, której użyłeś w tej akcji wyślizguje Ci się z rąk spadając pod stopami przeciwnika LUB zyskujesz 2 poziomy wytrącenia z równowagi (twój wybór).",
-          "bonuses": []
-        },
-        {
-          "type": "proficiency",
-          "key": "Długa Broń Drzewcowa",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "128",
-      "name": "Sposób na Trafienie",
-      "desc": "Trafienie ruszających się istot kawałkiem metalu zatkniętym na kilkumetrowym drągu nie należy do najłatwiejszych. Ćwicząc się w tej sztuce zyskujesz:\nPoziom wprawy w długich broniach drzewcowych.\nJeden poziom doświadczenia w umiejętności zręczność.\nAtut „Bonk”:\nBonk:\nJeżeli atak wykonany wręcz nie trafi możesz zużyć jeden punk akcji i energii by wykonać szybki ruch bronią i zadać 1d4 − 1 obrażeń obuchowych.",
-      "hoverText": "",
-      "fi": 29.999999999999996,
-      "theta": 46,
-      "requires": [
-        "126",
-        "130"
-      ],
-      "cost": 4,
-      "temperature": 10000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "proficiency",
-          "key": "Długie Bronie Drzewcowe",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "zrecznosc",
-          "amount": 1
-        },
-        {
-          "type": "attribute",
-          "key": "Bonk",
-          "description": "Jeżeli atak wykonany wręcz nie trafi możesz zużyć jeden punk akcji i energii by wykonać szybki ruch bronią i zadać 1d4 − 1 obrażeń obuchowych.",
-          "bonuses": []
-        }
-      ]
-    },
-    {
-      "id": "129",
-      "name": "Sposób na Więcej Siły",
-      "desc": "Wskutek codziennych ćwiczeń z ciężką i niewyważoną bronią zyskujesz:\nDwa poziomy doświadczenia w umiejętności siła.",
-      "hoverText": "",
-      "fi": 31.5,
-      "theta": 44.5,
-      "requires": [
-        "126"
-      ],
-      "cost": 3,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "skillExperience",
-          "key": "sila",
-          "amount": 2
-        }
-      ]
-    },
-    {
-      "id": "130",
-      "name": "Sposób na Zasięg",
-      "desc": "Czasami posiadając nawet długą broń nie dosięgniesz tych przeciwników, których chesz dosięgnąć. Zyskujesz atut „Ślamazarny Wypad”\nŚlamazarny Wypad:\nWykonujesz wypad, nawet, jeżeli twój styl walki i broń czynią to trudnym. Jeżeli w trakcie wykonywania ataku zadeklarujesz chęć skorzystania z tego atrybutu, twój maksymalny zasięg zwiękasz się o 1 na czas wykonywania ataku, a jego celność zmniejsza się o 1d4−1.",
-      "hoverText": "",
-      "fi": 28.500000000000007,
-      "theta": 45.5,
-      "requires": [
-        "126"
-      ],
-      "cost": 3,
-      "temperature": 10000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "attribute",
-          "key": "Ślamazarny Wypad",
-          "description": "Wykonujesz wypad, nawet, jeżeli twój styl walki i broń czynią to trudnym. Jeżeli w trakcie wykonywania ataku zadeklarujesz chęć skorzystania z tego atrybutu, twój maksymalny zasięg zwiękasz się o 1 na czas wykonywania ataku, a jego celność zmniejsza się o 1d4−1.",
-          "bonuses": []
-        }
-      ]
-    },
-    {
-      "id": "131",
-      "name": "Wiecznie Gotowy",
-      "desc": "Dzięki swojemu mistrzostwu w posługiwaniu się bronią miotającą jesteś w stanie określić kiedy będziesz jej używać. Zyskujesz atrybut: „Ósmy Zmysł”\nÓsmy Zmysł:\nJesteś w stanie wyczuć kiedy nadejdzie potrzeba walki. Traktujesz swoją Broń Miotającą jako zawsze przygotowaną.",
-      "hoverText": "",
-      "fi": 20,
-      "theta": 45,
-      "requires": [
-        "100011",
-        "134"
-      ],
-      "cost": 3,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "attribute",
-          "key": "Ósmy Zmysł",
-          "description": "Jesteś w stanie wyczuć kiedy nadejdzie potrzeba walki. Traktujesz swoją Broń Miotającą jako zawsze przygotowaną.",
-          "bonuses": []
-        }
-      ]
-    },
-    {
-      "id": "132",
-      "name": "Zawsze w Cel",
-      "desc": "Twoja nauka stzelania doprowadziła Cię do momentu gdy prawie zawsze jesteś w stanie trafić w nieruchomy cel.\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.",
-      "hoverText": "",
-      "fi": 17.769999999999996,
-      "theta": 41.24999999999999,
-      "requires": [
-        "100011"
-      ],
-      "cost": 3,
-      "temperature": 4500,
       "exclGroup": null,
       "effects": []
-    },
-    {
-      "id": "133",
-      "name": "Zawsze z Zaskoczenia",
-      "desc": "Nauczyłeś się strzelać do powoli, przwidywalnie poruszających się celów. Zyskujesz atrybut „Zawsze z Zaskoczenia”:\nZawsze z Zaskoczenia\nJeżeli twój cel nie widzi twojego ataku wykonaj rzut na celność dwa razy. Jako wynik rzutu przyjmij lepszy wynik.",
-      "hoverText": "",
-      "fi": 16.96,
-      "theta": 42.5,
-      "requires": [
-        "132"
-      ],
-      "cost": 3,
-      "temperature": 4500,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "attribute",
-          "key": "Zawsze z Zaskoczenia",
-          "description": "Jeżeli twój cel nie widzi twojego ataku wykonaj rzut na celność dwa razy. Jako wynik rzutu przyjmij lepszy wynik.",
-          "bonuses": []
-        }
-      ]
-    },
-    {
-      "id": "134",
-      "name": "Wiecznie Czujny",
-      "desc": "Dzięki twojemu treningowi jesteś w stanie dostrzec i przewidzieć gdzie poruszy się twój cel w walce.\nZyskujesz poziom doświadczenia w umiejętności spostrzegawczość.\nZyskujesz poziom wprawy w używaniu broni miotających.",
-      "hoverText": "",
-      "fi": 17.769999999999996,
-      "theta": 43.74999999999999,
-      "requires": [
-        "133"
-      ],
-      "cost": 3,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "proficiency",
-          "key": "Broń Miotająca",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "spostrzegawczosc",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "135",
-      "name": "Rzut Ukośny",
-      "desc": "Uczysz się lepiej przewidywać tor lotu rzucanych przez Ciebie broni. Zyskujesz poziom wprawy w używaniu broni miotanych oraz poziom doświadczenia w umiejętności spostrzegawczość.",
-      "hoverText": "",
-      "fi": 25,
-      "theta": 42,
-      "requires": [
-        "100010"
-      ],
-      "cost": 3,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "proficiency",
-          "key": "Broń Miotana",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "spostrzegawczosc",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "136",
-      "name": "Przeszywający rzut",
-      "desc": "Dzięki treningowi z bronią miotaną zyskujesz na sile. Zyskujesz poziom doświadczenia w umiejetności siła. Dodatkowo zyskujesz atrybut „Przeszywający Rzut”:\nPrzeszywający Rzut:\nJeżeli w linii prostej za celem ataku bronią miotającą stoi inny przeciwnik możesz w momencie deklarowania ataku wydać jeden punkt energii, by wykonać niezwykle silny rzut. W przypadku nietrafienia w cel lub trafienia w cel i zadania obrażeń kłótych broń leci dalej wykonując atak w drugą kreaturę o celności zmniejszonej o 1.",
-      "hoverText": "",
-      "fi": 25,
-      "theta": 43.99999999999999,
-      "requires": [
-        "135"
-      ],
-      "cost": 3,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "attribute",
-          "key": "Przeszywający Rzut",
-          "description": "Jeżeli w linii prostej za celem ataku bronią miotającą stoi inny przeciwnik możesz w momencie deklarowania ataku wydać jeden punkt energii, by wykonać niezwykle silny rzut. W przypadku nietrafienia w cel lub trafienia w cel i zadania obrażeń kłótych broń leci dalej wykonując atak w drugą kreaturę o celności zmniejszonej o 1.",
-          "bonuses": []
-        },
-        {
-          "type": "skillExperience",
-          "key": "sila",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "137",
-      "name": "Adept Broni Miotanej",
-      "desc": "Dzięki swoim ekstensywnym treningom z bronią miotaną jesteś w stanie trafić tam gdzie chcesz. Zyskujesz poziom wprawy w używaniu broni miotanej. Dodatkowo zyskujesz poziom doświadczenia w umiejętności zręczność.",
-      "hoverText": "",
-      "fi": 25,
-      "theta": 45,
-      "requires": [
-        "136"
-      ],
-      "cost": 4,
-      "temperature": 3000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "skillExperience",
-          "key": "zrecznosc",
-          "amount": 1
-        },
-        {
-          "type": "proficiency",
-          "key": "Broń Miotana",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "200",
-      "name": "Utalentowany",
-      "desc": "Rozpoczynając życie podróżnika łatwo odkryć w sobie nowe, nieznane talenty. Zyskujesz 2 poziomy doświadczenia i 2 poziomy improwizacji w dowolnych wybranych umiejętnościach.",
-      "hoverText": "",
-      "fi": 0,
-      "theta": 40,
-      "requires": [
-        "1"
-      ],
-      "cost": 3,
-      "temperature": 10000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "skillExperiencePoints",
-          "key": null,
-          "amount": 2
-        },
-        {
-          "type": "skillImprovisationPoints",
-          "key": null,
-          "amount": 2
-        }
-      ]
-    },
-    {
-      "id": "1009",
-      "name": "Zatwardziały podróżnik",
-      "desc": "Życie podróżnika wywiera dużą presję, która przytłacza i prowadzi do rozwoju. Zwiększ wybraną charakterystykę o 1.",
-      "hoverText": "",
-      "fi": 0,
-      "theta": 42,
-      "requires": [
-        "200"
-      ],
-      "cost": 4,
-      "temperature": 10000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "characteristicPoints",
-          "key": null,
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "5555",
-      "name": "Piśmienny",
-      "desc": "Nauczyłeś się czytać i pisać w wspólnej mowie. Przy okazji udało Ci się wchłonąć trochę wiedzy. Zyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Powszechna.",
-      "hoverText": "",
-      "fi": -35,
-      "theta": 39,
-      "requires": [
-        "1"
-      ],
-      "cost": 3,
-      "temperature": 10000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "skillExperience",
-          "key": "wiedzaPowszechna",
-          "amount": 1
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "wiedzaPowszechna",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "1526",
-      "name": "Zielarz",
-      "desc": "Poznajesz działanie i metody przetwarzania wielu ziół.\nZyskujesz dwa poziomy doświadczenia i improwizacji w umiejętnościach Alchemia i Wiedza Medyczna. Dodatkowo zyskujesz zestaw zielarza.",
-      "hoverText": "",
-      "fi": 4.7,
-      "theta": 41.559999999999995,
-      "requires": [
-        "200"
-      ],
-      "cost": 4,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "skillExperience",
-          "key": "alchemia",
-          "amount": 2
-        },
-        {
-          "type": "skillExperience",
-          "key": "wiedzaMedyczna",
-          "amount": 2
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "alchemia",
-          "amount": 2
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "wiedzaMedyczna",
-          "amount": 2
-        },
-        {
-          "type": "item",
-          "key": "custom-1785347946288-qrzx4",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "666",
-      "name": "Początkujący Czarodziej",
-      "desc": "Czytając prace magów dowiadujesz się jak rzucać zaklęcia. \nUczysz się jednego zaklęcia o złożoności równej 1. \nZyskujesz także jeden poziom doświadczenia i improwizacji w wybranej przez siebie umiejętności.",
-      "hoverText": "",
-      "fi": -35,
-      "theta": 41,
-      "requires": [
-        "5555"
-      ],
-      "cost": 3,
-      "temperature": 6500,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "spellSchoolUnlock",
-          "schools": [
-            "creation",
-            "projection",
-            "transmutation",
-            "summoning",
-            "destruction"
-          ],
-          "maxComplexity": 1
-        },
-        {
-          "type": "skillExperiencePoints",
-          "key": null,
-          "amount": 1
-        },
-        {
-          "type": "skillImprovisationPoints",
-          "key": null,
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "55555",
-      "name": "Zainteresowanie Szkołą Kreacji",
-      "desc": "Skupiasz się na rozwijaniu swoich umiejętności w szkole kreacji.\nUczysz się jednego zaklęcia o maksymalnej złożoności równej 1 z szkoły kreacji.\nZyskujesz poziom doświadczenia w kreacji i wiedzy tajemnej.",
-      "hoverText": "",
-      "fi": -39,
-      "theta": 42,
-      "requires": [
-        "666"
-      ],
-      "cost": 4,
-      "temperature": 7500,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "skillExperience",
-          "key": "kreacja",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "wiedzaMagiczna",
-          "amount": 1
-        },
-        {
-          "type": "spellSchoolUnlock",
-          "schools": [
-            "creation"
-          ],
-          "maxComplexity": 1
-        }
-      ]
-    },
-    {
-      "id": "43636",
-      "name": "Początkujący Adept Kreacji",
-      "desc": "Pogłębiając swoją wiedzę na temat magii kreacji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności kreacja i poziom doświadczenia w umiejętności wiedza tajemna.",
-      "hoverText": "",
-      "fi": -39,
-      "theta": 43.99999999999999,
-      "requires": [
-        "55555"
-      ],
-      "cost": 5,
-      "temperature": 5000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "spellSchoolUnlock",
-          "schools": [
-            "creation"
-          ],
-          "maxComplexity": 2
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "kreacja",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "kreacja",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "wiedzaMagiczna",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "5236",
-      "name": "Zainteresowanie Szkołą Projekcji",
-      "desc": "Pogłębiasz swoją wiedzę na temat ezoterycznej magii projekcji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Projekcji oraz Wiedzy Tajemnej.",
-      "hoverText": "",
-      "fi": -35,
-      "theta": 42,
-      "requires": [
-        "666"
-      ],
-      "cost": 3,
-      "temperature": 7000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "spellSchoolUnlock",
-          "schools": [
-            "projection"
-          ],
-          "maxComplexity": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "wiedzaMagiczna",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "projekcja",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "14634",
-      "name": "Początkujący Adept Projekcji",
-      "desc": "Pogłębiając swoją wiedzę na temat magii projekcji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności Projekcja i poziom doświadczenia w umiejętności wiedza tajemna.",
-      "hoverText": "",
-      "fi": -35,
-      "theta": 43.99999999999999,
-      "requires": [
-        "5236"
-      ],
-      "cost": 3,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "skillExperience",
-          "key": "projekcja",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "wiedzaMagiczna",
-          "amount": 1
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "projekcja",
-          "amount": 1
-        },
-        {
-          "type": "spellSchoolUnlock",
-          "schools": [
-            "projection"
-          ],
-          "maxComplexity": 2
-        }
-      ]
-    },
-    {
-      "id": "12314",
-      "name": "Zainteresowanie Szkołą Transmutacji",
-      "desc": "Pogłębiasz swoją wiedzę na temat potężnej magii transmutacji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Transmutacji oraz Wiedzy Tajemnej.",
-      "hoverText": "",
-      "fi": -31,
-      "theta": 42,
-      "requires": [
-        "666"
-      ],
-      "cost": 4,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "spellSchoolUnlock",
-          "schools": [
-            "projection"
-          ],
-          "maxComplexity": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "transmutacja",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "wiedzaMagiczna",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "45322",
-      "name": "Początkujący Adept Transmutacji",
-      "desc": "Pogłębiając swoją wiedzę na temat magii Transmutacji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności Transmutacja i poziom doświadczenia w umiejętności wiedza tajemna. ",
-      "hoverText": "",
-      "fi": -31,
-      "theta": 43.99999999999999,
-      "requires": [
-        "12314"
-      ],
-      "cost": 5,
-      "temperature": 4500,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "spellSchoolUnlock",
-          "schools": [
-            "transmutation"
-          ],
-          "maxComplexity": 2
-        },
-        {
-          "type": "skillExperience",
-          "key": "transmutacja",
-          "amount": 1
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "transmutacja",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "wiedzaMagiczna",
-          "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "41412",
-      "name": "Ubogi Mieszczanin",
-      "desc": "Mimo mieszkania w mieście nie udało Ci się znaleźć dobrze płatnej pracy ani nie dane Ci było także odziedziczyć fortuny. Życie w mieście pozwoliło Ci jednak na rozwijanie swoich umiejętności. \n\nZyskujesz 30 pierścieni.\nZyskujesz Własność Mieszczanina.\nZyskujesz poziom doświadczenia i improwizacji w dowolnej umiejętności.\nZyskujesz Własność Mieszczanina.",
-      "hoverText": "",
-      "fi": 17,
-      "theta": 28,
-      "requires": [],
-      "cost": 5,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "skillImprovisationPoints",
-          "key": null,
-          "amount": 1
-        },
-        {
-          "type": "skillExperiencePoints",
-          "key": null,
-          "amount": 1
-        },
-        {
-          "type": "currency",
-          "key": null,
-          "amount": 150
-        },
-        {
-          "type": "item",
-          "key": "custom-1785418017657-7rpx8",
-          "amount": 150
-        }
-      ]
-    },
-    {
-      "id": "12415",
-      "name": "Wojownik",
-      "desc": "Ważną częścią Twojej pracy była walka. Łączne zarobki z pracy oraz pieniądze z odsprzedanej broni i pancerza stanowią porządną sumę.\n\nZyskujesz 20 pierścieni.\nZyskujesz Własność Mieszczanina.\nZyskujesz Przeszywanicę.\nZyskujesz poziom doświadczenia w umiejętnościach: Siła, Zręczność, Czas Reakcji, Wigor.",
-      "hoverText": "",
-      "fi": 19,
-      "theta": 27,
-      "requires": [],
-      "cost": 6,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "item",
-          "key": "custom-1785418017657-7rpx8",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "sila",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "zrecznosc",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "czasReakcji",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "wigor",
-          "amount": 1
-        },
-        {
-          "type": "currency",
-          "key": null,
-          "amount": 100
-        }
-      ]
     }
   ],
   "mutuallyExclusive": [

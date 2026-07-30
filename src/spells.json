@@ -1,3 +1,222 @@
 {
-  "spells": []
+  "spells": [
+    {
+      "id": "custom-spell-1784568188069-jx6aq",
+      "name": "Stwórz Kulkę Ognia",
+      "desc": "Tworzysz niewielką kulkę ognia alchemicznego i nadajesz jej znaczącej prędkości w kierunku celu. Maksymalny zasięg ataku to 15 jednostek, efektywny zasięg to 10 jednostek.\nWykonaj test kreacji. Wynik testu jest celnością twojego ataku.\nW przypadku krytycznego trafienia zadajesz 2d4 + 2 obrażeń od temperatury, cel zyskuje 2d4 + 2 poziomów podpalenia.\nW przypadku trafienia zadajesz 2d4 obrażeń od temperatury, cel zyskuje 2d4 poziomów podpalenia.\nW przypadku nietrafienia kula ognia ląduje o 1d4−1 jednostek w losowym kierunku od celu tworząc płonący grunt na 2d12 tur w zasięgu połowy jednostki.",
+      "schools": [
+        "creation"
+      ],
+      "complexity": 2,
+      "castingMethods": [
+        "thought",
+        "wordsOfPower",
+        "gesture"
+      ],
+      "channeling": false,
+      "channelingMethods": [],
+      "actionPointCost": 4,
+      "channelingActionPointCost": 0,
+      "invocationCost": 3,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1785409801340-1mghr",
+      "name": "Stwórz Kulę Wody",
+      "desc": "Tworzysz kulę wody. Wykonaj test kreacji. Wynik testu kreacji to ilość jednostek obciążenia stworzonej wody (stworzenia potrzebują jedną jednostkę obciążenia wody dziennie). Możesz stowrzyć kulę o środku maksymalnie 8 jednostek od Ciebie w momencie rzucania zaklęcia.\n·Jeżeli tworzysz wodę nad płonącym stworzeniem zmniejsz jego poziom podpalenia o wynik testu.\n·Jeżeli stworzysz wodę nad płonącym gruntem ugaszasz go jeżeli czas, przez który będzie się palił jest mniejszy od wyniku twojego testu. W przeciwnym razie ogień jest przygaszony na liczbę tur równą wynikowi twojego testu. Przygaszony grunt nie zadaje obrażeń.\n·Możesz rzucić to zaklęcie jako reakcje na rzucenie zaklęcia lub przedmiotu wywołującego podpalenie. Wykonaj test na czas reakcji. Jeżeli wynik testu będzie wyższy niż celność ataku możesz całkowicie zniwelować efekt zaklęcia na obszarze o średnicy jednej jednostki.\n·Możesz wykonać inną akcję, po uzgodnieniu jej sensowności z MG.",
+      "schools": [
+        "creation"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "gesture"
+      ],
+      "channeling": false,
+      "channelingMethods": [],
+      "actionPointCost": 1,
+      "channelingActionPointCost": 0,
+      "invocationCost": 2,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1785410227889-vw5sd",
+      "name": "Stwórz Duszący Gaz",
+      "desc": "Tworzysz chmurę żółtego duszącego gazu. Wykonaj test kreacji. Wynik testu to poziom trudności testu na Wigor, który musi zdać istota by nie otrzymać obrażeń. Chmura pokrywa obszar o średnicy 3 jednostek, gdzie środek chmury może być oddalony maksymalnie o 10 jednostek od ciebie w chwili rzucenia zaklęcia.\nKażde stworzenie przechodzące przez chmurę lub rozpoczynające w niej swoją turę musi wykonać test Wigoru przeciw wynikowi twojego testu kreacji:\nW przypadku krytycznego sukcesu stworzenie nie otrzymuje obrażeń.\nW przypadku sukcesu stworzenie otrzymuje 1d4 zwykłych obrażeń.\nW przypadku porażki stworzenie otrzymuje 1d6+1 obrażeń krytycznych od chorób i trucizn.\nW przypadku krytycznej porażki stworzenie otrzymuje 1d8+1 obrażeń krytycznych od chorób i trucizn.",
+      "schools": [
+        "creation"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "gesture"
+      ],
+      "channeling": true,
+      "channelingMethods": [
+        "thought",
+        "gesture"
+      ],
+      "actionPointCost": 1,
+      "channelingActionPointCost": 2,
+      "invocationCost": 4,
+      "channelingCost": 1,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1785410678879-6akp8",
+      "name": "Świetlista Projekcja",
+      "desc": "Tworzysz unoszącą się w powietrzu projekcję emitującą jasne światło, widoczne w nocy z dystansu połowy staji, dobrze oświetlające obszar 10 jednostek od kuli. Zużywając 1 Punkt Akcji i 1 Punkt Energii, możesz zakotwiczyć kulę, by poruszała się wraz z przedmiotem lub stworzeniem lub poruszyć ją o 5 jednostek.\nKula rozpada się gdy trafi na cokolwiek co nie jest powietrzem, w wypadku silnego wiatru lub jeżeli będzie dalej niż 10 jednostek od Ciebie.",
+      "schools": [
+        "projection"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "wordsOfPower"
+      ],
+      "channeling": true,
+      "channelingMethods": [],
+      "actionPointCost": 2,
+      "channelingActionPointCost": 1,
+      "invocationCost": 1,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1785413188018-vmg9p",
+      "name": "Projekcja Fałszywego Zaklęcia",
+      "desc": "Tworzysz projekcję wyglądającą tak jak inne zaklęcie, które potrafisz rzucić. Nie mów MG, że rzucasz to zaklęcie: zaznacz jedynie na swojej karcie postaci, iż rzuciłeś fałszywe zaklęcie. Wykonaj test Projekcji. Wynik testu to trudność testu spostrzegawczości na rozpoznanie, iż zaklęcie jest fałszywe. Jeżeli stworzenia pod kontrolą innych graczy lub MG wykonają test spostrzegawczości, mówisz im jedynie, że zaklęcie jest fałszywe, gdy wyrzucą test wyższy niż celność. Po zakończeniu zaklęcia ujawnij MG i innym graczom zapis o rzuceniu fałszywego zaklęcia na swojej karcie postaci.",
+      "schools": [
+        "projection"
+      ],
+      "complexity": 2,
+      "castingMethods": [
+        "thought",
+        "wordsOfPower",
+        "gesture"
+      ],
+      "channeling": false,
+      "channelingMethods": [],
+      "actionPointCost": 1,
+      "channelingActionPointCost": 0,
+      "invocationCost": 1,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1785413576172-sfxry",
+      "name": "Mała Projekcja",
+      "desc": "Przywołujesz w zasięgu 10 jednostek małą projekcję, zajmującą maksymalnie rozmiar kuli o średnicy jednej jednostki. Wykonaj test Projekcji. Wynik testu to poziom trudności testu spostrzegawczości, który inne stworzenia muszą zdać by zauważyć, że stworzony obraz to projekcja. Jeżeli poziom doświadczenia spostrzegawczości stworzenia jest równy lub wyższy niż wynik twojego testu Projekcji stworzenie od razu widzi, iż stworzony obraz jest projekcją. Projekcja rozpada się, gdy dotknie ją cokolwiek innego niż powietrze.",
+      "schools": [
+        "projection"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "gesture"
+      ],
+      "channeling": true,
+      "channelingMethods": [
+        "thought",
+        "gesture"
+      ],
+      "actionPointCost": 3,
+      "channelingActionPointCost": 3,
+      "invocationCost": 2,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1785414217348-7u9x3",
+      "name": "Transmutacja: Deszcz Ognia",
+      "desc": "Rzucasz transmutowalnym materiałem transmutując go na ognień alchemiczny w środku lotu. Zadeklaruj gdzie chcesz trafić zaklęciem. Wykonaj test Siły lub Zwinności. Wynik tego testu to maksymalny zasięg ataku. Jeżeli wartość testu jest niższa niż odległość do miejsca trafienia przesuń miejsce trafienia, tak, aby było w tym samym kierunku i było możliwie blisko maksymalnej wartości testu. Następnie wykonaj test Transmutacji. Wynik testu to ilość obrażeń od temperatury, którą otrzymają trafione stworzenia. Następnie wszystkie stworzenia w zasięgu 2 jednostek od miejsca trafienia zostają trafione i otrzymują obrażenia od temperatury, oraz jeden poziom podpalenia.",
+      "schools": [
+        "transmutation"
+      ],
+      "complexity": 2,
+      "castingMethods": [
+        "thought",
+        "wordsOfPower",
+        "gesture"
+      ],
+      "channeling": false,
+      "channelingMethods": [],
+      "actionPointCost": 5,
+      "channelingActionPointCost": 0,
+      "invocationCost": 5,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": true,
+      "materialCost": 5,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1785415218883-qa8o7",
+      "name": "Transmutacja: Metal−Metal",
+      "desc": "Transmutujesz niewielki kawałek transmutacyjnego metalu w inny kawałek metalu. \n\nDeklarujesz czy chcesz zmienić typ metalu, jeżeli tak dodaj 5 do trudności testu. Następnie deklarujesz jak złożony kształt chcesz nadać metalowi:\n−Bardzo prosty: kula, sześcian lub inny wielościan foremny, cieńka blacha lub rura − dodaj 1 do trudności testu.\n−Prosty: Złożenie maksymalnie pięciu bardzo prostych kształtów − dodaj 2 do trudności testu.\n−Złożony: Ostry przedmiot (na przykłąd ostrze miecza, czy grot strzały), złożenie do 3 prostych kształtów − dodaj 5 do trudności testu.\n−Bardzo Złożony: Replika Klucza czy inny bardzo skompliwoany kształt − dodaj 10 do trudności testu.\nNastępnie wykonaj test Transmutacji.\n\nW przypadku krytycznego sukcesu nie wydajesz punktów energii na rzucenie czaru i perfekcyjnie tworzysz żądany kształt.\nW przypadku sukcesu bardzo dobrze odtwarzasz rządany kształt, choć istnieją pewne niedoskonałości, takie jak np. dziwna tekstura powierzchni, ale przedmiot spełnia pożądaną funkcję.\nW przypadku porażki nie zmieniasz typu metalu, a stworzony kształt jest bardzo powygniany i nie spełnia swojej funkcji.\nW przypadku krytycznej porażki zmieniasz typ metalu na inny niż porządany, a kształt produktu to ciężki do noszenia bardzo powykrzywiany metalowy śmieć.",
+      "schools": [
+        "transmutation"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "gesture",
+        "arcaneLens"
+      ],
+      "channeling": false,
+      "channelingMethods": [],
+      "actionPointCost": 6,
+      "channelingActionPointCost": 0,
+      "invocationCost": 1,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": true,
+      "materialCost": 1,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1785415880857-be8x6",
+      "name": "Transmutacja: Przytłaczający Grad",
+      "desc": "Rzucasz transmutowalnym materiałem transmutując go na kule lodu w środku lotu. Zadeklaruj gdzie chcesz trafić zaklęciem. Wykonaj test Siły lub Zwinności. Wynik tego testu to maksymalny zasięg ataku. Jeżeli wartość testu jest niższa niż odległość do miejsca trafienia przesuń miejsce trafienia, tak, aby było w tym samym kierunku i było możliwie blisko maksymalnej wartości testu. Następnie wykonaj test Transmutacji. Wynik testu to ilość obrażeń obuchowych, które otrzymają trafione stworzenia. Następnie wszystkie stworzenia w zasięgu 3 jednostek od miejsca trafienia zostają trafione i otrzymują obrażenia obuchowe. Grunt w tym zasięgu zostaje pokryty kulkami gradu na 10d12 tur. Każde poruszające się w tym obszarze storzenie musi wykonać test zwinności o poziomie trudności twojego testu transmutacji za każdym razem kiedy przesunie się o jedną jednostkę. \nW przypadku krytycznego sukcesu w teście stworzenie nie musi wykonywać kolejnych testów tego typu w tym obszarze.\nW przypadku sukcesu stworzenie przemieszcza się o jedną jednostkę.\nW przypadku porażki stworzenie upada.\nW przypadku krytycznej porażki stworzenie upada i otrzymuje 1d4 obrażeń obuchowych.\nW przypadku sukces",
+      "schools": [
+        "transmutation"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "gesture",
+        "arcaneLens"
+      ],
+      "channeling": false,
+      "channelingMethods": [],
+      "actionPointCost": 7,
+      "channelingActionPointCost": 0,
+      "invocationCost": 6,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": true,
+      "materialCost": 4,
+      "otherPrerequisites": "",
+      "effects": []
+    }
+  ]
 }

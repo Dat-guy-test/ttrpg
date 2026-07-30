@@ -8,11 +8,32 @@
           "id": "wyszukiwanie",
           "name": "Wyszukiwanie",
           "content": "Wpisz tytuł strony lub nazwę sekcji w polu wyszukiwania powyżej. Pasujące wyniki pojawią się na liście poniżej — kliknij jeden z nich, by otworzyć odpowiednią stronę. Jeśli kliknięty wynik to sekcja (a nie cała strona), widok automatycznie przewinie się do tej sekcji."
+        }
+      ]
+    },
+    {
+      "id": "custom-page-1785421737848-ymfnr",
+      "title": "Tworzenie Postaci",
+      "sections": [
+        {
+          "id": "jak-stowrzyć-postać",
+          "name": "Jak Stowrzyć Postać?",
+          "content": "Aby stworzyć postać użyj tej strony. Poniżej znajdziesz przeprowadzający przez proces samouczek."
         },
         {
-          "id": "tryb-edycji",
-          "name": "Tryb Edycji",
-          "content": "Kliknij „Tryb Edycji” w prawym górnym rogu, by dodać nową stronę lub edytować istniejącą (wbudowaną lub własną). Każda strona ma tytuł oraz dowolną liczbę sekcji — każda sekcja ma własną nazwę (widoczną większą czcionką) i treść.\n\nEdycja strony wbudowanej nie nadpisuje pliku manual.json — tworzy lokalne nadpisanie, które ma pierwszeństwo dopóki go nie cofniesz. Przycisk „Eksportuj manual.json” pobiera gotowy plik łączący wszystkie strony (wbudowane, z nadpisaniami, plus własne), którym można podmienić plik w projekcie."
+          "id": "drzewko-umiejętności",
+          "name": "Drzewko Umiejętności",
+          "content": "Głównym miejscem gdzie tworzysz postać jest zakładka „Drzewko Umiejętności”. Posiada ona zestaw „Atutów”, określającymi naturę i zdolności Twojej postaci. Aby zobaczyć efekty wybrania Atutu najedź na atut kursorem. Kliknięcie Atutu spowoduje jego wybranie. Aby wybrać atut musisz mieć odpowiedną ilość Punktów Potencjału oraz wybrać wszystkie wymagane przez niego atuty. Aby zakończyć tworzenie postaci musisz wybrać jeden atut związany z pochodzeniem postaci. Atuty te znajdują się na prawo i dół od centralnego atutu „Podróżnik”. Możesz wybrać tylko jeden atut pochodzenia. Następnie wybierz przynajmniej jeden Atut związany z przeszłością postaci. Atuty te znajdują się na lewo i w dół od atutu podróżnik. Następnie wybierz atut podróżnik i wszystkie inne pożądane atuty. W momencie kiedy chcesz zakończyć tworzenie postaci przejdź do zakładki „Karta Postaci” i kliknij „Zakończ Tworzenie Postaci”. UWAGA! Po zakończeniu tworzenia postaci nie będzie opcji wybrania atutów znajdujących się niżej niż atut „Podróżnik”."
+        },
+        {
+          "id": "wyposażenie-ekwipunek",
+          "name": "Wyposażenie (Ekwipunek)",
+          "content": "Rozważ także posiadany ekwipunek: W sekcji „Karta Ekwipunku” znajduje się ilość posiadanych pieniędzy (1 sztuka = 100 pierścieni oraz 1 pierścień = 5 nitek) oraz posiadany ekwipunek. Przed „Zakończeniem Tworzenia postaci” możesz wynieniać pieniądze na ekwipunek i ekwipunek za pieniądze. Po zakończeniu tworzenia psotaci możesz nadal kupować ekwipunek, ale sprzedaż wiąże się z sprzedaniem ekwipunku po niższej cenie niż rynkowa. "
+        },
+        {
+          "id": "wyeksportuj-postać",
+          "name": "Wyeksportuj Postać!",
+          "content": "Pamiętaj o wyeksportowaniu postaci w oknie „Karta Postaci”. To jedyny sposób na poprawne zapisanie postaci, tak aby móc ją ponownie wyświetlić na stronie!"
         }
       ]
     }

@@ -94,6 +94,24 @@
 
 #equip-buy-btn { margin-top: 1em; }
 
+/* ---- Market (Rynek) live search & filters ------------------------ */
+/* Sits between the toolbar and the item list while marketMode is on
+   (see equipmentSheet.js's renderMarketFiltersHTML()). Its rows reuse
+   .editor-row (defined in style.css) but are allowed to wrap, unlike
+   most editor-row usages elsewhere, since five controls (search +
+   type, price min/max + toggle, proficiency + ability toggle) won't
+   comfortably fit on one line on a narrower window. */
+.marketFilters-section .editor-row {
+  flex-wrap: wrap;
+  row-gap: 0.5em;
+  margin-bottom: 0.6em;
+}
+.marketFilters-section input[type="text"],
+.marketFilters-section input[type="number"],
+.marketFilters-section select {
+  min-width: 9em;
+}
+
 /* ---- Item Editor (Tryb Edycji) ---------------------------------- */
 .itemEditor-typeSection {
   margin-top: 1em;
@@ -142,4 +160,5 @@
   .equipMoneyDenom { background: transparent; border-color: #999999; }
   .charSpend-btn { display: none; }
   .itemEditor-typeSection, .itemEditor-subform { display: none !important; }
+  .marketFilters-section { display: none !important; }
 }

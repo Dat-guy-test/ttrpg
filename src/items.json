@@ -116,12 +116,10 @@
       "toughness": 2,
       "isSet": false,
       "setMembers": [],
-      "requirements": [
-        {
-          "skill": "zrecznosc",
-          "min": 0
-        }
-      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
       "block": 1,
       "deflection": 1,
       "weaponKinds": [
@@ -132,15 +130,15 @@
       "upgrades": [],
       "attackModes": [
         {
-          "name": "Pchnięcie Nożem",
+          "name": "Pchnięcie Nożem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": 1,
           "damage": [
             {
-              "count": 1,
-              "dice": "d4",
-              "modifier": 1,
+              "count": 0,
+              "dice": "none",
+              "modifier": 2,
               "type": "piercing"
             }
           ],
@@ -151,15 +149,15 @@
           "specialEffect": ""
         },
         {
-          "name": "Cięcie Nożem",
+          "name": "Cięcie Nożem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": 0,
           "damage": [
             {
-              "count": 1,
-              "dice": "d4",
-              "modifier": 0,
+              "count": 0,
+              "dice": "none",
+              "modifier": 1,
               "type": "slashing"
             }
           ],
@@ -170,7 +168,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Rzut Nożem",
+          "name": "Rzut Nożem (Chwyt Jednoręczny)",
           "modeType": "throw",
           "handedness": "one",
           "baseAccuracy": -1,
@@ -193,15 +191,15 @@
           "specialEffect": ""
         },
         {
-          "name": "Uderzenie Rękojeścią Noża",
+          "name": "Uderzenie Rękojeścią Noża (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": -1,
           "damage": [
             {
-              "count": 1,
-              "dice": "d4",
-              "modifier": 0,
+              "count": 0,
+              "dice": "none",
+              "modifier": 1,
               "type": "bludgeoning"
             }
           ],
@@ -749,8 +747,8 @@
     },
     {
       "id": "custom-1784131534754-cbqni",
-      "name": "Własność Biedaka",
-      "price": 22,
+      "name": "Własność Ubogiego",
+      "price": "notForSale",
       "bulk": 3.45,
       "type": "misc",
       "desc": "Zestaw ten reprezentuje przedmioty posiadane przez najuboższych.",
@@ -775,7 +773,10 @@
           "itemId": "custom-1784056048918-s9c8n",
           "quantity": 1
         }
-      ]
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": []
     },
     {
       "id": "custom-1784306371402-kkzqh",
@@ -2628,7 +2629,7 @@
           "name": "Rzut Nożykiem do Rzucania (Chwyt Jednoręczny)",
           "modeType": "throw",
           "handedness": "one",
-          "baseAccuracy": 0,
+          "baseAccuracy": 2,
           "damage": [
             {
               "count": 2,
@@ -2645,6 +2646,63 @@
             "modifier": 1
           },
           "effectiveRange": 4,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Nożykiem do Rzucania (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 0,
+              "dice": "none",
+              "modifier": 2,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Cięcie Nożykiem do Rzucania (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 0,
+              "dice": "none",
+              "modifier": 2,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Rękojeścią Norzyka do Rzucania (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 0,
+              "dice": "none",
+              "modifier": 1,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
           "specialEffect": ""
         }
       ]
@@ -2696,19 +2754,54 @@
       "accessorySize": null,
       "prepareType": "",
       "enablesPrepareTypes": [],
-      "requirements": [],
-      "block": 0,
-      "deflection": 0,
-      "weaponKinds": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 3
+        },
+        {
+          "skill": "zrecznosc",
+          "min": 2
+        }
+      ],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "missile"
+      ],
       "proficiencyCategory": "",
       "upgrades": [],
-      "attackModes": []
+      "attackModes": [
+        {
+          "name": "Strzał z Łuku (Chyt Dwuręczny)",
+          "modeType": "shot",
+          "handedness": "two",
+          "baseAccuracy": 3,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d12",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 15,
+          "spread": {
+            "count": 0,
+            "dice": "none",
+            "modifier": 0
+          },
+          "effectiveRange": 10,
+          "specialEffect": ""
+        }
+      ]
     },
     {
       "id": "custom-1785149659540-6vojx",
       "name": "Proca",
       "price": 3,
-      "bulk": 0,
+      "bulk": 1,
       "type": "weapon",
       "desc": "",
       "state": "unequipped",
@@ -2719,13 +2812,44 @@
       "accessorySize": null,
       "prepareType": "",
       "enablesPrepareTypes": [],
-      "requirements": [],
-      "block": 0,
-      "deflection": 0,
-      "weaponKinds": [],
+      "requirements": [
+        {
+          "skill": "zrecznosc",
+          "min": 2
+        }
+      ],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "missile"
+      ],
       "proficiencyCategory": "",
       "upgrades": [],
-      "attackModes": []
+      "attackModes": [
+        {
+          "name": "Strzał z Procy (Chwyt Jednoręczny)",
+          "modeType": "shot",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 10,
+          "spread": {
+            "count": 1,
+            "dice": "d4",
+            "modifier": 0
+          },
+          "effectiveRange": 8,
+          "specialEffect": ""
+        }
+      ]
     },
     {
       "id": "custom-1785149674967-9mq9z",
@@ -2745,10 +2869,467 @@
       "requirements": [],
       "block": 0,
       "deflection": 0,
-      "weaponKinds": [],
+      "weaponKinds": [
+        "melee",
+        "thrown"
+      ],
       "proficiencyCategory": "",
       "upgrades": [],
-      "attackModes": []
+      "attackModes": [
+        {
+          "name": "Rąbnięcie Toporkiem do Rzucania (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Rzut toporkiem do Rzucania",
+          "modeType": "throw",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 6,
+          "spread": {
+            "count": 1,
+            "dice": "d4",
+            "modifier": 0
+          },
+          "effectiveRange": 3,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785347448217-dtx3n",
+      "name": "Zioła Lecznicze",
+      "price": 36,
+      "bulk": 0.04,
+      "type": "utility",
+      "desc": "Mieszanka rzadkich leczniczych ziół wspomagająca zasklepianie ran, zabijająca bakterie, mająca działanie przeciwzapalne i wspomagająca zrastanie się kości. ",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "useCondition": "Ich zastosowanie zajmuje kilka sekund. W walce przyjmijcie, iż ich zastosowanie wymaga 10 Punktów Akcji. Aby użyć ziół musisz je rozgnieść. Jeżeli nie masz moździeża ich użycie zajmuje dziesięć razy dłużej.",
+      "useEffect": "Po zastosowaniu mieszanka ziół zalecza 1 + Wynik testu wiedzy medycznej każdego typu obrażeń. Jeżeli nie masz moździeża zaleczasz o połowę mniej obrażeń."
+    },
+    {
+      "id": "custom-1785347520964-dtidv",
+      "name": "Fiolka",
+      "price": 4,
+      "bulk": 0,
+      "type": "misc",
+      "desc": "Mała Szklana Fiolka przydająca się do przetrzymywania małych przedmiotów i sypkich lub płynnych substancji.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": []
+    },
+    {
+      "id": "custom-1785347600755-4yvqe",
+      "name": "Fiolka ziół leczniczych.",
+      "price": 40,
+      "bulk": 0,
+      "type": "utility",
+      "desc": "Fiolka zawierająca mieszankę rzadkich leczniczych ziół wspomagająca zasklepianie ran, zabijająca bakterie, mająca działanie przeciwzapalne i wspomagająca zrastanie się kości.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1785347448217-dtx3n",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785347520964-dtidv",
+          "quantity": 1
+        }
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "useCondition": " Ich zastosowanie zajmuje kilka sekund. W walce przyjmijcie, iż ich zastosowanie wymaga 10 Punktów Akcji. Jeżeli nie masz moździeża ich użycie zajmuje dziesięć razy dłużej.",
+      "useEffect": " Po zastosowaniu mieszanka ziół zalecza 1 + Wynik testu wiedzy medycznej każdego typu obrażeń. Jeżeli nie masz moździeża zaleczasz o połowę mniej obrażeń."
+    },
+    {
+      "id": "custom-1785347649742-pqika",
+      "name": "Moździerz",
+      "price": 10,
+      "bulk": 0,
+      "type": "misc",
+      "desc": "Porządny kamienny moździeż używany do rozrabiania ziół.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": []
+    },
+    {
+      "id": "custom-1785347946288-qrzx4",
+      "name": "Zestaw Zielarza",
+      "price": 60,
+      "bulk": 0,
+      "type": "misc",
+      "desc": "Zestaw implementów zielarza. Zawiera nożyk do ścinania ziół, sakwę i fiolkę do ich przechowywania. Moździeż do efektywnego rozcierania ziół oraz fiolkę pełną rzadkich ziół leczniczych.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1785347520964-dtidv",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785347600755-4yvqe",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785347649742-pqika",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1784056048918-s9c8n",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1784069295220-vneqw",
+          "quantity": 1
+        }
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": []
+    },
+    {
+      "id": "custom-1785415285370-miqs9",
+      "name": "Ołów Transmutacyjny",
+      "price": 5,
+      "bulk": 1,
+      "type": "misc",
+      "desc": "Jednostkowa ilość ołowiu transmutacyjnego, używanego w zaklęciach Transmutacji",
+      "state": "unequipped",
+      "hitPoints": 2,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": []
+    },
+    {
+      "id": "custom-1785415432644-39zhp",
+      "name": "Magiczna Soczewka",
+      "price": 25,
+      "bulk": 0.1,
+      "type": "utility",
+      "desc": "Mały przedmiot z okutego cieńkimi liniami konstancjum szkła. Pozwala on uprościć rzucanie niektórych zaklęć do tego stopnia, że uważany jest jako wymagany do ich rzucenia.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "useCondition": "Rzucając zaklęcie z magiczną soczewką musisz ją trzymać w dłoni.",
+      "useEffect": ""
+    },
+    {
+      "id": "custom-1785417727287-zgwgx",
+      "name": "Porządne Buty",
+      "price": 30,
+      "bulk": 1,
+      "type": "clothing",
+      "desc": "Porządne buty z grubej skóry lub wielu warstw porządnego materiału.",
+      "state": "unequipped",
+      "hitPoints": 3,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "equipSlots": [
+        "leftFoot",
+        "rightFoot"
+      ],
+      "equipLayers": [
+        "clothes"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 0,
+      "equipTimeActionPoints": 0,
+      "unequipTimeSeconds": 0,
+      "unequipTimeActionPoints": 0
+    },
+    {
+      "id": "custom-1785417894719-4kqv3",
+      "name": "Porządne Ubrania",
+      "price": 70,
+      "bulk": 2,
+      "type": "clothing",
+      "desc": "Zestaw porządnych ubrań: dwa komplety bielizny, sweter lub kilka porządnych grubych koszul, kurtka i dwie pary wytrzymałych spodni, sukienek lub sukni.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "equipSlots": [
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg"
+      ],
+      "equipLayers": [
+        "underwear",
+        "clothes"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 0,
+      "equipTimeActionPoints": 0,
+      "unequipTimeSeconds": 0,
+      "unequipTimeActionPoints": 0
+    },
+    {
+      "id": "custom-1785418017657-7rpx8",
+      "name": "Własność Mieszczanina",
+      "price": "notForSale",
+      "bulk": 4,
+      "type": "misc",
+      "desc": "Zestaw reprezentujący własność mieszczan.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1783458345228-gyqao",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785417894719-4kqv3",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785417727287-zgwgx",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1784068774618-dh6oe",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1784056473608-9efaz",
+          "quantity": 1
+        }
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": []
+    },
+    {
+      "id": "custom-1785419495055-6r871",
+      "name": "Lekka Przeszywanica",
+      "price": 100,
+      "bulk": 3,
+      "type": "armour",
+      "desc": "Podstawowy pancerz stworzony z kilku zszytych z sobą warstw materiału.\n\nEfekt pancerza:\n+ Redukcja obrażeń obuchowych (otrzymujesz tylko połowę obrażeń obuchowych)\n− Brak redukcji obrażeń ciętych.\n− Brak redukcji obrażeń kłótych.",
+      "state": "unequipped",
+      "hitPoints": 5,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 0
+        }
+      ],
+      "armourLevel": 5,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "innerArmour"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 0,
+      "equipTimeActionPoints": 0,
+      "unequipTimeSeconds": 0,
+      "unequipTimeActionPoints": 0
+    },
+    {
+      "id": "custom-1785419890703-5yh7z",
+      "name": "Zbroja Skórzana",
+      "price": 150,
+      "bulk": 5,
+      "type": "armour",
+      "desc": "Ciężkawy pancerz wykonany z grubej utwardzonej skóry.\n",
+      "state": "unequipped",
+      "hitPoints": 6,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 1
+        }
+      ],
+      "armourLevel": 7,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "head",
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 0,
+      "equipTimeActionPoints": 0,
+      "unequipTimeSeconds": 0,
+      "unequipTimeActionPoints": 0
+    },
+    {
+      "id": "custom-1785420039790-kd21d",
+      "name": "Kolczuga",
+      "price": 200,
+      "bulk": 6,
+      "type": "armour",
+      "desc": "Ciężki zewnętrzny pancerz świetnie chroniący przed obrażeniami ciętymi.\n\nEfekt Pancerza:\n+Niweluje nie krytyczne obrażenia cięte (0 obrażeń).\n− Nie redukuje obrażeń kłótych.\n− Nie redukuje obrażeń obuchowych.",
+      "state": "unequipped",
+      "hitPoints": 9,
+      "toughness": 4,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 3
+        }
+      ],
+      "armourLevel": 9,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "head",
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 0,
+      "equipTimeActionPoints": 0,
+      "unequipTimeSeconds": 0,
+      "unequipTimeActionPoints": 0
+    },
+    {
+      "id": "custom-1785420254391-1fpmk",
+      "name": "Strzała",
+      "price": 2,
+      "bulk": 0.02,
+      "type": "misc",
+      "desc": "Amunicja do łuków, złożona z grotu, drzewca i lotek.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": []
+    },
+    {
+      "id": "custom-1785420331006-a2kar",
+      "name": "Kulka stali",
+      "price": 1,
+      "bulk": 0.01,
+      "type": "misc",
+      "desc": "Malutka, niemalże idealnie okrągła kulka stali. Stanowi idealną amunicję do proc.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": []
     }
   ]
 }

@@ -816,6 +816,32 @@ function abilityBonusFieldPath(key, kind) {
 }
 
 /**
+ * Resolves the field a single Atrybut bonus should target.
+ *
+ * A bonus with a `key` (an ABILITIES_CONFIG key) targets that specific
+ * ability's Doświadczenie/Improwizacja directly, same as before.
+ *
+ * A bonus with NO key ("dowolna umiejętność" — any skill, player's
+ * choice) instead targets the shared Punkty Doświadczenia/Punkty
+ * Improwizacji POOL (see POINT_POOLS_CONFIG/pointPools above) —
+ * the exact same pool a perk's 'skillExperiencePoints'/
+ * 'skillImprovisationPoints' EFFECT_TYPES entry grants into. The
+ * granted points then show up as ordinary spendable pool points on
+ * the Umiejętności table (adjustPoolAllocation()'s +/- buttons),
+ * letting the player pick which skill(s) to put them into, instead
+ * of the Atrybut dictating a fixed ability up front.
+ *
+ * @param {{key?:string|null, kind:'experience'|'improvisation'}} bonus
+ * @returns {string} a dot-path suitable for setPerkModifier()
+ */
+function attributeBonusFieldPath(bonus) {
+    if (bonus.key) return abilityBonusFieldPath(bonus.key, bonus.kind);
+    return bonus.kind === 'improvisation'
+        ? 'pointPools.skillImprovisationPoints.granted'
+        : 'pointPools.skillExperiencePoints.granted';
+}
+
+/**
  * Finds (creating if necessary) the entry for one named Atrybut.
  * Like Wprawa, an Atrybut's name isn't a fixed config list — any
  * name a perk targets springs into existence the first time it's
@@ -855,11 +881,16 @@ export function setAttributeSource(name, sourceId, description, bonuses = []) {
     const entry = ensureAttributeEntry(name);
     if (!entry) return;
 
+    // A bonus's `key` (an ABILITIES_CONFIG key) is now OPTIONAL — a
+    // falsy/omitted key means "dowolna umiejętność" (any skill, the
+    // player's choice), routed to the shared Punkty Doświadczenia/
+    // Improwizacji pool instead of a fixed ability. See
+    // attributeBonusFieldPath() above.
     const cleanBonuses = Array.isArray(bonuses)
-        ? bonuses.filter(b => b && b.key
+        ? bonuses.filter(b => b
             && (b.kind === 'experience' || b.kind === 'improvisation')
             && Number.isFinite(Number(b.amount)) && Number(b.amount) !== 0)
-        .map(b => ({ key: b.key, kind: b.kind, amount: Number(b.amount) }))
+        .map(b => ({ key: b.key || null, kind: b.kind, amount: Number(b.amount) }))
         : [];
 
     entry.sources[sourceId] = { description: description || '', bonuses: cleanBonuses };
@@ -867,7 +898,7 @@ export function setAttributeSource(name, sourceId, description, bonuses = []) {
 
     cleanBonuses.forEach((bonus, i) => {
         setPerkModifier(
-            abilityBonusFieldPath(bonus.key, bonus.kind),
+            attributeBonusFieldPath(bonus),
             `attr:${sourceId}:${i}`,
             bonus.amount,
             `Atrybut: ${name}`
@@ -899,7 +930,7 @@ export function clearAttributeSource(sourceId) {
 
         const removedBonuses = (removed && removed.bonuses) || [];
         removedBonuses.forEach((bonus, i) => {
-            setPerkModifier(abilityBonusFieldPath(bonus.key, bonus.kind), `attr:${sourceId}:${i}`, 0);
+            setPerkModifier(attributeBonusFieldPath(bonus), `attr:${sourceId}:${i}`, 0);
         });
 
         const remaining = Object.values(entry.sources);

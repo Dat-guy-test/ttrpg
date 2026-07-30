@@ -6,7 +6,11 @@
 //
 // Three internal "pages", tracked in module-level `view`:
 //   'list'   — owned items + currency (default), or every item in
-//              the game + its price when Rynek (market mode) is on
+//              the game + its price when Rynek (market mode) is on.
+//              Market mode additionally shows a live search box plus
+//              type / price / proficiency-category / ability-
+//              requirement filters (see MARKET SEARCH & FILTERS
+//              below) and always lists results alphabetically.
 //   'detail' — full description of one item, reached by clicking a
 //              row on either list. Shows a Buy button in market mode,
 //              plus Sprzedaj (sell)/Wyrzuć (discard) buttons for
@@ -21,6 +25,36 @@
 //              "override" rather than mutating items.json — see
 //              equipmentState.js's "BUILT-IN ITEM OVERRIDES" section.
 //
+// ------------------------------------------------------------
+// MARKET SEARCH & FILTERS
+// ------------------------------------------------------------
+// Tracked in view.marketFilters:
+//   search            — substring match against item name (live,
+//                        case-insensitive)
+//   type              — '' (any) or an ITEM_TYPES value
+//   priceMin/priceMax — '' (unbounded) or a number, in Nitki
+//                        Konstancjum; only applied to items with a
+//                        real numeric price
+//   showNotForSale    — whether "Nie Sprzedawany" items are included
+//                        at all (they have no numeric price to
+//                        compare against priceMin/priceMax, so they
+//                        sit outside that filter entirely)
+//   proficiency       — '' (any) or one of builtInProficiencyCategories
+//                        (see below)
+//   abilityOnly       — when true, hides any item whose Wymagania
+//                        (Umiejętności) the player doesn't currently
+//                        meet; items with no requirements always pass
+//
+// builtInProficiencyCategories is the drop-down's option list: every
+// distinct, non-empty proficiencyCategory found across built-in
+// items (items.json, with any current overrides applied). It's
+// computed once at startup (initEquipmentSheet) and recomputed every
+// time Tryb Edycji is left, since editing/overriding a built-in item
+// there could add or remove a category.
+//
+// Filtering + alphabetical sorting is applied only in market mode
+// (filterAndSortMarketItems()) — the owned-items list is unaffected.
+//
 // Exports:
 //   initEquipmentSheet()    — call once, after #equipmentPage exists.
 //   refreshEquipmentSheet() — full re-render; called by perkEffects.js
@@ -30,6 +64,7 @@
 
 
 import { getSellMode } from './progressionState.js';
+import { CharacterState, computeStatValue } from './characterState.js';
 
 import {
     getAllItems, getCustomItems, getItemById, getCurrency, formatCurrencyParts,
@@ -53,7 +88,31 @@ const view = {
     marketMode: false,
     selectedItemId: null,
     editingItemId: null, // item id (built-in or custom) being edited on the 'edit' page, or null when creating a new one
+    // Live search/filter state for the market (Rynek) list — see the
+    // "MARKET SEARCH & FILTERS" header comment above.
+    marketFilters: {
+        search: '',
+        type: '',
+        priceMin: '',
+        priceMax: '',
+        showNotForSale: false,
+        proficiency: '',
+        abilityOnly: false,
+    },
 };
+
+/** Distinct, non-empty proficiencyCategory values found across BUILT-IN items (items.json, with any current overrides applied) — the "filtruj wg wprawy" drop-down's option list. Recomputed at startup and whenever Tryb Edycji is left, since editing a built-in item there could add/remove a category. */
+let builtInProficiencyCategories = [];
+
+function refreshProficiencyCategories() {
+    const cats = new Set();
+    for (const item of getAllItems()) {
+        if (isBuiltInItemId(item.id) && item.proficiencyCategory) {
+            cats.add(item.proficiencyCategory);
+        }
+    }
+    builtInProficiencyCategories = [...cats].sort((a, b) => a.localeCompare(b, 'pl'));
+}
 
 /** True if `id` belongs to a player-created custom item (as opposed to a built-in items.json item). */
 function isCustomItemId(id) {
@@ -66,6 +125,7 @@ export function initEquipmentSheet() {
         console.error('equipmentSheet: no #equipmentPage element found in the DOM.');
         return;
     }
+    refreshProficiencyCategories();
     render();
 }
 
@@ -86,13 +146,97 @@ function render() {
     attachHandlers();
 }
 
+// ============================================================
+// Market search & filters — pure helpers
+// ============================================================
+
+/** @returns {boolean} whether the player currently meets every Wymagania (Umiejętności) entry on `item` — true (vacuously) for an item with none. */
+function meetsAbilityRequirements(item) {
+    const reqs = item.requirements;
+    if (!Array.isArray(reqs) || reqs.length === 0) return true;
+    return reqs.every(r => {
+        const ability = CharacterState.abilities[r.skill];
+        if (!ability) return false;
+        const { value } = computeStatValue(ability.experience);
+        return value >= r.min;
+    });
+}
+
+/**
+ * Applies view.marketFilters (search/type/price/proficiency/ability)
+ * to `items`, then sorts the result alphabetically by name. Only
+ * used for the market (Rynek) list — the owned-items list is shown
+ * unfiltered/unsorted, as before.
+ * @param {object[]} items
+ * @returns {object[]}
+ */
+function filterAndSortMarketItems(items) {
+    const f = view.marketFilters;
+    const search = f.search.trim().toLowerCase();
+    const min = f.priceMin !== '' && Number.isFinite(Number(f.priceMin)) ? Number(f.priceMin) : null;
+    const max = f.priceMax !== '' && Number.isFinite(Number(f.priceMax)) ? Number(f.priceMax) : null;
+
+    const filtered = items.filter(item => {
+        if (search && !item.name.toLowerCase().includes(search)) return false;
+        if (f.type && item.type !== f.type) return false;
+        if (f.proficiency && item.proficiencyCategory !== f.proficiency) return false;
+        if (f.abilityOnly && !meetsAbilityRequirements(item)) return false;
+
+        if (isNotForSale(item.price)) {
+            if (!f.showNotForSale) return false;
+        } else {
+            const price = Number(item.price) || 0;
+            if (min !== null && price < min) return false;
+            if (max !== null && price > max) return false;
+        }
+        return true;
+    });
+
+    filtered.sort((a, b) => a.name.localeCompare(b.name, 'pl'));
+    return filtered;
+}
+
+/** The search box + filter controls shown above the market list. */
+function renderMarketFiltersHTML() {
+    const f = view.marketFilters;
+    return `
+        <section class="charSection marketFilters-section">
+            <div class="editor-row">
+                <input id="market-search-input" type="text" placeholder="Szukaj przedmiotu po nazwie…" value="${escapeHtml(f.search)}" style="flex:2;" />
+                <select id="market-type-filter" style="flex:1;">
+                    <option value="">— Wszystkie typy —</option>
+                    ${ITEM_TYPES.map(t => `<option value="${t.value}" ${f.type === t.value ? 'selected' : ''}>${escapeHtml(t.label)}</option>`).join('')}
+                </select>
+            </div>
+            <div class="editor-row">
+                <input id="market-price-min" type="number" min="0" step="1" placeholder="Cena min." value="${escapeHtml(f.priceMin)}" />
+                <input id="market-price-max" type="number" min="0" step="1" placeholder="Cena maks." value="${escapeHtml(f.priceMax)}" />
+                <label style="display:flex; align-items:center; gap:0.4em; white-space:nowrap;">
+                    <input type="checkbox" id="market-shownotforsale-cb" ${f.showNotForSale ? 'checked' : ''}/> Pokaż niesprzedawane
+                </label>
+            </div>
+            <div class="editor-row">
+                <select id="market-proficiency-filter" style="flex:1;">
+                    <option value="">— Dowolna kategoria wprawy —</option>
+                    ${builtInProficiencyCategories.map(c => `<option value="${escapeHtml(c)}" ${f.proficiency === c ? 'selected' : ''}>${escapeHtml(c)}</option>`).join('')}
+                </select>
+                <label style="display:flex; align-items:center; gap:0.4em; white-space:nowrap; flex:1;">
+                    <input type="checkbox" id="market-abilityonly-cb" ${f.abilityOnly ? 'checked' : ''}/> Tylko przedmioty spełniające moje wymagania umiejętności
+                </label>
+            </div>
+        </section>
+    `;
+}
+
 function renderListPage() {
-    const items = view.marketMode
+    let items = view.marketMode
         ? getAllItems().map(i => ({ ...i, quantity: getItemQuantity(i.id) }))
         : getOwnedItems();
 
+    if (view.marketMode) items = filterAndSortMarketItems(items);
+
     const rows = items.length === 0
-        ? `<p class="charSection-hint">${view.marketMode ? 'Brak przedmiotów w bazie danych.' : 'Nie posiadasz jeszcze żadnych przedmiotów.'}</p>`
+        ? `<p class="charSection-hint">${view.marketMode ? 'Brak przedmiotów pasujących do wyszukiwania/filtrów.' : 'Nie posiadasz jeszcze żadnych przedmiotów.'}</p>`
         : `<ul class="equipListRows">${items.map(i => `
             <li class="equipListRow" data-open-item="${escapeHtml(i.id)}">
                 <span class="equipListRow-name">${escapeHtml(i.name)}${!view.marketMode ? renderStateSuffix(i.id) : ''}</span>
@@ -128,7 +272,8 @@ function renderListPage() {
                 <button class="charBtn" id="equip-market-toggle">${view.marketMode ? 'Wróć do ekwipunku' : 'Otwórz rynek'}</button>
                 <button class="charBtn" id="equip-edit-toggle">Tryb Edycji</button>
             </div>
-            ${view.marketMode ? '<p class="charSection-hint">Rynek — wszystkie przedmioty dostępne w grze wraz z ceną. Kliknij, by zobaczyć szczegóły.</p>' : ''}
+            ${view.marketMode ? '<p class="charSection-hint">Rynek — wszystkie przedmioty dostępne w grze wraz z ceną. Szukaj i filtruj poniżej; lista aktualizuje się na bieżąco i jest posortowana alfabetycznie. Kliknij przedmiot, by zobaczyć szczegóły.</p>' : ''}
+            ${view.marketMode ? renderMarketFiltersHTML() : ''}
             ${rows}
         </section>
     `;
@@ -438,6 +583,34 @@ function renderDetailPage() {
     `;
 }
 
+/**
+ * Re-renders the whole tab while preserving keyboard focus (and text
+ * selection/cursor position, where applicable) on whichever element
+ * currently has it — a plain render() call recreates every element,
+ * which would otherwise steal focus away from the search/price inputs
+ * on every keystroke (same issue manualSheet.js's search box has, and
+ * fixes the same way).
+ */
+function renderPreservingFocus() {
+    const active = document.activeElement;
+    const activeId = active && active.id;
+    const hasSelection = active && typeof active.selectionStart === 'number';
+    const selStart = hasSelection ? active.selectionStart : null;
+    const selEnd   = hasSelection ? active.selectionEnd   : null;
+
+    render();
+
+    if (activeId) {
+        const el = rootEl.querySelector(`#${activeId}`);
+        if (el) {
+            el.focus();
+            if (selStart !== null && typeof el.setSelectionRange === 'function') {
+                try { el.setSelectionRange(selStart, selEnd); } catch (e) { /* not a text input — ignore */ }
+            }
+        }
+    }
+}
+
 function attachHandlers() {
     rootEl.querySelector('#equip-print-btn').addEventListener('click', () => window.print());
     rootEl.querySelector('#equip-reset-btn').addEventListener('click', () => {
@@ -477,10 +650,56 @@ function attachHandlers() {
                 if (prepareItem(btn.dataset.quickPrepare)) render();
             });
         });
+
+        // ---- Market search & filters (only present while marketMode) ----
+        if (view.marketMode) {
+            const searchInput = rootEl.querySelector('#market-search-input');
+            if (searchInput) searchInput.addEventListener('input', (e) => {
+                view.marketFilters.search = e.target.value;
+                renderPreservingFocus();
+            });
+
+            const typeFilter = rootEl.querySelector('#market-type-filter');
+            if (typeFilter) typeFilter.addEventListener('change', (e) => {
+                view.marketFilters.type = e.target.value;
+                render();
+            });
+
+            const priceMinInput = rootEl.querySelector('#market-price-min');
+            if (priceMinInput) priceMinInput.addEventListener('input', (e) => {
+                view.marketFilters.priceMin = e.target.value;
+                renderPreservingFocus();
+            });
+
+            const priceMaxInput = rootEl.querySelector('#market-price-max');
+            if (priceMaxInput) priceMaxInput.addEventListener('input', (e) => {
+                view.marketFilters.priceMax = e.target.value;
+                renderPreservingFocus();
+            });
+
+            const showNotForSaleCb = rootEl.querySelector('#market-shownotforsale-cb');
+            if (showNotForSaleCb) showNotForSaleCb.addEventListener('change', (e) => {
+                view.marketFilters.showNotForSale = e.target.checked;
+                render();
+            });
+
+            const proficiencyFilter = rootEl.querySelector('#market-proficiency-filter');
+            if (proficiencyFilter) proficiencyFilter.addEventListener('change', (e) => {
+                view.marketFilters.proficiency = e.target.value;
+                render();
+            });
+
+            const abilityOnlyCb = rootEl.querySelector('#market-abilityonly-cb');
+            if (abilityOnlyCb) abilityOnlyCb.addEventListener('change', (e) => {
+                view.marketFilters.abilityOnly = e.target.checked;
+                render();
+            });
+        }
     } else if (view.page === 'edit') {
         rootEl.querySelector('#equip-edit-back-btn').addEventListener('click', () => {
             view.editingItemId = null;
             view.page = 'list';
+            refreshProficiencyCategories(); // editing here may have added/removed a proficiency category
             render();
         });
         rootEl.querySelector('#equip-edit-item-select').addEventListener('change', (e) => {
@@ -498,6 +717,7 @@ function attachHandlers() {
         wireItemEditorHandlers(rootEl, () => {
             view.editingItemId = null;
             view.page = 'list';
+            refreshProficiencyCategories(); // a save/delete here may have added/removed a proficiency category
             render();
         });
     } else {
@@ -556,6 +776,7 @@ function attachHandlers() {
                         if (resetOverrideBtn) resetOverrideBtn.addEventListener('click', () => {
                             if (window.confirm(`Przywrócić oryginalną wersję "${item.name}" z items.json? Twoje zmiany do tego przedmiotu zostaną utracone.`)) {
                                 resetBuiltInItemOverride(item.id);
+                                refreshProficiencyCategories();
                                 render();
                             }
                         });

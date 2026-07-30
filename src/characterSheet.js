@@ -381,8 +381,8 @@ function formatAttributeBonuses(entry) {
     const bonuses = collectAttributeBonuses(entry);
     if (bonuses.length === 0) return '';
     return bonuses.map(b => {
-        const abilityCfg = ABILITIES_CONFIG.find(a => a.key === b.key);
-        const label = abilityCfg ? abilityCfg.label : b.key;
+        const abilityCfg = b.key ? ABILITIES_CONFIG.find(a => a.key === b.key) : null;
+        const label = b.key ? (abilityCfg ? abilityCfg.label : b.key) : 'dowolna umiejętność';
         const kindLabel = b.kind === 'improvisation' ? 'Improwizacji' : 'Doświadczenia';
         const sign = b.amount > 0 ? '+' : '';
         return `${sign}${b.amount} ${kindLabel} (${escapeHtml(label)})`;
