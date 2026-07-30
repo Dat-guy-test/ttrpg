@@ -36,6 +36,17 @@
           "content": "Pamiętaj o wyeksportowaniu postaci w oknie „Karta Postaci”. To jedyny sposób na poprawne zapisanie postaci, tak aby móc ją ponownie wyświetlić na stronie!"
         }
       ]
+    },
+    {
+      "id": "custom-page-1785425526592-1vr5s",
+      "title": "Jak obsługiwać drzewko umiejętności",
+      "sections": [
+        {
+          "id": "poruszanie-się-w-drzewku-umiejętności-kontrolki",
+          "name": "Poruszanie się w drzewku umiejętności (kontrolki)",
+          "content": "Użyj strzałek na klawiaturze lub kilkaj w linie, żeby poruszać się po drzewku. Użyj scrolla lub przycisków plusi minus by zmieniać poziom zooma."
+        }
+      ]
     }
   ]
 }

@@ -904,7 +904,7 @@
       "desc": "Jako mieszkaniec małej miejscowości, bądź osoba żyjąca na odludziu większość posiadanych przez Ciebie przedmiotów jest bezwartościowa. Życie w spokoju zostaiwło Ci jednak czas na rozwijanie swoich umiejętności.\n\nZyskujesz dwa poziomy doświadczenia i improwizacji w dowolnych umiejętnościach.\n\nZyskujesz 10 pierścieni.\nZyskujesz Własność Ubogiego i Porządne Buty.",
       "hoverText": "",
       "fi": 17,
-      "theta": 26.000000000000004,
+      "theta": 26.000000000000007,
       "requires": [],
       "cost": 3,
       "temperature": 6000,
@@ -2216,6 +2216,11 @@
           "type": "currency",
           "key": null,
           "amount": 100
+        },
+        {
+          "type": "item",
+          "key": "custom-1785419495055-6r871",
+          "amount": 1
         }
       ]
     }
