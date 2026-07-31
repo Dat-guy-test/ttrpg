@@ -317,7 +317,7 @@ function renderProficienciesSection() {
     <section class="charSection">
     <h2 class="charSection-title">Wprawa</h2>
     <div id="char-perks-list-wprawa">${renderProficienciesList()}</div>
-    <p class="charSection-hint">Wprawa jest przyznawana wyłącznie przez perki.</p>
+    <p class="charSection-hint">Wprawa jest przyznawana wyłącznie przez atuty.</p>
     </section>
     `;
 }
@@ -328,7 +328,7 @@ function renderProficienciesList() {
     .filter(e => e.value > 0);
 
     if (entries.length === 0) {
-        return '<p class="charSection-hint">Brak wprawy — aktywuj odpowiednie perki w drzewku umiejętności.</p>';
+        return '<p class="charSection-hint">Brak wprawy — aktywuj odpowiednie atuty w drzewku umiejętności.</p>';
     }
     return '<ul class="charListRows">' + entries.map(e => {
         const title = e.isModified ? escapeHtml(modifierBreakdown(e.modifiers)) : '';
@@ -366,7 +366,7 @@ function renderAttributesSection() {
     <section class="charSection">
     <h2 class="charSection-title">Atrybuty</h2>
     <div id="char-attributes-list">${renderAttributesList()}</div>
-    <p class="charSection-hint">Atrybuty są przyznawane wyłącznie przez perki.</p>
+    <p class="charSection-hint">Atrybuty są przyznawane wyłącznie przez atuty.</p>
     </section>
     `;
 }
@@ -393,7 +393,7 @@ function renderAttributesList() {
     const entries = Object.entries(CharacterState.attributes);
 
     if (entries.length === 0) {
-        return '<p class="charSection-hint">Brak atrybutów — aktywuj odpowiednie perki w drzewku umiejętności.</p>';
+        return '<p class="charSection-hint">Brak atrybutów — aktywuj odpowiednie atuty w drzewku umiejętności.</p>';
     }
     return '<ul class="charListRows charListRows-attributes">' + entries.map(([name, entry]) => {
         const bonusSummary = formatAttributeBonuses(entry);
@@ -443,7 +443,7 @@ function attachHandlers() {
     // page itself once done, so no local render() call is needed here.
     rootEl.querySelector('#char-reset-btn').addEventListener('click', () => {
         const ok = window.confirm(
-            'Zresetować WSZYSTKO: wybrane perki, kartę postaci, ekwipunek, znane zaklęcia oraz etap gry (Tworzenie Postaci/Użytkowanie/Level Up)? Tej operacji nie można cofnąć.'
+            'Zresetować WSZYSTKO: wybrane atuty, kartę postaci, ekwipunek, znane zaklęcia oraz etap gry (Tworzenie Postaci/Użytkowanie/Level Up)? Tej operacji nie można cofnąć.'
         );
         if (ok) resetEverything();
     });
@@ -464,7 +464,7 @@ function attachHandlers() {
             const parsed = JSON.parse(text);
 
             const ok = window.confirm(
-                'Zaimportować tę postać? Nadpisze to WSZYSTKIE obecne dane postaci — wybrane perki, kartę postaci, ekwipunek, znane zaklęcia i etap gry. Tej operacji nie można cofnąć.'
+                'Zaimportować tę postać? Nadpisze to WSZYSTKIE obecne dane postaci — wybrane atuty, kartę postaci, ekwipunek, znane zaklęcia i etap gry. Tej operacji nie można cofnąć.'
             );
             if (!ok) return;
 

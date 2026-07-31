@@ -73,7 +73,7 @@ function render() {
         <div class="manualSheet">
             <div class="manualSheet-toolbar">
                 <button class="charBtn" id="manual-print-btn"><span>Drukuj</span></button>
-                <button class="charBtn" id="manual-edit-toggle"><span>${view.mode === 'edit' ? 'Wróć do wyszukiwania' : 'Tryb Edycji'}</span></button>
+                <button hidden class="charBtn" id="manual-edit-toggle"><span>${view.mode === 'edit' ? 'Wróć do wyszukiwania' : 'Tryb Edycji'}</span></button>
             </div>
             ${view.mode === 'edit' ? renderEditPage() : renderSearchPage()}
         </div>

@@ -94,7 +94,16 @@ export function toggleEditMode() {
     AppState.pendingNewNodePos = null;
     resetAttributeChoiceDraft();
     resetSpellSchoolUnlockDraft();
-
+    // Toggling visibility of sheet edit mode buttons:
+    document.getElementById("arcana-edit-toggle").hidden == false
+    ?  document.getElementById("arcana-edit-toggle").hidden = true
+    : document.getElementById("arcana-edit-toggle").hidden = false;
+    document.getElementById("equip-edit-toggle").hidden == false
+    ?  document.getElementById("equip-edit-toggle").hidden = true
+    : document.getElementById("equip-edit-toggle").hidden = false;
+    document.getElementById("manual-edit-toggle").hidden == false
+    ?  document.getElementById("manual-edit-toggle").hidden = true
+    : document.getElementById("manual-edit-toggle").hidden = false;
     if (panelEl) panelEl.classList.toggle('editor-hidden', !AppState.editMode);
     updateModeButtons();
     setStatus('');

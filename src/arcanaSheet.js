@@ -154,7 +154,7 @@ function renderKnownSpellsPage() {
     ` : '';
 
     const body = known.length === 0
-        ? '<p class="charSection-hint">Nie znasz jeszcze żadnych zaklęć — aktywuj odpowiednie perki w drzewku umiejętności.</p>'
+        ? '<p class="charSection-hint">Nie znasz jeszcze żadnych zaklęć — aktywuj odpowiednie atuty w drzewku umiejętności.</p>'
         : known.map(spell => renderSpellCard(spell)).join('');
 
     return `
@@ -191,7 +191,7 @@ function renderCompendiumListPage() {
         <section class="charSection">
             <h2 class="charSection-title">Wielka Księga Zaklęć</h2>
             <div class="equipSheet-toolbar">
-                <button class="charBtn" id="arcana-edit-toggle">Tryb Edycji</button>
+                <button hidden class="charBtn" id="arcana-edit-toggle">Tryb Edycji</button>
             </div>
             ${rows}
         </section>

@@ -181,9 +181,7 @@ export function registerInputHandlers() {
                 AppState.effectPass.camera  = AppState.activeCamera;
                 console.log('Activating free camera…');
                 break;
-
-            case '`':
-            case '`':
+            case '~':
                 // Toggle the skill-tree editor (edit mode + inspector panel)
                 toggleEditMode();
                 break;

@@ -270,7 +270,7 @@ function renderListPage() {
             </div>
             <div class="equipSheet-toolbar">
                 <button class="charBtn" id="equip-market-toggle">${view.marketMode ? 'Wróć do ekwipunku' : 'Otwórz rynek'}</button>
-                <button class="charBtn" id="equip-edit-toggle">Tryb Edycji</button>
+                <button hidden class="charBtn" id="equip-edit-toggle">Tryb Edycji</button>
             </div>
             ${view.marketMode ? '<p class="charSection-hint">Rynek — wszystkie przedmioty dostępne w grze wraz z ceną. Szukaj i filtruj poniżej; lista aktualizuje się na bieżąco i jest posortowana alfabetycznie. Kliknij przedmiot, by zobaczyć szczegóły.</p>' : ''}
             ${view.marketMode ? renderMarketFiltersHTML() : ''}
