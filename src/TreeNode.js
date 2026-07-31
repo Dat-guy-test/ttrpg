@@ -91,8 +91,8 @@ export class TreeNode extends THREE.Mesh {
 
         // Visual size scales with cost
         this.nodeSize = anodeCost < 1
-        ? 0.05
-        : 0.05 * ((anodeCost) ^ (1 / 3)); // ^ is bitwise XOR — original behaviour preserved
+        ? 0.2
+        : Math.pow(((anodeCost)), (1/2))/5;
 
         this.excl    = exclStuff || null;
         this.effects = Array.isArray(effects) ? effects : [];
@@ -102,7 +102,7 @@ export class TreeNode extends THREE.Mesh {
         // ---- Invisible hit sphere ------------------------------------
         this.geometry = new THREE.SphereGeometry(this.nodeSize, 16, 16);
         this.material = new THREE.MeshBasicMaterial({
-            color: 0x999999, wireframe: true, opacity: 0.002, transparent: true, depthWrite: false,
+            color: 0x999999, wireframe: true, opacity: 0.01, transparent: true, depthWrite: false,
         });
         this.position.set(posX, posY, posZ);
 

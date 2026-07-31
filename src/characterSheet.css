@@ -94,7 +94,7 @@
     font-family: var(--font-body);
     color: var(--parchment-ink);
 }
-.charField-name input { font-size: 1.2em; font-weight: 600; font-family: var(--font-display); }
+.charField-name input { font-size: 1.2em; font-weight: 800; font-family: var(--font-display); }
 
 /* ---- Generic section wrapper ----------------------------------- */
 .charSection {
@@ -135,7 +135,7 @@
     min-width: 1.1em;
     text-align: center;
     font-size: 0.95em;
-    font-weight: 600;
+    font-weight: 800;
     padding: 0.1em 0.15em;
     color: var(--parchment-ink);
 }
@@ -176,13 +176,13 @@
 .charTable th {
     font-family: var(--font-display);
     background-color: rgba(138, 100, 50, 0.16);
-    font-weight: 600;
+    font-weight: 800;
     font-size: 0.85em;
     color: var(--parchment-ink);
 }
 .charTable-rowLabel {
     text-align: left;
-    font-weight: 600;
+    font-weight: 800;
     background-color: rgba(138, 100, 50, 0.08);
     width: 8em;         /* caps the label column */
     font-size: 0.9em;
@@ -212,8 +212,8 @@
     padding: 0.35em 0.6em;
     text-align: center;
 }
-.dmgTable th { font-family: var(--font-display); background-color: rgba(138, 100, 50, 0.16); font-weight: 600; font-size: 0.85em; }
-.dmgTable .dmgTable-rowLabel { text-align: left; font-weight: 600; }
+.dmgTable th { font-family: var(--font-display); background-color: rgba(138, 100, 50, 0.16); font-weight: 800; font-size: 0.85em; }
+.dmgTable .dmgTable-rowLabel { text-align: left; font-weight: 800; }
 .dmgTable-input {
     width: 3.5em;
     text-align: center;
@@ -223,7 +223,7 @@
 }
 .dmgTable-critical { background-color: rgba(122, 31, 20, 0.16); }
 .dmgTable-critical .dmgTable-rowLabel { color: var(--parchment-seal-dark); }
-.dmgTable-totalRow { background-color: rgba(138, 100, 50, 0.16); font-weight: 600; }
+.dmgTable-totalRow { background-color: rgba(138, 100, 50, 0.16); font-weight: 800; }
 .dmgTable-totalRow output { font-size: 1.1em; color: var(--parchment-ink); }
 
 /* +/- buttons for spending pooled points into a Charakterystyka/Umiejętność */

@@ -252,10 +252,10 @@ export function computeInitialZoomStage(containerWidth, containerHeight) {
 export function freeCameraMovement() {
     const DT = AppState.cameraClock.getDelta();
 
-    if (AppState.keys.ArrowUp)    { AppState.cameraAccelerationX += 1.05 * DT; }
-    if (AppState.keys.ArrowDown)  { AppState.cameraAccelerationX -= 1.05 * DT; }
-    if (AppState.keys.ArrowLeft)  { AppState.cameraAccelerationY += 1.05 * DT; }
-    if (AppState.keys.ArrowRight) { AppState.cameraAccelerationY -= 1.05 * DT; }
+    if (AppState.keys.ArrowUp)    { AppState.cameraAccelerationX += 1.05 * DT * AppState.camera.fov / 10; }
+    if (AppState.keys.ArrowDown)  { AppState.cameraAccelerationX -= 1.05 * DT * AppState.camera.fov / 10; }
+    if (AppState.keys.ArrowLeft)  { AppState.cameraAccelerationY += 1.05 * DT * AppState.camera.fov / 10; }
+    if (AppState.keys.ArrowRight) { AppState.cameraAccelerationY -= 1.05 * DT * AppState.camera.fov / 10; }
 
     AppState.camera.rotation.x += AppState.cameraAccelerationX * DT;
     AppState.camera.rotation.y += AppState.cameraAccelerationY * DT;

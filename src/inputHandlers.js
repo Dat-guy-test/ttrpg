@@ -123,6 +123,22 @@ export function registerInputHandlers() {
                     AppState.zoomVelocity = Math.max(AppState.zoomVelocity - 6, -40);
                 }
                 break;
+            case '+':
+                // Zoom in — adds inward momentum instead of an immediate
+                // step (see cameraControls.js's updateZoomInertia(), run
+                // every frame from main.js's animate()), so holding/
+                // repeatedly tapping '+' keeps the view gliding inward
+                // briefly before coasting to a stop — the same "inertia"
+                // feel '-'/zoom-out already had.
+                if (AppState.zoomStage > 0 && !AppState.panCamBool) {
+                    // A deliberate zoom-in takes over from any outward
+                    // momentum still coasting from a previous scroll-down/
+                    // '-' press, instead of having to fight it off — see
+                    // touchstart's identical reset for pinch-to-zoom.
+                    if (AppState.zoomVelocity > 0) AppState.zoomVelocity = 0;
+                    AppState.zoomVelocity = Math.max(AppState.zoomVelocity - 6, -40);
+                }
+                break;
 
             case '-':
                 // Zoom out — adds outward momentum instead of an immediate
