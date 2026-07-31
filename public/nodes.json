@@ -33,7 +33,7 @@
       "id": "-3",
       "name": "Urodzony Czarownik",
       "desc": "Od urodzenia potrzfisz rzucać zaklęcia. Wybierz 2 zaklęcia o maksymalnej złożoności 1. Znasz te zaklęcia na pamięć i zawsze możesz je rzucić o ile spełniasz wymagania rzucenia owych czarów.",
-      "hoverText": "Grants access to Witchery tree and basic magic.",
+      "hoverText": "",
       "fi": 25,
       "theta": 20,
       "requires": [],
@@ -76,6 +76,17 @@
           "type": "skillImprovisation",
           "key": "destrukcja",
           "amount": 1
+        },
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction"
+          ],
+          "maxComplexity": 1
         }
       ]
     },

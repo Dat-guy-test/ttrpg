@@ -46,6 +46,11 @@ const view = {
 // (which could return a different list if the query changed since).
 let lastSearchResults = [];
 
+// Every currently-known page, kept so a click on the "show all pages"
+// list (shown when the search box is empty — see renderAllPagesList())
+// can look the clicked page back up by index without re-fetching it.
+let lastAllPages = [];
+
 function isCustomPageId(id) {
     return getCustomPages().some(p => p.id === id);
 }
@@ -106,7 +111,26 @@ function renderSearchPage() {
         return searchBox + renderSearchResults();
     }
 
-    return searchBox + `<p class="charSection-hint">Zacznij pisać, by znaleźć stronę lub sekcję. Szukanie obejmuje tytuły stron i nazwy sekcji.</p>`;
+    return searchBox + `<p class="charSection-hint">Wszystkie strony — zacznij pisać, by zawęzić wyniki do stron lub sekcji pasujących do wyszukiwania.</p>` + renderAllPagesList();
+}
+
+/** Every currently-known page (built-in + custom), shown when the search box is empty. */
+function renderAllPagesList() {
+    const pages = getAllPages();
+    lastAllPages = pages;
+
+    if (pages.length === 0) {
+        return `<p class="charSection-hint">Brak stron.</p>`;
+    }
+
+    const rows = pages.map((page, i) => `
+        <li class="equipListRow" data-all-page-index="${i}">
+            <span class="equipListRow-name"><strong>${escapeHtml(page.title)}</strong></span>
+            <span class="equipListRow-qty">Strona</span>
+        </li>
+    `).join('');
+
+    return `<ul class="equipListRows">${rows}</ul>`;
 }
 
 function renderSearchResults() {
@@ -256,6 +280,16 @@ function attachHandlers() {
                 if (!hit) return;
                 view.selectedPageId = hit.page.id;
                 view.scrollToSectionId = hit.section ? hit.section.id : null;
+                render();
+            });
+        });
+
+        rootEl.querySelectorAll('[data-all-page-index]').forEach(row => {
+            row.addEventListener('click', () => {
+                const page = lastAllPages[Number(row.dataset.allPageIndex)];
+                if (!page) return;
+                view.selectedPageId = page.id;
+                view.scrollToSectionId = null;
                 render();
             });
         });

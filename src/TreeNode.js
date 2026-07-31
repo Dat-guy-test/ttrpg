@@ -363,11 +363,12 @@ export class TreeNode extends THREE.Mesh {
                  * being restored), so there's nothing new to persist here.
                  *
                  * @param {{[effectIndex:string]:number[]}|null} savedChoices — this node's persisted attributeChoice selections, if any (see treePersistence.js's getSavedChoicesForNode())
+                 * @param {{[effectIndex:string]:string|null}|null} savedSpellChoices — this node's persisted spellSchoolUnlock spell choices, if any (see treePersistence.js's getSavedSpellSchoolChoicesForNode())
                  */
-                restoreActive(savedChoices) {
+                restoreActive(savedChoices, savedSpellChoices) {
                     this.nodeActive   = true;
                     this._applyActiveStarVisual();
-                    applyNodeEffect(this, { restoring: true, savedChoices });
+                    applyNodeEffect(this, { restoring: true, savedChoices, savedSpellChoices });
                 }
 
                 /**

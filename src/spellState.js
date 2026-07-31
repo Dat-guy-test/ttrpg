@@ -16,9 +16,14 @@
 // A perk can grant either:
 //   - a specific spell (EFFECT_TYPES' 'spellUnlock')      → tracked
 //     in `knownSpellSources`: { [sourceId]: spellId }
-//   - access to any compendium spell matching one or more schools
-//     up to a max complexity (EFFECT_TYPES' 'spellSchoolUnlock') →
-//     tracked in `schoolGrantSources`: { [sourceId]: {schools, maxComplexity} }
+//   - ONE spell of the player's choosing, out of every compendium
+//     spell matching one or more schools up to a max complexity
+//     (EFFECT_TYPES' 'spellSchoolUnlock') → tracked in
+//     `schoolGrantSources`: { [sourceId]: {schools, maxComplexity, chosenSpellId} }
+//     The player picks which single spell this grants at the moment
+//     the perk is activated (see perkEffects.js's
+//     applySpellSchoolUnlockEffect()/getEligibleSpellsForSchoolGrant()
+//     below) — this does NOT unlock every matching spell at once.
 // getKnownSpells() resolves both into the actual list of spells the
 // character currently knows. Like currency/items, this is routed
 // through perkEffects.js's small explicit branches rather than the
@@ -341,10 +346,46 @@ export function removeKnownSpell(sourceId) {
     saveKnownSpellSources();
 }
 
-/** Grants (or updates) one perk's school-based unlock. */
-export function addSpellSchoolGrant(sourceId, schools, maxComplexity) {
-    schoolGrantSources[sourceId] = { schools: [...schools], maxComplexity: Number(maxComplexity) || 0 };
+/**
+ * Grants (or updates) one perk's school-based unlock. Unlike every
+ * compendium spell matching `schools`/`maxComplexity`, this grants
+ * exactly ONE spell — `chosenSpellId`, picked by the player at
+ * activation time (see perkEffects.js's applySpellSchoolUnlockEffect()).
+ * `chosenSpellId` may be null (no eligible spell existed, or the
+ * player cancelled the pick) — the grant is still recorded (so its
+ * schools/maxComplexity keep showing up via getSchoolGrants()), it
+ * just doesn't resolve to any known spell in getKnownSpells().
+ * @param {string} sourceId
+ * @param {string[]} schools
+ * @param {number} maxComplexity
+ * @param {string|null} [chosenSpellId]
+ */
+export function addSpellSchoolGrant(sourceId, schools, maxComplexity, chosenSpellId = null) {
+    schoolGrantSources[sourceId] = {
+        schools: [...schools],
+        maxComplexity: Number(maxComplexity) || 0,
+        chosenSpellId: chosenSpellId || null,
+    };
     saveSchoolGrantSources();
+}
+
+/**
+ * Every compendium spell eligible for a 'spellSchoolUnlock' grant
+ * with the given schools/maxComplexity — shares at least one school
+ * with `schools`, and has complexity <= maxComplexity. Used by
+ * perkEffects.js to build the pick-one-spell prompt at activation
+ * time (and to validate a restored choice is still eligible).
+ * @param {string[]} schools
+ * @param {number} maxComplexity
+ * @returns {object[]}
+ */
+export function getEligibleSpellsForSchoolGrant(schools, maxComplexity) {
+    const schoolList = Array.isArray(schools) ? schools : [];
+    const maxC = Number(maxComplexity) || 0;
+    return getAllSpells().filter(spell => {
+        const spellSchools = Array.isArray(spell.schools) ? spell.schools : [];
+        return schoolList.some(s => spellSchools.includes(s)) && (Number(spell.complexity) || 0) <= maxC;
+    });
 }
 
 /** Revokes one perk's school-based unlock. */
@@ -361,9 +402,11 @@ export function getSchoolGrants() {
 
 /**
  * Resolves every currently-known spell: specific perk-granted spells
- * PLUS every compendium spell matching an active school grant
- * (shares at least one school with the grant, and complexity <= the
- * grant's maxComplexity). Deduplicated by id.
+ * PLUS, for each active school grant, the ONE spell the player chose
+ * for it (see addSpellSchoolGrant()'s `chosenSpellId`) — NOT every
+ * compendium spell matching that grant's schools/complexity.
+ * Deduplicated by id. A grant with no chosen spell (none eligible, or
+ * the player cancelled the pick) simply contributes nothing here.
  * @returns {object[]}
  */
 export function getKnownSpells() {
@@ -374,17 +417,10 @@ export function getKnownSpells() {
         if (spell) known.set(spell.id, spell);
     }
 
-    const grants = getSchoolGrants();
-    if (grants.length > 0) {
-        for (const spell of getAllSpells()) {
-            if (known.has(spell.id)) continue;
-            const spellSchools = Array.isArray(spell.schools) ? spell.schools : [];
-            const matches = grants.some(g =>
-                g.schools.some(s => spellSchools.includes(s)) &&
-                (Number(spell.complexity) || 0) <= g.maxComplexity
-            );
-            if (matches) known.set(spell.id, spell);
-        }
+    for (const grant of Object.values(schoolGrantSources)) {
+        if (!grant.chosenSpellId) continue;
+        const spell = getSpellById(grant.chosenSpellId);
+        if (spell) known.set(spell.id, spell);
     }
 
     return [...known.values()];

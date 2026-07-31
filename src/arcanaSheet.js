@@ -144,9 +144,12 @@ function renderKnownSpellsPage() {
 
     const grantsHint = grants.length > 0 ? `
         <p class="charSection-hint">
-            Aktywne odblokowania wg szkoły: ${grants.map(g =>
-                `${g.schools.map(s => labelOf(SPELL_SCHOOLS, s)).join('/')} (maks. złożoność ${g.maxComplexity})`
-            ).join('; ')}
+            Aktywne odblokowania wg szkoły: ${grants.map(g => {
+                const schoolsLabel = g.schools.map(s => labelOf(SPELL_SCHOOLS, s)).join('/');
+                const chosen = g.chosenSpellId ? getSpellById(g.chosenSpellId) : null;
+                const pickLabel = chosen ? ` → ${chosen.name}` : ' (nie wybrano zaklęcia)';
+                return `${schoolsLabel} (maks. złożoność ${g.maxComplexity})${pickLabel}`;
+            }).join('; ')}
         </p>
     ` : '';
 

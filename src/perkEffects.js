@@ -98,11 +98,17 @@ import {
     EFFECT_TYPES,
 } from './characterState.js';
 import { addCurrency, addItemQuantity, getCurrency, getItemQuantity } from './equipmentState.js';
-import { addKnownSpell, removeKnownSpell, addSpellSchoolGrant, removeSpellSchoolGrant } from './spellState.js';
+import {
+    addKnownSpell, removeKnownSpell,
+    addSpellSchoolGrant, removeSpellSchoolGrant, getEligibleSpellsForSchoolGrant,
+} from './spellState.js';
 import { refreshCharacterSheet } from './characterSheet.js';
 import { refreshEquipmentSheet } from './equipmentSheet.js';
 import { refreshArcanaSheet } from './arcanaSheet.js';
-import { saveAttributeChoiceSelection, clearAttributeChoiceSelection } from './treePersistence.js';
+import {
+    saveAttributeChoiceSelection, clearAttributeChoiceSelection,
+    saveSpellSchoolChoice, clearSpellSchoolChoice,
+} from './treePersistence.js';
 
 /**
  * A perk that granted currency or items is only allowed to be
@@ -217,12 +223,82 @@ function promptAttributeChoice(nodeName, options, count) {
 }
 
 /**
+ * Prompts the player (via window.prompt) to pick exactly ONE spell
+ * out of `spells`. Cancelling the prompt, or entering an invalid
+ * number, results in no spell being chosen (returns null) rather than
+ * blocking activation — same reasoning as promptAttributeChoice()'s
+ * cancel handling above.
+ * @param {string} nodeName
+ * @param {object[]} spells
+ * @returns {string|null} the chosen spell's id, or null if none was picked
+ */
+function promptSpellSchoolChoice(nodeName, spells) {
+    const listText = spells.map((s, i) => `${i + 1}. ${s.name} (złożoność ${s.complexity ?? 0})`).join('\n');
+    const answer = window.prompt(
+        `"${nodeName}" — wybierz JEDNO zaklęcie do odblokowania spośród:\n${listText}\n\nWpisz numer zaklęcia:`
+    );
+    if (answer === null) return null; // cancelled — nothing chosen
+
+    const n = Number(String(answer).trim());
+    if (!Number.isInteger(n) || n < 1 || n > spells.length) {
+        window.alert('Nieprawidłowy numer — nie odblokowano żadnego zaklęcia.');
+        return null;
+    }
+    return spells[n - 1].id;
+}
+
+/**
+ * Handles a 'spellSchoolUnlock' effect on activation. This effect
+ * grants exactly ONE spell — not every compendium spell matching its
+ * schools/maxComplexity — so this either prompts the player to pick
+ * one out of the currently-eligible pool, or — when `presetSpellId`
+ * is given while restoring a previous session (see treePersistence.js) —
+ * reuses that exact choice without prompting, provided it's still a
+ * valid, eligible pick (a spell could have been deleted, or edited
+ * out of the matching schools/complexity, since it was chosen).
+ *
+ * The chosen spell id is remembered on the TreeNode INSTANCE itself
+ * (node._spellSchoolChoiceSelections[index] = spellId) so
+ * removeNodeEffect() doesn't need any extra bookkeeping beyond
+ * clearing this grant, AND persisted via treePersistence.js's
+ * saveSpellSchoolChoice() so a future reload restores the same spell
+ * without re-prompting.
+ *
  * @param {import('./TreeNode.js').TreeNode} node
- * @param {{restoring?:boolean, savedChoices?:{[effectIndex:string]:number[]}}} [opts]
+ * @param {{type:string, schools:string[], maxComplexity:number}} effect
+ * @param {number} index — this effect's position in node.effects
+ * @param {string|null|undefined} presetSpellId — reuse this exact spell instead of prompting (used when restoring a previous session)
+ * @param {boolean} restoring — true while restoring a previous session; suppresses the prompt entirely
+ */
+function applySpellSchoolUnlockEffect(node, effect, index, presetSpellId, restoring) {
+    const sourceId = `node:${node.nodeId}:${index}`;
+    const eligible = getEligibleSpellsForSchoolGrant(effect.schools || [], effect.maxComplexity);
+
+    let chosenId = null;
+    if (restoring) {
+        // Never prompt while restoring — reuse the saved pick only if it's
+        // still a real, eligible spell; otherwise leave it unchosen rather
+        // than silently re-prompting or auto-picking a different one.
+        chosenId = (presetSpellId && eligible.some(s => s.id === presetSpellId)) ? presetSpellId : null;
+    } else if (eligible.length > 0) {
+        chosenId = promptSpellSchoolChoice(node.nodeName, eligible);
+    }
+
+    if (!node._spellSchoolChoiceSelections) node._spellSchoolChoiceSelections = {};
+    node._spellSchoolChoiceSelections[index] = chosenId;
+    saveSpellSchoolChoice(node.nodeId, index, chosenId);
+
+    addSpellSchoolGrant(sourceId, effect.schools || [], effect.maxComplexity, chosenId);
+}
+
+/**
+ * @param {import('./TreeNode.js').TreeNode} node
+ * @param {{restoring?:boolean, savedChoices?:{[effectIndex:string]:number[]}, savedSpellChoices?:{[effectIndex:string]:string|null}}} [opts]
  *   `restoring: true` skips re-granting 'currency'/'item' effects
  *   (equipmentState.js already persists those directly — see this
- *   module's header comment) and `savedChoices` supplies
- *   'attributeChoice' picks so restoring never re-prompts.
+ *   module's header comment), `savedChoices` supplies
+ *   'attributeChoice' picks, and `savedSpellChoices` supplies
+ *   'spellSchoolUnlock' picks, so restoring never re-prompts.
  */
 export function applyNodeEffect(node, opts = {}) {
     if (!Array.isArray(node.effects) || node.effects.length === 0) return;
@@ -271,11 +347,13 @@ export function applyNodeEffect(node, opts = {}) {
             // Idempotent by sourceId, safe to re-run every restore.
             addKnownSpell(sourceId, effect.key);
         } else if (effect.type === 'spellSchoolUnlock') {
-            // Grants access to any compendium spell matching one or more
-            // schools up to a max complexity. Resolved at "Znane zaklęcia"
-            // read-time (see spellState.js's getKnownSpells()), so nothing
-            // numeric to add up here either. Idempotent by sourceId.
-            addSpellSchoolGrant(sourceId, effect.schools || [], effect.maxComplexity);
+            // Grants exactly ONE spell out of every compendium spell
+            // matching one or more schools up to a max complexity — the
+            // player picks which one at activation time (or reuses a
+            // saved pick while restoring). See
+            // applySpellSchoolUnlockEffect() above. Idempotent by
+            // sourceId, safe to re-run every restore.
+            applySpellSchoolUnlockEffect(node, effect, index, opts.savedSpellChoices ? opts.savedSpellChoices[index] : null, restoring);
         } else {
             // Every remaining EFFECT_TYPES entry (characteristic,
             // skillExperience, skillImprovisation, proficiency, and the
@@ -330,6 +408,13 @@ export function removeNodeEffect(node) {
             removeKnownSpell(sourceId);
         } else if (effect && effect.type === 'spellSchoolUnlock') {
             removeSpellSchoolGrant(sourceId);
+            // Also drop the instance- and storage-level bookkeeping of
+            // which spell THIS activation picked — mirrors
+            // 'attributeChoice''s cleanup just below, and prevents a
+            // stale pick from being replayed if this node is reactivated
+            // after a reload before this session's state catches up.
+            if (node._spellSchoolChoiceSelections) delete node._spellSchoolChoiceSelections[index];
+            clearSpellSchoolChoice(node.nodeId, index);
         } else if (effect && effect.type === 'attributeChoice') {
             // Clear exactly the option(s) THIS activation granted — see
             // applyAttributeChoiceEffect()'s comment on

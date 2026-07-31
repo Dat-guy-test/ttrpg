@@ -18,6 +18,14 @@
 //     // 'attributeChoice' effect, so restoreActiveNodes() never has
 //     // to re-prompt the player on every page load:
 //     attributeChoiceSelections: { [nodeId]: { [effectIndex]: number[] } },
+//     // Player-picked spell for every currently-active
+//     // 'spellSchoolUnlock' effect (that effect now grants exactly
+//     // ONE spell, chosen by the player from the matching school(s)/
+//     // max-complexity pool — see spellState.js/perkEffects.js), so
+//     // restoreActiveNodes() never has to re-prompt on every page
+//     // load. A value of null means "no spell was chosen" (no
+//     // eligible spell existed, or the player cancelled the prompt).
+//     spellSchoolChoiceSelections: { [nodeId]: { [effectIndex]: string|null } },
 //   }
 //
 // Exports:
@@ -27,6 +35,10 @@
 //   saveAttributeChoiceSelection(nodeId, effectIndex, indexes) /
 //   clearAttributeChoiceSelection(nodeId, effectIndex)
 //     — called from perkEffects.js whenever an 'attributeChoice'
+//       effect is granted/revoked.
+//   saveSpellSchoolChoice(nodeId, effectIndex, spellId) /
+//   clearSpellSchoolChoice(nodeId, effectIndex)
+//     — called from perkEffects.js whenever a 'spellSchoolUnlock'
 //       effect is granted/revoked.
 //   restoreActiveNodes(tree)
 //     — called once from main.js's sec(), AFTER AppState.tr.init().
@@ -42,6 +54,7 @@ function buildDefaultState() {
     return {
         activeNodeIds: [],
         attributeChoiceSelections: {},
+        spellSchoolChoiceSelections: {},
     };
 }
 
@@ -56,6 +69,9 @@ function load() {
         }
         if (parsed.attributeChoiceSelections && typeof parsed.attributeChoiceSelections === 'object') {
             out.attributeChoiceSelections = parsed.attributeChoiceSelections;
+        }
+        if (parsed.spellSchoolChoiceSelections && typeof parsed.spellSchoolChoiceSelections === 'object') {
+            out.spellSchoolChoiceSelections = parsed.spellSchoolChoiceSelections;
         }
         return out;
     } catch (e) {
@@ -86,6 +102,7 @@ export function markNodeInactive(nodeId) {
     const id = String(nodeId);
     TreeState.activeNodeIds = TreeState.activeNodeIds.filter(x => x !== id);
     delete TreeState.attributeChoiceSelections[id];
+    delete TreeState.spellSchoolChoiceSelections[id];
     save();
 }
 
@@ -115,6 +132,35 @@ export function clearAttributeChoiceSelection(nodeId, effectIndex) {
 /** @returns {{[effectIndex:string]: number[]}|null} this node's persisted attributeChoice selections, or null if it has none. */
 export function getSavedChoicesForNode(nodeId) {
     return TreeState.attributeChoiceSelections[String(nodeId)] || null;
+}
+
+/**
+ * Persists one 'spellSchoolUnlock' effect's chosen spell id for a
+ * node, keyed by that effect's index in node.effects. Pass a falsy
+ * spellId to record "no spell chosen" (no eligible spell existed, or
+ * the player cancelled the prompt) — this is remembered too, so a
+ * reload doesn't re-prompt just because nothing was picked last time.
+ */
+export function saveSpellSchoolChoice(nodeId, effectIndex, spellId) {
+    const id = String(nodeId);
+    if (!TreeState.spellSchoolChoiceSelections[id]) TreeState.spellSchoolChoiceSelections[id] = {};
+    TreeState.spellSchoolChoiceSelections[id][effectIndex] = spellId || null;
+    save();
+}
+
+/** Removes one specific 'spellSchoolUnlock' effect's persisted spell choice. */
+export function clearSpellSchoolChoice(nodeId, effectIndex) {
+    const id = String(nodeId);
+    const forNode = TreeState.spellSchoolChoiceSelections[id];
+    if (!forNode) return;
+    delete forNode[effectIndex];
+    if (Object.keys(forNode).length === 0) delete TreeState.spellSchoolChoiceSelections[id];
+    save();
+}
+
+/** @returns {{[effectIndex:string]: string|null}|null} this node's persisted spellSchoolUnlock spell choices, or null if it has none. */
+export function getSavedSpellSchoolChoicesForNode(nodeId) {
+    return TreeState.spellSchoolChoiceSelections[String(nodeId)] || null;
 }
 
 /**
@@ -182,7 +228,7 @@ export function restoreActiveNodes(tree) {
         }
         stillValid.push(id);
         if (!node.nodeActive) {
-            node.restoreActive(getSavedChoicesForNode(id));
+            node.restoreActive(getSavedChoicesForNode(id), getSavedSpellSchoolChoicesForNode(id));
         }
     }
 
