@@ -1236,8 +1236,8 @@
       "name": "Okularnik",
       "desc": "Udało Ci się zdobyć okulary prawie całkowicie korygujące twoją wadę wzroku.\n\nZyskujesz przedmiot: Okulary\n\nOkulary zwiększają twój poziom doświadczenia w umiejętności spostrzegawczość o 2.",
       "hoverText": "",
-      "fi": 28.03,
-      "theta": 22.789999999999992,
+      "fi": 29.999999999999996,
+      "theta": 24,
       "requires": [
         "1000"
       ],

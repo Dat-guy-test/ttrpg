@@ -185,7 +185,6 @@ export function registerInputHandlers() {
                 // Toggle the skill-tree editor (edit mode + inspector panel)
                 toggleEditMode();
                 break;
-
             default:
                 return; // Let unhandled keys propagate normally
         }
@@ -210,6 +209,15 @@ export function registerInputHandlers() {
     // stops, the way trackpad momentum scrolling feels.
     // ============================================================
     window.addEventListener('wheel', function (e) {
+        // Cursor is over the parchment info panel (#text) — let it scroll
+        // natively (it already has overflow-y: auto in style.css) instead
+        // of zooming the skill tree. Skip preventDefault() entirely so the
+        // browser's own scroll behavior isn't blocked.
+        const textPanel = document.getElementById('text');
+        if (textPanel && textPanel.contains(e.target)) {
+            return;
+        }
+
         e.preventDefault();
 
         if (e.deltaY < 0) {
