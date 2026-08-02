@@ -3169,137 +3169,6 @@
       "enablesPrepareTypes": []
     },
     {
-      "id": "custom-1785419495055-6r871",
-      "name": "Lekka Przeszywanica",
-      "price": 30,
-      "bulk": 3,
-      "type": "armour",
-      "desc": "Podstawowy pancerz stworzony z kilku zszytych z sobą warstw materiału.\n\nEfekt pancerza:\n+ Redukcja obrażeń obuchowych (otrzymujesz tylko połowę obrażeń obuchowych)\n− Brak redukcji obrażeń ciętych.\n− Brak redukcji obrażeń kłótych.",
-      "state": "unequipped",
-      "hitPoints": 5,
-      "toughness": 2,
-      "isSet": false,
-      "setMembers": [],
-      "accessorySize": null,
-      "prepareType": "",
-      "enablesPrepareTypes": [],
-      "requirements": [
-        {
-          "skill": "sila",
-          "min": 0
-        }
-      ],
-      "armourLevel": 5,
-      "equipSlots": [
-        "leftPalm",
-        "rightPalm",
-        "leftArm",
-        "rightArm",
-        "leftFoot",
-        "rightFoot",
-        "leftLeg",
-        "rightLeg",
-        "torso",
-        "back"
-      ],
-      "equipLayers": [
-        "innerArmour"
-      ],
-      "effectDescription": "",
-      "equipTimeSeconds": 0,
-      "equipTimeActionPoints": 0,
-      "unequipTimeSeconds": 0,
-      "unequipTimeActionPoints": 0
-    },
-    {
-      "id": "custom-1785419890703-5yh7z",
-      "name": "Zbroja Skórzana",
-      "price": 150,
-      "bulk": 5,
-      "type": "armour",
-      "desc": "Ciężkawy pancerz wykonany z grubej utwardzonej skóry.\n",
-      "state": "unequipped",
-      "hitPoints": 6,
-      "toughness": 2,
-      "isSet": false,
-      "setMembers": [],
-      "accessorySize": null,
-      "prepareType": "",
-      "enablesPrepareTypes": [],
-      "requirements": [
-        {
-          "skill": "sila",
-          "min": 1
-        }
-      ],
-      "armourLevel": 7,
-      "equipSlots": [
-        "leftPalm",
-        "rightPalm",
-        "leftArm",
-        "rightArm",
-        "leftFoot",
-        "rightFoot",
-        "leftLeg",
-        "rightLeg",
-        "head",
-        "torso",
-        "back"
-      ],
-      "equipLayers": [
-        "outerArmour"
-      ],
-      "effectDescription": "",
-      "equipTimeSeconds": 0,
-      "equipTimeActionPoints": 0,
-      "unequipTimeSeconds": 0,
-      "unequipTimeActionPoints": 0
-    },
-    {
-      "id": "custom-1785420039790-kd21d",
-      "name": "Kolczuga",
-      "price": 200,
-      "bulk": 6,
-      "type": "armour",
-      "desc": "Ciężki zewnętrzny pancerz świetnie chroniący przed obrażeniami ciętymi.\n\nEfekt Pancerza:\n+Niweluje nie krytyczne obrażenia cięte (0 obrażeń).\n− Nie redukuje obrażeń kłótych.\n− Nie redukuje obrażeń obuchowych.",
-      "state": "unequipped",
-      "hitPoints": 9,
-      "toughness": 4,
-      "isSet": false,
-      "setMembers": [],
-      "accessorySize": null,
-      "prepareType": "",
-      "enablesPrepareTypes": [],
-      "requirements": [
-        {
-          "skill": "sila",
-          "min": 3
-        }
-      ],
-      "armourLevel": 9,
-      "equipSlots": [
-        "leftPalm",
-        "rightPalm",
-        "leftArm",
-        "rightArm",
-        "leftFoot",
-        "rightFoot",
-        "leftLeg",
-        "rightLeg",
-        "head",
-        "torso",
-        "back"
-      ],
-      "equipLayers": [
-        "outerArmour"
-      ],
-      "effectDescription": "",
-      "equipTimeSeconds": 0,
-      "equipTimeActionPoints": 0,
-      "unequipTimeSeconds": 0,
-      "unequipTimeActionPoints": 0
-    },
-    {
       "id": "custom-1785420254391-1fpmk",
       "name": "Strzała",
       "price": 2,
@@ -3346,6 +3215,1328 @@
       "accessorySize": null,
       "prepareType": "",
       "enablesPrepareTypes": []
+    },
+    {
+      "id": "custom-1785699910537-luu8b",
+      "name": "Płócienne Opancerzenie Kończyn",
+      "price": 20,
+      "bulk": 0.5,
+      "type": "armour",
+      "desc": "Grube materiałowe rękawice z pikowanymi, przeszywanymi rękawami i pończochami.",
+      "state": "unequipped",
+      "hitPoints": 10,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "armourLevel": 1,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "belt"
+      ],
+      "equipLayers": [
+        "innerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe otrzymywane w kończyny.",
+      "equipTimeSeconds": 45,
+      "equipTimeActionPoints": 90,
+      "unequipTimeSeconds": 30,
+      "unequipTimeActionPoints": 60
+    },
+    {
+      "id": "custom-1785700128720-h4ux6",
+      "name": "Skórzane Opancerzenie Kończyn",
+      "price": 35,
+      "bulk": 0.4,
+      "type": "armour",
+      "desc": "Skórzane rękawice z naramiennikami i nakollannikami z twardej, sztywnej, gotowanej skóry.",
+      "state": "unequipped",
+      "hitPoints": 10,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "armourLevel": 2,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "belt"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 90,
+      "equipTimeActionPoints": 180,
+      "unequipTimeSeconds": 60,
+      "unequipTimeActionPoints": 120
+    },
+    {
+      "id": "custom-1785700292986-zj2iw",
+      "name": "Wzmocnione Opancerzenie Kończyn",
+      "price": 50,
+      "bulk": 0.6,
+      "type": "armour",
+      "desc": "Wzmocnione płytkami metalu skórzane rękawice z wzmocnionymi płytkami metalu nagolennikami i naramiennikami.",
+      "state": "unequipped",
+      "hitPoints": 15,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 1
+        }
+      ],
+      "armourLevel": 3,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "belt"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe otrzymywane w kończyny.",
+      "equipTimeSeconds": 45,
+      "equipTimeActionPoints": 90,
+      "unequipTimeSeconds": 30,
+      "unequipTimeActionPoints": 60
+    },
+    {
+      "id": "custom-1785700456783-08web",
+      "name": "Łuskowe Opancerzenie Kończyn",
+      "price": 80,
+      "bulk": 0.9,
+      "type": "armour",
+      "desc": "Wykonane z małych metalowych płytek (łusek) rękawice z łuskowymi nagolennikami i naramiennikami.",
+      "state": "unequipped",
+      "hitPoints": 12,
+      "toughness": 4,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 2
+        }
+      ],
+      "armourLevel": 4,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "belt"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 45,
+      "equipTimeActionPoints": 90,
+      "unequipTimeSeconds": 30,
+      "unequipTimeActionPoints": 60
+    },
+    {
+      "id": "custom-1785700758966-p9k55",
+      "name": "Kolcze Opancerzenie Kończyn",
+      "price": 760,
+      "bulk": 2,
+      "type": "armour",
+      "desc": "Wykonane z małych połączonych metalowych pierścieni (kolcze) rękawice z kolczymi rękawami i nogawicami.",
+      "state": "unequipped",
+      "hitPoints": 15,
+      "toughness": 5,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 3
+        }
+      ],
+      "armourLevel": 5,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "belt"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia cięte otrzymywane w kończyny.",
+      "equipTimeSeconds": 30,
+      "equipTimeActionPoints": 60,
+      "unequipTimeSeconds": 20,
+      "unequipTimeActionPoints": 40
+    },
+    {
+      "id": "custom-1785701217589-qrj92",
+      "name": "Płytowe Opancerzenie Kończyn",
+      "price": 950,
+      "bulk": 1.8,
+      "type": "armour",
+      "desc": "Wykonane z dużych sprytnie połączonych płytek metalu (płytowe) rękawice z przegubowym płytowym pancerzem rąk i nóg.",
+      "state": "unequipped",
+      "hitPoints": 20,
+      "toughness": 6,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 4
+        }
+      ],
+      "armourLevel": 6,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "belt"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia cięte i kłóte otrzymywane w kończyny.",
+      "equipTimeSeconds": 450,
+      "equipTimeActionPoints": 900,
+      "unequipTimeSeconds": 300,
+      "unequipTimeActionPoints": 600
+    },
+    {
+      "id": "custom-1785701380767-h592p",
+      "name": "Rycerskie Opancerzenie Kończyn",
+      "price": 2300,
+      "bulk": 2.1,
+      "type": "armour",
+      "desc": "Kompozytowe płytowe rękawice z sprawdzonym przegubowym płytowym pancerzem rąk i nóg.",
+      "state": "unequipped",
+      "hitPoints": 20,
+      "toughness": 7,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 4
+        }
+      ],
+      "armourLevel": 7,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "belt"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe, cięte i kłóte otrzymywane w kończyny.",
+      "equipTimeSeconds": 300,
+      "equipTimeActionPoints": 600,
+      "unequipTimeSeconds": 200,
+      "unequipTimeActionPoints": 400
+    },
+    {
+      "id": "custom-1785701555556-j7hyx",
+      "name": "Królewskie Opancerzenie Kończyn",
+      "price": 15000,
+      "bulk": 2.5,
+      "type": "armour",
+      "desc": "Bogato zdobione i mistrzowsko wykonane płytowe rękawice z sprawdzonym przegubowym płytowym pancerzem rąk i nóg.",
+      "state": "unequipped",
+      "hitPoints": 25,
+      "toughness": 5,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 3
+        }
+      ],
+      "armourLevel": 8,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "belt"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę wszystkie obrażenia otrzymywane w kończyny.",
+      "equipTimeSeconds": 600,
+      "equipTimeActionPoints": 1200,
+      "unequipTimeSeconds": 400,
+      "unequipTimeActionPoints": 800
+    },
+    {
+      "id": "custom-1785703681597-zbg7m",
+      "name": "Wzmacniana Czapka",
+      "price": 10,
+      "bulk": 0.1,
+      "type": "armour",
+      "desc": "Materiałowa czapka, wykonana z grubego matreiału lub kilku warstw.",
+      "state": "unequipped",
+      "hitPoints": 5,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "armourLevel": 1,
+      "equipSlots": [
+        "head"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe otrzymywane w głowę. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 3,
+      "equipTimeActionPoints": 6,
+      "unequipTimeSeconds": 2,
+      "unequipTimeActionPoints": 4
+    },
+    {
+      "id": "custom-1785703785534-k2ji7",
+      "name": "Skórzany Hełm",
+      "price": 20,
+      "bulk": 0.2,
+      "type": "armour",
+      "desc": "Hełm wykonany z twardej gotowanej skóry.",
+      "state": "unequipped",
+      "hitPoints": 7,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "armourLevel": 2,
+      "equipSlots": [
+        "head"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 4.5,
+      "equipTimeActionPoints": 9,
+      "unequipTimeSeconds": 3,
+      "unequipTimeActionPoints": 6
+    },
+    {
+      "id": "custom-1785703998266-2xw19",
+      "name": "Hełm Segmentowy",
+      "price": 50,
+      "bulk": 0.5,
+      "type": "armour",
+      "desc": "Hełm wykonany z przynitowanych ze sobą prostych kawałków metalu z grubą materiałową warstwą pod metalem.",
+      "state": "unequipped",
+      "hitPoints": 8,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 1
+        }
+      ],
+      "armourLevel": 3,
+      "equipSlots": [
+        "head"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe otrzymywane w głowę. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 4.5,
+      "equipTimeActionPoints": 9,
+      "unequipTimeSeconds": 3,
+      "unequipTimeActionPoints": 6
+    },
+    {
+      "id": "custom-1785704321024-vekym",
+      "name": "Hełm z Nosalem",
+      "price": 120,
+      "bulk": 0.5,
+      "type": "armour",
+      "desc": "Gruby metalowy hełm z częściową ochroną twarzy.",
+      "state": "unequipped",
+      "hitPoints": 9,
+      "toughness": 4,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 2
+        }
+      ],
+      "armourLevel": 4,
+      "equipSlots": [
+        "face",
+        "head"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 4.5,
+      "equipTimeActionPoints": 9,
+      "unequipTimeSeconds": 3,
+      "unequipTimeActionPoints": 6
+    },
+    {
+      "id": "custom-1785704585592-8ttlh",
+      "name": "Hełm Garnczkowy",
+      "price": 200,
+      "bulk": 0.7,
+      "type": "armour",
+      "desc": "Pełny Hełm całkowicie pokrywający twarz.",
+      "state": "unequipped",
+      "hitPoints": 10,
+      "toughness": 5,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 3
+        }
+      ],
+      "armourLevel": 5,
+      "equipSlots": [
+        "face",
+        "head"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia cięte otrzymywane w głowę. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 30,
+      "equipTimeActionPoints": 60,
+      "unequipTimeSeconds": 20,
+      "unequipTimeActionPoints": 40
+    },
+    {
+      "id": "custom-1785704887016-ag3pw",
+      "name": "Czaszka Smoka",
+      "price": 250,
+      "bulk": 0.9,
+      "type": "armour",
+      "desc": "Zamknięty hełm z charakterystycznym \"smoczym pyskiem\" z przodu.",
+      "state": "unequipped",
+      "hitPoints": 13,
+      "toughness": 6,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 4
+        }
+      ],
+      "armourLevel": 6,
+      "equipSlots": [
+        "face",
+        "head"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia cięte i kłóte otrzymywane w głowę. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 150,
+      "equipTimeActionPoints": 300,
+      "unequipTimeSeconds": 100,
+      "unequipTimeActionPoints": 200
+    },
+    {
+      "id": "custom-1785705090219-gym5x",
+      "name": "Hełm Rycerski",
+      "price": 500,
+      "bulk": 1,
+      "type": "armour",
+      "desc": "Pełny zamknięty hełm z dobrze zabezpieczoną przyłbicą, o dobrej stabilności.",
+      "state": "unequipped",
+      "hitPoints": 15,
+      "toughness": 7,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 4
+        }
+      ],
+      "armourLevel": 7,
+      "equipSlots": [
+        "head",
+        "torso"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe, cięte i kłóte otrzymywane w głowę. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 75,
+      "equipTimeActionPoints": 150,
+      "unequipTimeSeconds": 50,
+      "unequipTimeActionPoints": 100
+    },
+    {
+      "id": "custom-1785705326808-fl49l",
+      "name": "Hełm Królewski",
+      "price": 10000,
+      "bulk": 1.2,
+      "type": "armour",
+      "desc": "Pełen hełm z przyłbicą o bogatym zdobieniu i mistrzowskim wykonaniu.",
+      "state": "unequipped",
+      "hitPoints": 20,
+      "toughness": 5,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 3
+        }
+      ],
+      "armourLevel": 8,
+      "equipSlots": [
+        "face",
+        "head"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe, cięte i kłóte otrzymywane w głowę. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 150,
+      "equipTimeActionPoints": 300,
+      "unequipTimeSeconds": 100,
+      "unequipTimeActionPoints": 200
+    },
+    {
+      "id": "custom-1785705732385-j67u1",
+      "name": "Kurtka Przeszywanicy",
+      "price": 20,
+      "bulk": 1,
+      "type": "armour",
+      "desc": "Kurtka Przeszywanicy zwana czasami „gambersonem” to materiałowa zbroja stworzona z wielu warstw zszytego materiału.",
+      "state": "unequipped",
+      "hitPoints": 10,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "armourLevel": 3,
+      "equipSlots": [
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "innerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe otrzymywane w tors.",
+      "equipTimeSeconds": 30,
+      "equipTimeActionPoints": 60,
+      "unequipTimeSeconds": 20,
+      "unequipTimeActionPoints": 40
+    },
+    {
+      "id": "custom-1785705846032-r7kgq",
+      "name": "Skórzany Napierśnik",
+      "price": 45,
+      "bulk": 0.8,
+      "type": "armour",
+      "desc": "Napierśnik wykonany z grubej, twardej gotowanej skóry.",
+      "state": "unequipped",
+      "hitPoints": 10,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "armourLevel": 4,
+      "equipSlots": [
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 60,
+      "equipTimeActionPoints": 120,
+      "unequipTimeSeconds": 40,
+      "unequipTimeActionPoints": 80
+    },
+    {
+      "id": "custom-1785706081570-mzxzf",
+      "name": "Wszywany Napierśnik",
+      "price": 100,
+      "bulk": 1.5,
+      "type": "armour",
+      "desc": "Materiałowa zbroja z kilkoma wszytymi metalowymi płytami nazywana czasami brygantyną.",
+      "state": "unequipped",
+      "hitPoints": 15,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 1
+        }
+      ],
+      "armourLevel": 5,
+      "equipSlots": [
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Efekt Części Pancerza: Zmniejsza o połowę obrażenia obuchowe otrzymywane w tors.",
+      "equipTimeSeconds": 30,
+      "equipTimeActionPoints": 60,
+      "unequipTimeSeconds": 20,
+      "unequipTimeActionPoints": 40
+    },
+    {
+      "id": "custom-1785706210859-hbbhs",
+      "name": "Łuskowy Napierśnik",
+      "price": 150,
+      "bulk": 2.1,
+      "type": "armour",
+      "desc": "Napierśnik wykonany z małych metalowych płytek przypominające łuski.",
+      "state": "unequipped",
+      "hitPoints": 12,
+      "toughness": 4,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 2
+        }
+      ],
+      "armourLevel": 6,
+      "equipSlots": [
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 30,
+      "equipTimeActionPoints": 60,
+      "unequipTimeSeconds": 20,
+      "unequipTimeActionPoints": 40
+    },
+    {
+      "id": "custom-1785706458431-dp8fo",
+      "name": "Koszula Kolcza",
+      "price": 240,
+      "bulk": 2,
+      "type": "armour",
+      "desc": "Długa koszula wykonana z tysięcy połączonych ze sobą małych metalowych kółeczek, dająca wrażenie ciężkiej metalowej skóry.",
+      "state": "unequipped",
+      "hitPoints": 15,
+      "toughness": 5,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 3
+        }
+      ],
+      "armourLevel": 7,
+      "equipSlots": [
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia cięte otrzymywane w tors.",
+      "equipTimeSeconds": 20,
+      "equipTimeActionPoints": 40,
+      "unequipTimeSeconds": 15,
+      "unequipTimeActionPoints": 30
+    },
+    {
+      "id": "custom-1785706597737-astep",
+      "name": "Napierśnik Zbroji Płytowej",
+      "price": 300,
+      "bulk": 1,
+      "type": "armour",
+      "desc": "Pancerz stworzony z kilku dużych metalowych części.",
+      "state": "unequipped",
+      "hitPoints": 20,
+      "toughness": 6,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 4
+        }
+      ],
+      "armourLevel": 8,
+      "equipSlots": [
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia cięte i kłóte otrzymywane w tors.",
+      "equipTimeSeconds": 300,
+      "equipTimeActionPoints": 600,
+      "unequipTimeSeconds": 200,
+      "unequipTimeActionPoints": 400
+    },
+    {
+      "id": "custom-1785706735775-g3vpz",
+      "name": "Rycerski Napierśnik Zbroji Płytowej",
+      "price": 1200,
+      "bulk": 0.9,
+      "type": "armour",
+      "desc": "Mistrzowsko stworzony płytowy napierśnik z grubą podszywką.",
+      "state": "unequipped",
+      "hitPoints": 20,
+      "toughness": 7,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 4
+        }
+      ],
+      "armourLevel": 9,
+      "equipSlots": [
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe, cięte i kłóte otrzymywane w tors.",
+      "equipTimeSeconds": 225,
+      "equipTimeActionPoints": 450,
+      "unequipTimeSeconds": 150,
+      "unequipTimeActionPoints": 300
+    },
+    {
+      "id": "custom-1785706867618-7a9p7",
+      "name": "Napieśnik Zbroi Królewskiej",
+      "price": 15000,
+      "bulk": 1.25,
+      "type": "armour",
+      "desc": "Mistrzowsko wykonany napierśnik z bogatymi zdobieniami.",
+      "state": "unequipped",
+      "hitPoints": 25,
+      "toughness": 5,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 3
+        }
+      ],
+      "armourLevel": 10,
+      "equipSlots": [
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę wszystkie obrażenia otrzymywane w tors.",
+      "equipTimeSeconds": 300,
+      "equipTimeActionPoints": 600,
+      "unequipTimeSeconds": 200,
+      "unequipTimeActionPoints": 400
+    },
+    {
+      "id": "custom-1785707279427-ghbek",
+      "name": "Pełna Przeszywanica",
+      "price": 50,
+      "bulk": 1.6,
+      "type": "armour",
+      "desc": "Pełny zestaw materiałowego pancerza. Zawiera wzmacnianą materiałową czapkę, grube materiałowe rękawice, przeszywane rękawy, pończochy oraz grubą przeszywanicę.",
+      "state": "unequipped",
+      "hitPoints": 25,
+      "toughness": 1,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1785705732385-j67u1",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785699910537-luu8b",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785703681597-zbg7m",
+          "quantity": 1
+        }
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "armourLevel": 5,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "head",
+        "torso",
+        "back",
+        "belt"
+      ],
+      "equipLayers": [
+        "innerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę otrzymywane obrażenia obuchowe. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 104,
+      "equipTimeActionPoints": 208,
+      "unequipTimeSeconds": 52,
+      "unequipTimeActionPoints": 102
+    },
+    {
+      "id": "custom-1785707597610-tmpua",
+      "name": "Pełna Skórznia",
+      "price": 100,
+      "bulk": 1.4,
+      "type": "armour",
+      "desc": "Pełen komplet opancerzenia z twardej, gotowanej skóry. Zawiera skórzany hełm, rękawice z miękkiej skóry, skórzane naramienniki i nakolanniki oraz skórzany napierśnik.",
+      "state": "unequipped",
+      "hitPoints": 27,
+      "toughness": 2,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1785705846032-r7kgq",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785700128720-h4ux6",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785703785534-k2ji7",
+          "quantity": 1
+        }
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "armourLevel": 8,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "head",
+        "torso",
+        "back",
+        "belt"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 154.5,
+      "equipTimeActionPoints": 309,
+      "unequipTimeSeconds": 103,
+      "unequipTimeActionPoints": 206
+    },
+    {
+      "id": "custom-1785707976686-tx7k3",
+      "name": "Pełna Zbroja Wszywana",
+      "price": 200,
+      "bulk": 2.3,
+      "type": "armour",
+      "desc": "Pełnen zestaw materiałowego pancerza z wszytymi metalowymi blaszkami. Zestaw zawiera hełm segmentowy, wszywany napierśnik i wzmocnione płytkami metalu nagolenniki i naramienniki.",
+      "state": "unequipped",
+      "hitPoints": 28,
+      "toughness": 1,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1785706081570-mzxzf",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785700292986-zj2iw",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785703998266-2xw19",
+          "quantity": 1
+        }
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 1
+        }
+      ],
+      "armourLevel": 11,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "head",
+        "torso",
+        "back",
+        "belt"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę otrzymywane obrażenia obuchowe. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 79.5,
+      "equipTimeActionPoints": 159,
+      "unequipTimeSeconds": 53,
+      "unequipTimeActionPoints": 106
+    },
+    {
+      "id": "custom-1785708042733-7kx56",
+      "name": "Pełna Zbroja Łuskowa",
+      "price": 350,
+      "bulk": 3.5,
+      "type": "armour",
+      "desc": "Pełen zestaw pancerza wykonanego z małych metalowych płytek przypominających łuski. Zestaw zawiera metalowy hełm z nosalem, łuskowy napierśnik, łuskowe rękawice, łuskowe nagolenniki i naramienniki.",
+      "state": "unequipped",
+      "hitPoints": 33,
+      "toughness": 4,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1785706210859-hbbhs",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785700456783-08web",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785704321024-vekym",
+          "quantity": 1
+        }
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 2
+        }
+      ],
+      "armourLevel": 14,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "face",
+        "head",
+        "torso",
+        "back",
+        "belt"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 79.5,
+      "equipTimeActionPoints": 159,
+      "unequipTimeSeconds": 53,
+      "unequipTimeActionPoints": 106
+    },
+    {
+      "id": "custom-1785708571765-8m2rn",
+      "name": "Pełna Zbroja Kolcza",
+      "price": 1200,
+      "bulk": 4.5,
+      "type": "armour",
+      "desc": "Pełen komplet zbroi kolczej złożonej z dziesiątek tysięcy połączonych metalowych kółeczek. Zestaw zawiera hełm garnczkowy, koszulę kolczą, kolcze rękawice, kolcze rękawy i kolcze nogawice.",
+      "state": "unequipped",
+      "hitPoints": 40,
+      "toughness": 5,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1785706458431-dp8fo",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785700758966-p9k55",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785704585592-8ttlh",
+          "quantity": 1
+        }
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 3
+        }
+      ],
+      "armourLevel": 17,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "face",
+        "head",
+        "torso",
+        "back",
+        "belt"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę otrzymywane obrażenia cięte. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 82.5,
+      "equipTimeActionPoints": 165,
+      "unequipTimeSeconds": 55,
+      "unequipTimeActionPoints": 110
+    },
+    {
+      "id": "custom-1785709207703-acmjk",
+      "name": "Pełna Zbroja Płytowa",
+      "price": 1500,
+      "bulk": 3.7,
+      "type": "armour",
+      "desc": "Pełna zbroja stworzona z dużych sprytnie połączonych płyt w sposób nieograniczający ruchu. Zestaw zawiera hełm typu „czaszka smoka”, płytowy napierśnik, pełne płytowe rękawice oraz pełne przegubowe opancerzenie rąk i nóg.",
+      "state": "unequipped",
+      "hitPoints": 53,
+      "toughness": 6,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1785706597737-astep",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785701217589-qrj92",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785704887016-ag3pw",
+          "quantity": 1
+        }
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 4
+        }
+      ],
+      "armourLevel": 20,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "face",
+        "head",
+        "torso",
+        "back",
+        "belt"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę otrzymywane obrażenia cięte i kłóte. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 900,
+      "equipTimeActionPoints": 1800,
+      "unequipTimeSeconds": 600,
+      "unequipTimeActionPoints": 1200
+    },
+    {
+      "id": "custom-1785709659953-2acz9",
+      "name": "Pełna Zbroja Rycerska",
+      "price": 4000,
+      "bulk": 4,
+      "type": "armour",
+      "desc": "Pełen komplet mistrzowsko wykonanej stalowej zbroi płytowej. Zawiera hełm rycerski, rycerski napierśnik, kompozytowe płytowe rękawice oraz sprawdzony przegubowy pancerz płytowy nóg i rąk.",
+      "state": "unequipped",
+      "hitPoints": 55,
+      "toughness": 7,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1785706735775-g3vpz",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785701380767-h592p",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785705090219-gym5x",
+          "quantity": 1
+        }
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 4
+        }
+      ],
+      "armourLevel": 23,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "face",
+        "head",
+        "torso",
+        "back",
+        "belt"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę otrzymywane obrażenia obuchowe, cięte i kłóte. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 600,
+      "equipTimeActionPoints": 1200,
+      "unequipTimeSeconds": 400,
+      "unequipTimeActionPoints": 800
+    },
+    {
+      "id": "custom-1785710179051-8yff8",
+      "name": "Zbroja Królewska",
+      "price": 40000,
+      "bulk": 4.95,
+      "type": "armour",
+      "desc": "Pełen zestaw zbroi wartej księcia, księżniczki a nawet króla. Zestaw zawiera hełm królewski, napierśnik zbroi królewskiej i bogato zdobione i mistrzowsko wykonane rękawice z sprawdzonym przegubowym płytowym pancerzem rąk i nóg.",
+      "state": "unequipped",
+      "hitPoints": 70,
+      "toughness": 5,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1785706867618-7a9p7",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785701555556-j7hyx",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785705326808-fl49l",
+          "quantity": 1
+        }
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 3
+        }
+      ],
+      "armourLevel": 26,
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "face",
+        "head",
+        "torso",
+        "back",
+        "belt"
+      ],
+      "equipLayers": [
+        "outerArmour"
+      ],
+      "effectDescription": "Zmniejsza o połowę otrzymywane obrażenia obuchowe, cięte i kłóte. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "equipTimeSeconds": 1050,
+      "equipTimeActionPoints": 2100,
+      "unequipTimeSeconds": 700,
+      "unequipTimeActionPoints": 1400
     }
   ]
 }
