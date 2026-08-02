@@ -171,6 +171,10 @@ export function initScene() {
         uniforms: {
             color1: { value: new THREE.Color(0x002f2f) }, // dark teal — horizon
                                             color2: { value: new THREE.Color(0x000000) }, // black    — zenith
+                                            // ---- Nebula ----
+                                            nebulaColorA:   { value: new THREE.Color(0xA145AD) }, // violet
+                                            nebulaColorB:   { value: new THREE.Color(0x6D45AD) }, // teal-blue
+                                            nebulaStrength: { value: 0.3 }, // 0 = off; tune to taste
         },
         vertexShader: `
         varying vec3 vPosition;
@@ -182,16 +186,62 @@ export function initScene() {
         fragmentShader: `
         uniform vec3 color1;
         uniform vec3 color2;
+        uniform vec3 nebulaColorA;
+        uniform vec3 nebulaColorB;
+        uniform float nebulaStrength;
         varying vec3 vPosition;
 
         // Cheap 3D hash → pseudo-random float in [0, 1). Deterministic
         // per input vector, so a given sky direction always hashes to
-        // the same value — this is what makes stars hold still as the
-        // camera rotates instead of flickering/shifting per frame.
+        // the same value — this is what makes stars (and now nebula
+        // clouds) hold still as the camera rotates instead of
+        // flickering/shifting per frame.
         float hash3(vec3 p) {
             p = fract(p * vec3(443.8975, 397.2973, 491.1871));
             p += dot(p, p.yzx + 19.19);
             return fract((p.x + p.y) * p.z);
+        }
+
+        // Smooth (trilinear-interpolated) 3D value noise — built from the
+        // same hash3() above, but continuous rather than per-cell blocky,
+        // which is what the nebula needs (stars deliberately stay blocky
+        // per-cell, that's unrelated and untouched below).
+        float valueNoise(vec3 p) {
+            vec3 i = floor(p);
+            vec3 f = fract(p);
+            f = f * f * (3.0 - 2.0 * f); // smoothstep interpolation
+
+            float n000 = hash3(i + vec3(0.0,0.0,0.0));
+            float n100 = hash3(i + vec3(1.0,0.0,0.0));
+            float n010 = hash3(i + vec3(0.0,1.0,0.0));
+            float n110 = hash3(i + vec3(1.0,1.0,0.0));
+            float n001 = hash3(i + vec3(0.0,0.0,1.0));
+            float n101 = hash3(i + vec3(1.0,0.0,1.0));
+            float n011 = hash3(i + vec3(0.0,1.0,1.0));
+            float n111 = hash3(i + vec3(1.0,1.0,1.0));
+
+            float nx00 = mix(n000, n100, f.x);
+            float nx10 = mix(n010, n110, f.x);
+            float nx01 = mix(n001, n101, f.x);
+            float nx11 = mix(n011, n111, f.x);
+            float nxy0 = mix(nx00, nx10, f.y);
+            float nxy1 = mix(nx01, nx11, f.y);
+            return mix(nxy0, nxy1, f.z);
+        }
+
+        // Fractal Brownian Motion — several octaves of valueNoise summed
+        // at increasing frequency/decreasing amplitude. A single noise
+        // sample looks like blobby static; this is what gives the wispy,
+        // cloud-like silhouette.
+        float fbm(vec3 p) {
+            float sum = 0.0;
+            float amp = 0.5;
+            for (int i = 0; i < 5; i++) {
+                sum += amp * valueNoise(p);
+                p *= 2.02; // slightly off 2.0 so octaves don't align on a grid
+                amp *= 0.5;
+            }
+            return sum;
         }
 
         void main() {
@@ -204,29 +254,54 @@ export function initScene() {
             // the view direction, just scaled by the 100000-unit radius).
             vec3 dir = normalize(vPosition);
 
-            // A 3D grid over direction-space. Multiple octaves at
-            // different cell sizes give a mix of common small/dim stars
-            // and rarer big/bright ones, all resolved per-pixel — no
-            // fixed "star count" to be too sparse for a narrow FOV.
+            // ---- Nebula clouds ----
+            // Sampled at a much coarser scale than the star grid so it
+            // reads as smooth gas, not more stars. Domain-warping the
+            // sampling coordinate through a second fbm() call (rather
+            // than sampling dir directly) is what makes the cloud
+            // edges look organic instead of like a plain noise contour.
+            vec3 warpedDir = dir + 0.4 * vec3(
+                fbm(dir * 3.0 + 5.2),
+                                              fbm(dir * 3.0 + 1.3),
+                                              fbm(dir * 3.0 + 8.7)
+            );
+            float density = fbm(warpedDir * 2.5);
+            density = smoothstep(0.35, 0.85, density); // carve out clear patches of empty sky
+
+            float tint = fbm(warpedDir * 1.6 + 50.0);
+            vec3 nebulaColor = mix(nebulaColorA, nebulaColorB, tint);
+
+            vec3 finalColor = skyColor + nebulaColor * density * nebulaStrength;
+
+            // ---- Stars (unchanged — layered on top of the nebula) ----
             float stars = 0.0;
             vec3 starColor = vec3(1.0);
-
-            for (int i = 0; i < 3; i++) {
-                float cellSize = 300.0 + float(i) * 900.0; // finer grid each octave
-                vec3 cell = floor(dir * cellSize);
+            for (int i = 0; i < 5; i++) {
+                float cellSize = 200.0 + float(i) * 500.0; // finer grid each octave
+                vec3 scaledDir = dir * cellSize;
+                vec3 cell      = floor(scaledDir);
+                vec3 localPos  = fract(scaledDir) - 0.5; // pixel's position within the cell, centered at 0
                 float h = hash3(cell + float(i) * 13.0);
-                float brightnessThreshold = 0.9975 - float(i) * 0.001; // rarer stars each octave, roughly balances density
-                float b = smoothstep(brightnessThreshold, 1.0, h) * (1.0 - float(i) * 0.25);
+                float brightnessThreshold = 0.9975 - float(i) * 0.001; // rarer stars each octave
+                vec3 jitter = vec3(
+                    hash3(cell + float(i) * 13.0 + 3.0),
+                                   hash3(cell + float(i) * 13.0 + 5.0),
+                                   hash3(cell + float(i) * 13.0 + 9.0)
+                ) - 0.5;
+                vec3 starCenter = jitter * 0.6; // keep the center comfortably inside the cell
+                float dist   = length(localPos - starCenter);
+                float radius = mix(0.06, 0.22, smoothstep(brightnessThreshold, 1.0, h)); // brighter hash = bigger dot
+                float circle = 1.0 - smoothstep(radius * 0.4, radius, dist); // soft circular falloff
+                float isStar = step(brightnessThreshold, h);
+                float b = isStar * circle * (1.0 - float(i) * 0.25);
                 if (b > stars) {
                     stars = b;
-                    // Warm-to-cool tint per star, from a second hash so
-                    // colour doesn't correlate with brightness.
-                    float tint = hash3(cell + float(i) * 13.0 + 7.0);
-                    starColor = mix(vec3(0.75, 0.82, 1.0), vec3(1.0, 0.93, 0.8), tint);
+                    float starTint = hash3(cell + float(i) * 13.0 + 7.0);
+                    starColor = mix(vec3(0.55, 0.66, 1.0), vec3(1.0, 0.87, 0.64), starTint);
                 }
             }
 
-            vec3 finalColor = skyColor + starColor * stars;
+            finalColor += starColor * stars;
             gl_FragColor = vec4(finalColor, 1.0);
         }
         `,
@@ -266,15 +341,15 @@ export function initScene() {
     AppState.scene.add(new THREE.DirectionalLight(0xffffff, 2.0));
 
     // ---- Telescope model -----------------------------------------
-    new GLTFLoader().load(
-        `${import.meta.env.BASE_URL}Telescope.glb`,
-        gltf => {
-            AppState.scene.add(gltf.scene);
-            gltf.scene.scale.set(0.05, 0.05, 0.05);
-            gltf.scene.position.set(0, -1, 0);
-            gltf.scene.rotation.set(0, Math.PI / 2, 0);
-        },
-        xhr   => console.log(`Telescope: ${(xhr.loaded / xhr.total * 100).toFixed(1)}% loaded`),
-                          error => console.error('Telescope load error:', error)
-    );
+    //new GLTFLoader().load(
+    //    `${import.meta.env.BASE_URL}Telescope.glb`,
+    //    gltf => {
+    //        AppState.scene.add(gltf.scene);
+    //        gltf.scene.scale.set(0.05, 0.05, 0.05);
+    //        gltf.scene.position.set(0, -1, 0);
+    //        gltf.scene.rotation.set(0, Math.PI / 2, 0);
+    //    },
+    //    xhr   => console.log(`Telescope: ${(xhr.loaded / xhr.total * 100).toFixed(1)}% loaded`),
+    //                      error => console.error('Telescope load error:', error)
+    //);
 }

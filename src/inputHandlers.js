@@ -185,6 +185,7 @@ export function registerInputHandlers() {
                 // Toggle the skill-tree editor (edit mode + inspector panel)
                 toggleEditMode();
                 break;
+
             default:
                 return; // Let unhandled keys propagate normally
         }
@@ -207,17 +208,18 @@ export function registerInputHandlers() {
     // — see cameraControls.js's updateZoomInertia() — so a fast scroll
     // flick keeps gliding the view in or out briefly after the wheel
     // stops, the way trackpad momentum scrolling feels.
+    //
+    // Only handles (and only preventDefault()s) wheel events over the
+    // 3D canvas itself — same AppState.container.contains(e.target)
+    // guard used for pointermove/click above. Without this, calling
+    // preventDefault() unconditionally on every wheel event blocks the
+    // browser's native scroll everywhere on the page, including inside
+    // the Character/Equipment/Arkana/Manual panels, even though those
+    // already have `overflow-y: auto` set in their CSS — so the wheel
+    // looked "broken" there when it was really just being swallowed here.
     // ============================================================
     window.addEventListener('wheel', function (e) {
-        // Cursor is over the parchment info panel (#text) — let it scroll
-        // natively (it already has overflow-y: auto in style.css) instead
-        // of zooming the skill tree. Skip preventDefault() entirely so the
-        // browser's own scroll behavior isn't blocked.
-        const textPanel = document.getElementById('text');
-        if (textPanel && textPanel.contains(e.target)) {
-            return;
-        }
-
+        if (!AppState.container.contains(e.target)) return; // let the page/panel scroll natively
         e.preventDefault();
 
         if (e.deltaY < 0) {
