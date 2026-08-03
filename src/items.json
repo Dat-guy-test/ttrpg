@@ -29,7 +29,10 @@
           "itemId": "custom-1783416208650-cdo0z",
           "quantity": 2
         }
-      ]
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": []
     },
     {
       "id": "custom-1783458345228-gyqao",
@@ -48,61 +51,6 @@
           "quantity": 7
         }
       ]
-    },
-    {
-      "id": "custom-1783459693915-jb864",
-      "name": "Uboga Tunika",
-      "price": 5,
-      "bulk": 1,
-      "type": "clothing",
-      "desc": "",
-      "state": "unequipped",
-      "hitPoints": 2,
-      "toughness": 0,
-      "isSet": false,
-      "setMembers": [],
-      "requirements": [],
-      "equipSlots": [
-        "leftLeg",
-        "rightLeg",
-        "torso",
-        "back"
-      ],
-      "equipLayers": [
-        "underwear",
-        "clothes"
-      ],
-      "effectDescription": "",
-      "equipTimeSeconds": 0,
-      "equipTimeActionPoints": 0,
-      "unequipTimeSeconds": 0,
-      "unequipTimeActionPoints": 0
-    },
-    {
-      "id": "custom-1783459779302-rkzpx",
-      "name": "Ubogie Trzewiki",
-      "price": 10,
-      "bulk": 1,
-      "type": "clothing",
-      "desc": "",
-      "state": "unequipped",
-      "hitPoints": 3,
-      "toughness": 0,
-      "isSet": false,
-      "setMembers": [],
-      "requirements": [],
-      "equipSlots": [
-        "leftFoot",
-        "rightFoot"
-      ],
-      "equipLayers": [
-        "clothes"
-      ],
-      "effectDescription": "",
-      "equipTimeSeconds": 0,
-      "equipTimeActionPoints": 0,
-      "unequipTimeSeconds": 0,
-      "unequipTimeActionPoints": 0
     },
     {
       "id": "custom-1784056048918-s9c8n",
@@ -699,13 +647,16 @@
       "name": "Materiałowy Pas",
       "price": 1,
       "bulk": 0.5,
-      "type": "clothing",
+      "type": "storage",
       "desc": "Materiałowy pas. Pozwala na przytwierdzenie sakiewek lub pochew na bronie.",
       "state": "unequipped",
       "hitPoints": 1,
       "toughness": 0,
       "isSet": false,
       "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
       "requirements": [],
       "equipSlots": [
         "belt"
@@ -717,7 +668,13 @@
       "equipTimeSeconds": 2,
       "equipTimeActionPoints": 3,
       "unequipTimeSeconds": 1,
-      "unequipTimeActionPoints": 1
+      "unequipTimeActionPoints": 1,
+      "capacity": 0,
+      "accessorySlots": {
+        "small": 5,
+        "medium": 5,
+        "large": 0
+      }
     },
     {
       "id": "custom-1784122666811-pxqsh",
@@ -744,39 +701,6 @@
           "quantity": 1
         }
       ]
-    },
-    {
-      "id": "custom-1784131534754-cbqni",
-      "name": "Własność Ubogiego",
-      "price": "notForSale",
-      "bulk": 3.45,
-      "type": "misc",
-      "desc": "Zestaw ten reprezentuje przedmioty posiadane przez najuboższych.",
-      "state": "unequipped",
-      "hitPoints": 3,
-      "toughness": 0,
-      "isSet": true,
-      "setMembers": [
-        {
-          "itemId": "custom-1784122666811-pxqsh",
-          "quantity": 1
-        },
-        {
-          "itemId": "custom-1783416314259-uoz0k",
-          "quantity": 3
-        },
-        {
-          "itemId": "custom-1784068774618-dh6oe",
-          "quantity": 1
-        },
-        {
-          "itemId": "custom-1784056048918-s9c8n",
-          "quantity": 1
-        }
-      ],
-      "accessorySize": null,
-      "prepareType": "",
-      "enablesPrepareTypes": []
     },
     {
       "id": "custom-1784306371402-kkzqh",
@@ -1915,7 +1839,7 @@
     {
       "id": "custom-1785140927710-mjh55",
       "name": "Włócznia",
-      "price": 5,
+      "price": 4,
       "bulk": 2,
       "type": "weapon",
       "desc": "Włócznia to długa broń drzewcowa o prostym metalowym grocie. To tania i uniwersalna broń.",
@@ -2436,7 +2360,7 @@
     {
       "id": "custom-1785148772647-siv96",
       "name": "Oszczep",
-      "price": 10,
+      "price": 7,
       "bulk": 1,
       "type": "weapon",
       "desc": "Krótka włócznia wyważona z myślą o rzucaniu nią.",
@@ -3067,106 +2991,6 @@
       "enablesPrepareTypes": [],
       "useCondition": "Rzucając zaklęcie z magiczną soczewką musisz ją trzymać w dłoni.",
       "useEffect": ""
-    },
-    {
-      "id": "custom-1785417727287-zgwgx",
-      "name": "Porządne Buty",
-      "price": 30,
-      "bulk": 1,
-      "type": "clothing",
-      "desc": "Porządne buty z grubej skóry lub wielu warstw porządnego materiału.",
-      "state": "unequipped",
-      "hitPoints": 3,
-      "toughness": 1,
-      "isSet": false,
-      "setMembers": [],
-      "accessorySize": null,
-      "prepareType": "",
-      "enablesPrepareTypes": [],
-      "requirements": [],
-      "equipSlots": [
-        "leftFoot",
-        "rightFoot"
-      ],
-      "equipLayers": [
-        "clothes"
-      ],
-      "effectDescription": "",
-      "equipTimeSeconds": 0,
-      "equipTimeActionPoints": 0,
-      "unequipTimeSeconds": 0,
-      "unequipTimeActionPoints": 0
-    },
-    {
-      "id": "custom-1785417894719-4kqv3",
-      "name": "Porządne Ubrania",
-      "price": 70,
-      "bulk": 2,
-      "type": "clothing",
-      "desc": "Zestaw porządnych ubrań: dwa komplety bielizny, sweter lub kilka porządnych grubych koszul, kurtka i dwie pary wytrzymałych spodni, sukienek lub sukni.",
-      "state": "unequipped",
-      "hitPoints": 1,
-      "toughness": 0,
-      "isSet": false,
-      "setMembers": [],
-      "accessorySize": null,
-      "prepareType": "",
-      "enablesPrepareTypes": [],
-      "requirements": [],
-      "equipSlots": [
-        "leftArm",
-        "rightArm",
-        "leftFoot",
-        "rightFoot",
-        "leftLeg",
-        "rightLeg"
-      ],
-      "equipLayers": [
-        "underwear",
-        "clothes"
-      ],
-      "effectDescription": "",
-      "equipTimeSeconds": 0,
-      "equipTimeActionPoints": 0,
-      "unequipTimeSeconds": 0,
-      "unequipTimeActionPoints": 0
-    },
-    {
-      "id": "custom-1785418017657-7rpx8",
-      "name": "Własność Mieszczanina",
-      "price": "notForSale",
-      "bulk": 4,
-      "type": "misc",
-      "desc": "Zestaw reprezentujący własność mieszczan.",
-      "state": "unequipped",
-      "hitPoints": 1,
-      "toughness": 0,
-      "isSet": true,
-      "setMembers": [
-        {
-          "itemId": "custom-1783458345228-gyqao",
-          "quantity": 1
-        },
-        {
-          "itemId": "custom-1785417894719-4kqv3",
-          "quantity": 1
-        },
-        {
-          "itemId": "custom-1785417727287-zgwgx",
-          "quantity": 1
-        },
-        {
-          "itemId": "custom-1784068774618-dh6oe",
-          "quantity": 1
-        },
-        {
-          "itemId": "custom-1784056473608-9efaz",
-          "quantity": 1
-        }
-      ],
-      "accessorySize": null,
-      "prepareType": "",
-      "enablesPrepareTypes": []
     },
     {
       "id": "custom-1785420254391-1fpmk",
@@ -4537,6 +4361,215 @@
       "equipTimeActionPoints": 2100,
       "unequipTimeSeconds": 700,
       "unequipTimeActionPoints": 1400
+    },
+    {
+      "id": "custom-1785712313703-nz188",
+      "name": "Zestaw Zwykłych Ubrań",
+      "price": 20,
+      "bulk": 0.5,
+      "type": "clothing",
+      "desc": "Zestaw Zwykłych Ubrań. Zawiera dwa komplety bielizny, spodnie lub sukienkę, szal, grubą koszulę, tunikę, długą kurtkę i buty.",
+      "state": "unequipped",
+      "hitPoints": 5,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "equipSlots": [
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "underwear",
+        "clothes"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 30,
+      "equipTimeActionPoints": 60,
+      "unequipTimeSeconds": 15,
+      "unequipTimeActionPoints": 30
+    },
+    {
+      "id": "custom-1785712651042-9ith0",
+      "name": "Zestaw Docieplonych Wełną Ubrań",
+      "price": 40,
+      "bulk": 0.7,
+      "type": "clothing",
+      "desc": "Zestaw Ubrań docieplonych wełną. Zawiera dwa zestawy bielizny i zewnętrzne ocieplane ubrania (w tym szal).",
+      "state": "unequipped",
+      "hitPoints": 7,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "equipSlots": [
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "underwear",
+        "clothes"
+      ],
+      "effectDescription": "Otrzymujesz bonus do rzutów na wigor przeciw obrażeniom od zimna równy 7.",
+      "equipTimeSeconds": 60,
+      "equipTimeActionPoints": 120,
+      "unequipTimeSeconds": 40,
+      "unequipTimeActionPoints": 80
+    },
+    {
+      "id": "custom-1785712942067-hr4kk",
+      "name": "Zestaw Porządnych Ubrań",
+      "price": 80,
+      "bulk": 0.4,
+      "type": "clothing",
+      "desc": "Zestaw porządnych lnianych ubrań zawierający dwa komplety bielizny, wierzchnie ubrania (w tym szal, nakrycie głowy i materiałowe rękawiczki).",
+      "state": "unequipped",
+      "hitPoints": 9,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "equipSlots": [
+        "leftPalm",
+        "rightPalm",
+        "leftArm",
+        "rightArm",
+        "leftFoot",
+        "rightFoot",
+        "leftLeg",
+        "rightLeg",
+        "head",
+        "torso",
+        "back"
+      ],
+      "equipLayers": [
+        "underwear",
+        "clothes"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 45,
+      "equipTimeActionPoints": 90,
+      "unequipTimeSeconds": 30,
+      "unequipTimeActionPoints": 60
+    },
+    {
+      "id": "custom-1785713178489-p0hbi",
+      "name": "Suszone Jedzenie (Racja Dzienna)",
+      "price": 5,
+      "bulk": 0.05,
+      "type": "misc",
+      "desc": "Suszone owoce, orzechy, twarde sery,  mięso i suche ciastka utrzymujące świerzość przez dziesiątki dni. Na potrzeby rozgrywki przyjmij, iż to jedzenie się nie psuje.",
+      "state": "unequipped",
+      "hitPoints": 5,
+      "toughness": 1,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": []
+    },
+    {
+      "id": "custom-1785713337340-fpnce",
+      "name": "Skromny Zestaw Startowy",
+      "price": "notForSale",
+      "bulk": 1,
+      "type": "misc",
+      "desc": "Rozłóż ten przedmiot by uzyskać jego zawartość.",
+      "state": "unequipped",
+      "hitPoints": 10,
+      "toughness": 0,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1785712313703-nz188",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1784056048918-s9c8n",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1784068774618-dh6oe",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1784069295220-vneqw",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1784122371430-9zst3",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1783458345228-gyqao",
+          "quantity": 1
+        }
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": []
+    },
+    {
+      "id": "custom-1785715611808-uxs9e",
+      "name": "Porządny Zestaw Startowy",
+      "price": "notForSale",
+      "bulk": 0,
+      "type": "misc",
+      "desc": "Rozłóż ten przedmiot by otrzymać elementy zestawu startowego.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": true,
+      "setMembers": [
+        {
+          "itemId": "custom-1785712942067-hr4kk",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785713178489-p0hbi",
+          "quantity": 4
+        },
+        {
+          "itemId": "custom-1783416314259-uoz0k",
+          "quantity": 4
+        },
+        {
+          "itemId": "custom-1784068774618-dh6oe",
+          "quantity": 5
+        },
+        {
+          "itemId": "custom-1784122371430-9zst3",
+          "quantity": 1
+        },
+        {
+          "itemId": "custom-1785684597242-owdd1",
+          "quantity": 1
+        }
+      ],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": []
     }
   ]
 }

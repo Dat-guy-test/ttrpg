@@ -98,6 +98,11 @@ const view = {
         showNotForSale: false,
         proficiency: '',
         abilityOnly: false,
+        // 'name' (alphabetical, default), 'priceAsc' / 'priceDesc', or
+        // 'bulkAsc' / 'bulkDesc' — see filterAndSortMarketItems() below.
+        // "Nie Sprzedawany" items have no numeric price, so a price sort
+        // always pushes them to the end regardless of direction.
+        sortBy: 'name',
     },
 };
 
@@ -192,7 +197,27 @@ function filterAndSortMarketItems(items) {
         return true;
     });
 
-    filtered.sort((a, b) => a.name.localeCompare(b.name, 'pl'));
+    filtered.sort((a, b) => {
+        if (f.sortBy === 'priceAsc' || f.sortBy === 'priceDesc') {
+            const aNotForSale = isNotForSale(a.price);
+            const bNotForSale = isNotForSale(b.price);
+            // "Nie Sprzedawany" items have no numeric price to compare —
+            // always sink them to the end, regardless of direction.
+            if (aNotForSale && !bNotForSale) return 1;
+            if (bNotForSale && !aNotForSale) return -1;
+            if (aNotForSale && bNotForSale) return a.name.localeCompare(b.name, 'pl');
+
+            const diff = (Number(a.price) || 0) - (Number(b.price) || 0);
+            if (diff !== 0) return f.sortBy === 'priceDesc' ? -diff : diff;
+            return a.name.localeCompare(b.name, 'pl'); // tie-break alphabetically
+        }
+        if (f.sortBy === 'bulkAsc' || f.sortBy === 'bulkDesc') {
+            const diff = (Number(a.bulk) || 0) - (Number(b.bulk) || 0);
+            if (diff !== 0) return f.sortBy === 'bulkDesc' ? -diff : diff;
+            return a.name.localeCompare(b.name, 'pl'); // tie-break alphabetically
+        }
+        return a.name.localeCompare(b.name, 'pl');
+    });
     return filtered;
 }
 
@@ -222,6 +247,18 @@ function renderMarketFiltersHTML() {
                 </select>
                 <label style="display:flex; align-items:center; gap:0.4em; white-space:nowrap; flex:1;">
                     <input type="checkbox" id="market-abilityonly-cb" ${f.abilityOnly ? 'checked' : ''}/> Tylko przedmioty spełniające moje wymagania umiejętności
+                </label>
+            </div>
+            <div class="editor-row">
+                <label style="display:flex; align-items:center; gap:0.4em; white-space:nowrap;">
+                    Sortuj wg:
+                    <select id="market-sort-select">
+                        <option value="name" ${f.sortBy === 'name' ? 'selected' : ''}>Nazwy (A-Z)</option>
+                        <option value="priceAsc" ${f.sortBy === 'priceAsc' ? 'selected' : ''}>Ceny (rosnąco)</option>
+                        <option value="priceDesc" ${f.sortBy === 'priceDesc' ? 'selected' : ''}>Ceny (malejąco)</option>
+                        <option value="bulkAsc" ${f.sortBy === 'bulkAsc' ? 'selected' : ''}>Obciążenia (rosnąco)</option>
+                        <option value="bulkDesc" ${f.sortBy === 'bulkDesc' ? 'selected' : ''}>Obciążenia (malejąco)</option>
+                    </select>
                 </label>
             </div>
         </section>
@@ -692,6 +729,12 @@ function attachHandlers() {
             const abilityOnlyCb = rootEl.querySelector('#market-abilityonly-cb');
             if (abilityOnlyCb) abilityOnlyCb.addEventListener('change', (e) => {
                 view.marketFilters.abilityOnly = e.target.checked;
+                render();
+            });
+
+            const sortSelect = rootEl.querySelector('#market-sort-select');
+            if (sortSelect) sortSelect.addEventListener('change', (e) => {
+                view.marketFilters.sortBy = e.target.value;
                 render();
             });
         }
