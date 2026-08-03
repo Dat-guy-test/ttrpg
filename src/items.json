@@ -677,32 +677,6 @@
       }
     },
     {
-      "id": "custom-1784122666811-pxqsh",
-      "name": "Ubogie Odzienie",
-      "price": 16,
-      "bulk": 2.5,
-      "type": "misc",
-      "desc": "Komplet odzienia noszony przez najuboższych: Materiałowa tunika przewiązana pasem i słabej jakości trzewiki.",
-      "state": "unequipped",
-      "hitPoints": 3,
-      "toughness": 0,
-      "isSet": true,
-      "setMembers": [
-        {
-          "itemId": "custom-1783459693915-jb864",
-          "quantity": 1
-        },
-        {
-          "itemId": "custom-1783459779302-rkzpx",
-          "quantity": 1
-        },
-        {
-          "itemId": "custom-1784122371430-9zst3",
-          "quantity": 1
-        }
-      ]
-    },
-    {
       "id": "custom-1784306371402-kkzqh",
       "name": "Okulary",
       "price": 100,
@@ -3026,7 +3000,7 @@
     },
     {
       "id": "custom-1785684597242-owdd1",
-      "name": "Świerze Jedzenie (Dzienna porcja)",
+      "name": "Świeże Jedzenie (Dzienna porcja)",
       "price": 1,
       "bulk": 0,
       "type": "misc",
