@@ -31,7 +31,10 @@
 // Tracked in view.marketFilters:
 //   search            — substring match against item name (live,
 //                        case-insensitive)
-//   type              — '' (any) or an ITEM_TYPES value
+//   type              — '' (any), an ITEM_TYPES value, or the pseudo-value
+//                        'armourSet' — a special filter meaning "type is
+//                        'armour' AND isSet is true" (i.e. "Pełne Pancerze"),
+//                        not itself a real ITEM_TYPES entry
 //   priceMin/priceMax — '' (unbounded) or a number, in Nitki
 //                        Konstancjum; only applied to items with a
 //                        real numeric price
@@ -183,7 +186,9 @@ function filterAndSortMarketItems(items) {
 
     const filtered = items.filter(item => {
         if (search && !item.name.toLowerCase().includes(search)) return false;
-        if (f.type && item.type !== f.type) return false;
+        if (f.type === 'armourSet') {
+            if (item.type !== 'armour' || !item.isSet) return false;
+        } else if (f.type && item.type !== f.type) return false;
         if (f.proficiency && item.proficiencyCategory !== f.proficiency) return false;
         if (f.abilityOnly && !meetsAbilityRequirements(item)) return false;
 
@@ -231,6 +236,7 @@ function renderMarketFiltersHTML() {
                 <select id="market-type-filter" style="flex:1;">
                     <option value="">— Wszystkie typy —</option>
                     ${ITEM_TYPES.map(t => `<option value="${t.value}" ${f.type === t.value ? 'selected' : ''}>${escapeHtml(t.label)}</option>`).join('')}
+                    <option value="armourSet" ${f.type === 'armourSet' ? 'selected' : ''}>Pełne Pancerze</option>
                 </select>
             </div>
             <div class="editor-row">
