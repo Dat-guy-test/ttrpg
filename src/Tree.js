@@ -578,6 +578,37 @@ export class Tree {
     }
 
     /**
+     * Replaces one effect (by index into `effects`) with a brand-new
+     * effect object — used to EDIT an existing effect (e.g. an
+     * 'attributeChoice' whose options were changed in the editor) in
+     * place, rather than removing and re-adding it, which would move
+     * it to the end of the list. Same live-edit pattern as
+     * addNodeEffect()/removeNodeEffectAt(): if the node is currently
+     * active, its existing contribution is removed first and the
+     * whole effects list (with the replacement swapped in) is
+     * reapplied — for an 'attributeChoice' effect specifically, this
+     * means any previously-chosen options are cleared and the player
+     * is prompted again against the NEW option list, since the old
+     * choice's indexes may no longer even correspond to the same
+     * options.
+     *
+     * @param {string} nodeId
+     * @param {number} effectIndex
+     * @param {{type:string, key?:string, amount?:number}} effect
+     * @returns {boolean}
+     */
+    updateNodeEffectAt(nodeId, effectIndex, effect) {
+        const node = this.resolveNode(nodeId);
+        if (!node || node.effects[effectIndex] === undefined) return false;
+
+        if (node.nodeActive) removeNodeEffect(node);
+        node.effects = node.effects.map((e, i) => (i === effectIndex ? effect : e));
+        if (node.nodeActive) applyNodeEffect(node);
+
+        return true;
+    }
+
+    /**
      * Deletes a node entirely: removes its meshes (hit-sphere, star,
      * label, and any arcs touching it) from the scene, scrubs every
      * OTHER node's `requires` of any reference to it (a dangling

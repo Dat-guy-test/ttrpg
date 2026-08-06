@@ -55,8 +55,8 @@
     {
       "id": "custom-1784056048918-s9c8n",
       "name": "Nóż",
-      "price": 3,
-      "bulk": 0.5,
+      "price": 1,
+      "bulk": 0.02,
       "type": "weapon",
       "desc": "Niewielkie narzędzie używane do cięcia z ostrym końcem, które można wykorzystać jako broń.",
       "state": "unequipped",
@@ -162,8 +162,8 @@
     {
       "id": "custom-1784056473608-9efaz",
       "name": "Prosty Sztylet",
-      "price": 5,
-      "bulk": 1,
+      "price": 6,
+      "bulk": 0.05,
       "type": "weapon",
       "desc": "Przypominająca nóż broń, zaostrzona z obydwu stron, dobrze wyważona o ostrym końcu klingi.",
       "state": "unequipped",
@@ -171,6 +171,9 @@
       "toughness": 2,
       "isSet": false,
       "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
       "requirements": [
         {
           "skill": "zrecznosc",
@@ -271,8 +274,8 @@
     {
       "id": "custom-1784057113716-4runr",
       "name": "Lewak",
-      "price": 15,
-      "bulk": 1,
+      "price": 72,
+      "bulk": 0.1,
       "type": "weapon",
       "desc": "Lewak to sztylet zaprojektowany z myślą o obronie, zwykle trzymany w lewej dłoni przez osoby praworęczne (stąd nazwa): posiada on rozbudowaną rękojeść i długie, grube jak na sztylet ostrze. Niestety z racji na swój duży rozmiar i rozbudowaną rękojeść słabo sprawuje się on w roli broni miotanej.",
       "state": "unequipped",
@@ -280,6 +283,9 @@
       "toughness": 3,
       "isSet": false,
       "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
       "requirements": [
         {
           "skill": "zrecznosc",
@@ -379,16 +385,19 @@
     },
     {
       "id": "custom-1784057878596-fti9i",
-      "name": "Łamacz Mieczy",
-      "price": 30,
-      "bulk": 1,
+      "name": "Trójsztylet",
+      "price": 120,
+      "bulk": 0.2,
       "type": "weapon",
-      "desc": "Łamacz mieczy to sztylet o trzech ostrzach, wykonany z dobrej jakości, twardej stali. Osteza te wraz z rozbudowaną metalową rękojeścią mogą być używane przez wprawnego fechmistrza do skutecznego blokowania ataków, odbijania ich, lub wyrywania broni przeciwnikowi. Konstrukcja ta jednak niemalże całkowicie pozbawia ten rodzaj sztyletu możliwości wykonywania celnych ataków i utrudnia zadawanie poważnych obrażeń.",
+      "desc": "Trójsztylet to sztylet o trzech ostrzach, wykonany z dobrej jakości, twardej stali. Osteza te wraz z rozbudowaną metalową rękojeścią mogą być używane przez wprawnego fechmistrza do skutecznego blokowania ataków, odbijania ich, lub wyrywania broni przeciwnikowi. Konstrukcja ta jednak niemalże całkowicie pozbawia ten rodzaj sztyletu możliwości wykonywania celnych ataków i utrudnia zadawanie poważnych obrażeń.",
       "state": "unequipped",
       "hitPoints": 5,
       "toughness": 4,
       "isSet": false,
       "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Sztylety",
+      "enablesPrepareTypes": [],
       "requirements": [
         {
           "skill": "zrecznosc",
@@ -404,7 +413,7 @@
       "upgrades": [],
       "attackModes": [
         {
-          "name": "Pchnięcie Łamaczem Mieczy",
+          "name": "Pchnięcie Trójsztyletem",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": 0,
@@ -423,7 +432,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Cięcie Łamaczem Mieczy",
+          "name": "Cięcie Trójsztyletem",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": 0,
@@ -442,7 +451,7 @@
           "specialEffect": "Łamanie Broni: Jeżeli wykonujesz atak w tym trybie w ramach kontry przeciw atakowi przeciwnika, którego wybrany tryb ataku zadaje obrażenia kłóte lub cięte możesz zamiast zadeklarować próbę rozbrojenia przeciwnika (zastępuje to wtedy wykonywany przez Ciebie atak):\nRozstrzygnij konkurs twojej zręczności przeciw zręczności lub sile przeciwnika. W przypadku sukcesu broń wypada z rąk przeciwnika, spadając mu pod nogi. W przypadku krytycznego sukcesu broń spada pod Twoje nogi lub broń otrzymuje 2d6 + 2 obrażeń obuchowych (twój wybór)."
         },
         {
-          "name": "Rzut Łamaczem Mieczy",
+          "name": "Rzut Trójsztyletem",
           "modeType": "throw",
           "handedness": "one",
           "baseAccuracy": -2,
@@ -465,7 +474,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Uderzenie Rękojeścią Łamacza Mieczy",
+          "name": "Uderzenie Rękojeścią Trójsztyletu",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": -1,
@@ -488,8 +497,8 @@
     {
       "id": "custom-1784058054971-57l4h",
       "name": "Mizerykordia",
-      "price": 20,
-      "bulk": 1,
+      "price": 48,
+      "bulk": 0.07,
       "type": "weapon",
       "desc": "Mizerykordia to sztylet przypominający szpikulec. Jej główną funkcją jest dobijanie pochwyconych, nieprzytomnych lub unieruchomionych przeciwników.",
       "state": "unequipped",
@@ -497,6 +506,9 @@
       "toughness": 3,
       "isSet": false,
       "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
       "requirements": [
         {
           "skill": "zrecznosc",
@@ -509,7 +521,7 @@
         "melee",
         "thrown"
       ],
-      "proficiencyCategory": "",
+      "proficiencyCategory": "Sztylety",
       "upgrades": [],
       "attackModes": [
         {
@@ -707,10 +719,10 @@
     {
       "id": "custom-1785020652629-9ldtr",
       "name": "Miecz Krótki",
-      "price": 10,
-      "bulk": 2,
+      "price": 8,
+      "bulk": 0.2,
       "type": "weapon",
-      "desc": "Krótki Miecz, dzierżony w jednej dłoni, to uniwersalna broń łącząca",
+      "desc": "Krótki Miecz, zazwyczaj dzierżony w jednej dłoni to masowo produkowana broń pozwalająca na wykonywanie wszelakich typów ataków i na efektywną obronę.",
       "state": "unequipped",
       "hitPoints": 3,
       "toughness": 3,
@@ -828,8 +840,8 @@
     {
       "id": "custom-1785023224596-bbdth",
       "name": "Miecz Długi",
-      "price": 25,
-      "bulk": 3,
+      "price": 80,
+      "bulk": 0.3,
       "type": "weapon",
       "desc": "Miecz Długi to niezwykle uniwersalna broń, która sprawdza się świetnie zarówno jako broń jednoręczna jak i jako broń dwuręczna.",
       "state": "unequipped",
@@ -851,7 +863,7 @@
       "weaponKinds": [
         "melee"
       ],
-      "proficiencyCategory": "",
+      "proficiencyCategory": "Miecze",
       "upgrades": [],
       "attackModes": [
         {
@@ -1011,10 +1023,10 @@
     {
       "id": "custom-1785023614659-h32fn",
       "name": "Miecz Dwuręczny",
-      "price": 40,
-      "bulk": 5,
+      "price": 198,
+      "bulk": 1.2,
       "type": "weapon",
-      "desc": "",
+      "desc": "Ogromny miecz, noszony na plecach i dzierżony tylko oburęcznie. Przerażająca broń mogąca z łatwością zabić jednym ciosem.",
       "state": "unequipped",
       "hitPoints": 6,
       "toughness": 3,
@@ -1136,11 +1148,11 @@
     },
     {
       "id": "custom-1785099081253-smsbs",
-      "name": "Szabla",
-      "price": 35,
-      "bulk": 2,
+      "name": "Krzywica",
+      "price": 66,
+      "bulk": 0.2,
       "type": "weapon",
-      "desc": "Szabla to miecz opracowany z myślą o cięciu.",
+      "desc": "Krzywica (nazywana czasami szablą) to miecz opracowany z myślą o cięciu.",
       "state": "unequipped",
       "hitPoints": 3,
       "toughness": 3,
@@ -1209,11 +1221,11 @@
     },
     {
       "id": "custom-1785099530104-n5psc",
-      "name": "Rapier",
-      "price": 40,
-      "bulk": 1.5,
+      "name": "Zręcznościówka",
+      "price": 120,
+      "bulk": 0.25,
       "type": "weapon",
-      "desc": "Rapier to broń zaprojektowana do zadawania druzgocących ran kłótych. Brak ostrej krawędzi uniemożliwia jednak wykonywania cięć.",
+      "desc": "Zręcznościówka (nazywana czasami szpadą, albo rapierem) to broń zaprojektowana do zadawania druzgocących ran kłótych. Brak ostrej krawędzi uniemożliwia jednak wykonywania cięć.",
       "state": "unequipped",
       "hitPoints": 3,
       "toughness": 5,
@@ -1298,8 +1310,8 @@
     {
       "id": "custom-1785100004573-cn6zy",
       "name": "Puklerz",
-      "price": 20,
-      "bulk": 3,
+      "price": 10,
+      "bulk": 0.5,
       "type": "weapon",
       "desc": "Puklerz to mała, zwykle metalowa tarcza, używana jako dopełnienie wyposażenia wojownika walczącego bronią jednoręczną.",
       "state": "unequipped",
@@ -1343,8 +1355,8 @@
     {
       "id": "custom-1785100453110-d0jox",
       "name": "Tarcza Bojowa",
-      "price": 40,
-      "bulk": 4,
+      "price": 20,
+      "bulk": 2,
       "type": "weapon",
       "desc": "Okrągła tarcza średniej wielkości, używana głównie przez piechurów. \n\nMając taką tarczę możesz blokować ataki dystansowe.",
       "state": "unequipped",
@@ -1393,8 +1405,8 @@
     {
       "id": "custom-1785100940588-zt3z7",
       "name": "Pełna Tarcza",
-      "price": 60,
-      "bulk": 0,
+      "price": 99,
+      "bulk": 4,
       "type": "weapon",
       "desc": "Ogromna, pięciokątna metalowa tarcza używana przez piechotę imperialną. Jest ona wystarczająco duża by całkowicie osłonić użytkownika.\n\nJeżeli tarcza ta jest wyposażona, możesz blokować ataki dystansowe.\n\nDodatkowo możesz użyć unikatowej akcji: „Schowaj się za tarczą”:\nSchowaj się za tarczą:\nKoszt: 2 Punkty Akcji\nJeżeli zadeklarujesz tą akcję w odpowiedzi na atak rozstrzygnij konkurs czasu reakcji między Tobą a atakującym. W przypadku sukcesu lub krytycznego sukcesu atak nie może trafić w Ciebie i Pełna Tarcza staje się celem ataku.",
       "state": "unequipped",
@@ -1444,7 +1456,7 @@
       "id": "custom-1785138427383-vb9hl",
       "name": "Topór Bojowy",
       "price": 5,
-      "bulk": 2,
+      "bulk": 0.25,
       "type": "weapon",
       "desc": "Topór Bojowy to prosta krótka broń drzewcowa. Możesz także używać toporka jako narzędzie do obróbki drewna.",
       "state": "unequipped",
@@ -1545,8 +1557,8 @@
     {
       "id": "custom-1785139385766-gokr3",
       "name": "Młot Bojowy",
-      "price": 30,
-      "bulk": 2,
+      "price": 12,
+      "bulk": 0.3,
       "type": "weapon",
       "desc": "Młot Bojowy wyposażony w zaostrzony obuch świetnie sprawdza się przeciwko opancerzonym przeciwnikom.",
       "state": "unequipped",
@@ -1647,8 +1659,8 @@
     {
       "id": "custom-1785139680589-s5eri",
       "name": "Obuch",
-      "price": 25,
-      "bulk": 2.5,
+      "price": 30,
+      "bulk": 0.35,
       "type": "weapon",
       "desc": "Metalowa masa przytwierdzona na końcu drewnianego drąga, stanowi niepozorną lecz druzgocącą broń.",
       "state": "unequipped",
@@ -1711,8 +1723,8 @@
     {
       "id": "custom-1785140036954-qan2a",
       "name": "Gwiazda Zaranna",
-      "price": 45,
-      "bulk": 3.5,
+      "price": 35,
+      "bulk": 0.5,
       "type": "weapon",
       "desc": "Obuch z przytwierdzonymi kolcami stanowi przerażającą broń.",
       "state": "unequipped",
@@ -1814,7 +1826,7 @@
       "id": "custom-1785140927710-mjh55",
       "name": "Włócznia",
       "price": 4,
-      "bulk": 2,
+      "bulk": 1,
       "type": "weapon",
       "desc": "Włócznia to długa broń drzewcowa o prostym metalowym grocie. To tania i uniwersalna broń.",
       "state": "unequipped",
@@ -1944,8 +1956,8 @@
     {
       "id": "custom-1785144049957-0qkd2",
       "name": "Partyzana",
-      "price": 15,
-      "bulk": 3.5,
+      "price": 35,
+      "bulk": 1.1,
       "type": "weapon",
       "desc": "Cięższa wersja włóczni o rozbudowanym rozgałęzionym grocie ułatwiającym obronę.\n\nAtrybut Broni: Broń Ciężka: Ataki tą bronią wymagają wydania dodatkowego Punktu Akcji.",
       "state": "unequipped",
@@ -2052,7 +2064,7 @@
       "id": "custom-1785144528234-ghy3r",
       "name": "Młot Wielki",
       "price": 25,
-      "bulk": 4,
+      "bulk": 1.25,
       "type": "weapon",
       "desc": "Młot natknięty na długi drzewiec to świetna broń obuchowa, o dużym zasięgu.\n\nAtrybut Broni: Broń Ciężka: Ataki tą bronią wymagają wydania dodatkowego Punktu Akcji.",
       "state": "unequipped",
@@ -2120,8 +2132,8 @@
     {
       "id": "custom-1785144909888-61a90",
       "name": "Halabarda",
-      "price": 30,
-      "bulk": 5,
+      "price": 40,
+      "bulk": 2,
       "type": "weapon",
       "desc": "Halabarda to długa broń drzewcowa zakończona dwoma szpikulcami i toporem. Jest to niezwykle skuteczna broń wymagająca sporej siły.\n\nAtrybut Broni: Broń Ciężka: Ataki tą bronią wymagają wydania dodatkowego Punktu Akcji.",
       "state": "unequipped",
@@ -2228,7 +2240,7 @@
       "id": "custom-1785145210190-mlmdk",
       "name": "Pika",
       "price": 20,
-      "bulk": 4,
+      "bulk": 2,
       "type": "weapon",
       "desc": "Pika to najdłuższa broń drzewcowa używana w imperium.\n\nAtrybut Broni: Broń Ciężka: Ataki tą bronią wymagają wydania dodatkowego Punktu Akcji.",
       "state": "unequipped",
@@ -2333,11 +2345,11 @@
     },
     {
       "id": "custom-1785148772647-siv96",
-      "name": "Oszczep",
-      "price": 7,
-      "bulk": 1,
+      "name": "Drwaniany Oszczep",
+      "price": 2,
+      "bulk": 0.1,
       "type": "weapon",
-      "desc": "Krótka włócznia wyważona z myślą o rzucaniu nią.",
+      "desc": "Krótka drewniana włócznia wyważona z myślą o rzucaniu nią.",
       "state": "unequipped",
       "hitPoints": 3,
       "toughness": 2,
@@ -2427,8 +2439,8 @@
     {
       "id": "custom-1785148971534-kfyli",
       "name": "Rzutka",
-      "price": 2,
-      "bulk": 0.05,
+      "price": 1,
+      "bulk": 0.03,
       "type": "weapon",
       "desc": "Krótka strzałka wyważona i skonstuowana z myślą o rzucaniu ją ręką.",
       "state": "unequipped",
@@ -2496,8 +2508,8 @@
     {
       "id": "custom-1785149372744-1kd1e",
       "name": "Nożyk do Rzucania",
-      "price": 1,
-      "bulk": 0.1,
+      "price": 6,
+      "bulk": 0.14,
       "type": "weapon",
       "desc": "Mały wyważony nożyk do rzucania.",
       "state": "unequipped",
@@ -2607,14 +2619,14 @@
     },
     {
       "id": "custom-1785149636738-y8k11",
-      "name": "Łuk Krótki",
-      "price": 40,
-      "bulk": 0,
+      "name": "Łuk Długi",
+      "price": 15,
+      "bulk": 0.3,
       "type": "weapon",
-      "desc": "",
+      "desc": "Długi łuk o prostej budowie",
       "state": "unequipped",
-      "hitPoints": 1,
-      "toughness": 0,
+      "hitPoints": 6,
+      "toughness": 2,
       "isSet": false,
       "setMembers": [],
       "accessorySize": null,
@@ -2622,43 +2634,11 @@
       "enablesPrepareTypes": [],
       "requirements": [
         {
-          "skill": "sila",
+          "skill": "zrecznosc",
           "min": 1
         },
         {
-          "skill": "zrecznosc",
-          "min": 1
-        }
-      ],
-      "block": 0,
-      "deflection": 0,
-      "weaponKinds": [],
-      "proficiencyCategory": "Broń Miotająca",
-      "upgrades": [],
-      "attackModes": []
-    },
-    {
-      "id": "custom-1785149651255-1h251",
-      "name": "Łuk Długi",
-      "price": 75,
-      "bulk": 0,
-      "type": "weapon",
-      "desc": "",
-      "state": "unequipped",
-      "hitPoints": 1,
-      "toughness": 0,
-      "isSet": false,
-      "setMembers": [],
-      "accessorySize": null,
-      "prepareType": "",
-      "enablesPrepareTypes": [],
-      "requirements": [
-        {
           "skill": "sila",
-          "min": 3
-        },
-        {
-          "skill": "zrecznosc",
           "min": 2
         }
       ],
@@ -2667,14 +2647,91 @@
       "weaponKinds": [
         "missile"
       ],
-      "proficiencyCategory": "",
+      "proficiencyCategory": "Broń Miotająca",
       "upgrades": [],
       "attackModes": [
         {
-          "name": "Strzał z Łuku (Chyt Dwuręczny)",
+          "name": "Strzał z Łuku (Chwyt Dwuręczny)",
           "modeType": "shot",
           "handedness": "two",
-          "baseAccuracy": 3,
+          "baseAccuracy": 4,
+          "damage": [
+            {
+              "count": 2,
+              "dice": "d6",
+              "modifier": 2,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 160,
+          "spread": {
+            "count": 0,
+            "dice": "none",
+            "modifier": 0
+          },
+          "effectiveRange": 8,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Łukiem (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785149651255-1h251",
+      "name": "Łuk Refleksyjny",
+      "price": 120,
+      "bulk": 0.3,
+      "type": "weapon",
+      "desc": "Zakrzywiony kompozytowy łuk wykonany z wielu typów drewna, kości i innych materiałów.",
+      "state": "unequipped",
+      "hitPoints": 9,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "zrecznosc",
+          "min": 2
+        },
+        {
+          "skill": "sila",
+          "min": 3
+        }
+      ],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "missile"
+      ],
+      "proficiencyCategory": "Broń Miotająca",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Strzał z Łuku Refleksyjnego (Chyt Dwuręczny)",
+          "modeType": "shot",
+          "handedness": "two",
+          "baseAccuracy": 5,
           "damage": [
             {
               "count": 1,
@@ -2683,14 +2740,56 @@
               "type": "piercing"
             }
           ],
-          "minRange": 0,
-          "maxRange": 15,
+          "minRange": 1,
+          "maxRange": 220,
           "spread": {
             "count": 0,
             "dice": "none",
             "modifier": 0
           },
+          "effectiveRange": 12,
+          "specialEffect": ""
+        },
+        {
+          "name": "Szybki Strzał z Łuku Refleksyjnego (Chyt Dwuręczny)",
+          "modeType": "shot",
+          "handedness": "one",
+          "baseAccuracy": 3,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 100,
+          "spread": {
+            "count": 1,
+            "dice": "d4",
+            "modifier": 0
+          },
           "effectiveRange": 10,
+          "specialEffect": "Szybki Strzał:\nTen tryb ataku kosztuje o 1 Punkt Akcji mniej niż zwykle."
+        },
+        {
+          "name": "Uderzenie Łukiem Refleksyjnym (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
           "specialEffect": ""
         }
       ]
@@ -2698,13 +2797,13 @@
     {
       "id": "custom-1785149659540-6vojx",
       "name": "Proca",
-      "price": 3,
-      "bulk": 1,
+      "price": 1,
+      "bulk": 0.01,
       "type": "weapon",
-      "desc": "",
+      "desc": "Proca składa się z dwóch zakończonych pętelkami sznurków przymocowanych do materiałowego lub skórzanego koszyczka.",
       "state": "unequipped",
-      "hitPoints": 1,
-      "toughness": 0,
+      "hitPoints": 2,
+      "toughness": 1,
       "isSet": false,
       "setMembers": [],
       "accessorySize": null,
@@ -2716,19 +2815,19 @@
           "min": 2
         }
       ],
-      "block": 1,
-      "deflection": 1,
+      "block": 0,
+      "deflection": 0,
       "weaponKinds": [
         "missile"
       ],
-      "proficiencyCategory": "",
+      "proficiencyCategory": "Broń Miotająca",
       "upgrades": [],
       "attackModes": [
         {
           "name": "Strzał z Procy (Chwyt Jednoręczny)",
           "modeType": "shot",
           "handedness": "one",
-          "baseAccuracy": 1,
+          "baseAccuracy": 0,
           "damage": [
             {
               "count": 1,
@@ -2737,41 +2836,41 @@
               "type": "bludgeoning"
             }
           ],
-          "minRange": 0,
-          "maxRange": 10,
+          "minRange": 1,
+          "maxRange": 250,
           "spread": {
             "count": 1,
             "dice": "d4",
             "modifier": 0
           },
-          "effectiveRange": 8,
-          "specialEffect": ""
+          "effectiveRange": 12,
+          "specialEffect": "Broń specjalistyczna:\nZa każdy poziom wprawy w broni zwiększ podstawową celność tego tyru ataku o 1 (1 celności dla d4, 2 dla d6, 3 dla d8, 4 dla d10, 5 dla d12 i 6 dla d20)."
         }
       ]
     },
     {
       "id": "custom-1785149674967-9mq9z",
       "name": "Toporek do Rzucania",
-      "price": 6,
-      "bulk": 0,
+      "price": 10,
+      "bulk": 0.08,
       "type": "weapon",
-      "desc": "",
+      "desc": "Mały toporek wyważony tak, by można było nim łatwo rzucać.",
       "state": "unequipped",
-      "hitPoints": 1,
-      "toughness": 0,
+      "hitPoints": 3,
+      "toughness": 1,
       "isSet": false,
       "setMembers": [],
       "accessorySize": null,
-      "prepareType": "",
+      "prepareType": "Broń Miotana",
       "enablesPrepareTypes": [],
       "requirements": [],
-      "block": 0,
-      "deflection": 0,
+      "block": 1,
+      "deflection": 1,
       "weaponKinds": [
         "melee",
         "thrown"
       ],
-      "proficiencyCategory": "",
+      "proficiencyCategory": "Broń Miotana",
       "upgrades": [],
       "attackModes": [
         {
@@ -3504,7 +3603,7 @@
     },
     {
       "id": "custom-1785704887016-ag3pw",
-      "name": "Czaszka Smoka",
+      "name": "Czaszka Smoka (Hełm)",
       "price": 250,
       "bulk": 0.9,
       "type": "armour",
@@ -4539,11 +4638,359 @@
         {
           "itemId": "custom-1785684597242-owdd1",
           "quantity": 1
+        },
+        {
+          "itemId": "custom-1785771336503-iizw5",
+          "quantity": 1
         }
       ],
       "accessorySize": null,
       "prepareType": "",
       "enablesPrepareTypes": []
+    },
+    {
+      "id": "custom-1785761108288-zxj8y",
+      "name": "Krótka Włócznia",
+      "price": 3,
+      "bulk": 0.2,
+      "type": "weapon",
+      "desc": "Krótka włócznia, świetnie sprawdzająca się zarówno jako prosta w użytkowaniu broń o krótkim drzewcu, jak i podstawowa broń miotana.",
+      "state": "unequipped",
+      "hitPoints": 1,
+      "toughness": 0,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "block": 0,
+      "deflection": 0,
+      "weaponKinds": [
+        "melee",
+        "thrown"
+      ],
+      "proficiencyCategory": "Krótka Broń Drzewcowa",
+      "upgrades": [],
+      "attackModes": []
+    },
+    {
+      "id": "custom-1785766312690-9i11g",
+      "name": "Łamacz Mieczy",
+      "price": 102,
+      "bulk": 0.15,
+      "type": "weapon",
+      "desc": "Łamacz mieczy to sztylet z wyżłobionymi głębokimi wcięciami po jednej stronie ostrza, pozwalającymi na „złapanie” ostrza miecza.\n\nEfekt specjalny: „Łamacz Mieczy”:\n\nŁamacz Mieczy:\nMożesz wydać dodatkowy punkt akcji deklarując chęć wykonania akcji blokowania tą bronią. W przypadku krytycznego sukcesu broń przeciwnika klinuje się w łamaczu mieczy i wypada z jego ręki lądując pod twoimi nogami.",
+      "state": "unequipped",
+      "hitPoints": 5,
+      "toughness": 3,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "Sztylety",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "block": 5,
+      "deflection": 3,
+      "weaponKinds": [
+        "melee",
+        "thrown"
+      ],
+      "proficiencyCategory": "Sztylety",
+      "upgrades": [],
+      "attackModes": []
+    },
+    {
+      "id": "custom-1785768825684-8xfen",
+      "name": "Metalowy Oszczep",
+      "price": 8,
+      "bulk": 0.25,
+      "type": "weapon",
+      "desc": "Oszczep o metalowym grocie. Ta bardzo prosta broń jest w odpowiednich rękach równie śmiertelna jak najbardziej wyrafinowany łuk.",
+      "state": "unequipped",
+      "hitPoints": 4,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 1
+        }
+      ],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee",
+        "thrown"
+      ],
+      "proficiencyCategory": "Broń Miotana",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Rzut Oszczepem (Chwyt Jednoręczny)",
+          "modeType": "throw",
+          "handedness": "one",
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d12",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 12,
+          "spread": {
+            "count": 1,
+            "dice": "d4",
+            "modifier": 0
+          },
+          "effectiveRange": 7,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Oszczepem (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d8",
+              "modifier": 1,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Drzewcem Oszczepu (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 10,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785769443377-zzndz",
+      "name": "Łuk Wielki",
+      "price": 36,
+      "bulk": 0.5,
+      "type": "weapon",
+      "desc": "Łuk Długi o bardzo dużej sile naciągu. Tylko najsilniejsi wojownicy są w stanie celnie posługiwać się tą przerażającą bronią.",
+      "state": "unequipped",
+      "hitPoints": 8,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "sila",
+          "min": 6
+        }
+      ],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "missile"
+      ],
+      "proficiencyCategory": "Broń Miotająca",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Strzał z Łuku Wielkiego (Chwyt Dwuręczny)",
+          "modeType": "shot",
+          "handedness": "two",
+          "baseAccuracy": 3,
+          "damage": [
+            {
+              "count": 5,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 200,
+          "spread": {
+            "count": 0,
+            "dice": "none",
+            "modifier": 0
+          },
+          "effectiveRange": 10,
+          "specialEffect": "Duża siłą naciągu: Wykonanie ataku w tym trybie wymaga zużycia dodatkowych dwóch punktów akcji.\n\nPotężny strzał: Każde trafienie tą bronią jest celne."
+        },
+        {
+          "name": "Uderzenie Wielkim Łukiem (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785770966176-puq70",
+      "name": "Proca Kosturowa",
+      "price": 4,
+      "bulk": 0.15,
+      "type": "weapon",
+      "desc": "Dwa sznurki z koszyczkiem zaczepione na końcu drewnianego kostura. Zwiększa to zasięg procy i umożliwia używanie jej do rzucania praktycznie dowolnymi przedmiotami, kosztem celności w niewprawionych rękach.",
+      "state": "unequipped",
+      "hitPoints": 3,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [
+        {
+          "skill": "zrecznosc",
+          "min": 3
+        }
+      ],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Broń Miotająca",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Strzał z Procy Kosturowej (Chwyt Jednoręczny)",
+          "modeType": "shot",
+          "handedness": "one",
+          "baseAccuracy": -6,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 300,
+          "spread": {
+            "count": 1,
+            "dice": "d6",
+            "modifier": 0
+          },
+          "effectiveRange": 14,
+          "specialEffect": "Broń specjalistyczna: Za każdy poziom wprawy w broni zwiększ podstawową celność tego tyru ataku o 2 (−4 celności dla d4, −2 dla d6, 0 dla d8, 2 dla d10, 4 dla d12 i 6 dla d20)."
+        },
+        {
+          "name": "Rzut Przedmiotem z Procy Kosturowej (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -6,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d8",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 1,
+          "maxRange": 200,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": "Rzut Przedmiotem: Amunicją dla tego trybu ataku może być dowolny przedmiot o obciążeniu niewiększym niż 0.1. Zmień typ zadawanych obrażeń jeżeli inny typ byłby bardziej odpowiedni dla wykorzystanego przedmiotu. Szklane przedmioty stłuką się w przypadku trafienia w cel.\n\nBroń specjalistyczna: Za każdy poziom wprawy w broni zwiększ podstawową celność tego tyru ataku o 2 (−4 celności dla d4, −2 dla d6, 0 dla d8, 2 dla d10, 4 dla d12 i 6 dla d20)."
+        },
+        {
+          "name": "Uderzenie Drzewcem Procy Kosturowej (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
+    },
+    {
+      "id": "custom-1785771336503-iizw5",
+      "name": "Plecak",
+      "price": 10,
+      "bulk": 0.2,
+      "type": "storage",
+      "desc": "Skórzany lub materiałowy wór z klaką i dwoma pętlami, które można wygodnie przełożyć przez ramię. Posiada kilka szlufek dzięki którym łatwo przymocować do niego rózne akcesoria.",
+      "state": "unequipped",
+      "hitPoints": 7,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "equipSlots": [
+        "back"
+      ],
+      "equipLayers": [
+        "sleekAttach"
+      ],
+      "effectDescription": "",
+      "equipTimeSeconds": 8,
+      "equipTimeActionPoints": 16,
+      "unequipTimeSeconds": 4,
+      "unequipTimeActionPoints": 8,
+      "capacity": 20,
+      "accessorySlots": {
+        "small": 6,
+        "medium": 4,
+        "large": 2
+      }
     }
   ]
 }

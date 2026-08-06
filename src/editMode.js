@@ -380,7 +380,10 @@ function renderEffectsList(effects) {
             return `
                 <div class="editor-req-row">
                     <span>Atrybut do Wyboru — gracz wybiera ${count} z: ${escapeHtml(names || '(brak opcji)')}</span>
-                    <button class="editor-btn editor-btn-small" data-remove-effect="${i}">✕</button>
+                    <span style="display:flex; gap:0.25em;">
+                        <button class="editor-btn editor-btn-small" data-edit-attrchoice-effect="${i}">Edytuj</button>
+                        <button class="editor-btn editor-btn-small" data-remove-effect="${i}">✕</button>
+                    </span>
                 </div>
             `;
         }
@@ -595,12 +598,30 @@ let attributeChoiceDraft = { count: 1, options: [] };
 
 /**
  * Staged {key, kind, amount} ability bonuses for the option CURRENTLY
- * being built in the "Atrybut do Wyboru" mini-editor, before it's
- * pushed onto attributeChoiceDraft.options as that option's own
- * `bonuses` list. Reset whenever attributeChoiceDraft itself resets,
- * and after each option is added to the list.
+ * being built OR EDITED in the "Atrybut do Wyboru" mini-editor,
+ * before it's pushed onto attributeChoiceDraft.options as that
+ * option's own `bonuses` list. Reset whenever attributeChoiceDraft
+ * itself resets, and after each option is added/saved to the list.
  */
 let attributeChoiceOptionBonusDraft = [];
+
+/**
+ * Index into a node's `effects` array (or, for the new-node form,
+ * `pendingNewNodeEffects`) of the 'attributeChoice' effect currently
+ * loaded into the mini-editor for editing — set by
+ * wireAttributeChoiceForm()'s loadEffectForEditing(), read by its
+ * "Zapisz zmiany"/"Dodaj efekt" button to decide whether to update
+ * that existing effect in place or append a brand-new one. null while
+ * building a brand-new effect (the normal/default state).
+ */
+let editingAttributeChoiceEffectIndex = null;
+
+/**
+ * Index into attributeChoiceDraft.options of the option currently
+ * loaded into the "add one option" mini-form for editing, or null
+ * while adding a brand-new option.
+ */
+let editingAttributeChoiceOptionIndex = null;
 
 function resetAttributeChoiceDraft() {
     attributeChoiceDraft = { count: 1, options: [] };
@@ -609,10 +630,13 @@ function resetAttributeChoiceDraft() {
     // reassignment here silently breaks the "Dodaj bonus" button.
     attributeChoiceOptionBonusDraft.length = 0;
     attributeBonusDraft.length = 0;
+    editingAttributeChoiceEffectIndex = null;
+    editingAttributeChoiceOptionIndex = null;
 }
 
 function attributeChoiceOptionsListHTML() {
     if (attributeChoiceDraft.options.length === 0) return '<em>Brak opcji.</em>';
+    const lastIdx = attributeChoiceDraft.options.length - 1;
     return attributeChoiceDraft.options.map((o, i) => {
         const bonusText = (o.bonuses && o.bonuses.length)
             ? ' [' + o.bonuses.map(b => {
@@ -626,13 +650,20 @@ function attributeChoiceOptionsListHTML() {
         return `
         <div class="editor-req-row">
             <span><strong>${escapeHtml(o.name)}</strong>${o.description ? ` — ${escapeHtml(o.description)}` : ''}${escapeHtml(bonusText)}</span>
-            <button class="editor-btn editor-btn-small" data-remove-attrchoice-opt="${i}">✕</button>
+            <span style="display:flex; gap:0.25em;">
+                <button class="editor-btn editor-btn-small" data-move-attrchoice-opt-up="${i}" title="Przesuń wyżej" ${i === 0 ? 'disabled' : ''}>↑</button>
+                <button class="editor-btn editor-btn-small" data-move-attrchoice-opt-down="${i}" title="Przesuń niżej" ${i === lastIdx ? 'disabled' : ''}>↓</button>
+                <button class="editor-btn editor-btn-small" data-edit-attrchoice-opt="${i}">Edytuj</button>
+                <button class="editor-btn editor-btn-small" data-remove-attrchoice-opt="${i}">✕</button>
+            </span>
         </div>
     `;
     }).join('');
 }
 
 function attributeChoiceFormTemplate(idPrefix) {
+    const editingEffect = editingAttributeChoiceEffectIndex !== null;
+    const editingOption = editingAttributeChoiceOptionIndex !== null;
     return `
         <label class="editor-label">Atrybut do Wyboru — opcje, spośród których gracz wybierze</label>
         <div id="${idPrefix}-attrchoice-options-list">${attributeChoiceOptionsListHTML()}</div>
@@ -642,40 +673,47 @@ function attributeChoiceFormTemplate(idPrefix) {
         <div id="${idPrefix}-attrchoice-opt-bonuses-list">${renderBonusRows(attributeChoiceOptionBonusDraft, 'remove-attrchoice-opt-bonus')}</div>
         <div class="editor-row">${bonusBuilderRowHTML(`${idPrefix}-attrchoice-opt`)}</div>
         <div class="editor-row">
-            <button class="editor-btn editor-btn-small" id="${idPrefix}-attrchoice-addopt-btn">Dodaj opcję do listy</button>
+            <button class="editor-btn editor-btn-small" id="${idPrefix}-attrchoice-addopt-btn">${editingOption ? 'Zapisz opcję' : 'Dodaj opcję do listy'}</button>
+            <button class="editor-btn editor-btn-small" id="${idPrefix}-attrchoice-cancelopt-btn" style="${editingOption ? '' : 'display:none;'}">Anuluj edycję opcji</button>
         </div>
         <div class="editor-row">
             <input id="${idPrefix}-attrchoice-count" type="number" min="1" value="${attributeChoiceDraft.count}" placeholder="Ile wybiera gracz" />
-            <button class="editor-btn editor-btn-small" id="${idPrefix}-attrchoice-create-btn">Dodaj efekt „Atrybut do Wyboru”</button>
+            <button class="editor-btn editor-btn-small" id="${idPrefix}-attrchoice-create-btn">${editingEffect ? 'Zapisz zmiany „Atrybut do Wyboru”' : 'Dodaj efekt „Atrybut do Wyboru”'}</button>
+            <button class="editor-btn editor-btn-small" id="${idPrefix}-attrchoice-cancel-btn" style="${editingEffect ? '' : 'display:none;'}">Anuluj edycję efektu</button>
         </div>
+        <div class="editor-hint">Kliknij „Edytuj” przy istniejącym efekcie „Atrybut do Wyboru” na liście efektów powyżej, by zmienić jego opcje (dodać/usunąć/zmienić/przestawić) lub liczbę wyboru.</div>
     `;
 }
 
 /**
  * Wires the "Atrybut do Wyboru" mini-editor built by
- * attributeChoiceFormTemplate(). `onAdd(effect)` is called with a
- * validated { type: 'attributeChoice', count, options } effect once
- * the player clicks "Dodaj efekt…"; the draft is left for the caller
- * to reset (resetAttributeChoiceDraft()) since new-node vs
- * existing-node forms differ on when that should happen.
+ * attributeChoiceFormTemplate(). `onSave(effect, editingIndex)` is
+ * called once the player clicks "Dodaj efekt…"/"Zapisz zmiany…" with
+ * a validated { type: 'attributeChoice', count, options } effect;
+ * `editingIndex` is the index (into node.effects or
+ * pendingNewNodeEffects, whichever `idPrefix` belongs to) of the
+ * effect that was being edited, or null when this was a brand-new
+ * effect — the caller decides whether to update-in-place or append.
+ *
+ * Returns a small handle — { loadEffectForEditing, resetFormDom } —
+ * so the "Edytuj" button rendered next to an existing 'attributeChoice'
+ * entry in renderEffectsList() can load that effect back into this
+ * exact form (and, on save/cancel/removal, reset it back to "add a
+ * new effect" mode) via direct DOM updates, WITHOUT triggering a full
+ * renderInspector()/renderNewNodeForm() re-render — the latter would
+ * be harmless for an existing node (renderExistingNodeForm() rebuilds
+ * purely from node.effects) but would silently wipe
+ * pendingNewNodeEffects for a not-yet-created node (renderNewNodeForm()
+ * resets that array itself on every call).
  */
-function wireAttributeChoiceForm(idPrefix, onAdd) {
-    function refreshOptionsList() {
-        const listEl = bodyEl.querySelector(`#${idPrefix}-attrchoice-options-list`);
-        if (!listEl) return;
-        listEl.innerHTML = attributeChoiceOptionsListHTML();
-        listEl.querySelectorAll('[data-remove-attrchoice-opt]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                attributeChoiceDraft.options.splice(Number(btn.dataset.removeAttrchoiceOpt), 1);
-                refreshOptionsList();
-            });
-        });
-    }
-    refreshOptionsList();
-
-    const nameInput  = bodyEl.querySelector(`#${idPrefix}-attrchoice-name`);
-    const descInput  = bodyEl.querySelector(`#${idPrefix}-attrchoice-desc`);
-    const countInput = bodyEl.querySelector(`#${idPrefix}-attrchoice-count`);
+function wireAttributeChoiceForm(idPrefix, onSave) {
+    const nameInput       = bodyEl.querySelector(`#${idPrefix}-attrchoice-name`);
+    const descInput       = bodyEl.querySelector(`#${idPrefix}-attrchoice-desc`);
+    const countInput      = bodyEl.querySelector(`#${idPrefix}-attrchoice-count`);
+    const addOptBtn       = bodyEl.querySelector(`#${idPrefix}-attrchoice-addopt-btn`);
+    const cancelOptBtn    = bodyEl.querySelector(`#${idPrefix}-attrchoice-cancelopt-btn`);
+    const createBtn       = bodyEl.querySelector(`#${idPrefix}-attrchoice-create-btn`);
+    const cancelEffectBtn = bodyEl.querySelector(`#${idPrefix}-attrchoice-cancel-btn`);
 
     function refreshOptionBonusList() {
         const listEl = bodyEl.querySelector(`#${idPrefix}-attrchoice-opt-bonuses-list`);
@@ -688,29 +726,159 @@ function wireAttributeChoiceForm(idPrefix, onAdd) {
             });
         });
     }
+
+    /** Resets the "add/edit one option" mini-form back to "add a new option" mode. */
+    function resetOptionMiniForm() {
+        editingAttributeChoiceOptionIndex = null;
+        nameInput.value = '';
+        descInput.value = '';
+        attributeChoiceOptionBonusDraft.length = 0;
+        refreshOptionBonusList();
+        addOptBtn.textContent = 'Dodaj opcję do listy';
+        cancelOptBtn.style.display = 'none';
+    }
+
+    function refreshOptionsList() {
+        const listEl = bodyEl.querySelector(`#${idPrefix}-attrchoice-options-list`);
+        if (!listEl) return;
+        listEl.innerHTML = attributeChoiceOptionsListHTML();
+
+        listEl.querySelectorAll('[data-remove-attrchoice-opt]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const idx = Number(btn.dataset.removeAttrchoiceOpt);
+                attributeChoiceDraft.options.splice(idx, 1);
+                // Removing the option currently loaded for editing (or one
+                // before it) would otherwise silently save over the wrong
+                // entry — safest is to just drop back to "add new" (same
+                // rule itemEditor.js/manualEditor.js use for their own
+                // staged sub-lists).
+                if (editingAttributeChoiceOptionIndex !== null && idx <= editingAttributeChoiceOptionIndex) resetOptionMiniForm();
+                refreshOptionsList();
+            });
+        });
+        listEl.querySelectorAll('[data-move-attrchoice-opt-up]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const idx = Number(btn.dataset.moveAttrchoiceOptUp);
+                if (idx <= 0) return;
+                const opts = attributeChoiceDraft.options;
+                [opts[idx - 1], opts[idx]] = [opts[idx], opts[idx - 1]];
+                if (editingAttributeChoiceOptionIndex === idx) editingAttributeChoiceOptionIndex = idx - 1;
+                else if (editingAttributeChoiceOptionIndex === idx - 1) editingAttributeChoiceOptionIndex = idx;
+                refreshOptionsList();
+            });
+        });
+        listEl.querySelectorAll('[data-move-attrchoice-opt-down]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const idx = Number(btn.dataset.moveAttrchoiceOptDown);
+                const opts = attributeChoiceDraft.options;
+                if (idx >= opts.length - 1) return;
+                [opts[idx + 1], opts[idx]] = [opts[idx], opts[idx + 1]];
+                if (editingAttributeChoiceOptionIndex === idx) editingAttributeChoiceOptionIndex = idx + 1;
+                else if (editingAttributeChoiceOptionIndex === idx + 1) editingAttributeChoiceOptionIndex = idx;
+                refreshOptionsList();
+            });
+        });
+        listEl.querySelectorAll('[data-edit-attrchoice-opt]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const idx = Number(btn.dataset.editAttrchoiceOpt);
+                const opt = attributeChoiceDraft.options[idx];
+                if (!opt) return;
+                editingAttributeChoiceOptionIndex = idx;
+                nameInput.value = opt.name;
+                descInput.value = opt.description || '';
+                attributeChoiceOptionBonusDraft.length = 0;
+                (opt.bonuses || []).forEach(b => attributeChoiceOptionBonusDraft.push({ ...b }));
+                refreshOptionBonusList();
+                addOptBtn.textContent = 'Zapisz opcję';
+                cancelOptBtn.style.display = '';
+                setStatus('');
+            });
+        });
+    }
+
+    /**
+     * Resets THIS form instance's DOM (options list, count, add/save
+     * button, cancel button) back to "add a brand-new effect" mode.
+     * Does not itself touch node.effects/pendingNewNodeEffects — call
+     * resetAttributeChoiceDraft() alongside it to also clear the
+     * underlying draft/editing-index state.
+     */
+    function resetFormDom() {
+        resetOptionMiniForm();
+        refreshOptionsList();
+        countInput.value = attributeChoiceDraft.count;
+        createBtn.textContent = 'Dodaj efekt „Atrybut do Wyboru”';
+        cancelEffectBtn.style.display = 'none';
+    }
+
+    /**
+     * Loads an existing 'attributeChoice' effect into this form for
+     * editing — called from the "Edytuj" button rendered next to that
+     * effect by renderEffectsList(). Deep-copies the effect's options
+     * (and their bonuses) into attributeChoiceDraft so editing here
+     * never touches the real node/pending effect until "Zapisz
+     * zmiany" is actually clicked.
+     * @param {{type:string, count:number, options:object[]}} effect
+     * @param {number} index — this effect's position in node.effects/pendingNewNodeEffects
+     */
+    function loadEffectForEditing(effect, index) {
+        attributeChoiceDraft = {
+            count: Math.max(1, Number(effect.count) || 1),
+            options: (effect.options || []).map(o => ({
+                name: o.name,
+                description: o.description || '',
+                bonuses: (o.bonuses || []).map(b => ({ ...b })),
+            })),
+        };
+        editingAttributeChoiceEffectIndex = index;
+        editingAttributeChoiceOptionIndex = null;
+        attributeChoiceOptionBonusDraft.length = 0;
+
+        nameInput.value = '';
+        descInput.value = '';
+        refreshOptionBonusList();
+        addOptBtn.textContent = 'Dodaj opcję do listy';
+        cancelOptBtn.style.display = 'none';
+
+        countInput.value = attributeChoiceDraft.count;
+        createBtn.textContent = 'Zapisz zmiany „Atrybut do Wyboru”';
+        cancelEffectBtn.style.display = '';
+        refreshOptionsList();
+    }
+
+    refreshOptionsList();
     refreshOptionBonusList();
     wireBonusBuilderRow(`${idPrefix}-attrchoice-opt`, attributeChoiceOptionBonusDraft, refreshOptionBonusList);
 
-    bodyEl.querySelector(`#${idPrefix}-attrchoice-addopt-btn`).addEventListener('click', () => {
+    cancelOptBtn.addEventListener('click', () => {
+        resetOptionMiniForm();
+        setStatus('');
+    });
+
+    addOptBtn.addEventListener('click', () => {
         const name = nameInput.value.trim();
         const description = descInput.value.trim();
         if (!name) { setStatus('Opcja atrybutu wymaga nazwy.', true); return; }
-        attributeChoiceDraft.options.push({ name, description, bonuses: attributeChoiceOptionBonusDraft.map(b => ({ ...b })) });
-        nameInput.value = '';
-        descInput.value = '';
-        // IN PLACE, not `= []` — the "Dodaj bonus" button wired via
-        // wireBonusBuilderRow() above closed over this exact array object.
-        // Reassigning the variable here would leave that button pushing
-        // into an orphaned array nothing renders any more, so every bonus
-        // added for the NEXT option would silently vanish — this was the
-        // actual bug: bonuses only ever worked for an option's first save.
-        attributeChoiceOptionBonusDraft.length = 0;
-        refreshOptionBonusList();
+
+        const option = { name, description, bonuses: attributeChoiceOptionBonusDraft.map(b => ({ ...b })) };
+        if (editingAttributeChoiceOptionIndex !== null) {
+            attributeChoiceDraft.options[editingAttributeChoiceOptionIndex] = option;
+        } else {
+            attributeChoiceDraft.options.push(option);
+        }
+
+        resetOptionMiniForm();
         refreshOptionsList();
         setStatus('');
     });
 
-    bodyEl.querySelector(`#${idPrefix}-attrchoice-create-btn`).addEventListener('click', () => {
+    cancelEffectBtn.addEventListener('click', () => {
+        resetAttributeChoiceDraft();
+        resetFormDom();
+        setStatus('');
+    });
+
+    createBtn.addEventListener('click', () => {
         const count = Number(countInput.value);
         if (attributeChoiceDraft.options.length === 0) { setStatus('Dodaj przynajmniej jedną opcję atrybutu.', true); return; }
         if (!Number.isFinite(count) || count < 1) { setStatus('Liczba wyboru musi być dodatnią liczbą całkowitą.', true); return; }
@@ -718,11 +886,20 @@ function wireAttributeChoiceForm(idPrefix, onAdd) {
         const effect = {
             type: 'attributeChoice',
             count: Math.min(Math.round(count), attributeChoiceDraft.options.length),
-            options: attributeChoiceDraft.options.map(o => ({ ...o })),
+            options: attributeChoiceDraft.options.map(o => ({
+                name: o.name,
+                description: o.description,
+                bonuses: (o.bonuses || []).map(b => ({ ...b })),
+            })),
         };
-        onAdd(effect);
+        const editingIndex = editingAttributeChoiceEffectIndex;
+
         resetAttributeChoiceDraft();
+        resetFormDom();
+        onSave(effect, editingIndex);
     });
+
+    return { loadEffectForEditing, resetFormDom };
 }
 
 // ============================================================
@@ -905,8 +1082,12 @@ function renderExistingNodeForm(node) {
         AppState.tr.addNodeEffect(node.nodeId, effect);
         renderInspector(); // re-render the node form, same as adding a Requirement does today
     });
-    wireAttributeChoiceForm('ed', (effect) => {
-        AppState.tr.addNodeEffect(node.nodeId, effect);
+    const attrChoiceFormHandle = wireAttributeChoiceForm('ed', (effect, editingIndex) => {
+        if (editingIndex !== null) {
+            AppState.tr.updateNodeEffectAt(node.nodeId, editingIndex, effect);
+        } else {
+            AppState.tr.addNodeEffect(node.nodeId, effect);
+        }
         renderInspector();
     });
     wireSpellSchoolUnlockForm('ed', (effect) => {
@@ -915,8 +1096,27 @@ function renderExistingNodeForm(node) {
     });
     bodyEl.querySelectorAll('[data-remove-effect]').forEach(btn => {
         btn.addEventListener('click', () => {
-            AppState.tr.removeNodeEffectAt(node.nodeId, Number(btn.dataset.removeEffect));
+            const idx = Number(btn.dataset.removeEffect);
+            // Removing the attributeChoice effect currently loaded in the
+            // mini-editor above (or one before it, which would shift this
+            // one's index) would otherwise silently let "Zapisz zmiany"
+            // save over the wrong entry — safest is to just drop the
+            // mini-editor back to "add a new effect" mode.
+            if (editingAttributeChoiceEffectIndex !== null && idx <= editingAttributeChoiceEffectIndex) {
+                resetAttributeChoiceDraft();
+            }
+            AppState.tr.removeNodeEffectAt(node.nodeId, idx);
             renderInspector();
+        });
+    });
+    bodyEl.querySelectorAll('[data-edit-attrchoice-effect]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const idx = Number(btn.dataset.editAttrchoiceEffect);
+            const effect = node.effects[idx];
+            if (effect && effect.type === 'attributeChoice') {
+                attrChoiceFormHandle.loadEffectForEditing(effect, idx);
+                setStatus('');
+            }
         });
     });
 
@@ -1019,6 +1219,14 @@ function addRequirementFromInput(node) {
 // time the form (re)opens.
 let pendingNewNodeEffects = [];
 
+// Handle returned by wireAttributeChoiceForm('new', …) for the
+// currently-open "Add Node" form — lets renderPendingEffectsList()'s
+// "Edytuj" button (on an attributeChoice effect row) load that effect
+// back into the mini-editor via direct DOM updates, WITHOUT doing a
+// full renderNewNodeForm() re-render, which would otherwise reset
+// pendingNewNodeEffects and every draft back to empty on every call.
+let newNodeAttrChoiceFormHandle = null;
+
 function renderNewNodeForm(fiDeg, thetaDeg) {
     pendingNewNodeEffects = [];
     resetAttributeChoiceDraft();
@@ -1070,8 +1278,12 @@ function renderNewNodeForm(fiDeg, thetaDeg) {
         renderPendingEffectsList();
         setStatus('');
     });
-    wireAttributeChoiceForm('new', (effect) => {
-        pendingNewNodeEffects.push(effect);
+    newNodeAttrChoiceFormHandle = wireAttributeChoiceForm('new', (effect, editingIndex) => {
+        if (editingIndex !== null) {
+            pendingNewNodeEffects[editingIndex] = effect;
+        } else {
+            pendingNewNodeEffects.push(effect);
+        }
         renderPendingEffectsList();
         setStatus('');
     });
@@ -1097,8 +1309,25 @@ function renderPendingEffectsList() {
     listEl.innerHTML = renderEffectsList(pendingNewNodeEffects);
     listEl.querySelectorAll('[data-remove-effect]').forEach(btn => {
         btn.addEventListener('click', () => {
-            pendingNewNodeEffects.splice(Number(btn.dataset.removeEffect), 1);
+            const idx = Number(btn.dataset.removeEffect);
+            pendingNewNodeEffects.splice(idx, 1);
+            // Same "drop back to add-new" rule as the existing-node form's
+            // equivalent handler — see its comment above.
+            if (editingAttributeChoiceEffectIndex !== null && idx <= editingAttributeChoiceEffectIndex) {
+                resetAttributeChoiceDraft();
+                if (newNodeAttrChoiceFormHandle) newNodeAttrChoiceFormHandle.resetFormDom();
+            }
             renderPendingEffectsList();
+        });
+    });
+    listEl.querySelectorAll('[data-edit-attrchoice-effect]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const idx = Number(btn.dataset.editAttrchoiceEffect);
+            const effect = pendingNewNodeEffects[idx];
+            if (effect && effect.type === 'attributeChoice' && newNodeAttrChoiceFormHandle) {
+                newNodeAttrChoiceFormHandle.loadEffectForEditing(effect, idx);
+                setStatus('');
+            }
         });
     });
 }

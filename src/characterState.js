@@ -160,7 +160,7 @@ export function computeResourceMax(resourceKey) {
 // perkEffects.js's refreshPerksTaken()), so no separate tracking is
 // needed. setPotentialTotal() is the only way to change `total` and
 // refuses to drop it below whatever's already spent.
-export const MIN_POTENTIAL = 20;
+export const MIN_POTENTIAL = 25;
 
 // ------------------------------------------------------------
 // POINT POOLS
@@ -525,7 +525,6 @@ export function computeDamageTotal() {
     }
     return total;
 }
-
 
 // ---- Perk-system hooks (called by perkEffects.js) -------------------------
 
