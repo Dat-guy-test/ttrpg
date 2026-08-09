@@ -47,6 +47,129 @@
           "content": "Użyj strzałek na klawiaturze lub kilkaj w linie, żeby poruszać się po drzewku. Użyj scrolla lub przycisków plusi minus by zmieniać poziom zooma."
         }
       ]
+    },
+    {
+      "id": "custom-page-1786282122568-kvbde",
+      "title": "Informacje o Świecie: Jasny Legion",
+      "sections": [
+        {
+          "id": "jasny-legion",
+          "name": "Jasny Legion",
+          "content": "Jasny Legion to najbardziej elitarna część armii Imperium, której bezpośrednim zwierzchnikiem jest sam Imperator. Składa się ona z najwybitniejszych fechmistrzów, magów, logistyków, inżynierów i fechmistrzów jakich posiada imperium. Ich charakterystyczną symbolem jest tarcza z symbolem słońca. Jasny legion dzieli się na pięć dywizji: łowców demonów, inkwizytorów, logistyków, inżynierów oraz teoretyków. Wiadomo, iż niektórzy jego członkowie operują poza Imperium, lecz wszystkie ich działania są tajne, stąd niewiele wiadomo o ich poczynaniach."
+        },
+        {
+          "id": "łowcy-demonów",
+          "name": "Łowcy Demonów",
+          "content": "Łowcy demonów to najbardziej elitarna dywizja Jasnego Legionu eleminująca najmroczniejsze siły zagrażające Imperium. Znani są także jako wywernii jeźdźcy, gdyż każdy łowca demonów posiada przynajmniej jedną wiwernę. Oprócz odznaki Jasnego Legionu noszą także symbol wiwerny o jaśniejącej poświecie, będący oznaką ramienia wykonawczego Jasnego Legionu. Prawnie, łowcy demonów mają prawo użyć własności każdego obywatela Imperium w celu wykonania swojego zadania, lecz muszą w tym celu okazać takową odznakę."
+        },
+        {
+          "id": "inkwizytorzy",
+          "name": "Inkwizytorzy",
+          "content": "Inkwizytorzy to dywizja Jasnego Legionu zajmująca się wewnętrzymi zagrożeniami w Imperium. Ich zadaniem jest oczyszczanie Imperium z wszelakich istot bratających się z demonami czy najpoważniej łamiącymi imperialne prawo. Inkwizytorzy znani są z swoich przerażającyh i niezwykle wytrzymałych białych pancerzy. Wyżsi rangą inkwizytorzy posiadają czasami wiwerny, lecz większość często używa treplumów. Oprócz odznaki Jasnego Legionu noszą także symbol wiwerny o jaśniejącej poświecie, będący oznaką ramienia wykonawczego Jasnego Legionu. Prawnie, Inkwizytorzy mają prawo użyć własności każdego obywatela Imperium w celu wykonania swojego zadania, lecz muszą w tym celu okazać takową odznakę oraz wydawać natychmiastowe osądy i wymierzać sprawiedliwość na własną rękę."
+        },
+        {
+          "id": "logistycy-jasnego-legionu",
+          "name": "Logistycy Jasnego Legionu",
+          "content": "Logistycy Jasnego Legionu, stanowiący jego większość to zaprzysiężeni pracownicy wykonujący prace niezwiązane z walką. Od zwykłych rzemieślników, posłańców, sprzątaczy czy innych robotników różni ich całkowita lojalność Imperatorowi i przysięga zobowiązująca ich do utrzymywania działań Legionu w tajemnicy. Jedynie zwierzchnik tej dywizji posiada wiwernę, choć w wyjątkowych przypadkach dopuszcza się dosiadanie tych rzadkich stworzeń przez przeszkolonych logistyków w celu wykonania ich zadań. Logistycy noszą odznakę z symbolem tarczy z namalowanym nań słońcem i białe szaty."
+        },
+        {
+          "id": "inżynierowie-jasnego-legionu",
+          "name": "Inżynierowie Jasnego Legionu",
+          "content": "Inżynierowie Jasnego Legionu to dywizja Jasnego Legionu specjalizująca się w katalogowaniu i niszczeniu demonicznych artefaktów oraz wykonywaniu wszelakiej intelektualnej i specjalistycznej rzemieślniczej pracy dla Imperatora. Wśród nich znajduje się wielu magów, uczonych i wybitnych rzemieślników. Nigdy nie dosiadają wiwern poza kilkoma zwierzchnikami działów tej dywizji. Ubierają białe szaty i noszą symbol Jasnego Legionu."
+        },
+        {
+          "id": "teoretycy-jasnego-legionu",
+          "name": "Teoretycy Jasnego Legionu",
+          "content": "Teoretycy Jasnego Legionu to dywizja gromadząca wszyskich zwierzchników pozostałych dywizji Jasnego Legionu oraz najwybitniejszych strategów i uczonych Imperium. To oni odpowiedzialni są za podejmowanie decyzji, tak aby otrzymane od Imperatora rozkazy były wypełnione. Odpowiadają także za komunikację legionu z Imperatorem. Dywizja ta zawiera zwykle od kilku do kilkunastu członków. Noszą jasne szaty, hełmy, wyglądające jak wiwernie czaszki, symbol Jasnego Legionu i symbol wiwerny z jaśniejącą poświatą. Prawnie mają całkowitą władzę nad każdym obywatelem Imperium z wyjątkiem Imperatora i mogą używać własności obywateli w wypadku kiedy jest to konieczne."
+        }
+      ]
+    },
+    {
+      "id": "custom-page-1786288495508-ft5lo",
+      "title": "Informacje o Świecie: Armia Imperialna",
+      "sections": [
+        {
+          "id": "armia-imperialna",
+          "name": "Armia Imperialna",
+          "content": "Armia Imperialna to w pełni profesjonalna armia podlegająca Imperatorowi i Radzie Pięciu. Jej zadaniem jest ochrona zdrowia, życia i dobrobytu mieszkańców Imperium oraz ochrona krainy przed demonicznymi wpływami. Istnieje pięć Legionów armii Imperialnej: Legion Ziemi, Legion Ognia, Legion Wody, Legion Powietrza oraz Jasny Legion. Każdy legion ma swojego dowódcę oraz różniące się wyposażeniem, wyszkoleniem i powierzanymi zadaniemi dywizje. Każda dywizja z kolei dzieli się na mniejsze kompanie operujące spójnie w określonym miejscu i czasie. Poniżej znajdziesz krótki opis każdego z legionów."
+        },
+        {
+          "id": "krótki-opis-legionu-legion-ziemi",
+          "name": "Krótki Opis Legionu: Legion ZIemi",
+          "content": "Legion Ziemi to największy legion armii imperialnej, stanowiący jej znaczącą większość. Skupia on żołnieży szkolonych w walce brońmi białymi, miotanymi, miotającymi, magią, a także inżynierów, strażników i większość kompanii logistycznych całej armii Imperialnej. Początkowo każdy rekrut armii jest częścią tego legionu. Głównymi zadaniami tego legionu jest ochrona struktur państwowych, tłumienie dysydentów, rebeliantów, dezerterów oraz wszystkich oragnizacji, z którymi można prowadzić otwartą wojnę lądową."
+        },
+        {
+          "id": "krótki-opis-legionu-legion-wody",
+          "name": "Krótki Opis Legionu: Legion Wody",
+          "content": "Legion Wody to stosunkowo mały legion, skupiający żeglaży, załogi statków, szkutników oraz członków administracji portów którymi operuje Imperium. Jest on także drugim najmłodszym legionem, mającym zaledwie ponad sześćset lat. Głównymi zadaniami tego legionu jest eradykacja piractwa oraz ściganie przemytników."
+        },
+        {
+          "id": "krótki-opis-legionu-legion-ognia",
+          "name": "Krótki Opis Legionu: Legion Ognia",
+          "content": "Legion Ognia to ramię imperialnej armii skupiające górników, inżynierów oraz specjalistów od walki w ciasnych przestrzeniach, jaskiniach oraz wulkaniczych tunelach Imperium. Ich zadaniem jest walka z pożarami, inżynierskie wspieranie pozostałych legionów w zadaniach takich jak budowa machin wojennych, mostów czy fortyfikacji oraz walka w okolicach wulkanów, jaskiniach i kopalniach."
+        },
+        {
+          "id": "krótki-opis-legionu-legion-powietrza",
+          "name": "Krótki Opis Legionu: Legion Powietrza",
+          "content": "Legion Powietrza skupia jeźdźców Wywern oraz najwyśmienitszych łuczników, procarzy, oszczepników i innych wojowników władających mistrzowsko bronią dystansową. Ich zadaniem jest ochrona imperialnego nieba przed latającymi stworami takimi jak wygłodniałe czarnogrzywy czy dzikie wiwerny oraz służenie jako mobilna kompania wsparcia innych ramion armii."
+        },
+        {
+          "id": "krótki-opis-legionu-jasny-legion",
+          "name": "Krótki Opis Legionu: Jasny Legion",
+          "content": "W odróżnieniu od pozostałych legionów, które działają w większości na rozkazy ich dowódców lub Rady Pięciu, jasny legion działa bezpośrednio na rozkazy Imperatora. Rzadko liczy on więcej niż sto legionistów. Każdy z nich przed samym Imperatorem złożył przysięgę lojalności i utrzymania działań legionu w sekrecie, której złamanie według plotek i legend wiąże się z losem gorszym od śmierci. Głównym zadaniem Jasnego Legionu jest eksterminacja demonicznych wpływów w granicach Imperium."
+        }
+      ]
+    },
+    {
+      "id": "custom-page-1786293584327-8pzsg",
+      "title": "Informacje o Świecie: Imperium",
+      "sections": [
+        {
+          "id": "imperium",
+          "name": "Imperium",
+          "content": "Imperium to główne miejsce akcji naszych opowieści. Dla przybliżenia skali można powiedzieć, iż to duża wulkaniczna wyspa wielkości dużego województwa lub całkiem małego kraju otoczona mniejszymi wysepkami. Całe Imperium jest odizolowane Ścianą Sztormów od reszty świata. Władzę w Imperium sprawuje Imperator, wspomagany przez Radę Pięciu i Parlament Imperialny."
+        },
+        {
+          "id": "prowincje-imperium",
+          "name": "Prowincje imperium",
+          "content": "Imperium dzieli się na kilka administracyjnych prowincji, w tym Obszar Stołeczny, gęsto zamieszkane prowincje główne oraz rzadko zamieszkane prowincje pomniejsze."
+        },
+        {
+          "id": "prowincje-główne",
+          "name": "Prowincje Główne",
+          "content": "Gęsto zamieszkane prowincje główne, to prowincje o następujących nazwach: Rubinowa Góra, Kaskadowy Gaj, Szafirowa Kraina, Słoneczne Błonie oraz Międzyrzecze."
+        },
+        {
+          "id": "szafirowa-kraina",
+          "name": "Szafirowa kraina",
+          "content": "Szafirowa kraina to region określony jako „Szczyty gór Imperium i tereny przez nie zawarte, z wyłączeniem Rubinowej Góry i terenów jej przyległych, Tarczy Imperatora, Samotnej Góry, Samotnego Wzgórza oraz Stołecznej Grani”. W praktyce jest to region wokół Szafirowego Jeziora, włączając w to podziemia dwóch najbliższych krasnoludzkich miast. Jest to region zamieszkiwany głównie przez Elfy, Krasnoludy i Gnomy, z dwoma typowo krasnoludzkimi i dwoma typowo elfickimi miastami. Formalnie jest to prowincja imperium, której zwierzchnikiem jest Pięciowładza Szafirowej Wody i Szafirowego Kryształu - byt polityczny złożony z dwóch krasnoludzkich, dwóch elfickich oraz jednego sprawiedliwego władcy, którzy w piątkę posiadają absolutną władzę nad krainą z zastrzerzeniem Imperialnych praw oraz warunków Imperialnej dzierżawy. Zwyczajowo jeden z pentarchów jest zawsze właściwym lub młodszym członkiem w Radzie Pięciu."
+        },
+        {
+          "id": "międzyrzecze",
+          "name": "Międzyrzecze",
+          "content": "Międzyrzecze to region w delcie najdłuższej rzeki Imperium. Władzę sprawuje tu rząd reprezentatywnie wybierany przez stałych mieszkańców o formalnej nazwie „Rzecz Wspólna Międzyrzecka” (niekiedy nazwyana Rzeczą Pospolitą Międzyrzecką lub Ludowładzą Międzyrzecką). Jest to kraina wysoce zurbanizowana, będąca siedzibą najbogatszych kupców w Imperium. Krainę tą zamieszkuje mieszanka wszystkich świadomych istot. Tradycyjnie jeden z reprezentantów ludu tego regionu jest w składzie Rady Pięciu jako regularny lub młodszy członek."
+        },
+        {
+          "id": "słoneczne-błonie",
+          "name": "Słoneczne Błonie",
+          "content": "Słoneczne Błonie to region od północy ograniczony Szafirową Krainą, od zachodu przez Tarczę Imperatora, od południa przez Międzyrzecze, od zachodu przez morze i Zielony Bór. Jest on formalnie pod kontrolą Szlachetnego Zjednoczenia Błoni Centralnych - bytu politycznego złożonego z władców ziemskich, spotykających się na walne zgormadzenia podczas których wydają ważniejsze decyzje odnośnie zarządzania całą krainą. Arystokraci mają tu prawie całkowitą władzę z zastrzerzeniem praw Zjednoczenia, praw Imperialnych oraz warunków Imperialnej dzierżawy. Jest to kraina o płaskim, zbiegającym od gór do morza terenie, z wyłączeniem technicznie rzecz biorąc w jej skład wchodzącego, lecz zdewastowanego i opustoszałego Wielkiego Pogorzeliska. W zachodniej części krainy leży jej administracyjna stolica, położona na Samotnym Wzgórzu, będącym kamienną górą o płaskim szczycie, na którym ulokowane jest miasto. Kraina ta jest zamieszkana głównie przez ludzi, półelfy i niziołki. Tradycyjnie najbogatszy arystokrata Słonecznych Błoni jest w Radzie Pięciu jako regularny lub młodszy członek."
+        },
+        {
+          "id": "kaskadowy-gaj",
+          "name": "Kaskadowy Gaj",
+          "content": "Kaskadowy Gaj to piękna kraina o pokryta liściastymi lasami. Niezwykle liczne geotermalne ciepłe źródła w tym regionie zapewniają ciepłą i stabilną pogodę. Jest to rejon zamieszkiwany głownie przez elfy, półelfy i gnomy. Rejonem tym włada Elficka Rada Starszych - organizacja polityczna, w której uzyskanie członkostwa jest bardzo trudne, gdyż decydują o nim istniejący członkowie rady. Rada ta rządzi krainą i ma nad nią wyłączną władzę z zastrzeżeniem Imperialnego prawa oraz warunków Imperialnej dzierżawy ziemi. Tradycyjnie przedwodniczący Rady Starszych jest regularnym lub młodszym członkiem Rady Pięciu."
+        },
+        {
+          "id": "obszar-stołeczny",
+          "name": "Obszar Stołeczny",
+          "content": "Obszar Stołeczny obejmuje teren zamknięty w pięciokątnych murach Srebrnego Miasta oraz przedmieścia miasta. Za jego zachodnią granicę uznaje się Stołeczną Grań, za północną Stołeczny Wał, za wschodnią brzeg wyspy a za południową Płomienną Dolinę. W Srebrnym Mieście i jego przedmieściach żyją inteligentne stworzenia o wszystkich możliwych cechach, choć najwięcej jest ludzi (lecz nie stanowią oni większości). Zgodnie z tradycją ordynator Srebrnego Miasta jest regularnym lub młodszym członkiem Rady Pięciu."
+        },
+        {
+          "id": "prowincje-pomniejsze",
+          "name": "Prowincje Pomniejsze",
+          "content": "Prowincje pomniejsze to mało zamieszkane obszary Imperium, mające mniejsze kulturowe, ekonomiczne oraz polityczne znaczenie. Ich mieszkańcy często czują się zaniedbani i porzuceni przez władzę, w szczególności w czasach kryzysu. Za pomniejsze prowincje Imperium uważa się następujące krainy: Lodowe Wodzostwo, Wschodnie Pustkowie, Wyspy Wschodnie, Góry Piekielne i Roztrzaskane Wybżerze."
+        }
+      ]
     }
   ]
 }
