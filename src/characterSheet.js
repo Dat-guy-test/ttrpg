@@ -44,6 +44,7 @@ import {
     computeDamageTotal,
     computeResourceMax,
     computePotentialAvailable,
+    computeUdzwigValue,
     setPotentialTotal,
     MIN_POTENTIAL,
     formatImprovisation,
@@ -237,7 +238,9 @@ function renderPointSpender(poolKey, fieldPath) {
 function renderCharacteristicsSection() {
     const rows = CHARACTERISTICS_CONFIG.map(cfg => {
         const fieldPath = `characteristics.${cfg.key}`;
-        const { value, isModified, modifiers } = computeStatValue(CharacterState.characteristics[cfg.key]);
+        const { value, isModified, modifiers } = cfg.key === 'udzwig'
+        ? computeUdzwigValue()
+        : computeStatValue(CharacterState.characteristics[cfg.key]);
         const title = isModified ? escapeHtml(modifierBreakdown(modifiers)) : '';
         const spendable = CHARACTERISTIC_POOL && CHARACTERISTIC_POOL.allowedCharacteristics.includes(cfg.key);
 

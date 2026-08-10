@@ -128,11 +128,6 @@
         },
         {
           "type": "characteristic",
-          "key": "szybkosc",
-          "amount": 12
-        },
-        {
-          "type": "characteristic",
           "key": "udzwig",
           "amount": 5
         },
@@ -167,6 +162,11 @@
               ]
             }
           ]
+        },
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 7
         }
       ]
     },
@@ -175,7 +175,7 @@
       "name": "Krasnolud",
       "desc": "Jesteś krasnoludem. Krasnoludy to stworzenia o małej formie fizycznej, której lekceważenie regularnie przyczynia się do przypominania społeczeństwu o ich wielkiej wewnętrznej sile woli.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 9\nSiła Woli: 12\n\nSzybkość: 6\nBonus do udźwigu: 7\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\n\nUparci:\nKrasnoludy są znane z stawiania na swoje i niepoddawania się do ostatniego tchu:\n\nZyskujesz 1 poziom doświadczenia i improwizacji w umiejętności determinacja. Po każdej godzinie odpoczynku odzyskujesz 1d4 Punktów Energii\n\nAdaptacyjny wzrok:\nKonstrukcja krasnoludzkich oczu umożliwia im widzenie w ciemności, choć nie są w stanie rozpoznawać w jej kolorów:\n\nZyskujesz 1 poziom doświadczenia i improwizacji w umiejętności Spostrzegawczość.\nWidzisz w całkowitej ciemności, lecz nie jesteś w stanie rozpoznawać kolorów.\n\nGruboskórni:\nKrasnoludy niewiele rusza, zarówno fizycznie jak i mentalnie:\n\nZyskujesz 1 poziom doświadczenia w umiejętnościach: wigor i determinacja. Tracisz poziom doświadczenia w umiejętności intuicja.\nDodatkowo, za każdym razem gdy otrzymasz zwykłe obrażenia możesz wydać punkt energii by zmniejszyć otrzymane obrażenia o 1.\n\nCechy Fizyczne:\nWzrost: od 0,6 do 1 jednostki\nRozmiar: Mały\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 22 lat\nWiek starczy: 110 lat,\nŚrednia Długość Życia: 125 lat (średnia),\nMaksymalna Długość Życia: 150 lat",
       "hoverText": "",
-      "fi": 22.270000000000007,
+      "fi": 22.27,
       "theta": 24,
       "requires": [],
       "cost": 0,
@@ -196,11 +196,6 @@
           "type": "characteristic",
           "key": "silaWoli",
           "amount": 12
-        },
-        {
-          "type": "characteristic",
-          "key": "szybkosc",
-          "amount": 9
         },
         {
           "type": "characteristic",
@@ -260,6 +255,11 @@
               ]
             }
           ]
+        },
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 6
         }
       ]
     },
@@ -268,7 +268,7 @@
       "name": "Elf",
       "desc": "Jesteś elfem. Elfy słyną z swojej wrodzonej zwinności i gracji a także niezwykle dobrego wzroku. W Imperium Elfy stanowią najmniej liczną poza odmieńcami grupę rozumnych stworzeń, co spowodowane jest niechęcią do spokojnego trybu życia. Stereotypowo młode elfy to stworzenia szukające przygód i ekscytujących rozrywek. Starsze elfy natomiast uważane są za niezwykle mądre.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 12\nSiła Woli: 9\n\nSzybkość: 8\nBonus do udźwigu: 2\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\n\nCzarnogrzywi wzrok:\nKonstrukcja elfich oczu umożliwia im widzenie małych detali, których nie widzą inni:\n\nZyskujesz 2 poziomy doświadczenia i 1 poziom improwizacji w umiejętności Spostrzegawczość.\nGdy wykonujesz test umiejętności, w którym duże znaczenie ma twój zmysł wzroku możesz raz przerzucić kość improwizacji.\n\nMądrość wieków:\nJako niezwykle długowieczne istoty, elfy wielce cenią sobie doświadczenie i przekazywanie go najmłodszym:\n\nZyskujesz 5 poziomów doświadczenia w wybranych umiejętnościach.\n\nSzybcy jak wiatr:\nElfy są w stanie poruszać się niezwykle szybko, choć zwykle ograniczają się, by uniknąć kontuzji:\n\nMożesz jako darmowa akcja nadwyrężyć się zyskując Punkty Akcji w liczbie połowy swojej Bystrości (Czyli w liczbie połowy Maksymalnych Punktów Akcji, zaokrąglonych w dół). Po godzinie odpoczynku jesteś w stanie ponownie nadwyrężyć swój organizm w ten sposób.\n\nCechy Fizyczne:\nWzrost: od 1,3 do 1,7 jednostki\nRozmiar: Średni lub Duży\n\nDługość życia:\nWiek dojrzałości fizycznej: od 20 do 26 lat\nWiek starczy: 125 lat,\nŚrednia Długość Życia: 150 lat (średnia),\nMaksymalna Długość Życia: 200 lat",
       "hoverText": "",
-      "fi": 25.729999999999997,
+      "fi": 25.73,
       "theta": 24,
       "requires": [],
       "cost": 0,
@@ -289,11 +289,6 @@
           "type": "characteristic",
           "key": "silaWoli",
           "amount": 9
-        },
-        {
-          "type": "characteristic",
-          "key": "szybkosc",
-          "amount": 15
         },
         {
           "type": "characteristic",
@@ -337,6 +332,11 @@
               "bonuses": []
             }
           ]
+        },
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 8
         }
       ]
     },
@@ -365,11 +365,6 @@
         {
           "type": "characteristic",
           "key": "silaWoli",
-          "amount": 11
-        },
-        {
-          "type": "characteristic",
-          "key": "szybkosc",
           "amount": 11
         },
         {
@@ -469,6 +464,11 @@
               ]
             }
           ]
+        },
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 6
         }
       ]
     },
@@ -477,8 +477,8 @@
       "name": "Niziołek",
       "desc": "Jesteś nizołkiem. Niziołki to niewielkie stworzenia, mające tendencje do obsesyjnego zainteresowywania się jedną dziedziną. Często jednak ich zainteresowania wypychają je na przygody w celu poszukiwania wiedzy czy mitycznych artefaktów.\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 8\nSiła Woli: 11\n\nSzybkość: 6\nBonus do udźwigu: 7\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\n\nSavant:\nNiziołki często są nizwykle wybitne w jednej lub paru bardzo interesujących ich dziedzinach:\n\nOtrzymujesz trzy poziomy doświadczenia i dwa poziomy improwizacji w wybranych umiejętnościach.\n\nTrudni do trafienia:\nZ racji na swoją niewielką formę niziołki potrafią być zaskakująco trudne do trafienia:\n\nGdy twój rozmiar jest Mały zyskujesz +2 do ewazji.\n\nUrodzeni odkrywcy:\nGłód wiedzy niziołków często wypycha ich ku przygodznie, na którą zwykle są dobrze przygotowani:\n\nWiesz, w którym kierunku prawdopodobnie znajduje się najbliższe miasto lub zasiedlone miejsce, w którym kierunku jest północ i która jest godzina. Jesteś w stanie określić wiek budowli, kiedy były one ostatnio zamieszkane oraz jaka grupa je wybudowała.\nZyskujesz poziom doświadczenia i dwa poziomy improwizacji w umiejętnościach Intuicja i Wiedza Powszechna.\n\nCechy Fizyczne:\nWzrost: od 0,9 do 1,5 jednostki\nRozmiar: Mały lub Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 21 do 23 lat\nWiek starczy: 80 lat,\nŚrednia Długość Życia: 100 lat (średnia),\nMaksymalna Długość Życia: 140 lat",
       "hoverText": "",
-      "fi": 22.270000000000007,
-      "theta": 26.000000000000007,
+      "fi": 22.27,
+      "theta": 26.000000000000004,
       "requires": [],
       "cost": 0,
       "temperature": 3500,
@@ -498,11 +498,6 @@
           "type": "characteristic",
           "key": "silaWoli",
           "amount": 11
-        },
-        {
-          "type": "characteristic",
-          "key": "szybkosc",
-          "amount": 10
         },
         {
           "type": "skillExperiencePoints",
@@ -571,6 +566,11 @@
               ]
             }
           ]
+        },
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 6
         }
       ]
     },
@@ -600,8 +600,8 @@
       "name": "Półelf",
       "desc": "Jesteś półelfem. Półelfy często mylone są z elfami i ludźmi, stąd ich nazwa. I o ile mają coś z fizycznej wytrzymałości ludzi i gracji i zręczności elfów, obydwie te cechy objawiają się innaczej: wytrzymałość Półelfów objawia się niezwykłą odpornością na choroby, a ich gracja przekłada się na interakcje społeczne.\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 11\nSiła Woli: 8\n\nSzybkość: 8\nBonus do udźwigu: 2\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\nCharyzmatyczni:\nPółelfy są naturalnie uzdolnione w spokojnym rozwiązywaniu sporów.\n\nZyskujesz 2 Poziomy Doświadczenia i 1 Poziom Improwizacji w umiejętnościach: Determinacja i Instynkt.\n\nPełni Werwy:\nNiewielu widziało półelfa, któremu zabrakło energii do działania:\n\nRaz na rundę, gdy skończą Ci się Punkty Akcji zyskujesz dwa Punkty Akcji.\nDodatkowo raz między pełnymi odpoczynkami, gdy skończą Ci się Punkty Energii zyskaj dwa Punkty Energii.\n\nZdrowy jak Półelf:\nOrganizmy półelfów są niezwykle odporne na choroby i trucizny:\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wigor. Po każdej godzinie odpoczynku zaleczasz 1d6 obrażeń krytycznych od chrób i trucizn, po czym leczysz 1d4 zaleczonych obrażeń tego typu.\n\nCechy Fizyczne:\nWzrost: od 1,2 do 1,5 jednostki\nRozmiar: Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 24 lat\nWiek starczy: 100 lat,\nŚrednia Długość Życia: 135 lat (średnia),\nMaksymalna Długość Życia: 170 lat",
       "hoverText": "",
-      "fi": 25.729999999999997,
-      "theta": 26.000000000000007,
+      "fi": 25.73,
+      "theta": 26.000000000000004,
       "requires": [],
       "cost": 0,
       "temperature": 6500,
@@ -621,11 +621,6 @@
           "type": "characteristic",
           "key": "silaWoli",
           "amount": 8
-        },
-        {
-          "type": "characteristic",
-          "key": "szybkosc",
-          "amount": 14
         },
         {
           "type": "characteristic",
@@ -684,6 +679,11 @@
               ]
             }
           ]
+        },
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 8
         }
       ]
     },
@@ -1011,6 +1011,11 @@
               ]
             }
           ]
+        },
+        {
+          "type": "characteristic",
+          "key": "szybkosc",
+          "amount": 7
         }
       ]
     },
@@ -3089,13 +3094,13 @@
       "label": "origins",
       "max": 1,
       "members": [
-        "-1001",
-        "100001",
-        "-1003",
-        "-1005",
-        "-1004",
         "-1002",
-        "100002"
+        "-1005",
+        "-1001",
+        "100002",
+        "-1004",
+        "100001",
+        "-1003"
       ]
     }
   ]

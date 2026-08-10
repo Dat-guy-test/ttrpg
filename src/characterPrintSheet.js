@@ -82,7 +82,7 @@ function gatherData() {
         enduranceCurrent: computeDamageTotal(),
         enduranceMax: computeResourceMax('endurance').value,
         speedMax: computeStatValue(CharacterState.characteristics.szybkosc).value,
-        udzwigMax: computeStatValue(CharacterState.characteristics.udzwig).value,
+        udzwigMax: computeUdzwigValue().value,
         bulkCurrent: owned.reduce((sum, i) => sum + (Number(i.bulk) || 0) * i.quantity, 0),
 
         armourLevel,
@@ -371,9 +371,9 @@ function buildHtml(data) {
     <div style="flex:1.7;">
       <table>
         <tr><th style="width:50%">Cecha</th><th>Aktualne&nbsp;/&nbsp;Maksymalne</th></tr>
-        <tr><td class="lbl">Punkty Akcji / Bystrość</td><td>${slashCell(data.apCurrent, data.apMax)}</td></tr>
-        <tr><td class="lbl">Punkty Energii / Siła Woli</td><td>${slashCell(data.epCurrent, data.epMax)}</td></tr>
-        <tr><td class="lbl">Wytrzymałość / Forma</td><td>${slashCell(data.enduranceCurrent, data.enduranceMax)}</td></tr>
+        <tr><td class="lbl">Punkty Akcji / Bystrość</td><td>${slashCell('', data.apMax)}</td></tr>
+        <tr><td class="lbl">Punkty Energii / Siła Woli</td><td>${slashCell('', data.epMax)}</td></tr>
+        <tr><td class="lbl">Wytrzymałość / Forma</td><td>${slashCell('', data.enduranceMax)}</td></tr>
         <tr><td class="lbl">Ruch / Szybkość</td><td>${slashCell('', data.speedMax)}</td></tr>
         <tr><td class="lbl">Obciążenie / Udźwig</td><td>${slashCell(Math.round(data.bulkCurrent * 100) / 100, data.udzwigMax)}</td></tr>
       </table>

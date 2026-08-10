@@ -138,6 +138,19 @@ export const RESOURCE_MAX_SOURCES = {
 };
 
 /**
+ * Udźwig's displayed/effective value is always its own perk-driven
+ * value PLUS the character's current Forma — carrying capacity scales
+ * with Forma on top of whatever Udźwig itself grants directly. Use
+ * this instead of computeStatValue() anywhere Udźwig's value is shown.
+ * @returns {{ value:number, isModified:boolean, modifiers:object[] }}
+ */
+export function computeUdzwigValue() {
+    const base  = computeStatValue(CharacterState.characteristics.udzwig);
+    const forma = computeStatValue(CharacterState.characteristics.forma);
+    return { ...base, value: base.value + forma.value };
+}
+
+/**
  * @param {string} resourceKey — 'actionPoints' | 'energyPoints' | 'endurance'
  * @returns {{ value:number, isModified:boolean, modifiers:object[] }}
  */
