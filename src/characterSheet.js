@@ -58,6 +58,7 @@ import {
 } from './characterState.js';
 import { resetEverything } from './resetAll.js';
 import { downloadCharacterExport, importCharacterFromObject } from './characterExport.js';
+import { printCharacterSheet } from './characterPrintSheet.js';
 
 const CHARACTERISTIC_POOL = POINT_POOLS_CONFIG.find(p => p.key === 'characteristicPoints');
 
@@ -434,7 +435,7 @@ function modifierBreakdown(modifiers) {
 // Event wiring (delegated on rootEl — attached once per render)
 // ============================================================
 function attachHandlers() {
-    rootEl.querySelector('#char-print-btn').addEventListener('click', () => window.print());
+    rootEl.querySelector('#char-print-btn').addEventListener('click', () => printCharacterSheet());
 
     // ---- Resetuj Wszystko ------------------------------------------
     // The ONE reset button — see resetAll.js's resetEverything() for

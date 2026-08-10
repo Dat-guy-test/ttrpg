@@ -2266,7 +2266,7 @@
       "desc": "Skupiasz się na rozwijaniu swoich umiejętności w szkole kreacji.\nUczysz się jednego zaklęcia o maksymalnej złożoności równej 1 z szkoły kreacji.\nZyskujesz poziom doświadczenia w kreacji i wiedzy tajemnej.",
       "hoverText": "",
       "fi": -48,
-      "theta": 43,
+      "theta": 43.00000000000001,
       "requires": [
         "666"
       ],
@@ -2337,7 +2337,7 @@
       "desc": "Pogłębiasz swoją wiedzę na temat ezoterycznej magii projekcji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Projekcji oraz Wiedzy Tajemnej.",
       "hoverText": "",
       "fi": -35,
-      "theta": 43,
+      "theta": 43.00000000000001,
       "requires": [
         "666"
       ],
@@ -2408,7 +2408,7 @@
       "desc": "Pogłębiasz swoją wiedzę na temat potężnej magii transmutacji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Transmutacji oraz Wiedzy Tajemnej.\n\nZyskujesz także jedną jednostkę ołowieu transmutacyjnego.",
       "hoverText": "",
       "fi": -21.999999999999996,
-      "theta": 43,
+      "theta": 43.00000000000001,
       "requires": [
         "666"
       ],

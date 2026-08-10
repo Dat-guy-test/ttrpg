@@ -170,6 +170,144 @@
           "content": "Prowincje pomniejsze to mało zamieszkane obszary Imperium, mające mniejsze kulturowe, ekonomiczne oraz polityczne znaczenie. Ich mieszkańcy często czują się zaniedbani i porzuceni przez władzę, w szczególności w czasach kryzysu. Za pomniejsze prowincje Imperium uważa się następujące krainy: Lodowe Wodzostwo, Wschodnie Pustkowie, Wyspy Wschodnie, Góry Piekielne i Roztrzaskane Wybżerze."
         }
       ]
+    },
+    {
+      "id": "custom-page-1786375486848-75rs9",
+      "title": "Walka (Tryb Rundowy)",
+      "sections": [
+        {
+          "id": "tryb-rundowy",
+          "name": "Tryb Rundowy",
+          "content": "Gdy każda sekunda ma znaczenie dla sukcesu lub porażki członków drużyny gra przechodzi w Tryb Rundowy. Dzieje się tak na przykłąd w trakcie walki, eksplorowania małych i niebezpiecznych przestrzeni czy ucieczki przed zagrożeniem. W tym trybie akcja rozgrywa się w rundach. W trakcie każdej rundy, każda uczestnicząca w konforntacji istota ma swoją turę."
+        },
+        {
+          "id": "kolejność-tur-w-rundzie",
+          "name": "Kolejność Tur w Rundzie",
+          "content": "Kolejność Tur w Rundzie określa kolejność, w której istoty, w tym postaci graczy, wykonują swoje akcje. Określa się ją poprzez wykonanie przez każdą istotę testu umiejętności czas reakcji. Zapisz wynik peirwotnego testu każdej istoty. W przypadku takiego samego wyniku wszystkie istoty z tym samym wynikiem powtarzają test. Powtórzony test decyduje tylko o kolejności tur wewnątrz grona istot z tym samym wynikiem. W przypadku kolejnych remisów test powtarzaj do momentu rozstrzygnięcia kolejności.\n\nKażda niezaskoczona istota otrzymuje ilość Punktów Akcji równą swojej Biegłości po rozstrzygnięciu kolejności tur."
+        },
+        {
+          "id": "kolejność-tur-w-rundzie-dołączających-do-trybu-turowego-stworzeń",
+          "name": "Kolejność Tur w Rundzie dołączających do Trybu Rundowego stworzeń",
+          "content": "Kolejność Tur w Rundzie dołączających do Trybu Turowego Stworzeń określana jest testem umiejętności czas reakcji. Ich tury zawsze następują po turach istot, będących wcześniej w Trybie Rundowym o takim samym pierwotnym wyniku testu na czas reakcji. W przypadku remisów wśród dołączających istot wykonuje się kolejne testy umiejętności czas reakcji rozstrzygające kolejność ich tur. Ten proces powtarza się do rozstrzygnięcia kolejności tur wszystkich uczestników. Dodatkowo Tury wszystkich istot dołączających do Trybu Rundowego są pomijane w turze, w której dołączyły one do tego trybu: odzwierciedla to potrzebę zorientowania się w sytuacji przez owe istoty.\n\nIstoty te, jeżeli nie są zaskoczone, otrzymują ilość Punktów Akcji równą swojej Biegłości po rozstrzygnięciu kolejności ich tur."
+        },
+        {
+          "id": "przebieg-rundy",
+          "name": "Przebieg Rundy",
+          "content": "Każda runda ma następującą strukturę: odbywają się tury istot zgodnie z wcześniej ustaloną kolejnością, a następnie rozważane są wszystkie zmiany związane z światem zewnętrznym, które nie działy się bezpośrednio na skutek działań będących w Trybie Rundowym istot. Dodatkowo na początku każdej swojej tury ilość Punktów Akcji danej istoty zmienia się na wartość jej Biegłości (odzyskuje ona wtedy Punkty Akcji). Większość akcji można wykonać jedynie w swojej turze (nie dotyczy to jedynie reakcji)."
+        }
+      ]
+    },
+    {
+      "id": "custom-page-1786376596131-iuyrv",
+      "title": "Dostępne Akcje",
+      "sections": [
+        {
+          "id": "akcje",
+          "name": "Akcje",
+          "content": "Każda czynność w Trybie Rundowym określana jest mianem Akcji. Akcja nie znajdująca się na poniższej liście jest akcją improwizowaną, a jej szczegóły i skutki określa MG na podstawie opisu gracza. \n\nKażda akcja wymaga zużycia określonej ilości Punktów Akcji i/lub Punktów Energii. Nie możesz wykonać akcji, która zużywa więcej Punktów Akcji lub Punktów energii niż posiada Twoja postać. \n\nDodatkowo należy pamiętać, iż każda akcja składa się z dwóch faz: Deklaracji i Rozstrzygania. Po Deklaracji wszystkie istoty, które są świadome wykonywania akcji przez istotę (zazwyczaj oznacza to, że widzą ową istotę) mogą deklarować rekacje. Nie jest to już możliwe gdy rozstrzygany jest wynik akcji. Przykłądaowo po deklaracji akcji ataku cel może zadeklarować chęć wykonania kontry, uniku, odbicia lub blokowania. Jeżeli cel zadeklaruje jedynie próbę uniku i rozpocznie się rozstrzyganie akcji nie może on zdecydować się na próbę zablokowania ataku."
+        },
+        {
+          "id": "dostępne-akcje",
+          "name": "Dostępne Akcje",
+          "content": "Poniżej znajduje się lista dostępnych akcji:"
+        },
+        {
+          "id": "atak",
+          "name": "Atak",
+          "content": "Próbujesz zaatakować cel wyposażoną bronią, która posiada tryb ataku z maksymalnym zasięgiem mniejszym niż odległość celu od Twojej Postaci:\n\nDeklaracja:\n1.) Deklarujesz, którą wyposażoną bronią atakujesz.\n2.) Deklarujesz tryb ataku, którego używasz.\n3.) Deklarujesz która istota jest celem ataku.\n4.) Tracisz 3 Punkty Akcji.\n\nRozstrzyganie:\n1.) Ustal celność ataku wykonując test wpeawy broni (dodaj kość wprawy {domyślnie 1d4} do podstawowej celności używanego trybu ataku)\n2.) Rozstrzygnij reakcje na tą akcję.\n3.) Sprawdź czy atak może trafić w cel.\n4.) W przypadku trafienia porównaj celność ataku z poziomem pancerza celu. \n\nW przypadku krytycznej porażki nie zadajesz żadnych obrażeń.\n\nW przypadku porażki nie zadajesz żadnych obrażeń z wyjątkiem obrażeń obuchowych, których zadajesz połowę zaokrągloną w dół.\n\nW przypadku sukcesu zadaj takie obrażenia jak sugeruje tryb ataku (obrażenia obuchowe, cięte i kłóte licz jako zwykłe obrażenia). \n\nW przypadku krytycznego sukcesu (przebicia Poziomu Pancerza o 5) wszystkie zadane obrażenia to obrażenia krytyczne. Rzuć d6 by określić która część ciała celu otrzymała obrażenia:\n1 ‐ Lewa Noga\n2 ‐ Prawa Noga\n3 ‐ Lewa Ręka\n4 ‐ Prawa Ręka\n5 ‐ Tors\n6 ‐ Głowa\n\nAby określić efekt obrażeń krytycznych na celu przeczytaj sekcję o efekcie obrażeń krytycznych artykułu o obrażeniach."
+        },
+        {
+          "id": "ruch",
+          "name": "Ruch",
+          "content": "Próbujesz ruszyć się żwawym, lecz umiarowanym tępem.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 3 Punkty Akcji.\n\nRozstrzygnięcie:\n1.) Otrzymujesz możliwość poruszenia się o ilość jednostek równą wartości twojej szybkości. Ruch ten możesz w dowolny sposób dzielić na części. Jeżeli nie wykorzystasz w pełni możliwości poruszenia się do końca swojej tury tracisz możliwość poruszania się uzyskaną z tej akcji,"
+        },
+        {
+          "id": "zakradnij-się",
+          "name": "Zakradnij Się",
+          "content": "Ruszasz się powoli, lekko się schylając i starając się mninmalizować ilość wywoływanego chałasu.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 4 Punkty Akcji.\n\nRozstrzygnięcie:\n1.) Otrzymujesz możliwość poruszenia się o ilość jednostek równą połowie wartości twojej szybkości. Ruch ten możesz w dowolny sposób dzielić na części. Do początku twojej następnej tury lub uzyskania możliwości poruszania się z innego źródła (np, przez wykonanie innej akcji), zyskujesz bonus do testów na skradanie się równy +5. Jeżeli nie wykorzystasz w pełni możliwości poruszenia się do końca swojej tury tracisz możliwość poruszania się uzyskaną z tej akcji."
+        },
+        {
+          "id": "padnij",
+          "name": "Padnij",
+          "content": "Padasz na ziemię. \n\nDeklaracja.\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz \n\nRozstrzygnięcie:\n1.) Do momentu wstania, zyskujesz +5 do ewazji przeciwko atakom z trybów typu Rzut Bronią, Strzał z Broni oraz przeciw innym atakom i czarom posyłającym pocisk z dystansu.\n2.) Do momentu wstania, zyskujesz ‐5 do ewazji przeciwko atakom z trybów typu Atak Bronią i innym atakom i czarom polegającym na próbie trafienia wręcz.\n3.) Nie możesz użyć akcji Ruch czy Sprint do momentu wstania."
+        },
+        {
+          "id": "wstań",
+          "name": "Wstań",
+          "content": "Wstajesz z ziemi.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 3 Punkty Akcji.\n\nRozstrzygnięcie:\n1.) Wstajesz."
+        },
+        {
+          "id": "sprint",
+          "name": "Sprint",
+          "content": "Próbujesz ruszyć się tak szybko jak tylko potrafisz.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 5 Punktów Akcji.\n3.) Otrzymujesz możliwość zaplanowania ruchu o ilość jednostek równą dwukrotności wartości twojej szybkości.\n4.) Deklarujesz trasę swojego ruchu, nie dłuższą niż dwukrotność wartości twojej szybkości.\n\nRozstrzygnięcie:\n1.) Wykonujesz zadeklarowany ruch, rozpatrywany jednostka po jednostce. Możesz w dowolnym momencie ruchu zatrzymać się, choć jeżeli nie będzie to na samym końcu zadeklarowanego ruchu poruszasz się o jedną jednostkę dalej niż jesteś obecnie, zgodnie z zadeklarowanym ruchem."
+        },
+        {
+          "id": "kontra-a-k-a-kontratak-kontrakcja",
+          "name": "Kontra (a.k.a. Kontratak, Kontrakcja)",
+          "content": "Kontra, a właściwie Kontrakcja to reakcja, której możesz użyć na dowolną akcję. Jeżeli użyjesz kontry nie możesz użyć innej reakcji na tą akcję (włączając w to brak możliwości wykonania drugiej kontry).\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 1 punkt akcji.\n3.) Wybierasz akcję, którą chcesz wykonać przed akcją, na którą reagujesz.\n\nRozstrzygnięcie:\n1.) Wykonaj konkurs czasu reakcji między osobą, która wykonuje akcję, a sobą. W przypadku sukcesu wykonujesz zadeklarowaną akcje przed przeciwnikiem. W przypadku porażki wykonujesz zadeklarowaną akcję po przeciwniku."
+        },
+        {
+          "id": "unik",
+          "name": "Unik",
+          "content": "Ta akcja to reakcja reprezentująca próbę uniknięcia ataku.\n\nDeklaracja:"
+        }
+      ]
+    },
+    {
+      "id": "custom-page-1786377819985-vhjzy",
+      "title": "Obrażenia",
+      "sections": [
+        {
+          "id": "obrażenia",
+          "name": "Obrażenia",
+          "content": "W trakcie swojej przygody z pewnością zadasz i otrzymasz obrażenia. Punkty obrażeń są sposobem mierzenia zadanych istocie szkód. Istnieje 6 typów obrażeń rozbitych na dwie grupy: Obrażenia Zwykłe i Obrażenia Krytyczne.\n\nWszystkie typy obrażeń mogą być Zaleczone lub Niezaleczone. Gdy otrzymujesz obrażenia dodaj Niezaleczone Punkty Obrażeń odpowiedniego typu. Obrażenia można zaleczyć specjalnymi przedmiotami takimi jak zioła, z czasem, lub idąc do lekarza lub kompana wykonującego test Wiedzy Medycznej. Więcej informacji na temat znajduje się w sekcjach zaleczanie i usuawnie obrażeń."
+        },
+        {
+          "id": "obrażenia-zwykłe",
+          "name": "Obrażenia Zwykłe",
+          "content": "Obrażenia Zwykłe reprezentują siniaki, zadrapania, płytkie rany, obicia i podobne kontuzje niemające zbytniego wpływu na funkcjonowania i niebezpieczne jedynie w dużych ilościach.\n\nW momencie gdy suma wszystkich otrzymanych obtażeń (Zywkłych i Krytycznych) jest równa lub większa niż towja wytrzymałość (która z kolei domyślnie jest równa twojej Formie) Twoja postać mdleje z bólu tracąc przytomność i pada na ziemię. Taką postać można ocucić odpowiednią akcją lub zaleczyć jej obrażenia i czekać, aż usunie Punkty Obrażeń. \n\nPodczas Pełnego odpoczynku (trwającego 10 godzin i zawierającego co najmniej 6 godzin snu) każda postać wykonuje test umiejętności wigor, usuwając ilość Zwykłych Obrażeń równą wynikowi testu."
+        },
+        {
+          "id": "obrażenia-krytyczne",
+          "name": "Obrażenia Krytyczne",
+          "content": "Obrażenia Krytyczne reprezentują poważne obrażenie mogące prowadzić do śmierci postaci ‐ postać umiera gdy łączna ilość obrażeń krytycznych przez nią otrzymana jest równa lub większa niż jej wytrzymałość (która zwykle jest równa charakterystyce Formy postaci, ale może być zmniejszona, na przykład przez Wykrwawienie).\n\nIstnieje pięć typów obrażeń krytycznych: Rany, Złamania, Obrażenia Wewnętrzne, Obrażenia od Temperatury oraz Obrażenia od Chorób i Trucizn. Rany są powodowane najczęściej przez otrzymanie krytycznego trafienia bronią zadającą obrażenia cięte, Złamania przez krytyczne trafienie bronią zadającą obrażenia obuchowe, natomiast Obrażenia Wewnętrzne są najczęściej skutkiem otrzymania krytycznego trafiania bronią zadającą obrażenia kłóte. Każdy z tych typów obrażeń innaczej wpływa na doświadczającą ich istotę:\n\nW przypadku Ran, Złamań i Obrażeń Wewnętrznych w momencie otrzymania obrażeń, jeżeli nie jest to oczywiste (czyli np. gdy otrzymałeś takowe obrażenia w walce) rzucasz sześcienną kością (d6) by określić miejsce zadania obrażeń krytycznych. Wyniki na kości odpoiwadają:\n1 ‐ Lewa Noga\n2 ‐ Prawa Noga\n3 ‐ Lewa Ręka\n4 ‐ Prawa Ręka\n5 ‐ Tors\n6 ‐ Głowa.\n\nJeżeli na kości wypadnie 6 oraz Twoja postać nie ma wyposażonego hełmu postać od razu umiera od druzgocącego ciosu w głowę.\n\n\n\n\n\nJeżeli twoja postać nadal żyje, skutki różnią się w zależności od otrzymaego typu obrażeń oraz miejsca trafienia:\n\nOtrzymanie obrażeń typu rany na Lewej lub Prawej nodze daje postaci status: \"Poharatane Nogi\". Status ten zmniejsza szybkość twojej postaci o połowę (zaokrąglając w dół) do momentu usunięcia wszyskich punktów Obrażeń Krytycznych typu Rany z Twojej Postaci.\n\nOtrzymanie obrażeń typu rany na Lewej lub Prawej nodze daje postaci status: \"Poharatana Ręka\". Status ten zmniejsza uniemożliwia wyposażenie jakiegokolwiek przedmiotu w trafionej ręce oraz rzucania nią czarów do momentu usunięcia wszyskich punktów Obrażeń Krytycznych typu Rany z Twojej Postaci.\n\nOtrzymanie obrażeń typu rany w tors lub chronioną hełmem głowę nie ma żadnych dodatkowych efektów.\n\nDodatkowo Każdy poziom Niezaleczonych obrażeń typu Rany powoduje wykrwawianie się postaci. Gdy masz co najmniej jeden poziom niezaleczonych ran, na końcu każdej swojej tury rzuć d20. Jeżeli wynik jest mniejszy lub równy ilości niezaleczonych obrażeń krytycznych typu rany otrzymujesz poziom Wykrwawienia.\n\n\n\n\n\nOtrzymanie obrażeń krytycznych typu złamania w kończynę daje postaci status: \"Pogruchotana Kończyna\". Uniemożliwia on używanie danej kończyny, co w wypadku rąk uniemożliwia rzucania zaklęć tą ręką oraz wyposażanie w niej przedmiotów a w przypadku nóg (z racji na to, iż postać potrzebuje dwóch zdrowych nóg do stania i chodzenia) zmusza postać do poruszania czołdając się. Status ten kończy się w momencie zaleczenia wszystkich obrażeń krytychnych typu złamania ‐ otrzymujesz wtedy za to status \"Usztywniona Kończyna\", który w przypadku nóg zmniejsza twoją szybkość o połowę (zaokrąglając w dół) a w przypadku rąk zmniejsza wyniki testów umiejętności i wprawy z ich użyciem o połowę (wynik zaokrąglamy w dół).\n\nOtrzymanie obrażeń krytycznych typu złamania w tors wywołuje status \"Zwichnięte Żebra\" zmniejszający tymczasowo twoją biegłość o połowę do momentu zaleczenia wszystkich obrażeń krytycznych typu złamania.\n\nOtrzymanie obrażeń krytycznych typu złamania w chronioną chełmem głowę wywołuje status \"Ogłuszenie\" zmniejszający wyniki wszystkich testów o ilość niezaleczonych obrażeń krytycznych od złamań.\n\nObrażenia krytyczne typu złamania nie powodują żadnych stałych efektów, poza znaczącą ilością bólu.\n\n\n\n\n\nOtrzymanie obrażeń krytycznych typu Obrażenia Wewnętrzne w kończyny nie ma specjalnego efektu.\n\nOtrzymanie obrażeń krytycznych typu Obrażenia Wewnętrzne w tors lub chronioną hełmem głowę powoduje status \"Niewydolność Organizmu\" zmniejszający o połowę wszystkie charakterystyki postaci z wyjątkiem Formy do momentu usunięcia wszystkich punktów obrażeń typu Obrażenia Wewnętrzne.\n\nDodatkowo Każdy poziom Niezaleczonych obrażeń typu Obrażenia Wewnętrzne bezpośrednio zagraża życiu postaci. Gdy masz co najmniej jeden poziom Obrażeń Wewnętrznych, co minutę  rzuć d20. Jeżeli wynik jest mniejszy lub równy ilości niezaleczonych obrażeń krytycznych typu Obrażenia Wewnętrzne otrzymujesz jeden punkt niezaleczonych Obrażeń Wewnętrznych.\n\n\n\n\n\nOtrzymanie obrażeń krytycznych typu obrażenia od temperatury nie wiąże się z żadnymi komplikacjami, choć są one paskudnie trudne do zaleczenia i usunięcia.\n\n\n\n\n\nOtrzymanie obrażeń krytycznych typu obrażenia od chorób i trucizn nie wywołuje natychmiastowych efektów. Zamiast tego póki masz niezaleczone obrażenia tego typu, co godzinę rzuć kością d20. Poniżej\n1 ‐ Otrzymaj 6 punktów obrażeń krytycznych od chorób i trucizn.\n2 ‐ Otrzymaj 2 punkty obrażeń krytycznych od chorób i trucizn.\n3 ‐ Otrzymaj 1 punkt obrażeń krytycznych od chorób i trucizn.\n4 ‐ Wymiotujesz krwią. Zyskujesz 1 poziom wykrwawienia.\n5 ‐ Dopada cię atak wysokiej gorączki. Na godzinę tymczasowo zmniejsz swoją bystrość o połowę.\n6 ‐ Padasz na ziemię nieprzytomnie i dopadają cię drgawki. Zyskujesz jeden punkt zwykłych obrażeń.\n7 ‐ Wymiotujesz zwracając swój ostatni posiłek. Podczas następnego pełnego odpoczynku musisz spożyć dwa razy tyle jedzenia i wody by czuć się wypoczętym.\n8 ‐ Czasami tracisz siłę. Przez następną godzinę na początku każdej swojej tury rzuć d4. Jeżeli wyrzucisz 1 zakończ swoją turę.\n9 ‐ Na godzinę, tracisz zmysł węchu i smaku, a twój zmysł słuchu wydaje się być przytępiony. Twój wzrok czasami zdaje się nie działać. Zmniejsz każdy wynik testu na spostrzegawczość o 5.\n10 ‐ Czujesz jak choroba/trucizna odbiera ci siłę do działania. Tracisz 2 punkty enegrii.\n11 ‐ Dopada cię ksztuszący kaszel. Przez następną godzinę odejmij 5 od każdego testu na skradanie się, któ©y wykonujesz.\n12 ‐ Czujesz się słabo i dopada cię kolka. Przez następną godzinę, jeżeli ilość twoich punktów akcji spadnie do zera, nie odzyskujesz ich na początku następnej tury.\n13 ‐ Dopada cię potężny katar pojawiający się wtedy kiedy jest to najbardziej niewygodnie. Przez następną godzinę, w momencie deklarowania reakcji rzuć d4, jeżeli wyrzucisz 1 lub 2 nie wykonujesz reakcji i tracisz zużyte punkty akcji.\n14 ‐ Czujesz potężny brak siły związany z chorobą/zatruciem. Na godzinę tymczasowo zmniejsz swoją siłę woli o 2.\n15 ‐ Dostajesz potężnej migreny. Na godzinę tymczasowo zmniejsz swoją bystrość o 2.\n16 ‐ Czujesz brak siły zwoiązany z chorobą/zatruciem. Na godzinę tymczasowo zmniejsz swoją siłę woli o 1.\n17 ‐ Dostajesz złego bólu głowy. Na godzinę tymczasowo zmniejsz swoją bystrość o 1.\n18 ‐ Czujesz chorobę/zatrucie, ale nic się nie dzieje.\n19 ‐ Zalecz 1 punkt obrażeń krytycznych od chorób i trucizn.\n20 ‐ Zalecz wszystkie obrażenia od chorób i trucizn."
+        },
+        {
+          "id": "zaleczanie-obrażeń",
+          "name": "Zaleczanie Obrażeń",
+          "content": "Każdy typ obrażeń zaleczyć można dzięki przedmiotom: informacje na ten temat znajdziecie w ich opisie.\n\nKażdy typ obrażeń można też zaleczyć wykonując test Wiedzy Medycznej:"
+        },
+        {
+          "id": "zaleczanie-zwykłych-obrażeń",
+          "name": "Zaleczanie Zwykłych Obrażeń",
+          "content": "Obrażenia Zwykłe można zaleczyć w ten sposób mając dostęp do szmat lub jakiegokolwiek płótna, ubrań poszkodowanego, czy podobnego materiału i przegotowanej czystej wody. Z racji na dostępność takowych maetriałów przyjmujemy, iż ten test możesz wykonać zawsze  Aby zaleczyć ten typ obrażeń potrzebujesz 10 minut czasu, podczas których twoja postać wykonuje test Wiedzy Medycznej: ilość niezaleczonych punktów obrażeń jest poziomem trudności testu:\n\nW przypadku krytycznej porażki dodaj jeden punkt niezaleczonych zwykłych obrażeń.\n\nW przypadku porażki zalecz ilość punktów obrażeń równą wynikowi testu podzielonego na dwa i zaokrąglonego w dół.\n\nW przypadku sukcesu zalecz wszyskie Punkty Zwykłych Obrażeń.\n\nW przypadku krytycznego sukcesu zalecz wszystkie Pynkty Zwykłych Obrażeń i daj wykonać poszkodowanemu wykonuje test umiejętności Wigor. Następnie poszkodowany usuwa ilość zaleczonych obrażeń równą wynikowi testu."
+        },
+        {
+          "id": "zaleczanie-obrażeń-krytyczneych-od-ran",
+          "name": "Zaleczanie Obrażeń Krytycznych typu Rany",
+          "content": "Obrażenia Krytyczne typu Rany można próbować zaleczyć zawsze ‐ czy to za pomocą noszonych przy sobie kawałków materiałów czy za pomocą ubrań poszkodowanego. Zaleczenie tego typu obrażeń jest akcją zajmującą 8 Punktów Akcji. Wykonaj test Wiedzy Medycznej o poziomie trudności równym ilości niezaleczonych obrażeń krytycznych od ran:\n\nW przypadku krytycznej porażki dodaj jeden punkt niezaleczonych zwykłych obrażeń.\n\nW przypadku porażki nie zaleczasz żadnych obrażeń.\n\nW przypadku sukcesu zalecz wszyskie Punkty Obrażeń Krytycznych od Ran.\n\nW przypadku krytycznego sukcesu zalecz wszystkie Punkty Obrażeń Krytycznych od Ran i daj wykonać poszkodowanemu test umiejętności Wigor o trudności testu równej jego poziomowi wykrwawienia. W przypadku sukcesu usuń poziom wykrwawienia. W przypadku krytycznego sukcesu usuń dwa poziomy wykrwawnienia."
+        },
+        {
+          "id": "zaleczanie-obrażeń-krytyczneych-od-złamań",
+          "name": "Zaleczanie Obrażeń Krytycznych typu Złamania",
+          "content": "Obrażenia Krytyczne typu Złamania można próbować zaleczyć zawsze ‐ choć musisz wskazać sztywny przedmiot jakiego używasz do unieruchomienia części ciała pacjenta. Wybadania, nastawienie i unieruchomienie kości jest akcją zajmującą 20 Punktów Akcji ‐ w celu jej przyspieszenia może ją wykonywać kilka istot lub może być ona wykonywana przez wiele tur. Wykonaj test na Wiedzę Medyczną o poziomie trudności równym ilości niezaleczonych obrażeń krytycznych typu złamania:\n\nW przypadku krytycznej porażki dodaj jeden punkt niezaleczonych zwykłych obrażeń.\n\nW przypadku porażki nie zaleczasz żadnych obrażeń.\n\nW przypadku sukcesu zalecz wszyskie Punkty Obrażeń Krytycznych typu Złamania.\n\nW przypadku krytycznego sukcesu zalecz wszystkie Punkty Obrażeń Krytycznych typu Złamania i daj wykonać poszkodowanemu test umiejętności Wigor o trudności testu równej łącznej ilości posiadanych przez pacjenta zaleczonych obrażeń krytycznych typu złamania. W przypadku sukcesu poszkodowany usuwa jeden punkt obrażeń krytycznych typu złamania."
+        },
+        {
+          "id": "obrażenia-krytyczne-typu-obrażenia-wewnętrzne",
+          "name": "Zaleczanie Obrażeń Krytycznych typu Obrażenia Wewnętrzne",
+          "content": "Obrażenia Krytyczne typu Obrażenia Wewnętrzne można próbować zaleczyć zawsze ‐ choć wiąże się to z przeprowadzeniem polowej operacji zagrażającej zdrowiu pacjenta. Akcja ta wymaga 120 Punktów Akcji lub trwa minutę. Wykonaj test wiedzy medycznej o poziomie trudności równym ilości niezaleczonych obrażeń krytycznych typu obrażenia wewnętrzne, które posiada pacjent.\n\nW przypadku krytycznej porażki, pacjent otrzymuje jeden poziom wykrwawienia i jeden punkt obrażeń krytycznych od chorób i trucizn.\n\nW przypadku porażki, sześć godzin po zakończeniu próby wykonywania akcji pacjent otrzymuje jeden punkt obrażeń od chorób i trucizn.\n\nW przypadku sukcesu zalecz wszystkie obrażenia krytyczne typu Obrażenia Wewnętrzne.\n\nW przypadku krytycznego sukcesu zalecz wszystkie obrażenia krytyczne typu Obrażenia Wewnętrzne i daj wykonać poszkodowanemu test umiejętności Wigor o trudności testu równej łącznej ilości posiadanych przez pacjenta zaleczonych obrażeń krytycznych typu obrażenia wewnętrzne. W przypadku sukcesu poszkodowany usuwa jeden punkt obrażeń krytycznych typu Obrażenia Wewnętrzne."
+        },
+        {
+          "id": "zaleczanie-obrażeń-krytycznych-typu-obrażenia-od-temperatury",
+          "name": "Zaleczanie Obrażeń Krytycznych typu Obrażenia od Temperatury",
+          "content": "Obrażenia Krytyczne typu Obrażenia od Temperatury można próbować zaleczyć tylko za pomocą odpowiednich ziół i przedmiotów."
+        },
+        {
+          "id": "zaleczanie-obrażeń-krytycznych-typu-obrażenia-od-chorób-i-trucizn",
+          "name": "Zaleczanie Obrażeń Krytycznych typu Obrażenia od Chorób i Trucizn",
+          "content": "Obrażenia Krytyczne typu Obrażenia od Chorób i Trucizn można próbować zaleczyć tylko za pomocą odpowiednich ziół i przedmiotów."
+        }
+      ]
     }
   ]
 }
