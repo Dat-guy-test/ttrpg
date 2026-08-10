@@ -166,7 +166,7 @@
       "name": "Krasnolud",
       "desc": "Jesteś krasnoludem. Krasnoludy to stworzenia o małej formie fizycznej, której lekceważenie regularnie przyczynia się do przypominania społeczeństwu o ich wielkiej wewnętrznej sile woli.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 9\nSiła Woli: 12\n\nSzybkość: 6\nBonus do udźwigu: 7\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\n\nUparci:\nKrasnoludy są znane z stawiania na swoje i niepoddawania się do ostatniego tchu:\n\nZyskujesz 1 poziom doświadczenia i improwizacji w umiejętności determinacja. Po każdej godzinie odpoczynku odzyskujesz 1d4 Punktów Energii\n\nAdaptacyjny wzrok:\nKonstrukcja krasnoludzkich oczu umożliwia im widzenie w ciemności, choć nie są w stanie rozpoznawać w jej kolorów:\n\nZyskujesz 1 poziom doświadczenia i improwizacji w umiejętności Spostrzegawczość.\nWidzisz w całkowitej ciemności, lecz nie jesteś w stanie rozpoznawać kolorów.\n\nGruboskórni:\nKrasnoludy niewiele rusza, zarówno fizycznie jak i mentalnie:\n\nZyskujesz 1 poziom doświadczenia w umiejętnościach: wigor i determinacja. Tracisz poziom doświadczenia w umiejętności intuicja.\nDodatkowo, za każdym razem gdy otrzymasz zwykłe obrażenia możesz wydać punkt energii by zmniejszyć otrzymane obrażenia o 1.\n\nCechy Fizyczne:\nWzrost: od 0,6 do 1 jednostki\nRozmiar: Mały\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 22 lat\nWiek starczy: 110 lat,\nŚrednia Długość Życia: 125 lat (średnia),\nMaksymalna Długość Życia: 150 lat",
       "hoverText": "",
-      "fi": 22.270000000000003,
+      "fi": 22.270000000000007,
       "theta": 24,
       "requires": [],
       "cost": 0,
@@ -468,7 +468,7 @@
       "name": "Niziołek",
       "desc": "Jesteś nizołkiem. Niziołki to niewielkie stworzenia, mające tendencje do obsesyjnego zainteresowywania się jedną dziedziną. Często jednak ich zainteresowania wypychają je na przygody w celu poszukiwania wiedzy czy mitycznych artefaktów.\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 8\nSiła Woli: 11\n\nSzybkość: 6\nBonus do udźwigu: 7\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\n\nSavant:\nNiziołki często są nizwykle wybitne w jednej lub paru bardzo interesujących ich dziedzinach:\n\nOtrzymujesz trzy poziomy doświadczenia i dwa poziomy improwizacji w wybranych umiejętnościach.\n\nTrudni do trafienia:\nZ racji na swoją niewielką formę niziołki potrafią być zaskakująco trudne do trafienia:\n\nGdy twój rozmiar jest Mały zyskujesz +2 do ewazji.\n\nUrodzeni odkrywcy:\nGłód wiedzy niziołków często wypycha ich ku przygodznie, na którą zwykle są dobrze przygotowani:\n\nWiesz, w którym kierunku prawdopodobnie znajduje się najbliższe miasto lub zasiedlone miejsce, w którym kierunku jest północ i która jest godzina. Jesteś w stanie określić wiek budowli, kiedy były one ostatnio zamieszkane oraz jaka grupa je wybudowała.\nZyskujesz poziom doświadczenia i dwa poziomy improwizacji w umiejętnościach Intuicja i Wiedza Powszechna.\n\nCechy Fizyczne:\nWzrost: od 0,9 do 1,5 jednostki\nRozmiar: Mały lub Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 21 do 23 lat\nWiek starczy: 80 lat,\nŚrednia Długość Życia: 100 lat (średnia),\nMaksymalna Długość Życia: 140 lat",
       "hoverText": "",
-      "fi": 22.270000000000003,
+      "fi": 22.270000000000007,
       "theta": 26.000000000000007,
       "requires": [],
       "cost": 0,
@@ -2166,26 +2166,21 @@
     },
     {
       "id": "5555",
-      "name": "Piśmienny",
-      "desc": "Nauczyłeś się czytać i pisać w wspólnej mowie. Przy okazji udało Ci się wchłonąć trochę wiedzy. Zyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Powszechna.",
+      "name": "Podstawy Wiedzy Tajemnej",
+      "desc": "Poznajesz podstawy „Wiedzy Tajemnej”, czyli trudnym do zrozumienia dziael wiedzy o magii i działaniu eteru. Zyskujesz poziom doświadczenia w umiejętności Wiedza Tajemna.",
       "hoverText": "",
       "fi": -35,
       "theta": 39,
       "requires": [
         "1"
       ],
-      "cost": 3,
+      "cost": 1,
       "temperature": 10000,
       "exclGroup": null,
       "effects": [
         {
           "type": "skillExperience",
-          "key": "wiedzaPowszechna",
-          "amount": 1
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "wiedzaPowszechna",
+          "key": "wiedzaMagiczna",
           "amount": 1
         }
       ]
