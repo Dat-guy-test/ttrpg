@@ -18,10 +18,19 @@
           "-1003"
         ],
         [
-          "31",
-          "33",
-          "41412",
-          "12415"
+          "16745",
+          "265",
+          "414525",
+          "425",
+          "25256",
+          "52523",
+          "48758",
+          "5123523",
+          "626235",
+          "37477",
+          "36737",
+          "152364",
+          "36736"
         ]
       ],
       "cost": 0,
@@ -32,10 +41,10 @@
     {
       "id": "-3",
       "name": "Urodzony Czarownik",
-      "desc": "Od urodzenia potrzfisz rzucać zaklęcia. Wybierz 2 zaklęcia o maksymalnej złożoności 1. Znasz te zaklęcia na pamięć i zawsze możesz je rzucić o ile spełniasz wymagania rzucenia owych czarów.",
+      "desc": "Od urodzenia prosta magia jest czymś całkowicie dla CIebie naturalnym. Wybierz 2 zaklęcia o maksymalnej złożoności 1. Znasz te zaklęcia na pamięć i zawsze możesz je rzucić o ile spełniasz wymagania rzucenia owych czarów.",
       "hoverText": "",
-      "fi": 25,
-      "theta": 20,
+      "fi": 23,
+      "theta": 19,
       "requires": [],
       "cost": 5,
       "temperature": 13000,
@@ -1010,8 +1019,8 @@
       "name": "Wampir",
       "desc": "Z racji na warunki urodzenia lub mniej lub bardziej dobrowolne uczestnictwo w mrocznym rytuale jesteś Wampirem: jednym z kilku typów stworzeń będącymi połączeniem śmiertelnika i demona. Wampiry mają bladą skórą, słabe tętno i wolny puls. Żyją zwykle o połowę dłużej niż zwykli śmiertelnicy o ich pochodzeniu, i praktycznie nie starzeją się nawet do momentu śmierci, gdzie zwykle umierają przez zawał.\n\nBędąc Wampirem:\n\nZyskujesz atrybut:\nŻądza Krwi:\nJako darmowa akcja, raz na turę, możesz zadać 1 punkt obrażeń krytycznych typu głębokie rany pochwyconemu stworzeniu.\n\nZyskujesz dostęp do Punktów Mocy Krwi:\nKażdej doby w określonym przez Ciebie stałym momencie tracisz 1 Punkt Mocy Krwi. Jeżeli nie posiadasz Punktów Mocy Krwi zyskujesz 1 Poziom Wykrwawienia.\n\nMożesz zużyć 1 Punkt Mocy Krwi by natychmiastowo zmniejszyć poziom wykrwawienia o 1.\n\nUzyskiwanie Punktów Mocy Krwi:\nPoświęcając 2 Punkty Akcji możesz wykonać akcję:\nZbierz krew Żywego stworzenia:\nJeżeli pochwyciłeś istotę, mającą przynajmniej jeden poziom niezaleczonych obrażeń krytycznych typu „Głębokie rany”: Za każdy poziom wykrwawienia, który zdobędzie to storzenie do początku Twojej następnej tury zdobywasz 1 Punkt Mocy Krwi.\n\nAlternatywnie możesz wykonać akcję:\nPosil się Truchłem (koszt 7 PA): Możesz uzyskać jeden Punkt Mocy Krwi posilając się krwią stworzenia, zmarłego nie więcej niż 1 minutę (12 tur) temu.",
       "hoverText": "",
-      "fi": 18,
-      "theta": 20,
+      "fi": 24,
+      "theta": 16,
       "requires": [],
       "cost": 2,
       "temperature": 1800,
@@ -1049,7 +1058,7 @@
     {
       "id": "100005",
       "name": "Szkoła Makira",
-      "desc": "Szkoła Makira to szkoła fechtunku skupiająca się na wykorzystywaniu mieczy. Skupia się ona na zbalansowanym podejściu do walki.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz poziom swojej wprawy w walce mieczami.",
+      "desc": "Szkoła Makira to szkoła fechtunku skupiająca się na wykorzystywaniu mieczy. Skupia się ona na zbalansowanym podejściu do walki.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz poziom swojej wprawy w walce mieczami.\n\nDodatkowo zyskujesz przedmiot: Miecz Krótki.",
       "hoverText": "",
       "fi": 40,
       "theta": 40,
@@ -1064,13 +1073,18 @@
           "type": "proficiency",
           "key": "Miecze",
           "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785020652629-9ldtr",
+          "amount": 1
         }
       ]
     },
     {
       "id": "100006",
       "name": "Szkoła Wiwerny",
-      "desc": "Szkoła Wiwerny to szkoła fechtunku kładąca nacisk na mobilność, szybkość i zabójczo precyzyjne ataki.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz poziom swojej wprawy w korzystaniu z sztyletów.",
+      "desc": "Szkoła Wiwerny to szkoła fechtunku kładąca nacisk na mobilność, szybkość i zabójczo precyzyjne ataki.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz poziom swojej wprawy w korzystaniu z sztyletów.\n\nDodatkowo zyskujesz przedmiot: Prosty Sztylet.",
       "hoverText": "",
       "fi": 35,
       "theta": 40,
@@ -1085,13 +1099,18 @@
           "type": "proficiency",
           "key": "Sztylety",
           "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1784056473608-9efaz",
+          "amount": 1
         }
       ]
     },
     {
       "id": "100004",
       "name": "Szkoła Damh",
-      "desc": "Szkoła Damh podkreśla wagę obrony, uniwersalnie efektywnych ataków, a także kładzie nacisk na umiejętność walki bez broni. Jej przewodnią myśl dobrze ujmuje zdanie: jeżeli przeciwnik nie może cię skrzywdzić, wygrasz każdą walkę, nawet bez porządnej broni.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz poziom wprawy w atakach bez broni.",
+      "desc": "Szkoła Damh podkreśla wagę obrony, uniwersalnie efektywnych ataków, a także kładzie nacisk na umiejętność walki bez broni. Jej przewodnią myśl dobrze ujmuje zdanie: jeżeli przeciwnik nie może cię skrzywdzić, wygrasz każdą walkę, nawet bez porządnej broni.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz poziom wprawy w atakach bez broni.\n\nDodatkowo zyskujesz przedmiot: Puklerz.",
       "hoverText": "",
       "fi": 45,
       "theta": 40,
@@ -1106,13 +1125,18 @@
           "type": "proficiency",
           "key": "Ataki Bez Broni",
           "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785100004573-cn6zy",
+          "amount": 1
         }
       ]
     },
     {
       "id": "100007",
       "name": "Szkoła Squamy",
-      "desc": "Szkołą Squamy, zwana także Szkołą Smoka, skupia się na zadawaniu druzgocących obrażeń.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz swoją biegłość w krótkich broniach drzewcowych.",
+      "desc": "Szkołą Squamy, zwana także Szkołą Smoka, skupia się na zadawaniu druzgocących obrażeń.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz swoją biegłość w krótkich broniach drzewcowych.\n\nDodatkow zyskujesz przedmiot: Topór Bojowy.",
       "hoverText": "",
       "fi": 50,
       "theta": 40,
@@ -1127,13 +1151,18 @@
           "type": "proficiency",
           "key": "Krótka Broń Drzewcowa",
           "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785138427383-vb9hl",
+          "amount": 1
         }
       ]
     },
     {
       "id": "100008",
       "name": "Szkoła Scairp",
-      "desc": "Szkołą Scairp, zwana także Szkołą Czarnogrzywa skupia się na zadawaniu ataków z przewagą dystansu.\n\nRozpoczynając trening w nucie tej szkoły zwiększasz poziom swojej wprawy w walce długą bronią drzewcową.",
+      "desc": "Szkołą Scairp, zwana także Szkołą Czarnogrzywa skupia się na zadawaniu ataków z przewagą dystansu.\n\nRozpoczynając trening w nucie tej szkoły zwiększasz poziom swojej wprawy w walce długą bronią drzewcową.\n\nDodatkowo zyskujesz przedmiot: Włócznia.",
       "hoverText": "",
       "fi": 29.999999999999996,
       "theta": 40,
@@ -1147,6 +1176,11 @@
         {
           "type": "proficiency",
           "key": "Długa Broń Drzewcowa",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785140927710-mjh55",
           "amount": 1
         }
       ]
@@ -1175,7 +1209,7 @@
     {
       "id": "100010",
       "name": "Szkoła Sytmpha",
-      "desc": "Szkoła Stympha skupia się na doskonaleniu używania oszczepów, włóczni, lotek i innych podobnych broni miotanych.\n\nRozpoczynając praktykę umiejętności związanych z tą szkołą zyskujesz jeden poziom wprawy w broniach miotanych.",
+      "desc": "Szkoła Stympha skupia się na doskonaleniu używania oszczepów, włóczni, lotek i innych podobnych broni miotanych.\n\nRozpoczynając praktykę umiejętności związanych z tą szkołą zyskujesz jeden poziom wprawy w broniach miotanych.\n\nDodatkowo zyskujesz przedmioty : 3 Drewniane Oszczepy.",
       "hoverText": "",
       "fi": 25,
       "theta": 40,
@@ -1190,13 +1224,18 @@
           "type": "proficiency",
           "key": "Broń Miotana",
           "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785148772647-siv96",
+          "amount": 3
         }
       ]
     },
     {
       "id": "100011",
       "name": "Szkoła Mitto",
-      "desc": "Szkołą Mitto, skupia się na używaniu łuków i proc: broni miotających używających strzał, metalowych kulek czy innych pocisków jako amunicję.\n\nDecydując się na trening z brońmi miotającymi zyskujesz jeden poziom wprawy w używaniu broni miotających.\n\n",
+      "desc": "Szkołą Mitto, skupia się na używaniu łuków i proc: broni miotających używających strzał, metalowych kulek czy innych pocisków jako amunicję.\n\nDecydując się na trening z brońmi miotającymi zyskujesz jeden poziom wprawy w używaniu broni miotających.\n\nDodatkowo zyskujesz przedmioty: łuk długi oraz 10 strzał.",
       "hoverText": "",
       "fi": 20,
       "theta": 40,
@@ -1211,58 +1250,16 @@
           "type": "proficiency",
           "key": "Broń Miotająca",
           "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "31",
-      "name": "Żebrak",
-      "desc": "Znacząca część towjego życia polegała na życiu z datków bogatszych, zasobów społeczności czy z bardzo źle płatnej pracy.\n\nZyskujesz zestaw przedmiotów: Własność Ubogiego\nZyskujesz walutę: 3 Nitki Konstansjum",
-      "hoverText": "",
-      "fi": 17,
-      "theta": 24,
-      "requires": [],
-      "cost": 1,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
-        {
-          "type": "currency",
-          "key": null,
-          "amount": 3
         },
         {
           "type": "item",
-          "key": "custom-1784131534754-cbqni",
+          "key": "custom-1785149636738-y8k11",
           "amount": 1
-        }
-      ]
-    },
-    {
-      "id": "33",
-      "name": "Mieszkaniec Wsi",
-      "desc": "Jako mieszkaniec małej miejscowości, bądź osoba żyjąca na odludziu większość posiadanych przez Ciebie przedmiotów jest bezwartościowa. Życie w spokoju zostaiwło Ci jednak czas na rozwijanie swoich umiejętności.\n\nZyskujesz dwa poziomy doświadczenia i improwizacji w dowolnych umiejętnościach.\n\nZyskujesz 10 pierścieni.\nZyskujesz Własność Ubogiego i Porządne Buty.",
-      "hoverText": "",
-      "fi": 17,
-      "theta": 26.000000000000007,
-      "requires": [],
-      "cost": 3,
-      "temperature": 6000,
-      "exclGroup": null,
-      "effects": [
+        },
         {
-          "type": "currency",
+          "type": "item",
+          "key": "custom-1785420254391-1fpmk",
           "amount": 10
-        },
-        {
-          "type": "item",
-          "key": "custom-1784131534754-cbqni",
-          "amount": 1
-        },
-        {
-          "type": "item",
-          "key": "custom-1785417727287-zgwgx",
-          "amount": 1
         }
       ]
     },
@@ -2268,8 +2265,8 @@
       "name": "Zainteresowanie Szkołą Kreacji",
       "desc": "Skupiasz się na rozwijaniu swoich umiejętności w szkole kreacji.\nUczysz się jednego zaklęcia o maksymalnej złożoności równej 1 z szkoły kreacji.\nZyskujesz poziom doświadczenia w kreacji i wiedzy tajemnej.",
       "hoverText": "",
-      "fi": -39,
-      "theta": 42,
+      "fi": -48,
+      "theta": 43,
       "requires": [
         "666"
       ],
@@ -2301,8 +2298,8 @@
       "name": "Początkujący Adept Kreacji",
       "desc": "Pogłębiając swoją wiedzę na temat magii kreacji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności kreacja i poziom doświadczenia w umiejętności wiedza tajemna.",
       "hoverText": "",
-      "fi": -39,
-      "theta": 43.99999999999999,
+      "fi": -48,
+      "theta": 47,
       "requires": [
         "55555"
       ],
@@ -2340,7 +2337,7 @@
       "desc": "Pogłębiasz swoją wiedzę na temat ezoterycznej magii projekcji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Projekcji oraz Wiedzy Tajemnej.",
       "hoverText": "",
       "fi": -35,
-      "theta": 42,
+      "theta": 43,
       "requires": [
         "666"
       ],
@@ -2373,7 +2370,7 @@
       "desc": "Pogłębiając swoją wiedzę na temat magii projekcji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności Projekcja i poziom doświadczenia w umiejętności wiedza tajemna.",
       "hoverText": "",
       "fi": -35,
-      "theta": 43.99999999999999,
+      "theta": 47,
       "requires": [
         "5236"
       ],
@@ -2408,10 +2405,10 @@
     {
       "id": "12314",
       "name": "Zainteresowanie Szkołą Transmutacji",
-      "desc": "Pogłębiasz swoją wiedzę na temat potężnej magii transmutacji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Transmutacji oraz Wiedzy Tajemnej.",
+      "desc": "Pogłębiasz swoją wiedzę na temat potężnej magii transmutacji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Transmutacji oraz Wiedzy Tajemnej.\n\nZyskujesz także jedną jednostkę ołowieu transmutacyjnego.",
       "hoverText": "",
-      "fi": -31,
-      "theta": 42,
+      "fi": -21.999999999999996,
+      "theta": 43,
       "requires": [
         "666"
       ],
@@ -2435,6 +2432,11 @@
           "type": "skillExperience",
           "key": "wiedzaMagiczna",
           "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785415285370-miqs9",
+          "amount": 1
         }
       ]
     },
@@ -2443,8 +2445,8 @@
       "name": "Początkujący Adept Transmutacji",
       "desc": "Pogłębiając swoją wiedzę na temat magii Transmutacji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności Transmutacja i poziom doświadczenia w umiejętności wiedza tajemna. ",
       "hoverText": "",
-      "fi": -31,
-      "theta": 43.99999999999999,
+      "fi": -21.999999999999996,
+      "theta": 47,
       "requires": [
         "12314"
       ],
@@ -2477,65 +2479,171 @@
       ]
     },
     {
-      "id": "41412",
-      "name": "Ubogi Mieszczanin",
-      "desc": "Mimo mieszkania w mieście nie udało Ci się znaleźć dobrze płatnej pracy ani nie dane Ci było także odziedziczyć fortuny. Życie w mieście pozwoliło Ci jednak na rozwijanie swoich umiejętności. \n\nZyskujesz 30 pierścieni.\nZyskujesz Własność Mieszczanina.\nZyskujesz poziom doświadczenia i improwizacji w dowolnej umiejętności.\nZyskujesz Własność Mieszczanina.",
+      "id": "16745",
+      "name": "Włóczęga",
+      "desc": "Od jakiegoś czasu nie ma miejsca, które możnaby nazwać twoim domem, nie trudnisz się także jakimkolwiek standardowym zawodem i żyjesz w biedzie.\n\nZyskujesz poziom doświadczenia w wybranej umiejętności.\n\nZyskujesz przedmioty:\nSkromny Zestaw Startowy,\n1 nitka konstancjum,\nWzmacniana Czapka,\nProca\n\nZyskujesz atrybut: \"Mądrość Włóczęgi\":\n\nMądrość Włóczęgi:\nWiesz które obszary takie jak miejskie alejki czy fragmemty traktu są bardziej niebezpieczne. Dodatkowo jesteś w stanie wyżebrać 1 nitkę konstancjum w pięć godzin w miastach.",
       "hoverText": "",
-      "fi": 17,
-      "theta": 28,
+      "fi": 12,
+      "theta": 23,
       "requires": [],
-      "cost": 5,
+      "cost": 1,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
         {
-          "type": "skillImprovisationPoints",
-          "key": null,
+          "type": "item",
+          "key": "custom-1785713337340-fpnce",
           "amount": 1
         },
         {
-          "type": "skillExperiencePoints",
-          "key": null,
+          "type": "item",
+          "key": "custom-1785703681597-zbg7m",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785149659540-6vojx",
           "amount": 1
         },
         {
           "type": "currency",
           "key": null,
-          "amount": 150
+          "amount": 1
         },
         {
-          "type": "item",
-          "key": "custom-1785418017657-7rpx8",
-          "amount": 150
+          "type": "attribute",
+          "key": "Mądrość Włóczęgi",
+          "description": "Wiesz które obszary takie jak miejskie alejki czy fragmemty traktu są bardziej niebezpieczne. Dodatkowo jesteś w stanie wyżebrać 1 nitkę konstancjum w pięć godzin w miastach.",
+          "bonuses": []
+        },
+        {
+          "type": "skillExperiencePoints",
+          "key": null,
+          "amount": 1
         }
       ]
     },
     {
-      "id": "12415",
-      "name": "Wojownik",
-      "desc": "Ważną częścią Twojej pracy była walka. Łączne zarobki z pracy oraz pieniądze z odsprzedanej broni i pancerza stanowią porządną sumę.\n\nZyskujesz 20 pierścieni.\nZyskujesz Własność Mieszczanina.\nZyskujesz Przeszywanicę.\nZyskujesz poziom doświadczenia w umiejętnościach: Siła, Zręczność, Czas Reakcji, Wigor.",
+      "id": "414525",
+      "name": "Rolnik",
+      "desc": "Do niedawna twoim zajęciem była uprawa ziemi i/lub dbanie o zwierzęta. Ciężka fizyczna praca poprawiła także twoją fizyczną koordynację ruchową.\n\nZyskujesz poziom doświadczenia w umiejętności zręczność.\n\nZyskujesz przedmioty:\nSkromny zestaw startowy,\nTopór Bojowy,\n15 pierścieni konstancjum\n\n\nZyskujesz atrybut: \"Dola Rolnika\":\n\nDola Rolnika:\nDzięki swojemu doświadczeniu w pracy z roślinami wiesz, jakie plony są zbierane, transportowane lub przetwarzane w danej porze roku. Dzięki temu z łatwością jesteś w stanie znaleźć pracę dla siebie i swoich kompanów w zbieraniu, transporcie lub przetwarzaniu plonów płatną 2 nitki za 5 godzin pracy dla każdego zatrudnionego.",
       "hoverText": "",
-      "fi": 19,
-      "theta": 27,
+      "fi": 16,
+      "theta": 23,
       "requires": [],
-      "cost": 6,
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "zrecznosc",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785713337340-fpnce",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785138427383-vb9hl",
+          "amount": 1
+        },
+        {
+          "type": "currency",
+          "key": null,
+          "amount": 75
+        },
+        {
+          "type": "attribute",
+          "key": "Dola Rolnika",
+          "description": "Dzięki swojemu doświadczeniu w pracy z roślinami wiesz, jakie plony są zbierane, transportowane lub przetwarzane w danej porze roku. Dzięki temu z łatwością jesteś w stanie znaleźć pracę dla siebie i swoich kompanów w zbieraniu, transporcie lub przetwarzaniu plonów płatną 2 nitki za 5 godzin pracy dla każdego zatrudnionego.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "5123523",
+      "name": "Student",
+      "desc": "Przez jakiś czas było ci dane pobierać nauki w akademii lub na uczelni.\n\nZyskujesz poziom doświadczenia w umiejętności wiedza powszechna.\n\nZyskujesz przedmioty:\nSkromny Zestaw Startowy,\nPióro,\nKsięga na Notatki,\n11 Pierścieni Konstancjum,\nProca\n\nZyskujesz atrybut: \"Sposoby Studenta\":\n\nSposoby Studenta:\nGdy nocujesz w mieście jesteś w stanie znaleźć nocleg z wyżywieniem za 1 nitkę konstancjum. Dodatkowo jesteś w stanie udzielać nauk innym studentom za 2 nitki za 5 godzin nauk.",
+      "hoverText": "",
+      "fi": 11.1099,
+      "theta": 26.8997,
+      "requires": [],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "wiedzaPowszechna",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785713337340-fpnce",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1786310690813-15e54",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1786310816440-3yc43",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785149659540-6vojx",
+          "amount": 1
+        },
+        {
+          "type": "currency",
+          "key": null,
+          "amount": 55
+        },
+        {
+          "type": "attribute",
+          "key": "Sposoby Studenta",
+          "description": "Gdy nocujesz w mieście jesteś w stanie znaleźć nocleg z wyżywieniem za 1 nitkę konstancjum. Dodatkowo jesteś w stanie udzielać nauk innym studentom za 2 nitki za 5 godzin nauk.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "25256",
+      "name": "Łotr",
+      "desc": "Twoją pracą do niedawna były wymuszenia, włamania, drobne kradzieże czy drobny sabotaż.\n\nZyskujesz poziom doświadczenia w umiejętności czas reakcji.\n\nZyskujesz przedmioty:\nSkromny zestaw startowy,\nNarzędzia włamywacza,\nProsty Sztylet,\n11 Pierścieni Konstancjum\n\nZyskujesz atrybut: \"Fucha Łotra\":\n\nFucha Łotra:\nDzięki swojemu obeznaniu w przestępczym podświatku jesteś w stanie z łatwością znaleźć zlecenia kradzieży, włamań, sabotarzów, wymuszeń czy nawet mordu dla swojej drużyny. Dokładną naturę zlecenia ustala MG.",
+      "hoverText": "",
+      "fi": 11.11,
+      "theta": 19.1,
+      "requires": [],
+      "cost": 2,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
         {
           "type": "item",
-          "key": "custom-1785418017657-7rpx8",
+          "key": "custom-1785713337340-fpnce",
           "amount": 1
         },
         {
-          "type": "skillExperience",
-          "key": "sila",
+          "type": "item",
+          "key": "custom-1786311018990-qfzz7",
           "amount": 1
         },
         {
-          "type": "skillExperience",
-          "key": "zrecznosc",
+          "type": "item",
+          "key": "custom-1784056473608-9efaz",
           "amount": 1
+        },
+        {
+          "type": "currency",
+          "key": null,
+          "amount": 55
         },
         {
           "type": "skillExperience",
@@ -2543,8 +2651,279 @@
           "amount": 1
         },
         {
+          "type": "attribute",
+          "key": "Fucha Łotra",
+          "description": "Dzięki swojemu obeznaniu w przestępczym podświatku jesteś w stanie z łatwością znaleźć zlecenia kradzieży, włamań, sabotarzów, wymuszeń czy nawet mordu dla swojej drużyny. Dokładną naturę zlecenia ustala MG.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "52523",
+      "name": "Rzemieślnik",
+      "desc": "Przez pewien czas twoim zajęciem była ochrona miejscowości, kupców czy innych miejsc, za których ochronę inni byli gotowi Ci zapłacić bądź wykonałeś kilka zleceń na pozbycie się istot wyjętych spod prawa.\n\nZyskujesz poziom doświadczenia w umiejętności siła.\n\nZyskujesz przedmioty:\nSkromny Zestaw Startowy,\nPełna Przeszywanica,\nWłócznia,\n5 pierścieni konstancjum\n\nZyskujesz atrybut: \"Źródło Kontraktów Najemnika\":\n\nŹródło Kontraktów Najemnika:\nWiesz, gdzie znaleźć pracę dla siebie i swoich współpracowników. Możesz znaleźć stałą, bezpieczną pracę jako stróż, strażnik lub odstraszacz rabusi, płatną 4 nitki na osobę za pięć godzin pracy.\nAlternatywnie w każdym zamieszkanym miejscu jesteś w stanie znaleźć niebezpieczne zlecenie, którego wartość i naturę określa MG.",
+      "hoverText": "",
+      "fi": 8.4,
+      "theta": 21.26,
+      "requires": [],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "item",
+          "key": "custom-1785713337340-fpnce",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785139385766-gokr3",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1786311174203-vwxqc",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1786311277858-mag88",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1786311118284-ttab3",
+          "amount": 1
+        },
+        {
+          "type": "currency",
+          "key": null,
+          "amount": 60
+        },
+        {
           "type": "skillExperience",
-          "key": "wigor",
+          "key": "majsterkowanie",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Były Członek Cechu Rzemieślniczego",
+          "description": "Byłeś członkiem cechu rzemieślniczego. Znasz dobrych rzemieślników, którzy są w stanie wykonać dla ciebie przedmioty takie jak bronie, tarcze, zbroje czy narzędzia za 4/5 ceny rynkowej (zaokr. w górę). Dodatkowo znajomości te, w połączeniu z twoimi umiejętnościami pozwalają ci łatwo zatrudnić się na krótki okres czasu jako wyższy asystent w warsztacie za 3 nitki za 5 godzin ciężkiej pracy.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "48758",
+      "name": "Początkujący Najemnik",
+      "desc": "Przez pewien czas twoim zajęciem była ochrona miejscowości, kupców czy innych miejsc, za których ochronę inni byli gotowi Ci zapłacić bądź wykonałeś kilka zleceń na pozbycie się istot wyjętych spod prawa.\n\nZyskujesz poziom doświadczenia w umiejętności siła.\n\nZyskujesz przedmioty:\nSkromny Zestaw Startowy,\nPełna Przeszywanica,\nWłócznia,\n5 pierścieni konstancjum\n\nZyskujesz atrybut: \"Źródło Kontraktów Najemnika\":\n\nŹródło Kontraktów Najemnika:\nWiesz, gdzie znaleźć pracę dla siebie i swoich współpracowników. Możesz znaleźć stałą, bezpieczną pracę jako stróż, strażnik lub odstraszacz rabusi, płatną 4 nitki na osobę za pięć godzin pracy.\nAlternatywnie w każdym zamieszkanym miejscu jesteś w stanie znaleźć niebezpieczne zlecenie, którego wartość i naturę określa MG.",
+      "hoverText": "",
+      "fi": 8.4,
+      "theta": 24.74,
+      "requires": [],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "sila",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785713337340-fpnce",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785707279427-ghbek",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785140927710-mjh55",
+          "amount": 1
+        },
+        {
+          "type": "currency",
+          "key": null,
+          "amount": 25
+        },
+        {
+          "type": "attribute",
+          "key": "Źródło Kontraktów Najemnika",
+          "description": "Wiesz, gdzie znaleźć pracę dla siebie i swoich współpracowników. Możesz znaleźć stałą, bezpieczną pracę jako stróż, strażnik lub odstraszacz rabusi, płatną 4 nitki na osobę za pięć godzin pracy.\nAlternatywnie w każdym zamieszkanym miejscu jesteś w stanie znaleźć niebezpieczne zlecenie, którego wartość i naturę określa MG.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "425",
+      "name": "Wędrowny Trubadur",
+      "desc": "Dzięki swojemu talentowi muzycznemu lub aktorskiemu udało Ci się utrzymywać z rozbawiania tłumów w tawernach czy na ulicach.\n\nZyskujesz poziom doświadczenia w umiejętności Instynkt.\n\nZyskujesz przedmioty:\nPorządny zestaw startowy,\nLekki Instrument Muzyczny, na którym potrafisz grać,\nZestaw aktora,\nMiecz Krótki,\n11 pierścieni konstancjum\n\nZyskujesz atrybut: \"Grajek\":\n\nGrajek:\nDzięki twojemu talentowi muzycznemu możesz liczyć na zarobek grając na ulicach. Za każde 5 godzin grania na ulicach zyskujesz 1d6-2 nitek. Ujemna liczba w rzucie oznacza negatywną aprobatę dla twojej sztuki i o ile nie powoduje straty pieniędzy oznacza otrzymanie 1 punktu zwykłych obrażeń. Dodatkowo możesz próbować przekonać właściciela tawerny, by wynajął twoją drużynę do zabawiania gości. Szczegóły takiego kontraktu ustala MG.",
+      "hoverText": "",
+      "fi": 14.489999999999998,
+      "theta": 19.87,
+      "requires": [],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "item",
+          "key": "custom-1785713337340-fpnce",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1786311428009-8pxgp",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1786311523842-uohbr",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785020652629-9ldtr",
+          "amount": 1
+        },
+        {
+          "type": "currency",
+          "key": null,
+          "amount": 55
+        },
+        {
+          "type": "skillExperience",
+          "key": "instynkt",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "265",
+      "name": "Zielarz",
+      "desc": "Przez jakiś czas twoim źródłem utrzymania było leczenie stworzeń za pomocą tanich leków i ziół.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna.\n\n\nZyskujesz przedmioty:\nSkromny Zestaw Startowy,\n16 Pierścieni Konstancjum,\nZestaw Zielarza,\nProsty Sztylet\n\nZyskujesz atrybut: \"Wiedza Zielarza\"\n\nMożesz zatrudnić się jako zielarz w lecznicy zarabiając 2 nitki konstancjum za 5 godzin pracy. Możesz także szukać ziół poza miastem. Za każdą godzinę szukania wykonaj test wiedzy medycznej. Wynik testu to wartość ilości znalezionych ziół w nitkach konstancjum. Po znalezieniu ziół o wartości 36 nitek dodaj do swojego ekwipunku przedmiot \"Zioła Lecznicze\". Jeżeli inni członkowie twojej drużyny pomagają Ci w poszukiwaniach możesz (ale nie musisz) przerzucić kość improwizacji testu raz za każdą pomagającą osobę, zatrzymując przerzucony wynik.",
+      "hoverText": "",
+      "fi": 14.489999999999998,
+      "theta": 26.13,
+      "requires": [],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "item",
+          "key": "custom-1785713337340-fpnce",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785347946288-qrzx4",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1784056473608-9efaz",
+          "amount": 1
+        },
+        {
+          "type": "currency",
+          "key": null,
+          "amount": 80
+        },
+        {
+          "type": "skillExperience",
+          "key": "wiedzaMedyczna",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Wiedza Zielarza",
+          "description": "Możesz zatrudnić się jako zielarz w lecznicy zarabiając 2 nitki konstancjum za 5 godzin pracy. Możesz także szukać ziół poza miastem. Za każdą godzinę szukania wykonaj test wiedzy medycznej. Wynik testu to wartość ilości znalezionych ziół w nitkach konstancjum. Po znalezieniu ziół o wartości 36 nitek dodaj do swojego ekwipunku przedmiot \"Zioła Lecznicze\". Jeżeli inni członkowie twojej drużyny pomagają Ci w poszukiwaniach możesz (ale nie musisz) przerzucić kość improwizacji testu raz za każdą pomagającą osobę, zatrzymując przerzucony wynik.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "626235",
+      "name": "Upadły Szlachcic",
+      "desc": "Niegdyś szczęśliwe urodzenie dało ci być członkiem arystokratycznej rodziny, jednakże udało Ci się stracić prawie wszystkie posiadłości i tytuł.\n\nZyskujesz dwa poziomy doświadczenia w wybranych umiejętnościach.\n\nZyskujesz przedmioty:\nPorządny zestaw startowy,\nMiecz krótki,\n60 pierścieni konstancjum\n\nZyskujesz atrybut: \"Obeznanie w Polityce\":\n\nObeznanie w Polityce:\nWiesz wiele na temat każdego regionu Imperium i nie musisz wykonywać testów na wiedzę odnośnie podstawowych informacji na ich temat. Dodatkowo jesteś w stanie zawsze zidentyfikować miejsce przebywania bogatych i wpływowych ludzi w okolicy.",
+      "hoverText": "",
+      "fi": 14.159999999999998,
+      "theta": 29.66,
+      "requires": [],
+      "cost": 3,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "item",
+          "key": "custom-1785715611808-uxs9e",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785020652629-9ldtr",
+          "amount": 1
+        },
+        {
+          "type": "currency",
+          "key": null,
+          "amount": 300
+        },
+        {
+          "type": "attribute",
+          "key": "Obeznanie w Polityce",
+          "description": "Wiesz wiele na temat każdego regionu Imperium i nie musisz wykonywać testów na wiedzę odnośnie podstawowych informacji na ich temat. Dodatkowo jesteś w stanie zawsze zidentyfikować miejsce przebywania bogatych i wpływowych ludzi w okolicy.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "36737",
+      "name": "Początkujący Mag",
+      "desc": "Nauczyłęś się jednego czaru metodą prób i błędów nie znając podstaw magii. Zainsiprowało cię to do dalszego poznawania tej dziedziny wiedzy.\n\nZyskujesz poziom doświadczenia w wybranej umiejętności oraz poziom doświadczenia w umiejętności Wiedza Tajemna.\n\nZyskujesz przedmioty:\nPorządny zestaw startowy,\nMagiczna Soczewka,\nProca Kosturowa,\n1 jednostkę ołowiu transmutacyjnego,\n20 pierścieni konstancjum\n\nUczysz się jednego wybranego zaklęcia o złożoności nie większej niż 1.",
+      "hoverText": "",
+      "fi": 14.159999999999998,
+      "theta": 16.34,
+      "requires": [],
+      "cost": 3,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction",
+            "unknown"
+          ],
+          "maxComplexity": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785415432644-39zhp",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785770966176-puq70",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785715611808-uxs9e",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785415285370-miqs9",
           "amount": 1
         },
         {
@@ -2553,9 +2932,154 @@
           "amount": 100
         },
         {
-          "type": "item",
-          "key": "custom-1785419495055-6r871",
+          "type": "skillExperiencePoints",
+          "key": null,
           "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "wiedzaMagiczna",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "152364",
+      "name": "Zaklinacz",
+      "desc": "Dane Ci było studiować potężne zaklęte artefakty lub informacje na ich temat. Dało Ci to możliwość bardzo rudamentarnego zaklinania przedmiotów.\n\nZyskujesz dwa poziomy doświadczenia w umiejętności Zaklinanie.\n\nZyskujesz przedmioty:\nPorządny zestaw startowy,\nProsty Sztylet,\nMagiczna Soczewka,\n25 pierścieni konstancjum\n\n\nZyskujesz atrybut: \"Początkujący Zaklinacz\":\n\nPoczątkujący Zaklinacz:\nWykonując test zaklinania możesz, w trakcie co najmniej godzinnego odpoczynku tymczasowo zaklnąć jeden z posiadanych przedmiotów:\n\nMożesz zaklnąć broń by zadawała zwiększone obrażenia. Zużyj liczbę punktów energii równą minimalnej ilości zadawanych obrażeń przez najsilniejszy typ ataku bronią. Następnie wykonaj test zaklinania. Każdy tryb ataku tą bronią przez następne 25 godzin zadaje dodatkowo jedną piątą wyniku testu (zaokrągloną w dół) obrażeń każdego zadawanego typu obrażeń.\n\nMożesz zaklnąć pancerz by lekko odpychał nadchodzące ciosy utrudniając celne trafienia. Zużyj liczbę punktów energii równą poziomowi pancerza zaklinanego elementu pancerza. Następnie wykonaj test zaklinania. Na następne 25 godzin ten element pancerza ma zwiększony poziom pancerza o jedną piątą wyniku testu (zaokrągloną w dół).",
+      "hoverText": "",
+      "fi": 6.340000000000001,
+      "theta": 18.889999999999997,
+      "requires": [],
+      "cost": 3,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "zaklinanie",
+          "amount": 2
+        },
+        {
+          "type": "item",
+          "key": "custom-1785715611808-uxs9e",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1784056473608-9efaz",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785415432644-39zhp",
+          "amount": 1
+        },
+        {
+          "type": "currency",
+          "key": null,
+          "amount": 25
+        },
+        {
+          "type": "attribute",
+          "key": "Początkujący Zaklinacz",
+          "description": "Wykonując test zaklinania możesz, w trakcie co najmniej godzinnego odpoczynku tymczasowo zaklnąć jeden z posiadanych przedmiotów:\n\nMożesz zaklnąć broń by zadawała zwiększone obrażenia. Zużyj liczbę punktów energii równą minimalnej ilości zadawanych obrażeń przez najsilniejszy typ ataku bronią. Następnie wykonaj test zaklinania. Każdy tryb ataku tą bronią przez następne 25 godzin zadaje dodatkowo jedną piątą wyniku testu (zaokrągloną w dół) obrażeń każdego zadawanego typu obrażeń.\n\nMożesz zaklnąć pancerz by lekko odpychał nadchodzące ciosy utrudniając celne trafienia. Zużyj liczbę punktów energii równą poziomowi pancerza zaklinanego elementu pancerza. Następnie wykonaj test zaklinania. Na następne 25 godzin ten element pancerza ma zwiększony poziom pancerza o jedną piątą wyniku testu (zaokrągloną w dół).",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "37477",
+      "name": "Uczony",
+      "desc": "Twoje nauki poskutkowały zostaniem początkującym ekspertem w jednej wąskiej dziedzinie wiedzy.\n\nZyskujesz poziom doświadczenia w wybranej umiejętności oraz poziom doświadczenia w umiejętności Wiedza Powszechna.\n\nZyakujesz przedmioty:\nPorządny Zestaw Startowy,\nKopia autorskich prac,\nProca,\n25 pierścieni konstancjum\n\nZyskujesz atrybut: \"Dorobek naukowy\":\n\nDorobek naukowy:\nWybierasz jedną bardzo specyficzną dziedzinę powiązaną z jedną z swoich umiejętności. Nie musisz wykonywać testów, by ocenić czy Twoja postać zna informacje dotyczące tej dziedziny, jeżeli miała okazje dowiedzieć się ich przed przygodą. (Przykaładowo jeżeli wybierzesz dziedzinę związaną z alchemią nie musisz wykonywać testów na alchemię w celu sprawdzenia czy wiesz jak wykonać ogień alchemiczny. Jednakże nie oznacza to, iż potrafisz wykonać każdy alchemiczny przedmiot - jedynie (bądź aż), wiesz jak go wykonać.",
+      "hoverText": "",
+      "fi": 19,
+      "theta": 23,
+      "requires": [],
+      "cost": 3,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperiencePoints",
+          "key": null,
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "wiedzaPowszechna",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785715611808-uxs9e",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1786310816440-3yc43",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1785149659540-6vojx",
+          "amount": 1
+        },
+        {
+          "type": "currency",
+          "key": null,
+          "amount": 125
+        },
+        {
+          "type": "attribute",
+          "key": "Dorobek naukowy",
+          "description": "Wybierasz jedną bardzo specyficzną dziedzinę powiązaną z jedną z swoich umiejętności. Nie musisz wykonywać testów, by ocenić czy Twoja postać zna informacje dotyczące tej dziedziny, jeżeli miała okazje dowiedzieć się ich przed przygodą. (Przykaładowo jeżeli wybierzesz dziedzinę związaną z alchemią nie musisz wykonywać testów na alchemię w celu sprawdzenia czy wiesz jak wykonać ogień alchemiczny. Jednakże nie oznacza to, iż potrafisz wykonać każdy alchemiczny przedmiot - jedynie (bądź aż), wiesz jak go wykonać.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "36736",
+      "name": "Alchemik",
+      "desc": "Od zawsze interesowały Cię różne zabawnie działające płyny produkowane przez alchemików i dopisało Ci szczęście bycia na tyle bogatym, by móc samemu pogrzebać w alchemii.\n\nZyskujesz dwa poziomy doświadczenia w umiejętności Alchemia.\n\nZyskujesz przedmioty:\nPorządny Zestaw Startowy,\nTrzy fiolki Ognia Alchemicznego,\nProca kosturowa,\n30 pierścieni konstancjum\n\nZyskujesz atrybut: \"Początkujący Alchemik Bojowy\"\n\nPoczątkujący Alchemik Bojowy:\nUczysz się jak wytwarzać ogień alchemiczny z dostępnych na rynku minerałów. W ciągu godziny jesteś w stanie wypełnić fiolkę ogniem alchemicznym płacąc 2 pierścienie konstancjum za składniki. Możesz się także zatrudnić w pracowni alchemicznej w każdym dużym mieście zarabiając 4 nitki konstancjum za każde 5 godzin pracy. Dodatkowo twój maksymalny i efektywny zasięg rzucania flaszek i fiolek zwiększa się o 2 oraz gdy używasz flaszek i fiolek jako amunicji do procy kosturowej podstawowa celność wykonanego tą bronią ataku nie może być mniejsza niz 0.",
+      "hoverText": "",
+      "fi": 6.340000000000001,
+      "theta": 27.11,
+      "requires": [],
+      "cost": 3,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "alchemia",
+          "amount": 2
+        },
+        {
+          "type": "item",
+          "key": "custom-1785715611808-uxs9e",
+          "amount": 1
+        },
+        {
+          "type": "item",
+          "key": "custom-1786312492477-shtw9",
+          "amount": 3
+        },
+        {
+          "type": "item",
+          "key": "custom-1785770966176-puq70",
+          "amount": 1
+        },
+        {
+          "type": "currency",
+          "key": null,
+          "amount": 150
+        },
+        {
+          "type": "attribute",
+          "key": "Początkujący Alchemik Bojowy",
+          "description": "Uczysz się jak wytwarzać ogień alchemiczny z dostępnych na rynku minerałów. W ciągu godziny jesteś w stanie wypełnić fiolkę ogniem alchemicznym płacąc 2 pierścienie konstancjum za składniki. Możesz się także zatrudnić w pracowni alchemicznej w każdym dużym mieście zarabiając 4 nitki konstancjum za każde 5 godzin pracy. Dodatkowo twój maksymalny i efektywny zasięg rzucania flaszek i fiolek zwiększa się o 2 oraz gdy używasz flaszek i fiolek jako amunicji do procy kosturowej podstawowa celność wykonanego tą bronią ataku nie może być mniejsza niz 0.",
+          "bonuses": []
         }
       ]
     }

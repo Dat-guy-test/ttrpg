@@ -5176,6 +5176,92 @@
           "specialEffect": "W przypadku trafienia w cel fiolka rozpryskuje się zwiększając poziom podpalenia celu o 6d4. Podpalona istota otrzymuje 1d4 obrażeń od temperatury na początku swojej tury do momentu ugaszenia się. Za każdym razem kiedy istota otrzyma obrażenia jej poziom podpalenia zmniejsza się o 1. Podpalone stworzenie może także wykorzystać dowolną ilość punktów akcji by próbując się ugasić tarzając się po ziemi redukując swój poziom podpalenia o 1 za każdy wykorzystany punkt akcji, o 2 jeżeli powierzchnia jest mokra lub o 10 jeżeli istota jest w stanie całkowicie zanurzyć się w wodzie."
         }
       ]
+    },
+    {
+      "id": "custom-1786364098565-6kk3d",
+      "name": "Lina z włókien roślinnych",
+      "price": 18,
+      "bulk": 0.2,
+      "type": "misc",
+      "desc": "Porządna lina o długości 10 jednostek, mogąca utrzymać kilkaset kilogramóœ ciężaru.",
+      "state": "unequipped",
+      "hitPoints": 4,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": []
+    },
+    {
+      "id": "custom-1786364421441-puqgj",
+      "name": "Pochodnia",
+      "price": 15,
+      "bulk": 0.1,
+      "type": "weapon",
+      "desc": "Pochodnia to użytkowy przedmiot, wykonany z nasączonego olejami materiału natkniętego na drewniany drzewiec, mogący palić się przez około 10 godzin, rozświetlając obszar o promieniu 5 jednostek. Można jej także używać jako broni.",
+      "state": "unequipped",
+      "hitPoints": 2,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "requirements": [],
+      "block": 1,
+      "deflection": 1,
+      "weaponKinds": [
+        "melee"
+      ],
+      "proficiencyCategory": "Krótka Broń Drzewcowa",
+      "upgrades": [],
+      "attackModes": [
+        {
+          "name": "Uderzenie Zgaszoną Pochodnią",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 0,
+              "dice": "none",
+              "modifier": 2,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Zapaloną Pochodnią",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 0,
+              "dice": "none",
+              "modifier": 2,
+              "type": "bludgeoning"
+            },
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "temperature"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": "Trafienie krytyczne powoduje nałożenie na cel 2d4 poziomów podpalenia."
+        }
+      ]
     }
   ]
 }
