@@ -14,7 +14,7 @@
 // ============================================================
 
 import {
-    CharacterState, computeStatValue, computeResourceMax, computeDamageTotal,
+    CharacterState, computeStatValue, computeUdzwigValue, computeResourceMax, computeDamageTotal,
     computePotentialAvailable, ABILITIES_CONFIG, DAMAGE_ROWS_CONFIG, formatImprovisation,
 } from './characterState.js';
 import { getOwnedItems, getItemState, formatItemPrice } from './equipmentState.js';
