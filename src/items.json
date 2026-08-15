@@ -5262,6 +5262,22 @@
           "specialEffect": "Trafienie krytyczne powoduje nałożenie na cel 2d4 poziomów podpalenia."
         }
       ]
+    },
+    {
+      "id": "custom-1786754553782-57ruj",
+      "name": "Święty Symbol",
+      "price": 25,
+      "bulk": 0.01,
+      "type": "misc",
+      "desc": "Wykonany z ładnie wyglądającego materiału symbol boga lub innego czczonego bytu.",
+      "state": "unequipped",
+      "hitPoints": 5,
+      "toughness": 2,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": []
     }
   ]
 }

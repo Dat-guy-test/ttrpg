@@ -41,12 +41,12 @@
     {
       "id": "-3",
       "name": "Urodzony Czarownik",
-      "desc": "Od urodzenia prosta magia jest czymś całkowicie dla CIebie naturalnym. Wybierz 2 zaklęcia o maksymalnej złożoności 1. Znasz te zaklęcia na pamięć i zawsze możesz je rzucić o ile spełniasz wymagania rzucenia owych czarów.",
+      "desc": "Od urodzenia prosta magia jest czymś całkowicie dla CIebie naturalnym. \n\nZyskujesz atrybut \"Wrodzona Magia\":\n\nWrodzona Magia:\n\nMagia jest dla ciebie czymś całkowicie naturalnym: znając ogłony koncept zaklęcia twoje ciało niemalże bezbłędnie wykonuje wszystkie niezbędnie czynności do jego rzucenia. Stąd możesz rzucać zaklęcia bez znajomości podstaw magii.\n\nUzyskujesz także dostęp do Leniwych Czarów: możesz niekoncentrując się na rzucaniu czaru bezpiecznie rzucić jego słabszą wersję zużywając połowę Punktów Energii. Jeżeli rzucasz leniwy czar rzuć sześć razy każdą kością w każdym teście wykonywanym w ramach rzucania zaklęcia oraz każdą kością rzucaną by określić ilość obrażeń zadawanych przez czar lub jego efekt: najniższy wyrzucony wynik jest wynikiem rzutu kością.\n\n\n\nDodatkowo zyskujesz dwa zaklęcia o maksymalnej złożoności 1 oraz poziom improwizacji w umiejętnościach: kreacja, projekcja, transmutacja, przywoływanie i destrukcja.",
       "hoverText": "",
       "fi": 23,
       "theta": 19,
       "requires": [],
-      "cost": 5,
+      "cost": 6,
       "temperature": 13000,
       "exclGroup": null,
       "effects": [
@@ -96,6 +96,12 @@
             "destruction"
           ],
           "maxComplexity": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Wrodzona Magia",
+          "description": "Magia jest dla ciebie czymś całkowicie naturalnym: znając ogłony koncept zaklęcia twoje ciało niemalże bezbłędnie wykonuje wszystkie niezbędnie czynności do jego rzucenia. Stąd możesz rzucać zaklęcia bez znajomości podstaw magii.\n\nUzyskujesz także dostęp do Leniwych Czarów: możesz niekoncentrując się na rzucaniu czaru bezpiecznie rzucić jego słabszą wersję zużywając połowę Punktów Energii. Jeżeli rzucasz leniwy czar rzuć sześć razy każdą kością w każdym teście wykonywanym w ramach rzucania zaklęcia oraz każdą kością rzucaną by określić ilość obrażeń zadawanych przez czar lub jego efekt: najniższy wyrzucony wynik jest wynikiem rzutu kością.",
+          "bonuses": []
         }
       ]
     },
@@ -175,7 +181,7 @@
       "name": "Krasnolud",
       "desc": "Jesteś krasnoludem. Krasnoludy to stworzenia o małej formie fizycznej, której lekceważenie regularnie przyczynia się do przypominania społeczeństwu o ich wielkiej wewnętrznej sile woli.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 9\nSiła Woli: 12\n\nSzybkość: 6\nBonus do udźwigu: 7\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\n\nUparci:\nKrasnoludy są znane z stawiania na swoje i niepoddawania się do ostatniego tchu:\n\nZyskujesz 1 poziom doświadczenia i improwizacji w umiejętności determinacja. Po każdej godzinie odpoczynku odzyskujesz 1d4 Punktów Energii\n\nAdaptacyjny wzrok:\nKonstrukcja krasnoludzkich oczu umożliwia im widzenie w ciemności, choć nie są w stanie rozpoznawać w jej kolorów:\n\nZyskujesz 1 poziom doświadczenia i improwizacji w umiejętności Spostrzegawczość.\nWidzisz w całkowitej ciemności, lecz nie jesteś w stanie rozpoznawać kolorów.\n\nGruboskórni:\nKrasnoludy niewiele rusza, zarówno fizycznie jak i mentalnie:\n\nZyskujesz 1 poziom doświadczenia w umiejętnościach: wigor i determinacja. Tracisz poziom doświadczenia w umiejętności intuicja.\nDodatkowo, za każdym razem gdy otrzymasz zwykłe obrażenia możesz wydać punkt energii by zmniejszyć otrzymane obrażenia o 1.\n\nCechy Fizyczne:\nWzrost: od 0,6 do 1 jednostki\nRozmiar: Mały\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 22 lat\nWiek starczy: 110 lat,\nŚrednia Długość Życia: 125 lat (średnia),\nMaksymalna Długość Życia: 150 lat",
       "hoverText": "",
-      "fi": 22.27,
+      "fi": 22.270000000000007,
       "theta": 24,
       "requires": [],
       "cost": 0,
@@ -268,7 +274,7 @@
       "name": "Elf",
       "desc": "Jesteś elfem. Elfy słyną z swojej wrodzonej zwinności i gracji a także niezwykle dobrego wzroku. W Imperium Elfy stanowią najmniej liczną poza odmieńcami grupę rozumnych stworzeń, co spowodowane jest niechęcią do spokojnego trybu życia. Stereotypowo młode elfy to stworzenia szukające przygód i ekscytujących rozrywek. Starsze elfy natomiast uważane są za niezwykle mądre.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 12\nSiła Woli: 9\n\nSzybkość: 8\nBonus do udźwigu: 2\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\n\nCzarnogrzywi wzrok:\nKonstrukcja elfich oczu umożliwia im widzenie małych detali, których nie widzą inni:\n\nZyskujesz 2 poziomy doświadczenia i 1 poziom improwizacji w umiejętności Spostrzegawczość.\nGdy wykonujesz test umiejętności, w którym duże znaczenie ma twój zmysł wzroku możesz raz przerzucić kość improwizacji.\n\nMądrość wieków:\nJako niezwykle długowieczne istoty, elfy wielce cenią sobie doświadczenie i przekazywanie go najmłodszym:\n\nZyskujesz 5 poziomów doświadczenia w wybranych umiejętnościach.\n\nSzybcy jak wiatr:\nElfy są w stanie poruszać się niezwykle szybko, choć zwykle ograniczają się, by uniknąć kontuzji:\n\nMożesz jako darmowa akcja nadwyrężyć się zyskując Punkty Akcji w liczbie połowy swojej Bystrości (Czyli w liczbie połowy Maksymalnych Punktów Akcji, zaokrąglonych w dół). Po godzinie odpoczynku jesteś w stanie ponownie nadwyrężyć swój organizm w ten sposób.\n\nCechy Fizyczne:\nWzrost: od 1,3 do 1,7 jednostki\nRozmiar: Średni lub Duży\n\nDługość życia:\nWiek dojrzałości fizycznej: od 20 do 26 lat\nWiek starczy: 125 lat,\nŚrednia Długość Życia: 150 lat (średnia),\nMaksymalna Długość Życia: 200 lat",
       "hoverText": "",
-      "fi": 25.73,
+      "fi": 25.729999999999997,
       "theta": 24,
       "requires": [],
       "cost": 0,
@@ -477,8 +483,8 @@
       "name": "Niziołek",
       "desc": "Jesteś nizołkiem. Niziołki to niewielkie stworzenia, mające tendencje do obsesyjnego zainteresowywania się jedną dziedziną. Często jednak ich zainteresowania wypychają je na przygody w celu poszukiwania wiedzy czy mitycznych artefaktów.\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 8\nSiła Woli: 11\n\nSzybkość: 6\nBonus do udźwigu: 7\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\n\nSavant:\nNiziołki często są nizwykle wybitne w jednej lub paru bardzo interesujących ich dziedzinach:\n\nOtrzymujesz trzy poziomy doświadczenia i dwa poziomy improwizacji w wybranych umiejętnościach.\n\nTrudni do trafienia:\nZ racji na swoją niewielką formę niziołki potrafią być zaskakująco trudne do trafienia:\n\nGdy twój rozmiar jest Mały zyskujesz +2 do ewazji.\n\nUrodzeni odkrywcy:\nGłód wiedzy niziołków często wypycha ich ku przygodznie, na którą zwykle są dobrze przygotowani:\n\nWiesz, w którym kierunku prawdopodobnie znajduje się najbliższe miasto lub zasiedlone miejsce, w którym kierunku jest północ i która jest godzina. Jesteś w stanie określić wiek budowli, kiedy były one ostatnio zamieszkane oraz jaka grupa je wybudowała.\nZyskujesz poziom doświadczenia i dwa poziomy improwizacji w umiejętnościach Intuicja i Wiedza Powszechna.\n\nCechy Fizyczne:\nWzrost: od 0,9 do 1,5 jednostki\nRozmiar: Mały lub Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 21 do 23 lat\nWiek starczy: 80 lat,\nŚrednia Długość Życia: 100 lat (średnia),\nMaksymalna Długość Życia: 140 lat",
       "hoverText": "",
-      "fi": 22.27,
-      "theta": 26.000000000000004,
+      "fi": 22.270000000000007,
+      "theta": 26.000000000000007,
       "requires": [],
       "cost": 0,
       "temperature": 3500,
@@ -600,8 +606,8 @@
       "name": "Półelf",
       "desc": "Jesteś półelfem. Półelfy często mylone są z elfami i ludźmi, stąd ich nazwa. I o ile mają coś z fizycznej wytrzymałości ludzi i gracji i zręczności elfów, obydwie te cechy objawiają się innaczej: wytrzymałość Półelfów objawia się niezwykłą odpornością na choroby, a ich gracja przekłada się na interakcje społeczne.\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 11\nSiła Woli: 8\n\nSzybkość: 8\nBonus do udźwigu: 2\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\nCharyzmatyczni:\nPółelfy są naturalnie uzdolnione w spokojnym rozwiązywaniu sporów.\n\nZyskujesz 2 Poziomy Doświadczenia i 1 Poziom Improwizacji w umiejętnościach: Determinacja i Instynkt.\n\nPełni Werwy:\nNiewielu widziało półelfa, któremu zabrakło energii do działania:\n\nRaz na rundę, gdy skończą Ci się Punkty Akcji zyskujesz dwa Punkty Akcji.\nDodatkowo raz między pełnymi odpoczynkami, gdy skończą Ci się Punkty Energii zyskaj dwa Punkty Energii.\n\nZdrowy jak Półelf:\nOrganizmy półelfów są niezwykle odporne na choroby i trucizny:\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wigor. Po każdej godzinie odpoczynku zaleczasz 1d6 obrażeń krytycznych od chrób i trucizn, po czym leczysz 1d4 zaleczonych obrażeń tego typu.\n\nCechy Fizyczne:\nWzrost: od 1,2 do 1,5 jednostki\nRozmiar: Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 24 lat\nWiek starczy: 100 lat,\nŚrednia Długość Życia: 135 lat (średnia),\nMaksymalna Długość Życia: 170 lat",
       "hoverText": "",
-      "fi": 25.73,
-      "theta": 26.000000000000004,
+      "fi": 25.729999999999997,
+      "theta": 26.000000000000007,
       "requires": [],
       "cost": 0,
       "temperature": 6500,
@@ -2231,14 +2237,14 @@
     {
       "id": "666",
       "name": "Początkujący Czarodziej",
-      "desc": "Czytając prace magów dowiadujesz się jak rzucać zaklęcia. \nUczysz się jednego zaklęcia o złożoności równej 1. \nZyskujesz także jeden poziom doświadczenia i improwizacji w wybranej przez siebie umiejętności.",
+      "desc": "Czytając prace magów dowiadujesz się jak rzucać zaklęcia w sposób określany jako \"magia uczonych\". Jest to styl rzucania zaklęć oparty na głębokim zrozumieniu manipulacji i natury eteru.\n\nUczysz się jednego zaklęcia o złożoności równej 1. \n\nZyskujesz także jeden poziom doświadczenia i improwizacji w wybranej przez siebie umiejętności.\n\nDodatkowo zyskujesz możliwość rzucania zaklęć przez \"Magię Uczonych\", co odzwierciedla poniższy atrybut:\n\nMagia Uczonych:\nDzięki dogłębnemu zrozumieniu swoich zaklęć jesteś w stanie stosunkowo niewielkim wysiłkiem wprowadzać drobne modyfikacje do rzucanych czarów w trakcie ich rzucania:\n1.) Możesz wydawać Punkty Energii by zwiększyć wynik dowolnego testu, który musisz wykonać jako element rzucania czaru. Każdy zużyty Punkt Energii zwiększa wynik testu o 1. Decyzję o wydaniu Punktów Energii w ten sposób podejmujesz zaraz po wykonaniu testu.\n2.) Możesz wydać Punkty Energii by zwiększyć ilość obrażeń zadawanych przez zaklęcie. Wydając ilość Punktów Energii równą kosztowi rzucenia zaklęcia możesz podwoić zadanych obrażeń. Decyzję tą możesz podjąć najpóźniej w momencie zobaczenia wyniku pierwszego rzutu na obrażenia związanego z zaklęciem.",
       "hoverText": "",
       "fi": -35,
       "theta": 41,
       "requires": [
         "5555"
       ],
-      "cost": 3,
+      "cost": 5,
       "temperature": 6500,
       "exclGroup": null,
       "effects": [
@@ -2262,6 +2268,12 @@
           "type": "skillImprovisationPoints",
           "key": null,
           "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Magia Uczonych",
+          "description": "Magia Uczonych:\nDzięki dogłębnemu zrozumieniu swoich zaklęć jesteś w stanie stosunkowo niewielkim wysiłkiem wprowadzać drobne modyfikacje do rzucanych czarów w trakcie ich rzucania:\n1.) Możesz wydawać Punkty Energii by zwiększyć wynik dowolnego testu, który musisz wykonać jako element rzucania czaru. Każdy zużyty Punkt Energii zwiększa wynik testu o 1. Decyzję o wydaniu Punktów Energii w ten sposób podejmujesz zaraz po wykonaniu testu.\n2.) Możesz wydać Punkty Energii by zwiększyć ilość obrażeń zadawanych przez zaklęcie. Wydając ilość Punktów Energii równą kosztowi rzucenia zaklęcia możesz podwoić zadanych obrażeń. Decyzję tą możesz podjąć najpóźniej w momencie zobaczenia wyniku pierwszego rzutu na obrażenia związanego z zaklęciem.",
+          "bonuses": []
         }
       ]
     },
@@ -2889,8 +2901,8 @@
     },
     {
       "id": "36737",
-      "name": "Początkujący Mag",
-      "desc": "Nauczyłęś się jednego czaru metodą prób i błędów nie znając podstaw magii. Zainsiprowało cię to do dalszego poznawania tej dziedziny wiedzy.\n\nZyskujesz poziom doświadczenia w wybranej umiejętności oraz poziom doświadczenia w umiejętności Wiedza Tajemna.\n\nZyskujesz przedmioty:\nPorządny zestaw startowy,\nMagiczna Soczewka,\nProca Kosturowa,\n1 jednostkę ołowiu transmutacyjnego,\n20 pierścieni konstancjum\n\nUczysz się jednego wybranego zaklęcia o złożoności nie większej niż 1.",
+      "name": "Zubożały Kupiec",
+      "desc": "Pomimo pochodzenia z rodziny kupieckiej lub trudzenia się tym niezwykle dochodowym, lecz niebezpicznym fachem, udało ci się utracić wszystko z wyjątkiem tego co masz na sobie oraz jednej srebrnej monety.\n\nZyskujesz poziom doświadczenia w jednej wybranej umiejętności.\n\nZyskujesz przedmioty:\nPorządny zestaw startowy,\n1 sztuka konstancjum\n\nZyskujesz atrybut \"Dola Zubożałego Kupca\":\n\nDola Zubożałego Kupca:\n\nMasz umiejętności z czasów gdy handel był bliski twojemu życiu: zawsze jesteś w stanie stwierdzić czy sztuka, pierścień lub nitka jest fałśzywa lub niewymiarowa. Znasz także ceny rynkowe wszystkich powszechnie sprzedawanych przedmiotów. Poza umiejętnościami z tamtego okresu masz także wrogów: do twojego upadku mogli przyczynić się bogaci i wpływowi rywale lub niebezpieczni bandyci, których od tego czasu wystrzegasz się jak ognia. Wpleć swoich rywali w historię swojej postaci. Gdy wykonujesz test w konflikcie przeciwko swoim rywalom zyskujesz +1 do takowego testu, z racji na znajomość ich metod działania.",
       "hoverText": "",
       "fi": 14.159999999999998,
       "theta": 16.34,
@@ -2900,25 +2912,8 @@
       "exclGroup": null,
       "effects": [
         {
-          "type": "spellSchoolUnlock",
-          "schools": [
-            "creation",
-            "projection",
-            "transmutation",
-            "summoning",
-            "destruction",
-            "unknown"
-          ],
-          "maxComplexity": 1
-        },
-        {
-          "type": "item",
-          "key": "custom-1785415432644-39zhp",
-          "amount": 1
-        },
-        {
-          "type": "item",
-          "key": "custom-1785770966176-puq70",
+          "type": "skillExperiencePoints",
+          "key": null,
           "amount": 1
         },
         {
@@ -2927,24 +2922,15 @@
           "amount": 1
         },
         {
-          "type": "item",
-          "key": "custom-1785415285370-miqs9",
-          "amount": 1
-        },
-        {
           "type": "currency",
           "key": null,
-          "amount": 100
+          "amount": 500
         },
         {
-          "type": "skillExperiencePoints",
-          "key": null,
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "wiedzaMagiczna",
-          "amount": 1
+          "type": "attribute",
+          "key": "Dola Zubożałego Kupca",
+          "description": "Masz umiejętności z czasów gdy handel był bliski twojemu życiu: zawsze jesteś w stanie stwierdzić czy sztuka, pierścień lub nitka jest fałśzywa lub niewymiarowa. Znasz także ceny rynkowe wszystkich powszechnie sprzedawanych przedmiotów. Poza umiejętnościami z tamtego okresu masz także wrogów: do twojego upadku mogli przyczynić się bogaci i wpływowi rywale lub niebezpieczni bandyci, których od tego czasu wystrzegasz się jak ognia. Wpleć swoich rywali w historię swojej postaci. Gdy wykonujesz test w konflikcie przeciwko swoim rywalom zyskujesz +1 do takowego testu, z racji na znajomość ich metod działania.",
+          "bonuses": []
         }
       ]
     },
@@ -3085,6 +3071,66 @@
           "key": "Początkujący Alchemik Bojowy",
           "description": "Uczysz się jak wytwarzać ogień alchemiczny z dostępnych na rynku minerałów. W ciągu godziny jesteś w stanie wypełnić fiolkę ogniem alchemicznym płacąc 2 pierścienie konstancjum za składniki. Możesz się także zatrudnić w pracowni alchemicznej w każdym dużym mieście zarabiając 4 nitki konstancjum za każde 5 godzin pracy. Dodatkowo twój maksymalny i efektywny zasięg rzucania flaszek i fiolek zwiększa się o 2 oraz gdy używasz flaszek i fiolek jako amunicji do procy kosturowej podstawowa celność wykonanego tą bronią ataku nie może być mniejsza niz 0.",
           "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "2365",
+      "name": "Czciciel Bogów",
+      "desc": "Twoja postać wierzy w oraz regularnie czci co najmniej jednego z Pięciu Bogów−Patronów Imperium:\n\nŚwiatłą Alysolę, patronkę Władców, Architektów, Urzędników, Rolników, Zielarzy, Lekarzy, Posłańców i Przywódców. Jej kult podkreśla wagę budowania lepszej przyszłości dla innych, ogólnie pojętego altruizmu oraz dbania o zachowanie istniejącego ładu. Jest on krytykowany z racji na bezczynność wobec członków oskarżonych o nadużycia swojej pozycji w społeczeństwie i władzy. Jej świątynie rozdają jedzenie ubogim, oferują pomoc rannym i służą jako centra administracyjne.\n\nOdważną Ritogę, patronkę najemników, dyplomatów, żołnieży, wojowników, podróżników, włóczęgów i ubogich. Jej kult podkreśla wagę aktywnej walki z zagrożeniami dla pokoju i porządku oraz walki z własnymi słabościami i problemami; zarówno w formie bezpośredniej jak i pośredniej. Wielu uważa jej kult za niebezpieczny w samej swojej naturze, choć są to głównie przesądy. Jej świątynie często stanowią schronienie dla osób sprzeciwiającym się lokalnym władzom w czasach nieprawości.\n\nPotężne Magni, które przyświeca studentom, uczonym, magom, kowalom zaklęć, alchemikom i zaklinaczom.  Kult Magni kładzie wagę na wartość wiedzy jako wartości samej w sobie oraz jako sposobowi na utrzymanie istniejącego porządku w obliczu nowych wyzwań i zagrożeń. Kult magni i wysuwane przez jego członków tezy często spotykają się z niezrozumieniem ze strony niewtajemniczonych w praktyki wyznawców Martwego Boga oraz z wizytami od Imperialnych Inkwizytorów weryfikujących bezpieczeństwo badań jego członków. Świątynie Magni zawierają wiele cennych i dostępnych dla wszystkich chętnych księgozbiorów, służąc także jako źródła wiedzy dla wszystkich mieszkańców Imperium − od ubogich rolników do królów.\n\nStworzyciela Valmaca, który jest patronem rzemieślników, majsterkowiczy, alchemików, kowali zaklęć, budowniczych oraz kreatorów. Jego kult kładzie nacisk na doskonalenie swoich umiejętności jako służba wobec korzystającej z nich szerszej społeczności. Wielu twierdzi, iż jego kult jest jedynie miejscem spotkań  kolaborujących między sobą w celu podwyższania cen cechów i kryjących się przed sprawiedliwością szarlatanów. Jego świątynie są często zarówno miejscami spotkań rzemieślników, gdzie dzielą się swoimi mniej cenionymi sekretami jak i miejscami gdzie można łatwo znaleźć pracę jako pomocnik rzemieślnika czy uzyskać zlecenie od przewodniczących cechów rzemieślniczych.\n\nZmiennego Endri, który jest patronem wędrownych trubadurów, innych muzyków, aktorów, łotrów, wyjętych spod prawa, alkoholików, chorych, kupców i ubogich. Jego kult jest kultem akcentującym podstawową wartość świadomej istoty niezaleźnie od jej stanu, potencjał do czynienia dobra przez każdego. Jest on krytykowany za krycie przestępców przed imperialną sprawiedliwością oraz za udział kupców w kulcie wierzących w to, iż oddawanie czci endriemu da im szczęście w prowadzeniu biznesów. Jego świątynie są zwykle bogate i fundowane przez kupców i nie mają nic wspólnego z czczeniem jakiegokolwiek boga, choć istnieje kilka uboższych świątyni, których kapłąni często działając nielegalnie próbują rehabilitować najgorszych z najgorszych. Dodatkowo według Imperialnego prawa na terenie świątyni Endriego nie można dokonywać aresztowań ani wykonywać wyroków, choć nierzadko zdarza się, iż ścigani chowający się w tych świątycniach są z nich wyrzucani siłą.\n\nZyskujesz mały symbol boga, w którego wierzy Twoja Postać. Jeżeli nie masz pomysłu na to jak ma wyglądać twój symbol, możesz skorzystać z poniższych sugestii:\n\nW przypadku Alysoli jest to mały złoty łańcuszek z złotym wisiorkiem z symbolem słońca.\n\nW przypadku Ritogi jest to srebrny łańcuszek z wisiorkiem z srebrnym symbolem tarczy, włóczni i pióra.\n\nW przypadku Magni jest to pierścionek z bronzu z wizerunkiem księgi.\n\nW przypadku Valmaca jest to stalowa branzoleta z symbolem młota.\n\nW przypadku Endri jest to miedziana przypinka o nieregularnym kształcie.\n\nDodatkowo religijna praktyka pomogła się rozwinąć twojej postaci. Zyskujesz poziom improwizacji w wybranej umiejętności.",
+      "hoverText": "",
+      "fi": -59.99999999999999,
+      "theta": 29.999999999999996,
+      "requires": [
+        "1"
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillImprovisationPoints",
+          "key": null,
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "473",
+      "name": "Akolita",
+      "desc": "Twoja silna wiara umożliwia Ci rzucanie zaklęć bez zrozumienia natury magii.\n\nPoznajesz jedno zaklęcie o maksymalnej złożoności 1.\n\nZyskujesz atrybut \"Boska Magia\":\n\nBoska Magia:\n\nPotrafisz rzucać zaklęcia bez zrozumienia podstaw działania magii. Gdy rzucasz zaklęcie musisz wydać dwa razy więcej Punktów Energii oraz mieć wyposażony Święty Symbol. Energii tej używasz do poruszenia mocy oddziałującej na Twoją magię z głębi eteru, którą identyfikujesz jako moc czczonego przez ciebie bytu. Moc ta wpływa na twoje zaklęcia w następujący sposób:\n\nMożesz przerzucić każdą kość rzucaną podczas każdego testu wymaganego przez zaklęcie oraz rozstrzygania ilości obrażeń zadanych przez zaklęcie. Daną kość możesz przerzucić tylko raz.",
+      "hoverText": "",
+      "fi": -59.99999999999999,
+      "theta": 34,
+      "requires": [
+        "2365"
+      ],
+      "cost": 3,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction",
+            "unknown"
+          ],
+          "maxComplexity": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Boska Magia",
+          "description": "Potrafisz rzucać zaklęcia bez zrozumienia podstaw działania magii. Gdy rzucasz zaklęcie musisz wydać dwa razy więcej Punktów Energii oraz mieć wyposażony Święty Symbol. Energii tej używasz do poruszenia mocy oddziałującej na Twoją magię z głębi eteru, którą identyfikujesz jako moc czczonego przez ciebie bytu. Moc ta wpływa na twoje zaklęcia w następujący sposób:\n\nMożesz przerzucić każdą kość rzucaną podczas każdego testu wymaganego przez zaklęcie oraz rozstrzygania ilości obrażeń zadanych przez zaklęcie. Daną kość możesz przerzucić tylko raz.",
+          "bonuses": []
+        },
+        {
+          "type": "item",
+          "key": "custom-1786754553782-57ruj",
+          "amount": 1
         }
       ]
     }
