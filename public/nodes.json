@@ -2678,7 +2678,7 @@
     {
       "id": "52523",
       "name": "Rzemieślnik",
-      "desc": "Przez pewien czas twoim zajęciem była ochrona miejscowości, kupców czy innych miejsc, za których ochronę inni byli gotowi Ci zapłacić bądź wykonałeś kilka zleceń na pozbycie się istot wyjętych spod prawa.\n\nZyskujesz poziom doświadczenia w umiejętności siła.\n\nZyskujesz przedmioty:\nSkromny Zestaw Startowy,\nPełna Przeszywanica,\nWłócznia,\n5 pierścieni konstancjum\n\nZyskujesz atrybut: \"Źródło Kontraktów Najemnika\":\n\nŹródło Kontraktów Najemnika:\nWiesz, gdzie znaleźć pracę dla siebie i swoich współpracowników. Możesz znaleźć stałą, bezpieczną pracę jako stróż, strażnik lub odstraszacz rabusi, płatną 4 nitki na osobę za pięć godzin pracy.\nAlternatywnie w każdym zamieszkanym miejscu jesteś w stanie znaleźć niebezpieczne zlecenie, którego wartość i naturę określa MG.",
+      "desc": "Być może kiedyś w twoim posiadaniu znajował się warsztat, albo udało ci się znaleźć pracę w roli pomocnika w cudzym.\n\nZyskujesz poziom doświadczenia w umiejętności majsterkowanie.\n\nZyskujesz przedmioty:\nSkromny Zestaw Startowy,\nMłot Bojowy,\nMłotek,\nPiła,\n25 Gwoździ,\n12 pierścieni konstancjum\n\nZyskujesz atrybut: \"Były Członek Cechu Rzemieślniczego\":\n\nByły Członek Cechu Rzemieślniczego:\nByłeś członkiem cechu rzemieślniczego. Znasz dobrych rzemieślników, którzy są w stanie wykonać dla ciebie przedmioty takie jak bronie, tarcze, zbroje czy narzędzia za 4/5 ceny rynkowej (zaokr. w górę). Dodatkowo znajomości te, w połączeniu z twoimi umiejętnościami pozwalają ci łatwo zatrudnić się na krótki okres czasu jako wyższy asystent w warsztacie za 3 nitki za 5 godzin ciężkiej pracy.",
       "hoverText": "",
       "fi": 8.4,
       "theta": 21.26,
@@ -3077,7 +3077,7 @@
     {
       "id": "2365",
       "name": "Czciciel Bogów",
-      "desc": "Twoja postać wierzy w oraz regularnie czci co najmniej jednego z Pięciu Bogów−Patronów Imperium:\n\nŚwiatłą Alysolę, patronkę Władców, Architektów, Urzędników, Rolników, Zielarzy, Lekarzy, Posłańców i Przywódców. Jej kult podkreśla wagę budowania lepszej przyszłości dla innych, ogólnie pojętego altruizmu oraz dbania o zachowanie istniejącego ładu. Jest on krytykowany z racji na bezczynność wobec członków oskarżonych o nadużycia swojej pozycji w społeczeństwie i władzy. Jej świątynie rozdają jedzenie ubogim, oferują pomoc rannym i służą jako centra administracyjne.\n\nOdważną Ritogę, patronkę najemników, dyplomatów, żołnieży, wojowników, podróżników, włóczęgów i ubogich. Jej kult podkreśla wagę aktywnej walki z zagrożeniami dla pokoju i porządku oraz walki z własnymi słabościami i problemami; zarówno w formie bezpośredniej jak i pośredniej. Wielu uważa jej kult za niebezpieczny w samej swojej naturze, choć są to głównie przesądy. Jej świątynie często stanowią schronienie dla osób sprzeciwiającym się lokalnym władzom w czasach nieprawości.\n\nPotężne Magni, które przyświeca studentom, uczonym, magom, kowalom zaklęć, alchemikom i zaklinaczom.  Kult Magni kładzie wagę na wartość wiedzy jako wartości samej w sobie oraz jako sposobowi na utrzymanie istniejącego porządku w obliczu nowych wyzwań i zagrożeń. Kult magni i wysuwane przez jego członków tezy często spotykają się z niezrozumieniem ze strony niewtajemniczonych w praktyki wyznawców Martwego Boga oraz z wizytami od Imperialnych Inkwizytorów weryfikujących bezpieczeństwo badań jego członków. Świątynie Magni zawierają wiele cennych i dostępnych dla wszystkich chętnych księgozbiorów, służąc także jako źródła wiedzy dla wszystkich mieszkańców Imperium − od ubogich rolników do królów.\n\nStworzyciela Valmaca, który jest patronem rzemieślników, majsterkowiczy, alchemików, kowali zaklęć, budowniczych oraz kreatorów. Jego kult kładzie nacisk na doskonalenie swoich umiejętności jako służba wobec korzystającej z nich szerszej społeczności. Wielu twierdzi, iż jego kult jest jedynie miejscem spotkań  kolaborujących między sobą w celu podwyższania cen cechów i kryjących się przed sprawiedliwością szarlatanów. Jego świątynie są często zarówno miejscami spotkań rzemieślników, gdzie dzielą się swoimi mniej cenionymi sekretami jak i miejscami gdzie można łatwo znaleźć pracę jako pomocnik rzemieślnika czy uzyskać zlecenie od przewodniczących cechów rzemieślniczych.\n\nZmiennego Endri, który jest patronem wędrownych trubadurów, innych muzyków, aktorów, łotrów, wyjętych spod prawa, alkoholików, chorych, kupców i ubogich. Jego kult jest kultem akcentującym podstawową wartość świadomej istoty niezaleźnie od jej stanu, potencjał do czynienia dobra przez każdego. Jest on krytykowany za krycie przestępców przed imperialną sprawiedliwością oraz za udział kupców w kulcie wierzących w to, iż oddawanie czci endriemu da im szczęście w prowadzeniu biznesów. Jego świątynie są zwykle bogate i fundowane przez kupców i nie mają nic wspólnego z czczeniem jakiegokolwiek boga, choć istnieje kilka uboższych świątyni, których kapłąni często działając nielegalnie próbują rehabilitować najgorszych z najgorszych. Dodatkowo według Imperialnego prawa na terenie świątyni Endriego nie można dokonywać aresztowań ani wykonywać wyroków, choć nierzadko zdarza się, iż ścigani chowający się w tych świątycniach są z nich wyrzucani siłą.\n\nZyskujesz mały symbol boga, w którego wierzy Twoja Postać. Jeżeli nie masz pomysłu na to jak ma wyglądać twój symbol, możesz skorzystać z poniższych sugestii:\n\nW przypadku Alysoli jest to mały złoty łańcuszek z złotym wisiorkiem z symbolem słońca.\n\nW przypadku Ritogi jest to srebrny łańcuszek z wisiorkiem z srebrnym symbolem tarczy, włóczni i pióra.\n\nW przypadku Magni jest to pierścionek z bronzu z wizerunkiem księgi.\n\nW przypadku Valmaca jest to stalowa branzoleta z symbolem młota.\n\nW przypadku Endri jest to miedziana przypinka o nieregularnym kształcie.\n\nDodatkowo religijna praktyka pomogła się rozwinąć twojej postaci. Zyskujesz poziom improwizacji w wybranej umiejętności.",
+      "desc": "Twoja postać wierzy w oraz regularnie czci co najmniej jednego z Pięciu Bogów−Patronów Imperium:\n\nŚwiatłą Alysolę, patronkę Władców, Architektów, Urzędników, Rolników, Zielarzy, Lekarzy, Posłańców i Przywódców. Jej kult podkreśla wagę budowania lepszej przyszłości dla innych, ogólnie pojętego altruizmu oraz dbania o zachowanie istniejącego ładu. Jest on krytykowany z racji na bezczynność wobec członków oskarżonych o nadużycia swojej pozycji w społeczeństwie i władzy. Jej świątynie rozdają jedzenie ubogim, oferują pomoc rannym i służą jako centra administracyjne.\n\nOdważną Ritogę, patronkę najemników, dyplomatów, żołnieży, wojowników, podróżników, włóczęgów i ubogich. Jej kult podkreśla wagę aktywnej walki z zagrożeniami dla pokoju i porządku oraz walki z własnymi słabościami i problemami; zarówno w formie bezpośredniej jak i pośredniej. Wielu uważa jej kult za niebezpieczny w samej swojej naturze, choć są to głównie przesądy. Jej świątynie często stanowią schronienie dla osób sprzeciwiającym się lokalnym władzom w czasach nieprawości.\n\nPotężne Magni, które przyświeca studentom, uczonym, magom, kowalom zaklęć, alchemikom i zaklinaczom.  Kult Magni kładzie wagę na wartość wiedzy jako wartości samej w sobie oraz jako sposobowi na utrzymanie istniejącego porządku w obliczu nowych wyzwań i zagrożeń. Kult magni i wysuwane przez jego członków tezy często spotykają się z niezrozumieniem ze strony niewtajemniczonych w praktyki wyznawców Martwego Boga oraz z wizytami od Imperialnych Inkwizytorów weryfikujących bezpieczeństwo badań jego członków. Świątynie Magni zawierają wiele cennych i dostępnych dla wszystkich chętnych księgozbiorów, służąc także jako źródła wiedzy dla wszystkich mieszkańców Imperium − od ubogich rolników do królów.\n\nStworzyciela Valmaca, który jest patronem rzemieślników, majsterkowiczy, alchemików, kowali zaklęć, budowniczych oraz kreatorów. Jego kult kładzie nacisk na doskonalenie swoich umiejętności jako służba wobec korzystającej z nich szerszej społeczności. Wielu twierdzi, iż jego kult jest jedynie miejscem spotkań  kolaborujących między sobą w celu podwyższania cen cechów i kryjących się przed sprawiedliwością szarlatanów. Jego świątynie są często zarówno miejscami spotkań rzemieślników, gdzie dzielą się swoimi mniej cenionymi sekretami jak i miejscami gdzie można łatwo znaleźć pracę jako pomocnik rzemieślnika czy uzyskać zlecenie od przewodniczących cechów rzemieślniczych.\n\nZmiennego Endri, który jest patronem wędrownych trubadurów, innych muzyków, aktorów, łotrów, wyjętych spod prawa, alkoholików, chorych, kupców i ubogich. Jego kult jest kultem akcentującym podstawową wartość świadomej istoty niezaleźnie od jej stanu, potencjał do czynienia dobra przez każdego. Jest on krytykowany za krycie przestępców przed imperialną sprawiedliwością oraz za udział kupców w kulcie wierzących w to, iż oddawanie czci Endriemu da im szczęście w prowadzeniu biznesów. Jego świątynie są zwykle bogate i fundowane przez kupców i nie mają nic wspólnego z czczeniem jakiegokolwiek boga, choć istnieje kilka uboższych świątyni, których kapłąni często działając nielegalnie próbują rehabilitować najgorszych z najgorszych. Dodatkowo według Imperialnego prawa na terenie świątyni Endriego nie można dokonywać aresztowań ani wykonywać wyroków, choć nierzadko zdarza się, iż ścigani chowający się w tych świątycniach są z nich wyrzucani siłą.\n\nZyskujesz mały symbol boga, w którego wierzy Twoja Postać. Jeżeli nie masz pomysłu na to jak ma wyglądać twój symbol, możesz skorzystać z poniższych sugestii:\n\nW przypadku Alysoli jest to mały złoty łańcuszek z złotym wisiorkiem z symbolem słońca.\n\nW przypadku Ritogi jest to srebrny łańcuszek z wisiorkiem z srebrnym symbolem tarczy, włóczni i pióra.\n\nW przypadku Magni jest to pierścionek z bronzu z wizerunkiem księgi.\n\nW przypadku Valmaca jest to stalowa branzoleta z symbolem młota.\n\nW przypadku Endri jest to miedziana przypinka o nieregularnym kształcie.\n\nDodatkowo religijna praktyka pomogła się rozwinąć twojej postaci. Zyskujesz poziom improwizacji w wybranej umiejętności.",
       "hoverText": "",
       "fi": -59.99999999999999,
       "theta": 29.999999999999996,
@@ -3133,6 +3133,124 @@
           "amount": 1
         }
       ]
+    },
+    {
+      "id": "2135",
+      "name": "Adherent Wiary",
+      "desc": "Zaczynasz implementować nauki wiary do swojego życia codziennego. Kapłani zauważają twój zapał i wspierają twój rozwój.\n\nZyskujesz jeden poziom doświadczenia w wybranej umiejętności.\nZyskujesz jeden poziom improwizacji w wybranej umiejętności.\n\nZyskujesz atrybut \"Adherent Wiary\":\n\nAdherent Wiary:\nTwój religijny ferwor jest oczywisty dla wszystkich kapłanów. Możesz zawsze liczyć na bezinteresowną pomoc dla siebie i swoich najbliższych w miejscach kultu twojego boga.",
+      "hoverText": "",
+      "fi": -59.99999999999999,
+      "theta": 38,
+      "requires": [
+        "473"
+      ],
+      "cost": 4,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperiencePoints",
+          "key": null,
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisationPoints",
+          "key": null,
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Adherent Wiary",
+          "description": "Twój religijny ferwor jest oczywisty dla wszystkich kapłanów. Możesz zawsze liczyć na bezinteresowną pomoc dla siebie i swoich najbliższych w miejscach kultu twojego boga.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "522",
+      "name": "Nauki w Świątyni",
+      "desc": "Pobierasz nauki w miejscach kultu swojego boga od kapłanów i innych wiernych.\n\nPoznajesz jedno zaklęcie o złożoności równej 1.\n\nZyskujesz poziom doświadczenia w wybranej umiejętności.",
+      "hoverText": "",
+      "fi": -56,
+      "theta": 36,
+      "requires": [
+        "473"
+      ],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperiencePoints",
+          "key": null,
+          "amount": 1
+        },
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction",
+            "unknown"
+          ],
+          "maxComplexity": 1
+        }
+      ]
+    },
+    {
+      "id": "245",
+      "name": "Religijny Fanatyk",
+      "desc": "Stawiasz swoją wiarę ponad wszystko inne spędzając długie godziny na realizowaniu postulatów swojej wiary oraz uczestniczysz we wszystkich religijnych uroczystościach. Widząc twój zapał kapłani pomagają ci rozwijać twoje umiejętności.\n\nZyskujesz poziom doświadczenia w wybranej umiejętności.\nZyskujesz poziom improwizacji w wybranej umiejętności.\n\nPoznajesz czar o złożoności nie większej niż 2.",
+      "hoverText": "",
+      "fi": -59.99999999999999,
+      "theta": 42,
+      "requires": [
+        "2135"
+      ],
+      "cost": 5,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction",
+            "unknown"
+          ],
+          "maxComplexity": 2
+        },
+        {
+          "type": "skillExperiencePoints",
+          "key": null,
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisationPoints",
+          "key": null,
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "834",
+      "name": "Zaprzysiężony Obrońca Wiary",
+      "desc": "Przygotowywujesz się do złożenia uroczystej przysięgi przed wiernymi, kapłanami i bogami. Przysięga ta służy ukierunkowaniu twojej działalności pozwalając ci dużo szybciej rozwinąć się w wybranym kierunku. Jednakże jeżeli twoja postać złamie przysięgę, może ona stracić wiarę w swoje umiejętności lub nawet w sens jej egzystencji, nie mówiąc o tym jak postrzegać będą ją inni wierni...",
+      "hoverText": "",
+      "fi": -80,
+      "theta": 42,
+      "requires": [
+        "2135"
+      ],
+      "cost": 0,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
     }
   ],
   "mutuallyExclusive": [

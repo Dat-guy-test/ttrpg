@@ -3,7 +3,7 @@
     {
       "id": "custom-spell-1784568188069-jx6aq",
       "name": "Stwórz Kulkę Ognia",
-      "desc": "Tworzysz niewielką kulkę ognia alchemicznego i nadajesz jej znaczącej prędkości w kierunku celu. Maksymalny zasięg ataku to 15 jednostek, efektywny zasięg to 10 jednostek.\nWykonaj test kreacji. Wynik testu jest celnością twojego ataku.\nW przypadku krytycznego trafienia zadajesz 2d4 + 2 obrażeń od temperatury, cel zyskuje 2d4 + 2 poziomów podpalenia.\nW przypadku trafienia zadajesz 2d4 obrażeń od temperatury, cel zyskuje 2d4 poziomów podpalenia.\nW przypadku nietrafienia kula ognia ląduje o 1d4−1 jednostek w losowym kierunku od celu tworząc płonący grunt na 2d12 tur w zasięgu połowy jednostki.",
+      "desc": "Tworzysz niewielką kulkę ognia alchemicznego i nadajesz jej znaczącej prędkości w kierunku celu. \n\nRzucanie i efekty zaklęcia:\n1.) Wybierz cel ataku. Maksymalny zasięg ataku to 15 jednostek, efektywny zasięg to 10 jednostek.\n2.) Wykonaj test kreacji. Wynik testu jest celnością twojego ataku:\n\nW przypadku celnego trafienia zadajesz 2d4 + 2 obrażeń od temperatury, cel zyskuje 2d4 + 2 poziomów podpalenia.\n\nW przypadku trafienia zadajesz 2d4 obrażeń od temperatury, cel zyskuje 2d4 poziomów podpalenia.\n\nW przypadku nietrafienia kula ognia ląduje o 1d4−1 jednostek w losowym kierunku od celu tworząc płonący grunt na 2d12 tur w zasięgu połowy jednostki.",
       "schools": [
         "creation"
       ],
@@ -201,7 +201,7 @@
       "schools": [
         "transmutation"
       ],
-      "complexity": 1,
+      "complexity": 2,
       "castingMethods": [
         "thought",
         "gesture",
@@ -215,6 +215,59 @@
       "channelingCost": 0,
       "requiresTransmutativeMaterial": true,
       "materialCost": 4,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1786827711816-777gp",
+      "name": "Transutacja: Metal−Powietrze",
+      "desc": "Rzucasz kawałkiem transmutacyjnego metalu i przemieniasz go w dużą masę powietrza tworząc potężny podmuch wiatru przewracający, wgniatający w ziemię lub nawet wysadzający w powietrze pobliskie istoty.\n\nRzucanie i Efekty Zaklęcia:\n1.) Wskaż puste miejsce w odległości maksymalnie 7 jednostek od twojej postaci. Miejsce to to ognisko zaklęcia. Dodatkowo wskaż czy ognisko jest nisko czy wysoko nad powierzchnią ziemi. Następnie wykonaj test siły. Jeżeli wynik tego testu jest niższy niż dystans w jednostkach do ogniska przesuń ognisko w linii prostej między Twoją Postacią a wskazanym wcześniej miejscem, tak aby był tyle jednostek od Twojej Postaci ile wynosi wynik testu.\n2.) Wykonaj test transmutacji. Wynik testu to moc zaklęcia.\n3.) Wszystkie istoty w odległości jednej jednostki od ogniska zaklęcia muszą wykonać test zręczności o poziomie trudności równym mocy zaklęcia.\n\nW przypadku krytycznego sukcesu istota opiera się strumieniowi powietrza i nie jest w jakikolwiek większy sposób dotknięta zaklęciem.\n\nW przypadku sukcesu istota pozostaje na nogach, lecz jest zmuszona cofnąć się, by uniknąć utraty równowagi i zostaje odepchnięta o jedną jednostkę w linii prostej od ogniska zaklęcia. W przypadku braku możliwości przetoczenia się pełnego dystansu z racji na przeszkodę istota otrzymuje 1 punkt obrażeń obuchowych.\n\nTo co dzieje się z istotami w przypadku porażki i krytycznej porażki zależy od tego czy ognisko zaklęcia znajdowało się nisko czy wysoko − nisko postawione ognisko wyrzuci istoty w powietrze, wysoko postanione ognisko zaś wepchnie je w grunt:\n\nDla wysoko ustanionego ogniska:\n\nW przypadku porażki istota przerwaca się na ziemię, otrzymując 1d4 obrażeń obuchowych, i przetacza się o dwie jednostki w linii prostej od ogniska zaklęcia po ziemi. W przypadku braku możliwości przetoczenia się pełnego dystansu z racji na przeszkodę istota otrzymuje 1d4 obrażeń obuchowych.\n\nW przypadku krytycznej porażki istota zostaje brutalnie rzucona o ziemię otrzymując 1d6 obrażeń obuchowych, i przesuwa się trzy jednostki w linii prostej od ogniska zaklęcia po ziemi. W przypadku braku możliwości przetoczenia się pełnego dystansu z racji na przeszkodę istota otrzymuje 1d6 obrażeń obuchowych.\n\nDla nisko ustawionego ogniska:\n\nW przypadku porażki istota zostaje wyrzucona w powietrze lecąc jedną jednostę w linii prostej od ogniska zaklęcia i otrzyumując otrzymując 1d6 obrażeń obuchowych przy lądowaniu lub 1d4 obrażeń obuchowych jeżeli wcześniej zatrzyma się na jakiejś przeszkodzie. Istota po wylądowaniu jest przewrócona.\n\nW przypadku krytycznej porażki istota zostaje wyrzucona w powietrze lecąc dwie jednostki w linii prostej od ogniska zaklęcia i otrzyumując otrzymując 1d6+1 obrażeń obuchowych przy lądowaniu lub 1d4+1 obrażeń obuchowych jeżeli wcześniej zatrzyma się na jakiejś przeszkodzie. Istota po wylądowaniu jest przewrócona.\n",
+      "schools": [
+        "transmutation"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "wordsOfPower",
+        "gesture"
+      ],
+      "channeling": false,
+      "channelingMethods": [],
+      "actionPointCost": 3,
+      "channelingActionPointCost": 0,
+      "invocationCost": 3,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": true,
+      "materialCost": 2,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1786829250018-z20om",
+      "name": "Transmutacja: Powietrze−Metal",
+      "desc": "Przemieniasz gigantyczne ilości powietrza w ołów transmutacyjny. W szóstej turze podtrzymywania tego zaklęcia otrzymujesz jedną jednostkę ołowiu transmutayjnego.",
+      "schools": [
+        "transmutation"
+      ],
+      "complexity": 3,
+      "castingMethods": [
+        "thought",
+        "wordsOfPower",
+        "gesture",
+        "arcaneLens"
+      ],
+      "channeling": true,
+      "channelingMethods": [
+        "thought",
+        "gesture",
+        "arcaneLens"
+      ],
+      "actionPointCost": 12,
+      "channelingActionPointCost": 10,
+      "invocationCost": 2,
+      "channelingCost": 2,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
       "otherPrerequisites": "",
       "effects": []
     }
