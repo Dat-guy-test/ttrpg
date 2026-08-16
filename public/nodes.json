@@ -3251,6 +3251,49 @@
       "temperature": 6000,
       "exclGroup": null,
       "effects": []
+    },
+    {
+      "id": "524",
+      "name": "Analfabeta",
+      "desc": "W trakcie swojej przeszłości twoja postać nigdy nie nauczyła się czytać ani pisać. W tym czasie robiła inne rzeczy.",
+      "hoverText": "",
+      "fi": 31,
+      "theta": 28,
+      "requires": [],
+      "cost": -2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "145",
+      "name": "Czytelnik",
+      "desc": "Potrafisz czytać w wspólnej mowie.",
+      "hoverText": "",
+      "fi": 32,
+      "theta": 31,
+      "requires": [
+        "524"
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "633",
+      "name": "Piśmienny",
+      "desc": "Twoja postać potrafi pisać tekst we wspólnej mowie.",
+      "hoverText": "",
+      "fi": 31,
+      "theta": 33,
+      "requires": [
+        "145"
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
     }
   ],
   "mutuallyExclusive": [
