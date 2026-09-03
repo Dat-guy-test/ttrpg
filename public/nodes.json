@@ -2127,7 +2127,7 @@
     },
     {
       "id": "200",
-      "name": "Utalentowany",
+      "name": "Utalentowanie",
       "desc": "Rozpoczynając życie podróżnika łatwo odkryć w sobie nowe, nieznane talenty. Zyskujesz 2 poziomy doświadczenia i 2 poziomy improwizacji w dowolnych wybranych umiejętnościach.",
       "hoverText": "",
       "fi": 0,
@@ -2153,15 +2153,15 @@
     },
     {
       "id": "1009",
-      "name": "Zatwardziały podróżnik",
+      "name": "Wytrwały Podróżnik",
       "desc": "Życie podróżnika wywiera dużą presję, która przytłacza i prowadzi do rozwoju. Zwiększ wybraną charakterystykę o 1.",
       "hoverText": "",
       "fi": 0,
-      "theta": 42,
+      "theta": 43.00000000000001,
       "requires": [
         "200"
       ],
-      "cost": 4,
+      "cost": 5,
       "temperature": 10000,
       "exclGroup": null,
       "effects": [
@@ -2195,31 +2195,21 @@
     },
     {
       "id": "1526",
-      "name": "Zielarz",
-      "desc": "Poznajesz działanie i metody przetwarzania wielu ziół.\nZyskujesz dwa poziomy doświadczenia i improwizacji w umiejętnościach Alchemia i Wiedza Medyczna. Dodatkowo zyskujesz zestaw zielarza.",
+      "name": "Podstawy Wiedzy Medycznej",
+      "desc": "Poznajesz działanie i metody przetwarzania wielu ziół oraz podstawy działania ciał świadomych istot.\n\nZyskujesz dwa poziomy doświadczenia i improwizacji w umiejętnościach Wiedza Medyczna. Dodatkowo zyskujesz zestaw zielarza.",
       "hoverText": "",
-      "fi": 4.7,
-      "theta": 41.559999999999995,
+      "fi": 12,
+      "theta": 55,
       "requires": [
-        "200"
+        "1455"
       ],
-      "cost": 4,
+      "cost": 3,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
         {
           "type": "skillExperience",
-          "key": "alchemia",
-          "amount": 2
-        },
-        {
-          "type": "skillExperience",
           "key": "wiedzaMedyczna",
-          "amount": 2
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "alchemia",
           "amount": 2
         },
         {
@@ -3077,7 +3067,7 @@
     {
       "id": "2365",
       "name": "Czciciel Bogów",
-      "desc": "Twoja postać wierzy w oraz regularnie czci co najmniej jednego z Pięciu Bogów−Patronów Imperium:\n\nŚwiatłą Alysolę, patronkę Władców, Architektów, Urzędników, Rolników, Zielarzy, Lekarzy, Posłańców i Przywódców. Jej kult podkreśla wagę budowania lepszej przyszłości dla innych, ogólnie pojętego altruizmu oraz dbania o zachowanie istniejącego ładu. Jest on krytykowany z racji na bezczynność wobec członków oskarżonych o nadużycia swojej pozycji w społeczeństwie i władzy. Jej świątynie rozdają jedzenie ubogim, oferują pomoc rannym i służą jako centra administracyjne.\n\nOdważną Ritogę, patronkę najemników, dyplomatów, żołnieży, wojowników, podróżników, włóczęgów i ubogich. Jej kult podkreśla wagę aktywnej walki z zagrożeniami dla pokoju i porządku oraz walki z własnymi słabościami i problemami; zarówno w formie bezpośredniej jak i pośredniej. Wielu uważa jej kult za niebezpieczny w samej swojej naturze, choć są to głównie przesądy. Jej świątynie często stanowią schronienie dla osób sprzeciwiającym się lokalnym władzom w czasach nieprawości.\n\nPotężne Magni, które przyświeca studentom, uczonym, magom, kowalom zaklęć, alchemikom i zaklinaczom.  Kult Magni kładzie wagę na wartość wiedzy jako wartości samej w sobie oraz jako sposobowi na utrzymanie istniejącego porządku w obliczu nowych wyzwań i zagrożeń. Kult magni i wysuwane przez jego członków tezy często spotykają się z niezrozumieniem ze strony niewtajemniczonych w praktyki wyznawców Martwego Boga oraz z wizytami od Imperialnych Inkwizytorów weryfikujących bezpieczeństwo badań jego członków. Świątynie Magni zawierają wiele cennych i dostępnych dla wszystkich chętnych księgozbiorów, służąc także jako źródła wiedzy dla wszystkich mieszkańców Imperium − od ubogich rolników do królów.\n\nStworzyciela Valmaca, który jest patronem rzemieślników, majsterkowiczy, alchemików, kowali zaklęć, budowniczych oraz kreatorów. Jego kult kładzie nacisk na doskonalenie swoich umiejętności jako służba wobec korzystającej z nich szerszej społeczności. Wielu twierdzi, iż jego kult jest jedynie miejscem spotkań  kolaborujących między sobą w celu podwyższania cen cechów i kryjących się przed sprawiedliwością szarlatanów. Jego świątynie są często zarówno miejscami spotkań rzemieślników, gdzie dzielą się swoimi mniej cenionymi sekretami jak i miejscami gdzie można łatwo znaleźć pracę jako pomocnik rzemieślnika czy uzyskać zlecenie od przewodniczących cechów rzemieślniczych.\n\nZmiennego Endri, który jest patronem wędrownych trubadurów, innych muzyków, aktorów, łotrów, wyjętych spod prawa, alkoholików, chorych, kupców i ubogich. Jego kult jest kultem akcentującym podstawową wartość świadomej istoty niezaleźnie od jej stanu, potencjał do czynienia dobra przez każdego. Jest on krytykowany za krycie przestępców przed imperialną sprawiedliwością oraz za udział kupców w kulcie wierzących w to, iż oddawanie czci Endriemu da im szczęście w prowadzeniu biznesów. Jego świątynie są zwykle bogate i fundowane przez kupców i nie mają nic wspólnego z czczeniem jakiegokolwiek boga, choć istnieje kilka uboższych świątyni, których kapłąni często działając nielegalnie próbują rehabilitować najgorszych z najgorszych. Dodatkowo według Imperialnego prawa na terenie świątyni Endriego nie można dokonywać aresztowań ani wykonywać wyroków, choć nierzadko zdarza się, iż ścigani chowający się w tych świątycniach są z nich wyrzucani siłą.\n\nZyskujesz mały symbol boga, w którego wierzy Twoja Postać. Jeżeli nie masz pomysłu na to jak ma wyglądać twój symbol, możesz skorzystać z poniższych sugestii:\n\nW przypadku Alysoli jest to mały złoty łańcuszek z złotym wisiorkiem z symbolem słońca.\n\nW przypadku Ritogi jest to srebrny łańcuszek z wisiorkiem z srebrnym symbolem tarczy, włóczni i pióra.\n\nW przypadku Magni jest to pierścionek z bronzu z wizerunkiem księgi.\n\nW przypadku Valmaca jest to stalowa branzoleta z symbolem młota.\n\nW przypadku Endri jest to miedziana przypinka o nieregularnym kształcie.\n\nDodatkowo religijna praktyka pomogła się rozwinąć twojej postaci. Zyskujesz poziom improwizacji w wybranej umiejętności.",
+      "desc": "Twoja postać wierzy w oraz regularnie czci co najmniej jednego z Pięciu Bogów−Patronów Imperium:\n\nŚwiatłą Alysolę, patronkę Władców, Architektów, Urzędników, Rolników, Zielarzy, Lekarzy, Posłańców i Przywódców. Jej kult podkreśla wagę budowania lepszej przyszłości dla innych, ogólnie pojętego altruizmu oraz dbania o zachowanie istniejącego ładu. Jest on krytykowany z racji na bezczynność wobec członków oskarżonych o nadużycia swojej pozycji w społeczeństwie i władzy. Jej świątynie rozdają jedzenie ubogim, oferują pomoc rannym i służą jako centra administracyjne.\n\nOdważną Ritogę, patronkę najemników, dyplomatów, żołnieży, wojowników, podróżników, włóczęgów i ubogich. Jej kult podkreśla wagę aktywnej walki z zagrożeniami dla pokoju i porządku oraz walki z własnymi słabościami i problemami; zarówno w formie bezpośredniej jak i pośredniej. Wielu uważa jej kult za niebezpieczny w samej swojej naturze, choć są to głównie przesądy. Jej świątynie często stanowią schronienie dla osób sprzeciwiającym się lokalnym władzom w czasach nieprawości.\n\nPotężne Magni, które przyświeca studentom, uczonym, magom, kowalom zaklęć, alchemikom i zaklinaczom.  Kult Magni kładzie wagę na wartość wiedzy jako wartości samej w sobie oraz jako sposobowi na utrzymanie istniejącego porządku w obliczu nowych wyzwań i zagrożeń. Kult magni i wysuwane przez jego członków tezy często spotykają się z niezrozumieniem ze strony niewtajemniczonych w praktyki wyznawców Martwego Boga oraz z wizytami od Imperialnych Inkwizytorów weryfikujących bezpieczeństwo badań jego członków. Świątynie Magni zawierają wiele cennych i dostępnych dla wszystkich chętnych księgozbiorów, służąc także jako źródła wiedzy dla wszystkich mieszkańców Imperium − od ubogich rolników do królów.\n\nStworzyciela Valmaca, który jest patronem rzemieślników, majsterkowiczy, alchemików, kowali zaklęć, budowniczych oraz kreatorów. Jego kult kładzie nacisk na doskonalenie swoich umiejętności jako służba wobec korzystającej z nich szerszej społeczności. Wielu twierdzi, iż jego kult jest jedynie miejscem spotkań  kolaborujących między sobą w celu podwyższania cen cechów i kryjących się przed sprawiedliwością szarlatanów. Jego świątynie są często zarówno miejscami spotkań rzemieślników, gdzie dzielą się swoimi mniej cenionymi sekretami jak i miejscami gdzie można łatwo znaleźć pracę jako pomocnik rzemieślnika czy uzyskać zlecenie od przewodniczących cechów rzemieślniczych.\n\nZmiennego Endri, który jest patronem wędrownych trubadurów, innych muzyków, aktorów, łotrów, wyjętych spod prawa, alkoholików, chorych, kupców i ubogich. Jego kult jest kultem akcentującym podstawową wartość świadomej istoty niezaleźnie od jej stanu, potencjał do czynienia dobra przez każdego. Jest on krytykowany za krycie przestępców przed imperialną sprawiedliwością oraz za udział kupców w kulcie wierzących w to, iż oddawanie czci Endriemu da im szczęście w prowadzeniu biznesów. Jego świątynie są zwykle bogate i fundowane przez kupców i nie mają nic wspólnego z czczeniem jakiegokolwiek boga, choć istnieje kilka uboższych świątyni, których kapłąni często działając nielegalnie próbują rehabilitować najgorszych z najgorszych. Dodatkowo według Imperialnego prawa na terenie świątyni Endriego nie można dokonywać aresztowań ani wykonywać wyroków, choć nierzadko zdarza się, iż ścigani chowający się w tych świątycniach są z nich wyrzucani siłą.\n\nMożesz także znaleźć się w grupie osób czczących Imperatora jako Boga, pomimo faktu, iż sam Imperaotr wydaje się być jedynie bardzo potężnym magiem. Dyktaty Imperatora (czyli jego oficjalne słowo, uznawane w Imperium za podstawę prawa) stają się dla ciebie świętością. Dyktaty Imperatora naciskają na szacunek dla porządku, starszych, równe traktowanie wszystkich świadomych istot oraz potępienie jakichkolwiek innego podejścia do demonów, ludów ich krwi oraz opętanych niż bezlitosna eksterminacja. Jego wielbiciele i czciciele często należą do wojska, a ich poglądy i zachowania najbliższe są chyba czcicielom Alysol. O ile kult Imperatora nie jest oficjalnie uznawany, to wiele miejsc poświęconych historii Imperium od stuleci jest miejscami jego kultu. Kult Imperatora składa się niemalże tylko z fanatyków, których głównym celem jest pięcie się po drabinie administracyjnej Imperium w celu „Zbliżenia się do Światła Imperatora”.\n\n\nZyskujesz mały symbol boga, w którego wierzy Twoja Postać. Jeżeli nie masz pomysłu na to jak ma wyglądać twój symbol, możesz skorzystać z poniższych sugestii:\n\nW przypadku Alysoli jest to mały złoty łańcuszek z złotym wisiorkiem z symbolem słońca.\n\nW przypadku Ritogi jest to srebrny łańcuszek z wisiorkiem z srebrnym symbolem tarczy, włóczni i pióra.\n\nW przypadku Magni jest to pierścionek z bronzu z wizerunkiem księgi.\n\nW przypadku Valmaca jest to stalowa branzoleta z symbolem młota.\n\nW przypadku Endri jest to miedziana przypinka o nieregularnym kształcie.\n\nW przypadku Imperatora jego symbolem jest symbol humanoida, trzymającego kamienną tarczę, uskrzydloną włócznię, otoczonego wodą odpierającą płomienie z emanującymi z niego promieniami światła. Z racji na skomplikowanie tego symbolu większość czcicieli Imperatora nosi jego część (np. uskrzydloną włócznię, figurę humanoidalną z promieniami światła, czy wodę odpierającą płomienie).\n\nDodatkowo religijna praktyka pomogła się rozwinąć twojej postaci. Zyskujesz poziom improwizacji w wybranej umiejętności.",
       "hoverText": "",
       "fi": -59.99999999999999,
       "theta": 29.999999999999996,
@@ -3294,6 +3284,242 @@
       "temperature": 6000,
       "exclGroup": null,
       "effects": []
+    },
+    {
+      "id": "777",
+      "name": "Motywacja",
+      "desc": "Skupiasz się na nauce walki do samego końca.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności \"Determinacja\".\nZyskujesz atrybut: \"Zmotywowanie\":\n\nZmotywowanie:\nJesteś w stanie zużyć jeden punkt motywacji by przerzucić kość wykorzystywaną do określenia wyniku wykonywanego przez ciebie testu lub kości odpowiedzialnych za zadawane bronią obrażenia. Wynikiem rzutu kością staje się wynik nowego rzutu, a stary nie ma znaczenia. Możesz przerzucić wynik jednej kości kilkukrotnie, wydając kolejne punkty motywacji. \n\nMożesz mieć maksymalnie 5 punktów motywacji.\n\nPo pełnym odpoczynku możesz zyskać jeden punkt motywacji (twój wybór). Jeżeli zyskasz w ten sposób punkt motywacji po odpoczynku, następny możesz w ten sposób zdobyć dopiero po pięciu kolejnych odpoczynkach.\n\nDodatkowo MG może przyznać twojej postaci punkt(y) motywacji gdy twoja postać osiągnie swój cel.",
+      "hoverText": "",
+      "fi": -6,
+      "theta": 43.5,
+      "requires": [
+        "200"
+      ],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "determinacja",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "determinacja",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Zmotywowanie",
+          "description": "Jesteś w stanie zużyć jeden punkt motywacji by przerzucić kość wykorzystywaną do określenia wyniku wykonywanego przez ciebie testu lub kości odpowiedzialnych za zadawane bronią obrażenia. Wynikiem rzutu kością staje się wynik nowego rzutu, a stary nie ma znaczenia. Możesz przerzucić wynik jednej kości kilkukrotnie, wydając kolejne punkty motywacji.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "778",
+      "name": "Niezwykła Motywacja",
+      "desc": "Ciężko trenując siłę swojej woli w krytycznych sytuacjach zyskujesz następujące cechy:\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności determinacja.\nZyskujesz atrybut \"Niezwykła Motywacja\":\n\nNiezwykła Motywacja:\nZamiast możliwości zyskania punktu motywacji na co piątym pełnym odpoczynku zyskujesz punkt motywacji po każdym pełnym odpoczynku.",
+      "hoverText": "",
+      "fi": -10,
+      "theta": 49,
+      "requires": [
+        "777"
+      ],
+      "cost": 5,
+      "temperature": 10000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "determinacja",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "determinacja",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Niezwykła Motywacja",
+          "description": "Zamiast możliwości zyskania punktu motywacji na co piątym pełnym odpoczynku zyskujesz punkt motywacji po każdym pełnym odpoczynku.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "414",
+      "name": "Doświadczony Podróżnik",
+      "desc": "Przeżyte przez ciebie przygody znacznie cię wzmocniły. Zwiększ wybraną charakterystykę o 1.",
+      "hoverText": "",
+      "fi": 0,
+      "theta": 46,
+      "requires": [
+        "1009"
+      ],
+      "cost": 5,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "characteristicPoints",
+          "key": null,
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "6312",
+      "name": "Zatwarziały Podróżnik",
+      "desc": "Podróżowanie stało się dla ciebie powszednie. Dni pełne rozwiązywania niebezpiecznych problemów i zadań pozwalają ci rozwijać się w oszałamiającym tępie. \n\nZwyększ wybraną charakterystykę o 2 lub dwie wybrane charakterystyki o 1.",
+      "hoverText": "",
+      "fi": 0,
+      "theta": 49,
+      "requires": [
+        [
+          "777",
+          "414"
+        ]
+      ],
+      "cost": 7,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "characteristicPoints",
+          "key": null,
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "1455",
+      "name": "Ukierunkowane Uzdolnienie",
+      "desc": "Z racji na zainteresowanie, nakaz lub potrzebę udało ci się rozwinąć niektóre umiejętności w stopniu dużo wyższym niż zwykle.\n\nZyskujesz poziom doświadczenia w dowolnej umiejętności.",
+      "hoverText": "",
+      "fi": 11.75175306054208,
+      "theta": 49.619588575807384,
+      "requires": [
+        "200"
+      ],
+      "cost": 1,
+      "temperature": 7500,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperiencePoints",
+          "key": null,
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "3467",
+      "name": "Medyk Polowy",
+      "desc": "Dzięki nauce i ćwiczeniom jesteś w stanie  szybciej leczyć stworzenia, co jest nieodzowną umiejętnością na polu walki.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna.\nZyskujesz atrybut \"Medyk Polowy\":\n\nMedyk Polowy:\nGdy zaleczasz obrażenia za pomocą przedmiotu, wiesz dokłądnie ile remedium potrzebujesz, dzięki czemu każdy przedmiot użyty w leczeniu możesz użyć dwa razy więcej razy.\n\nDodatkowo próba zaleczenia obrażeń wykonana przez ciebie nie może poskutkować zadaniem obrażeń.\n\nCo więcej, gdy zaleczasz obrażenia wykonując test wiedzy medycznej, wykonujesz to w połowę zwykłego czasu (zwykłe zaleczasz teraz w 5 minut, krytyczne od ran w 4 punkty akcji, złamania w 10 punktów akcji, obrażenia wewnętrzne w 60 punktów akcji lub pół minuty).",
+      "hoverText": "",
+      "fi": 3.65,
+      "theta": 57.39,
+      "requires": [
+        "1526"
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "wiedzaMedyczna",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "6783",
+      "name": "Zaawansowana Wiedza Medyczna",
+      "desc": "Dzięki ekstensywnemu studiowaniu ciał świadomych stworzeń i rzeczy im zagrażającym udało ci się dojść do bardzo dobrego poziomu zrozumienia medycyny.\n\nZyskujesz dwa poziomy doświadczenia i improwizacji w umiejętności Wiedza Medyczna.\nDodatkowo zyskujesz atrybut: \"Lekarz\":\n\nLekarz:\nGdy używasz wiedzy medycznej do zaleczenia obrażeń traktujesz każdy sukces jak krytyczny sukces.\n\nDodatkowo zawsze jesteś w stanie określić czy istota jest w stanie zagrożenia życia, jak daleko jest po śmierci oraz ile czasu temu zmarła istota po inspekcji. Taka inspekcja istoty zajmuje 3 Punkt Akcji.\n\nCo więcej, po zbadaniu chorego lub zatrutego pacjenta oraz obserwowaniu go przez 15 minut jesteś w stanie zaproponować lek/odtrutkę, która zaleczy wszystkie obrażenia od chorób i trucizny danego stworzenia, jeżeli takowa istnieje.",
+      "hoverText": "",
+      "fi": 12,
+      "theta": 59,
+      "requires": [
+        "1526"
+      ],
+      "cost": 7,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "wiedzaMedyczna",
+          "amount": 2
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "wiedzaMedyczna",
+          "amount": 2
+        },
+        {
+          "type": "attribute",
+          "key": "Lekarz",
+          "description": "Gdy używasz wiedzy medycznej do zaleczenia obrażeń traktujesz każdy sukces jak krytyczny sukces.\n\nDodatkowo zawsze jesteś w stanie określić czy istota jest w stanie zagrożenia życia, jak daleko jest po śmierci oraz ile czasu temu zmarła istota po inspekcji. Taka inspekcja istoty zajmuje 3 Punkt Akcji.\n\nCo więcej, po zbadaniu chorego lub zatrutego pacjenta oraz obserwowaniu go przez 15 minut jesteś w stanie zaproponować lek/odtrutkę, która zaleczy wszystkie obrażenia od chorób i trucizny danego stworzenia, jeżeli takowa istnieje.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "4231",
+      "name": "Chirurg",
+      "desc": "Dzięki ekstensywnym ćwiczeniom jesteś w stanie operować sprawnie nawet w bojowych warunkach.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna.\n\nDodatkowo zyskujesz atrybut \"Chirurg\":\n\nChirurg:\nUczysz się jak szybko i sprawnie operować na istotach bliskich śmierci. Świadoma istota nie może otrzymać prowadzących do śmierci obrażeń lub prowadzących do śmierci poziomów wykrwawienia, gdy jesteś w trakcie jej leczenia, chyba, że ich źródłem jest coś innego niż ty, istota, nad którą operujesz lub jej stan.\n\nDodatkowo zanim wykonasz test wiedzy medycznej, będący elementem rzutu na leczenie obrażeń, rzuć kością d4. W przypadku wyniku innego niż 1 na kości możesz stwierdzić, iż test zakończył się sukcesem. Nie wykonujesz wtedy owego rzutu na Wiedzę Medyczną.\n\nCo więcej, w przypadku zaleczania obrażeń wewnętrznych, usuń połowę zaleczonych punktów obrażeń (zaokrąglając w górę) w przypadku sukcesu, lub krytycznego sukcesu.",
+      "hoverText": "",
+      "fi": 3,
+      "theta": 62,
+      "requires": [
+        "6783"
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "wiedzaMedyczna",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "6334",
+      "name": "Mistyczny Konsyliarz",
+      "desc": "Uczysz się tworzyć magicznie narzędzia potrzebne do leczenia.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna oraz Wiedza Tajemna.\n\nZyskujesz atrybut: \"Mistyczny Konsyliarz\":\n\nMistyczny Konsyliarz:\nMożesz zużyć pięć Punktów Energii w celu dokonania magicznego zaleczania. Działa ono tak samo, jak zaleczanie za pomocą testu wiedzy medycznej, ale jesteś w stanie wykonywać je niezwykle szybko, zużywając zaledwie 7 Punktów Akcji (odpowidnik kilku sekund).",
+      "hoverText": "",
+      "fi": 13.000000000000002,
+      "theta": 62.26000000000001,
+      "requires": [
+        "6783"
+      ],
+      "cost": 5,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "wiedzaMedyczna",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "wiedzaMagiczna",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Mistyczny Konsyliarz",
+          "description": "Możesz zużyć pięć Punktów Energii w celu dokonania magicznego zaleczania. Działa ono tak samo, jak zaleczanie za pomocą testu wiedzy medycznej, ale jesteś w stanie wykonywać je niezwykle szybko, zużywając zaledwie 7 Punktów Akcji (odpowidnik kilku sekund).",
+          "bonuses": []
+        }
+      ]
     }
   ],
   "mutuallyExclusive": [
