@@ -204,7 +204,7 @@
         {
           "id": "akcje",
           "name": "Akcje",
-          "content": "Każda czynność w Trybie Rundowym określana jest mianem Akcji. Akcja nie znajdująca się na poniższej liście jest akcją improwizowaną, a jej szczegóły i skutki określa MG na podstawie opisu gracza. \n\nKażda akcja wymaga zużycia określonej ilości Punktów Akcji i/lub Punktów Energii. Nie możesz wykonać akcji, która zużywa więcej Punktów Akcji lub Punktów energii niż posiada Twoja postać. \n\nDodatkowo należy pamiętać, iż każda akcja składa się z dwóch faz: Deklaracji i Rozstrzygania. Po Deklaracji wszystkie istoty, które są świadome wykonywania akcji przez istotę (zazwyczaj oznacza to, że widzą ową istotę) mogą deklarować rekacje. Nie jest to już możliwe gdy rozstrzygany jest wynik akcji. Przykłądaowo po deklaracji akcji ataku cel może zadeklarować chęć wykonania kontry, uniku, odbicia lub blokowania. Jeżeli cel zadeklaruje jedynie próbę uniku i rozpocznie się rozstrzyganie akcji nie może on zdecydować się na próbę zablokowania ataku."
+          "content": "Każda czynność w Trybie Rundowym określana jest mianem Akcji. Akcja nie znajdująca się na poniższej liście jest akcją improwizowaną, a jej szczegóły i skutki określa MG na podstawie opisu gracza.\n\nMożesz wykonywać tylko jedną akcję na raz, chyba, że opisa akcji lub inna zasada stanowi innaczej. Oznacza to, że pomiędzy rozpoczęciem deklaracji jednej akcji a końcem jej rozstrzygnięcia nie możesz zadeklarować żadnej akcji.\n\nKażda akcja wymaga zużycia określonej ilości Punktów Akcji i/lub Punktów Energii. Nie możesz wykonać akcji, która zużywa więcej Punktów Akcji lub Punktów energii niż posiada Twoja postać. \n\nDodatkowo należy pamiętać, iż każda akcja składa się z dwóch faz: Deklaracji i Rozstrzygania. Po Deklaracji wszystkie istoty, które są świadome wykonywania akcji przez istotę (zazwyczaj oznacza to, że widzą ową istotę) mogą deklarować rekacje. Nie jest to już możliwe gdy rozstrzygany jest wynik akcji. Przykłądaowo po deklaracji akcji ataku cel może zadeklarować chęć wykonania kontry, uniku, odbicia lub blokowania. Jeżeli cel nie zadeklaruje wykonania żadnej z tych akcji i rozpocznie się rozstrzyganie akcji nie może on zdecydować się na np. próbę zablokowania ataku."
         },
         {
           "id": "dostępne-akcje",
@@ -214,42 +214,77 @@
         {
           "id": "atak",
           "name": "Atak",
-          "content": "Próbujesz zaatakować cel wyposażoną bronią, która posiada tryb ataku z maksymalnym zasięgiem mniejszym niż odległość celu od Twojej Postaci:\n\nDeklaracja:\n1.) Deklarujesz, którą wyposażoną bronią atakujesz.\n2.) Deklarujesz tryb ataku, którego używasz.\n3.) Deklarujesz która istota jest celem ataku.\n4.) Tracisz 3 Punkty Akcji.\n\nRozstrzyganie:\n1.) Ustal celność ataku wykonując test wpeawy broni (dodaj kość wprawy {domyślnie 1d4} do podstawowej celności używanego trybu ataku)\n2.) Rozstrzygnij reakcje na tą akcję.\n3.) Sprawdź czy atak może trafić w cel.\n4.) W przypadku trafienia porównaj celność ataku z poziomem pancerza celu. \n\nW przypadku krytycznej porażki nie zadajesz żadnych obrażeń.\n\nW przypadku porażki nie zadajesz żadnych obrażeń z wyjątkiem obrażeń obuchowych, których zadajesz połowę zaokrągloną w dół.\n\nW przypadku sukcesu zadaj takie obrażenia jak sugeruje tryb ataku (obrażenia obuchowe, cięte i kłóte licz jako zwykłe obrażenia). \n\nW przypadku krytycznego sukcesu (przebicia Poziomu Pancerza o 5) wszystkie zadane obrażenia to obrażenia krytyczne. Rzuć d6 by określić która część ciała celu otrzymała obrażenia:\n1 ‐ Lewa Noga\n2 ‐ Prawa Noga\n3 ‐ Lewa Ręka\n4 ‐ Prawa Ręka\n5 ‐ Tors\n6 ‐ Głowa\n\nAby określić efekt obrażeń krytycznych na celu przeczytaj sekcję o efekcie obrażeń krytycznych artykułu o obrażeniach."
+          "content": "Próbujesz zaatakować cel wyposażoną bronią, która posiada tryb ataku z maksymalnym zasięgiem mniejszym niż odległość celu od Twojej Postaci:\n\nDeklaracja:\n1.) Deklarujesz, którą wyposażoną bronią atakujesz.\n2.) Deklarujesz tryb ataku, którego używasz.\n3.) Deklarujesz która istota jest celem ataku.\n4.) Tracisz 3 Punkty Akcji.\n\nRozstrzyganie:\n1.) Ustal celność ataku wykonując test wpeawy broni (dodaj kość wprawy {domyślnie 1d4} do podstawowej celności używanego trybu ataku)\n2.) Rozstrzygnij wszystkie reakcje na tą akcję.\n3.) Sprawdź czy atak może trafić w cel.\n4.) W przypadku ataków dystansowych sprawdź czy atak trafi w obręb celu: porównując celność ataku z trudnością trafienia. Trudność trafienia to wartość wynosząca: \ndomyślnie 3\n+2 jeżeli cel jest istotą lub rzeczą poruszającą się\n\n+5 jeżeli cel jest poza efektywnym zasięgiem broni\n\n+5 jeżeli cel ma status „Przy Gruncie”, i atakujący jest dalej niż 1 jednostkę od celu.\n\n+5 jeżeli cel zmienił swoje położenie od początku swojej ostatniej tury\n\n+5 jeżeli wieje silny wiatr lub w powietrzu pada śnieg, grad lub pył.\n\nCelność równa lub większa od trudności trafienia oznacza trafienie.\n5.) W przypadku trafienia cel porównuje swój poziom pancerza z twoim poziomem ataku, traktując to jako test pancerza następujących skutkach:\n\nW przypadku krytycznego sukcesu porażki nie zadajesz żadnych obrażeń.\n\nW przypadku sukcesu nie zadajesz żadnych obrażeń z wyjątkiem obrażeń obuchowych, których zadajesz połowę zaokrągloną w dół.\n\nW przypadku porażki zadaj takie obrażenia jak sugeruje tryb ataku (obrażenia obuchowe, cięte i kłóte licz jako zwykłe obrażenia). \n\nW przypadku krytycznej porażki (przebicia Poziomu Pancerza o 5) wszystkie zadane obrażenia to obrażenia krytyczne. Rzuć d6 by określić która część ciała celu otrzymała obrażenia:\n1 ‐ Lewa Noga\n2 ‐ Prawa Noga\n3 ‐ Lewa Ręka\n4 ‐ Prawa Ręka\n5 ‐ Tors\n6 ‐ Głowa\n\nAby określić efekt obrażeń krytycznych na celu przeczytaj sekcję o efekcie obrażeń krytycznych artykułu o obrażeniach."
         },
         {
           "id": "ruch",
           "name": "Ruch",
-          "content": "Próbujesz ruszyć się żwawym, lecz umiarowanym tępem.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 3 Punkty Akcji.\n\nRozstrzygnięcie:\n1.) Otrzymujesz możliwość poruszenia się o ilość jednostek równą wartości twojej szybkości. Ruch ten możesz w dowolny sposób dzielić na części. Jeżeli nie wykorzystasz w pełni możliwości poruszenia się do końca swojej tury tracisz możliwość poruszania się uzyskaną z tej akcji,"
+          "content": "Próbujesz ruszyć się żwawym, lecz umiarowanym tępem.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 3 Punkty Akcji.\n\nRozstrzygnięcie:\n1.) Rozstrzygasz wszystkie reakcje na tą akcję.\n2.) Otrzymujesz możliwość poruszenia się o ilość jednostek równą wartości twojej szybkości. Ruch ten możesz w dowolny sposób dzielić na części. Jeżeli nie wykorzystasz w pełni możliwości poruszenia się do końca swojej tury tracisz możliwość poruszania się uzyskaną z tej akcji,"
         },
         {
           "id": "zakradnij-się",
           "name": "Zakradnij Się",
-          "content": "Ruszasz się powoli, lekko się schylając i starając się mninmalizować ilość wywoływanego chałasu.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 4 Punkty Akcji.\n\nRozstrzygnięcie:\n1.) Otrzymujesz możliwość poruszenia się o ilość jednostek równą połowie wartości twojej szybkości. Ruch ten możesz w dowolny sposób dzielić na części. Do początku twojej następnej tury lub uzyskania możliwości poruszania się z innego źródła (np, przez wykonanie innej akcji), zyskujesz bonus do testów na skradanie się równy +5. Jeżeli nie wykorzystasz w pełni możliwości poruszenia się do końca swojej tury tracisz możliwość poruszania się uzyskaną z tej akcji."
+          "content": "Ruszasz się powoli, lekko się schylając i starając się mninmalizować ilość wywoływanego chałasu.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 4 Punkty Akcji.\n\nRozstrzygnięcie:\n1.) Rozstrzygasz wszystkie reakcje na tą akcję.\n2.) Otrzymujesz możliwość poruszenia się o ilość jednostek równą połowie wartości twojej szybkości. Ruch ten możesz w dowolny sposób dzielić na części. Do początku twojej następnej tury lub uzyskania możliwości poruszania się z innego źródła (np, przez wykonanie innej akcji), zyskujesz bonus do testów na skradanie się równy +5. Jeżeli nie wykorzystasz w pełni możliwości poruszenia się do końca swojej tury tracisz możliwość poruszania się uzyskaną z tej akcji."
         },
         {
           "id": "padnij",
           "name": "Padnij",
-          "content": "Padasz na ziemię. \n\nDeklaracja.\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz \n\nRozstrzygnięcie:\n1.) Do momentu wstania, zyskujesz +5 do ewazji przeciwko atakom z trybów typu Rzut Bronią, Strzał z Broni oraz przeciw innym atakom i czarom posyłającym pocisk z dystansu.\n2.) Do momentu wstania, zyskujesz ‐5 do ewazji przeciwko atakom z trybów typu Atak Bronią i innym atakom i czarom polegającym na próbie trafienia wręcz.\n3.) Nie możesz użyć akcji Ruch czy Sprint do momentu wstania."
+          "content": "Padasz na ziemię. \n\nDeklaracja.\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 1 Punkt Akcji.\n\nRozstrzygnięcie:\n1.) Rozstrzygasz wszystkie reakcje na tą akcję.\n2.) Zyskujesz status „Przy Gruncie”."
         },
         {
           "id": "wstań",
           "name": "Wstań",
-          "content": "Wstajesz z ziemi.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 3 Punkty Akcji.\n\nRozstrzygnięcie:\n1.) Wstajesz."
+          "content": "Wstajesz z ziemi.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 3 Punkty Akcji.\n\nRozstrzygnięcie:\n1.) Rozstrzygasz wszystkie reakcje na tą akcję.\n2.) Wstajesz, tracąc status „Przy Gruncie”."
         },
         {
           "id": "sprint",
           "name": "Sprint",
-          "content": "Próbujesz ruszyć się tak szybko jak tylko potrafisz.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 5 Punktów Akcji.\n3.) Otrzymujesz możliwość zaplanowania ruchu o ilość jednostek równą dwukrotności wartości twojej szybkości.\n4.) Deklarujesz trasę swojego ruchu, nie dłuższą niż dwukrotność wartości twojej szybkości.\n\nRozstrzygnięcie:\n1.) Wykonujesz zadeklarowany ruch, rozpatrywany jednostka po jednostce. Możesz w dowolnym momencie ruchu zatrzymać się, choć jeżeli nie będzie to na samym końcu zadeklarowanego ruchu poruszasz się o jedną jednostkę dalej niż jesteś obecnie, zgodnie z zadeklarowanym ruchem."
+          "content": "Próbujesz ruszyć się tak szybko jak tylko potrafisz.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 5 Punktów Akcji.\n3.) Otrzymujesz możliwość zaplanowania ruchu o ilość jednostek równą dwukrotności wartości twojej szybkości.\n4.) Deklarujesz trasę swojego ruchu, nie dłuższą niż dwukrotność wartości twojej szybkości.\n\nRozstrzygnięcie:\n1.) Rozstrzygasz wszystkie reakcje na tą akcję.\n2.) Wykonujesz zadeklarowany ruch, rozpatrywany jednostka po jednostce. Możesz w dowolnym momencie ruchu zatrzymać się, choć jeżeli nie będzie to na samym końcu zadeklarowanego ruchu poruszasz się o jedną jednostkę dalej niż jesteś obecnie, zgodnie z zadeklarowanym ruchem."
         },
         {
           "id": "kontra-a-k-a-kontratak-kontrakcja",
           "name": "Kontra (a.k.a. Kontratak, Kontrakcja)",
-          "content": "Kontra, a właściwie Kontrakcja to reakcja, której możesz użyć na dowolną akcję. Jeżeli użyjesz kontry nie możesz użyć innej reakcji na tą akcję (włączając w to brak możliwości wykonania drugiej kontry).\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 1 punkt akcji.\n3.) Wybierasz akcję, którą chcesz wykonać przed akcją, na którą reagujesz.\n\nRozstrzygnięcie:\n1.) Wykonaj konkurs czasu reakcji między osobą, która wykonuje akcję, a sobą. W przypadku sukcesu wykonujesz zadeklarowaną akcje przed przeciwnikiem. W przypadku porażki wykonujesz zadeklarowaną akcję po przeciwniku."
+          "content": "Kontra, a właściwie Kontrakcja to reakcja, której możesz użyć na dowolną akcję. Jeżeli użyjesz kontry nie możesz użyć innej reakcji na tą akcję (włączając w to brak możliwości wykonania drugiej kontry).\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 1 punkt akcji.\n3.) Wybierasz akcję, którą chcesz wykonać przed akcją, na którą reagujesz.\n\nRozstrzygnięcie:\n1.) Rozstrzygasz wszystkie reakcje na tą akcję.\n2.) Wykonaj konkurs czasu reakcji między istotą, która wykonuje akcję, a sobą. W przypadku sukcesu wykonujesz zadeklarowaną akcje przed przeciwnikiem. W przypadku porażki wykonujesz zadeklarowaną akcję po przeciwniku."
         },
         {
           "id": "unik",
-          "name": "Unik",
-          "content": "Ta akcja to reakcja reprezentująca próbę uniknięcia ataku.\n\nDeklaracja:"
+          "name": "Unik (Ominięcie)",
+          "content": "Ta akcja to reakcja reprezentująca próbę uniknięcia ataku. \n\nDeklaracja:\n1.) Deklarujesz chęć wykonania uniku. Jeżeli w tym samym czasie twoja postać jest celem kilku akcji ataku lub zaklęć deklarujesz który atak/zaklęcie jest przez ciebie unikany.\n2.) Tracisz 2 punkty akcji.\n3.) Możesz zadeklarować akcje odbicia (parowania) lub blokowania {tylko jedną z nich}, pomijając zasadę o możliwości wykonywania jednej akcji jednocześnie, jeżeli nie wykonujesz już odbicia lub blokowania.\n\nRozstrzygnięcie:\n1.) Rozstrzygasz wszystkie reakcje na tą akcję.\n2.) Wykonaj test ewazji (czyli test czasu reakcji, dodając bonusy do ewazji, jeżeli jakieś tyczą się twojej postaci) o poziomie trudności równym celności unikanego ataku.\n\nW przypadku krytycznego sukcesu atak nie trafia. Dodatkowo możesz wykonać ruch na odległość maksymalnie dwóch jednostek.\n\nW przypadku sukcesu musisz spróbować wykonać ruch na odległość maksymalnie jednej jednostki. Jeżeli znajdziesz się poza zasięgiem ataku przeciwnika lub, w przypadku ataku dystansowego, usuniesz się z linii, po której leci pocisk (i obszaru ataku w przypadku ataków obszarowych) atak nie trafia.\n\nW przypadku porażki nie udaje ci się uniknąć ataku, choć możesz odsunąć się na maksymalnie jedną jednostkę po rozstrzygnięciu efektów ataku, jeżeli atak nie zmienił twojego położenia oraz jeżeli po ataku jesteś nadal w stanie się ruszyć.\n\nW przypadku krytycznej porażki nie udaje ci się uniknąć ataku."
+        },
+        {
+          "id": "odbicie-parowanie",
+          "name": "Odbicie (Parowanie)",
+          "content": "Ta (re)akcja reprezentuje próbę przekierowania ataku w ziemię, powietrze lub otaczające przedmioty. \n\nDeklaracja:\n1.) Deklarujesz chęć wykonania odbicia. Jeżeli w tym samym czasie twoja postać jest celem kilku akcji ataku lub zaklęć deklarujesz który atak/zaklęcie jest przez ciebie odbiajny.\n2.) Deklarujesz, którą wyposażoną bronią wykonujesz odbicie. Nie możesz odbić ataku dystansowego/zaklęcia, jeżeli opis wyposażonej przez ciebie broni lub posiadany przez ciebie atrybut nie mówi innaczej.\n2.) Tracisz 2 punkty akcji.\n3.) Możesz teraz zadeklarować akcje uniku, pomijając zasadę o możliwości wykonywania jednej akcji jednocześnie, jeżeli nie wykonujesz już uniku.\n\nRozstrzygnięcie:\n1.) Rozstrzygasz wszystkie reakcje na tą akcję.\n2.) Wykonaj test odbicia o poziomie trudności równym celności unikanego ataku, rzucając kością wprawy odpowiadającą używanej broni i dodając bonus do odbicia używanej broni.\n\nJeżeli odbijasz atak wręcz:\n\nW przypadku krytycznego sukcesu atak nie może trafić. Dodatkowo atakujący otrzymuje dwa poziomy wytrącenia z równowagi oraz użyta przez atakującego broń zakleszcza się w znajdującej najbliżej do ciebie powierzchni. Można ją wydobyć, podchodząc do niej, zużywając jeden punkt akcji, i wykonując test siły o poziomie trudności równym 5.\n\nW przypadku sukcesu atak nie może trafić. Dodatkowo atakujący otrzymuje poziom wytrącenia z równowagi.\n\nW przypadku porażki atak może trafić.\n\nW przypadku krytycznej porażki atak może cię trafić i zyskujesz poziom wytrącenia z równowagi.\n\nJeżeli odbijasz zaklęcia lub pocisk:\n\nW przypadku krytycznego sukcesu, atak nie może cię trafić oraz zmieniasz cel pocisku/zaklęcia na wybrany, widoczny dla ciebie cel, znajdujący się dalej od atakującego niż ty i znajdujący się nie dalej niż 5 jednostek od ciebie.\n\nW przypadku sukcesu, atak nie może cię trafić oraz pocisk, zaklęcie ląduje pięć jednostek za tobą na ziemi lub bliższej przeszkodzie.\n\nW przypadku porażki, atak może cię trafić.\n\nW przypadku krytycznej porażki atak może cię trafić i zyskujesz poziom wytrącenia z równowagi."
+        },
+        {
+          "id": "blok-blokowanie",
+          "name": "Blok (Blokowanie)",
+          "content": "Ta (re)akcja reprezentuje próbę zatrzymania ataku zanim trafi w ciebie lub twój pancerz.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania bloku. Jeżeli w tym samym czasie twoja postać jest celem kilku akcji ataku lub zaklęć deklarujesz który atak/zaklęcie jest przez ciebie blokowany.\n2.) Deklarujesz, których wyposażonych przedmiotów używasz do blokowania.\n2.) Tracisz 1 punkt akcji.\n3.) Możesz teraz zadeklarować akcje uniku, pomijając zasadę o możliwości wykonywania jednej akcji jednocześnie, jeżeli nie wykonujesz już uniku.\n\nRozstrzygnięcie:\n1.) Rozstrzygasz wszystkie reakcje na tą akcję.\n2.) Sumujesz wszystkie bonusy do blokowania od wyposażonych przedmiotów i z innych źródeł takich jak np. posiadane atrybuty. Jeżeli celność blokowanego ataku nie jest większa od tej sumy, atak nie może cię trafić i atak trafia w jeden z wykorzystywanych do blokowania przedmiotów {jeżeli ma to jakiekolwiek znaczenia wybór ten należy wykonać losowo}."
+        },
+        {
+          "id": "preemptywny-atak",
+          "name": "Wyprzedzający Atak",
+          "content": "Tą (re)akcję możesz wykorzystać gdy istota wchodzi w zasięg wyposażonej przez ciebie broni. Jest ona bardzo użyteczna, jeżeli masz wyposażoną broń o dłuższym zasięgu niż broń przeciwnika, gdyż pozwala ci ona spróbować zaatakować przynajmniej raz zanim przeciwnik będzie w stanie wykonać atak.\n\nDeklaracja:\n1.) Deklarujesz Wyprzedzający Atak.\n\nRozstrzygnięcie:\n1.) Rozstrzygnij reakcję na tą akcję.\n2.) Deklarujesz akcję Ataku, wykonując jej deklarację i ją rozstrzygając."
+        },
+        {
+          "id": "czołganie-się",
+          "name": "Czołganie się",
+          "content": "Próbujesz poruszać się, gdy jesteś Przy Gruncie.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz 2 Punkty Akcji.\n\nRozstrzygnięcie:\n1.) Rozstrzygnij wszystkie reakcje na tą akcję.\n2.) Przemieść się o maksymalnie jedną jednostkę w dowolnym kierunku, pozostając przy gruncie."
+        },
+        {
+          "id": "pochwyć",
+          "name": "Pochwyć",
+          "content": "Próbujesz pochwycić istotę oddaloną co najwyżej jedną jednostkę od ciebie. \n\nDeklaracja:\n1.) Deklarujesz chęć pochwycenia istoty oraz to, którą istotę chcesz pochwycić. Aby dokonać tej deklaracji musisz mieć przynajmniej jedną zdrową rękę, w której nie trzymasz żadnych przedmiotów.\n2.) Tracisz 2 Punkty Akcji.\n\nRozstrzygnięcie:\n1.) Rozstrzygnij wszystkie reakcje na tą akcję.\n2.) Wszystkie wyposażone bronie dwuręczne stają się przygotowane lub upuszczasz je, jeżeli nie masz jak ich przygotować.\n3.) Wykonaj test siły lub zręczności (twój wybór). Wynik tego testu jest poziomem trudności testu, który musi wykonać istota, którą próbujesz pochwycić. Istota może wykonać test siły, zręczności lub czasu reakcji (jej wybór):\n\nW przypadku krytycznego sukcesu istota nie zostaje pochwycona i otrzymujesz poziom wytrącenia z równowagi.\n\nW przypadku sukcesu istota nie zostaje pochwycona.\n\nW przypadku porażki istota zostaje pochwycona.\n\nW przypadku krytycznej porażki istota zostaje pochwycona, zyskuje poziom wytrącenia z równowagi oraz jeden punkt zwykłych obrażeń (obuchowych).\n\nJeżeli istota nie wykona testu zostaje ona pochwycona."
+        },
+        {
+          "id": "uwolnij-się",
+          "name": "Uwolnij Się",
+          "content": "Próbujesz uwolnić się z pochwycenia.\n\nDekalracja:\n1.) Deklarujesz chęć uwolnienia się.\n2.) Tracisz 6 punktów akcji.\n\nRozstrzygnięcie:\n1.) Rozstrzygnij wszystkie reakcje na tą akcję.\n2.) Wykonaj test siły. Wynik tego testu to poziom trudności testu siły lub zręczności istoty, który musi wykonać istota, która cię pochwyciła:\n\nW przypadku krytycznego sukcesu nie udaje ci się uwolnić oraz otrzymujesz jeden punkt zwykłych obrażeń.\n\nW przypadku sukcesu nie udaje ci się uwolnić.\n\nW przypadku porażki udaje ci się uwolnić.\n\nW przypadku krytycznej porażki udaje ci się uwolnić i istota przez którą twoja postać była pochwycona otrzymuje poziom wytrącenia z równowagi."
+        },
+        {
+          "id": "przewróć",
+          "name": "Przewróć",
+          "content": "Próbujesz przewrócić istotę, która nie ma statusu „Przy Gruncie”.\n\nDeklaracja:\n1.) Wybierasz istotę w zasięgu wyposażonej broni lub w odległości maksymalnie jednej jednostki, którą chcesz przewrócić.\n2.) Tracisz dwa Punkty Akcji.\n\nRozstrzygnięcie:\n1.) Wykonujesz test siły lub zręczności o poziomie trudności równym wynikowi testu celu na"
         }
       ]
     },
@@ -306,6 +341,123 @@
           "id": "zaleczanie-obrażeń-krytycznych-typu-obrażenia-od-chorób-i-trucizn",
           "name": "Zaleczanie Obrażeń Krytycznych typu Obrażenia od Chorób i Trucizn",
           "content": "Obrażenia Krytyczne typu Obrażenia od Chorób i Trucizn można próbować zaleczyć tylko za pomocą odpowiednich ziół i przedmiotów."
+        }
+      ]
+    },
+    {
+      "id": "custom-page-1788543578189-ojwsj",
+      "title": "Statusy",
+      "sections": [
+        {
+          "id": "czym-są-statusy",
+          "name": "Czym są statusy?",
+          "content": ""
+        },
+        {
+          "id": "lista-statusów",
+          "name": "Lista Statusów",
+          "content": ""
+        },
+        {
+          "id": "wytrącenie-z-równowagi",
+          "name": "Wytrącenie z równowagi",
+          "content": "Wytrącenie z Równowagi to status opisujący chwilowe utrudnienie w rucbu istoty wynikające z wymuszonego ruchu lub nagłych niespodziewanych wypadków.\n\nKażdy poziom wytrącenia z równowagi:\n-Zmniejsza wynik testów ewazji (uniku), odbicia, celności oraz zręczności istoty o 1.\n-Może zostać usunięty wydając 1 Punkt Akcji w turze danego stworzenia."
+        },
+        {
+          "id": "przy-gruncie",
+          "name": "Przy Gruncie",
+          "content": "W momencie, gdy twoja większość długości ciała twojej postaci przylega do gruntu lub innej poziomej powierzchni masz status „Przy Gruncie”. Status ten można zyskać używając akcji „Padnij”, oraz stracić używając akcji „Wstań”.\n\n1.) Do momentu wstania, zyskujesz +5 do ewazji przeciwko atakom z trybów typu Rzut Bronią, Strzał z Broni oraz przeciw innym atakom i czarom posyłającym pocisk z dystansu.\n2.) Do momentu wstania trudność trafienia ciebie atakiem dystansowym wzrasta o 5 jeżeli atakujący jest dalej niż 1 jednostkę od ciebie.\n3.) Do momentu wstania, zyskujesz ‐5 do ewazji oraz bonus do blokowania równy ‐5 przeciwko atakom z trybów typu Atak Bronią i innym atakom i czarom polegającym na próbie trafienia wręcz.\n4.) Nie możesz użyć akcji Ruch czy Sprint do momentu wstania. Zamiast nich możesz użyć akcji Czołgaj się."
+        },
+        {
+          "id": "wykrawienie",
+          "name": "Wykrawienie",
+          "content": "Wykrwawienie reprezentuje utratę krwi osłabiającą poszkodowaną w ten sposób istotę.\n\nKażdy poziom wykrwawienia:\n-Tymczasowo zmniejsza Wytrzymałość istoty o 1. (Pamiętaj, że twoja postać traci przytomność, gdy jej wytrzymałość jest równa, lub mniejsza niż suma wszystkich posiadanych punktów obrażeń, a gdy wytrzymałość jest mniejsza niż suma posiadanych krytycznych punktów obrażeń, twoja postać umiera. Stąd Wykrwawienie może doprowadzić do śmierci postaci!)\n\nJeden poziom wykrwawienia jest usuwany na koniec każdego pełnego odpoczynku."
+        },
+        {
+          "id": "podpalenie",
+          "name": "Podpalenie",
+          "content": "Podpalenie reprezentuje rozmiar i temperaturę płomieni, które znajdują się na postaci i jej wyposażeniu.\n\nGdy istota jest podpalona otrzymuje ona 1d4 obrażeń od temperatury na początku swojej tury do momentu ugaszenia się. Za każdym razem kiedy istota otrzyma te obrażenia jej poziom podpalenia zmniejsza się o 1.\n\nPodpalone stworzenie może także wykorzystać dowolną ilość punktów akcji by próbując się ugasić tarzając się po gruncie lub podłodze redukując swój poziom podpalenia o 1 za każdy wykorzystany punkt akcji, o 2 jeżeli powierzchnia jest mokra, o 5 jeżeli istota może częściowo zanurzyć się w wodzie (w tym jeżeli jest polewana wodą) lub o 10 jeżeli istota jest w stanie całkowicie zanurzyć się w wodzie.'\n\nDodatkowo każdy poziom podpalenia zmniejsza wynik wszystkich testów, wykonywanych przez istotę o 1.\n\nIstota przestaje być podpalona, jeżeli jej poziom podpalenia osiągnie 0."
+        }
+      ]
+    },
+    {
+      "id": "custom-page-1788561842924-sxbwf",
+      "title": "Testy i Konkursy",
+      "sections": [
+        {
+          "id": "testy-umiejętności",
+          "name": "Testy Umiejętności",
+          "content": "Gdy wynik działania twojej postaci lub innej istoty nie jest pewny, wynik działania rozstrzygamy wykonując test umiejętności. Wykonanie testu umiejętności polega na rzucie kością improwizacji odpowiadającą danej umiejętności i dodaniu do wyniku rzutu wartości poziomu doświadczenia danej umiejętności. W ten sposób otrzymujemy wynik testu umiejętności.\n\nWynik testu umiejętności porównujemy następnie z poziomem trudności testu, ustalanym przez zasady lub MG.\n\nTest może zakończyć się na cztery różne sposoby:\n\nkrytycznym sukcesem, jeżeli wynik testu jest większy od poziomu trudności o co najmniej 5,\nsukcesem, jeżeli wynik testu jest większy lub równy poziomowi trudności, ale nie jest krytycznym sukcesem,\nkrytyczną porażką, jeżeli wynik testu jest mniejszy od poziomu trudności o 5 lub więcej,\nlub porażką, jeżeli wynik testu jest mniejszy niż poziom trudności, ale nie jest krytyczną porażką.\n\nJeżeli w opisie testu nie jest wyszczególniona różnica między krytycznym sukcesem a sukcesem lub krytyczną porażką a porażką, przyjmij, że stopień sukcesu lub porażki nie ma znaczenia."
+        },
+        {
+          "id": "testy-inne-niż-testy-umiejętności",
+          "name": "Testy inne niż Testy Umiejętności",
+          "content": "Niektóre sytuacje wymagają rozważenia właściwości postaci, które ciężko opisać za pomocą umiejętności. Wtedy zasady proponują test polegający na portównaniu podanej w opisie wartości z poziomem trudności. W ten sposób działają na przykład testy pancerza, ewazji (uniku), blokowania, testy odbicia czy testy celności ataku.\n\nJeżeli, któryś z atrybutów daje bonus do Testów Umiejętności, nie wpływa on na tego typu Testy."
+        },
+        {
+          "id": "testy-grupowe",
+          "name": "Testy Grupowe",
+          "content": "Jeżeli więcej niż jedna postać lub istota chce wykonać wspólnie jakąś czynność bardzo często rozwiązuje się taką sytuację testem grupowym.\n\nW sytuacji, gdy sukces jednej postaci jest wystarczający do rozwiązania zadania, aby wykonać test grupowy każda postać uczestnicząca w teście wykonuje test osobno, a za wynik testu uznajemy najwyższy uzyskany wynik. W ten sposób zwykle rozpatruje się Grupowe Testy Umiejętności na Instynkt, Spostrzegawczość, Wiedzę Powszechną i Wiedzę Tajemną.\n\nW przypadku gdy postacie mogą sobie zarówno pomagać jak i przeszkadzać, wykonując test grupowy, każda postać uczestnicząca w teście wykonuje test osobno. Następnie zapisujemy wyniki wszystkich uczestników testu w kolejności od najgorszego do najlepszego. Za wartość środkową uważamy wartość w środku uporządkowanej w ten sposób listy (w przypadku parzystej liczby uczestników mamy dwie środkowe wartości).\nW takich testach określa się, czy test jest wykonany w sprzyjających czy w wrogich warunkach. Jeżeli ciężko jest to określić przyjmujemy, iż warunki są sprzyjające.\nW przypadku parzystej liczby uczestników testu w sprzyjających warunkach wybierz wyższą spośród dwóch środkowych wartości, zaś w niesprzyjających warunkach wybierz niższą wartość (jeżeli dwie środkowe wartości są takie same wybierz dowolną z nich). \nW przypadku nieparzystej liczby uczestników jeżeli jest więcej niż jeden wynik o tej samej wartości co wartość średnia, wartość średnia jest wynikiem testu. W przeciwnym razie, w sprzyjających warunkach wynikiem testu jest najmniejszy wynik wyższy od wartości średniej, zaś w niesprzyjających warunkach jest to największy wynik niższy niż wartość średnia. W ten sposób należy rozstrzygać większość Grupowych Testów Umiejetności Siły, Zręczności, Alchemii, Majsterkowania, Zaklinania, Wiedzy Medycznej, Wykuwania Zaklęć, Kreacji, Projekcji, Transmutacji, Przywoływania i Destrukcji.\n\nW przypadku, gdy porażka jednej istoty kompromituje szanse na sukces całej grupy, każda postać uczestnicząca w teście wykonuje test osobno, a za wynik Testu Grupowego uznajemy najniższy wynik. Taki charakter mają Grupowe Testy Umiejętności Wigoru, Czasu Reakcji, Determinacji i Skradania Się."
+        },
+        {
+          "id": "pomoc-w-testach",
+          "name": "Pomoc w Testach",
+          "content": "Jeżeli jedna istota wykonuje czynność i inne chcą jej pomóc, test zamienia się w test grupowy w sprzyjających warunkach.\n\nAlternatywnie grupa może wybrać jedną osobę, która prowadzi test. Prowadzący test otrzymuje wtedy po jednym przerzuceniu dowolnej kości rzucanej w teście za każdą osobę, która jest w stanie pomóc w realnym stopniu (według oceny MG, na podstawie uzasadnień graczy)."
+        },
+        {
+          "id": "konkursy-konflikt",
+          "name": "Konkursy (Konflikt)",
+          "content": "W momencie kiedy dwie strony próbują uzyskać jakiś wykluczający się, przeciwny lub ten sam cel, możliwy do uzyskania przez tylko jedną stonę i nie ma pewności, która strona wygra dochodzi do konkursu zwanego czasem konfliktem. W każdym konkursie identyfikujemy stronę z przewagą. Strona z przewagą to strona konfliktu, która broni się, próbując utrzymać obecny stan rzeczy. Jeżeli charakter sytuacji nie pozwala określić, tego kto jest tą stroną to strona, która z jakiegoś zewnętrznego powodu ma ułatwienie związane z celem ma przewagę. Następnie obydwie strony konkursu wykonują odpowiedni test. Jako pierwsza test wykonuje strona bez przewagi. Strona z przewagą wykonuje test jako pierwsza i odnosi sukces, jeżeli jej wynik jest taki sam lub wyższy niż strona bez przewagi.\n\nPrzykładowo gdy drużyna skrada się przez patrolowany obszar może dojść do konfliktu patrolu z drużyną (przeciwstawny cel, drużyna prubuje się ukryć, a patrol odszukać drużynę). W takim przypadku drużyna ma przewagę, gdyż próbuje zachować obecny stan rzeczy, czyli sytuacje, gdy drużyna jest ukryta. Patrol wykonuje więc Grupowy Test Umiejętności na Spostrzegawczość, po czym drużyna wykonuje Grupowy Test Umiejętności na Skradanie Się o poziomie trudności równym wynikowi testu. Używając zasad na Testy Grupowe możemy więc stwierdzić, iż by drużyna została ukryta najniższy wynik testu na skradanie się w drużynie musi być taki sam lub wyższy jak najlepszy wynik testu na Spostrzegawczość patrolujących."
+        },
+        {
+          "id": "bonusy-sytuacyjne",
+          "name": "Bonusy Sytuacyjne",
+          "content": "Często podczas testów umiejętności na wynik testu wpływ powinny mieć nieoczysite czynniki takie jak na przykład otoczenie postaci wykonujących test. Używamy wtedy bonusów sytuacyjnych, czyli liczb dodawanych do wyniku testu. O przyznaniu Bonusu Sytuacyjnego decyduje MG."
+        },
+        {
+          "id": "lista-bonusów-sytuacyjnych",
+          "name": "Lista Bonusów Sytuacyjnych",
+          "content": "Poniżej znajdziecie listę Bonusów Sytuacyjnyh:"
+        },
+        {
+          "id": "bonusy-sytuacyjne-siła",
+          "name": "Bonusy Sytuacyjne: Siła",
+          "content": "Jeżeli do wykonania zadania postać może wykorzystać przewagę mechaniczną (dźwignię, bloczek lub inną formę mechanizmu ułatwiającego przyłożenie siły) postać dodaje 5 do testu."
+        },
+        {
+          "id": "bonusy-sytuacyjne-wigor",
+          "name": "Bonusy Sytuacyjne: Wigor",
+          "content": "Jeżeli postać inhaluje opary z odpowiednich ziół dodaje ona 5 do wszystkich wykonywanych testów wigoru.\n\nDodatkowo jeżeli postać znajduje się w ciepłym, suchym i wygodnym miejscu (na przykład w łóźku, lub w rozłożonym w namiocie śpiworze, dodaje one 5 do wszystkich wykonywanych testów wigoru."
+        },
+        {
+          "id": "bonusy-sytuacyjne-zręczność",
+          "name": "Bonusy Sytuacyjne: Zręczność",
+          "content": "Jeżeli postać używa narzędzi zaprojektowanych w celu wykonywania danego ruchu postać dodaje 5 do odpowiednich testów zręczności."
+        },
+        {
+          "id": "bonusy-sytuacyjne-czas-reakcji",
+          "name": "Bonusy Sytuacyjne: Czas Reakcji",
+          "content": "Jeżeli postać wypije pobudzający napój dodaje ona 1 do wszystkich testów na czas reakcji przez następne 15 minut."
+        },
+        {
+          "id": "bonusy-sytuacyjne-instyknt",
+          "name": "Bonusy Sytuacyjne: Instyknt",
+          "content": "Jeżeli postać próbuje ocenić intencje innej postaci niezaznajomionej z obecnym społecznym lub kultrowym otoczeniem, albo zna jej kulturę dodaje ona 5 do odpowiednich testów na instynkt."
+        },
+        {
+          "id": "bonusy-sytuacyjne-determinacja",
+          "name": "Bonusy Sytuacyjne: Determinacja",
+          "content": "Jeżeli postać jest jeden test od osiągnięcia życiowego celu, dodaje ona 10 do tego testu, jeżeli jest to test na determinacje."
+        },
+        {
+          "id": "bonusy-sytuacyjne-spostrzegawczość",
+          "name": "Bonusy Sytuacyjne: Spostrzegawczość",
+          "content": "Jeżeli postać znajduje się ponad dwie jednostki nad obserwowanym terenem dodaje ona 5 do testów spostrzegawczości na obserwowanie tego terenu.\n\nDodatkowo jeżeli postać obserwuje płaski teren, zarośnięty na mniej niż 1/3 jednostki dodaje ona 10 do testów spostrzegawczości na obserwowanie tego terenu."
+        },
+        {
+          "id": "bonusy-sytuacyjne-skradanie-się",
+          "name": "Bonusy Sytuacyjne: Skradanie się",
+          "content": "Jeżeli postać jest zakryta przez roślinność i nie porusza się, nie może ona nie zaliczyć testu na skradanie się, jeżeli teren ten nie jest aktywnie przeczesywany.\n\nJeżeli postać używa roślinności, wody lub innych lekko ruchomych przeszkód jako osłony przy poruszaniu się przez nie, dodaje ona 10 do testów na skradanie się."
         }
       ]
     }

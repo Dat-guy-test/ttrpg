@@ -1900,11 +1900,6 @@
       "exclGroup": null,
       "effects": [
         {
-          "type": "proficiency",
-          "key": "Długie Bronie Drzewcowe",
-          "amount": 1
-        },
-        {
           "type": "skillExperience",
           "key": "zrecznosc",
           "amount": 1
@@ -1914,6 +1909,11 @@
           "key": "Bonk",
           "description": "Jeżeli atak wykonany wręcz nie trafi możesz zużyć jeden punk akcji i energii by wykonać szybki ruch bronią i zadać 1d4 − 1 obrażeń obuchowych.",
           "bonuses": []
+        },
+        {
+          "type": "proficiency",
+          "key": "Długa Broń Drzewcowa",
+          "amount": 1
         }
       ]
     },
@@ -1962,11 +1962,11 @@
     },
     {
       "id": "131",
-      "name": "Wiecznie Gotowy",
-      "desc": "Dzięki swojemu mistrzostwu w posługiwaniu się bronią miotającą jesteś w stanie określić kiedy będziesz jej używać. Zyskujesz atrybut: „Ósmy Zmysł”\nÓsmy Zmysł:\nJesteś w stanie wyczuć kiedy nadejdzie potrzeba walki. Traktujesz swoją Broń Miotającą jako zawsze przygotowaną.",
+      "name": "Wieczna Gotowość",
+      "desc": "Dzięki swojemu mistrzostwu w posługiwaniu się bronią miotającą jesteś w stanie określić kiedy będziesz jej używać. Zyskujesz atrybut: „Wieczna Gotowość”\n\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.\n\nWieczna Gotowość:\nWiedząc, że niebezpieczeństwo może nadjeść zawsze dbasz o to, żeby twoja broń była zawsze przy tobie w dostępnym miejscu. Póki nosisz ją ze sobą możesz traktować dwie wybrane bronie miotające jako zawsze przygotowane.",
       "hoverText": "",
       "fi": 20,
-      "theta": 45,
+      "theta": 50,
       "requires": [
         "100011",
         "134"
@@ -1977,34 +1977,51 @@
       "effects": [
         {
           "type": "attribute",
-          "key": "Ósmy Zmysł",
-          "description": "Jesteś w stanie wyczuć kiedy nadejdzie potrzeba walki. Traktujesz swoją Broń Miotającą jako zawsze przygotowaną.",
+          "key": "Wieczna Gotowość",
+          "description": "Wiedząc, że niebezpieczeństwo może nadjeść zawsze dbasz o to, żeby twoja broń była zawsze przy tobie w dostępnym miejscu. Póki nosisz ją ze sobą możesz traktować dwie wybrane bronie miotające jako zawsze przygotowane.",
           "bonuses": []
+        },
+        {
+          "type": "proficiency",
+          "key": "Broń Miotająca",
+          "amount": 1
         }
       ]
     },
     {
       "id": "132",
       "name": "Zawsze w Cel",
-      "desc": "Twoja nauka stzelania doprowadziła Cię do momentu gdy prawie zawsze jesteś w stanie trafić w nieruchomy cel.\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.",
+      "desc": "Twoja nauka stzelania doprowadziła Cię do momentu gdy prawie zawsze jesteś w stanie trafić w nieruchomy cel.\n\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.\n\nDodatkowo zyskujesz atrybut „Celny Strzelec”:\n\nCelny Strzelec:\nGdy wykonujesz ataki dystansowe za pomocą broni miotającej, zamiast losować część ciała, w którą trafisz możesz ją wybrać.\n\nDodatkowo zawsze jesteś w stanie trafić w nieruchomy cel z broni miotającej, jeżeli jest on w jej efektywnym zasięgu.",
       "hoverText": "",
-      "fi": 17.769999999999996,
-      "theta": 41.24999999999999,
+      "fi": 18,
+      "theta": 43,
       "requires": [
         "100011"
       ],
       "cost": 3,
       "temperature": 4500,
       "exclGroup": null,
-      "effects": []
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Broń Miotająca",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Celny Strzelec",
+          "description": "Gdy wykonujesz ataki dystansowe za pomocą broni miotającej, zamiast losować część ciała, w którą trafisz możesz ją wybrać.\n\nDodatkowo zawsze jesteś w stanie trafić w nieruchomy cel z broni miotającej, jeżeli jest on w jej efektywnym zasięgu.",
+          "bonuses": []
+        }
+      ]
     },
     {
       "id": "133",
       "name": "Zawsze z Zaskoczenia",
-      "desc": "Nauczyłeś się strzelać do powoli, przwidywalnie poruszających się celów. Zyskujesz atrybut „Zawsze z Zaskoczenia”:\nZawsze z Zaskoczenia\nJeżeli twój cel nie widzi twojego ataku wykonaj rzut na celność dwa razy. Jako wynik rzutu przyjmij lepszy wynik.",
+      "desc": "Nauczyłeś się strzelać do powoli, przwidywalnie poruszających się celów. \n\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.\nZyskujesz atrybut „Zawsze z Zaskoczenia”:\n\nZawsze z Zaskoczenia:\nJeżeli twój cel nie widzi twojego ataku wykonaj rzut na celność dwa razy. Jako wynik rzutu przyjmij lepszy wynik.",
       "hoverText": "",
       "fi": 16.96,
-      "theta": 42.5,
+      "theta": 45,
       "requires": [
         "132"
       ],
@@ -2017,16 +2034,21 @@
           "key": "Zawsze z Zaskoczenia",
           "description": "Jeżeli twój cel nie widzi twojego ataku wykonaj rzut na celność dwa razy. Jako wynik rzutu przyjmij lepszy wynik.",
           "bonuses": []
+        },
+        {
+          "type": "proficiency",
+          "key": "Broń Miotająca",
+          "amount": 1
         }
       ]
     },
     {
       "id": "134",
-      "name": "Wiecznie Czujny",
-      "desc": "Dzięki twojemu treningowi jesteś w stanie dostrzec i przewidzieć gdzie poruszy się twój cel w walce.\nZyskujesz poziom doświadczenia w umiejętności spostrzegawczość.\nZyskujesz poziom wprawy w używaniu broni miotających.",
+      "name": "Wiecznia Czujność",
+      "desc": "Dzięki twojemu treningowi jesteś w stanie dostrzec i przewidzieć gdzie poruszy się twój cel w walce.\n\nZyskujesz poziom doświadczenia w umiejętności spostrzegawczość.\n\nZyskujesz poziom wprawy w używaniu broni miotających.",
       "hoverText": "",
-      "fi": 17.769999999999996,
-      "theta": 43.74999999999999,
+      "fi": 18,
+      "theta": 47,
       "requires": [
         "133"
       ],
@@ -2105,9 +2127,9 @@
       "desc": "Dzięki swoim ekstensywnym treningom z bronią miotaną jesteś w stanie trafić tam gdzie chcesz. Zyskujesz poziom wprawy w używaniu broni miotanej. Dodatkowo zyskujesz poziom doświadczenia w umiejętności zręczność.",
       "hoverText": "",
       "fi": 25,
-      "theta": 45,
+      "theta": 48,
       "requires": [
-        "136"
+        "224"
       ],
       "cost": 4,
       "temperature": 3000,
@@ -3420,7 +3442,7 @@
       "name": "Medyk Polowy",
       "desc": "Dzięki nauce i ćwiczeniom jesteś w stanie  szybciej leczyć stworzenia, co jest nieodzowną umiejętnością na polu walki.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna.\nZyskujesz atrybut \"Medyk Polowy\":\n\nMedyk Polowy:\nGdy zaleczasz obrażenia za pomocą przedmiotu, wiesz dokłądnie ile remedium potrzebujesz, dzięki czemu każdy przedmiot użyty w leczeniu możesz użyć dwa razy więcej razy.\n\nDodatkowo próba zaleczenia obrażeń wykonana przez ciebie nie może poskutkować zadaniem obrażeń.\n\nCo więcej, gdy zaleczasz obrażenia wykonując test wiedzy medycznej, wykonujesz to w połowę zwykłego czasu (zwykłe zaleczasz teraz w 5 minut, krytyczne od ran w 4 punkty akcji, złamania w 10 punktów akcji, obrażenia wewnętrzne w 60 punktów akcji lub pół minuty).",
       "hoverText": "",
-      "fi": 3.65,
+      "fi": 3.6500000000000004,
       "theta": 57.39,
       "requires": [
         "1526"
@@ -3442,7 +3464,7 @@
       "desc": "Dzięki ekstensywnemu studiowaniu ciał świadomych stworzeń i rzeczy im zagrażającym udało ci się dojść do bardzo dobrego poziomu zrozumienia medycyny.\n\nZyskujesz dwa poziomy doświadczenia i improwizacji w umiejętności Wiedza Medyczna.\nDodatkowo zyskujesz atrybut: \"Lekarz\":\n\nLekarz:\nGdy używasz wiedzy medycznej do zaleczenia obrażeń traktujesz każdy sukces jak krytyczny sukces.\n\nDodatkowo zawsze jesteś w stanie określić czy istota jest w stanie zagrożenia życia, jak daleko jest po śmierci oraz ile czasu temu zmarła istota po inspekcji. Taka inspekcja istoty zajmuje 3 Punkt Akcji.\n\nCo więcej, po zbadaniu chorego lub zatrutego pacjenta oraz obserwowaniu go przez 15 minut jesteś w stanie zaproponować lek/odtrutkę, która zaleczy wszystkie obrażenia od chorób i trucizny danego stworzenia, jeżeli takowa istnieje.",
       "hoverText": "",
       "fi": 12,
-      "theta": 59,
+      "theta": 59.00000000000001,
       "requires": [
         "1526"
       ],
@@ -3494,7 +3516,7 @@
       "name": "Mistyczny Konsyliarz",
       "desc": "Uczysz się tworzyć magicznie narzędzia potrzebne do leczenia.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna oraz Wiedza Tajemna.\n\nZyskujesz atrybut: \"Mistyczny Konsyliarz\":\n\nMistyczny Konsyliarz:\nMożesz zużyć pięć Punktów Energii w celu dokonania magicznego zaleczania. Działa ono tak samo, jak zaleczanie za pomocą testu wiedzy medycznej, ale jesteś w stanie wykonywać je niezwykle szybko, zużywając zaledwie 7 Punktów Akcji (odpowidnik kilku sekund).",
       "hoverText": "",
-      "fi": 13.000000000000002,
+      "fi": 13.000000000000004,
       "theta": 62.26000000000001,
       "requires": [
         "6783"
@@ -3517,6 +3539,28 @@
           "type": "attribute",
           "key": "Mistyczny Konsyliarz",
           "description": "Możesz zużyć pięć Punktów Energii w celu dokonania magicznego zaleczania. Działa ono tak samo, jak zaleczanie za pomocą testu wiedzy medycznej, ale jesteś w stanie wykonywać je niezwykle szybko, zużywając zaledwie 7 Punktów Akcji (odpowidnik kilku sekund).",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "224",
+      "name": "Prosto w Cel",
+      "desc": "Udaje Ci się uzyskać dobrą celność przy rzutach bronią miotaną.\n\nZyskujesz atrybut „Prosto w Cel”:\n\nProsto w Cel:\nGdy wykonujesz atak w trybie typu „Rzut Bronią” zamiast losować, w którą część ciała trafiasz, możesz to wybrać.",
+      "hoverText": "",
+      "fi": 24.97,
+      "theta": 45.66,
+      "requires": [
+        "136"
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Prosto w Cel",
+          "description": "Gdy wykonujesz atak w trybie typu „Rzut Bronią” zamiast losować, w którą część ciała trafiasz, możesz to wybrać.",
           "bonuses": []
         }
       ]
