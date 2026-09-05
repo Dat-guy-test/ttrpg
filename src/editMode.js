@@ -1162,7 +1162,6 @@ function saveNode(node) {
     const exclMax = Number(bodyEl.querySelector('#ed-exclmax').value);
 
     if (!name) { setStatus('Name can\'t be empty.', true); return; }
-    if (!Number.isFinite(cost) || cost < 0) { setStatus('Cost must be a non-negative number.', true); return; }
     if (!Number.isFinite(temp) || temp <= 0) { setStatus('Temperature must be a positive number.', true); return; }
     if (!Number.isFinite(fiDeg) || !Number.isFinite(thDeg)) { setStatus('Fi/theta must be numbers.', true); return; }
 
@@ -1341,7 +1340,6 @@ function createNodeFromForm(fiDeg, thetaDeg) {
     const temp  = Number(bodyEl.querySelector('#new-temp').value);
 
     if (!name) { setStatus('Name can\'t be empty.', true); return; }
-    if (!Number.isFinite(cost) || cost < 0) { setStatus('Cost must be a non-negative number.', true); return; }
     if (!Number.isFinite(temp) || temp <= 0) { setStatus('Temperature must be a positive number.', true); return; }
 
     const node = AppState.tr.addNode({
