@@ -1178,7 +1178,7 @@
     {
       "id": "100008",
       "name": "Szkoła Scairp",
-      "desc": "Szkołą Scairp, zwana także Szkołą Czarnogrzywa skupia się na zadawaniu ataków z przewagą dystansu. Wojownicy specjalizujący się w walce technikami szkoły scairp wykorzystują bronie o długim drzewcu takie jak Halabardy, Piki, Młoty Wielkie czy Włócznie.\n\nRozpoczynając trening w nucie tej szkoły zwiększasz poziom swojej wprawy w walce długą bronią drzewcową.\n\nDodatkowo zyskujesz przedmiot: Włócznia.",
+      "desc": "Szkołą Scairp, zwana także Szkołą Czarnogrzywa skupia się na zadawaniu ataków z przewagą dystansu. Wojownicy specjalizujący się w walce technikami szkoły scairp wykorzystują bronie o długim drzewcu takie jak Halabardy, Piki, Młoty Wielkie czy Włócznie.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz poziom swojej wprawy w walce długą bronią drzewcową.\n\nDodatkowo zyskujesz przedmiot: Włócznia.",
       "hoverText": "",
       "fi": 59.99999999999999,
       "theta": 40,
@@ -1228,11 +1228,11 @@
       "desc": "Szkoła Stympha skupia się na doskonaleniu używania oszczepów, włóczni, lotek i innych podobnych broni miotanych.\n\nRozpoczynając praktykę umiejętności związanych z tą szkołą zyskujesz jeden poziom wprawy w broniach miotanych.\n\nDodatkowo zyskujesz przedmioty : 3 Drewniane Oszczepy.",
       "hoverText": "",
       "fi": 90,
-      "theta": 21,
+      "theta": 21.999999999999996,
       "requires": [
         "100009"
       ],
-      "cost": 2,
+      "cost": 3,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
@@ -1327,7 +1327,7 @@
       "desc": "Uczysz się panować nad zadanym ci bólem, dzięki czemu staje się on dla ciebie bardziej motywacją niż przeszkodą.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności determinacja.\n\nZyskujesz Atrybut:\n\nMistrz Boleści:\nMożesz zadeklarować wykonanie kontry do następnej akcji atakującego lub zakończenia jego tury jeśli nie wykona w niej kolejnej akcji w momencie otrzymania od niego obrażeń. Atak bronią białą wykonany w ramach tej kontry zadaje o tyle punktów obrażeń każdego typu więcej ile w sumie otrzymała twoja postać w ostatnim otrzymanym ataklu lub maksimum możliwych do zadania obrażeń ‒ przy czym wybierasz mniejszą z tych dwóch wartości.",
       "hoverText": "",
       "fi": 130,
-      "theta": 52.00000000000001,
+      "theta": 52.000000000000014,
       "requires": [
         "100018"
       ],
@@ -1934,7 +1934,7 @@
       "desc": "Na wzór wiwern uczysz się skupiać w niemalże nadnaturalny sposób, co umożliwia ci niezwykle dokładne trafianie celów.\n\nDodatkowo zwiększasz swój poziom wprawy w sztyletach o 1.\n\nZyskujesz atrybut „Celność Wiwerny”:\n\nCelność Wiwerny:\nPrzed wykonaniem rzutu na celność ataku możesz wydać do pięciu punktów energii. Za każdy wydany punkt energii zwiększ podstawową celność wykorzystywanego trybu ataku o 1.\n\nDodatkowo, gdy wykonujesz atak sztyletem zamiast losować, w którą część ciała trafisz możesz wybrać część ciała, w którą trafisz.\n",
       "hoverText": "",
       "fi": 29.999999999999996,
-      "theta": 43,
+      "theta": 43.00000000000001,
       "requires": [
         "123"
       ],
@@ -1958,7 +1958,7 @@
     {
       "id": "125",
       "name": "Sposób na Siłę",
-      "desc": "Ciągłe używanie ciężkich broni to świetny sposób na zakwasy, a co za tym idzie trening siłowy.\n\nZyskujesz 2 poziomy doświadczenia i jeden poziom improwizacji w umiejętności siła.\n\nDodatkowo zyskujesz poziom wprawy w używaniu długich broni drzewcowych.",
+      "desc": "Ciągłe używanie ciężkich broni to świetny sposób na zakwasy, a co za tym idzie trening siłowy.\n\nZyskujesz 2 poziomy doświadczenia i jeden poziom improwizacji w umiejętności siła.\n\nDodatkowo zyskujesz poziom wprawy w używaniu długich broni drzewcowych.\n\nCo więcej zyskujesz atrybut „Siłacz”:\n\nSiłacz:\nMożesz wyposażyć i efektywnie dzierżyć przedmioty, pomimo nie posaidania wymaganego poziomu siły.",
       "hoverText": "",
       "fi": 59.99999999999999,
       "theta": 45,
@@ -1983,13 +1983,19 @@
           "type": "proficiency",
           "key": "Długa Broń Drzewcowa",
           "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Siłacz",
+          "description": "Możesz wyposażyć i efektywnie dzierżyć przedmioty, pomimo nie posaidania wymaganego poziomu siły.",
+          "bonuses": []
         }
       ]
     },
     {
       "id": "126",
       "name": "Sposób na Wprawę",
-      "desc": "Rygorystyczne ćwiczenia z odpowiednio oddaloną kukłą pozwalają Ci długich broni drzewcowych jako do wytrącania przeciwników z równowagi.\n\nZyskujesz poziom wprawy w używaniu długich broni drzewcocyh oraz atut „Hakier”:\nHakier:\nUżywając hakopodobnych obuchów długich broni drzewcowych, konkretniej Partyzany, Halabardy i Młota Wielkiego możesz wykonać akcję:\nPrzewróć przeciwnika (koszt 2 Punkty Akcji): rozstrzygnij konkurs celności twojego ataku i zręczności przeciwnika.\nW przypadku krytycznego sukcesu, przewracasz przeciwnika zadając mu 1d4 obrażeń obuchowych LUB pozbawiasz przeciwnika jednego z wyposażonych w dłoniach przedmiotów: zahaczony przedmiot ląduje u twoich stóp.\nW przypadku sukcesu: przeciwnik otrzymuje 2 poziomy wytrącenia z równowagi LUB wytrącasz wyposażony przez przeciwnika przedmiot, który ląduje 1 jednostkę od przeciwnika (w losowym kierunku).\nW przypadku porażki: nic się nie dzieje.\nW przypadku krytycznej porażki: twoja broń, której użyłeś w tej akcji wyślizguje Ci się z rąk spadając pod stopami przeciwnika LUB zyskujesz 2 poziomy wytrącenia z równowagi (twój wybór).",
+      "desc": "Rygorystyczne ćwiczenia z odpowiednio oddaloną kukłą pozwalają Ci długich broni drzewcowych jako do wytrącania przeciwników z równowagi.\n\nZyskujesz poziom wprawy w używaniu długich broni drzewcocyh oraz atrybut „Hakier”:\n\nHakier:\nUżywając hakopodobnych obuchów długich broni drzewcowych, konkretniej Partyzany, Halabardy i Młota Wielkiego możesz wykonać akcję wzmocnioną Przewrócenia lub Rozbrojenia: możesz raz przerzucić kość używaną w teście wyznaczającym poziom trudności testu obronnego celu.",
       "hoverText": "",
       "fi": 59.99999999999999,
       "theta": 50,
@@ -2001,28 +2007,27 @@
       "exclGroup": null,
       "effects": [
         {
-          "type": "attribute",
-          "key": "Hakier",
-          "description": "Używając hakopodobnych obuchów długich broni drzewcowych, konkretniej Partyzany, Halabardy i Młota Wielkiego możesz wykonać akcję:\nPrzewróć przeciwnika (koszt 2 Punkty Akcji): rozstrzygnij konkurs celności twojego ataku i zręczności przeciwnika.\nW przypadku krytycznego sukcesu, przewracasz przeciwnika zadając mu 1d4 obrażeń obuchowych LUB pozbawiasz przeciwnika jednego z wyposażonych w dłoniach przedmiotów: zahaczony przedmiot ląduje u twoich stóp.\nW przypadku sukcesu: przeciwnik otrzymuje 2 poziomy wytrącenia z równowagi LUB wytrącasz wyposażony przez przeciwnika przedmiot, który ląduje 1 jednostkę od przeciwnika (w losowym kierunku).\nW przypadku porażki: nic się nie dzieje.\nW przypadku krytycznej porażki: twoja broń, której użyłeś w tej akcji wyślizguje Ci się z rąk spadając pod stopami przeciwnika LUB zyskujesz 2 poziomy wytrącenia z równowagi (twój wybór).",
-          "bonuses": []
-        },
-        {
           "type": "proficiency",
           "key": "Długa Broń Drzewcowa",
           "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Hakier",
+          "description": "Używając hakopodobnych obuchów długich broni drzewcowych, konkretniej Partyzany, Halabardy i Młota Wielkiego możesz wykonać akcję wzmocnioną Przewrócenia lub Rozbrojenia: możesz raz przerzucić kość używaną w teście wyznaczającym poziom trudności testu obronnego celu.",
+          "bonuses": []
         }
       ]
     },
     {
       "id": "128",
       "name": "Sposób na Trafienie",
-      "desc": "Trafienie ruszających się istot kawałkiem metalu zatkniętym na kilkumetrowym drągu nie należy do najłatwiejszych. Ćwicząc się w tej sztuce zyskujesz:\nPoziom wprawy w długich broniach drzewcowych.\nJeden poziom doświadczenia w umiejętności zręczność.\nAtut „Bonk”:\nBonk:\nJeżeli atak wykonany wręcz nie trafi możesz zużyć jeden punk akcji i energii by wykonać szybki ruch bronią i zadać 1d4 − 1 obrażeń obuchowych.",
+      "desc": "Trafienie ruszających się istot kawałkiem metalu zatkniętym na kilkumetrowym drągu nie należy do najłatwiejszych. Ćwicząc się w tej sztuce zyskujesz:\n\nPoziom wprawy w długich broniach drzewcowych.\n\nJeden poziom doświadczenia w umiejętności zręczność.\n\nAtrybut „Bonk”:\n\nBonk:\nJeżeli atak wykonany wręcz nie trafi możesz zużyć jeden punk akcji i energii by wykonać szybki ruch bronią i zadać 1d4 − 1 obrażeń obuchowych.",
       "hoverText": "",
       "fi": 59.99999999999999,
       "theta": 55,
       "requires": [
-        "126",
-        "130"
+        "126"
       ],
       "cost": 4,
       "temperature": 10000,
@@ -2049,12 +2054,12 @@
     {
       "id": "129",
       "name": "Sposób na Więcej Siły",
-      "desc": "Wskutek codziennych ćwiczeń z ciężką i niewyważoną bronią zyskujesz:\nDwa poziomy doświadczenia w umiejętności siła.",
+      "desc": "Wskutek codziennych ćwiczeń z ciężką i niewyważoną bronią zyskujesz:\n\nDwa poziomy doświadczenia w umiejętności siła.\n\nAtrybut „Wielki Zamach”:\n\nWielki Zamach:\nPodczas deklaracji ataku możesz wydać jeden Punkt Akcji i jeden Punkt Energii by wykonać szeroki zamach. Jeżeli twój atak nie trafi w przeciwnika, możesz natychmiast po rozstrzygnięciu akcjia ataku powtórzyć atak na innym przeciwniku nie zużywając Punktów Akcji. Dodatkowo, jeżeli twój pierwszy atak trafi i zadasz obrażenia krytyczne, każda kość służąca do określania ilości zadawanych obrażeń, na której wypadła wartość niższa od średniej może zostać przerzucona, póki jej wartość jest niższa od średniej.",
       "hoverText": "",
-      "fi": 65,
-      "theta": 55,
+      "fi": 59.99999999999999,
+      "theta": 65,
       "requires": [
-        "126"
+        "130"
       ],
       "cost": 3,
       "temperature": 6000,
@@ -2064,18 +2069,24 @@
           "type": "skillExperience",
           "key": "sila",
           "amount": 2
+        },
+        {
+          "type": "attribute",
+          "key": "Wielki Zamach",
+          "description": "Podczas deklaracji ataku możesz wydać jeden Punkt Akcji i jeden Punkt Energii by wykonać szeroki zamach. Jeżeli twój atak nie trafi w przeciwnika, możesz natychmiast po rozstrzygnięciu akcjia ataku powtórzyć atak na innym przeciwniku nie zużywając Punktów Akcji. Dodatkowo, jeżeli twój pierwszy atak trafi i zadasz obrażenia krytyczne, każda kość służąca do określania ilości zadawanych obrażeń, na której wypadła wartość niższa od średniej może zostać przerzucona, póki jej wartość jest niższa od średniej.",
+          "bonuses": []
         }
       ]
     },
     {
       "id": "130",
       "name": "Sposób na Zasięg",
-      "desc": "Czasami posiadając nawet długą broń nie dosięgniesz tych przeciwników, których chesz dosięgnąć. Zyskujesz atut „Ślamazarny Wypad”\nŚlamazarny Wypad:\nWykonujesz wypad, nawet, jeżeli twój styl walki i broń czynią to trudnym. Jeżeli w trakcie wykonywania ataku zadeklarujesz chęć skorzystania z tego atrybutu, twój maksymalny zasięg zwiękasz się o 1 na czas wykonywania ataku, a jego celność zmniejsza się o 1d4−1.",
+      "desc": "Czasami posiadając nawet długą broń nie dosięgniesz tych przeciwników, których chesz dosięgnąć. \n\nZyskujesz poziom wprawy w używaniu długich broni drzewcowych.\n\nDodatkowo zyskujesz atut „Ślamazarny Wypad”\n\nŚlamazarny Wypad:\nWykonujesz wypad, nawet, jeżeli twój styl walki i broń czynią to trudnym. Jeżeli w trakcie wykonywania ataku zadeklarujesz chęć skorzystania z tego atrybutu, twój maksymalny zasięg zwiękasz się o 1 na czas wykonywania ataku, a jego celność zmniejsza się o 1d4−1.",
       "hoverText": "",
-      "fi": 55,
-      "theta": 55,
+      "fi": 59.99999999999999,
+      "theta": 59.99999999999999,
       "requires": [
-        "126"
+        "128"
       ],
       "cost": 3,
       "temperature": 10000,
@@ -2086,6 +2097,11 @@
           "key": "Ślamazarny Wypad",
           "description": "Wykonujesz wypad, nawet, jeżeli twój styl walki i broń czynią to trudnym. Jeżeli w trakcie wykonywania ataku zadeklarujesz chęć skorzystania z tego atrybutu, twój maksymalny zasięg zwiękasz się o 1 na czas wykonywania ataku, a jego celność zmniejsza się o 1d4−1.",
           "bonuses": []
+        },
+        {
+          "type": "proficiency",
+          "key": "Długa Broń Drzewcowa",
+          "amount": 1
         }
       ]
     },
@@ -2122,7 +2138,7 @@
       "name": "Zawsze w Cel",
       "desc": "Twoja nauka stzelania doprowadziła Cię do momentu gdy prawie zawsze jesteś w stanie trafić w nieruchomy cel.\n\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.\n\nDodatkowo zyskujesz atrybut „Celny Strzelec”:\n\nCelny Strzelec:\nGdy wykonujesz ataki dystansowe za pomocą broni miotającej, zamiast losować część ciała, w którą trafisz możesz ją wybrać.\n\nDodatkowo zawsze jesteś w stanie trafić w nieruchomy cel z broni miotającej, jeżeli jest on w jej efektywnym zasięgu.",
       "hoverText": "",
-      "fi": 118,
+      "fi": 118.00000000000001,
       "theta": 23,
       "requires": [
         "100011"
@@ -2176,7 +2192,7 @@
       "name": "Wiecznia Czujność",
       "desc": "Dzięki twojemu treningowi jesteś w stanie dostrzec i przewidzieć gdzie poruszy się twój cel w walce.\n\nZyskujesz poziom doświadczenia w umiejętności spostrzegawczość.\n\nZyskujesz poziom wprawy w używaniu broni miotających.",
       "hoverText": "",
-      "fi": 118,
+      "fi": 118.00000000000001,
       "theta": 27,
       "requires": [
         "133"
@@ -2200,10 +2216,10 @@
     {
       "id": "135",
       "name": "Rzut Ukośny",
-      "desc": "Uczysz się lepiej przewidywać tor lotu rzucanych przez Ciebie broni. Zyskujesz poziom wprawy w używaniu broni miotanych oraz poziom doświadczenia w umiejętności spostrzegawczość.",
+      "desc": "Uczysz się lepiej przewidywać tor lotu rzucanych przez Ciebie broni. \n\nZyskujesz poziom wprawy w używaniu broni miotanych oraz poziom doświadczenia w umiejętności spostrzegawczość.\n\nDodatkowo zyskujesz atrybut: „Rzut Ukośny”:\n\nRzut Ukośny:\nGdy wykonujesz rzut bronią poza jej efektywny zasięg, w przypadku trafienia zadajesz o 1 Punkt Zwykłych Obrażeń więcej.",
       "hoverText": "",
       "fi": 90,
-      "theta": 21.999999999999996,
+      "theta": 24,
       "requires": [
         "100010"
       ],
@@ -2220,16 +2236,22 @@
           "type": "skillExperience",
           "key": "spostrzegawczosc",
           "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Rzut Ukośny",
+          "description": "Gdy wykonujesz rzut bronią poza jej efektywny zasięg, w przypadku trafienia zadajesz o 1 Punkt Zwykłych Obrażeń więcej.",
+          "bonuses": []
         }
       ]
     },
     {
       "id": "136",
       "name": "Przeszywający rzut",
-      "desc": "Dzięki treningowi z bronią miotaną zyskujesz na sile. Zyskujesz poziom doświadczenia w umiejetności siła. Dodatkowo zyskujesz atrybut „Przeszywający Rzut”:\nPrzeszywający Rzut:\nJeżeli w linii prostej za celem ataku bronią miotającą stoi inny przeciwnik możesz w momencie deklarowania ataku wydać jeden punkt energii, by wykonać niezwykle silny rzut. W przypadku nietrafienia w cel lub trafienia w cel i zadania obrażeń kłótych broń leci dalej wykonując atak w drugą kreaturę o celności zmniejszonej o 1.",
+      "desc": "Dzięki treningowi z bronią miotaną zyskujesz na sile. \n\nZyskujesz poziom doświadczenia w umiejetności siła. \n\nDodatkowo zyskujesz atrybut „Przeszywający Rzut”:\n\nPrzeszywający Rzut:\nJeżeli w linii prostej za celem ataku bronią miotaną stoi inny przeciwnik możesz w momencie deklarowania ataku wydać jeden punkt energii, by wykonać niezwykle silny rzut. W przypadku nietrafienia w cel lub trafienia w cel i zadania śmiertelnych obrażeń krytycznych, broń leci dalej wykonując atak w drugą kreaturę o celności zmniejszonej o 1.",
       "hoverText": "",
       "fi": 90,
-      "theta": 24,
+      "theta": 28,
       "requires": [
         "135"
       ],
@@ -2238,29 +2260,29 @@
       "exclGroup": null,
       "effects": [
         {
-          "type": "attribute",
-          "key": "Przeszywający Rzut",
-          "description": "Jeżeli w linii prostej za celem ataku bronią miotającą stoi inny przeciwnik możesz w momencie deklarowania ataku wydać jeden punkt energii, by wykonać niezwykle silny rzut. W przypadku nietrafienia w cel lub trafienia w cel i zadania obrażeń kłótych broń leci dalej wykonując atak w drugą kreaturę o celności zmniejszonej o 1.",
-          "bonuses": []
-        },
-        {
           "type": "skillExperience",
           "key": "sila",
           "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Przeszywający rzut",
+          "description": "Jeżeli w linii prostej za celem ataku bronią miotaną stoi inny przeciwnik możesz w momencie deklarowania ataku wydać jeden punkt energii, by wykonać niezwykle silny rzut. W przypadku nietrafienia w cel lub trafienia w cel i zadania śmiertelnych obrażeń krytycznych, broń leci dalej wykonując atak w drugą kreaturę o celności zmniejszonej o 1.",
+          "bonuses": []
         }
       ]
     },
     {
       "id": "137",
       "name": "Adept Broni Miotanej",
-      "desc": "Dzięki swoim ekstensywnym treningom z bronią miotaną jesteś w stanie trafić tam gdzie chcesz. Zyskujesz poziom wprawy w używaniu broni miotanej. Dodatkowo zyskujesz poziom doświadczenia w umiejętności zręczność.",
+      "desc": "Dzięki swoim ekstensywnym treningom z bronią miotaną zaczynasz się czuć komfortowo z rzucaniem jednostkowymi patykami na nawet kilkanaście jednostek.\n\nZyskujesz poziom wprawy w używaniu broni miotanej.\n\nDodatkowo zyskujesz poziom doświadczenia w umiejętności zręczność.\n\nCo więcej, zyskujesz atrybut „Adept Broni Miotanej”:\n\nAdept Broni Miotanej:\nGdy używasz broni miotanej możesz wydać 3 Punkty Energii, by wykonać potężny rzut celując w płaskie elementy pacnerza przeciwnkia. W trakcie tego ataku traktuj pancerz przeciwnika tak, jakby jego poziom był mniejszy o 3.",
       "hoverText": "",
       "fi": 90,
-      "theta": 25,
+      "theta": 29.999999999999996,
       "requires": [
         "224"
       ],
-      "cost": 4,
+      "cost": 3,
       "temperature": 3000,
       "exclGroup": null,
       "effects": [
@@ -2273,6 +2295,12 @@
           "type": "proficiency",
           "key": "Broń Miotana",
           "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Adept Broni Miotanej",
+          "description": "Gdy używasz broni miotanej możesz wydać 3 Punkty Energii, by wykonać potężny rzut celując w płaskie elementy pacnerza przeciwnkia. W trakcie tego ataku traktuj pancerz przeciwnika tak, jakby jego poziom był mniejszy o 3.",
+          "bonuses": []
         }
       ]
     },
@@ -2349,7 +2377,7 @@
       "name": "Podstawy Wiedzy Medycznej",
       "desc": "Poznajesz działanie i metody przetwarzania wielu ziół oraz podstawy działania ciał świadomych istot.\n\nZyskujesz dwa poziomy doświadczenia i improwizacji w umiejętnościach Wiedza Medyczna. Dodatkowo zyskujesz zestaw zielarza.",
       "hoverText": "",
-      "fi": 12,
+      "fi": 10,
       "theta": 55,
       "requires": [
         "1455"
@@ -3571,8 +3599,8 @@
       "name": "Medyk Polowy",
       "desc": "Dzięki nauce i ćwiczeniom jesteś w stanie  szybciej leczyć stworzenia, co jest nieodzowną umiejętnością na polu walki.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna.\nZyskujesz atrybut \"Medyk Polowy\":\n\nMedyk Polowy:\nGdy zaleczasz obrażenia za pomocą przedmiotu, wiesz dokłądnie ile remedium potrzebujesz, dzięki czemu każdy przedmiot użyty w leczeniu możesz użyć dwa razy więcej razy.\n\nDodatkowo próba zaleczenia obrażeń wykonana przez ciebie nie może poskutkować zadaniem obrażeń.\n\nCo więcej, gdy zaleczasz obrażenia wykonując test wiedzy medycznej, wykonujesz to w połowę zwykłego czasu (zwykłe zaleczasz teraz w 5 minut, krytyczne od ran w 4 punkty akcji, złamania w 10 punktów akcji, obrażenia wewnętrzne w 60 punktów akcji lub pół minuty).",
       "hoverText": "",
-      "fi": 3.6500000000000004,
-      "theta": 57.39,
+      "fi": 10,
+      "theta": 59.99999999999999,
       "requires": [
         "1526"
       ],
@@ -3592,10 +3620,10 @@
       "name": "Zaawansowana Wiedza Medyczna",
       "desc": "Dzięki ekstensywnemu studiowaniu ciał świadomych stworzeń i rzeczy im zagrażającym udało ci się dojść do bardzo dobrego poziomu zrozumienia medycyny.\n\nZyskujesz dwa poziomy doświadczenia i improwizacji w umiejętności Wiedza Medyczna.\nDodatkowo zyskujesz atrybut: \"Lekarz\":\n\nLekarz:\nGdy używasz wiedzy medycznej do zaleczenia obrażeń traktujesz każdy sukces jak krytyczny sukces.\n\nDodatkowo zawsze jesteś w stanie określić czy istota jest w stanie zagrożenia życia, jak daleko jest po śmierci oraz ile czasu temu zmarła istota po inspekcji. Taka inspekcja istoty zajmuje 3 Punkt Akcji.\n\nCo więcej, po zbadaniu chorego lub zatrutego pacjenta oraz obserwowaniu go przez 15 minut jesteś w stanie zaproponować lek/odtrutkę, która zaleczy wszystkie obrażenia od chorób i trucizny danego stworzenia, jeżeli takowa istnieje.",
       "hoverText": "",
-      "fi": 12,
-      "theta": 59.00000000000001,
+      "fi": 20,
+      "theta": 59.99999999999999,
       "requires": [
-        "1526"
+        "3467"
       ],
       "cost": 7,
       "temperature": 6000,
@@ -3624,10 +3652,10 @@
       "name": "Chirurg",
       "desc": "Dzięki ekstensywnym ćwiczeniom jesteś w stanie operować sprawnie nawet w bojowych warunkach.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna.\n\nDodatkowo zyskujesz atrybut \"Chirurg\":\n\nChirurg:\nUczysz się jak szybko i sprawnie operować na istotach bliskich śmierci. Świadoma istota nie może otrzymać prowadzących do śmierci obrażeń lub prowadzących do śmierci poziomów wykrwawienia, gdy jesteś w trakcie jej leczenia, chyba, że ich źródłem jest coś innego niż ty, istota, nad którą operujesz lub jej stan.\n\nDodatkowo zanim wykonasz test wiedzy medycznej, będący elementem rzutu na leczenie obrażeń, rzuć kością d4. W przypadku wyniku innego niż 1 na kości możesz stwierdzić, iż test zakończył się sukcesem. Nie wykonujesz wtedy owego rzutu na Wiedzę Medyczną.\n\nCo więcej, w przypadku zaleczania obrażeń wewnętrznych, usuń połowę zaleczonych punktów obrażeń (zaokrąglając w górę) w przypadku sukcesu, lub krytycznego sukcesu.",
       "hoverText": "",
-      "fi": 3,
-      "theta": 62,
+      "fi": 0,
+      "theta": 59.99999999999999,
       "requires": [
-        "6783"
+        "3467"
       ],
       "cost": 1,
       "temperature": 6000,
@@ -3645,10 +3673,10 @@
       "name": "Mistyczny Konsyliarz",
       "desc": "Uczysz się tworzyć magicznie narzędzia potrzebne do leczenia.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna oraz Wiedza Tajemna.\n\nZyskujesz atrybut: \"Mistyczny Konsyliarz\":\n\nMistyczny Konsyliarz:\nMożesz zużyć pięć Punktów Energii w celu dokonania magicznego zaleczania. Działa ono tak samo, jak zaleczanie za pomocą testu wiedzy medycznej, ale jesteś w stanie wykonywać je niezwykle szybko, zużywając zaledwie 7 Punktów Akcji (odpowidnik kilku sekund).",
       "hoverText": "",
-      "fi": 13.000000000000004,
-      "theta": 62.26000000000001,
+      "fi": 10,
+      "theta": 65,
       "requires": [
-        "6783"
+        "3467"
       ],
       "cost": 5,
       "temperature": 6000,
@@ -3675,14 +3703,14 @@
     {
       "id": "224",
       "name": "Prosto w Cel",
-      "desc": "Udaje Ci się uzyskać dobrą celność przy rzutach bronią miotaną.\n\nZyskujesz atrybut „Prosto w Cel”:\n\nProsto w Cel:\nGdy wykonujesz atak w trybie typu „Rzut Bronią” zamiast losować, w którą część ciała trafiasz, możesz to wybrać.",
+      "desc": "Udaje Ci się uzyskać dobrą celność przy rzutach bronią miotaną.\n\nZyskujesz jeden poziom wprawy w używaniu broni miotanych.\n\nZyskujesz atrybut „Prosto w Cel”:\n\nProsto w Cel:\nGdy wykonujesz atak w trybie typu „Rzut Bronią” zamiast losować, w którą część ciała trafiasz, możesz to wybrać.",
       "hoverText": "",
       "fi": 90,
-      "theta": 23,
+      "theta": 26.000000000000004,
       "requires": [
         "136"
       ],
-      "cost": 1,
+      "cost": 3,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
@@ -3691,6 +3719,11 @@
           "key": "Prosto w Cel",
           "description": "Gdy wykonujesz atak w trybie typu „Rzut Bronią” zamiast losować, w którą część ciała trafiasz, możesz to wybrać.",
           "bonuses": []
+        },
+        {
+          "type": "proficiency",
+          "key": "Broń Miotana",
+          "amount": 1
         }
       ]
     },
@@ -3953,6 +3986,119 @@
           "type": "attribute",
           "key": "Bezbłędna dokładność",
           "description": "Możesz używać sztyletów i mieczy do odbijania ataków dystansowych z broni miotanych i miotających.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "1865",
+      "name": "Kat",
+      "desc": "Uczysz się precyzyjnie kontrolować trejetorię lostu głowicy twojej broni.\n\nZyskujesz poziom wprawy w długich broniach drzewcowych.\n\nZyskujesz atrybut „Kat”:\n\nDzięki swojemu doświadczeniu zamiast losować część ciała, w którą trafi akat wykonany długą bronią drzewcową, możesz ją wybrać.\n\nDodatkowo, jeżeli zadasz obrażenia krytyczne równe połowie wytrzymałości istoty i istota jest pochwycona przez twojego sojusznika lub unieruchomiona, możesz zdecydować, iż trafiona przez ciebie kończyna lub głowa została odrąbana. W przypadku odrąbania głowy oznacza to natychmiastową śmierć celu.",
+      "hoverText": "",
+      "fi": 50,
+      "theta": 70,
+      "requires": [
+        "129",
+        "9468"
+      ],
+      "cost": 4,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Długa Broń Drzewcowa",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Kat",
+          "description": "Dzięki swojemu doświadczeniu zamiast losować część ciała, w którą trafi akat wykonany długą bronią drzewcową, możesz ją wybrać.\n\nDodatkowo, jeżeli zadasz obrażenia krytyczne równe połowie wytrzymałości istoty i istota jest pochwycona przez twojego sojusznika lub unieruchomiona, możesz zdecydować, iż trafiona przez ciebie kończyna lub głowa została odrąbana. W przypadku odrąbania głowy oznacza to natychmiastową śmierć celu.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "9468",
+      "name": "Żniwiarz",
+      "desc": "Dzięki swojemu treningowi możesz z łatwością jesteś w stanie przerzynać się przez duże ilości słąbych przeciwników.\n\nZyskujesz poziom wprawy w używaniu długich broni drzewcowych.\n\nZyskujesz atrybut „Żniwiarz”:\n\nŻniwiarz:\nGdy zabijesz istotę atakiem wykonanym długą bronią drzewcową, lub dowolną inną bronią białą o zasięgu większym niż 1 jednostka, możesz zużyć 2 Punkty Energii by wykonać darmową akcję ataku w znajdujący się w zasięgu broni inny cel. Jednakże celność drugiego ataku jest mniejsza o 1d4.",
+      "hoverText": "",
+      "fi": 52.000000000000014,
+      "theta": 55,
+      "requires": [
+        "130"
+      ],
+      "cost": 4,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Żniwiarz",
+          "description": "Gdy zabijesz istotę atakiem wykonanym długą bronią drzewcową, lub dowolną inną bronią białą o zasięgu większym niż 1 jednostka, możesz zużyć 2 Punkty Energii by wykonać darmową akcję ataku w znajdujący się w zasięgu broni inny cel. Jednakże celność drugiego ataku jest mniejsza o 1d4.",
+          "bonuses": []
+        },
+        {
+          "type": "proficiency",
+          "key": "Długa Broń Drzewcowa",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "4563",
+      "name": "Mistrz Broni Miotanej",
+      "desc": "TBD",
+      "hoverText": "",
+      "fi": 89.98,
+      "theta": 35,
+      "requires": [
+        "97848",
+        "453"
+      ],
+      "cost": 7,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "453",
+      "name": "Daleki Rzut",
+      "desc": "TBD",
+      "hoverText": "",
+      "fi": 92,
+      "theta": 32,
+      "requires": [
+        "137"
+      ],
+      "cost": 7,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "97848",
+      "name": "Bliski Rzut",
+      "desc": "Uczysz się używać efektywnie broni miotanej z bliska, co pozwala ci dokonywać przerażających obrażeń tym typem broni w walce wręcz.\n\nZyskujesz poziom wprawy w używaniu broni miotanej.\n\nZyskujesz atrybut „Rzut z Bliska”:\n\nRzut z Bliska:\nMinimalny zasięg rzutu bronią, wynosi 0 dla wyszstkich wykonywanych przez ciebie ataków.",
+      "hoverText": "",
+      "fi": 87.99999999999999,
+      "theta": 32,
+      "requires": [
+        "137"
+      ],
+      "cost": 7,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "proficiency",
+          "key": "Broń Miotana",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Rzut z Bliska",
+          "description": "Minimalny zasięg rzutu bronią, wynosi 0 dla wyszstkich wykonywanych przez ciebie ataków.",
           "bonuses": []
         }
       ]
