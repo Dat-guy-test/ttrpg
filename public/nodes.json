@@ -1258,7 +1258,7 @@
       "requires": [
         "100009"
       ],
-      "cost": 3,
+      "cost": 5,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
@@ -2111,12 +2111,12 @@
       "desc": "Dzięki swojemu mistrzostwu w posługiwaniu się bronią miotającą jesteś w stanie określić kiedy będziesz jej używać. Zyskujesz atrybut: „Wieczna Gotowość”\n\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.\n\nWieczna Gotowość:\nWiedząc, że niebezpieczeństwo może nadjeść zawsze dbasz o to, żeby twoja broń była zawsze przy tobie w dostępnym miejscu. Póki nosisz ją ze sobą możesz traktować dwie wybrane bronie miotające jako zawsze przygotowane.",
       "hoverText": "",
       "fi": 119.99999999999999,
-      "theta": 29.999999999999996,
+      "theta": 35,
       "requires": [
-        "100011",
-        "134"
+        "134",
+        "759"
       ],
-      "cost": 3,
+      "cost": 5,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
@@ -2138,12 +2138,12 @@
       "name": "Zawsze w Cel",
       "desc": "Twoja nauka stzelania doprowadziła Cię do momentu gdy prawie zawsze jesteś w stanie trafić w nieruchomy cel.\n\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.\n\nDodatkowo zyskujesz atrybut „Celny Strzelec”:\n\nCelny Strzelec:\nGdy wykonujesz ataki dystansowe za pomocą broni miotającej, zamiast losować część ciała, w którą trafisz możesz ją wybrać.\n\nDodatkowo zawsze jesteś w stanie trafić w nieruchomy cel z broni miotającej, jeżeli jest on w jej efektywnym zasięgu.",
       "hoverText": "",
-      "fi": 118.00000000000001,
+      "fi": 116,
       "theta": 23,
       "requires": [
         "100011"
       ],
-      "cost": 3,
+      "cost": 5,
       "temperature": 4500,
       "exclGroup": null,
       "effects": [
@@ -2165,12 +2165,12 @@
       "name": "Zawsze z Zaskoczenia",
       "desc": "Nauczyłeś się strzelać do powoli, przwidywalnie poruszających się celów. \n\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.\nZyskujesz atrybut „Zawsze z Zaskoczenia”:\n\nZawsze z Zaskoczenia:\nJeżeli twój cel nie widzi twojego ataku wykonaj rzut na celność dwa razy. Jako wynik rzutu przyjmij lepszy wynik.",
       "hoverText": "",
-      "fi": 116.96,
+      "fi": 114.99999999999999,
       "theta": 25,
       "requires": [
         "132"
       ],
-      "cost": 3,
+      "cost": 5,
       "temperature": 4500,
       "exclGroup": null,
       "effects": [
@@ -2190,14 +2190,14 @@
     {
       "id": "134",
       "name": "Wiecznia Czujność",
-      "desc": "Dzięki twojemu treningowi jesteś w stanie dostrzec i przewidzieć gdzie poruszy się twój cel w walce.\n\nZyskujesz poziom doświadczenia w umiejętności spostrzegawczość.\n\nZyskujesz poziom wprawy w używaniu broni miotających.",
+      "desc": "Dzięki twojemu treningowi jesteś w stanie dostrzec i przewidzieć gdzie poruszy się twój cel w walce.\n\nZyskujesz poziom doświadczenia w umiejętności spostrzegawczość.\n\nZyskujesz poziom wprawy w używaniu broni miotających.\n\nDodatkowo zyskujesz atrybut „Wieczna Czujność”:\n\nWieczna Czujność:\nPrzeciwnicy nie mogą się przed tobą ukryć w walce, chyba, że są w pełni zasłonięci przed tobą. W takim wypadku zawsze pamietasz, gdzie ostatnio widziana była dana istota. Dodatkowo widzisz i możesz reagować na wszystkie ataki wykonane przez istoty w odległości nie większej niż 5 jednostek od ciebie.",
       "hoverText": "",
-      "fi": 118.00000000000001,
-      "theta": 27,
+      "fi": 116,
+      "theta": 32,
       "requires": [
-        "133"
+        "567"
       ],
-      "cost": 3,
+      "cost": 5,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
@@ -2210,6 +2210,12 @@
           "type": "skillExperience",
           "key": "spostrzegawczosc",
           "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Wieczna Czujność",
+          "description": "Przeciwnicy nie mogą się przed tobą ukryć w walce, chyba, że są w pełni zasłonięci przed tobą. W takim wypadku zawsze pamietasz, gdzie ostatnio widziana była dana istota. Dodatkowo widzisz i możesz reagować na wszystkie ataki wykonane przez istoty w odległości nie większej niż 5 jednostek od ciebie.",
+          "bonuses": []
         }
       ]
     },
@@ -3706,7 +3712,7 @@
       "desc": "Udaje Ci się uzyskać dobrą celność przy rzutach bronią miotaną.\n\nZyskujesz jeden poziom wprawy w używaniu broni miotanych.\n\nZyskujesz atrybut „Prosto w Cel”:\n\nProsto w Cel:\nGdy wykonujesz atak w trybie typu „Rzut Bronią” zamiast losować, w którą część ciała trafiasz, możesz to wybrać.",
       "hoverText": "",
       "fi": 90,
-      "theta": 26.000000000000004,
+      "theta": 26.000000000000007,
       "requires": [
         "136"
       ],
@@ -3916,7 +3922,7 @@
       "name": "Przemykacz",
       "desc": "Nie da się przecenić umiejętności szybkiego i dyskretnego poruszania się po polu bitwy. Stąd ekstensywnie ćwiczysz się w sztuce szybkiego skradania się.\n\nZyskujesz poziom wprawy w używaniu sztyletów.\n\nTwoja szybkość zwiększa się o 3.\n\nDodatkowo zyskujesz dwa poziomy doświadczenia i improwizacji w umiejętności Skradanie Się.\n\nCo więcej zyskujesz atrybut: „Przemykacz”:\n\nPrzemykacz:\nJeżeli poruszasz się w ciemności lub słabym świetle do momentu wejścia w jasne światło otrzymujesz dwa poziomy doświadczenia i improwizacji w umiejętności skradanie się.",
       "hoverText": "",
-      "fi": 21.999999999999996,
+      "fi": 25,
       "theta": 36,
       "requires": [
         "122"
@@ -3958,7 +3964,7 @@
       "name": "Bezbłędna dokładność",
       "desc": "Uczysz się nowych sposobów na odbijanie ataków, dochodząc do mistrzostwa, pozwalającego na przekierowywanie nawet niezwykle szybkich ataków.\n\nZyskujesz poziom wprawy w używaniu sztyletów.\n\nDodatkowo, zyskujesz poziom doświadczenia i improwizacji w umiejętności czas reakcji.\n\nCo więcej zyskujesz atrybut „Bezbłędna Dokładność”:\n\nBezbłędna dokładność:\nMożesz używać sztyletów i mieczy do odbijania ataków dystansowych z broni miotanych i miotających.",
       "hoverText": "",
-      "fi": 38,
+      "fi": 35,
       "theta": 36,
       "requires": [
         "121"
@@ -4050,7 +4056,7 @@
       "name": "Mistrz Broni Miotanej",
       "desc": "TBD",
       "hoverText": "",
-      "fi": 89.98,
+      "fi": 89.97999999999999,
       "theta": 35,
       "requires": [
         "97848",
@@ -4100,6 +4106,86 @@
           "key": "Rzut z Bliska",
           "description": "Minimalny zasięg rzutu bronią, wynosi 0 dla wyszstkich wykonywanych przez ciebie ataków.",
           "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "7654",
+      "name": "Nie do Zdarcia",
+      "desc": "Uczysz się jak strzelać w szybki i nie obciążajacy sposób.\n\nZyskujesz poziom doświadczenia w umiejętności zręczność.\n\nDodatkowo zyskujesz atrybut „Nie do Zdarcia”:\n\nNie do Zdarcia:\nKiedy wykonujesz akcje ataku bronią miotającą nie bierz jej pod uwagi w uwzględnianiu kosztu następnej akcji ataku (czyli atakowanie bronią miotającą nie zwiększa kosztu kolejnych akcji ataku).",
+      "hoverText": "",
+      "fi": 114,
+      "theta": 27.5,
+      "requires": [
+        "133"
+      ],
+      "cost": 4,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Nie do Zdarcia",
+          "description": "Kiedy wykonujesz akcje ataku bronią miotającą nie bierz jej pod uwagi w uwzględnianiu kosztu następnej akcji ataku (czyli atakowanie bronią miotającą nie zwiększa kosztu kolejnych akcji ataku).",
+          "bonuses": []
+        },
+        {
+          "type": "skillExperience",
+          "key": "zrecznosc",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "567",
+      "name": "Wielostrzał",
+      "desc": "Strzelanie kilkoma pociskami naraz jest bardzo niecelne, jednakże może być opłacalne, przy dużej ilości przeciwników.\n\nZyskujesz poziom wprawy w używaniu broni miotającej.\n\nZyskujesz atrybut „Wielostrzał”:\nNauczono cię używać broni miotającej do wystrzeliwania  kilku pocisków jednocześnie. Każdy załadowany pocisk zmniejsza zadawane przez atak obrażenia o 1. Wybierz cel ataku. Następnie rozlosuj, w którym kierunku od celu poleci każdy pocisk. Każdy pocisk ląduje 1d4 - 1 jednostek od celu. Jeżeli pocisk ma wylądować w twojej pozycji, lub bliżej ciebie niż celu, ląduje on pod twoimi nogami, niezadając żadnej szkody. W przeciwnym razie jeżeli pocisk wylądował 0.5 jednostki od istoty lub bliżej trafiasz w obręb tej istoty.",
+      "hoverText": "",
+      "fi": 114.99999999999999,
+      "theta": 29.999999999999996,
+      "requires": [
+        "7654"
+      ],
+      "cost": 5,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Wielostrzał",
+          "description": "Nauczono cię używać broni miotającej do wystrzeliwania  kilku pocisków jednocześnie. Każdy załadowany pocisk zmniejsza zadawane przez atak obrażenia o 1. Wybierz cel ataku. Następnie rozlosuj, w którym kierunku od celu poleci każdy pocisk. Każdy pocisk ląduje 1d4 - 1 jednostek od celu. Jeżeli pocisk ma wylądować w twojej pozycji, lub bliżej ciebie niż celu, ląduje on pod twoimi nogami, niezadając żadnej szkody. W przeciwnym razie jeżeli pocisk wylądował 0.5 jednostki od istoty lub bliżej trafiasz w obręb tej istoty.",
+          "bonuses": []
+        },
+        {
+          "type": "proficiency",
+          "key": "Broń Miotająca",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "759",
+      "name": "Procarz",
+      "desc": "Opanowywujesz w stopniu adekwatnym posługiwanie się tanimi, lecz wymagająceymi wielkiej wprawy procami.\n\nZyskujesz przedmioty: Proca, 10 stalowych kulek, świetnie nadającyh się na amunicję do procy.\n\nZyskujesz atrybut „Procarz”:\n\nProcarz:\nJeżeli podstawowa celność trybu ataku z broni miotającej wykonywanego przez ciebie jest mniejsza niż 1, gdy wykonujesz taki atak przyjmij, iż celność podstawowa tego trybu jest równa 1.",
+      "hoverText": "",
+      "fi": 119.99999999999999,
+      "theta": 27.5,
+      "requires": [
+        "100011"
+      ],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "item",
+          "key": "custom-1785420331006-a2kar",
+          "amount": 10
+        },
+        {
+          "type": "item",
+          "key": "custom-1785149659540-6vojx",
+          "amount": 1
         }
       ]
     }
