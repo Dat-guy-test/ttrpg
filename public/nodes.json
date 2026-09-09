@@ -41,10 +41,10 @@
     {
       "id": "-3",
       "name": "Urodzony Czarownik",
-      "desc": "Od urodzenia prosta magia jest czymś całkowicie dla CIebie naturalnym. \n\nZyskujesz atrybut \"Wrodzona Magia\":\n\nWrodzona Magia:\n\nMagia jest dla ciebie czymś całkowicie naturalnym: znając ogłony koncept zaklęcia twoje ciało niemalże bezbłędnie wykonuje wszystkie niezbędnie czynności do jego rzucenia. Stąd możesz rzucać zaklęcia bez znajomości podstaw magii.\n\nUzyskujesz także dostęp do Leniwych Czarów: możesz niekoncentrując się na rzucaniu czaru bezpiecznie rzucić jego słabszą wersję zużywając połowę Punktów Energii. Jeżeli rzucasz leniwy czar rzuć sześć razy każdą kością w każdym teście wykonywanym w ramach rzucania zaklęcia oraz każdą kością rzucaną by określić ilość obrażeń zadawanych przez czar lub jego efekt: najniższy wyrzucony wynik jest wynikiem rzutu kością.\n\n\n\nDodatkowo zyskujesz dwa zaklęcia o maksymalnej złożoności 1 oraz poziom improwizacji w umiejętnościach: kreacja, projekcja, transmutacja, przywoływanie i destrukcja.",
+      "desc": "Od urodzenia prosta magia jest czymś całkowicie dla CIebie naturalnym. \n\nZyskujesz atrybut \"Wrodzona Magia\":\n\nWrodzona Magia:\n\nMagia jest dla ciebie czymś całkowicie naturalnym: znając ogłony koncept zaklęcia twoje ciało niemalże bezbłędnie wykonuje wszystkie niezbędnie czynności do jego rzucenia. Stąd możesz rzucać zaklęcia bez znajomości podstaw magii.\n\nUzyskujesz także dostęp do Leniwych Czarów: możesz niekoncentrując się na rzucaniu czaru bezpiecznie rzucić jego słabszą wersję zużywając połowę Punktów Energii. Jeżeli rzucasz leniwy czar rzuć sześć razy każdą kością w każdym teście wykonywanym w ramach rzucania zaklęcia oraz każdą kością rzucaną by określić ilość obrażeń zadawanych przez czar lub jego efekt: najniższy wyrzucony wynik jest wynikiem rzutu kością.\n\n\nDodatkowo zyskujesz dwa zaklęcia o maksymalnej złożoności 1 oraz poziom improwizacji w umiejętnościach: kreacja, projekcja, transmutacja, przywoływanie i destrukcja.",
       "hoverText": "",
-      "fi": 23,
-      "theta": 4,
+      "fi": -5,
+      "theta": 14,
       "requires": [],
       "cost": 6,
       "temperature": 13000,
@@ -2312,11 +2312,11 @@
     },
     {
       "id": "200",
-      "name": "Utalentowanie",
-      "desc": "Rozpoczynając życie podróżnika łatwo odkryć w sobie nowe, nieznane talenty. Zyskujesz 2 poziomy doświadczenia i 2 poziomy improwizacji w dowolnych wybranych umiejętnościach.",
+      "name": "Utalentowany Podróżnik",
+      "desc": "Rozpoczynając życie podróżnika łatwo odkryć w sobie nowe, nieznane talenty. \n\nZyskujesz 2 poziomy doświadczenia i 2 poziomy improwizacji w dowolnych wybranych umiejętnościach.\n\nCo więcej, zyskujesz jeden poziom w dowolnej wybranej charakterystyce.",
       "hoverText": "",
       "fi": 0,
-      "theta": 40,
+      "theta": 29.999999999999996,
       "requires": [
         "1"
       ],
@@ -2333,16 +2333,21 @@
           "type": "skillImprovisationPoints",
           "key": null,
           "amount": 2
+        },
+        {
+          "type": "characteristicPoints",
+          "key": null,
+          "amount": 1
         }
       ]
     },
     {
       "id": "1009",
       "name": "Wytrwały Podróżnik",
-      "desc": "Życie podróżnika wywiera dużą presję, która przytłacza i prowadzi do rozwoju. Zwiększ wybraną charakterystykę o 1.",
+      "desc": "Życie podróżnika wywiera dużą presję, która przytłacza i prowadzi do rozwoju. '\n\nZwiększ wybraną charakterystykę o 1.",
       "hoverText": "",
       "fi": 0,
-      "theta": 43.00000000000001,
+      "theta": 33,
       "requires": [
         "200"
       ],
@@ -2457,8 +2462,8 @@
       "name": "Zainteresowanie Szkołą Kreacji",
       "desc": "Skupiasz się na rozwijaniu swoich umiejętności w szkole kreacji.\nUczysz się jednego zaklęcia o maksymalnej złożoności równej 1 z szkoły kreacji.\nZyskujesz poziom doświadczenia w kreacji i wiedzy tajemnej.",
       "hoverText": "",
-      "fi": -48,
-      "theta": 43.00000000000001,
+      "fi": -68,
+      "theta": 43,
       "requires": [
         "666"
       ],
@@ -2490,7 +2495,7 @@
       "name": "Początkujący Adept Kreacji",
       "desc": "Pogłębiając swoją wiedzę na temat magii kreacji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności kreacja i poziom doświadczenia w umiejętności wiedza tajemna.",
       "hoverText": "",
-      "fi": -48,
+      "fi": -68,
       "theta": 47,
       "requires": [
         "55555"
@@ -2528,8 +2533,8 @@
       "name": "Zainteresowanie Szkołą Projekcji",
       "desc": "Pogłębiasz swoją wiedzę na temat ezoterycznej magii projekcji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Projekcji oraz Wiedzy Tajemnej.",
       "hoverText": "",
-      "fi": -35,
-      "theta": 43.00000000000001,
+      "fi": -45,
+      "theta": 43,
       "requires": [
         "666"
       ],
@@ -2561,7 +2566,7 @@
       "name": "Początkujący Adept Projekcji",
       "desc": "Pogłębiając swoją wiedzę na temat magii projekcji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności Projekcja i poziom doświadczenia w umiejętności wiedza tajemna.",
       "hoverText": "",
-      "fi": -35,
+      "fi": -45,
       "theta": 47,
       "requires": [
         "5236"
@@ -2599,8 +2604,8 @@
       "name": "Zainteresowanie Szkołą Transmutacji",
       "desc": "Pogłębiasz swoją wiedzę na temat potężnej magii transmutacji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Transmutacji oraz Wiedzy Tajemnej.\n\nZyskujesz także jedną jednostkę ołowieu transmutacyjnego.",
       "hoverText": "",
-      "fi": -21.999999999999996,
-      "theta": 43.00000000000001,
+      "fi": -25,
+      "theta": 43,
       "requires": [
         "666"
       ],
@@ -2637,7 +2642,7 @@
       "name": "Początkujący Adept Transmutacji",
       "desc": "Pogłębiając swoją wiedzę na temat magii Transmutacji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności Transmutacja i poziom doświadczenia w umiejętności wiedza tajemna. ",
       "hoverText": "",
-      "fi": -21.999999999999996,
+      "fi": -25,
       "theta": 47,
       "requires": [
         "12314"
@@ -3472,11 +3477,11 @@
     },
     {
       "id": "777",
-      "name": "Motywacja",
-      "desc": "Skupiasz się na nauce walki do samego końca.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności \"Determinacja\".\nZyskujesz atrybut: \"Zmotywowanie\":\n\nZmotywowanie:\nJesteś w stanie zużyć jeden punkt motywacji by przerzucić kość wykorzystywaną do określenia wyniku wykonywanego przez ciebie testu lub kości odpowiedzialnych za zadawane bronią obrażenia. Wynikiem rzutu kością staje się wynik nowego rzutu, a stary nie ma znaczenia. Możesz przerzucić wynik jednej kości kilkukrotnie, wydając kolejne punkty motywacji. \n\nMożesz mieć maksymalnie 5 punktów motywacji.\n\nPo pełnym odpoczynku możesz zyskać jeden punkt motywacji (twój wybór). Jeżeli zyskasz w ten sposób punkt motywacji po odpoczynku, następny możesz w ten sposób zdobyć dopiero po pięciu kolejnych odpoczynkach.\n\nDodatkowo MG może przyznać twojej postaci punkt(y) motywacji gdy twoja postać osiągnie swój cel.",
+      "name": "Motywacja Makira",
+      "desc": "Skupiasz się na nauce walki o swój los do samego końca.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności \"Determinacja\".\n\nZyskujesz atrybut: \"Zmotywowanie\":\n\nZmotywowanie:\nJesteś w stanie zużyć jeden punkt motywacji by przerzucić kość wykorzystywaną do określenia wyniku wykonywanego przez ciebie testu lub kości odpowiedzialnych za zadawane bronią obrażenia. Wynikiem rzutu kością staje się wynik nowego rzutu, a stary nie ma znaczenia. Możesz przerzucić wynik jednej kości kilkukrotnie, wydając kolejne punkty motywacji. \n\nMożesz mieć maksymalnie 5 punktów motywacji.\n\nPo pełnym odpoczynku możesz zyskać jeden punkt motywacji (twój wybór). Jeżeli zyskasz w ten sposób punkt motywacji po odpoczynku, następny możesz w ten sposób zdobyć dopiero po pięciu kolejnych odpoczynkach.\n\nDodatkowo MG może przyznać twojej postaci punkt(y) motywacji gdy twoja postać osiągnie swój cel.",
       "hoverText": "",
       "fi": -6,
-      "theta": 43.5,
+      "theta": 33,
       "requires": [
         "200"
       ],
@@ -3505,10 +3510,10 @@
     {
       "id": "778",
       "name": "Niezwykła Motywacja",
-      "desc": "Ciężko trenując siłę swojej woli w krytycznych sytuacjach zyskujesz następujące cechy:\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności determinacja.\nZyskujesz atrybut \"Niezwykła Motywacja\":\n\nNiezwykła Motywacja:\nZamiast możliwości zyskania punktu motywacji na co piątym pełnym odpoczynku zyskujesz punkt motywacji po każdym pełnym odpoczynku.",
+      "desc": "Ciężko trenując siłę swojej woli w krytycznych sytuacjach zyskujesz następujące cechy:\n\nZyskujesz poziom Siły Woli.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności determinacja.\n\nZyskujesz atrybut \"Niezwykła Motywacja\":\n\nNiezwykła Motywacja:\nZamiast możliwości zyskania punktu motywacji na co piątym pełnym odpoczynku zyskujesz punkt motywacji po każdym pełnym odpoczynku.",
       "hoverText": "",
-      "fi": -10,
-      "theta": 49,
+      "fi": -13.000000000000002,
+      "theta": 35,
       "requires": [
         "777"
       ],
@@ -3531,20 +3536,25 @@
           "key": "Niezwykła Motywacja",
           "description": "Zamiast możliwości zyskania punktu motywacji na co piątym pełnym odpoczynku zyskujesz punkt motywacji po każdym pełnym odpoczynku.",
           "bonuses": []
+        },
+        {
+          "type": "characteristic",
+          "key": "silaWoli",
+          "amount": 1
         }
       ]
     },
     {
       "id": "414",
       "name": "Doświadczony Podróżnik",
-      "desc": "Przeżyte przez ciebie przygody znacznie cię wzmocniły. Zwiększ wybraną charakterystykę o 1.",
+      "desc": "Przeżyte przez ciebie przygody znacznie cię wzmocniły. \n\nZwiększ wybraną charakterystykę o 1.",
       "hoverText": "",
       "fi": 0,
-      "theta": 46,
+      "theta": 36,
       "requires": [
         "1009"
       ],
-      "cost": 5,
+      "cost": 6,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
@@ -3557,15 +3567,17 @@
     },
     {
       "id": "6312",
-      "name": "Zatwarziały Podróżnik",
+      "name": "Zatwardziały Podróżnik",
       "desc": "Podróżowanie stało się dla ciebie powszednie. Dni pełne rozwiązywania niebezpiecznych problemów i zadań pozwalają ci rozwijać się w oszałamiającym tępie. \n\nZwyększ wybraną charakterystykę o 2 lub dwie wybrane charakterystyki o 1.",
       "hoverText": "",
       "fi": 0,
-      "theta": 49,
+      "theta": 39,
       "requires": [
         [
           "777",
-          "414"
+          "414",
+          "4536",
+          "7778"
         ]
       ],
       "cost": 7,
@@ -3584,8 +3596,8 @@
       "name": "Ukierunkowane Uzdolnienie",
       "desc": "Z racji na zainteresowanie, nakaz lub potrzebę udało ci się rozwinąć niektóre umiejętności w stopniu dużo wyższym niż zwykle.\n\nZyskujesz poziom doświadczenia w dowolnej umiejętności.",
       "hoverText": "",
-      "fi": 11.75175306054208,
-      "theta": 49.619588575807384,
+      "fi": 7,
+      "theta": 50,
       "requires": [
         "200"
       ],
@@ -3738,7 +3750,7 @@
       "name": "Mag Krwi",
       "desc": "Udało ci się zrozumieć zastosowanie magicznych właściwośici krwi żywych stworzeń. Dowiadujesz się jak rzucać zaklęcia w sposób określany jako \"Rytuały Krwi\". Jest to styl rzucania zaklęć oparty na głębokim zrozumieniu magicznych run krwi.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nUczysz się jednego zaklęcia o złożoności równej 1.\n\nDodatkowo zyskujesz możliwość rzucania zaklęć przez \"Rytuały Krwi\", co odzwierciedla poniższy atrybut:\n\nRytuały Krwi:\nDzięki wiedzy na temat magicznych właściwości krwi, możesz rzucać zaklęcia za pomocą wcześniej przygotowanych rytuałów:\n1.) Aby rzucić czar w ten sposób potrzebujesz najpierw przygotować rytuał. Do przygotowania rytuału potrzebujesz tyle fiolek świeżej krwi, ile Punktów Energii i Punktów Akcji łącznie kosztuje rzucenie czaru (świeża krew krepnie i przestaje być przydatna sześć godzin po pobraniu). Jeżeli czar tansmutuje lub niszczy materialny komponent nadal musisz go mieć.\n1a.) Przygotowując rytuał możesz zużyć dodatkową fiolkę krwi na każdy Punkt Energii w jego koszcie rzucenia, by zmniejszyć jego koszt jego rzucenia i podtrzymywania o połowę.\n1b.) Jeżeli chcesz móc aktywować rytuał wszędzie, inskrypcji krwią możesz dokonać na kawałku skóry, pergaminu, papieru lub stronie zeszytu lub książki.\n2.) Przygotowany rytuał aktywujesz z odległości nie większej niż pięć jednostek, traktując środek inskrypcji jako punkt, z którego rzucasz zaklęcie. Jeżeli chcesz, by rytuał przemieścił komponent materialny, z którego korzysta, zwiększa to koszt jego przygotowania o jedną fiolkę na każdą jednostkę obciążenia na jednostkę przesunięcia.",
       "hoverText": "",
-      "fi": -43.71,
+      "fi": -75.00000000000001,
       "theta": 41,
       "requires": [
         "5555"
@@ -3776,8 +3788,8 @@
       "name": "Krwawa Pentagramologia",
       "desc": "Pentagramologia to nauka studiująca runy pentagramowe, wzmacniające zaklęcia jednej szkoły magii i osłabiające wszystkie innych lub osłabiające zaklęcia jednej szkoły i wzmacniające zaklęcia wszyskich szkłół.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nZyskujesz Atrybut „Krwawe Pentagramy”:\n\nKrwawe Pentagramy:\n\nJesteś w rozpoznać typ pentagramów jakie napotykasz. Możesz użyć krwi w celu naszkicowania przenośnego lub dużego pentagramu.\n\nPentagram przenośny ma rozmiar nie większy niż 1/3 jednostki i możesz go wykonać na kartce papieru, zwoju pergaminu, kawałku skóry czy stronie księgi. Koszt inskrypcji takiego pentagramu wynosi 6 fiolek. Pentagram ten działa jedynie przez jedną turę, po czym wypala się, stając się bezużytecznym. Wykonanie takiej inskrypcji zajmuje 5 minut.\n\nDuży pentagram ma rozmiar od jednej do siedmiu jednostek. Koszt takiego pentagramu wynosi trzy fiolki za każdą jednostkę kwadratową (lub heksagonalną) za każde zaklęcie, które pentagram wzmocni/osłabi przed wypaleniem. To znaczy, iż pentagram pokrywający 9 jednostek, który jest w stanie wpłynąć na 5 zaklęć kosztuje 135 fiolek krwi. Świadome istoty posiadają w sobie 50 fiolek krwi. Wykonanie inskrypcji trwa jedną minutę za każdą fiolkę kosztu insprypcji na osobę dokonującą inskrypcji. Częściowo wykonany pentagram, traktuje się jak ukończony jeżeli łączna ilość fiolek krwi starcza na wpłynięcie na choćby jedno zaklęcie na takim obszarze. \n\nPentagramy wykonane z krwi dezaktywują się po 25 godzinach od stworzenia lub jeżeli zostaną przerwane w każdym wierzchołku, albo całkowicie zostanie usinięta co najmniej jedna linia.\n\nIstnieją dwa typy pentagramu, spośród których wybierasz konstruując pentagram: Pentagram wzmacniający i osłabiający. \n\nPentagram wzmacniający wzmacnia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnym kosztem osłabiania innych. Wszystkie istoty wewnątrz dużego pentagramu wzmacniającego wydają połowę energii (zaokrąglamy w górę) rzucając czary należące do wzmacnianej szkoły. Wzmacniający pentagram przenośny ma zaś taki sam efekt dla jednego zaklęcia, gdy trzymany jest odpowiednio przez osobę je rzucającą, ale wypala się po jednym zaklęciu.\n\nPentagram osłabiający osłabia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnie wzmacniając zaklęcia pozostałych szkół. Rzucenie zaklęć tego typu wewnątrz pentagramu kosztuje dwa razy więcej punktów energii, a próba rzucenia zaklęcia tej szkoły z zewnątrz dokonującego zmiany wewnątrz pentagramu kończy się stratą Punktów Energii potrzebnych do rzucenia zaklęcia i brakiem efektu. Pentagram osłabiający może także zniechęcać istoty magiczne do wejścia, jeżeli osłabia on odpowiednią szkołę. Osłabiający pentagram przenośny zaburza rzucenie jednego zaklęcia, którego ognisko jest nie dalej niż sześć jednostek od dzierżącego pentagram. Zaburzenie rzucenia zaklęcia powoduje zużycie Punktów Akcji i Energii przez Rzucającego oraz.brak efektów zaklęcia.",
       "hoverText": "",
-      "fi": -47.06000000000002,
-      "theta": 38.53,
+      "fi": -85,
+      "theta": 45,
       "requires": [
         "4145"
       ],
@@ -4114,7 +4126,7 @@
       "name": "Nie do Zdarcia",
       "desc": "Uczysz się jak strzelać w szybki i nie obciążajacy sposób.\n\nZyskujesz poziom doświadczenia w umiejętności zręczność.\n\nDodatkowo zyskujesz atrybut „Nie do Zdarcia”:\n\nNie do Zdarcia:\nKiedy wykonujesz akcje ataku bronią miotającą nie bierz jej pod uwagi w uwzględnianiu kosztu następnej akcji ataku (czyli atakowanie bronią miotającą nie zwiększa kosztu kolejnych akcji ataku).",
       "hoverText": "",
-      "fi": 114,
+      "fi": 114.00000000000003,
       "theta": 27.5,
       "requires": [
         "133"
@@ -4185,6 +4197,165 @@
         {
           "type": "item",
           "key": "custom-1785149659540-6vojx",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "4536",
+      "name": "Smocze Zdrowie",
+      "desc": "Według podań smoki były tak potężne, iż nawet najpotężniejszy cios nie mógł doprowadzić do ich kresu. Dbając o siebie udaje ci się wyrobić przypominający tą cechę owych legendarnych stworzeń poziom wytrzymałości.\n\nZyskujesz jeden poziom doświadczenia i improwizacji w umiejętności Wigor.\n\nZyskujesz atrybut „Smocze Zdrowie”:\n\nSmocze Zdrowie:\nJeżeli akcja zada ci śmiertelną ilość obrażeń krytycznych gdy nie masz żadnych punktów obrażeń krytycznych, zamień tyle otrzymanych obrażeń krytycznych na zwykłe obrażenia, by być o jeden punkt obrażeń krytycznych od śmierci.",
+      "hoverText": "",
+      "fi": 10,
+      "theta": 33,
+      "requires": [
+        "200"
+      ],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "wigor",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "wigor",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Smocze Zdrowie",
+          "description": "Jeżeli akcja zada ci śmiertelną ilość obrażeń krytycznych gdy nie masz żadnych punktów obrażeń krytycznych, zamień tyle otrzymanych obrażeń krytycznych na zwykłe obrażenia, by być o jeden punkt obrażeń krytycznych od śmierci.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "859",
+      "name": "Nie do Zabicia",
+      "desc": "Łączysz wiele naturalnych i mistycznych sposobów na zwiększenie swojej wytrzymałości wstrząsające obrażenia.\n\nZyskujesz jeden poziom Formy.\n\nZyskujesz jeden poziom doświadczenia i improwizacji w umiejętności Wigor.\n\nZyskujesz atrybut „Nie do Zabicia”:\n\nNie do Zabicia:\nGdy masz otrzymać śmiertelne obrażenia, możesz zużyć wszystkie posiadane Punkty Energii oraz Punkty Akcji w celu zmienienia otrzymanych punktów obrażeń krytycznych na zwykłe obrażenia.",
+      "hoverText": "",
+      "fi": 17,
+      "theta": 35,
+      "requires": [
+        "4536"
+      ],
+      "cost": 6,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Nie do Zabicia",
+          "description": "Gdy masz otrzymać śmiertelne obrażenia, możesz zużyć wszystkie posiadane Punkty Energii oraz Punkty Akcji w celu zmienienia otrzymanych punktów obrażeń krytycznych na zwykłe obrażenia.",
+          "bonuses": []
+        },
+        {
+          "type": "characteristic",
+          "key": "forma",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "wigor",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "wigor",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Mistrzowski Podróżnik",
+      "desc": "Po dłuższym okresie podróżowania udało ci się nabyć bezcenne doświadczenie posiadane przez garstkę istot na całym świecie. \n\nZwiększ dowolną charakterystykę o 3 poziomy, trzy charakterystyki o jeden poziom, lub jedną o dwa poziomy i jedną o jeden poziom.",
+      "hoverText": "",
+      "fi": 0,
+      "theta": 43.99999999999999,
+      "requires": [
+        "6312"
+      ],
+      "cost": 25,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "characteristicPoints",
+          "key": null,
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "id": "7778",
+      "name": "Niestrudzoność Wiwerny",
+      "desc": "Uczysz się forsowania się w dowolnej wymagającej tego sytuacji.\n\nZyskujesz poziom doświadcznia i improwizacji w umiejętności czas reakcji.\n\nZyskujesz atrybut „Niestrudzoność Wiwerny”:\n\nNiestrudzoność Wiwerny:\nMożesz w dowolnym momencie wydać Punkt(y) Energii, by zyskać Punkt(y) Akcji. Za każdy wydany Punkt Energii zyskujesz Punkt Akcji.",
+      "hoverText": "",
+      "fi": 9,
+      "theta": 28,
+      "requires": [
+        "200"
+      ],
+      "cost": 2,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "czasReakcji",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "czasReakcji",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Niestrudzoność Wiwerny",
+          "description": "Możesz w dowolnym momencie wydać Punkt(y) Energii, by zyskać Punkt(y) Akcji. Za każdy wydany Punkt Energii zyskujesz Punkt Akcji.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Nie do Zamęczenia",
+      "desc": "Dzięki mieszance medytacji i badania granic swoich możliwości uczysz się aktywnie działać do samego końca.\n\nZyskujesz poziom doświadcznia i improwizacji w umiejętności czas reakcji.\n\nZyskujesz jeden poziom Bystrości.\n\nZyskujesz atrybut „Nie do Zamęczenia”:\nGdy masz co najmniej jeden Punkt Energii, możesz wydać wszystkie posiadane Punkty Energii, by odzyskać Punkty Akcji w ilości równej poziomowi twojej Bystrości.",
+      "hoverText": "",
+      "fi": 13.000000000000002,
+      "theta": 31,
+      "requires": [
+        "7778"
+      ],
+      "cost": 7,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "czasReakcji",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "czasReakcji",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Nie do Zamęczenia",
+          "description": "Gdy masz co najmniej jeden Punkt Energii, możesz wydać wszystkie posiadane Punkty Energii, by odzyskać Punkty Akcji w ilości równej poziomowi twojej Bystrości.",
+          "bonuses": []
+        },
+        {
+          "type": "characteristic",
+          "key": "bystrosc",
           "amount": 1
         }
       ]

@@ -81,7 +81,7 @@
           "name": "Pchnięcie Nożem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 1,
+          "baseAccuracy": 0,
           "damage": [
             {
               "count": 0,
@@ -100,7 +100,7 @@
           "name": "Cięcie Nożem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 0,
+          "baseAccuracy": 1,
           "damage": [
             {
               "count": 0,
@@ -190,10 +190,10 @@
       "upgrades": [],
       "attackModes": [
         {
-          "name": "Pchnięcie Sztyletem",
+          "name": "Pchnięcie Sztyletem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 3,
+          "baseAccuracy": 1,
           "damage": [
             {
               "count": 1,
@@ -209,7 +209,7 @@
           "specialEffect": "Zabójcze wykończenie: Jeżeli cel ataku jest pochwycony przez Ciebie lub Twojego sojusznika, lub jest unieruchomiony podstawowa celność tego ataku wynosi 7."
         },
         {
-          "name": "Cięcie Sztyletem",
+          "name": "Cięcie Sztyletem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": 2,
@@ -228,10 +228,10 @@
           "specialEffect": ""
         },
         {
-          "name": "Rzut Sztyletem",
+          "name": "Rzut Sztyletem (Chwyt Jednoręczny)",
           "modeType": "throw",
           "handedness": "one",
-          "baseAccuracy": 1,
+          "baseAccuracy": 0,
           "damage": [
             {
               "count": 1,
@@ -251,7 +251,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Uderzenie Rękojeścią Sztyletu",
+          "name": "Uderzenie Rękojeścią Sztyletu (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": -1,
@@ -293,7 +293,7 @@
         }
       ],
       "block": 3,
-      "deflection": 7,
+      "deflection": 6,
       "weaponKinds": [
         "melee",
         "thrown"
@@ -302,10 +302,10 @@
       "upgrades": [],
       "attackModes": [
         {
-          "name": "Pchnięcie Lewakiem",
+          "name": "Pchnięcie Lewakiem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 2,
+          "baseAccuracy": 0,
           "damage": [
             {
               "count": 1,
@@ -321,7 +321,7 @@
           "specialEffect": "Zabójcze wykończenie: Jeżeli cel ataku jest pochwycony przez Ciebie lub Twojego sojusznika, lub jest unieruchomiony podstawowa celność tego ataku wynosi 7."
         },
         {
-          "name": "Cięcie Lewakiem",
+          "name": "Cięcie Lewakiem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": 1,
@@ -340,7 +340,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Rzut Lewakiem",
+          "name": "Rzut Lewakiem (Chwyt Jednoręczny)",
           "modeType": "throw",
           "handedness": "one",
           "baseAccuracy": -1,
@@ -363,7 +363,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Uderzenie Rękojeścią Lewaka",
+          "name": "Uderzenie Rękojeścią Lewaka (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": -1,
@@ -389,7 +389,7 @@
       "price": 120,
       "bulk": 0.2,
       "type": "weapon",
-      "desc": "Trójsztylet to sztylet o trzech ostrzach, wykonany z dobrej jakości, twardej stali. Osteza te wraz z rozbudowaną metalową rękojeścią mogą być używane przez wprawnego fechmistrza do skutecznego blokowania ataków, odbijania ich, lub wyrywania broni przeciwnikowi. Konstrukcja ta jednak niemalże całkowicie pozbawia ten rodzaj sztyletu możliwości wykonywania celnych ataków i utrudnia zadawanie poważnych obrażeń.",
+      "desc": "Trójsztylet to sztylet o trzech ostrzach, wykonany z dobrej jakości, twardej stali. Ostrza te wraz z rozbudowaną metalową rękojeścią mogą być używane przez wprawnego fechmistrza do skutecznego blokowania ataków, odbijania ich, lub wyrywania broni przeciwnikowi. Konstrukcja ta jednak niemalże całkowicie pozbawia ten rodzaj sztyletu możliwości wykonywania celnych ataków i utrudnia zadawanie poważnych obrażeń.",
       "state": "unequipped",
       "hitPoints": 5,
       "toughness": 4,
@@ -413,10 +413,10 @@
       "upgrades": [],
       "attackModes": [
         {
-          "name": "Pchnięcie Trójsztyletem",
+          "name": "Pchnięcie Trójsztyletem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 0,
+          "baseAccuracy": -1,
           "damage": [
             {
               "count": 1,
@@ -432,7 +432,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Cięcie Trójsztyletem",
+          "name": "Cięcie Trójsztyletem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": 0,
@@ -451,7 +451,7 @@
           "specialEffect": "Łamanie Broni: Jeżeli wykonujesz atak w tym trybie w ramach kontry przeciw atakowi przeciwnika, którego wybrany tryb ataku zadaje obrażenia kłóte lub cięte możesz zamiast zadeklarować próbę rozbrojenia przeciwnika (zastępuje to wtedy wykonywany przez Ciebie atak):\nRozstrzygnij konkurs twojej zręczności przeciw zręczności lub sile przeciwnika. W przypadku sukcesu broń wypada z rąk przeciwnika, spadając mu pod nogi. W przypadku krytycznego sukcesu broń spada pod Twoje nogi lub broń otrzymuje 2d6 + 2 obrażeń obuchowych (twój wybór)."
         },
         {
-          "name": "Rzut Trójsztyletem",
+          "name": "Rzut Trójsztyletem (Chwyt Jednoręczny)",
           "modeType": "throw",
           "handedness": "one",
           "baseAccuracy": -2,
@@ -474,7 +474,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Uderzenie Rękojeścią Trójsztyletu",
+          "name": "Uderzenie Rękojeścią Trójsztyletu (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": -1,
@@ -525,10 +525,10 @@
       "upgrades": [],
       "attackModes": [
         {
-          "name": "Pchnięcie Mizerykordią",
+          "name": "Pchnięcie Mizerykordią (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 1,
+          "baseAccuracy": 0,
           "damage": [
             {
               "count": 1,
@@ -541,10 +541,10 @@
           "maxRange": 1,
           "spread": null,
           "effectiveRange": null,
-          "specialEffect": "Niezwykle zabójcze wykończenie: Jeżeli cel ataku jest pochwycony przez Ciebie lub Twojego sojusznika, lub jest unieruchomiony podstawowa celność tego ataku wynosi 12. Dodatkowo w przypadku trafienia, cel otrzymuje 1d6 kłótych obrażeń krytycznych."
+          "specialEffect": "Niezwykle zabójcze wykończenie: Jeżeli cel ataku jest pochwycony przez Ciebie lub Twojego sojusznika, lub jest unieruchomiony podstawowa celność tego ataku wynosi 12. Dodatkowo w przypadku trafienia, cel otrzymuje dodatkowo 3 punkty kłótych obrażeń krytycznych."
         },
         {
-          "name": "Cięcie Mizerykordią",
+          "name": "Cięcie Mizerykordią (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": -1,
@@ -563,7 +563,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Rzut Mizerykordią",
+          "name": "Rzut Mizerykordią (Chwyt Jednoręczny)",
           "modeType": "throw",
           "handedness": "one",
           "baseAccuracy": -1,
@@ -586,7 +586,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Uderzenie Rękojeścią Mizerykordii",
+          "name": "Uderzenie Rękojeścią Mizerykordii (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": -1,
@@ -741,7 +741,7 @@
       "upgrades": [],
       "attackModes": [
         {
-          "name": "Rąbnięcie Mieczem",
+          "name": "Rąbnięcie Mieczem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": 2,
@@ -749,7 +749,7 @@
             {
               "count": 1,
               "dice": "d6",
-              "modifier": 1,
+              "modifier": 0,
               "type": "slashing"
             }
           ],
@@ -760,10 +760,10 @@
           "specialEffect": ""
         },
         {
-          "name": "Pchnięcie Mieczem",
+          "name": "Pchnięcie Mieczem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 3,
+          "baseAccuracy": 1,
           "damage": [
             {
               "count": 1,
@@ -779,16 +779,16 @@
           "specialEffect": ""
         },
         {
-          "name": "Pchnięcie Mieczem (Półmiecz)",
+          "name": "Pchnięcie Mieczem (Chwyt Półmiecz)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 4,
+          "baseAccuracy": 2,
           "damage": [
             {
               "count": 1,
-              "dice": "d6",
-              "modifier": 2,
-              "type": "piercing"
+              "dice": "d8",
+              "modifier": 0,
+              "type": "slashing"
             }
           ],
           "minRange": 0,
@@ -798,10 +798,10 @@
           "specialEffect": ""
         },
         {
-          "name": "Uderzenie Głowicą Miecza (Półmiecz)",
+          "name": "Uderzenie Głowicą Miecza (Chwyt Odwrócony Półmiecz)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 4,
+          "baseAccuracy": 2,
           "damage": [
             {
               "count": 1,
@@ -817,7 +817,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Uderzenie Głowicą Miecza",
+          "name": "Uderzenie Głowicą Miecza (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": -1,
@@ -843,7 +843,7 @@
       "price": 80,
       "bulk": 0.3,
       "type": "weapon",
-      "desc": "Miecz Długi to niezwykle uniwersalna broń, która sprawdza się świetnie zarówno jako broń jednoręczna jak i jako broń dwuręczna.",
+      "desc": "Miecz Długi to niezwykle uniwersalna broń, która sprawdza się świetnie zarówno jako broń jednoręczna jak i jako broń dwuręczna.\n\nRóżne chwyty:\nGdy dzierżysz ten miecz w chwycie dwuręcznym zyskuje on bonus +1 do blokowania i odbicia.",
       "state": "unequipped",
       "hitPoints": 4,
       "toughness": 3,
@@ -858,8 +858,8 @@
           "min": 1
         }
       ],
-      "block": 3,
-      "deflection": 2,
+      "block": 4,
+      "deflection": 3,
       "weaponKinds": [
         "melee"
       ],
@@ -867,7 +867,7 @@
       "upgrades": [],
       "attackModes": [
         {
-          "name": "Rąbnięcie Mieczem",
+          "name": "Rąbnięcie Mieczem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": 2,
@@ -886,10 +886,10 @@
           "specialEffect": ""
         },
         {
-          "name": "Pchnięcie Mieczem",
+          "name": "Pchnięcie Mieczem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 2,
+          "baseAccuracy": 1,
           "damage": [
             {
               "count": 1,
@@ -905,7 +905,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Uderzenie Głowicą Miecza",
+          "name": "Uderzenie Głowicą Miecza (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": -1,
@@ -913,26 +913,7 @@
             {
               "count": 1,
               "dice": "d4",
-              "modifier": 1,
-              "type": "bludgeoning"
-            }
-          ],
-          "minRange": 0,
-          "maxRange": 1,
-          "spread": null,
-          "effectiveRange": null,
-          "specialEffect": ""
-        },
-        {
-          "name": "Rąbnięcie Mieczem (Dwuręczny)",
-          "modeType": "melee",
-          "handedness": "two",
-          "baseAccuracy": 2,
-          "damage": [
-            {
-              "count": 1,
-              "dice": "d8",
-              "modifier": 1,
+              "modifier": 0,
               "type": "slashing"
             }
           ],
@@ -943,10 +924,29 @@
           "specialEffect": ""
         },
         {
-          "name": "Pchnięcie Mieczem (Dwuręczny)",
+          "name": "Rąbnięcie Mieczem (Chwyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 3,
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 2,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Mieczem (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 1,
           "damage": [
             {
               "count": 1,
@@ -962,7 +962,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Uderzenie Głowicą Miecza (Dwuręczny)",
+          "name": "Uderzenie Głowicą Miecza (Chwyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
           "baseAccuracy": 0,
@@ -970,8 +970,8 @@
             {
               "count": 1,
               "dice": "d4",
-              "modifier": 2,
-              "type": "bludgeoning"
+              "modifier": 0,
+              "type": "slashing"
             }
           ],
           "minRange": 0,
@@ -981,34 +981,34 @@
           "specialEffect": ""
         },
         {
-          "name": "Pchnięcie Mieczem (Półmiecz)",
+          "name": "Pchnięcie Mieczem (Chwyt Półmiecz)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 4,
+          "baseAccuracy": 2,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Głowicą Miecza (Chwyt Odwrócony Półmiecz)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 2,
           "damage": [
             {
               "count": 1,
               "dice": "d8",
-              "modifier": 2,
-              "type": "piercing"
-            }
-          ],
-          "minRange": 0,
-          "maxRange": 1,
-          "spread": null,
-          "effectiveRange": null,
-          "specialEffect": ""
-        },
-        {
-          "name": "Uderzenie Głowicą Miecza (Półmiecz)",
-          "modeType": "melee",
-          "handedness": "two",
-          "baseAccuracy": 4,
-          "damage": [
-            {
-              "count": 1,
-              "dice": "d6",
-              "modifier": 1,
+              "modifier": 0,
               "type": "bludgeoning"
             }
           ],
@@ -1041,8 +1041,8 @@
           "min": 3
         }
       ],
-      "block": 4,
-      "deflection": 2,
+      "block": 5,
+      "deflection": 5,
       "weaponKinds": [
         "melee"
       ],
@@ -1050,15 +1050,15 @@
       "upgrades": [],
       "attackModes": [
         {
-          "name": "Rąbnięcie Mieczem (Dwuręczny)",
+          "name": "Rąbnięcie Mieczem (Chwyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
           "baseAccuracy": 2,
           "damage": [
             {
               "count": 1,
-              "dice": "d10",
-              "modifier": 2,
+              "dice": "d12",
+              "modifier": 0,
               "type": "slashing"
             }
           ],
@@ -1069,10 +1069,10 @@
           "specialEffect": ""
         },
         {
-          "name": "Pchnięcie Mieczem (Dwuręczny)",
+          "name": "Pchnięcie Mieczem (Chwyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 3,
+          "baseAccuracy": 1,
           "damage": [
             {
               "count": 1,
@@ -1088,7 +1088,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Uderzenie Głowicą Miecza (Dwuręczny)",
+          "name": "Uderzenie Głowicą Miecza (Chwyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
           "baseAccuracy": -1,
@@ -1096,7 +1096,7 @@
             {
               "count": 1,
               "dice": "d6",
-              "modifier": 1,
+              "modifier": 0,
               "type": "bludgeoning"
             }
           ],
@@ -1107,15 +1107,15 @@
           "specialEffect": ""
         },
         {
-          "name": "Pchnięcie Mieczem (Półmiecz)",
+          "name": "Pchnięcie Mieczem (Chwyt Półmiecz)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 4,
+          "baseAccuracy": 3,
           "damage": [
             {
-              "count": 1,
-              "dice": "d10",
-              "modifier": 2,
+              "count": 2,
+              "dice": "d6",
+              "modifier": 0,
               "type": "piercing"
             }
           ],
@@ -1126,15 +1126,15 @@
           "specialEffect": ""
         },
         {
-          "name": "Uderzenie Głowicą Miecza (Półmiecz)",
+          "name": "Uderzenie Głowicą Miecza (Chwyt Półmiecz)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 4,
+          "baseAccuracy": 2,
           "damage": [
             {
               "count": 1,
-              "dice": "d6",
-              "modifier": 2,
+              "dice": "d8",
+              "modifier": 0,
               "type": "bludgeoning"
             }
           ],
@@ -1183,7 +1183,7 @@
           "name": "Cięcie Szablą (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 5,
+          "baseAccuracy": 3,
           "damage": [
             {
               "count": 1,
@@ -1202,7 +1202,7 @@
           "name": "Cięcie Szablą (Chwyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 4,
+          "baseAccuracy": 2,
           "damage": [
             {
               "count": 2,
@@ -1241,7 +1241,7 @@
         }
       ],
       "block": 4,
-      "deflection": 4,
+      "deflection": 5,
       "weaponKinds": [
         "melee"
       ],
@@ -1249,14 +1249,14 @@
       "upgrades": [],
       "attackModes": [
         {
-          "name": "Pchnięcie Rapierem (Chwyt Jednoręczny)",
+          "name": "Pchnięcie Zręcznościówką (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 5,
+          "baseAccuracy": 3,
           "damage": [
             {
-              "count": 3,
-              "dice": "d4",
+              "count": 1,
+              "dice": "d10",
               "modifier": 0,
               "type": "piercing"
             }
@@ -1268,7 +1268,7 @@
           "specialEffect": ""
         },
         {
-          "name": "Uderzenie Głowicą Rapiera (Chwyt Jednoręczny)",
+          "name": "Uderzenie Głowicą Zręcznościówki (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": 0,
@@ -1287,14 +1287,14 @@
           "specialEffect": ""
         },
         {
-          "name": "Pchnięcie Rapierem (Chwyt „Półmiecz”)",
+          "name": "Pchnięcie Zręcznościówką (Chwyt Półmiecz)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 4,
+          "baseAccuracy": 2,
           "damage": [
             {
-              "count": 2,
-              "dice": "d8",
+              "count": 1,
+              "dice": "d12",
               "modifier": 0,
               "type": "piercing"
             }
@@ -1382,7 +1382,7 @@
       "upgrades": [],
       "attackModes": [
         {
-          "name": "Uderzenie Tarczą",
+          "name": "Uderzenie Tarczą (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": 1,
@@ -1480,45 +1480,7 @@
           "name": "Rąbnięcie Toporem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 1,
-          "damage": [
-            {
-              "count": 1,
-              "dice": "d6",
-              "modifier": 0,
-              "type": "slashing"
-            }
-          ],
-          "minRange": 0,
-          "maxRange": 1,
-          "spread": null,
-          "effectiveRange": null,
-          "specialEffect": ""
-        },
-        {
-          "name": "Uderzenie Obuchem Głowicy Topora (Chwyt Jednoręczny)",
-          "modeType": "melee",
-          "handedness": "one",
-          "baseAccuracy": 1,
-          "damage": [
-            {
-              "count": 1,
-              "dice": "d4",
-              "modifier": 1,
-              "type": "bludgeoning"
-            }
-          ],
-          "minRange": 0,
-          "maxRange": 1,
-          "spread": null,
-          "effectiveRange": null,
-          "specialEffect": ""
-        },
-        {
-          "name": "Rąbnięcie Toporem (Chwyt Dwuręczny)",
-          "modeType": "melee",
-          "handedness": "two",
-          "baseAccuracy": 2,
+          "baseAccuracy": 0,
           "damage": [
             {
               "count": 1,
@@ -1534,15 +1496,53 @@
           "specialEffect": ""
         },
         {
-          "name": "Uderzenie Obuchem Głowicy Topora (Chwyt Dwuręczny)",
+          "name": "Uderzenie Obuchem Głowicy Topora (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": -1,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Rąbnięcie Toporem (Chwyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
           "baseAccuracy": 1,
           "damage": [
             {
               "count": 1,
+              "dice": "d10",
+              "modifier": 0,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Obuchem Głowicy Topora (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 1,
               "dice": "d6",
-              "modifier": 1,
+              "modifier": 0,
               "type": "bludgeoning"
             }
           ],
@@ -1582,11 +1582,11 @@
           "name": "Uderzenie Młotem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 1,
+          "baseAccuracy": 0,
           "damage": [
             {
               "count": 1,
-              "dice": "d8",
+              "dice": "d10",
               "modifier": 0,
               "type": "bludgeoning"
             }
@@ -1601,7 +1601,7 @@
           "name": "Uderzenie Zaostrzonym Obuchem Młota (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 1,
+          "baseAccuracy": 0,
           "damage": [
             {
               "count": 1,
@@ -1620,11 +1620,11 @@
           "name": "Uderzenie Młotem (Chwyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 2,
+          "baseAccuracy": 1,
           "damage": [
             {
-              "count": 1,
-              "dice": "d10",
+              "count": 3,
+              "dice": "d4",
               "modifier": 0,
               "type": "bludgeoning"
             }
@@ -1639,7 +1639,7 @@
           "name": "Uderzenie Zaostrzonym Obuchem Młota (Chwyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 2,
+          "baseAccuracy": 1,
           "damage": [
             {
               "count": 1,
@@ -1726,7 +1726,7 @@
       "price": 35,
       "bulk": 0.5,
       "type": "weapon",
-      "desc": "Obuch z przytwierdzonymi kolcami stanowi przerażającą broń.",
+      "desc": "Ten metalowy obuch z przytwierdzonymi metalowymi kolcami stanowi przerażającą broń.",
       "state": "unequipped",
       "hitPoints": 4,
       "toughness": 2,
@@ -1761,7 +1761,7 @@
           "maxRange": 1,
           "spread": null,
           "effectiveRange": null,
-          "specialEffect": "Wiele ran: Efektywny Trafiony atak dodaje jeden poizom wykrwawienia u celu."
+          "specialEffect": "Wiele ran: W przypadku sukcesu lub krytycznego sukcesu w teście na celne trafienie tym trybem ataku, atak dodaje jeden poizom wykrwawienia u celu."
         },
         {
           "name": "Uderzenie Rękojeścią (Chwyt Jednoręczny",
@@ -1789,8 +1789,8 @@
           "baseAccuracy": 2,
           "damage": [
             {
-              "count": 1,
-              "dice": "d12",
+              "count": 3,
+              "dice": "d4",
               "modifier": 0,
               "type": "piercing"
             }
@@ -1799,7 +1799,7 @@
           "maxRange": 1,
           "spread": null,
           "effectiveRange": null,
-          "specialEffect": ""
+          "specialEffect": "Wiele ran: W przypadku sukcesu lub krytycznego sukcesu w teście na celne trafienie tym trybem ataku, atak dodaje jeden poizom wykrwawienia u celu."
         },
         {
           "name": "Uderzenie Rękojeścią (Chwyt Dwuręczny)",
@@ -1809,8 +1809,8 @@
           "damage": [
             {
               "count": 1,
-              "dice": "d4",
-              "modifier": 1,
+              "dice": "d6",
+              "modifier": 0,
               "type": "bludgeoning"
             }
           ],
@@ -1875,7 +1875,7 @@
           "name": "Uderzenie Drzewcem Włóczni (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 4,
+          "baseAccuracy": 1,
           "damage": [
             {
               "count": 1,
@@ -1936,7 +1936,7 @@
           "name": "Uderzenie Drzewcem Włóczni (Chwyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 5,
+          "baseAccuracy": 2,
           "damage": [
             {
               "count": 1,
@@ -1974,8 +1974,8 @@
           "min": 2
         }
       ],
-      "block": 3,
-      "deflection": 2,
+      "block": 4,
+      "deflection": 3,
       "weaponKinds": [
         "melee"
       ],
@@ -2024,7 +2024,7 @@
           "name": "Pchnięcie Partyzaną (Chwyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 3,
+          "baseAccuracy": 2,
           "damage": [
             {
               "count": 1,
@@ -2093,11 +2093,11 @@
           "name": "Uderzenie Młotem Wielkim (Chwyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 3,
+          "baseAccuracy": 1,
           "damage": [
             {
-              "count": 1,
-              "dice": "d12",
+              "count": 2,
+              "dice": "d6",
               "modifier": 0,
               "type": "bludgeoning"
             }
@@ -2112,7 +2112,7 @@
           "name": "Uderzenie Ostrym Obuchem Młota Wielkiego (Chwyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 2,
+          "baseAccuracy": 1,
           "damage": [
             {
               "count": 1,
@@ -2162,12 +2162,12 @@
           "name": "Rąbnięcie Halabardą (Chyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 3,
+          "baseAccuracy": 0,
           "damage": [
             {
-              "count": 2,
-              "dice": "d6",
-              "modifier": 1,
+              "count": 3,
+              "dice": "d4",
+              "modifier": 0,
               "type": "slashing"
             }
           ],
@@ -2181,12 +2181,12 @@
           "name": "Pchnięcie Halabardą (Chyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 4,
+          "baseAccuracy": 0,
           "damage": [
             {
-              "count": 2,
-              "dice": "d4",
-              "modifier": 1,
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
               "type": "piercing"
             }
           ],
@@ -2200,7 +2200,7 @@
           "name": "Uderzenie Ostrym Obuchem Halabardy (Chwyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 2,
+          "baseAccuracy": 0,
           "damage": [
             {
               "count": 2,
@@ -2219,7 +2219,7 @@
           "name": "Uderzenie Drzewcem Halabardy (Chyt Dwuręczny)",
           "modeType": "melee",
           "handedness": "two",
-          "baseAccuracy": 4,
+          "baseAccuracy": 1,
           "damage": [
             {
               "count": 1,
@@ -2266,7 +2266,7 @@
       "upgrades": [],
       "attackModes": [
         {
-          "name": "Pchnięcie Piką (Chyt Jednoręczny)",
+          "name": "Pchnięcie Piką (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
           "baseAccuracy": 2,
@@ -2377,11 +2377,11 @@
           "name": "Rzut Oszczepem (Chwyt Jednoręczny)",
           "modeType": "throw",
           "handedness": "one",
-          "baseAccuracy": 2,
+          "baseAccuracy": 1,
           "damage": [
             {
               "count": 1,
-              "dice": "d10",
+              "dice": "d8",
               "modifier": 0,
               "type": "piercing"
             }
@@ -2468,8 +2468,8 @@
           "baseAccuracy": 0,
           "damage": [
             {
-              "count": 2,
-              "dice": "d4",
+              "count": 1,
+              "dice": "d6",
               "modifier": 0,
               "type": "piercing"
             }
@@ -2542,8 +2542,8 @@
           "baseAccuracy": 2,
           "damage": [
             {
-              "count": 2,
-              "dice": "d4",
+              "count": 1,
+              "dice": "d6",
               "modifier": 0,
               "type": "slashing"
             }
@@ -2657,9 +2657,9 @@
           "baseAccuracy": 4,
           "damage": [
             {
-              "count": 2,
-              "dice": "d6",
-              "modifier": 2,
+              "count": 1,
+              "dice": "d10",
+              "modifier": 0,
               "type": "piercing"
             }
           ],
@@ -2734,8 +2734,8 @@
           "baseAccuracy": 5,
           "damage": [
             {
-              "count": 1,
-              "dice": "d12",
+              "count": 2,
+              "dice": "d6",
               "modifier": 0,
               "type": "piercing"
             }
@@ -2880,8 +2880,8 @@
           "baseAccuracy": 1,
           "damage": [
             {
-              "count": 1,
-              "dice": "d6",
+              "count": 2,
+              "dice": "d4",
               "modifier": 0,
               "type": "slashing"
             }
@@ -4672,7 +4672,107 @@
       ],
       "proficiencyCategory": "Krótka Broń Drzewcowa",
       "upgrades": [],
-      "attackModes": []
+      "attackModes": [
+        {
+          "name": "Pchnięcie Krótką Włócznią (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Drzewcem Krótkiej Włóczni (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": -1,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Rzut Krótką Włócznią (Chwyt Jednoręczny)",
+          "modeType": "throw",
+          "handedness": "one",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 2,
+          "maxRange": 7,
+          "spread": {
+            "count": 1,
+            "dice": "d4",
+            "modifier": 0
+          },
+          "effectiveRange": 4,
+          "specialEffect": ""
+        },
+        {
+          "name": "Pchnięcie Którką Włócznią (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d8",
+              "modifier": 0,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Uderzenie Drzewcem Krótkiej Włóczni (Chwyt Dwuręczny)",
+          "modeType": "melee",
+          "handedness": "two",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": 0,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
     },
     {
       "id": "custom-1785766312690-9i11g",
@@ -4680,7 +4780,7 @@
       "price": 102,
       "bulk": 0.15,
       "type": "weapon",
-      "desc": "Łamacz mieczy to sztylet z wyżłobionymi głębokimi wcięciami po jednej stronie ostrza, pozwalającymi na „złapanie” ostrza miecza.\n\nEfekt specjalny: „Łamacz Mieczy”:\n\nŁamacz Mieczy:\nMożesz wydać dodatkowy punkt akcji deklarując chęć wykonania akcji blokowania tą bronią. W przypadku krytycznego sukcesu broń przeciwnika klinuje się w łamaczu mieczy i wypada z jego ręki lądując pod twoimi nogami.",
+      "desc": "Łamacz mieczy to sztylet z wyżłobionymi głębokimi wcięciami po jednej stronie ostrza, pozwalającymi na „złapanie” ostrza miecza.\n\nEfekt specjalny: „Łamacz Mieczy”:\n\nŁamacz Mieczy:\nMożesz wydać dodatkowy punkt akcji deklarując chęć wykonania akcji blokowania tą bronią. W przypadku krytycznego sukcesu w blokowaniu ataku broń przeciwnika klinuje się w łamaczu mieczy i wypada z ręki atakującego lądując pod twoimi nogami.",
       "state": "unequipped",
       "hitPoints": 5,
       "toughness": 3,
@@ -4698,7 +4798,84 @@
       ],
       "proficiencyCategory": "Sztylety",
       "upgrades": [],
-      "attackModes": []
+      "attackModes": [
+        {
+          "name": "Pchnięcie Łamaczem Mieczy (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": -1,
+              "type": "piercing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 1,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Cięcie Prostym Ostrzem Łamacza Mieczy (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": -1,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 0,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        },
+        {
+          "name": "Cięcie Ząbkowatym Ostrzem Łamacza Mieczy (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": 0,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d6",
+              "modifier": 1,
+              "type": "slashing"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 0,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": "Rany Szarpane: Dopóki cel nie usunie wszystkich obrażeń, każdy test wykonywany w każdej próbie ich zalecznia ma poziom trudności zwiększony o 5."
+        },
+        {
+          "name": "Uderzenie Rękojeścią Łamacza Mieczy (Chwyt Jednoręczny)",
+          "modeType": "melee",
+          "handedness": "one",
+          "baseAccuracy": -1,
+          "damage": [
+            {
+              "count": 1,
+              "dice": "d4",
+              "modifier": -1,
+              "type": "bludgeoning"
+            }
+          ],
+          "minRange": 0,
+          "maxRange": 0,
+          "spread": null,
+          "effectiveRange": null,
+          "specialEffect": ""
+        }
+      ]
     },
     {
       "id": "custom-1785768825684-8xfen",
@@ -4734,11 +4911,11 @@
           "name": "Rzut Oszczepem (Chwyt Jednoręczny)",
           "modeType": "throw",
           "handedness": "one",
-          "baseAccuracy": 2,
+          "baseAccuracy": 1,
           "damage": [
             {
               "count": 1,
-              "dice": "d12",
+              "dice": "d10",
               "modifier": 0,
               "type": "piercing"
             }
@@ -4757,7 +4934,7 @@
           "name": "Pchnięcie Oszczepem (Chwyt Jednoręczny)",
           "modeType": "melee",
           "handedness": "one",
-          "baseAccuracy": 1,
+          "baseAccuracy": -1,
           "damage": [
             {
               "count": 1,
@@ -4829,10 +5006,10 @@
           "baseAccuracy": 3,
           "damage": [
             {
-              "count": 5,
-              "dice": "d6",
+              "count": 3,
+              "dice": "d4",
               "modifier": 0,
-              "type": "piercing"
+              "type": "slashing"
             }
           ],
           "minRange": 1,
