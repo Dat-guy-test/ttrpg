@@ -270,6 +270,59 @@
       "materialCost": 0,
       "otherPrerequisites": "",
       "effects": []
+    },
+    {
+      "id": "custom-spell-1789145872620-651rz",
+      "name": "Projekcja Puchatej Tarczy",
+      "desc": "Tworzysz wokół siebie powłokę miękkiej materii projekcyjnej, łagodzącej otrzymywane obrażenia. Następnym razem, gdy otrzymasz obrażenia otrzymujesz jedynie połowę obrażeń zaokrąglonych w dół. W momencie otrzymania obrażeń powłoka w nieszkodliwy sposób rozpada się na kawałki. Póki podtrzymujesz zaklęcie powłoka porusza się wraz z twoją postacią.",
+      "schools": [
+        "projection"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "wordsOfPower",
+        "gesture"
+      ],
+      "channeling": true,
+      "channelingMethods": [
+        "thought"
+      ],
+      "actionPointCost": 2,
+      "channelingActionPointCost": 1,
+      "invocationCost": 1,
+      "channelingCost": 1,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1789146198971-d5w3d",
+      "name": "Stwórz Twardą Tarczę",
+      "desc": "Tworzysz twardą tarczę z zawieszonych w przestrzeni punktów twardej materii w odpowiedzi na atak lub pocisk, który może w ciebie trafić zanim ciebie trafi. Wykonaj test kreacji. Jeżeli wynik testu jest równy lub wyższy celności ataku, atak nie trafia. Twarda tarcza porusza się z tobą póki podtrzymujesz zaklęcie.",
+      "schools": [
+        "creation"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "wordsOfPower",
+        "gesture"
+      ],
+      "channeling": true,
+      "channelingMethods": [
+        "thought",
+        "gesture"
+      ],
+      "actionPointCost": 3,
+      "channelingActionPointCost": 1,
+      "invocationCost": 2,
+      "channelingCost": 1,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
     }
   ]
 }
