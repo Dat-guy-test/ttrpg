@@ -315,6 +315,11 @@
           "id": "rzuć-zaklęcie-reakcja-akcja",
           "name": "Rzuć Zaklęcie {Reakcja/Akcja}",
           "content": "Rzucasz zaklęcie lub aktywujesz istniejący magiczny przedmiot lub glif.\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji.\n2.) Tracisz Punkty Energii i Punkty Akcji zgodnie z opisem zaklęcia.\n\nRozstrzygnięcie:\n1.) Rozstrzygasz wszystkie reakcje na tą akcję.\n2.) Wykonujesz zaklęcie zgodnie z jego opisem."
+        },
+        {
+          "id": "osłonięcie-reakcja",
+          "name": "Osłona (Osłonięcie) {Reakcja}",
+          "content": "Próbujesz wykonać akcję odbicia na ataku, którego celem nie jest twoja postać i którego cel znajduje się w zasięgu przedmiotu umożliwiającego odbicie ataku.\n\nDeklaracja:\n1.) Wyraź chęć wykonania tej (re)akcji.\n2.) Tracisz jeden Punkt Akcji.\n\nRozstrzygnięcie:\n1.) Rozstrzygnij wszystkie reakcje na tą akcję.\n2.) Wykonaj akcję odbicia (płacąc dwa Punkty Akcji za jej wykonanie)."
         }
       ]
     },

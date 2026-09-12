@@ -5487,6 +5487,24 @@
       "accessorySize": null,
       "prepareType": "",
       "enablesPrepareTypes": []
+    },
+    {
+      "id": "custom-1789213193813-cv108",
+      "name": "Lina (5 jednostek)",
+      "price": 10,
+      "bulk": 0.1,
+      "type": "utility",
+      "desc": "Wykonana z włókien roślinnych lina o długości 5 jednostek. Liny można użyć do unieruchomienia pochwyconego celu lub w inny bardziej kreatywny sposób (np. podczas wspinaczki).",
+      "state": "unequipped",
+      "hitPoints": 10,
+      "toughness": 3,
+      "isSet": false,
+      "setMembers": [],
+      "accessorySize": null,
+      "prepareType": "",
+      "enablesPrepareTypes": [],
+      "useCondition": "Cel jest pochwycony przez sojusznika, masz 4 Punkty Akcji.",
+      "useEffect": "Tracisz 4 Punkty Akcji. Cel staje się unieruchomiony, obezwładniony (i opcjonalnie wyciszony) do momętu rozwiązania liny. Rozwiązanie lub przecięcie liny zajmuje 4 Punkty Akcji i pozwala usunąć unieruchomienie, obezwładnienie lub wyciszenie (w celu usunięcia wszyskich musisz rozwiązać/przeciąć linę 3 razy)."
     }
   ]
 }

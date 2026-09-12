@@ -2463,7 +2463,7 @@
       "desc": "Skupiasz się na rozwijaniu swoich umiejętności w szkole kreacji.\nUczysz się jednego zaklęcia o maksymalnej złożoności równej 1 z szkoły kreacji.\nZyskujesz poziom doświadczenia w kreacji i wiedzy tajemnej.",
       "hoverText": "",
       "fi": -68,
-      "theta": 43,
+      "theta": 43.00000000000001,
       "requires": [
         "666"
       ],
@@ -2534,7 +2534,7 @@
       "desc": "Pogłębiasz swoją wiedzę na temat ezoterycznej magii projekcji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Projekcji oraz Wiedzy Tajemnej.",
       "hoverText": "",
       "fi": -45,
-      "theta": 43,
+      "theta": 43.00000000000001,
       "requires": [
         "666"
       ],
@@ -2605,7 +2605,7 @@
       "desc": "Pogłębiasz swoją wiedzę na temat potężnej magii transmutacji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Transmutacji oraz Wiedzy Tajemnej.\n\nZyskujesz także jedną jednostkę ołowieu transmutacyjnego.",
       "hoverText": "",
       "fi": -25,
-      "theta": 43,
+      "theta": 43.00000000000001,
       "requires": [
         "666"
       ],
@@ -3512,7 +3512,7 @@
       "name": "Niezwykła Motywacja",
       "desc": "Ciężko trenując siłę swojej woli w krytycznych sytuacjach zyskujesz następujące cechy:\n\nZyskujesz poziom Siły Woli.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności determinacja.\n\nZyskujesz atrybut \"Niezwykła Motywacja\":\n\nNiezwykła Motywacja:\nZamiast możliwości zyskania punktu motywacji na co piątym pełnym odpoczynku zyskujesz punkt motywacji po każdym pełnym odpoczynku.",
       "hoverText": "",
-      "fi": -13.000000000000002,
+      "fi": -13.000000000000004,
       "theta": 35,
       "requires": [
         "777"
@@ -3786,7 +3786,7 @@
     {
       "id": "564",
       "name": "Krwawa Pentagramologia",
-      "desc": "Pentagramologia to nauka studiująca runy pentagramowe, wzmacniające zaklęcia jednej szkoły magii i osłabiające wszystkie innych lub osłabiające zaklęcia jednej szkoły i wzmacniające zaklęcia wszyskich szkłół.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nZyskujesz Atrybut „Krwawe Pentagramy”:\n\nKrwawe Pentagramy:\n\nJesteś w rozpoznać typ pentagramów jakie napotykasz. Możesz użyć krwi w celu naszkicowania przenośnego lub dużego pentagramu.\n\nPentagram przenośny ma rozmiar nie większy niż 1/3 jednostki i możesz go wykonać na kartce papieru, zwoju pergaminu, kawałku skóry czy stronie księgi. Koszt inskrypcji takiego pentagramu wynosi 6 fiolek. Pentagram ten działa jedynie przez jedną turę, po czym wypala się, stając się bezużytecznym. Wykonanie takiej inskrypcji zajmuje 5 minut.\n\nDuży pentagram ma rozmiar od jednej do siedmiu jednostek. Koszt takiego pentagramu wynosi trzy fiolki za każdą jednostkę kwadratową (lub heksagonalną) za każde zaklęcie, które pentagram wzmocni/osłabi przed wypaleniem. To znaczy, iż pentagram pokrywający 9 jednostek, który jest w stanie wpłynąć na 5 zaklęć kosztuje 135 fiolek krwi. Świadome istoty posiadają w sobie 50 fiolek krwi. Wykonanie inskrypcji trwa jedną minutę za każdą fiolkę kosztu insprypcji na osobę dokonującą inskrypcji. Częściowo wykonany pentagram, traktuje się jak ukończony jeżeli łączna ilość fiolek krwi starcza na wpłynięcie na choćby jedno zaklęcie na takim obszarze. \n\nPentagramy wykonane z krwi dezaktywują się po 25 godzinach od stworzenia lub jeżeli zostaną przerwane w każdym wierzchołku, albo całkowicie zostanie usinięta co najmniej jedna linia.\n\nIstnieją dwa typy pentagramu, spośród których wybierasz konstruując pentagram: Pentagram wzmacniający i osłabiający. \n\nPentagram wzmacniający wzmacnia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnym kosztem osłabiania innych. Wszystkie istoty wewnątrz dużego pentagramu wzmacniającego wydają połowę energii (zaokrąglamy w górę) rzucając czary należące do wzmacnianej szkoły. Wzmacniający pentagram przenośny ma zaś taki sam efekt dla jednego zaklęcia, gdy trzymany jest odpowiednio przez osobę je rzucającą, ale wypala się po jednym zaklęciu.\n\nPentagram osłabiający osłabia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnie wzmacniając zaklęcia pozostałych szkół. Rzucenie zaklęć tego typu wewnątrz pentagramu kosztuje dwa razy więcej punktów energii, a próba rzucenia zaklęcia tej szkoły z zewnątrz dokonującego zmiany wewnątrz pentagramu kończy się stratą Punktów Energii potrzebnych do rzucenia zaklęcia i brakiem efektu. Pentagram osłabiający może także zniechęcać istoty magiczne do wejścia, jeżeli osłabia on odpowiednią szkołę. Osłabiający pentagram przenośny zaburza rzucenie jednego zaklęcia, którego ognisko jest nie dalej niż sześć jednostek od dzierżącego pentagram. Zaburzenie rzucenia zaklęcia powoduje zużycie Punktów Akcji i Energii przez Rzucającego oraz.brak efektów zaklęcia.",
+      "desc": "Pentagramologia to nauka studiująca runy pentagramowe, wzmacniające lub osłabiające zaklęcia wybranej szkoły magii.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nZyskujesz Atrybut „Krwawe Pentagramy”:\n\nKrwawe Pentagramy:\n\nJesteś w rozpoznać typ pentagramów jakie napotykasz. Możesz użyć krwi w celu naszkicowania przenośnego lub dużego pentagramu.\n\nPentagram przenośny ma rozmiar nie większy niż 1/3 jednostki i możesz go wykonać na kartce papieru, zwoju pergaminu, kawałku skóry czy stronie księgi. Koszt inskrypcji takiego pentagramu wynosi 6 fiolek. Pentagram ten działa jedynie przez jedną turę, po czym wypala się, stając się bezużytecznym. Wykonanie takiej inskrypcji zajmuje 5 minut.\n\nDuży pentagram ma rozmiar od jednej do siedmiu jednostek. Koszt takiego pentagramu wynosi trzy fiolki za każdą jednostkę kwadratową (lub heksagonalną) za każde zaklęcie, które pentagram wzmocni/osłabi przed wypaleniem. To znaczy, iż pentagram pokrywający 9 jednostek, który jest w stanie wpłynąć na 5 zaklęć kosztuje 135 fiolek krwi. Świadome istoty posiadają w sobie 50 fiolek krwi. Wykonanie inskrypcji trwa jedną minutę za każdą fiolkę kosztu insprypcji na osobę dokonującą inskrypcji. Częściowo wykonany pentagram, traktuje się jak ukończony jeżeli łączna ilość fiolek krwi starcza na wpłynięcie na choćby jedno zaklęcie na takim obszarze. \n\nPentagramy wykonane z krwi dezaktywują się po 25 godzinach od stworzenia lub jeżeli zostaną przerwane w każdym wierzchołku, albo całkowicie zostanie usinięta co najmniej jedna linia.\n\nIstnieją dwa typy pentagramu, spośród których wybierasz konstruując pentagram: Pentagram wzmacniający i osłabiający. \n\nPentagram wzmacniający wzmacnia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnym kosztem osłabiania innych. Wszystkie istoty wewnątrz dużego pentagramu wzmacniającego wydają połowę energii (zaokrąglamy w górę) rzucając czary należące do wzmacnianej szkoły. Wzmacniający pentagram przenośny ma zaś taki sam efekt dla jednego zaklęcia, gdy trzymany jest odpowiednio przez osobę je rzucającą, ale wypala się po jednym zaklęciu.\n\nPentagram osłabiający osłabia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnie wzmacniając zaklęcia pozostałych szkół. Rzucenie zaklęć tego typu wewnątrz pentagramu kosztuje dwa razy więcej punktów energii, a próba rzucenia zaklęcia tej szkoły z zewnątrz dokonującego zmiany wewnątrz pentagramu kończy się stratą Punktów Energii potrzebnych do rzucenia zaklęcia i brakiem efektu. Pentagram osłabiający może także zniechęcać istoty magiczne do wejścia, jeżeli osłabia on odpowiednią szkołę. Osłabiający pentagram przenośny zaburza rzucenie jednego zaklęcia, którego ognisko jest nie dalej niż sześć jednostek od dzierżącego pentagram. Zaburzenie rzucenia zaklęcia powoduje zużycie Punktów Akcji i Energii przez Rzucającego oraz.brak efektów zaklęcia.",
       "hoverText": "",
       "fi": -85,
       "theta": 45,
@@ -4328,7 +4328,7 @@
       "name": "Nie do Zamęczenia",
       "desc": "Dzięki mieszance medytacji i badania granic swoich możliwości uczysz się aktywnie działać do samego końca.\n\nZyskujesz poziom doświadcznia i improwizacji w umiejętności czas reakcji.\n\nZyskujesz jeden poziom Bystrości.\n\nZyskujesz atrybut „Nie do Zamęczenia”:\nGdy masz co najmniej jeden Punkt Energii, możesz wydać wszystkie posiadane Punkty Energii, by odzyskać Punkty Akcji w ilości równej poziomowi twojej Bystrości.",
       "hoverText": "",
-      "fi": 13.000000000000002,
+      "fi": 13.000000000000004,
       "theta": 31,
       "requires": [
         "7778"
