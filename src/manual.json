@@ -320,6 +320,11 @@
           "id": "osłonięcie-reakcja",
           "name": "Osłona (Osłonięcie) {Reakcja}",
           "content": "Próbujesz wykonać akcję odbicia na ataku, którego celem nie jest twoja postać i którego cel znajduje się w zasięgu przedmiotu umożliwiającego odbicie ataku.\n\nDeklaracja:\n1.) Wyraź chęć wykonania tej (re)akcji.\n2.) Tracisz jeden Punkt Akcji.\n\nRozstrzygnięcie:\n1.) Rozstrzygnij wszystkie reakcje na tą akcję.\n2.) Wykonaj akcję odbicia (płacąc dwa Punkty Akcji za jej wykonanie)."
+        },
+        {
+          "id": "skok-akcja",
+          "name": "Skok {Akcja}",
+          "content": "Skaczesz z miejsca lub z ruchu. Nie możesz wykonać tej akcji gdy jesteś Przy Gruncie (musisz najpeirw wstać).\n\nDeklaracja:\n1.) Deklarujesz chęć wykonania tej akcji oraz jak daleko chcesz skoczyć (do 2 jednostek w bok i do jednej do góry lub do 4 jednostek w bok i do dwóch jednej jednostki do góry jeżeli twoja postać ruszyła się bezpośrednio przed wykonaniem tej akcji).\n\n2.) Tracisz dwa Punkty Akcji.\n\nRozstrzygnięcie:\n1.) Rozstrzygnij reakcje na tą akcję.\n2.) Twoja postać ląduje w zadeklarowanym miejscu."
         }
       ]
     },
