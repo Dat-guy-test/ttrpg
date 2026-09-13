@@ -40,7 +40,7 @@
     },
     {
       "id": "-3",
-      "name": "Urodzony Czarownik",
+      "name": "Urodzony Fenomen",
       "desc": "Od urodzenia prosta magia jest czymś całkowicie dla CIebie naturalnym. \n\nZyskujesz atrybut \"Wrodzona Magia\":\n\nWrodzona Magia:\n\nMagia jest dla ciebie czymś całkowicie naturalnym: znając ogłony koncept zaklęcia twoje ciało niemalże bezbłędnie wykonuje wszystkie niezbędnie czynności do jego rzucenia. Stąd możesz rzucać zaklęcia bez znajomości podstaw magii.\n\nUzyskujesz także dostęp do Leniwych Czarów: możesz niekoncentrując się na rzucaniu czaru bezpiecznie rzucić jego słabszą wersję zużywając połowę Punktów Energii. Jeżeli rzucasz leniwy czar rzuć sześć razy każdą kością w każdym teście wykonywanym w ramach rzucania zaklęcia oraz każdą kością rzucaną by określić ilość obrażeń zadawanych przez czar lub jego efekt: najniższy wyrzucony wynik jest wynikiem rzutu kością.\n\n\nDodatkowo zyskujesz dwa zaklęcia o maksymalnej złożoności 1 oraz poziom improwizacji w umiejętnościach: kreacja, projekcja, transmutacja, przywoływanie i destrukcja.",
       "hoverText": "",
       "fi": -5,
@@ -2417,7 +2417,7 @@
     {
       "id": "666",
       "name": "Początkujący Czarodziej",
-      "desc": "Czytając prace magów dowiadujesz się jak rzucać zaklęcia w sposób określany jako \"magia uczonych\". Jest to styl rzucania zaklęć oparty na głębokim zrozumieniu manipulacji i natury eteru.\n\nUczysz się jednego zaklęcia o złożoności równej 1. \n\nZyskujesz także jeden poziom doświadczenia i improwizacji w wybranej przez siebie umiejętności.\n\nDodatkowo zyskujesz możliwość rzucania zaklęć przez \"Magię Uczonych\", co odzwierciedla poniższy atrybut:\n\nMagia Uczonych:\nDzięki dogłębnemu zrozumieniu swoich zaklęć jesteś w stanie stosunkowo niewielkim wysiłkiem wprowadzać drobne modyfikacje do rzucanych czarów w trakcie ich rzucania:\n1.) Możesz wydawać Punkty Energii by zwiększyć wynik dowolnego testu, który musisz wykonać jako element rzucania czaru. Każdy zużyty Punkt Energii zwiększa wynik testu o 1. Decyzję o wydaniu Punktów Energii w ten sposób podejmujesz zaraz po wykonaniu testu.\n2.) Możesz wydać Punkty Energii by zwiększyć ilość obrażeń zadawanych przez zaklęcie. Wydając ilość Punktów Energii równą kosztowi rzucenia zaklęcia możesz podwoić zadanych obrażeń. Decyzję tą możesz podjąć najpóźniej w momencie zobaczenia wyniku pierwszego rzutu na obrażenia związanego z zaklęciem.",
+      "desc": "Czytając prace magów dowiadujesz się jak rzucać zaklęcia w sposób określany jako \"magia uczonych\". Jest to styl rzucania zaklęć oparty na głębokim zrozumieniu manipulacji i natury eteru.\n\nUczysz się jednego zaklęcia o złożoności równej 1. \n\nZyskujesz także jeden poziom doświadczenia i improwizacji w wybranej przez siebie umiejętności.\n\nDodatkowo zyskujesz możliwość rzucania zaklęć przez \"Magię Uczonych\", co odzwierciedla poniższy atrybut:\n\nMagia Uczonych:\nRzucając czary posługujesz się księgą z swoimi notatkami. Jeżeli stracisz księgę, możesz odtworzyć jej zawartość z pamięci w tępie jednej godziny na każde zaklęcie. Dzięki dogłębnemu zrozumieniu swoich zaklęć jesteś w stanie stosunkowo niewielkim wysiłkiem wprowadzać drobne modyfikacje do rzucanych czarów w trakcie ich rzucania:\n1.) Możesz wydawać Punkty Energii by zwiększyć wynik dowolnego testu, który musisz wykonać jako element rzucania czaru. Każdy zużyty Punkt Energii zwiększa wynik testu o 1. Decyzję o wydaniu Punktów Energii w ten sposób podejmujesz zaraz po wykonaniu testu.\n2.) Możesz wydać Punkty Energii by zwiększyć ilość obrażeń zadawanych przez zaklęcie. Wydając ilość Punktów Energii równą kosztowi rzucenia zaklęcia możesz podwoić zadanych obrażeń. Decyzję tą możesz podjąć najpóźniej w momencie zobaczenia wyniku pierwszego rzutu na obrażenia związanego z zaklęciem.",
       "hoverText": "",
       "fi": -35,
       "theta": 41,
@@ -2450,9 +2450,14 @@
           "amount": 1
         },
         {
+          "type": "item",
+          "key": "custom-1786310816440-3yc43",
+          "amount": 1
+        },
+        {
           "type": "attribute",
           "key": "Magia Uczonych",
-          "description": "Magia Uczonych:\nDzięki dogłębnemu zrozumieniu swoich zaklęć jesteś w stanie stosunkowo niewielkim wysiłkiem wprowadzać drobne modyfikacje do rzucanych czarów w trakcie ich rzucania:\n1.) Możesz wydawać Punkty Energii by zwiększyć wynik dowolnego testu, który musisz wykonać jako element rzucania czaru. Każdy zużyty Punkt Energii zwiększa wynik testu o 1. Decyzję o wydaniu Punktów Energii w ten sposób podejmujesz zaraz po wykonaniu testu.\n2.) Możesz wydać Punkty Energii by zwiększyć ilość obrażeń zadawanych przez zaklęcie. Wydając ilość Punktów Energii równą kosztowi rzucenia zaklęcia możesz podwoić zadanych obrażeń. Decyzję tą możesz podjąć najpóźniej w momencie zobaczenia wyniku pierwszego rzutu na obrażenia związanego z zaklęciem.",
+          "description": "Rzucając czary posługujesz się księgą z swoimi notatkami. Jeżeli stracisz księgę, możesz odtworzyć jej zawartość z pamięci w tępie jednej godziny na każde zaklęcie. Dzięki dogłębnemu zrozumieniu swoich zaklęć jesteś w stanie stosunkowo niewielkim wysiłkiem wprowadzać drobne modyfikacje do rzucanych czarów w trakcie ich rzucania:\n1.) Możesz wydawać Punkty Energii by zwiększyć wynik dowolnego testu, który musisz wykonać jako element rzucania czaru. Każdy zużyty Punkt Energii zwiększa wynik testu o 1. Decyzję o wydaniu Punktów Energii w ten sposób podejmujesz zaraz po wykonaniu testu.\n2.) Możesz wydać Punkty Energii by zwiększyć ilość obrażeń zadawanych przez zaklęcie. Wydając ilość Punktów Energii równą kosztowi rzucenia zaklęcia możesz podwoić zadanych obrażeń. Decyzję tą możesz podjąć najpóźniej w momencie zobaczenia wyniku pierwszego rzutu na obrażenia związanego z zaklęciem.",
           "bonuses": []
         }
       ]
@@ -2462,8 +2467,8 @@
       "name": "Zainteresowanie Szkołą Kreacji",
       "desc": "Skupiasz się na rozwijaniu swoich umiejętności w szkole kreacji.\nUczysz się jednego zaklęcia o maksymalnej złożoności równej 1 z szkoły kreacji.\nZyskujesz poziom doświadczenia w kreacji i wiedzy tajemnej.",
       "hoverText": "",
-      "fi": -68,
-      "theta": 43.00000000000001,
+      "fi": -75.00000000000001,
+      "theta": 43,
       "requires": [
         "666"
       ],
@@ -2495,7 +2500,7 @@
       "name": "Początkujący Adept Kreacji",
       "desc": "Pogłębiając swoją wiedzę na temat magii kreacji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności kreacja i poziom doświadczenia w umiejętności wiedza tajemna.",
       "hoverText": "",
-      "fi": -68,
+      "fi": -75.00000000000001,
       "theta": 47,
       "requires": [
         "55555"
@@ -2533,8 +2538,8 @@
       "name": "Zainteresowanie Szkołą Projekcji",
       "desc": "Pogłębiasz swoją wiedzę na temat ezoterycznej magii projekcji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Projekcji oraz Wiedzy Tajemnej.",
       "hoverText": "",
-      "fi": -45,
-      "theta": 43.00000000000001,
+      "fi": -59.99999999999999,
+      "theta": 43,
       "requires": [
         "666"
       ],
@@ -2566,7 +2571,7 @@
       "name": "Początkujący Adept Projekcji",
       "desc": "Pogłębiając swoją wiedzę na temat magii projekcji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności Projekcja i poziom doświadczenia w umiejętności wiedza tajemna.",
       "hoverText": "",
-      "fi": -45,
+      "fi": -59.99999999999999,
       "theta": 47,
       "requires": [
         "5236"
@@ -2604,8 +2609,8 @@
       "name": "Zainteresowanie Szkołą Transmutacji",
       "desc": "Pogłębiasz swoją wiedzę na temat potężnej magii transmutacji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Transmutacji oraz Wiedzy Tajemnej.\n\nZyskujesz także jedną jednostkę ołowieu transmutacyjnego.",
       "hoverText": "",
-      "fi": -25,
-      "theta": 43.00000000000001,
+      "fi": -45,
+      "theta": 43,
       "requires": [
         "666"
       ],
@@ -2642,7 +2647,7 @@
       "name": "Początkujący Adept Transmutacji",
       "desc": "Pogłębiając swoją wiedzę na temat magii Transmutacji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności Transmutacja i poziom doświadczenia w umiejętności wiedza tajemna. ",
       "hoverText": "",
-      "fi": -25,
+      "fi": -45,
       "theta": 47,
       "requires": [
         "12314"
@@ -3277,7 +3282,7 @@
     },
     {
       "id": "473",
-      "name": "Akolita",
+      "name": "Akolita Okultyzmu",
       "desc": "Twoja silna wiara umożliwia Ci rzucanie zaklęć bez zrozumienia natury magii.\n\nPoznajesz jedno zaklęcie o maksymalnej złożoności 1.\n\nZyskujesz atrybut \"Boska Magia\":\n\nBoska Magia:\n\nPotrafisz rzucać zaklęcia bez zrozumienia podstaw działania magii. Gdy rzucasz zaklęcie musisz wydać dwa razy więcej Punktów Energii oraz mieć wyposażony Święty Symbol. Energii tej używasz do poruszenia mocy oddziałującej na Twoją magię z głębi eteru, którą identyfikujesz jako moc czczonego przez ciebie bytu. Moc ta wpływa na twoje zaklęcia w następujący sposób:\n\nMożesz przerzucić każdą kość rzucaną podczas każdego testu wymaganego przez zaklęcie oraz rozstrzygania ilości obrażeń zadanych przez zaklęcie. Daną kość możesz przerzucić tylko raz.",
       "hoverText": "",
       "fi": -100,
@@ -3750,7 +3755,7 @@
       "name": "Mag Krwi",
       "desc": "Udało ci się zrozumieć zastosowanie magicznych właściwośici krwi żywych stworzeń. Dowiadujesz się jak rzucać zaklęcia w sposób określany jako \"Rytuały Krwi\". Jest to styl rzucania zaklęć oparty na głębokim zrozumieniu magicznych run krwi.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nUczysz się jednego zaklęcia o złożoności równej 1.\n\nDodatkowo zyskujesz możliwość rzucania zaklęć przez \"Rytuały Krwi\", co odzwierciedla poniższy atrybut:\n\nRytuały Krwi:\nDzięki wiedzy na temat magicznych właściwości krwi, możesz rzucać zaklęcia za pomocą wcześniej przygotowanych rytuałów:\n1.) Aby rzucić czar w ten sposób potrzebujesz najpierw przygotować rytuał. Do przygotowania rytuału potrzebujesz tyle fiolek świeżej krwi, ile Punktów Energii i Punktów Akcji łącznie kosztuje rzucenie czaru (świeża krew krepnie i przestaje być przydatna sześć godzin po pobraniu). Jeżeli czar tansmutuje lub niszczy materialny komponent nadal musisz go mieć.\n1a.) Przygotowując rytuał możesz zużyć dodatkową fiolkę krwi na każdy Punkt Energii w jego koszcie rzucenia, by zmniejszyć jego koszt jego rzucenia i podtrzymywania o połowę.\n1b.) Jeżeli chcesz móc aktywować rytuał wszędzie, inskrypcji krwią możesz dokonać na kawałku skóry, pergaminu, papieru lub stronie zeszytu lub książki.\n2.) Przygotowany rytuał aktywujesz z odległości nie większej niż pięć jednostek, traktując środek inskrypcji jako punkt, z którego rzucasz zaklęcie. Jeżeli chcesz, by rytuał przemieścił komponent materialny, z którego korzysta, zwiększa to koszt jego przygotowania o jedną fiolkę na każdą jednostkę obciążenia na jednostkę przesunięcia.",
       "hoverText": "",
-      "fi": -75.00000000000001,
+      "fi": -80,
       "theta": 41,
       "requires": [
         "5555"
@@ -3788,7 +3793,7 @@
       "name": "Krwawa Pentagramologia",
       "desc": "Pentagramologia to nauka studiująca runy pentagramowe, wzmacniające lub osłabiające zaklęcia wybranej szkoły magii.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nZyskujesz Atrybut „Krwawe Pentagramy”:\n\nKrwawe Pentagramy:\n\nJesteś w rozpoznać typ pentagramów jakie napotykasz. Możesz użyć krwi w celu naszkicowania przenośnego lub dużego pentagramu.\n\nPentagram przenośny ma rozmiar nie większy niż 1/3 jednostki i możesz go wykonać na kartce papieru, zwoju pergaminu, kawałku skóry czy stronie księgi. Koszt inskrypcji takiego pentagramu wynosi 6 fiolek. Pentagram ten działa jedynie przez jedną turę, po czym wypala się, stając się bezużytecznym. Wykonanie takiej inskrypcji zajmuje 5 minut.\n\nDuży pentagram ma rozmiar od jednej do siedmiu jednostek. Koszt takiego pentagramu wynosi trzy fiolki za każdą jednostkę kwadratową (lub heksagonalną) za każde zaklęcie, które pentagram wzmocni/osłabi przed wypaleniem. To znaczy, iż pentagram pokrywający 9 jednostek, który jest w stanie wpłynąć na 5 zaklęć kosztuje 135 fiolek krwi. Świadome istoty posiadają w sobie 50 fiolek krwi. Wykonanie inskrypcji trwa jedną minutę za każdą fiolkę kosztu insprypcji na osobę dokonującą inskrypcji. Częściowo wykonany pentagram, traktuje się jak ukończony jeżeli łączna ilość fiolek krwi starcza na wpłynięcie na choćby jedno zaklęcie na takim obszarze. \n\nPentagramy wykonane z krwi dezaktywują się po 25 godzinach od stworzenia lub jeżeli zostaną przerwane w każdym wierzchołku, albo całkowicie zostanie usinięta co najmniej jedna linia.\n\nIstnieją dwa typy pentagramu, spośród których wybierasz konstruując pentagram: Pentagram wzmacniający i osłabiający. \n\nPentagram wzmacniający wzmacnia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnym kosztem osłabiania innych. Wszystkie istoty wewnątrz dużego pentagramu wzmacniającego wydają połowę energii (zaokrąglamy w górę) rzucając czary należące do wzmacnianej szkoły. Wzmacniający pentagram przenośny ma zaś taki sam efekt dla jednego zaklęcia, gdy trzymany jest odpowiednio przez osobę je rzucającą, ale wypala się po jednym zaklęciu.\n\nPentagram osłabiający osłabia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnie wzmacniając zaklęcia pozostałych szkół. Rzucenie zaklęć tego typu wewnątrz pentagramu kosztuje dwa razy więcej punktów energii, a próba rzucenia zaklęcia tej szkoły z zewnątrz dokonującego zmiany wewnątrz pentagramu kończy się stratą Punktów Energii potrzebnych do rzucenia zaklęcia i brakiem efektu. Pentagram osłabiający może także zniechęcać istoty magiczne do wejścia, jeżeli osłabia on odpowiednią szkołę. Osłabiający pentagram przenośny zaburza rzucenie jednego zaklęcia, którego ognisko jest nie dalej niż sześć jednostek od dzierżącego pentagram. Zaburzenie rzucenia zaklęcia powoduje zużycie Punktów Akcji i Energii przez Rzucającego oraz.brak efektów zaklęcia.",
       "hoverText": "",
-      "fi": -85,
+      "fi": -90,
       "theta": 45,
       "requires": [
         "4145"
@@ -4356,6 +4361,126 @@
         {
           "type": "characteristic",
           "key": "bystrosc",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "578",
+      "name": "Kujon",
+      "desc": "Rzucanie zaklęć Magią Uczonych wymaga niezwykle dokładnych ruchów, w których wykonywaniu niezwykle pomagają bardzo dokładnie naszkicowane diagramy. Jednakże w teorii można się nauczyć wykonywania odpowiednich ruchów, bez żadnej pomocy...\n\nZyskujesz atrybut: „Fotograficzna Pamięć”:\n\nFotograficzna Pamięć:\nMożesz uczyć się zaklęć na pamięć. To jak długo zajmuje nauczenie się rzucania zaklęć Magią Uczonych bez żadnych notatek zależy od złożoności zaklęć:\n\nZłożoność 1 − 5 godzin\nZłożoność 2 − 25 godzin\nZłożoność 3  −125 godzin\nZłożoność 4 − 625 godzin\nZłożoność 5 − 3125 godzin\n\nGdy rzucasz zapamiętane zaklęcia nie musisz posługiwać się swoją księgą zaklęć. Jeżeli tworzysz postać z tym atrybutem przyjmij, że mogłą ona spędzić 500 godzin na uczeniu się zaklęć.",
+      "hoverText": "",
+      "fi": -40,
+      "theta": 45,
+      "requires": [
+        "666"
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Fotograficzna Pamięć",
+          "description": "Możesz uczyć się zaklęć na pamięć. To jak długo zajmuje nauczenie się rzucania zaklęć Magią Uczonych bez żadnych notatek zależy od złożoności zaklęć:\n\nZłożoność 1 − 5 godzin\nZłożoność 2 − 25 godzin\nZłożoność 3  −125 godzin\nZłożoność 4 − 625 godzin\nZłożoność 5 − 3125 godzin\n\nGdy rzucasz zapamiętane zaklęcia nie musisz posługiwać się swoją księgą zaklęć. Jeżeli tworzysz postać z tym atrybutem przyjmij, że mogłą ona spędzić 500 godzin na uczeniu się zaklęć.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "793",
+      "name": "Zaawansowany Czarodziej",
+      "desc": "Uczysz się dokładniejszego szkicowania i odtwarzania zaklęć.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętnościach: kreacja, projekcja, transmutacja, przywoływanie, destrukcja oraz wiedza tajemna.\n\nDodatkowo poznajesz jedno zaklęcie o złożoności równej 1 oraz jedno zaklęcie o złożoności równej 2.",
+      "hoverText": "",
+      "fi": -30.030000000000005,
+      "theta": 44.730000000000004,
+      "requires": [
+        "666"
+      ],
+      "cost": 6,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction"
+          ],
+          "maxComplexity": 1
+        },
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction"
+          ],
+          "maxComplexity": 2
+        },
+        {
+          "type": "skillExperience",
+          "key": "wiedzaMagiczna",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "kreacja",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "projekcja",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "transmutacja",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "przywolywanie",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "destrukcja",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "wiedzaMagiczna",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "kreacja",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "projekcja",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "transmutacja",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "przywolywanie",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "destrukcja",
           "amount": 1
         }
       ]

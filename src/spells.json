@@ -123,7 +123,7 @@
     {
       "id": "custom-spell-1785413576172-sfxry",
       "name": "Mała Projekcja",
-      "desc": "Tworzysz stosunkowo nieduży iluzoryczny obraz. \n\n\nRzucanie i efekty zaklęcia:\n1) Przywołujesz w zasięgu 10 jednostek małą projekcję, zajmującą maksymalnie rozmiar kuli o średnicy jednej jednostki. Wykonaj test Projekcji. Wynik testu to poziom trudności testu spostrzegawczości, który inne stworzenia muszą zdać by zauważyć, że stworzony obraz jest projekcją.\n2.) Jeżeli poziom doświadczenia spostrzegawczości stworzenia jest równy lub wyższy niż wynik twojego testu Projekcji stworzenie od razu widzi, iż stworzony obraz jest projekcją.\n3.) Projekcja rozpada się, gdy dotknie ją cokolwiek innego niż powietrze lub przestaniesz podtrzymywać zaklęcie.",
+      "desc": "Tworzysz stosunkowo nieduży iluzoryczny obraz. \n\nRzucanie i efekty zaklęcia:\n1) Przywołujesz w zasięgu 10 jednostek małą projekcję, zajmującą maksymalnie rozmiar kuli o średnicy jednej jednostki. Wykonaj test Projekcji. Wynik testu to poziom trudności testu spostrzegawczości, który inne stworzenia muszą zdać by zauważyć, że stworzony obraz jest projekcją.\n2.) Jeżeli poziom doświadczenia spostrzegawczości stworzenia jest równy lub wyższy niż wynik twojego testu Projekcji stworzenie od razu widzi, iż stworzony obraz jest projekcją.\n3.) Projekcja rozpada się, gdy dotknie ją cokolwiek innego niż powietrze lub przestaniesz podtrzymywać zaklęcie.",
       "schools": [
         "projection"
       ],
@@ -149,7 +149,7 @@
     {
       "id": "custom-spell-1785414217348-7u9x3",
       "name": "Transmutacja: Deszcz Ognia",
-      "desc": "Rzucasz transmutowalnym materiałem, a następnie, gdy jeszcze jest on w powietrzu, zamieniasz go w ognień alchemiczny, zalewając przeciwników deszczem ognia.\n\nRzucanie i efekty zaklęcia:\n1.) Zadeklaruj gdzie chcesz trafić zaklęciem. Wykonaj test Siły, Zwinności lub Transmutacji. Wynik tego testu to maksymalny zasięg ataku. Jeżeli wartość testu jest niższa niż odległość do miejsca trafienia przesuń miejsce trafienia, tak, aby było w tym samym kierunku i było możliwie blisko maksymalnej wartości testu. \n2.) Wszystkie stworzenia w zasięgu 2 jednostek od miejsca trafienia zostają trafione i otrzymują 2d4 obrażeń od temperatury, oraz 2d4 poziomów podpalenia.",
+      "desc": "Rzucasz transmutowalnym materiałem, a następnie, gdy jeszcze jest on w powietrzu, zamieniasz go w ognień alchemiczny, zalewając przeciwników deszczem ognia.\n\nRzucanie i efekty zaklęcia:\n1.) Zadeklaruj gdzie chcesz trafić zaklęciem. Wykonaj test Siły, Zwinności lub Transmutacji. Wynik tego testu to maksymalny zasięg ataku. Jeżeli wartość testu jest niższa niż odległość do miejsca trafienia przesuń miejsce trafienia, tak, aby było w tym samym kierunku i było możliwie blisko maksymalnej wartości testu.\nTest ten możesz pominąć, jeżeli używasz broni miotającej do wystrzelenia metalu transmutacyjnego na odległość mieszczącą się w jej efektywnym zasięgu lub jeżeli przemieniasz znajdujący się już w tym miejscu kawawłek metalu transmutacyjnego.\n\n2.) Wszystkie stworzenia w zasięgu 2 jednostek od miejsca trafienia zostają trafione i otrzymują 2d4 obrażeń od temperatury, oraz 2d4 poziomów podpalenia.",
       "schools": [
         "transmutation"
       ],
@@ -197,7 +197,7 @@
     {
       "id": "custom-spell-1785415880857-be8x6",
       "name": "Transmutacja: Przytłaczający Grad",
-      "desc": "Rzucasz transmutowalnym materiałem przemieniając go w trakcie lotu w setki lodowych kulek.\n\nRzucanie i efekty zaklęcia:\n1.) Zadeklaruj gdzie chcesz trafić zaklęciem. Wykonaj test Siły, Zwinności lub Transmutacji. Wynik tego testu to maksymalny zasięg ataku. Jeżeli wartość testu jest niższa niż odległość do miejsca trafienia przesuń miejsce trafienia, tak, aby było w tym samym kierunku i było możliwie blisko maksymalnej wartości testu. \n\n2.) Następnie wszystkie stworzenia w zasięgu 3 jednostek od miejsca trafienia zostają trafione i otrzymują 2d4 obrażeń obuchowych. Grunt w tym zasięgu zostaje pokryty kulkami gradu na 10d12 tur. Każde poruszające się w tym obszarze storzenie musi wykonać test zwinności o poziomie trudności twojego testu transmutacji za każdym razem kiedy przesunie się o jedną jednostkę. \nW przypadku krytycznego sukcesu w teście stworzenie nie musi wykonywać kolejnych testów tego typu w tym obszarze.\nW przypadku sukcesu stworzenie przemieszcza się o jedną jednostkę.\nW przypadku porażki stworzenie upada.\nW przypadku krytycznej porażki stworzenie upada i otrzymuje 1d4 obrażeń obuchowych.",
+      "desc": "Rzucasz transmutowalnym materiałem przemieniając go w trakcie lotu w setki lodowych kulek.\n\nRzucanie i efekty zaklęcia:\n1.) Zadeklaruj gdzie chcesz trafić zaklęciem. Wykonaj test Siły, Zwinności lub Transmutacji. Wynik tego testu to maksymalny zasięg ataku. Jeżeli wartość testu jest niższa niż odległość do miejsca trafienia przesuń miejsce trafienia, tak, aby było w tym samym kierunku i było możliwie blisko maksymalnej wartości testu.\nTest ten możesz pominąć, jeżeli używasz broni miotającej do wystrzelenia metalu transmutacyjnego na odległość mieszczącą się w jej efektywnym zasięgu lub jeżeli przemieniasz znajdujący się już w tym miejscu kawawłek metalu transmutacyjnego.\n\n2.) Następnie wszystkie stworzenia w zasięgu 3 jednostek od miejsca trafienia zostają trafione i otrzymują 2d4 obrażeń obuchowych. Grunt w tym zasięgu zostaje pokryty kulkami gradu na 10d12 tur. Każde poruszające się w tym obszarze storzenie musi wykonać test zwinności o poziomie trudności twojego testu transmutacji za każdym razem kiedy przesunie się o jedną jednostkę. \nW przypadku krytycznego sukcesu w teście stworzenie nie musi wykonywać kolejnych testów tego typu w tym obszarze.\nW przypadku sukcesu stworzenie przemieszcza się o jedną jednostkę.\nW przypadku porażki stworzenie upada.\nW przypadku krytycznej porażki stworzenie upada i otrzymuje 1d4 obrażeń obuchowych.",
       "schools": [
         "transmutation"
       ],
@@ -220,8 +220,8 @@
     },
     {
       "id": "custom-spell-1786827711816-777gp",
-      "name": "Transutacja: Metal−Powietrze",
-      "desc": "Rzucasz kawałkiem transmutacyjnego metalu i przemieniasz go w dużą masę powietrza tworząc potężny podmuch wiatru przewracający, wgniatający w ziemię lub nawet wysadzający w powietrze pobliskie istoty.\n\nRzucanie i Efekty Zaklęcia:\n1.) Wskaż puste miejsce w odległości maksymalnie 7 jednostek od twojej postaci. Miejsce to to ognisko zaklęcia. Dodatkowo wskaż czy ognisko jest nisko czy wysoko nad powierzchnią ziemi. Następnie wykonaj test siły. Jeżeli wynik tego testu jest niższy niż dystans w jednostkach do ogniska przesuń ognisko w linii prostej między Twoją Postacią a wskazanym wcześniej miejscem, tak aby był tyle jednostek od Twojej Postaci ile wynosi wynik testu.\n2.) Wykonaj test transmutacji. Wynik testu to moc zaklęcia.\n3.) Wszystkie istoty w odległości jednej jednostki od ogniska zaklęcia muszą wykonać test zręczności o poziomie trudności równym mocy zaklęcia.\n\nW przypadku krytycznego sukcesu istota opiera się strumieniowi powietrza i nie jest w jakikolwiek większy sposób dotknięta zaklęciem.\n\nW przypadku sukcesu istota pozostaje na nogach, lecz jest zmuszona cofnąć się, by uniknąć utraty równowagi i zostaje odepchnięta o jedną jednostkę w linii prostej od ogniska zaklęcia. W przypadku braku możliwości przetoczenia się pełnego dystansu z racji na przeszkodę istota otrzymuje 1 punkt obrażeń obuchowych.\n\nTo co dzieje się z istotami w przypadku porażki i krytycznej porażki zależy od tego czy ognisko zaklęcia znajdowało się nisko czy wysoko − nisko postawione ognisko wyrzuci istoty w powietrze, wysoko postanione ognisko zaś wepchnie je w grunt:\n\nDla wysoko ustanionego ogniska:\n\nW przypadku porażki istota przerwaca się na ziemię, otrzymując 1d4 obrażeń obuchowych, i przetacza się o dwie jednostki w linii prostej od ogniska zaklęcia po ziemi. W przypadku braku możliwości przetoczenia się pełnego dystansu z racji na przeszkodę istota otrzymuje 1d4 obrażeń obuchowych.\n\nW przypadku krytycznej porażki istota zostaje brutalnie rzucona o ziemię otrzymując 1d6 obrażeń obuchowych, i przesuwa się trzy jednostki w linii prostej od ogniska zaklęcia po ziemi. W przypadku braku możliwości przetoczenia się pełnego dystansu z racji na przeszkodę istota otrzymuje 1d6 obrażeń obuchowych.\n\nDla nisko ustawionego ogniska:\n\nW przypadku porażki istota zostaje wyrzucona w powietrze lecąc jedną jednostę w linii prostej od ogniska zaklęcia i otrzyumując otrzymując 1d6 obrażeń obuchowych przy lądowaniu lub 1d4 obrażeń obuchowych jeżeli wcześniej zatrzyma się na jakiejś przeszkodzie. Istota po wylądowaniu jest przewrócona.\n\nW przypadku krytycznej porażki istota zostaje wyrzucona w powietrze lecąc dwie jednostki w linii prostej od ogniska zaklęcia i otrzyumując otrzymując 1d6+1 obrażeń obuchowych przy lądowaniu lub 1d4+1 obrażeń obuchowych jeżeli wcześniej zatrzyma się na jakiejś przeszkodzie. Istota po wylądowaniu jest przewrócona.\n",
+      "name": "Transmutacja: Metal−Powietrze",
+      "desc": "Rzucasz kawałkiem transmutacyjnego metalu i przemieniasz go w dużą masę powietrza tworząc potężny podmuch wiatru przewracający, wgniatający w ziemię lub nawet wysadzający w powietrze pobliskie istoty.\n\nRzucanie i Efekty Zaklęcia:\n1.) Wskaż puste miejsce w odległości maksymalnie 7 jednostek od twojej postaci. Miejsce to to ognisko zaklęcia. Dodatkowo wskaż czy ognisko jest nisko czy wysoko nad powierzchnią ziemi. Następnie wykonaj test siły, zręcznosci lub transmutacji. Jeżeli wynik tego testu jest niższy niż dystans w jednostkach do ogniska przesuń ognisko w linii prostej między Twoją Postacią a wskazanym wcześniej miejscem, tak aby był tyle jednostek od Twojej Postaci ile wynosi wynik testu.\nTest ten możesz pominąć, jeżeli używasz broni miotającej do wystrzelenia metalu transmutacyjnego na odległość mieszczącą się w jej efektywnym zasięgu lub jeżeli przemieniasz znajdujący się już w tym miejscu kawawłek metalu transmutacyjnego.\n2.) Wykonaj test transmutacji.\n3.) Wszystkie istoty w odległości jednej jednostki od ogniska zaklęcia muszą wykonać test zręczności o poziomie trudności równym wynikowi wykonanego przez ciebie testu Transmutacji. Jeżeli istota nie widzi ciebie gdy rzucasz zaklęcie, ogniska transmutacji, ani lecącej kulki ołowiu transmutacyjnego odnosi krytyczną porażkę w teście.\n\nW przypadku krytycznego sukcesu istota opiera się strumieniowi powietrza i nie jest w jakikolwiek większy sposób dotknięta zaklęciem.\n\nW przypadku sukcesu istota pozostaje na nogach, lecz jest zmuszona cofnąć się, by uniknąć utraty równowagi i zostaje odepchnięta o jedną jednostkę w linii prostej od ogniska zaklęcia. W przypadku braku możliwości przetoczenia się pełnego dystansu z racji na przeszkodę istota otrzymuje 1 punkt obrażeń obuchowych.\n\nTo co dzieje się z istotami w przypadku porażki i krytycznej porażki zależy od tego czy ognisko zaklęcia znajdowało się nisko czy wysoko − nisko postawione ognisko wyrzuci istoty w powietrze, wysoko postanione ognisko zaś wepchnie je w grunt:\n\nDla wysoko ustanionego ogniska:\n\nW przypadku porażki istota przerwaca się na ziemię, otrzymując 1d4 obrażeń obuchowych, i przetacza się o dwie jednostki w linii prostej od ogniska zaklęcia po ziemi. W przypadku braku możliwości przetoczenia się pełnego dystansu z racji na przeszkodę istota otrzymuje 1d4 obrażeń obuchowych. Jeżeli istota jest przytomna, może ona znaleźć się Przy Gruncie lub może łatwo się wyprostować (jej wybór).\n\nW przypadku krytycznej porażki istota zostaje brutalnie rzucona o ziemię otrzymując 1d6 obrażeń obuchowych, i przesuwa się trzy jednostki w linii prostej od ogniska zaklęcia po ziemi. W przypadku braku możliwości przetoczenia się pełnego dystansu z racji na przeszkodę istota otrzymuje 1d6 obrażeń obuchowych. Istota po przetoczeniu się jest Przy Gruncie.\n\nDla nisko ustawionego ogniska:\n\nW przypadku porażki istota zostaje wyrzucona w powietrze lecąc jedną jednostę w linii prostej od ogniska zaklęcia i otrzyumując otrzymując 1d6 obrażeń obuchowych przy lądowaniu lub 1d4 obrażeń obuchowych jeżeli wcześniej zatrzyma się na jakiejś przeszkodzie. Istota po wylądowaniu jest Przy Gruncie.\n\nW przypadku krytycznej porażki istota zostaje wyrzucona w powietrze lecąc dwie jednostki w linii prostej od ogniska zaklęcia i otrzyumując otrzymując 1d6+1 obrażeń obuchowych przy lądowaniu lub 1d4+1 obrażeń obuchowych jeżeli wcześniej zatrzyma się na jakiejś przeszkodzie. Istota po wylądowaniu jest Przy Gruncie.\n",
       "schools": [
         "transmutation"
       ],
@@ -369,6 +369,78 @@
       "channelingCost": 0,
       "requiresTransmutativeMaterial": false,
       "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1789302834625-9fcjq",
+      "name": "Drobna Projekcja",
+      "desc": "Tworzysz drobny obraz przedmiotu, który możesz zmieścić w swojej dłoni. Przedmiot ten może wystawać z twojej dłoni, ale nie może być dłuższy niż pół jednostki.\n\nRzucanie i efekty zaklęcia:\n1.) Wykonaj test Projekcji. Wynik testu to liczba minut, przez które możesz podtrzymywać projekcję.\n2.) Projekcja jest bardzo delikatna i rozpada się w nicość w ciągu jednej tury po opuszczeniu twoich dłoni, zakończeniu jej podtrzymywania lub kontaktu z czymkolwiek innym niż twoje dłonie.",
+      "schools": [
+        "projection"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "gesture"
+      ],
+      "channeling": true,
+      "channelingMethods": [
+        "thought"
+      ],
+      "actionPointCost": 1,
+      "channelingActionPointCost": 1,
+      "invocationCost": 1,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1789304398480-bm3lj",
+      "name": "Stwórz Mistyczny Wiatr",
+      "desc": "Tworzysz niedostrzegalną, potężną falę skompresowanego powietrza, za pomocą której możesz rzucać przeciwnikami jak szmacianymi lalkami.\n\nRzucanie i Efekty Zaklęcia:\n1.) Wskaż puste miejsce w odległości maksymalnie 10 jednostek od twojej postaci. Miejsce to staje się ogniskiem zaklęcia. Wskaż także czy ognisko znajduje się nisko czy wysoko nad powierzchnią gruntu.\n2.) Wykonaj test kreacji.\n3.) Wszystkie istoty w odległości jednej jednostki od ogniska zaklęcia muszą wykonać test zręczności o poziomie trudności równym wynikowi wykonanego przez ciebie testu kreacji. Jeżeli istota nie widzi, jak rzucasz zaklęcie odnosi ona automatycznie krytyczną porażkę w teście, nawet, gdy widzi ognisko zaklęcia:\n\nW przypadku krytycznego sukcesu istota opiera się fali powietrza i nie jest w jakikolwiek większy sposób dotknięta zaklęciem.\n\nW przypadku sukcesu istota pozostaje na nogach, lecz jest zmuszona cofnąć się, by uniknąć utraty równowagi i zostaje odepchnięta o jedną jednostkę w linii prostej od ogniska zaklęcia. W przypadku braku możliwości przetoczenia się pełnego dystansu z racji na przeszkodę istota otrzymuje 1 punkt obrażeń obuchowych.\n\nTo co dzieje się z istotami w przypadku porażki i krytycznej porażki zależy od tego czy ognisko zaklęcia znajdowało się nisko czy wysoko − nisko postawione ognisko wyrzuci istoty w powietrze, wysoko postanione ognisko zaś wepchnie je w grunt:\n\nDla wysoko ustanionego ogniska:\n\nW przypadku porażki istota przerwaca się na ziemię, otrzymując 1d4 obrażeń obuchowych, i przetacza się o dwie jednostki w linii prostej od ogniska zaklęcia po ziemi. W przypadku braku możliwości przetoczenia się pełnego dystansu z racji na przeszkodę istota otrzymuje 1d4 obrażeń obuchowych. Jeżeli istota jest przytomna, może ona znaleźć się Przy Gruncie lub może łatwo się wyprostować (jej wybór).\n\nW przypadku krytycznej porażki istota zostaje brutalnie rzucona o ziemię otrzymując 1d8 obrażeń obuchowych, i przesuwa się trzy jednostki w linii prostej od ogniska zaklęcia po ziemi. W przypadku braku możliwości przetoczenia się pełnego dystansu z racji na przeszkodę istota otrzymuje 1d6 obrażeń obuchowych. Istota po przetoczeniu się jest Przy Gruncie.\n\nDla nisko ustawionego ogniska:\n\nW przypadku porażki istota zostaje wyrzucona w powietrze lecąc jedną jednostę w linii prostej od ogniska zaklęcia i otrzyumując otrzymując 1d6 obrażeń obuchowych przy lądowaniu lub 1d4 obrażeń obuchowych jeżeli wcześniej zatrzyma się na jakiejś przeszkodzie. Istota po wylądowaniu jest Przy Gruncie.\n\nW przypadku krytycznej porażki istota zostaje wyrzucona w powietrze lecąc dwie jednostki w linii prostej od ogniska zaklęcia i otrzyumując otrzymując 1d8 obrażeń obuchowych przy lądowaniu lub 1d6 obrażeń obuchowych jeżeli wcześniej zatrzyma się na jakiejś przeszkodzie. Istota po wylądowaniu jest Przy Gruncie.\n",
+      "schools": [
+        "creation"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "wordsOfPower",
+        "gesture"
+      ],
+      "channeling": false,
+      "channelingMethods": [],
+      "actionPointCost": 4,
+      "channelingActionPointCost": 0,
+      "invocationCost": 6,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1789306056796-pirw2",
+      "name": "Transmutacja: Kula u Broni",
+      "desc": "W odpowiedzi na źródło zagrożenia takie jak atak bronią białą, miotaną, miotającą czy zaklęcie o danej celności próbujesz zamknąć źródło obrażeń w ołowianej otoczce nulyfikując zagrożenie.\n\nRzucanie i efekty zaklęcia:\n1.) Wykonaj test transmutacji o poziomie trudności równej celności ataku:\n\nJeżeli atak był wykonany w trybie „atak bronią”:\n\nW przypadku krytycznego sukcesu pokrywasz dużą część broni przeciwnika metalową skorupą. Przeciwnik zyskuje poziom wytrącenia z równowagi, jego atak nie może trafić, a użyta broń staje się bezużyteczna do momentu usunięcia skorupy, które zajmuje jedną godzinę.\n\nW przypadku sukcesu pokrywasz niewielką część broni przeciwnika metalową skorupą. Przeciwnik zyskuje poziom wytrącenia z równowagi, a użyta broń zyskuje −7 do celności oraz −1 do każdego typu zadawanych obrażeń do momentu usunięcia skorupy, które zajmuje jedną godzinę.\n\nW przypadku porażki ołów transmutacyjny użyty w zaklęciu ląduje nieco zniekształcony pod twoimi nogami, a rzucenie zaklęcia nie ma wpływu na atak.\n\nW przypadku krytycznej porażki ołów transmutacyjny użyty w zaklęciu przemienia się w powykrzywianą ciężką do noszenia masę bezwartościowego dziwnego metalu.\n\n\n\nJeżeli atak był wykonany w trybie „Rzut Bronią” lub „Strzał z Broni”:\n\nW przypadku krytycznego sukcesu pokrywasz dużą część lecącego pocisku metalową skorupą. Atak nie może trafić, a pocisk staje się bezużyteczny do momentu usunięcia skorupy, które zajmuje jedną godzinę.\n\nW przypadku sukcesu pokrywasz niewielką część lecącego pocisku metalową skorupą. Celność tego i każdego kolejnego ataku z użyciem tego pocisku zmniejsza się o −10 oraz ataki tym pociskiem zadają połowę obrażeń, których typ zmienia się na obrażenia obuchowe do momentu usunięcia skorupy, które zajmuje jedną godzinę.\n\nW przypadku porażki ołów transmutacyjny użyty w zaklęciu ląduje nieco zniekształcony pod twoimi nogami, a rzucenie zaklęcia nie ma wpływu na atak.\n\nW przypadku krytycznej porażki ołów transmutacyjny użyty w zaklęciu przemienia się w powykrzywianą ciężką do noszenia masę bezwartościowego dziwnego metalu.\n\n\n\nJeżeli atak był wykonany zaklęciem:\n\nW przypadku krytycznego sukcesu zamykasz ognisko zaklęcia w ołowianej otoczce zaburzając zaklęcie i kończąc je.\n\nW przypadku sukcesu częściowo zamykasz ognisko zaklęcia w ołowianej otoczce powodując, iż atak nie może trafić w ciebie w tej rundzie.\n\nW przypadku porażki ołów transmutacyjny użyty w zaklęciu ląduje nieco zniekształcony pod twoimi nogami, a rzucenie zaklęcia nie ma wpływu na atak.\n\nW przypadku krytycznej porażki ołów transmutacyjny użyty w zaklęciu przemienia się w powykrzywianą ciężką do noszenia masę bezwartościowego dziwnego metalu.",
+      "schools": [
+        "transmutation"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "gesture"
+      ],
+      "channeling": false,
+      "channelingMethods": [],
+      "actionPointCost": 2,
+      "channelingActionPointCost": 0,
+      "invocationCost": 3,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": true,
+      "materialCost": 1,
       "otherPrerequisites": "",
       "effects": []
     }
