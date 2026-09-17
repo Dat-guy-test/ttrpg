@@ -3,7 +3,7 @@
     {
       "id": "1",
       "name": "Podróżnik",
-      "desc": "Twoja postać wkroczyła na drogę, która doprowadzi ją do zostania podróżnikiem.\n\nTen Atut jest wymagany, by zakończyć tworzenie postaci.\n\nTen atut wymaga wybrania jednego Atutu pochodzenia i przynajmniej jednego Atutu przeszłości (atuty te znajdują się poniżej tego atutu i są z nim połączone liniami.",
+      "desc": "Twoja postać wkroczyła na drogę, która doprowadzi ją do zostania podróżnikiem.\n\nTen Atut jest wymagany, by zakończyć tworzenie postaci.\n\nTen atut wymaga wybrania jednego Atutu pochodzenia i przynajmniej jednego Atutu przeszłości (atuty te znajdują się poniżej tego atutu i są z nim połączone liniami.\n\nZyskujesz atrybut „Podróżnik”:\nWybierając bądź będąc zmuszonym wieść życie podróżnika uczysz się dawać siebie wszystko nawet w najbardziej przerażających i beznadziejnych sytuacjach. \n\nMożesz przerzucić dowolną kość wykorzystywaną w teście umiejętności, wprawy lub kość używaną do określenia ilości zadanych obrażeń zużywając 5 Punktów Energii.",
       "hoverText": "",
       "fi": 20,
       "theta": 14.999999999999998,
@@ -36,7 +36,14 @@
       "cost": 0,
       "temperature": 12000,
       "exclGroup": null,
-      "effects": []
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Podróżnik",
+          "description": "Możesz przerzucić dowolną kość wykorzystywaną w teście umiejętności, wprawy lub kość używaną do określenia ilości zadanych obrażeń zużywając 5 Punktów Energii.",
+          "bonuses": []
+        }
+      ]
     },
     {
       "id": "-3",
@@ -1028,19 +1035,19 @@
     {
       "id": "100003",
       "name": "Wampir",
-      "desc": "Z racji na warunki urodzenia lub mniej lub bardziej dobrowolne uczestnictwo w mrocznym rytuale jesteś Wampirem: jednym z kilku typów stworzeń będącymi połączeniem śmiertelnika i demona. Wampiry mają bladą skórą, słabe tętno i wolny puls. Żyją zwykle o połowę dłużej niż zwykli śmiertelnicy o ich pochodzeniu, i praktycznie nie starzeją się nawet do momentu śmierci, gdzie zwykle umierają przez zawał.\n\nBędąc Wampirem:\n\nZyskujesz atrybut:\nŻądza Krwi:\nJako darmowa akcja, raz na turę, możesz zadać 1 punkt obrażeń krytycznych typu głębokie rany pochwyconemu stworzeniu.\n\nZyskujesz dostęp do Punktów Mocy Krwi:\nKażdej doby w określonym przez Ciebie stałym momencie tracisz 1 Punkt Mocy Krwi. Jeżeli nie posiadasz Punktów Mocy Krwi zyskujesz 1 Poziom Wykrwawienia.\n\nMożesz zużyć 1 Punkt Mocy Krwi by natychmiastowo zmniejszyć poziom wykrwawienia o 1.\n\nUzyskiwanie Punktów Mocy Krwi:\nPoświęcając 2 Punkty Akcji możesz wykonać akcję:\nZbierz krew Żywego stworzenia:\nJeżeli pochwyciłeś istotę, mającą przynajmniej jeden poziom niezaleczonych obrażeń krytycznych typu „Głębokie rany”: Za każdy poziom wykrwawienia, który zdobędzie to storzenie do początku Twojej następnej tury zdobywasz 1 Punkt Mocy Krwi.\n\nAlternatywnie możesz wykonać akcję:\nPosil się Truchłem (koszt 7 PA): Możesz uzyskać jeden Punkt Mocy Krwi posilając się krwią stworzenia, zmarłego nie więcej niż 1 minutę (12 tur) temu.",
+      "desc": "Z racji na warunki urodzenia lub mniej lub bardziej dobrowolne uczestnictwo w mrocznym rytuale jesteś Wampirem: jednym z kilku typów stworzeń będącymi połączeniem śmiertelnika i demona. Wampiry mają bladą skórą, słabe tętno i wolny puls. Żyją zwykle o połowę dłużej niż zwykli śmiertelnicy o ich pochodzeniu, i praktycznie nie starzeją się nawet do momentu śmierci, gdzie zwykle umierają przez zawał.\n\nBędąc wampirem zyskujesz atrybut „Żądza Krwi”:\n\nŻądza Krwi:\nZyskujesz dostęp do Punktów Mocy Krwi:\nKażdej doby w określonym przez Ciebie stałym momencie tracisz 1 Punkt Mocy Krwi. Jeżeli nie posiadasz Punktów Mocy Krwi zyskujesz 1 Poziom Wykrwawienia. \nMożesz posaidać maksymalnie sześć Punktów Mocy Krwi.\n\nPoświęcając 2 Punkty Akcji możesz wykonać akcję:\nZbierz krew Żywego stworzenia:\nJeżeli pochwyciłeś istotę, mającą przynajmniej jeden poziom niezaleczonych obrażeń krytycznych typu „Głębokie rany”: Za każdy poziom wykrwawienia, który zdobędzie to storzenie do początku Twojej następnej tury zdobywasz 1 Punkt Mocy Krwi.",
       "hoverText": "",
-      "fi": 24,
-      "theta": 1,
+      "fi": 50,
+      "theta": 13.000000000000002,
       "requires": [],
-      "cost": 2,
+      "cost": 0,
       "temperature": 1800,
       "exclGroup": null,
       "effects": [
         {
           "type": "attribute",
           "key": "Żądza Krwi",
-          "description": "Jako darmowa akcja, raz na turę, możesz zadać 1 punkt obrażeń krytycznych typu głębokie rany pochwyconemu stworzeniu.\n\nZyskujesz dostęp do Punktów Mocy Krwi:\nKażdej doby w określonym przez Ciebie stałym momencie tracisz 1 Punkt Mocy Krwi. Jeżeli nie posiadasz Punktów Mocy Krwi zyskujesz 1 Poziom Wykrwawienia.\n\nMożesz zużyć 1 Punkt Mocy Krwi by natychmiastowo zmniejszyć poziom wykrwawienia o 1.\n\nUzyskiwanie Punktów Mocy Krwi:\nPoświęcając 2 Punkty Akcji możesz wykonać akcję:\nZbierz krew Żywego stworzenia:\nJeżeli pochwyciłeś istotę, mającą przynajmniej jeden poziom niezaleczonych obrażeń krytycznych typu „Głębokie rany”: Za każdy poziom wykrwawienia, który zdobędzie to storzenie do początku Twojej następnej tury zdobywasz 1 Punkt Mocy Krwi.\n\nAlternatywnie możesz wykonać akcję:\nPosil się Truchłem (koszt 7 PA): Możesz uzyskać jeden Punkt Mocy Krwi posilając się krwią stworzenia, zmarłego nie więcej niż 1 minutę (12 tur) temu.",
+          "description": "Zyskujesz dostęp do Punktów Mocy Krwi:\nKażdej doby w określonym przez Ciebie stałym momencie tracisz 1 Punkt Mocy Krwi. Jeżeli nie posiadasz Punktów Mocy Krwi zyskujesz 1 Poziom Wykrwawienia. \nMożesz posaidać maksymalnie sześć Punktów Mocy Krwi.\n\nPoświęcając 2 Punkty Akcji możesz wykonać akcję:\nZbierz krew Żywego stworzenia:\nJeżeli pochwyciłeś istotę, mającą przynajmniej jeden poziom niezaleczonych obrażeń krytycznych typu „Głębokie rany”: Za każdy poziom wykrwawienia, który zdobędzie to storzenie do początku Twojej następnej tury zdobywasz 1 Punkt Mocy Krwi.",
           "bonuses": []
         }
       ]
@@ -1206,7 +1213,7 @@
       "name": "Walka na dystans",
       "desc": "Po nabyciu niewielkiego doświadczenia z bronią miotaną lub miotającą jesteś w stanie zwykle trafić w duży nieruchomy cel.\n\nZ racji na swój trening, poziom doświadczenia twojej zręczności zwiększa się o 1.",
       "hoverText": "",
-      "fi": 90,
+      "fi": 150.00000000000003,
       "theta": 20,
       "requires": [
         "6"
@@ -1227,7 +1234,7 @@
       "name": "Szkoła Sytmpha",
       "desc": "Szkoła Stympha skupia się na doskonaleniu używania oszczepów, włóczni, lotek i innych podobnych broni miotanych.\n\nRozpoczynając praktykę umiejętności związanych z tą szkołą zyskujesz jeden poziom wprawy w broniach miotanych.\n\nDodatkowo zyskujesz przedmioty : 3 Drewniane Oszczepy.",
       "hoverText": "",
-      "fi": 90,
+      "fi": 210,
       "theta": 21.999999999999996,
       "requires": [
         "100009"
@@ -1253,8 +1260,8 @@
       "name": "Szkoła Mitto",
       "desc": "Szkołą Mitto, skupia się na używaniu łuków i proc: broni miotających używających strzał, metalowych kulek czy innych pocisków jako amunicję.\n\nDecydując się na trening z brońmi miotającymi zyskujesz jeden poziom wprawy w używaniu broni miotających.\n\nDodatkowo zyskujesz przedmioty: łuk długi oraz 10 strzał.",
       "hoverText": "",
-      "fi": 119.99999999999999,
-      "theta": 20,
+      "fi": 180,
+      "theta": 25,
       "requires": [
         "100009"
       ],
@@ -2110,8 +2117,8 @@
       "name": "Wieczna Gotowość",
       "desc": "Dzięki swojemu mistrzostwu w posługiwaniu się bronią miotającą jesteś w stanie określić kiedy będziesz jej używać. Zyskujesz atrybut: „Wieczna Gotowość”\n\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.\n\nWieczna Gotowość:\nWiedząc, że niebezpieczeństwo może nadjeść zawsze dbasz o to, żeby twoja broń była zawsze przy tobie w dostępnym miejscu. Póki nosisz ją ze sobą możesz traktować dwie wybrane bronie miotające jako zawsze przygotowane.",
       "hoverText": "",
-      "fi": 119.99999999999999,
-      "theta": 35,
+      "fi": 180,
+      "theta": 40,
       "requires": [
         "134",
         "759"
@@ -2138,8 +2145,8 @@
       "name": "Zawsze w Cel",
       "desc": "Twoja nauka stzelania doprowadziła Cię do momentu gdy prawie zawsze jesteś w stanie trafić w nieruchomy cel.\n\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.\n\nDodatkowo zyskujesz atrybut „Celny Strzelec”:\n\nCelny Strzelec:\nGdy wykonujesz ataki dystansowe za pomocą broni miotającej, zamiast losować część ciała, w którą trafisz możesz ją wybrać.\n\nDodatkowo zawsze jesteś w stanie trafić w nieruchomy cel z broni miotającej, jeżeli jest on w jej efektywnym zasięgu.",
       "hoverText": "",
-      "fi": 116,
-      "theta": 23,
+      "fi": 175.99999999999997,
+      "theta": 28,
       "requires": [
         "100011"
       ],
@@ -2165,8 +2172,8 @@
       "name": "Zawsze z Zaskoczenia",
       "desc": "Nauczyłeś się strzelać do powoli, przwidywalnie poruszających się celów. \n\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.\nZyskujesz atrybut „Zawsze z Zaskoczenia”:\n\nZawsze z Zaskoczenia:\nJeżeli twój cel nie widzi twojego ataku wykonaj rzut na celność dwa razy. Jako wynik rzutu przyjmij lepszy wynik.",
       "hoverText": "",
-      "fi": 114.99999999999999,
-      "theta": 25,
+      "fi": 174.99999999999997,
+      "theta": 29.999999999999996,
       "requires": [
         "132"
       ],
@@ -2192,8 +2199,8 @@
       "name": "Wiecznia Czujność",
       "desc": "Dzięki twojemu treningowi jesteś w stanie dostrzec i przewidzieć gdzie poruszy się twój cel w walce.\n\nZyskujesz poziom doświadczenia w umiejętności spostrzegawczość.\n\nZyskujesz poziom wprawy w używaniu broni miotających.\n\nDodatkowo zyskujesz atrybut „Wieczna Czujność”:\n\nWieczna Czujność:\nPrzeciwnicy nie mogą się przed tobą ukryć w walce, chyba, że są w pełni zasłonięci przed tobą. W takim wypadku zawsze pamietasz, gdzie ostatnio widziana była dana istota. Dodatkowo widzisz i możesz reagować na wszystkie ataki wykonane przez istoty w odległości nie większej niż 5 jednostek od ciebie.",
       "hoverText": "",
-      "fi": 116,
-      "theta": 32,
+      "fi": 175.99999999999997,
+      "theta": 37,
       "requires": [
         "567"
       ],
@@ -2224,7 +2231,7 @@
       "name": "Rzut Ukośny",
       "desc": "Uczysz się lepiej przewidywać tor lotu rzucanych przez Ciebie broni. \n\nZyskujesz poziom wprawy w używaniu broni miotanych oraz poziom doświadczenia w umiejętności spostrzegawczość.\n\nDodatkowo zyskujesz atrybut: „Rzut Ukośny”:\n\nRzut Ukośny:\nGdy wykonujesz rzut bronią poza jej efektywny zasięg, w przypadku trafienia zadajesz o 1 Punkt Zwykłych Obrażeń więcej.",
       "hoverText": "",
-      "fi": 90,
+      "fi": 210,
       "theta": 24,
       "requires": [
         "100010"
@@ -2256,7 +2263,7 @@
       "name": "Przeszywający rzut",
       "desc": "Dzięki treningowi z bronią miotaną zyskujesz na sile. \n\nZyskujesz poziom doświadczenia w umiejetności siła. \n\nDodatkowo zyskujesz atrybut „Przeszywający Rzut”:\n\nPrzeszywający Rzut:\nJeżeli w linii prostej za celem ataku bronią miotaną stoi inny przeciwnik możesz w momencie deklarowania ataku wydać jeden punkt energii, by wykonać niezwykle silny rzut. W przypadku nietrafienia w cel lub trafienia w cel i zadania śmiertelnych obrażeń krytycznych, broń leci dalej wykonując atak w drugą kreaturę o celności zmniejszonej o 1.",
       "hoverText": "",
-      "fi": 90,
+      "fi": 210,
       "theta": 28,
       "requires": [
         "224"
@@ -2283,7 +2290,7 @@
       "name": "Adept Broni Miotanej",
       "desc": "Dzięki swoim ekstensywnym treningom z bronią miotaną zaczynasz się czuć komfortowo z rzucaniem jednostkowymi patykami na nawet kilkanaście jednostek.\n\nZyskujesz poziom wprawy w używaniu broni miotanej.\n\nDodatkowo zyskujesz poziom doświadczenia w umiejętności zręczność.\n\nCo więcej, zyskujesz atrybut „Adept Broni Miotanej”:\n\nAdept Broni Miotanej:\nGdy używasz broni miotanej możesz wydać 3 Punkty Energii, by wykonać potężny rzut celując w płaskie elementy pacnerza przeciwnkia. W trakcie tego ataku traktuj pancerz przeciwnika tak, jakby jego poziom był mniejszy o 3.",
       "hoverText": "",
-      "fi": 90,
+      "fi": 210,
       "theta": 29.999999999999996,
       "requires": [
         "136"
@@ -3443,7 +3450,7 @@
       "desc": "W trakcie swojej przeszłości twoja postać nigdy nie nauczyła się czytać ani pisać. W tym czasie robiła inne rzeczy.\n\n(Jeżeli nie posiadasz tego atutu twoja postać potrafi czytać i pisać w powszechenj mowie)",
       "hoverText": "",
       "fi": 31,
-      "theta": 13.000000000000002,
+      "theta": 13.000000000000004,
       "requires": [],
       "cost": -2,
       "temperature": 6000,
@@ -3559,7 +3566,7 @@
       "requires": [
         "1009"
       ],
-      "cost": 6,
+      "cost": 5,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
@@ -3728,7 +3735,7 @@
       "name": "Prosto w Cel",
       "desc": "Udaje Ci się uzyskać dobrą celność przy rzutach bronią miotaną.\n\nZyskujesz jeden poziom wprawy w używaniu broni miotanych.\n\nZyskujesz atrybut „Prosto w Cel”:\n\nProsto w Cel:\nGdy wykonujesz atak w trybie typu „Rzut Bronią” zamiast losować, w którą część ciała trafiasz, możesz to wybrać.",
       "hoverText": "",
-      "fi": 90,
+      "fi": 210,
       "theta": 26.000000000000007,
       "requires": [
         "135"
@@ -4073,7 +4080,7 @@
       "name": "Mistrz Broni Miotanej",
       "desc": "TBD",
       "hoverText": "",
-      "fi": 89.97999999999999,
+      "fi": 210,
       "theta": 35,
       "requires": [
         "453",
@@ -4089,7 +4096,7 @@
       "name": "Daleki Rzut",
       "desc": "TBD",
       "hoverText": "",
-      "fi": 92,
+      "fi": 212,
       "theta": 32,
       "requires": [
         "137"
@@ -4104,7 +4111,7 @@
       "name": "Bliski Rzut",
       "desc": "Uczysz się używać efektywnie broni miotanej z bliska, co pozwala ci dokonywać przerażających obrażeń tym typem broni w walce wręcz.\n\nZyskujesz poziom wprawy w używaniu broni miotanej.\n\nZyskujesz atrybut „Rzut z Bliska”:\n\nRzut z Bliska:\nMinimalny zasięg rzutu bronią, wynosi 0 dla wyszstkich wykonywanych przez ciebie ataków.",
       "hoverText": "",
-      "fi": 87.99999999999999,
+      "fi": 208.00000000000006,
       "theta": 32,
       "requires": [
         "137"
@@ -4131,8 +4138,8 @@
       "name": "Nie do Zdarcia",
       "desc": "Uczysz się jak strzelać w szybki i nie obciążajacy sposób.\n\nZyskujesz poziom doświadczenia w umiejętności zręczność.\n\nDodatkowo zyskujesz atrybut „Nie do Zdarcia”:\n\nNie do Zdarcia:\nKiedy wykonujesz akcje ataku bronią miotającą nie bierz jej pod uwagi w uwzględnianiu kosztu następnej akcji ataku (czyli atakowanie bronią miotającą nie zwiększa kosztu kolejnych akcji ataku).",
       "hoverText": "",
-      "fi": 114.00000000000003,
-      "theta": 27.5,
+      "fi": 174,
+      "theta": 32.5,
       "requires": [
         "133"
       ],
@@ -4158,8 +4165,8 @@
       "name": "Wielostrzał",
       "desc": "Strzelanie kilkoma pociskami naraz jest bardzo niecelne, jednakże może być opłacalne, przy dużej ilości przeciwników.\n\nZyskujesz poziom wprawy w używaniu broni miotającej.\n\nZyskujesz atrybut „Wielostrzał”:\nNauczono cię używać broni miotającej do wystrzeliwania  kilku pocisków jednocześnie. Każdy załadowany pocisk zmniejsza zadawane przez atak obrażenia o 1. Wybierz cel ataku. Następnie rozlosuj, w którym kierunku od celu poleci każdy pocisk. Każdy pocisk ląduje 1d4 - 1 jednostek od celu. Jeżeli pocisk ma wylądować w twojej pozycji, lub bliżej ciebie niż celu, ląduje on pod twoimi nogami, niezadając żadnej szkody. W przeciwnym razie jeżeli pocisk wylądował 0.5 jednostki od istoty lub bliżej trafiasz w obręb tej istoty.",
       "hoverText": "",
-      "fi": 114.99999999999999,
-      "theta": 29.999999999999996,
+      "fi": 174.99999999999997,
+      "theta": 35,
       "requires": [
         "7654"
       ],
@@ -4185,8 +4192,8 @@
       "name": "Procarz",
       "desc": "Opanowywujesz w stopniu adekwatnym posługiwanie się tanimi, lecz wymagająceymi wielkiej wprawy procami.\n\nZyskujesz przedmioty: Proca, 10 stalowych kulek, świetnie nadającyh się na amunicję do procy.\n\nZyskujesz atrybut „Procarz”:\n\nProcarz:\nJeżeli podstawowa celność trybu ataku z broni miotającej wykonywanego przez ciebie jest mniejsza niż 1, gdy wykonujesz taki atak przyjmij, iż celność podstawowa tego trybu jest równa 1.",
       "hoverText": "",
-      "fi": 119.99999999999999,
-      "theta": 27.5,
+      "fi": 180,
+      "theta": 32.5,
       "requires": [
         "100011"
       ],
@@ -4278,21 +4285,21 @@
     {
       "id": "11",
       "name": "Mistrzowski Podróżnik",
-      "desc": "Po dłuższym okresie podróżowania udało ci się nabyć bezcenne doświadczenie posiadane przez garstkę istot na całym świecie. \n\nZwiększ dowolną charakterystykę o 3 poziomy, trzy charakterystyki o jeden poziom, lub jedną o dwa poziomy i jedną o jeden poziom.",
+      "desc": "Po dłuższym okresie podróżowania udało ci się nabyć bezcenne doświadczenie posiadane przez garstkę istot na całym świecie. \n\nZwyększ wybraną charakterystykę o 2 lub dwie wybrane charakterystyki o 1.",
       "hoverText": "",
       "fi": 0,
-      "theta": 43.99999999999999,
+      "theta": 48,
       "requires": [
-        "6312"
+        "99"
       ],
-      "cost": 25,
+      "cost": 7,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
         {
           "type": "characteristicPoints",
           "key": null,
-          "amount": 3
+          "amount": 2
         }
       ]
     },
@@ -4482,6 +4489,463 @@
           "type": "skillImprovisation",
           "key": "destrukcja",
           "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "95",
+      "name": "Mistrz Walki",
+      "desc": "Dzięki ekstensywnemu treningowi udało ci się osiągnąć mistrzostwo w przynajmniej jednej szkole walki. Jednakże nawet mistrz może osiągnąć więcej wkładając jeszcze więcej wysiłku w regularny trening.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.\n\nDodatkowo zyskujesz atrybut „Misztrz Walki”:\n\nMistrz Walki:\nWykonując ataki lub odbicia dowolną bronią przyjmujesz, iż masz przynajmniej 1 poziom wprawy w każdym typie broni (1d6).",
+      "hoverText": "",
+      "fi": 180,
+      "theta": 58,
+      "requires": [
+        [
+          "124",
+          "1865",
+          "949",
+          "879",
+          "100023",
+          "131",
+          "4563"
+        ]
+      ],
+      "cost": 5,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Mistrz Walki",
+          "description": "Wykonując ataki lub odbicia dowolną bronią przyjmujesz, iż masz przynajmniej 1 poziom wprawy w każdym typie broni (1d6).",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "6356",
+      "name": "Trening Siłowy",
+      "desc": "Ćwiczysz swoje mięśnie pod kątem zwiększenia ich siły tak, aby dzierżona przez ciebie broń była w twoich ©ekach lekka i dokładna jak pióro cenionego pisarza.\n\nZyskujesz jeden poziom doświadczenia i improwizacji w umiejętności Siła.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
+      "hoverText": "",
+      "fi": 174.99999999999997,
+      "theta": 66.99999999999999,
+      "requires": [
+        "95"
+      ],
+      "cost": 5,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "sila",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "sila",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "64363",
+      "name": "Trening Strategiczny",
+      "desc": "Czytasz podręczniki o fechtunku poszerzając swoją wiedzę na temat technik bojowych.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Widza Powszechna.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
+      "hoverText": "",
+      "fi": 185,
+      "theta": 66.99999999999999,
+      "requires": [
+        "95"
+      ],
+      "cost": 5,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "wiedzaPowszechna",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "wiedzaPowszechna",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "2525",
+      "name": "Trening Wiedzy Tajemnej",
+      "desc": "Studiujesz techniki walki magów, czarodzieji, okultystów, fenomenów i czarnoksiężników. Nauka ta pozwala ci lepiej zrozumieć jak atakować istoty nawet najzwyklejszą bronią.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności wiedza tajemna.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
+      "hoverText": "",
+      "fi": 210,
+      "theta": 67.2,
+      "requires": [
+        "64363"
+      ],
+      "cost": 5,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "wiedzaMagiczna",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "wiedzaMagiczna",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "53534",
+      "name": "Trening Anatomii",
+      "desc": "Czytasz księgi na temat anatomii z nadzieją zidentyfikowania słachych punktów istot i adekwatnej modyfikacji swojej techniki walki.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Medyczna.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
+      "hoverText": "",
+      "fi": 185,
+      "theta": 71,
+      "requires": [
+        "2525"
+      ],
+      "cost": 5,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "wiedzaMedyczna",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "wiedzaMedyczna",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "6363",
+      "name": "Trening Zręcznościowy",
+      "desc": "Ćwiczysz swoją koordynację ruchową, by jeszcze lepiej kontrolować swoją broń w trakcie uderzenia.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności zręczność.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
+      "hoverText": "",
+      "fi": 145.00000000000003,
+      "theta": 67.2,
+      "requires": [
+        "6356"
+      ],
+      "cost": 5,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "zrecznosc",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "zrecznosc",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "5363",
+      "name": "Trening Czasu Reakcji",
+      "desc": "Ćwiczysz swój czas reakcji, by móc dostosowywać trejektorię swojej broni do ruchów, które wykonuje przeciwnik w trakcie gdy ty go atakujesz.\n\nZyskujesz poziom doświadczenia i improwaizacji w umiejętności czas reakcji.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
+      "hoverText": "",
+      "fi": 174.99999999999997,
+      "theta": 71,
+      "requires": [
+        "6363"
+      ],
+      "cost": 5,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "czasReakcji",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "czasReakcji",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "642",
+      "name": "Arcymistrz Walki",
+      "desc": "Udało ci się poświęcić niezliczone godziny na trening swojego ciała i umysłu z intencją poprawy swoich umiejętności walki bronią czy walki bez broni. W tym czasie udało ci się także zebrać wiele różnych doświadczeń i nauczyć się pozwiązanych z treningiem umiejętności.\n\nZyskujesz poizom doświadczenia i improwizacji w dowolnej umiejętności.\n\nDodatkowo zyskujesz atrybut „Arcymisztrz Walki”:\n\nArcymistrz Walki:\nWykonując ataki lub odbicia dowolną bronią przyjmujesz, iż masz przynajmniej 5 poziomów wprawy w każdym typie broni (1d12).\n\nDodatkowo, możesz poświęcić pełen odpoczynek na studiowanie szkoły walki. Jeżeli tak zrobisz tymczasowo zyskujesz jeden atrybut z drzewka szkoły walki na następne 25 godzin.",
+      "hoverText": "",
+      "fi": 180,
+      "theta": 80,
+      "requires": [
+        "5363",
+        "53534"
+      ],
+      "cost": 7,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperiencePoints",
+          "key": null,
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisationPoints",
+          "key": null,
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Arcymistrz Walki",
+          "description": "Wykonując ataki lub odbicia dowolną bronią przyjmujesz, iż masz przynajmniej 5 poziomów wprawy w każdym typie broni (1d12).\n\nDodatkowo, możesz poświęcić pełen odpoczynek na studiowanie szkoły walki. Jeżeli tak zrobisz tymczasowo zyskujesz jeden atrybut z drzewka szkoły walki na następne 25 godzin.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "99",
+      "name": "Weteran Podróżowania",
+      "desc": "Walka, przeszukiwanie cudzych pomieszczeń czy próby dogadania się z pozoru nieprzekonywalnymi istotami to twój lep powszedni. Teraz mało co może cię zaskoczyć.\n\nZwiększ poziom dowolnej charakterystyki o 1.",
+      "hoverText": "",
+      "fi": 0,
+      "theta": 43.00000000000001,
+      "requires": [
+        "6312"
+      ],
+      "cost": 7,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "characteristicPoints",
+          "key": null,
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "745",
+      "name": "Moc Świeżej Krwi",
+      "desc": "Świeża krew daje ci energię, którą uczysz się wykorzystywać w ten sam sposób co energię magów czy czarodzieji.\n\nZyskujesz atrybut „Moc Świeżej Krwi”:\nGdy zdobywasz Punkt Mocy Krwi zyskujesz Punkt Energii. Możesz także wydać Punkt Mocy Krwi by odzyskać 1d4 Punktów Energii.",
+      "hoverText": "",
+      "fi": 54,
+      "theta": 21.999999999999996,
+      "requires": [
+        "674"
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Moc Świeżej Krwi",
+          "description": "Gdy zdobywasz Punkt Mocy Krwi zyskujesz Punkt Energii. Możesz także wydać Punkt Mocy Krwi by odzyskać 1d4 Punktów Energii.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "532",
+      "name": "Pijawka",
+      "desc": "Uczysz się ignorować uczucie sytości krwią i pić tyle ile tylko możesz.\n\nZyskujesz atrybut: „Worek Krwi”:\nMaksymalna ilość Punktów Mocy Krwi, które możesz posiadać równa jest twojej Formie.",
+      "hoverText": "",
+      "fi": 46,
+      "theta": 16,
+      "requires": [
+        "100003"
+      ],
+      "cost": 4,
+      "temperature": 3000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Worek Krwi",
+          "description": "Maksymalna ilość Punktów Mocy Krwi, które możesz posiadać równa jest twojej Formie.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "674",
+      "name": "Trupojad",
+      "desc": "Desperackie czasy zmuszają czasami do desperackich czynów. W twoim przypadku jest to pożywianie się krwią (niedawno) zmarłych istot.\n\nZyskujesz atrybut: „Trupojad”:\nZyskuejsz dostęp do akcji posiil się Truchłem (koszt 7 PA): Możesz uzyskać jeden Punkt Mocy Krwi posilając się krwią stworzenia, zmarłego nie więcej niż 1 minutę (6 tur) temu. Akcję tą możesz wykonać do pięciu razy na zmarłej świadomej istocie, raz małym zmartłym zwierzęciu i do dziesięciu razy na dużym zmarłym zwierzęciu.",
+      "hoverText": "",
+      "fi": 55,
+      "theta": 19,
+      "requires": [
+        "647"
+      ],
+      "cost": 1,
+      "temperature": 3000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Trupojad",
+          "description": "Zyskuejsz dostęp do akcji posiil się Truchłem (koszt 7 PA): Możesz uzyskać jeden Punkt Mocy Krwi posilając się krwią stworzenia, zmarłego nie więcej niż 1 minutę (6 tur) temu. Akcję tą możesz wykonać do pięciu razy na zmarłej świadomej istocie, raz małym zmartłym zwierzęciu i do dziesięciu razy na dużym zmarłym zwierzęciu.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "5322",
+      "name": "Wampiryczna Regeneracja",
+      "desc": "Uczysz się trawić posiadaną moc krwi w celu szybszej regeneracji.\n\nZyskujesz atrybut: „Wampiryczna Regeneracja”:\n\nWampiryczna Regeneracja:\nGdy masz Punkty Mocy Krwi natychmiastowo zmniejszasz poziom wykrwawienia o ilość posiadanych Punktów Mocy Krwi lub do zera. Za każdy wyleczony w ten sposób poziom wykrwawienia tracisz jeden Punkt Mocy Krwi.\n\nDodatkowo w dowolnym momencie możesz wydać jeden Punkt Mocy Krwi by usunąć jeden Punkt Zaleczonych Obrażeń.",
+      "hoverText": "",
+      "fi": 46,
+      "theta": 21.999999999999996,
+      "requires": [
+        "6423"
+      ],
+      "cost": 1,
+      "temperature": 2000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Wampiryczna Regeneracja",
+          "description": "Gdy masz Punkty Mocy Krwi natychmiastowo zmniejszasz poziom wykrwawienia o ilość posiadanych Punktów Mocy Krwi lub do zera. Za każdy wyleczony w ten sposób poziom wykrwawienia tracisz jeden Punkt Mocy Krwi.\n\nDodatkowo w dowolnym momencie możesz wydać jeden Punkt Mocy Krwi by usunąć jeden Punkt Zaleczonych Obrażeń.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "647",
+      "name": "Żywienie",
+      "desc": "Uczysz się zadawać rany, z których łątwo ci się żywić.\n\nZyskujesz atrybut „Żywienie”:\n\nŻywienie:\nJako darmowa akcja, raz na turę, możesz zadać 1 punkt obrażeń krytycznych typu głębokie rany pochwyconemu lub obezwładnionemu przez siebie lub sojusznika stworzeniu.",
+      "hoverText": "",
+      "fi": 54,
+      "theta": 16,
+      "requires": [
+        "100003"
+      ],
+      "cost": 1,
+      "temperature": 2000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Żywienie",
+          "description": "Jako darmowa akcja, raz na turę, możesz zadać 1 punkt obrażeń krytycznych typu głębokie rany pochwyconemu lub obezwładnionemu przez siebie lub sojusznika stworzeniu.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "5373",
+      "name": "Rosły Wampir",
+      "desc": "Wampiry, które przeżyją pierwsze kilka tygodni swojej egzystencji nazywane są rosłymi wampirami. Mniej więcej po tym czasie ukazuje się cała gama negatywnych i pozytywnych efektów związanych z byciem Wampirem.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętnościach: siła, wigor, zręczność, czas reakcji, spostrzegawczość i skradanie się.\n\nZyskujesz atrybut: „Rosły Wampir”:\nTwoja blada skóra jest niezwykle wrażliwa na światło. Przez każdą minutę, gdy w trakcie dnia masz odsłonięty kawałek skóry wielkości swojej pięści lub większy zyskujesz jeden punkt obrażeń krytycznych od temperatury na minutę (6 tur).\n\nDodatkowo otrzymujesz jeden punkt krytycznych obrażeń wewnętrznych za każdym razem gdy wejdziesz na lub zaczniesz swoją turę w przestrzeni chronionej pentagramem osłabiającym magię przywoływania.\n",
+      "hoverText": "",
+      "fi": 50.42000000000001,
+      "theta": 29,
+      "requires": [
+        [
+          "745",
+          "5322"
+        ]
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "sila",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "wigor",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "zrecznosc",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "czasReakcji",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "spostrzegawczosc",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "skradanieSie",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "sila",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "wigor",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "zrecznosc",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "czasReakcji",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "spostrzegawczosc",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "skradanieSie",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Rosły Wampir",
+          "description": "Twoja blada skóra jest niezwykle wrażliwa na światło. Przez każdą minutę, gdy w trakcie dnia masz odsłonięty kawałek skóry wielkości swojej pięści lub większy zyskujesz jeden punkt obrażeń krytycznych od temperatury na minutę (6 tur).\n\nDodatkowo otrzymujesz jeden punkt krytycznych obrażeń wewnętrznych za każdym razem gdy wejdziesz na lub zaczniesz swoją turę w przestrzeni chronionej pentagramem osłabiającym magię przywoływania.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "6423",
+      "name": "Kolekcjoner",
+      "desc": "Czasami trzeba oszczędzać na czarną godzinę. Uczysz się zaspokajać swój głód krwi pijąc mało świeżą krew z fiolek:\n\nZyskujesz atrybut: „Kolekcjoner”:\nJeżeli nie masz Punktów Mocy Krwi, możesz zyskać jeden Punkt Mocy Krwi konsumując 10 Fiolek Świeżej Krwi.",
+      "hoverText": "",
+      "fi": 45,
+      "theta": 19,
+      "requires": [
+        "532"
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Kolekcjoner",
+          "description": "Jeżeli nie masz Punktów Mocy Krwi, możesz zyskać jeden Punkt Mocy Krwi konsumując 10 Fiolek Świeżej Krwi.",
+          "bonuses": []
         }
       ]
     }

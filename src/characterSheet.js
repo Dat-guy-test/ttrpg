@@ -21,7 +21,7 @@
 //     actually resets everything a character would otherwise leave
 //     stale (see treePersistence.js's header comment for why that
 //     used to be inconsistent).
-//   - "Eksportuj Postać" / "Importuj Postać" — see characterExport.js.
+//   - "Zapisz Postać" / "Wczytaj Postać" — see characterExport.js.
 //     Bundles the same full set of character state into one
 //     downloadable .json file, and can load one back in.
 //
@@ -91,8 +91,8 @@ function render() {
     <div class="charSheet">
     <div class="charSheet-toolbar">
     <button class="charBtn" id="char-print-btn"><span>Drukuj</span></button>
-    <button class="charBtn" id="char-export-btn"><span>Eksportuj Postać</span></button>
-    <button class="charBtn" id="char-import-btn"><span>Importuj Postać</span></button>
+    <button class="charBtn" id="char-export-btn"><span>Zapisz Postać</span></button>
+    <button class="charBtn" id="char-import-btn"><span>Wczytaj Postać</span></button>
     <input type="file" id="char-import-file" accept="application/json,.json" style="display:none;" />
     <button class="charBtn charBtn-danger" id="char-reset-btn"><span>Resetuj Wszystko</span></button>
     </div>
@@ -452,7 +452,7 @@ function attachHandlers() {
         if (ok) resetEverything();
     });
 
-    // ---- Eksportuj / Importuj Postać --------------------------------
+    // ---- Zapisz / Wczytaj Postać --------------------------------
     rootEl.querySelector('#char-export-btn').addEventListener('click', () => {
         downloadCharacterExport();
     });

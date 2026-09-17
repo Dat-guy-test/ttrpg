@@ -448,7 +448,7 @@
           "maxRange": 1,
           "spread": null,
           "effectiveRange": null,
-          "specialEffect": "Łamanie Broni: Jeżeli wykonujesz atak w tym trybie w ramach kontry przeciw atakowi przeciwnika, którego wybrany tryb ataku zadaje obrażenia kłóte lub cięte możesz zamiast zadeklarować próbę rozbrojenia przeciwnika (zastępuje to wtedy wykonywany przez Ciebie atak):\nRozstrzygnij konkurs twojej zręczności przeciw zręczności lub sile przeciwnika. W przypadku sukcesu broń wypada z rąk przeciwnika, spadając mu pod nogi. W przypadku krytycznego sukcesu broń spada pod Twoje nogi lub broń otrzymuje 2d6 + 2 obrażeń obuchowych (twój wybór)."
+          "specialEffect": "Łamanie Broni: Jeżeli wykonujesz atak w tym trybie w ramach kontry przeciw atakowi przeciwnika, którego wybrany tryb ataku zadaje obrażenia kłute lub cięte możesz zamiast zadeklarować próbę rozbrojenia przeciwnika (zastępuje to wtedy wykonywany przez Ciebie atak):\nRozstrzygnij konkurs twojej zręczności przeciw zręczności lub sile przeciwnika. W przypadku sukcesu broń wypada z rąk przeciwnika, spadając mu pod nogi. W przypadku krytycznego sukcesu broń spada pod Twoje nogi lub broń otrzymuje 2d6 + 2 obrażeń obuchowych (twój wybór)."
         },
         {
           "name": "Rzut Trójsztyletem (Chwyt Jednoręczny)",
@@ -541,7 +541,7 @@
           "maxRange": 1,
           "spread": null,
           "effectiveRange": null,
-          "specialEffect": "Niezwykle zabójcze wykończenie: Jeżeli cel ataku jest pochwycony przez Ciebie lub Twojego sojusznika, lub jest unieruchomiony podstawowa celność tego ataku wynosi 12. Dodatkowo w przypadku trafienia, cel otrzymuje dodatkowo 3 punkty kłótych obrażeń krytycznych."
+          "specialEffect": "Niezwykle zabójcze wykończenie: Jeżeli cel ataku jest pochwycony przez Ciebie lub Twojego sojusznika, lub jest unieruchomiony podstawowa celność tego ataku wynosi 12. Dodatkowo w przypadku trafienia, cel otrzymuje dodatkowo 3 punkty kłutych obrażeń krytycznych."
         },
         {
           "name": "Cięcie Mizerykordią (Chwyt Jednoręczny)",
@@ -1225,7 +1225,7 @@
       "price": 120,
       "bulk": 0.25,
       "type": "weapon",
-      "desc": "Zręcznościówka (nazywana czasami szpadą, albo rapierem) to broń zaprojektowana do zadawania druzgocących ran kłótych. Brak ostrej krawędzi uniemożliwia jednak wykonywania cięć.",
+      "desc": "Zręcznościówka (nazywana czasami szpadą, albo rapierem) to broń zaprojektowana do zadawania druzgocących ran kłutych. Brak ostrej krawędzi uniemożliwia jednak wykonywania cięć.",
       "state": "unequipped",
       "hitPoints": 3,
       "toughness": 5,
@@ -3349,7 +3349,7 @@
       "equipLayers": [
         "outerArmour"
       ],
-      "effectDescription": "Zmniejsza o połowę obrażenia cięte i kłóte otrzymywane w kończyny.",
+      "effectDescription": "Zmniejsza o połowę obrażenia cięte i kłute otrzymywane w kończyny.",
       "equipTimeSeconds": 450,
       "equipTimeActionPoints": 900,
       "unequipTimeSeconds": 300,
@@ -3391,7 +3391,7 @@
       "equipLayers": [
         "outerArmour"
       ],
-      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe, cięte i kłóte otrzymywane w kończyny.",
+      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe, cięte i kłute otrzymywane w kończyny.",
       "equipTimeSeconds": 300,
       "equipTimeActionPoints": 600,
       "unequipTimeSeconds": 200,
@@ -3630,7 +3630,7 @@
       "equipLayers": [
         "outerArmour"
       ],
-      "effectDescription": "Zmniejsza o połowę obrażenia cięte i kłóte otrzymywane w głowę. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "effectDescription": "Zmniejsza o połowę obrażenia cięte i kłute otrzymywane w głowę. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
       "equipTimeSeconds": 150,
       "equipTimeActionPoints": 300,
       "unequipTimeSeconds": 100,
@@ -3665,7 +3665,7 @@
       "equipLayers": [
         "outerArmour"
       ],
-      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe, cięte i kłóte otrzymywane w głowę. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe, cięte i kłute otrzymywane w głowę. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
       "equipTimeSeconds": 75,
       "equipTimeActionPoints": 150,
       "unequipTimeSeconds": 50,
@@ -3700,7 +3700,7 @@
       "equipLayers": [
         "outerArmour"
       ],
-      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe, cięte i kłóte otrzymywane w głowę. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe, cięte i kłute otrzymywane w głowę. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
       "equipTimeSeconds": 150,
       "equipTimeActionPoints": 300,
       "unequipTimeSeconds": 100,
@@ -3900,7 +3900,7 @@
       "equipLayers": [
         "outerArmour"
       ],
-      "effectDescription": "Zmniejsza o połowę obrażenia cięte i kłóte otrzymywane w tors.",
+      "effectDescription": "Zmniejsza o połowę obrażenia cięte i kłute otrzymywane w tors.",
       "equipTimeSeconds": 300,
       "equipTimeActionPoints": 600,
       "unequipTimeSeconds": 200,
@@ -3935,7 +3935,7 @@
       "equipLayers": [
         "outerArmour"
       ],
-      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe, cięte i kłóte otrzymywane w tors.",
+      "effectDescription": "Zmniejsza o połowę obrażenia obuchowe, cięte i kłute otrzymywane w tors.",
       "equipTimeSeconds": 225,
       "equipTimeActionPoints": 450,
       "unequipTimeSeconds": 150,
@@ -4311,7 +4311,7 @@
       "equipLayers": [
         "outerArmour"
       ],
-      "effectDescription": "Zmniejsza o połowę otrzymywane obrażenia cięte i kłóte. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "effectDescription": "Zmniejsza o połowę otrzymywane obrażenia cięte i kłute. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
       "equipTimeSeconds": 900,
       "equipTimeActionPoints": 1800,
       "unequipTimeSeconds": 600,
@@ -4370,7 +4370,7 @@
       "equipLayers": [
         "outerArmour"
       ],
-      "effectDescription": "Zmniejsza o połowę otrzymywane obrażenia obuchowe, cięte i kłóte. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "effectDescription": "Zmniejsza o połowę otrzymywane obrażenia obuchowe, cięte i kłute. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
       "equipTimeSeconds": 600,
       "equipTimeActionPoints": 1200,
       "unequipTimeSeconds": 400,
@@ -4429,7 +4429,7 @@
       "equipLayers": [
         "outerArmour"
       ],
-      "effectDescription": "Zmniejsza o połowę otrzymywane obrażenia obuchowe, cięte i kłóte. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
+      "effectDescription": "Zmniejsza o połowę otrzymywane obrażenia obuchowe, cięte i kłute. Otrzymanie obrażeń krytycznych w głowę nie powoduje natychmiastowej śmierci.",
       "equipTimeSeconds": 1050,
       "equipTimeActionPoints": 2100,
       "unequipTimeSeconds": 700,

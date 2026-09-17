@@ -102,12 +102,12 @@ export const ABILITIES_CONFIG = [
 // does not. "Łącznie" is a single computed field, handled separately.
 export const DAMAGE_ROWS_CONFIG = [
     { key: 'rany',        label: 'Rany',   critical: true  },
-    { key: 'zlamania',    label: 'Złam.',  critical: true  },
-    { key: 'wewnetrzne',  label: 'Wewn.',  critical: true  },
-    { key: 'temperatura', label: 'Temp.',  critical: true  },
-    { key: 'choroby',     label: 'Chor.',  critical: true  },
-    { key: 'krytyczne',   label: 'Kryt.',  critical: true  },
-    { key: 'zwykle',      label: 'Zwyk.',  critical: false },
+    { key: 'zlamania',    label: 'Złamania',  critical: true  },
+    { key: 'wewnetrzne',  label: 'Wewnętrzne',  critical: true  },
+    { key: 'temperatura', label: 'Od Temperatury',  critical: true  },
+    { key: 'choroby',     label: 'Od Chorób i Trucizn',  critical: true  },
+    { key: 'krytyczne',   label: 'Suma Krytycznych',  critical: true  },
+    { key: 'zwykle',      label: 'Obrzęnia Zwykłe',  critical: false },
 ];
 
 
