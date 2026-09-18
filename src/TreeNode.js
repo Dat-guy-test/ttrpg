@@ -91,8 +91,8 @@ export class TreeNode extends THREE.Mesh {
 
         // Visual size scales with cost
         this.nodeSize = anodeCost < 1
-        ? 0.2
-        : Math.pow(((anodeCost)), (1/2))/5;
+        ? 0.1
+        : Math.pow(((anodeCost)), (1/2))/10;
 
         this.excl    = exclStuff || null;
         this.effects = Array.isArray(effects) ? effects : [];
@@ -124,7 +124,7 @@ export class TreeNode extends THREE.Mesh {
         this.nameText = new Text();
         this.nameText.text        = anodeName;
         this.nameText.font        = LABEL_FONT_URL;
-        this.nameText.fontSize    = 0.02;      // baseline size — see LABEL_MIN_SCALE in constants.js
+        this.nameText.fontSize    = 0.01;      // baseline size — see LABEL_MIN_SCALE in constants.js
         this.nameText.color       = 0xfafafa;
         this.nameText.outlineWidth = '8%';      // stands in for the old side/depth face colour
         this.nameText.outlineColor = 0xaa2bef;
