@@ -1038,7 +1038,7 @@
       "desc": "Z racji na warunki urodzenia lub mniej lub bardziej dobrowolne uczestnictwo w mrocznym rytuale jesteś Wampirem: jednym z kilku typów stworzeń będącymi połączeniem śmiertelnika i demona. Wampiry mają bladą skórą, słabe tętno i wolny puls. Żyją zwykle o połowę dłużej niż zwykli śmiertelnicy o ich pochodzeniu, i praktycznie nie starzeją się nawet do momentu śmierci, gdzie zwykle umierają przez zawał.\n\nBędąc wampirem zyskujesz atrybut „Żądza Krwi”:\n\nŻądza Krwi:\nZyskujesz dostęp do Punktów Mocy Krwi:\nKażdej doby w określonym przez Ciebie stałym momencie tracisz 1 Punkt Mocy Krwi. Jeżeli nie posiadasz Punktów Mocy Krwi zyskujesz 1 Poziom Wykrwawienia. \nMożesz posaidać maksymalnie sześć Punktów Mocy Krwi.\n\nPoświęcając 2 Punkty Akcji możesz wykonać akcję:\nZbierz krew Żywego stworzenia:\nJeżeli pochwyciłeś istotę, mającą przynajmniej jeden poziom niezaleczonych obrażeń krytycznych typu „Głębokie rany”: Za każdy poziom wykrwawienia, który zdobędzie to storzenie do początku Twojej następnej tury zdobywasz 1 Punkt Mocy Krwi.",
       "hoverText": "",
       "fi": 50,
-      "theta": 14.75,
+      "theta": 14.750000000000002,
       "requires": [],
       "cost": 0,
       "temperature": 1800,
@@ -1866,7 +1866,7 @@
       "name": "Siódmy Zmysł",
       "desc": "Pakując się w kolejne tarapaty zaczynasz mieć pojęcie kiedy coś zaczyna iść nie tak.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności instynkt oraz poziom improwizacji w umiejętności czas reakcji.\n\nCo więcej zyskujesz atrybut: „Szybka Odskocznia”:\n\nSzybka Odskocznia:\nMożesz raz wykonać akcję uniku nie zużywając Punktów Akcji. Odzyskujesz możliwość wykorzystania tej umiejętności na początku następnej twojej tury.",
       "hoverText": "",
-      "fi": 28.500000000000004,
+      "fi": 28.500000000000007,
       "theta": 33,
       "requires": [
         "123"
@@ -2145,7 +2145,7 @@
       "name": "Zawsze w Cel",
       "desc": "Twoja nauka stzelania doprowadziła Cię do momentu gdy prawie zawsze jesteś w stanie trafić w nieruchomy cel.\n\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.\n\nDodatkowo zyskujesz atrybut „Celny Strzelec”:\n\nCelny Strzelec:\nGdy wykonujesz ataki dystansowe za pomocą broni miotającej, zamiast losować część ciała, w którą trafisz możesz ją wybrać.\n\nDodatkowo zawsze jesteś w stanie trafić w nieruchomy cel z broni miotającej, jeżeli jest on w jej efektywnym zasięgu.",
       "hoverText": "",
-      "fi": 103,
+      "fi": 103.00000000000001,
       "theta": 32,
       "requires": [
         "100011"
@@ -2199,7 +2199,7 @@
       "name": "Wiecznia Czujność",
       "desc": "Dzięki twojemu treningowi jesteś w stanie dostrzec i przewidzieć gdzie poruszy się twój cel w walce.\n\nZyskujesz poziom doświadczenia w umiejętności spostrzegawczość.\n\nZyskujesz poziom wprawy w używaniu broni miotających.\n\nDodatkowo zyskujesz atrybut „Wieczna Czujność”:\n\nWieczna Czujność:\nPrzeciwnicy nie mogą się przed tobą ukryć w walce, chyba, że są w pełni zasłonięci przed tobą. W takim wypadku zawsze pamietasz, gdzie ostatnio widziana była dana istota. Dodatkowo widzisz i możesz reagować na wszystkie ataki wykonane przez istoty w odległości nie większej niż 5 jednostek od ciebie.",
       "hoverText": "",
-      "fi": 103,
+      "fi": 103.00000000000001,
       "theta": 38,
       "requires": [
         "567"
@@ -2396,7 +2396,7 @@
       "desc": "Poznajesz działanie i metody przetwarzania wielu ziół oraz podstawy działania ciał świadomych istot.\n\nZyskujesz dwa poziomy doświadczenia i improwizacji w umiejętnościach Wiedza Medyczna. Dodatkowo zyskujesz zestaw zielarza.",
       "hoverText": "",
       "fi": 10,
-      "theta": 55,
+      "theta": 58,
       "requires": [
         "1455"
       ],
@@ -3450,7 +3450,7 @@
       "desc": "W trakcie swojej przeszłości twoja postać nigdy nie nauczyła się czytać ani pisać. W tym czasie robiła inne rzeczy.\n\n(Jeżeli nie posiadasz tego atutu twoja postać potrafi czytać i pisać w powszechenj mowie)",
       "hoverText": "",
       "fi": 35,
-      "theta": 14.6,
+      "theta": 14.600000000000001,
       "requires": [],
       "cost": -2,
       "temperature": 6000,
@@ -3645,7 +3645,7 @@
       "name": "Zaawansowana Wiedza Medyczna",
       "desc": "Dzięki ekstensywnemu studiowaniu ciał świadomych stworzeń i rzeczy im zagrażającym udało ci się dojść do bardzo dobrego poziomu zrozumienia medycyny.\n\nZyskujesz dwa poziomy doświadczenia i improwizacji w umiejętności Wiedza Medyczna.\nDodatkowo zyskujesz atrybut: \"Lekarz\":\n\nLekarz:\nGdy używasz wiedzy medycznej do zaleczenia obrażeń traktujesz każdy sukces jak krytyczny sukces.\n\nDodatkowo zawsze jesteś w stanie określić czy istota jest w stanie zagrożenia życia, jak daleko jest po śmierci oraz ile czasu temu zmarła istota po inspekcji. Taka inspekcja istoty zajmuje 3 Punkt Akcji.\n\nCo więcej, po zbadaniu chorego lub zatrutego pacjenta oraz obserwowaniu go przez 15 minut jesteś w stanie zaproponować lek/odtrutkę, która zaleczy wszystkie obrażenia od chorób i trucizny danego stworzenia, jeżeli takowa istnieje.",
       "hoverText": "",
-      "fi": 20,
+      "fi": 14.5,
       "theta": 59.99999999999999,
       "requires": [
         "3467"
@@ -3677,7 +3677,7 @@
       "name": "Chirurg",
       "desc": "Dzięki ekstensywnym ćwiczeniom jesteś w stanie operować sprawnie nawet w bojowych warunkach.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna.\n\nDodatkowo zyskujesz atrybut \"Chirurg\":\n\nChirurg:\nUczysz się jak szybko i sprawnie operować na istotach bliskich śmierci. Świadoma istota nie może otrzymać prowadzących do śmierci obrażeń lub prowadzących do śmierci poziomów wykrwawienia, gdy jesteś w trakcie jej leczenia, chyba, że ich źródłem jest coś innego niż ty, istota, nad którą operujesz lub jej stan.\n\nDodatkowo zanim wykonasz test wiedzy medycznej, będący elementem rzutu na leczenie obrażeń, rzuć kością d4. W przypadku wyniku innego niż 1 na kości możesz stwierdzić, iż test zakończył się sukcesem. Nie wykonujesz wtedy owego rzutu na Wiedzę Medyczną.\n\nCo więcej, w przypadku zaleczania obrażeń wewnętrznych, usuń połowę zaleczonych punktów obrażeń (zaokrąglając w górę) w przypadku sukcesu, lub krytycznego sukcesu.",
       "hoverText": "",
-      "fi": 0,
+      "fi": 5.499999999999999,
       "theta": 59.99999999999999,
       "requires": [
         "3467"
@@ -3699,7 +3699,7 @@
       "desc": "Uczysz się tworzyć magicznie narzędzia potrzebne do leczenia.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna oraz Wiedza Tajemna.\n\nZyskujesz atrybut: \"Mistyczny Konsyliarz\":\n\nMistyczny Konsyliarz:\nMożesz zużyć pięć Punktów Energii w celu dokonania magicznego zaleczania. Działa ono tak samo, jak zaleczanie za pomocą testu wiedzy medycznej, ale jesteś w stanie wykonywać je niezwykle szybko, zużywając zaledwie 7 Punktów Akcji (odpowidnik kilku sekund).",
       "hoverText": "",
       "fi": 10,
-      "theta": 65,
+      "theta": 62,
       "requires": [
         "3467"
       ],
@@ -4020,7 +4020,7 @@
       "name": "Kat",
       "desc": "Uczysz się precyzyjnie kontrolować trejetorię lostu głowicy twojej broni.\n\nZyskujesz poziom wprawy w długich broniach drzewcowych.\n\nZyskujesz atrybut „Kat”:\n\nDzięki swojemu doświadczeniu zamiast losować część ciała, w którą trafi akat wykonany długą bronią drzewcową, możesz ją wybrać.\n\nDodatkowo, jeżeli zadasz obrażenia krytyczne równe połowie wytrzymałości istoty i istota jest pochwycona przez twojego sojusznika lub unieruchomiona, możesz zdecydować, iż trafiona przez ciebie kończyna lub głowa została odrąbana. W przypadku odrąbania głowy oznacza to natychmiastową śmierć celu.",
       "hoverText": "",
-      "fi": 43,
+      "fi": 43.00000000000001,
       "theta": 42,
       "requires": [
         "129",
@@ -4048,7 +4048,7 @@
       "name": "Żniwiarz",
       "desc": "Dzięki swojemu treningowi możesz z łatwością jesteś w stanie przerzynać się przez duże ilości słąbych przeciwników.\n\nZyskujesz poziom wprawy w używaniu długich broni drzewcowych.\n\nZyskujesz atrybut „Żniwiarz”:\n\nŻniwiarz:\nGdy zabijesz istotę atakiem wykonanym długą bronią drzewcową, lub dowolną inną bronią białą o zasięgu większym niż 1 jednostka, możesz zużyć 2 Punkty Energii by wykonać darmową akcję ataku w znajdujący się w zasięgu broni inny cel. Jednakże celność drugiego ataku jest mniejsza o 1d4.",
       "hoverText": "",
-      "fi": 43,
+      "fi": 43.00000000000001,
       "theta": 35,
       "requires": [
         "130"
@@ -4338,7 +4338,7 @@
       "name": "Nie do Zamęczenia",
       "desc": "Dzięki mieszance medytacji i badania granic swoich możliwości uczysz się aktywnie działać do samego końca.\n\nZyskujesz poziom doświadcznia i improwizacji w umiejętności czas reakcji.\n\nZyskujesz jeden poziom Bystrości.\n\nZyskujesz atrybut „Nie do Zamęczenia”:\nGdy masz co najmniej jeden Punkt Energii, możesz wydać wszystkie posiadane Punkty Energii, by odzyskać Punkty Akcji w ilości równej poziomowi twojej Bystrości.",
       "hoverText": "",
-      "fi": 13.000000000000002,
+      "fi": 13.000000000000004,
       "theta": 50,
       "requires": [
         "7778"
@@ -4496,7 +4496,7 @@
       "desc": "Dzięki ekstensywnemu treningowi udało ci się osiągnąć mistrzostwo w przynajmniej jednej szkole walki. Jednakże nawet mistrz może osiągnąć więcej wkładając jeszcze więcej wysiłku w regularny trening.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.\n\nDodatkowo zyskujesz atrybut „Misztrz Walki”:\n\nMistrz Walki:\nWykonując ataki lub odbicia dowolną bronią przyjmujesz, iż masz przynajmniej 1 poziom wprawy w każdym typie broni (1d6).",
       "hoverText": "",
       "fi": 75.00000000000001,
-      "theta": 52.00000000000001,
+      "theta": 52.000000000000014,
       "requires": [
         [
           "124",
@@ -4578,7 +4578,7 @@
       "desc": "Studiujesz techniki walki magów, czarodzieji, okultystów, fenomenów i czarnoksiężników. Nauka ta pozwala ci lepiej zrozumieć jak atakować istoty nawet najzwyklejszą bronią.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności wiedza tajemna.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
       "hoverText": "",
       "fi": 85,
-      "theta": 57,
+      "theta": 57.00000000000001,
       "requires": [
         "64363"
       ],
@@ -4630,7 +4630,7 @@
       "desc": "Ćwiczysz swoją koordynację ruchową, by jeszcze lepiej kontrolować swoją broń w trakcie uderzenia.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności zręczność.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
       "hoverText": "",
       "fi": 65,
-      "theta": 57,
+      "theta": 57.00000000000001,
       "requires": [
         "6356"
       ],
@@ -4779,7 +4779,7 @@
       "name": "Trupojad",
       "desc": "Desperackie czasy zmuszają czasami do desperackich czynów. W twoim przypadku jest to pożywianie się krwią (niedawno) zmarłych istot.\n\nZyskujesz atrybut: „Trupojad”:\nZyskuejsz dostęp do akcji posiil się Truchłem (koszt 7 PA): Możesz uzyskać jeden Punkt Mocy Krwi posilając się krwią stworzenia, zmarłego nie więcej niż 1 minutę (6 tur) temu. Akcję tą możesz wykonać do pięciu razy na zmarłej świadomej istocie, raz małym zmartłym zwierzęciu i do dziesięciu razy na dużym zmarłym zwierzęciu.",
       "hoverText": "",
-      "fi": 51.5,
+      "fi": 51.50000000000001,
       "theta": 16.5,
       "requires": [
         "647"
@@ -4801,7 +4801,7 @@
       "name": "Wampiryczna Regeneracja",
       "desc": "Uczysz się trawić posiadaną moc krwi w celu szybszej regeneracji.\n\nZyskujesz atrybut: „Wampiryczna Regeneracja”:\n\nWampiryczna Regeneracja:\nGdy masz Punkty Mocy Krwi natychmiastowo zmniejszasz poziom wykrwawienia o ilość posiadanych Punktów Mocy Krwi lub do zera. Za każdy wyleczony w ten sposób poziom wykrwawienia tracisz jeden Punkt Mocy Krwi.\n\nDodatkowo w dowolnym momencie możesz wydać jeden Punkt Mocy Krwi by usunąć jeden Punkt Zaleczonych Obrażeń.",
       "hoverText": "",
-      "fi": 49.20000000000001,
+      "fi": 49.20000000000002,
       "theta": 18,
       "requires": [
         "6423"
@@ -4943,6 +4943,198 @@
           "type": "attribute",
           "key": "Kolekcjoner",
           "description": "Jeżeli nie masz Punktów Mocy Krwi, możesz zyskać jeden Punkt Mocy Krwi konsumując 10 Fiolek Świeżej Krwi.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "2546",
+      "name": "Siła Fizyczna",
+      "desc": "Gdy inni odpoczywają zmuszasz się do poświęcenia czasu na treningi siłowe.\n\nZyskujesz dwa poziomy doświadczenia i jeden poziom improwizacji w umiejętności siła.\n\nDodatkowo zyskujesz atrybut: „Jeszcze jedno powtórzenie”:\n\nJeszcze jedno powtórzenie:\nDzięki ćwiczeniom siłowym jesteś w stanie zmusić się do dużych wysiłków. Zużywając jeden Punkt Energii możesz w trakcie akcji, w której korzystasz z umiejętności siła możesz przerzucić kość improwizacji. Możesz użyć tej umiejętności dowolną liczbę razy na danym rzucie póki masz punkty energii.",
+      "hoverText": "",
+      "fi": -21.999999999999996,
+      "theta": 58,
+      "requires": [],
+      "cost": 5,
+      "temperature": 2500,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Jeszcze jedno powtórzenie:",
+          "description": "Dzięki ćwiczeniom siłowym jesteś w stanie zmusić się do dużych wysiłków. Zużywając jeden Punkt Energii możesz w trakcie akcji, w której korzystasz z umiejętności siła możesz przerzucić kość improwizacji. Możesz użyć tej umiejętności dowolną liczbę razy na danym rzucie póki masz punkty energii.",
+          "bonuses": []
+        },
+        {
+          "type": "skillExperience",
+          "key": "sila",
+          "amount": 2
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "sila",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "5253",
+      "name": "Przerażająca Siła",
+      "desc": "Uczysz się jak lepiej wykorzystywać swoją siłę do zastraszania.\n\nZyskujesz poziom improwizacji w umiejętności siła. \n\nCo więcej, zyskujesz atrybut „Przerażająca Siła”:\n\nPrzerażająca Siła:\nGdy używasz swojej siły by spróbować zastraszyć inną istotę możesz mocno w coś uderzyć lub zniszczyć w dłoniach coś twardego i otrzymać jeden punkt zwykłych obrażeń. W zamian przyjmij najwyższy możliwy wyniku rzutu kością improwizacji jako wynik rzutu kością improwizacji.",
+      "hoverText": "",
+      "fi": -27,
+      "theta": 59,
+      "requires": [
+        "7401"
+      ],
+      "cost": 6,
+      "temperature": 3000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Przerażająca Siła",
+          "description": "Gdy używasz swojej siły by spróbować zastraszyć inną istotę możesz mocno w coś uderzyć lub zniszczyć w dłoniach coś twardego i otrzymać jeden punkt zwykłych obrażeń. W zamian przyjmij najwyższy możliwy wyniku rzutu kością improwizacji jako wynik rzutu kością improwizacji.",
+          "bonuses": []
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "sila",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "8972",
+      "name": "Regularne Treningi Siłowe",
+      "desc": "Niezależnie tego ile masz czasu starasz się regularnie ćwiczyć wieczorami, dzięki czemu czujesz się silniej następnego dnia.\n\nZyskujesz dwa poziomy doświadczenia w umiejętnosci siła.\n\nZyskujesz atrybut „Regularne Treningi Siłowe”:\n\nRegularne Treningi Siłowe:\nMożesz poświęcić jeden punkt energii na początku pełnego odpoczynku, by wykonać trening siłowy. Po zakończeniu tego pełnego odpoczynku do następnego takiego odpocznyku za każdym razem, gdy używasz kości improwizacji siły możesz ją raz przerzucić.",
+      "hoverText": "",
+      "fi": -17,
+      "theta": 58,
+      "requires": [
+        "2546"
+      ],
+      "cost": 5,
+      "temperature": 2700,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Regularne Treningi Siłowe",
+          "description": "Możesz poświęcić jeden punkt energii na początku pełnego odpoczynku, by wykonać trening siłowy. Po zakończeniu tego pełnego odpoczynku do następnego takiego odpocznyku za każdym razem, gdy używasz kości improwizacji siły możesz ją raz przerzucić.",
+          "bonuses": []
+        },
+        {
+          "type": "skillExperience",
+          "key": "sila",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "8361",
+      "name": "Konsekwentność nad Rekordami",
+      "desc": "Skupiasz się nad konsekwentnością i powtarzalnością w swoich treningach.\n\nZyskujesz trzy poziomy doświadczenia w umiejętności siła,\n\nDodatkowo zyskujesz atrybut „Konsekwentność nad Rekordami”:\n\nKonsekwentność nad Rekordami:\nZamiast rzucać kością improwizacji siły możesz wziąć średni wynik jej rzutu (zaokrąglony w dół: 2 dla d4, 3 dla d6, 4 dla d8, 5 dla d10, 6 dla d12 i 10 dla d20).",
+      "hoverText": "",
+      "fi": -17,
+      "theta": 59,
+      "requires": [
+        "8972"
+      ],
+      "cost": 6,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "sila",
+          "amount": 3
+        },
+        {
+          "type": "attribute",
+          "key": "Konsekwentność nad Rekordami",
+          "description": "Zamiast rzucać kością improwizacji siły możesz wziąć średni wynik jej rzutu (zaokrąglony w dół: 2 dla d4, 3 dla d6, 4 dla d8, 5 dla d10, 6 dla d12 i 10 dla d20).",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "4982",
+      "name": "Zawsze w Pełni Sił",
+      "desc": "Dzięki swojemu treningowi nawet w zły dzień masz dużo więcej siły niż możnaby się było spodziewać.\n\nZyskujesz dwa poziomy doświadczenia w umiejętności siła.\n\nDodatkowo zyskujesz atrybut „Zawsze w Pełni Sił”:\n\nZawsze w Pełni Sił:\nGdy wykorzystujesz kość improwizacji siły możesz zużywając 3 Punkty Energii przerzucić ją. ",
+      "hoverText": "",
+      "fi": -17,
+      "theta": 57,
+      "requires": [
+        "8972"
+      ],
+      "cost": 6,
+      "temperature": 3200,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Zawsze w Pełni Sił",
+          "description": "Gdy wykorzystujesz kość improwizacji siły możesz zużywając 3 Punkty Energii przerzucić ją.",
+          "bonuses": []
+        },
+        {
+          "type": "skillExperience",
+          "key": "sila",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "7401",
+      "name": "Trening Wyczynowy",
+      "desc": "Każdy trening to dla ciebie kolejna okazja na nowy rekord i przesuwanie granic wytrzymałości swojego ciała.\n\nZyskujesz dwa poziomy improwizacji w umiejętności siła.\n\nCo więcej zyskujesz atrybut: „Trening Wyczynowy”:\n\nTrening Wyczynowy:\nGdy wykonujesz test używający kości improwizacji siły możesz zużyć dwa punkty energii by zmienić sukces w krytyczny sukces.",
+      "hoverText": "",
+      "fi": -27,
+      "theta": 58,
+      "requires": [
+        "2546"
+      ],
+      "cost": 5,
+      "temperature": 3500,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillImprovisation",
+          "key": "sila",
+          "amount": 2
+        },
+        {
+          "type": "attribute",
+          "key": "Trening Wyczynowy",
+          "description": "Gdy wykonujesz test używający kości improwizacji siły możesz zużyć dwa punkty energii by zmienić sukces w krytyczny sukces.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "8401",
+      "name": "Siłowe Włamanie",
+      "desc": "Uczysz precyzyjnie przykładać siłę do precyzyjnych mechanizmów.\n\nZyskujesz poziom improwizacji w umiejętności siła.\n\nZyskujesz atrybut „Siłowe Otwieranie”:\n\nSiłowe Otwieranie:\nGdy używasz siły do złamania zabezpieczenia by uszkodzić je w nieoczywisty sposób (np. zamiast wyrywać drzwi z zawiasów, próbujesz siłą zepsuć mehcanizm zamka) nie zwiększa to poziomu trudności testu, a wynik testu jest poziomem trudności testu spostrzegawczości na to, że uszkodzenie nie było losowe.",
+      "hoverText": "",
+      "fi": -27,
+      "theta": 57,
+      "requires": [
+        "7401"
+      ],
+      "cost": 6,
+      "temperature": 2500,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillImprovisation",
+          "key": "sila",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Siłowe Otwieranie",
+          "description": "Gdy używasz siły do złamania zabezpieczenia by uszkodzić je w nieoczywisty sposób (np. zamiast wyrywać drzwi z zawiasów, próbujesz siłą zepsuć mehcanizm zamka) nie zwiększa to poziomu trudności testu, a wynik testu jest poziomem trudności testu spostrzegawczości na to, że uszkodzenie nie było losowe.",
           "bonuses": []
         }
       ]
@@ -5221,6 +5413,26 @@
           "fiMax": 36,
           "thetaMin": 14,
           "thetaMax": 20
+        }
+      ]
+    },
+    {
+      "id": "Wiedza Medyczna",
+      "center": {
+        "fi": 10,
+        "theta": 62
+      },
+      "label": {
+        "text": "Wiedza Medyczna",
+        "fi": 10,
+        "theta": 63
+      },
+      "clickArea": [
+        {
+          "fiMin": 5,
+          "fiMax": 15,
+          "thetaMin": 56,
+          "thetaMax": 64
         }
       ]
     }
