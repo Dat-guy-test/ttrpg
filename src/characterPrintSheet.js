@@ -158,11 +158,14 @@ function gatherData() {
 // HTML builders for repeated sections
 // ============================================================
 
+/** Wprawy prints as many rows as the damage table (one per damage type + the "Łącznie" row), so the two side-by-side tables match in size. */
+const PROFICIENCY_MIN_ROWS = DAMAGE_ROWS_CONFIG.length + 1;
+
 function proficiencyRows(data) {
     const rows = data.proficiencies.map(p => `
         <tr><td class="lbl">${escapeHtml(p.name)}</td><td class="center">${escapeHtml(p.dice)}</td></tr>
     `);
-    return padRows(rows, 5, `<tr><td>${BLANK_LINE}</td><td>${BLANK_LINE}</td></tr>`).join('');
+    return padRows(rows, PROFICIENCY_MIN_ROWS, `<tr><td></td><td></td></tr>`).join('');
 }
 
 function abilityRows(list) {
@@ -196,7 +199,7 @@ function attributeRows(data) {
 const MIN_ATTACK_MODE_ROWS = 3;
 
 function attackModeRows(modes) {
-    const rows = modes.slice(0, 5).map((m, i) => `
+    const rows = modes.map((m, i) => `
         <tr>
             <td class="lbl-col">${i + 1}. ${escapeHtml(m.name)}</td>
             <td>${m.accuracy}</td>
@@ -317,6 +320,10 @@ const PRINT_CSS = `
   .armor-panel .equip-box .line { border-bottom: 0.8px solid #000; min-height: 7mm; line-height: 1.25; margin-top: 1mm; font-size: 16px; padding: 0 1mm 1px; }
 
   .blank-line-row td { height: 4.4mm; }
+  /* Otrzymane Obrażenia + Wprawy: identical fixed header/row heights so both tables
+     are the same size and empty rows never collapse. */
+  .sized-table th { height: 11mm; }
+  .sized-table td { height: 6.5mm; }
   .blank-line { border-bottom: 0.7px solid #000; height: 3.2mm; font-size: 16px; padding: 0 1mm; }
   /* Underlined field that may hold text: grows with its content (min-height + line-height),
      so the underline can never overlap the text like a fixed-height line would. */
@@ -361,7 +368,7 @@ const PRINT_CSS = `
 //                                    Wprawy, Umiejętności
 //   Page 2  pageSpellsAttributes() — Czary i Zdolności, Atrybuty
 //   Page 3  pageWeapons()          — Ulubione Bronie (stacked, full width)
-//   Page 4  pageEquipment()        — Historia Postaci, Ekwipunek
+//   Page 4  pageEquipment()        — Ekwipunek
 //                                    (currency + items), Notatki
 //
 // Page 2 and page 3 hold the parts whose length depends on the
@@ -421,7 +428,7 @@ function pageStats(data) {
   <div class="two-col" style="margin-top:2mm;">
     <div style="flex:0.85;">
       <h2>Otrzymane Obrażenia</h2>
-      <table>
+      <table class="sized-table">
         <tr><th style="width:60%">Rodzaj Obrażeń</th><th>Zaleczone | Niezaleczone</th></tr>
         ${data.damageRows.map(r => `<tr><td class="lbl">${escapeHtml(r.label)}</td><td>${data.hasDamage ? pipeCell(r.zal, r.nZal) : pipeCell('', '')}</td></tr>`).join('')}
         <tr><td class="lbl"><b>Łącznie</b></td><td>${pipeCell('', data.hasDamage ? data.damageTotal : '')}</td></tr>
@@ -430,7 +437,7 @@ function pageStats(data) {
 
     <div style="flex:1;">
       <h2>Wprawy</h2>
-      <table>
+      <table class="sized-table">
         <tr><th style="width:55%">Nazwa kategorii broni / narzędzii</th><th>Poziom wprawy (rzucana kość)</th></tr>
         ${proficiencyRows(data)}
       </table>
