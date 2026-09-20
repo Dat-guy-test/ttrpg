@@ -337,8 +337,6 @@ const PRINT_CSS = `
   .attr-name { width: 30mm; font-size: 16px; border-bottom: 0.8px solid #000; padding-bottom: 3mm; }
   .attr-desc { flex: 1; border-bottom: 0.8px solid #000; padding-bottom: 3mm; font-size: 16px; }
 
-  .backstory-lines div { border-bottom: 0.7px solid #000; height: 5mm; }
-
   .items-table td, .items-table th { font-size: 16px; }
 
   .currency-table { margin-bottom: 3mm; }
@@ -495,11 +493,6 @@ function pageEquipment(data) {
     return `
 <div class="page page-fill">
   ${TITLE}
-
-  <h2>Historia Postaci</h2>
-  <div class="backstory-lines">
-    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-  </div>
 
   <h2>Ekwipunek</h2>
   <table class="currency-table">
