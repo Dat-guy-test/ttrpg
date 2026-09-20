@@ -42,13 +42,20 @@ import { BASE_CAMERA_FOV } from './constants.js';
  * @param {number} finFi — target  camera.rotation.x
  * @param {number} finTh — target  camera.rotation.y
  */
-export function computePanCamera(iniFi, iniTh, finFi, finTh) {
+export function computePanCamera(iniFi, iniTh, finFi, finTh, targetFov = null) {
     AppState.iniPanCamFov   = AppState.camera.fov;
     AppState.panX           = iniFi;
     AppState.dPanX          = finFi - iniFi;
     AppState.panY           = iniTh;
     AppState.dPanY          = finTh - iniTh;
     AppState.panCamFov      = AppState.iniPanCamFov;
+
+    // Optional fit-to-target zoom. When given, panCamera() eases the FOV from
+    // its current value to targetFov instead of doing the usual dolly-and-restore.
+    AppState.panStartFov  = AppState.camera.fov;
+    AppState.panTargetFov = Number.isFinite(targetFov) ? targetFov : null;
+    if (AppState.panTargetFov !== null) AppState.zoomVelocity = 0; // drop leftover wheel momentum
+
     AppState.panComputeBool = true;
     AppState.panclock.start();
 }
@@ -64,26 +71,39 @@ export function computePanCamera(iniFi, iniTh, finFi, finTh) {
 export function panCamera() {
     const panTime = 1; // seconds
     const panDT   = AppState.panclock.getElapsedTime();
+    const t       = Math.min(panDT / panTime, 1);
+    const hasTargetFov = AppState.panTargetFov !== null;
 
-    const fac = 1.5 * (Math.abs(AppState.dPanX) + Math.abs(AppState.dPanY));
-    if (fac > 0.01) {
-        AppState.panCamFov -= fac * (panDT - panTime / 2); // arcs in then out
-        AppState.camera.fov = AppState.panCamFov;
+    if (hasTargetFov) {
+        const eased = t * t * (3 - 2 * t); // smoothstep
+        AppState.camera.fov =
+            AppState.panStartFov + (AppState.panTargetFov - AppState.panStartFov) * eased;
         AppState.camera.updateProjectionMatrix();
+    } else {
+        const fac = 1.5 * (Math.abs(AppState.dPanX) + Math.abs(AppState.dPanY));
+        if (fac > 0.01) {
+            AppState.panCamFov -= fac * (panDT - panTime / 2); // arcs in then out
+            AppState.camera.fov = AppState.panCamFov;
+            AppState.camera.updateProjectionMatrix();
+        }
     }
 
     if (panDT >= panTime) {
-        // Animation complete — restore FOV and clear the running flag
         AppState.panComputeBool = false;
-        AppState.panCamFov      = AppState.iniPanCamFov;
-        AppState.camera.fov     = AppState.panCamFov;
+        if (hasTargetFov) {
+            AppState.camera.fov   = AppState.panTargetFov;
+            // Keep the zoom system's invariant: camera.fov === BASE_CAMERA_FOV + zoomStage
+            AppState.zoomStage    = AppState.panTargetFov - BASE_CAMERA_FOV;
+            AppState.panTargetFov = null;
+        } else {
+            AppState.panCamFov  = AppState.iniPanCamFov;
+            AppState.camera.fov = AppState.panCamFov;
+        }
         AppState.camera.updateProjectionMatrix();
         AppState.panclock.stop();
         AppState.panCamBool = false;
     }
 
-    // Linear interpolation of camera rotation
-    const t = Math.min(panDT / panTime, 1);
     AppState.camera.rotation.set(
         AppState.panX + t * AppState.dPanX,
         AppState.panY + t * AppState.dPanY,

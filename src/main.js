@@ -48,7 +48,7 @@ import {
 } from './cameraControls.js';
 import { registerInputHandlers } from './inputHandlers.js';
 import { initEditMode } from './editMode.js';
-import { LABEL_MIN_SCALE, LABEL_MAX_SCALE, BASE_CAMERA_FOV } from './constants.js';
+import { LABEL_MIN_SCALE, LABEL_MAX_SCALE, BASE_CAMERA_FOV, MIN_CAMERA_FOV, MAX_CAMERA_FOV } from './constants.js';
 import { restoreActiveNodes } from './treePersistence.js';
 import { refreshPerksTaken } from './perkEffects.js';
 
@@ -167,22 +167,21 @@ function animate() {
     }
   }
 
-  // --- Node label scale vs. zoom level ---------------------------
-  // AppState.zoomStage ranges 0 (fully zoomed in) .. 60 (fully zoomed
-  // out) — see inputHandlers.js's '='/'-'/wheel/pinch handlers. Labels
-  // are kept at LABEL_MIN_SCALE (today's size) at full zoom-in and grow
-  // toward LABEL_MAX_SCALE as the camera zooms out, so they stay
-  // legible instead of shrinking away with everything else in the
-  // perspective view. Cheap: TreeNode.updateLabelScale() only touches
-  // Object3D.scale, no text re-layout.
+    // --- Node + group label scale vs. ACTUAL zoom ------------------
+  // Driven by camera.fov rather than AppState.zoomStage: zoomStage is only
+  // updated when a pan finishes, while panCamera() eases camera.fov every
+  // frame, so using zoomStage made labels lag behind (then snap) during pans.
   if (AppState.tr) {
-    const zoomT = AppState.zoomStage / 60; // 0 = zoomed in, 1 = zoomed out
+    const zoomT = Math.max(0, Math.min(1,
+      (AppState.camera.fov - MIN_CAMERA_FOV) / (MAX_CAMERA_FOV - MIN_CAMERA_FOV)
+    )); // 0 = fully zoomed in, 1 = fully zoomed out
     const labelScale = LABEL_MIN_SCALE + (LABEL_MAX_SCALE - LABEL_MIN_SCALE) * zoomT;
-    for (const node of AppState.tr.nodes) {
-      node.updateLabelScale(labelScale);
+
+    for (const node of AppState.tr.nodes) node.updateLabelScale(labelScale);
+    for (const group of AppState.tr.groups) {
+      if (group.labelText) group.labelText.scale.setScalar(labelScale);
     }
   }
-
   // --- Free camera WASD translation -----------------------------
   freeCameraPositionUpdate();
 

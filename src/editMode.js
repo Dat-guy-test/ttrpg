@@ -59,6 +59,7 @@ export function initEditMode() {
             <button class="editor-btn editor-mode-btn" data-mode="addNode">Add Node</button>
             <button class="editor-btn editor-mode-btn" data-mode="connect">Connect</button>
             <button class="editor-btn editor-mode-btn" data-mode="deleteNode">Delete Node</button>
+            <button class="editor-btn editor-mode-btn" data-mode="groups">Grupy</button>
         </div>
         <div class="editor-toolbar">
             <button class="editor-btn" id="editorExportBtn">Export nodes.json</button>
@@ -127,6 +128,7 @@ function setEditSubMode(mode) {
         addNode:    'Click anywhere on the purple sphere to place a new node.',
         connect:    'Click the DEPENDENT node first, then click its PREREQUISITE. Click an existing connection any time to delete it.',
         deleteNode: 'Click a node to delete it (you\'ll be asked to confirm).',
+        groups: 'Zarządzaj grupami węzłów — twórz, edytuj i usuwaj poniżej.',
     };
     setStatus(hints[mode] || '');
     renderInspector();
@@ -159,6 +161,7 @@ export function handleEditModeNodeClick(node) {
     AppState.pendingNewNodePos = null;
     resetAttributeChoiceDraft();
     resetSpellSchoolUnlockDraft();
+    resetGroupDraft();
     setStatus('');
     renderInspector();
 }
@@ -251,6 +254,11 @@ export function handleEditModeConnectionClick(tree, ownerIndex, reqIndex) {
 // ============================================================
 function renderInspector() {
     if (!bodyEl) return;
+
+    if (AppState.editSubMode === 'groups') {
+        renderGroupsManager();
+        return;
+    }
 
     if (AppState.pendingNewNodePos) {
         renderNewNodeForm(AppState.pendingNewNodePos.fiDeg, AppState.pendingNewNodePos.thetaDeg);
@@ -1378,6 +1386,183 @@ function exportTreeJSON() {
     setStatus('Exported nodes.json — replace the file in your project and commit it.');
 }
 
+// ============================================================
+// Groups manager ("Grupy" submode)
+// ------------------------------------------------------------
+// Unlike nodes, groups aren't placed by clicking the sphere — their
+// center/label/click-area are typed in as fi/theta numbers, same
+// pattern as a node's Charakterystyka requirement inputs. Existing
+// groups are listed with Edit/✕ buttons; editing loads a group into
+// the same staged draft a brand-new group uses.
+// ============================================================
+let groupDraft = { id: null, center: { fi: 0, theta: 0 }, label: { text: '', fi: 0, theta: 0 }, clickArea: [] };
+let editingGroupId = null;
+
+function resetGroupDraft() {
+    groupDraft = { id: null, center: { fi: 0, theta: 0 }, label: { text: '', fi: 0, theta: 0 }, clickArea: [] };
+    editingGroupId = null;
+}
+
+function renderClickAreaList() {
+    if (groupDraft.clickArea.length === 0) return '<em>Brak zakresów.</em>';
+    return groupDraft.clickArea.map((r, i) => `
+        <div class="editor-req-row">
+            <span>Fi: ${r.fiMin}–${r.fiMax}, Theta: ${r.thetaMin}–${r.thetaMax}</span>
+            <button class="editor-btn editor-btn-small" data-remove-ca="${i}">✕</button>
+        </div>
+    `).join('');
+}
+
+function renderGroupsManager() {
+    if (!bodyEl) return;
+    const groups = (AppState.tr && AppState.tr.groups) || [];
+
+    bodyEl.innerHTML = `
+        <label class="editor-label">Istniejące Grupy</label>
+        <div id="groups-existing-list">${groups.length === 0 ? '<em>Brak grup.</em>' : groups.map(g => `
+            <div class="editor-req-row">
+                <span>${escapeHtml(g.label.text || g.id)}</span>
+                <span style="display:flex; gap:0.25em;">
+                    <button class="editor-btn editor-btn-small" data-edit-group="${escapeHtml(g.id)}">Edytuj</button>
+                    <button class="editor-btn editor-btn-small" data-remove-group="${escapeHtml(g.id)}">✕</button>
+                </span>
+            </div>
+        `).join('')}</div>
+
+        <label class="editor-label" style="margin-top:1em;">${editingGroupId ? 'Edytuj Grupę' : 'Nowa Grupa'}</label>
+        <input id="grp-id" type="text" placeholder="ID grupy (opcjonalnie)" value="${escapeHtml(groupDraft.id || '')}" ${editingGroupId ? 'disabled' : ''} />
+
+        <label class="editor-label">Centrum Grupy (kamera celuje tutaj po kliknięciu)</label>
+        <div class="editor-row">
+            <input id="grp-center-fi" type="number" step="0.1" placeholder="Fi" value="${groupDraft.center.fi}" />
+            <input id="grp-center-theta" type="number" step="0.1" placeholder="Theta" value="${groupDraft.center.theta}" />
+        </div>
+
+        <label class="editor-label">Etykieta</label>
+        <input id="grp-label-text" type="text" placeholder="Tekst etykiety" value="${escapeHtml(groupDraft.label.text)}" />
+        <div class="editor-row">
+            <input id="grp-label-fi" type="number" step="0.1" placeholder="Fi etykiety" value="${groupDraft.label.fi}" />
+            <input id="grp-label-theta" type="number" step="0.1" placeholder="Theta etykiety" value="${groupDraft.label.theta}" />
+        </div>
+
+        <label class="editor-label">Obszar Kliknięcia (zakresy Fi/Theta — może być kilka)</label>
+        <div id="grp-clickarea-list">${renderClickAreaList()}</div>
+        <div class="editor-row">
+            <input id="grp-ca-fimin" type="number" step="0.1" placeholder="Fi min" />
+            <input id="grp-ca-fimax" type="number" step="0.1" placeholder="Fi max" />
+            <input id="grp-ca-thmin" type="number" step="0.1" placeholder="Theta min" />
+            <input id="grp-ca-thmax" type="number" step="0.1" placeholder="Theta max" />
+            <button class="editor-btn editor-btn-small" id="grp-ca-add-btn">Dodaj zakres</button>
+        </div>
+
+        <div class="editor-row" style="margin-top:0.5em;">
+            <button class="editor-btn editor-save-btn" id="grp-save-btn">${editingGroupId ? 'Zapisz Zmiany' : 'Utwórz Grupę'}</button>
+            <button class="editor-btn" id="grp-cancel-btn" style="${editingGroupId ? '' : 'display:none;'}">Anuluj edycję</button>
+        </div>
+        <div class="editor-hint">Kliknięcie w pusty obszar drzewka (poza węzłami i liniami) wewnątrz podanego zakresu Fi/Theta, gdy kamera jest wystarczająco oddalona (patrz GROUP_PAN_MIN_FOV w constants.js), przesuwa widok do centrum grupy.</div>
+    `;
+
+    wireGroupsManager();
+}
+
+function wireGroupsManager() {
+    // ---- Edit an existing group ------------------------------------
+    bodyEl.querySelectorAll('[data-edit-group]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const group = AppState.tr.resolveGroup(btn.dataset.editGroup);
+            if (!group) return;
+            editingGroupId = group.id;
+            groupDraft = {
+                id: group.id,
+                center: { ...group.center },
+                label: { ...group.label },
+                clickArea: group.clickArea.map(r => ({ ...r })),
+            };
+            renderGroupsManager();
+            setStatus('');
+        });
+    });
+
+    // ---- Delete an existing group ----------------------------------
+    bodyEl.querySelectorAll('[data-remove-group]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.dataset.removeGroup;
+            const group = AppState.tr.resolveGroup(id);
+            if (!group) return;
+            if (!window.confirm(`Usunąć grupę "${group.label.text || id}"?`)) return;
+
+            AppState.tr.removeGroup(id);
+            if (editingGroupId === id) resetGroupDraft();
+            setStatus(`Usunięto grupę "${id}".`);
+            renderGroupsManager();
+        });
+    });
+
+    // ---- Simple draft fields ---------------------------------------
+    const idInput = bodyEl.querySelector('#grp-id');
+    if (idInput) idInput.addEventListener('input', (e) => { groupDraft.id = e.target.value.trim() || null; });
+
+    bodyEl.querySelector('#grp-center-fi').addEventListener('input', (e) => { groupDraft.center.fi = Number(e.target.value) || 0; });
+    bodyEl.querySelector('#grp-center-theta').addEventListener('input', (e) => { groupDraft.center.theta = Number(e.target.value) || 0; });
+    bodyEl.querySelector('#grp-label-text').addEventListener('input', (e) => { groupDraft.label.text = e.target.value; });
+    bodyEl.querySelector('#grp-label-fi').addEventListener('input', (e) => { groupDraft.label.fi = Number(e.target.value) || 0; });
+    bodyEl.querySelector('#grp-label-theta').addEventListener('input', (e) => { groupDraft.label.theta = Number(e.target.value) || 0; });
+
+    // ---- Click-area ranges -----------------------------------------
+    // Only the list's own container is re-rendered (not the whole
+    // manager), so half-typed values in the other inputs survive.
+    function refreshClickAreaList() {
+        const listEl = bodyEl.querySelector('#grp-clickarea-list');
+        if (!listEl) return;
+        listEl.innerHTML = renderClickAreaList();
+        listEl.querySelectorAll('[data-remove-ca]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                groupDraft.clickArea.splice(Number(btn.dataset.removeCa), 1);
+                refreshClickAreaList();
+            });
+        });
+    }
+    refreshClickAreaList();
+
+    bodyEl.querySelector('#grp-ca-add-btn').addEventListener('click', () => {
+        const fields = ['#grp-ca-fimin', '#grp-ca-fimax', '#grp-ca-thmin', '#grp-ca-thmax']
+            .map(sel => bodyEl.querySelector(sel));
+        const raw = fields.map(f => f.value.trim());
+        if (raw.some(v => v === '')) { setStatus('Wypełnij wszystkie cztery pola zakresu (Fi min/max, Theta min/max).', true); return; }
+
+        const [fiMin, fiMax, thetaMin, thetaMax] = raw.map(Number);
+        if (![fiMin, fiMax, thetaMin, thetaMax].every(Number.isFinite)) { setStatus('Zakresy muszą być liczbami.', true); return; }
+
+        groupDraft.clickArea.push({ fiMin, fiMax, thetaMin, thetaMax });
+        fields.forEach(f => { f.value = ''; });
+        refreshClickAreaList();
+        setStatus('');
+    });
+
+    // ---- Save / cancel ----------------------------------------------
+    bodyEl.querySelector('#grp-save-btn').addEventListener('click', () => {
+        if (groupDraft.clickArea.length === 0) { setStatus('Dodaj przynajmniej jeden zakres obszaru kliknięcia.', true); return; }
+        if (!groupDraft.label.text.trim()) { setStatus('Etykieta wymaga tekstu.', true); return; }
+
+        if (editingGroupId) {
+            AppState.tr.updateGroup(editingGroupId, groupDraft);
+            setStatus(`Zapisano grupę "${editingGroupId}".`);
+        } else {
+            groupDraft.id = bodyEl.querySelector('#grp-id').value.trim() || null;
+            const group = AppState.tr.addGroup(groupDraft);
+            if (!group) { setStatus('Nie udało się utworzyć grupy — ID już zajęte.', true); return; }
+            setStatus(`Utworzono grupę "${group.id}".`);
+        }
+        resetGroupDraft();
+        renderGroupsManager();
+    });
+
+    bodyEl.querySelector('#grp-cancel-btn').addEventListener('click', () => {
+        resetGroupDraft();
+        renderGroupsManager();
+        setStatus('');
+    });
+}
 
 // ============================================================
 // Small helpers

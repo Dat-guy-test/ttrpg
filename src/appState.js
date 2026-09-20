@@ -105,7 +105,9 @@ const AppState = {
     zoomComputeBool: false,  // true while per-frame zoom interpolation executes
     zoomCamFov:      0,      // working FOV value mutated each frame
     queuedZoomOut:   false,  // zoom-out was requested mid-animation; fire next frame
-
+    panStartFov:    0,      // camera FOV when a fit-to-target pan began
+    panTargetFov:   null,   // non-null = the running pan also animates FOV to this value
+    
     // zoomVelocity: momentum (in zoomStage units/second) for zooming,
     // in EITHER direction — mouse wheel, '=', '-', and pinch all add
     // to this (see inputHandlers.js) instead of jumping the FOV

@@ -50,6 +50,8 @@ import { NODE_DATA_URL } from './constants.js';
 import { handleTreesphereClick, handleEditModeConnectionClick } from './editMode.js';
 import { applyNodeEffect, removeNodeEffect, refreshPerksTaken } from './perkEffects.js';
 import { CharacterState, computeStatValue } from './characterState.js';
+import { Group } from './Group.js';
+import { GROUP_PAN_MIN_FOV, MIN_CAMERA_FOV, MAX_CAMERA_FOV } from './constants.js';
 
 // small helper, used in a couple of places
 function isCharacteristicReq(req) {
@@ -82,6 +84,7 @@ export class Tree {
         this.mutExclGroups = [];   // [{ label, max, members }, …] — filled in by treeGen()
         this.nodeIDs       = [];   // sparse map: nodeId → index in this.nodes
         this.span          = [smolFi, highFi, smolTh, highTh];
+        this.groups = [];           // Group[] — filled in by treeGen() / addGroup()
 
         this.sphereRadius = 30;
 
@@ -102,7 +105,13 @@ export class Tree {
             new THREE.SphereGeometry(this.sphereRadius, 32, 16),
                                          new THREE.MeshBasicMaterial({ color: 'black', transparent: true, opacity: 0.25, side: THREE.DoubleSide })
         );
-        this.treesphere.onClick = (hit) => handleTreesphereClick(hit);
+        this.treesphere.onClick = (hit) => {
+            if (AppState.editMode) {
+                handleTreesphereClick(hit);
+                return;
+            }
+            this._handleGroupPanClick(hit);
+        };
         AppState.scene.add(this.treesphere);
     }
 
@@ -239,10 +248,12 @@ export class Tree {
             new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pnts1h), 20, 0.02, 8, false),
                                       new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true, opacity: 0.0, transparent: true, depthWrite: false })
         );
+        mesh1h.isReqTube = true;
         const mesh2h = new THREE.Mesh(
             new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pnts2h), 20, 0.01, 8, false),
                                       new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe: true, opacity: 0.0, transparent: true, depthWrite: false })
         );
+        mesh2h.isReqTube = true;
 
         // Click handlers close over the loop variables a, b, kej, ej.
         // All global state accessed via AppState; computePanCamera imported above.
@@ -422,10 +433,11 @@ export class Tree {
         return {
             nodes: this.nodes.map(n => n.toJSON()),
             mutuallyExclusive: Array.from(groups).map(g => ({
-                label:   g.label,
-                max:     g.max,
+                label: g.label,
+                max: g.max,
                 members: [...g.members],
             })),
+            groups: this.groups.map(g => g.toJSON()),
         };
     }
 
@@ -451,6 +463,122 @@ export class Tree {
             fiDeg:    fiRad * 180 / Math.PI,
             thetaDeg: thetaRad * 180 / Math.PI,
         };
+    }
+
+    /**
+     * Non-edit-mode treesphere click handler: if the camera is zoomed
+     * out past GROUP_PAN_MIN_FOV and the click didn't ALSO hit a node
+     * or a requirement arc/tube (see createLinesNTubes's `isReqTube`
+     * marker below), tests the point where the ray hit the sphere
+     * against every group's click area and pans to the first match's
+     * center.
+     * @param {THREE.Intersection} hit
+     */
+    _handleGroupPanClick(hit) {
+        if (AppState.camera.fov < GROUP_PAN_MIN_FOV) return;
+        if (AppState.panCamBool || AppState.zoomCamBool) return;
+
+        const alsoHitNodeOrArc = AppState.intersects.some(i =>
+            i.object && (i.object.nodeId !== undefined || i.object.isReqTube)
+        );
+        if (alsoHitNodeOrArc) return;
+
+        const { fiDeg, thetaDeg } = this.worldPointToFiTheta(hit.point);
+        const group = this.findGroupAtPoint(fiDeg, thetaDeg);
+        if (!group) return;
+
+        // Same fi-negation convention TreeNode.onClick uses for its own pan target.
+        const fiRad = -(group.center.fi * Math.PI / 180);
+        const thetaRad = group.center.theta * Math.PI / 180;
+
+        // Steps 1–5: fit the group's whole area on this device's viewport, clamped to the camera's FOV range
+        const aspect = AppState.container.clientWidth / Math.max(AppState.container.clientHeight, 1);
+        const fitFov = group.computeFitFov(aspect);
+        const targetFov = fitFov === null
+            ? null
+            : Math.max(MIN_CAMERA_FOV, Math.min(MAX_CAMERA_FOV, fitFov));
+
+        // Step 6: panCamera() eases the FOV to targetFov while rotating
+        AppState.panCamBool = true;
+        computePanCamera(
+            AppState.camera.rotation.x,
+            AppState.camera.rotation.y,
+            thetaRad,
+            fiRad - Math.PI / 2,
+            targetFov
+        );
+    }
+
+    /** @param {string|number} id @returns {Group|undefined} */
+    resolveGroup(id) {
+        return this.groups.find(g => g.id === String(id));
+    }
+
+    /**
+     * @param {number} fiDeg
+     * @param {number} thetaDeg
+     * @returns {Group|undefined} the first group whose click area contains this point.
+     */
+    findGroupAtPoint(fiDeg, thetaDeg) {
+        return this.groups.find(g => g.containsPoint(fiDeg, thetaDeg));
+    }
+
+    /**
+     * Creates and registers a new Group from edit mode's group manager.
+     * @param {{id?:string, nodeIds:string[], center:object, label:object, clickArea:object[]}} data
+     * @returns {Group|null} null if `id` was already taken
+     */
+    addGroup(data) {
+        const id = (data.id !== undefined && data.id !== null && data.id !== '')
+            ? String(data.id)
+            : `group-${Date.now()}`;
+
+        if (this.resolveGroup(id)) {
+            console.error(`Tree.addGroup: id "${id}" is already in use — pick a different id.`);
+            return null;
+        }
+
+        const group = new Group(id, data.center, data.label, data.clickArea, this.sphereRadius);
+        this.groups.push(group);
+        return group;
+    }
+
+    /**
+     * Updates an existing group's fields in place and refreshes its
+     * label mesh.
+     * @param {string} id
+     * @param {object} data
+     * @returns {boolean} whether a group with this id existed
+     */
+    updateGroup(id, data) {
+        const group = this.resolveGroup(id);
+        if (!group) return false;
+
+        if (data.center) group.center = { fi: Number(data.center.fi) || 0, theta: Number(data.center.theta) || 0 };
+        if (data.label) {
+            group.label = {
+                text: data.label.text || '',
+                fi: Number(data.label.fi) || 0,
+                theta: Number(data.label.theta) || 0,
+            };
+        }
+        if (Array.isArray(data.clickArea)) {
+            group.clickArea = data.clickArea.map(r => ({
+                fiMin: Number(r.fiMin) || 0, fiMax: Number(r.fiMax) || 0,
+                thetaMin: Number(r.thetaMin) || 0, thetaMax: Number(r.thetaMax) || 0,
+            }));
+        }
+        group.refreshLabel();
+        return true;
+    }
+
+    /** Removes a group (and its label mesh) by id. @returns {boolean} */
+    removeGroup(id) {
+        const idx = this.groups.findIndex(g => g.id === String(id));
+        if (idx === -1) return false;
+        this.groups[idx].dispose();
+        this.groups.splice(idx, 1);
+        return true;
     }
 
     /**
@@ -781,7 +909,12 @@ export class Tree {
              tree.nodes.push(node);
              AppState.scene.add(node);
          }
+        // ---- Groups -------------------------------------------------
+        tree.groups = (data.groups || []).map(g =>
+            new Group(g.id, g.center, g.label, g.clickArea, tree.sphereRadius)
+        );
 
+        AppState.cameraRotationOffsetFromTree = -Math.PI / 2;
          AppState.cameraRotationOffsetFromTree = -Math.PI / 2;
      }
 

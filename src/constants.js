@@ -23,6 +23,26 @@ export const BLOOM_LAYER = 2;
 export const BASE_CAMERA_FOV = 5;
 
 /**
+ * Minimum camera FOV (i.e. how zoomed OUT the view must be) for a
+ * click that lands inside a group's click area — but not on a node
+ * or a requirement line — to pan the camera to that group's center.
+ * See Tree.js's _handleGroupPanClick() and Group.js's containsPoint().
+ * fov = BASE_CAMERA_FOV + zoomStage, so this corresponds to
+ * zoomStage ≥ 30 (out of the 0–60 range).
+ */
+export const GROUP_PAN_MIN_FOV = 10;
+
+/**
+ * Hard FOV limits for the main camera. Min = fully zoomed in (zoomStage 0),
+ * max = fully zoomed out (zoomStage 60 — see inputHandlers.js / cameraControls.js).
+ */
+export const MIN_CAMERA_FOV = BASE_CAMERA_FOV;
+export const MAX_CAMERA_FOV = BASE_CAMERA_FOV + 60;
+
+/** Extra breathing room (multiplier) when fitting a group's area into view. 1.0 = edges touch the frame. */
+export const GROUP_FIT_MARGIN = 1.15;
+
+/**
  * Where treeGen() fetches the skill-tree data from.
  *
  * nodes.json lives in `public/nodes.json`. Vite serves everything in

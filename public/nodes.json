@@ -118,7 +118,7 @@
       "desc": "Jesteś człowiekiem. Ludzie to stworzenia słynącące z swojej trwałej formy fizycznej. Są oni najliczniejszym sposród wszystkich typów stworzeń w Imperium i najbardziej różnorodną grupą, stąd ciężko powiedzieć jest coś na temat ogólnych stereotypów, kultury czy zachowań.\n\nStartowe Charakterystyki:\nForma: 12\nBystorść: 9\nSiła Woli: 9\n\nSzybkość: 7\nBonus do udźwigu: 5\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\nChętni do Działania:\nByć może z racji na krótką długość swego żywota wielu ludzi jest niecierpliwa i działa zanim pomyśli jak coś zrobić:\n\nMożesz zrezygnować z pozytywnego bonusu od doświadczenia w ramach testu lub konkursu umiejętności: wykonujesz wtedy akcje wykonując wiele szybkich prób. Wydaj 3 Punkty Akcji. W zamian zamiast jednej kości improwizacji rzucasz tyle kości ile wynosi bonus od doświadczenia dla testowanej umiejętności i wybierasz najlepszy wynik. Jeżeli w takim teście poniesiesz porażkę, zamiast porażki ponieś krytyczną porażkę. \n\nPewni Siebie:\nWielu ludzi ma tendencje do mającej różne konsekwencje nadmiernej pewności siebie:\n\nZyskujesz możliwość powtórzenia testu lub konkursu, w którym osiągnięty został sukces, w celu podjęcie próby uzyskania krytycznego sukcesu. Jeżeli po przerzuceniu uzyskasz niższy wynik, niż przed przerzuceniem, test lub konkurs kończy się porażką. [w przypadku otrzymania sukcesu o wyższym lub równym wyniku możesz użyć tej umiejętności ponownie]\n\nWytrwali:\nOrganizmy wielu ludzi regenerują się szybciej niż organizmy innych inteligentnych stworzeń:\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wigor. Po każdej godzinie odpoczynku zaleczasz 1d4 Punkt Niezaleczonych Zwykłych Obrażeń, po czym odzyskujesz 1 Punkt Zaleczonych Zwykłych Obrażeń.\n\nCechy Fizyczne:\nWzrost: od 1 do 1,5 jednostki\nRozmiar: Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 16 do 20 lat\nWiek starczy: 60 lat,\nŚrednia Długość Życia: 80 lat (średnia),\nMaksymalna Długość Życia: 125 lat",
       "hoverText": "",
       "fi": 24,
-      "theta": 12,
+      "theta": 10.999999999999998,
       "requires": [],
       "cost": 0,
       "temperature": 4500,
@@ -188,8 +188,8 @@
       "name": "Krasnolud",
       "desc": "Jesteś krasnoludem. Krasnoludy to stworzenia o małej formie fizycznej, której lekceważenie regularnie przyczynia się do przypominania społeczeństwu o ich wielkiej wewnętrznej sile woli.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 9\nSiła Woli: 12\n\nSzybkość: 6\nBonus do udźwigu: 7\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\n\nUparci:\nKrasnoludy są znane z stawiania na swoje i niepoddawania się do ostatniego tchu:\n\nZyskujesz 1 poziom doświadczenia i improwizacji w umiejętności determinacja. Po każdej godzinie odpoczynku odzyskujesz 1d4 Punktów Energii\n\nAdaptacyjny wzrok:\nKonstrukcja krasnoludzkich oczu umożliwia im widzenie w ciemności, choć nie są w stanie rozpoznawać w jej kolorów:\n\nZyskujesz 1 poziom doświadczenia i improwizacji w umiejętności Spostrzegawczość.\nWidzisz w całkowitej ciemności, lecz nie jesteś w stanie rozpoznawać kolorów.\n\nGruboskórni:\nKrasnoludy niewiele rusza, zarówno fizycznie jak i mentalnie:\n\nZyskujesz 1 poziom doświadczenia w umiejętnościach: wigor i determinacja. Tracisz poziom doświadczenia w umiejętności intuicja.\nDodatkowo, za każdym razem gdy otrzymasz zwykłe obrażenia możesz wydać punkt energii by zmniejszyć otrzymane obrażenia o 1.\n\nCechy Fizyczne:\nWzrost: od 0,6 do 1 jednostki\nRozmiar: Mały\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 22 lat\nWiek starczy: 110 lat,\nŚrednia Długość Życia: 125 lat (średnia),\nMaksymalna Długość Życia: 150 lat",
       "hoverText": "",
-      "fi": 22.270000000000007,
-      "theta": 9,
+      "fi": 23.130000000000003,
+      "theta": 9.5,
       "requires": [],
       "cost": 0,
       "temperature": 2000,
@@ -281,8 +281,8 @@
       "name": "Elf",
       "desc": "Jesteś elfem. Elfy słyną z swojej wrodzonej zwinności i gracji a także niezwykle dobrego wzroku. W Imperium Elfy stanowią najmniej liczną poza odmieńcami grupę rozumnych stworzeń, co spowodowane jest niechęcią do spokojnego trybu życia. Stereotypowo młode elfy to stworzenia szukające przygód i ekscytujących rozrywek. Starsze elfy natomiast uważane są za niezwykle mądre.\n\nStartowe Charakterystyki:\nForma: 9\nBystorść: 12\nSiła Woli: 9\n\nSzybkość: 8\nBonus do udźwigu: 2\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\n\nCzarnogrzywi wzrok:\nKonstrukcja elfich oczu umożliwia im widzenie małych detali, których nie widzą inni:\n\nZyskujesz 2 poziomy doświadczenia i 1 poziom improwizacji w umiejętności Spostrzegawczość.\nGdy wykonujesz test umiejętności, w którym duże znaczenie ma twój zmysł wzroku możesz raz przerzucić kość improwizacji.\n\nMądrość wieków:\nJako niezwykle długowieczne istoty, elfy wielce cenią sobie doświadczenie i przekazywanie go najmłodszym:\n\nZyskujesz 5 poziomów doświadczenia w wybranych umiejętnościach.\n\nSzybcy jak wiatr:\nElfy są w stanie poruszać się niezwykle szybko, choć zwykle ograniczają się, by uniknąć kontuzji:\n\nMożesz jako darmowa akcja nadwyrężyć się zyskując Punkty Akcji w liczbie połowy swojej Bystrości (Czyli w liczbie połowy Maksymalnych Punktów Akcji, zaokrąglonych w dół). Po godzinie odpoczynku jesteś w stanie ponownie nadwyrężyć swój organizm w ten sposób.\n\nCechy Fizyczne:\nWzrost: od 1,3 do 1,7 jednostki\nRozmiar: Średni lub Duży\n\nDługość życia:\nWiek dojrzałości fizycznej: od 20 do 26 lat\nWiek starczy: 125 lat,\nŚrednia Długość Życia: 150 lat (średnia),\nMaksymalna Długość Życia: 200 lat",
       "hoverText": "",
-      "fi": 25.729999999999997,
-      "theta": 9,
+      "fi": 24.869999999999997,
+      "theta": 9.5,
       "requires": [],
       "cost": 0,
       "temperature": 8000,
@@ -359,7 +359,7 @@
       "desc": "Jesteś Gnomem. Gnomy to nieco niższe od ludzi stworzenia, często łyse od urodzenia, z długimi ostrozakończonymi uszami i stereotypowym krasnoludzkim obojętnym wyrazem twarzy. Wiele gnomów posiada niesamowite kolory skóry: niebieskie, fioletowe, zielone, szare, czerwone, żółte, czarne, brązowe i śnieżno białe gnomy są powszechne w Imperium, choć inne koloracje także się zdarzają. Tą niesamowitą różnorodność gnomy często akcentują ubiorem: nawet najbiedniejsze gnomy starają się ubierać tak kolorowo jak to tylko możliwe. Stereotypowo gnomy to spokojne, intelignetne stowrzenia o bardzo ciekawskiej naturze, choć od każdej reguły zdarzają się wyjątki...\n\nStartowe Charakterystyki:\nForma: 8\nBystorść: 11\nSiła Woli: 11\n\nSzybkość: 6\nBonus do udźwigu: 7\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\n\nChodząca Biblioteka:\nO ile głód wiedzy jest naturalną charakterystyką wszystkich świadomych stworzeń, dla wielu gnomów jest on niezwykle palący.\n\nZyskujesz 1 poziom doświadczenia i improwizacji w umiejętnościach: Alchemia, Majsterkowanie, Zaklinanie, Wiedza Medyczna, Wiedza Powszechna i Wiedza Tajemna.\n\nMistrzowie Magii:\nWielu uczonych określa gnomy jako „istoty najbardziej dostrojone do eteru”. Wielu z nich jest w stanie od czasu do czasu rzucać czary bez forsowania się:\n\nPodczas co najmniej godzinnego odpoczynku możesz przygotować jedną akcję zużywającą maksymalnie 3 Punkty Energii. Wykonanie przygotowanej akcji po raz pierwszy od jej przygotowania nie zużywa energii. Po wykonaniu dowolnej akcji posiadającej koszt w energii przygotowana akcja przestaje być przygotowana.\n\nUwaga do Szczegółów:\nW kulturze gnomów niechlujstwo jest niezwykle źle postrzeganą cechą, stąd wiele gnomów obsesyjnie próbuje wykonywać wszystko najlepiej jak tylko potrafi:\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Determinacja. Gdy w teście umiejętności wyrzucisz wynik równy lub powyżej średniej na dowolnej rzucanej kości traktuj wynik jako najlepszy możliwy [Gdy rzucisz 3 lub 4 an d4, 4-6 na d6, 5-8 na d8, 6-10 na d10, 7-12 na d12, 11-20 na d20]. W przeciwnym wypadku wynik rzutu kością to wynosi 1.\n\n\nCechy Fizyczne:\nWzrost: od 0,9 do 1,3 jednostki\nRozmiar: Mały lub Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 16 do 24 lat\nWiek starczy: 70 lat,\nŚrednia Długość Życia: 130 lat (średnia),\nMaksymalna Długość Życia: 160 lat",
       "hoverText": "",
       "fi": 24,
-      "theta": 8,
+      "theta": 9,
       "requires": [],
       "cost": 0,
       "temperature": 7000,
@@ -490,8 +490,8 @@
       "name": "Niziołek",
       "desc": "Jesteś nizołkiem. Niziołki to niewielkie stworzenia, mające tendencje do obsesyjnego zainteresowywania się jedną dziedziną. Często jednak ich zainteresowania wypychają je na przygody w celu poszukiwania wiedzy czy mitycznych artefaktów.\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 8\nSiła Woli: 11\n\nSzybkość: 6\nBonus do udźwigu: 7\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\n\nSavant:\nNiziołki często są nizwykle wybitne w jednej lub paru bardzo interesujących ich dziedzinach:\n\nOtrzymujesz trzy poziomy doświadczenia i dwa poziomy improwizacji w wybranych umiejętnościach.\n\nTrudni do trafienia:\nZ racji na swoją niewielką formę niziołki potrafią być zaskakująco trudne do trafienia:\n\nGdy twój rozmiar jest Mały zyskujesz +2 do ewazji.\n\nUrodzeni odkrywcy:\nGłód wiedzy niziołków często wypycha ich ku przygodznie, na którą zwykle są dobrze przygotowani:\n\nWiesz, w którym kierunku prawdopodobnie znajduje się najbliższe miasto lub zasiedlone miejsce, w którym kierunku jest północ i która jest godzina. Jesteś w stanie określić wiek budowli, kiedy były one ostatnio zamieszkane oraz jaka grupa je wybudowała.\nZyskujesz poziom doświadczenia i dwa poziomy improwizacji w umiejętnościach Intuicja i Wiedza Powszechna.\n\nCechy Fizyczne:\nWzrost: od 0,9 do 1,5 jednostki\nRozmiar: Mały lub Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 21 do 23 lat\nWiek starczy: 80 lat,\nŚrednia Długość Życia: 100 lat (średnia),\nMaksymalna Długość Życia: 140 lat",
       "hoverText": "",
-      "fi": 22.270000000000007,
-      "theta": 10.999999999999998,
+      "fi": 23.130000000000003,
+      "theta": 10.5,
       "requires": [],
       "cost": 0,
       "temperature": 3500,
@@ -592,8 +592,8 @@
       "name": "Sztuka Walki",
       "desc": "Twoja postać miała okzaję uczesniczyć w wielu treningowych lub realnych potyczkach.\n\nZ racji na to doświadczenie zyskujesz jeden poziom doświadczenia w umiejętności czas reakcji.",
       "hoverText": "",
-      "fi": 75.00000000000001,
-      "theta": 37,
+      "fi": 45,
+      "theta": 25,
       "requires": [
         "1"
       ],
@@ -613,8 +613,8 @@
       "name": "Półelf",
       "desc": "Jesteś półelfem. Półelfy często mylone są z elfami i ludźmi, stąd ich nazwa. I o ile mają coś z fizycznej wytrzymałości ludzi i gracji i zręczności elfów, obydwie te cechy objawiają się innaczej: wytrzymałość Półelfów objawia się niezwykłą odpornością na choroby, a ich gracja przekłada się na interakcje społeczne.\n\nStartowe Charakterystyki:\nForma: 11\nBystrość: 11\nSiła Woli: 8\n\nSzybkość: 8\nBonus do udźwigu: 2\n\nZyskujesz wybrane 2 z 3 poniższych atrybutów:\nCharyzmatyczni:\nPółelfy są naturalnie uzdolnione w spokojnym rozwiązywaniu sporów.\n\nZyskujesz 2 Poziomy Doświadczenia i 1 Poziom Improwizacji w umiejętnościach: Determinacja i Instynkt.\n\nPełni Werwy:\nNiewielu widziało półelfa, któremu zabrakło energii do działania:\n\nRaz na rundę, gdy skończą Ci się Punkty Akcji zyskujesz dwa Punkty Akcji.\nDodatkowo raz między pełnymi odpoczynkami, gdy skończą Ci się Punkty Energii zyskaj dwa Punkty Energii.\n\nZdrowy jak Półelf:\nOrganizmy półelfów są niezwykle odporne na choroby i trucizny:\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wigor. Po każdej godzinie odpoczynku zaleczasz 1d6 obrażeń krytycznych od chrób i trucizn, po czym leczysz 1d4 zaleczonych obrażeń tego typu.\n\nCechy Fizyczne:\nWzrost: od 1,2 do 1,5 jednostki\nRozmiar: Średni\n\nDługość życia:\nWiek dojrzałości fizycznej: od 18 do 24 lat\nWiek starczy: 100 lat,\nŚrednia Długość Życia: 135 lat (średnia),\nMaksymalna Długość Życia: 170 lat",
       "hoverText": "",
-      "fi": 25.729999999999997,
-      "theta": 10.999999999999998,
+      "fi": 24.869999999999997,
+      "theta": 10.5,
       "requires": [],
       "cost": 0,
       "temperature": 6500,
@@ -1038,7 +1038,7 @@
       "desc": "Z racji na warunki urodzenia lub mniej lub bardziej dobrowolne uczestnictwo w mrocznym rytuale jesteś Wampirem: jednym z kilku typów stworzeń będącymi połączeniem śmiertelnika i demona. Wampiry mają bladą skórą, słabe tętno i wolny puls. Żyją zwykle o połowę dłużej niż zwykli śmiertelnicy o ich pochodzeniu, i praktycznie nie starzeją się nawet do momentu śmierci, gdzie zwykle umierają przez zawał.\n\nBędąc wampirem zyskujesz atrybut „Żądza Krwi”:\n\nŻądza Krwi:\nZyskujesz dostęp do Punktów Mocy Krwi:\nKażdej doby w określonym przez Ciebie stałym momencie tracisz 1 Punkt Mocy Krwi. Jeżeli nie posiadasz Punktów Mocy Krwi zyskujesz 1 Poziom Wykrwawienia. \nMożesz posaidać maksymalnie sześć Punktów Mocy Krwi.\n\nPoświęcając 2 Punkty Akcji możesz wykonać akcję:\nZbierz krew Żywego stworzenia:\nJeżeli pochwyciłeś istotę, mającą przynajmniej jeden poziom niezaleczonych obrażeń krytycznych typu „Głębokie rany”: Za każdy poziom wykrwawienia, który zdobędzie to storzenie do początku Twojej następnej tury zdobywasz 1 Punkt Mocy Krwi.",
       "hoverText": "",
       "fi": 50,
-      "theta": 13.000000000000002,
+      "theta": 14.75,
       "requires": [],
       "cost": 0,
       "temperature": 1800,
@@ -1057,8 +1057,8 @@
       "name": "Fechtunek",
       "desc": "Udało ci się zdobyć niewielkie doświadczenie w walce kilkoma brońmi białymi.\n\nZ racji na swój trening zyskujesz jeden poziom doświadczenia w umiejętności siła.",
       "hoverText": "",
-      "fi": 90,
-      "theta": 38,
+      "fi": 59.99999999999999,
+      "theta": 27,
       "requires": [
         "6"
       ],
@@ -1078,8 +1078,8 @@
       "name": "Szkoła Makira",
       "desc": "Szkoła Makira zwanya także szkołą wilka, to szkoła fechtunku skupiająca się na wykorzystywaniu mieczy. Skupia się ona na zbalansowanym podejściu do walki.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz poziom swojej wprawy w walce mieczami.\n\nDodatkowo zyskujesz przedmiot: Miecz Krótki.",
       "hoverText": "",
-      "fi": 90,
-      "theta": 40,
+      "fi": 59.99999999999999,
+      "theta": 29.999999999999996,
       "requires": [
         "100000"
       ],
@@ -1130,7 +1130,7 @@
       "name": "Szkoła Damh",
       "desc": "Szkoła Damh podkreśla wagę obrony, uniwersalnie efektywnych ataków, a także kładzie nacisk na umiejętność walki bez broni. Jej przewodnią myśl dobrze ujmuje zdanie: jeżeli przeciwnik nie może cię skrzywdzić, wygrasz każdą walkę, nawet bez porządnej broni.\n\nRozpoczynając trening w nurcie tej szkoły zyskujesz poziom wprawy w atakach bez broni oraz w używaniu tarcz.\n\nDodatkowo zyskujesz przedmiot: Puklerz.",
       "hoverText": "",
-      "fi": 150.00000000000003,
+      "fi": 90,
       "theta": 29.999999999999996,
       "requires": [
         "100000"
@@ -1161,8 +1161,8 @@
       "name": "Szkoła Squamy",
       "desc": "Szkołą Squamy, zwana także Szkołą Smoka, skupia się na zadawaniu druzgocących obrażeń oraz zwiększaniu swojej tolerancji na obrażenia. Wojownicy trenujący się w tej szkole preferują używać toporów bojowych, obuchów, młotów bojowych i innych broni o krótkim drzewcu.\n\nRozpoczynając trening w nurcie tej szkoły zyskujesz poziom wprawy w używaniu krótkich broni drzewcowych.\n\nDodatkow zyskujesz przedmiot: Topór Bojowy.",
       "hoverText": "",
-      "fi": 119.99999999999999,
-      "theta": 40,
+      "fi": 75.00000000000001,
+      "theta": 29.999999999999996,
       "requires": [
         "100000"
       ],
@@ -1187,8 +1187,8 @@
       "name": "Szkoła Scairp",
       "desc": "Szkołą Scairp, zwana także Szkołą Czarnogrzywa skupia się na zadawaniu ataków z przewagą dystansu. Wojownicy specjalizujący się w walce technikami szkoły scairp wykorzystują bronie o długim drzewcu takie jak Halabardy, Piki, Młoty Wielkie czy Włócznie.\n\nRozpoczynając trening w nurcie tej szkoły zwiększasz poziom swojej wprawy w walce długą bronią drzewcową.\n\nDodatkowo zyskujesz przedmiot: Włócznia.",
       "hoverText": "",
-      "fi": 59.99999999999999,
-      "theta": 40,
+      "fi": 45,
+      "theta": 29.999999999999996,
       "requires": [
         "100000"
       ],
@@ -1213,7 +1213,7 @@
       "name": "Walka na dystans",
       "desc": "Po nabyciu niewielkiego doświadczenia z bronią miotaną lub miotającą jesteś w stanie zwykle trafić w duży nieruchomy cel.\n\nZ racji na swój trening, poziom doświadczenia twojej zręczności zwiększa się o 1.",
       "hoverText": "",
-      "fi": 150.00000000000003,
+      "fi": 112.5,
       "theta": 20,
       "requires": [
         "6"
@@ -1234,8 +1234,8 @@
       "name": "Szkoła Sytmpha",
       "desc": "Szkoła Stympha skupia się na doskonaleniu używania oszczepów, włóczni, lotek i innych podobnych broni miotanych.\n\nRozpoczynając praktykę umiejętności związanych z tą szkołą zyskujesz jeden poziom wprawy w broniach miotanych.\n\nDodatkowo zyskujesz przedmioty : 3 Drewniane Oszczepy.",
       "hoverText": "",
-      "fi": 210,
-      "theta": 21.999999999999996,
+      "fi": 119.99999999999999,
+      "theta": 29.999999999999996,
       "requires": [
         "100009"
       ],
@@ -1260,8 +1260,8 @@
       "name": "Szkoła Mitto",
       "desc": "Szkołą Mitto, skupia się na używaniu łuków i proc: broni miotających używających strzał, metalowych kulek czy innych pocisków jako amunicję.\n\nDecydując się na trening z brońmi miotającymi zyskujesz jeden poziom wprawy w używaniu broni miotających.\n\nDodatkowo zyskujesz przedmioty: łuk długi oraz 10 strzał.",
       "hoverText": "",
-      "fi": 180,
-      "theta": 25,
+      "fi": 105,
+      "theta": 29.999999999999996,
       "requires": [
         "100009"
       ],
@@ -1291,8 +1291,8 @@
       "name": "Potężne Uderzenie",
       "desc": "Wojownicy specjalizujący się w Szkole Squamy uczą się wkładać maksymalną ilość siły w każdy atak.\n\nZyskujesz atrybut:\n\nPotężny cios:\nDeklarując atak możesz wydać 2 punkty energii. Jeżeli trafisz i zadasz obrażenia, możesz przerzucić jedną kość używaną do określenia ilości zadawanych obrażeń.",
       "hoverText": "",
-      "fi": 110,
-      "theta": 52.000000000000014,
+      "fi": 72,
+      "theta": 35,
       "requires": [
         "100018"
       ],
@@ -1306,8 +1306,8 @@
       "name": "Technika Drwala",
       "desc": "Jedną z pierwszych technik, do których dochodzą istoty uczące się fechtunku zgodnie z myślami Szkoły Squamy jest technika drwala. Jest ona tożsama z naturalnym pojęciem gdzie znajduje się i jak szybko porusza się głownia dzierżonej broni.\n\nZyskujesz jeden poziom wprawy w krótkich broniach drzewcowych.\n\nZyskujesz atrybut:\n\nSilny cios:\nDeklarując atak możesz zadeklarować wykonanie silnego coisu. Wydajesz wtedy 1 punkt energii. Jeżeli trafisz i zadasz obrażenia, zadajesz o jedno więcej obrażenie każdego zadanego typu.",
       "hoverText": "",
-      "fi": 119.99999999999999,
-      "theta": 45,
+      "fi": 75.00000000000001,
+      "theta": 32,
       "requires": [
         "100007"
       ],
@@ -1333,8 +1333,8 @@
       "name": "Mistrz Boleści",
       "desc": "Uczysz się panować nad zadanym ci bólem, dzięki czemu staje się on dla ciebie bardziej motywacją niż przeszkodą.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności determinacja.\n\nZyskujesz Atrybut:\n\nMistrz Boleści:\nMożesz zadeklarować wykonanie kontry do następnej akcji atakującego lub zakończenia jego tury jeśli nie wykona w niej kolejnej akcji w momencie otrzymania od niego obrażeń. Atak bronią białą wykonany w ramach tej kontry zadaje o tyle punktów obrażeń każdego typu więcej ile w sumie otrzymała twoja postać w ostatnim otrzymanym ataklu lub maksimum możliwych do zadania obrażeń ‒ przy czym wybierasz mniejszą z tych dwóch wartości.",
       "hoverText": "",
-      "fi": 130,
-      "theta": 52.000000000000014,
+      "fi": 78,
+      "theta": 35,
       "requires": [
         "100018"
       ],
@@ -1364,8 +1364,8 @@
       "name": "Technika Kowala",
       "desc": "Technika Kowala mówi o skupieniu się na utrzymaniu stałego tępa walki, tak jak kowal utrzymuje stałe tępo uderzeń młota. Pozwala to na zmniejszenie zmęczenia ciała i pomaga rozwijać kontrolę nad własnymi ruchami, co przekłada się na większą celność ataków w dłuższych starciach.\n\nPoziom twojej wprawy w krótkich broniach drzewcowych zwiększa się o 1.\n\nDodatkowo zyskujesz atrybut \"Metodyczne Uderzenia\":\n\nMetodyczne Uderzenia:\nUczysz się walki w stałym, rytmicznym tępie. Wykonanie akcji typu „Atak” nie zwiększa ich kosztu.",
       "hoverText": "",
-      "fi": 119.99999999999999,
-      "theta": 50,
+      "fi": 75.00000000000001,
+      "theta": 34,
       "requires": [
         "100015"
       ],
@@ -1391,8 +1391,8 @@
       "name": "Technika Cieśli",
       "desc": "Technika Cieśli skupia się na opanowaniu trejektorii głowni. \n\nRozwijając swoją kontrolę nad bronią zyskujesz jeden poziom wprawy w używaniu krótkiej broni drzewcowej.\n\nDodatkowo zyskujesz atrybut \"Celne Uderzenia\":\n\nCelne Uderzenia:\nZamiast losować, w którą część ciała przeciwnika trafisz, możesz wybrać gdzie dokładnie trafiasz.",
       "hoverText": "",
-      "fi": 119.99999999999999,
-      "theta": 55,
+      "fi": 75.00000000000001,
+      "theta": 36,
       "requires": [
         "100017"
       ],
@@ -1418,8 +1418,8 @@
       "name": "Władca Cierpienia",
       "desc": "Rozwijając swoją kontrolę nad bólem jesteś w stanie walczyć w sytuacjach, gdy inni stracili by już przytomność. Dodatkowo pomaga ci to w kontrolowaniu swojej broni gdy otrzymasz obrażenai w walce.\n\nZyskujesz poziom wprawy w używaniu krótkich broni drzewcowych.\n\nDodatkowo zyskujesz atrybut „Władca Cierpienia”:\n\nWładca Cierpienia:\nGdy łączna ilość posiadanych przez twoją postać punktów obrażeń staje się równa lub większa od twojej wytrzymałości zamiast natychmiastowego stracenia przytomności możesz walczyć dalej. W takiej sytuacji w momencie zadeklarowania chęci skorzystania z tego atrybutu i na początku każdej twojej tury tracisz Punkty Energii w ilości równej Łącznej Ilości Obrażeń – Wytrzymałość + 1. W momencie, w którym ilość twoich Punktów Energii osiągnie 0 tracisz ptzytomność i zyskujesz jeden punkt zaleczonych krytycznych obrażeń wewnętrznych, będących skutkiem tak wycieńczającego manewru.",
       "hoverText": "",
-      "fi": 130,
-      "theta": 58,
+      "fi": 78,
+      "theta": 37,
       "requires": [
         "100016",
         "100018",
@@ -1451,8 +1451,8 @@
       "name": "Adept Dam-hu",
       "desc": "Opanowywujesz sztukę przekierowywania ataków własnymi rękoma i zwiększasz swoje zrozumienie sztuki walki nieuzbrojonej.\n\nZyskujesz jeden poziom wprawy w atakach wykonywanych bez broni oraz w używaniu Tarcz.\n\nZdobywasz atrybut:\n\nAdept Dam‒hu:\nUczysz się bezpiecznie przekierowywać ataki własnymi dłońmi. Każda z twoich dłoni zyskuje +3 bonusu do odbicia i +1 bonusu do blokowania.\nDodatkowo wykonywane przez ciebie ataki bez broni zadają 1d6 obrażeń obuchowych.",
       "hoverText": "",
-      "fi": 150.00000000000003,
-      "theta": 40,
+      "fi": 90,
+      "theta": 34,
       "requires": [
         "100004"
       ],
@@ -1483,8 +1483,8 @@
       "name": "Sztuka Dobrego Przygotowania",
       "desc": "Dobrze zaplanowana obrona zaczyna się daleko przed walką i składa się z ćwiczeń ciała, umysłu i ducha.\n\nZyskujesz poziom wprawy w atakach bez broni.\n\nZyskujesz dwa poziomy improwizacji w dowolnych umiejętnościach.\n\nDodatkowo zyskujesz atrybut „Przygotowanie do Walki”:\n\nPrzygotowanie do Walki:\nNigdy nie tracisz czujności. Jeżeli dołączasz do walki jako istota zaskoczona otrzymujesz Punkty Akcji w momencie rozstrzygnięcia kolejności swojej tury.",
       "hoverText": "",
-      "fi": 150.00000000000003,
-      "theta": 50,
+      "fi": 90,
+      "theta": 38,
       "requires": [
         "100020"
       ],
@@ -1515,8 +1515,8 @@
       "name": "Oszałamiające Uderzenie",
       "desc": "Czasami najlepszą obroną jest atak, w szczególności jeżeli spowoduje on, iż nie staniesz się celem kolejnego ataku.\n\nZyskujesz poziom wprawy w atakach  bez broni oraz w używaniu tarcz.\n\nZyskujesz Atrybut:\n\nOszałamiające uderzenie:\nGdy wykonujesz akcję ataku bez wykorzystania broni, możesz zużyć 5 Punktów Energii i zadeklarować wykonanie Oszałamiającego Uderzenia. Jeżeli zadasz obrażenia atakiem przeciwnik traci wszystkie posiadane Punkt Akcji teraz oraz następnym razem, gdy jego liczba Punktów Akcji się zwiększy.",
       "hoverText": "",
-      "fi": 156.99999999999997,
-      "theta": 45,
+      "fi": 92,
+      "theta": 35.5,
       "requires": [
         "634"
       ],
@@ -1547,8 +1547,8 @@
       "name": "Sztuka Obrony",
       "desc": "Jak mówi starożytne powiedzenie: najlepszą obroną jest... yyy... ...obrona.\n\nZyskujesz poziom wprawy w używaniu tarcz.\n\nZyskujesz atrybut: „Tarczownik”\n\nTarczownik:\nGdy użyawsz tarcz jako broni podczas wykonywania ataku zwiększ zadawane obrażenia o 1d4 obrażeń obuchowych.\n\nDodatkowo gdy wykonujesz atak tarczą możesz wybrać, w którą część ciała próbujesz trafić atakiem zamiast wybierać jej losowo.",
       "hoverText": "",
-      "fi": 155,
-      "theta": 49,
+      "fi": 91,
+      "theta": 37,
       "requires": [
         "100020"
       ],
@@ -1574,8 +1574,8 @@
       "name": "Szutka Nietykalności",
       "desc": "Jeżeli przeciwnik nie jest cię w stanie trafić wygrasz każdą walkę.\n\nZyskujesz poziom wprawy w używaniu tarcz,\n\nDodatkowo zyskujesz atrybut: „Nie do trafienia”\n\nNie do trafienia:\nMożesz wykorzystywać Punkty Enegrii zamiast Punktów Akcji do wykonywania akcji Uniku, Kontry, Blokowania i Odbicia ataku. Gdy wykorzystujesz Punkty Energii w ten sposób, nie bierzesz pod uwagę wzrostu kosztu akcji z racji na wielokrotne jej użycie.",
       "hoverText": "",
-      "fi": 145.00000000000003,
-      "theta": 48,
+      "fi": 89,
+      "theta": 37.50000000000001,
       "requires": [
         "100020"
       ],
@@ -1601,8 +1601,8 @@
       "name": "Sztuka Repozycjonowania",
       "desc": "Nie każde wycofanie się musi oznaczać ucieczkę. Czasami najlepszą obroną jest wybranie innej walki.\n\nZyskujesz poziom wprawy w atakach bez broni.\n\nZyskujesz trzy poziomy szybkości.\n\nZyskujesz atrybut „Szybkość Mnicha”:\n\nSzybkość Mnicha:\nUczysz się technik używania energii do przyspieszania własnych ruchów. Możesz wydać jeden Punkt Energii by zwiększyć swoją szybkość o 1 na jedną minutę.",
       "hoverText": "",
-      "fi": 142,
-      "theta": 45,
+      "fi": 87.99999999999999,
+      "theta": 36,
       "requires": [
         "100020"
       ],
@@ -1633,8 +1633,8 @@
       "name": "Bliskowzroczność",
       "desc": "Posiadasz poważną wadę wzroku, utrudniającą spostrzeganie detali z wyjątkiem tych, które znajdują się bardzo blisko.\n\nTwój poziom doświadczenia w umiejętności spostrzegawczość zmniejsza się o 3.",
       "hoverText": "",
-      "fi": 27.99,
-      "theta": 7,
+      "fi": 28,
+      "theta": 14.5,
       "requires": [],
       "cost": -2,
       "temperature": 6000,
@@ -1647,7 +1647,7 @@
       "desc": "Udało Ci się zdobyć okulary prawie całkowicie korygujące twoją wadę wzroku.\n\nZyskujesz przedmiot: Okulary\n\nOkulary zwiększają twój poziom doświadczenia w umiejętności spostrzegawczość o 2.",
       "hoverText": "",
       "fi": 29.999999999999996,
-      "theta": 9,
+      "theta": 15.5,
       "requires": [
         "1000"
       ],
@@ -1667,8 +1667,8 @@
       "name": "Postawa Defensywna",
       "desc": "Blokowanie ciosów przeciwników i umiejętność sprawnego kontratakowania jest kluczowym elementem walki mieczem.\n\nZyskujesz atrybut „Postawa Defensywna”:\n\nPostawa Defensywna:\nZużywając jeden Punkt Akcji możesz przybrać Postawę Defensywną. W Postawie Defensywnej:\nAkcja Blokowania i Akcja Kontrakcji zużywa o 1 Punkt Akcji mniej.\nZyskujesz bonus do blokowania równy poziomowi wprawy w jednej trzymanej broni (wybierasz przy każdej akcji blokowania).\nTwoja szybkość spada o 2.\n\nNa końcu każdej swojej tury tracisz 1 Punkt Energii.\nJeżeli ilosć twoich Punktów Energii osiągnie 0 wychodzisz z Postawy Defensywnej.\nMożesz wyjść z Postawy Defensywnej w dowolnym momencie.\n\nBez atrybutu Zaawansowane Postawy Bojowe możesz być tylko w jednej postawie jednocześnie!",
       "hoverText": "",
-      "fi": 90,
-      "theta": 45,
+      "fi": 59.99999999999999,
+      "theta": 32,
       "requires": [
         "100005"
       ],
@@ -1689,8 +1689,8 @@
       "name": "Postawa Ofensywna",
       "desc": "Najlepszą obroną jest atak, a jeszcze lepszą obroną jest szybko i sprawnie wykonany atak.\n\nZyskujesz atrybut „Postawa Ofensywna”:\n\nPostawa Ofensywna:\nZużywając jeden Punkt Akcji możesz przybrać Postawę Ofensywną. W Postawie Ofensywnej:\nAkcja Blokowania i Akcja Kontrakcji zużywa o 1 Punkt Akcji więcej.\nZyskujesz bonus do obrażeń równy poziomowi wprawy w jednej trzymanej broni (wybierasz przy każdej akcji ataku).\nTwoja szybkość wzrasta o 2.\n\nNa końcu każdej swojej tury tracisz 1 Punkt Energii.\nJeżeli ilosć twoich Punktów Energii osiągnie 0 wychodzisz z Postawy Ofensywnej.\nMożesz wyjść z Postawy Ofensywnej w dowolnym momencie.",
       "hoverText": "",
-      "fi": 90,
-      "theta": 55,
+      "fi": 59.99999999999999,
+      "theta": 36,
       "requires": [
         "116"
       ],
@@ -1711,8 +1711,8 @@
       "name": "Trening Walki Mieczem",
       "desc": "Przykładając się do regularnych treningów udało Ci się pogłębić swoją wiedzę o walce mieczem. Treningi pozwoliły Ci także rozwinąć się fizycznie.\n\nZyskujesz poziom wprawy w walce mieczami oraz poziom doświadczenia w umiejętnościach: Siła i Zręczność.\n\nDodatkowo zyskujesz atrybut „Treningi walki”:\n\nTreningi Walki:\nPo każdym pełnym odpoczynku możesz otrzymać tymczasowy bonus równy jednemu poziomowi improwizacji w umiejętności siła, zręczność, czas reakcji lub dowolnej jednej wprawie w typie broni lub ataku bez broni. Bonus ten znika po 25 godzinach oraz po zakończneiu kolejnego pełnego odpoczynku.",
       "hoverText": "",
-      "fi": 80,
-      "theta": 47,
+      "fi": 56,
+      "theta": 33,
       "requires": [
         "103"
       ],
@@ -1748,8 +1748,8 @@
       "name": "Postawa Mnicha",
       "desc": "Uczysz się postawy mnicha opierającej się na przemiennemu stosowaniu „medytacji” w środku bitwy oraz druzgocących faz szybiej aktywności.\n\nZyskujesz poziom wprawy w walce mieczem.\n\nZyskujesz atrybut „Postawa Mnicha”:\n\nPostawa Mnicha:\nZużywając jeden Punkt Akcji możesz przybrać Postawę Mnicha. W Postawie Mnicha:\nTracisz 1 Punkt Energii gdy przybierasz Postawę Mnicha i na początku każdej następnej tury, do momentu wyjścia z Postawy Mnicha.\n\nNa początku każdej tury, po zyskaniu punktów akcji na początku tury zyskujesz ilość Punktów Akcji równą ilości Punktów Akcji, które Twoja postać posiadała przed otrzymaniem Punktów Akcji w tej turze.\n\nJeżeli zyskanie Punktów Akcji spowodowałoby, że masz więcej Punktów Akcji niż dwukrotność Twojej Biegłości, ilość twoich Punktów Akcji jest równa dwukrotności Twojej bystrości.",
       "hoverText": "",
-      "fi": 90,
-      "theta": 50,
+      "fi": 59.99999999999999,
+      "theta": 34,
       "requires": [
         "103"
       ],
@@ -1775,8 +1775,8 @@
       "name": "Zaawansowane Postawy Bojowe",
       "desc": "Uczysz się łączyć różne postawy bojowe, tak, aby móc operować w kilku postawach jednocześnie.\n\nZyskujesz poziom wprawy w używaniu mieczy.\n\nCo więcej, zyskujesz atrybut „Eksperymentalne Postawy Bojowe”:\n\nEksperymentalne Postawy Bojowe:\nMożesz być w kilku postawach bojowych jednocześnie. Będąc w kilku postawach otrzymujesz wszystkie korzyści postaw bojowych, lecz każda z nich wykorzystuje o jeden Punkt Energii więcej przy obraniu postawy i za każdym razem gdy utrzymanie postawy wymaga od ciebie wydania Punktu Energii.",
       "hoverText": "",
-      "fi": 100,
-      "theta": 47,
+      "fi": 64,
+      "theta": 33,
       "requires": [
         "103"
       ],
@@ -1803,7 +1803,7 @@
       "desc": "Uczysz się odwracać uwagę swoich przeciwników w trakcie walki.  \n\nZyskujesz poziom wprawy w sztyletach.\n\nZyskujesz także poziom improwiazcji w umiejętności czas reakcji.\n\nDodatkowo, zyskujesz atrybut „Sztuczka Łotra”:\n\nSztuczka Łotra:\nJako reakcję na bycie zaatakowanym możesz wydać jeden punkt akcji i jeden punkt energii, żeby wykonać zaskakująco gwałtowny ruch zmylający swojego przeciwnika, połączony z szybkim atakiem.\n\nRozstrzygnij konkurs swojego czasu reakcji przeciwko celności ataku, w którym broniący ma przewagę:\nW przypadku krytycznego sukcesu atak nie może trafić i przeciwnik zyskuje poziom wytrącenia z równowagi.\nW przypadku sukcesu atak nie może trafić.\nW przypadku porażki atak może trafić (choć możesz nadal wykonać akcje uniku, kontry, blokowania czy odbicia).\nW przypadku krytycznej porażki atak trafia.",
       "hoverText": "",
       "fi": 29.999999999999996,
-      "theta": 35,
+      "theta": 31,
       "requires": [
         "100006"
       ],
@@ -1834,8 +1834,8 @@
       "name": "Szarogrzywie Oko",
       "desc": "Dzięki intensywnym ćwiczeniom jesteś w stanie o wiele łatwiej spostrzec słabe punkty obrony przeciwnika.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Spostrzegawczość.\n\nDodatkowo zyskujesz atrybut „Szarogrzywie Oko”:\n\nSzarogrzywie oko:\nGdy deklarujesz atak, możesz wykorzystać 3 Punkty Energii, by zamienić ewentualne celne trafienie, będące skutkiem tego ataku w krytycznie celne trafienie.",
       "hoverText": "",
-      "fi": 35,
-      "theta": 38,
+      "fi": 31.5,
+      "theta": 33,
       "requires": [
         "123"
       ],
@@ -1866,8 +1866,8 @@
       "name": "Siódmy Zmysł",
       "desc": "Pakując się w kolejne tarapaty zaczynasz mieć pojęcie kiedy coś zaczyna iść nie tak.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności instynkt oraz poziom improwizacji w umiejętności czas reakcji.\n\nCo więcej zyskujesz atrybut: „Szybka Odskocznia”:\n\nSzybka Odskocznia:\nMożesz raz wykonać akcję uniku nie zużywając Punktów Akcji. Odzyskujesz możliwość wykorzystania tej umiejętności na początku następnej twojej tury.",
       "hoverText": "",
-      "fi": 25,
-      "theta": 38,
+      "fi": 28.500000000000004,
+      "theta": 33,
       "requires": [
         "123"
       ],
@@ -1904,7 +1904,7 @@
       "desc": "Pogłębiasz niezwykle honorową sztukę uciekania gdy coś pójdzie nie tak.\n\nZyskujesz poziom wprawy w używaniu sztyletów.\n\nDodatkowo zyskujesz poziom doświadczenia w umiejętności zręczność i twoja szybkość zwiększa się o 1.\n\nCo więcej, zyskujesz atrybut „Taktyczny Odwrót”:\n\nTaktyczny Odwrót:\nJako reakcja na zakończenie akcji, w której poniosłeś porażkę lub krytyczną porażkę w dowolnym teście lub konkursie możesz wydać dwa punkty energii by wykonać darmową akcję ruchu, lub poruszyć się liczbę jednostek nie przekraczającą twojej szybkości.\n\n",
       "hoverText": "",
       "fi": 29.999999999999996,
-      "theta": 40,
+      "theta": 34,
       "requires": [
         "120"
       ],
@@ -1941,7 +1941,7 @@
       "desc": "Na wzór wiwern uczysz się skupiać w niemalże nadnaturalny sposób, co umożliwia ci niezwykle dokładne trafianie celów.\n\nDodatkowo zwiększasz swój poziom wprawy w sztyletach o 1.\n\nZyskujesz atrybut „Celność Wiwerny”:\n\nCelność Wiwerny:\nPrzed wykonaniem rzutu na celność ataku możesz wydać do pięciu punktów energii. Za każdy wydany punkt energii zwiększ podstawową celność wykorzystywanego trybu ataku o 1.\n\nDodatkowo, gdy wykonujesz atak sztyletem zamiast losować, w którą część ciała trafisz możesz wybrać część ciała, w którą trafisz.\n",
       "hoverText": "",
       "fi": 29.999999999999996,
-      "theta": 43.00000000000001,
+      "theta": 35,
       "requires": [
         "123"
       ],
@@ -1967,8 +1967,8 @@
       "name": "Sposób na Siłę",
       "desc": "Ciągłe używanie ciężkich broni to świetny sposób na zakwasy, a co za tym idzie trening siłowy.\n\nZyskujesz 2 poziomy doświadczenia i jeden poziom improwizacji w umiejętności siła.\n\nDodatkowo zyskujesz poziom wprawy w używaniu długich broni drzewcowych.\n\nCo więcej zyskujesz atrybut „Siłacz”:\n\nSiłacz:\nMożesz wyposażyć i efektywnie dzierżyć przedmioty, pomimo nie posaidania wymaganego poziomu siły.",
       "hoverText": "",
-      "fi": 59.99999999999999,
-      "theta": 45,
+      "fi": 45,
+      "theta": 32,
       "requires": [
         "100008"
       ],
@@ -2004,8 +2004,8 @@
       "name": "Sposób na Wprawę",
       "desc": "Rygorystyczne ćwiczenia z odpowiednio oddaloną kukłą pozwalają Ci długich broni drzewcowych jako do wytrącania przeciwników z równowagi.\n\nZyskujesz poziom wprawy w używaniu długich broni drzewcocyh oraz atrybut „Hakier”:\n\nHakier:\nUżywając hakopodobnych obuchów długich broni drzewcowych, konkretniej Partyzany, Halabardy i Młota Wielkiego możesz wykonać akcję wzmocnioną Przewrócenia lub Rozbrojenia: możesz raz przerzucić kość używaną w teście wyznaczającym poziom trudności testu obronnego celu.",
       "hoverText": "",
-      "fi": 59.99999999999999,
-      "theta": 50,
+      "fi": 45,
+      "theta": 34,
       "requires": [
         "125"
       ],
@@ -2031,8 +2031,8 @@
       "name": "Sposób na Trafienie",
       "desc": "Trafienie ruszających się istot kawałkiem metalu zatkniętym na kilkumetrowym drągu nie należy do najłatwiejszych. Ćwicząc się w tej sztuce zyskujesz:\n\nPoziom wprawy w długich broniach drzewcowych.\n\nJeden poziom doświadczenia w umiejętności zręczność.\n\nAtrybut „Bonk”:\n\nBonk:\nJeżeli atak wykonany wręcz nie trafi możesz zużyć jeden punk akcji i energii by wykonać szybki ruch bronią i zadać 1d4 − 1 obrażeń obuchowych.",
       "hoverText": "",
-      "fi": 59.99999999999999,
-      "theta": 55,
+      "fi": 45,
+      "theta": 36,
       "requires": [
         "126"
       ],
@@ -2063,8 +2063,8 @@
       "name": "Sposób na Więcej Siły",
       "desc": "Wskutek codziennych ćwiczeń z ciężką i niewyważoną bronią zyskujesz:\n\nDwa poziomy doświadczenia w umiejętności siła.\n\nAtrybut „Wielki Zamach”:\n\nWielki Zamach:\nPodczas deklaracji ataku możesz wydać jeden Punkt Akcji i jeden Punkt Energii by wykonać szeroki zamach. Jeżeli twój atak nie trafi w przeciwnika, możesz natychmiast po rozstrzygnięciu akcjia ataku powtórzyć atak na innym przeciwniku nie zużywając Punktów Akcji. Dodatkowo, jeżeli twój pierwszy atak trafi i zadasz obrażenia krytyczne, każda kość służąca do określania ilości zadawanych obrażeń, na której wypadła wartość niższa od średniej może zostać przerzucona, póki jej wartość jest niższa od średniej.",
       "hoverText": "",
-      "fi": 59.99999999999999,
-      "theta": 65,
+      "fi": 45,
+      "theta": 40,
       "requires": [
         "130"
       ],
@@ -2090,8 +2090,8 @@
       "name": "Sposób na Zasięg",
       "desc": "Czasami posiadając nawet długą broń nie dosięgniesz tych przeciwników, których chesz dosięgnąć. \n\nZyskujesz poziom wprawy w używaniu długich broni drzewcowych.\n\nDodatkowo zyskujesz atut „Ślamazarny Wypad”\n\nŚlamazarny Wypad:\nWykonujesz wypad, nawet, jeżeli twój styl walki i broń czynią to trudnym. Jeżeli w trakcie wykonywania ataku zadeklarujesz chęć skorzystania z tego atrybutu, twój maksymalny zasięg zwiękasz się o 1 na czas wykonywania ataku, a jego celność zmniejsza się o 1d4−1.",
       "hoverText": "",
-      "fi": 59.99999999999999,
-      "theta": 59.99999999999999,
+      "fi": 45,
+      "theta": 38,
       "requires": [
         "128"
       ],
@@ -2117,7 +2117,7 @@
       "name": "Wieczna Gotowość",
       "desc": "Dzięki swojemu mistrzostwu w posługiwaniu się bronią miotającą jesteś w stanie określić kiedy będziesz jej używać. Zyskujesz atrybut: „Wieczna Gotowość”\n\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.\n\nWieczna Gotowość:\nWiedząc, że niebezpieczeństwo może nadjeść zawsze dbasz o to, żeby twoja broń była zawsze przy tobie w dostępnym miejscu. Póki nosisz ją ze sobą możesz traktować dwie wybrane bronie miotające jako zawsze przygotowane.",
       "hoverText": "",
-      "fi": 180,
+      "fi": 105,
       "theta": 40,
       "requires": [
         "134",
@@ -2145,8 +2145,8 @@
       "name": "Zawsze w Cel",
       "desc": "Twoja nauka stzelania doprowadziła Cię do momentu gdy prawie zawsze jesteś w stanie trafić w nieruchomy cel.\n\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.\n\nDodatkowo zyskujesz atrybut „Celny Strzelec”:\n\nCelny Strzelec:\nGdy wykonujesz ataki dystansowe za pomocą broni miotającej, zamiast losować część ciała, w którą trafisz możesz ją wybrać.\n\nDodatkowo zawsze jesteś w stanie trafić w nieruchomy cel z broni miotającej, jeżeli jest on w jej efektywnym zasięgu.",
       "hoverText": "",
-      "fi": 175.99999999999997,
-      "theta": 28,
+      "fi": 103,
+      "theta": 32,
       "requires": [
         "100011"
       ],
@@ -2172,8 +2172,8 @@
       "name": "Zawsze z Zaskoczenia",
       "desc": "Nauczyłeś się strzelać do powoli, przwidywalnie poruszających się celów. \n\nZyskujesz jeden poziom wprawy w używaniu broni miotającej.\nZyskujesz atrybut „Zawsze z Zaskoczenia”:\n\nZawsze z Zaskoczenia:\nJeżeli twój cel nie widzi twojego ataku wykonaj rzut na celność dwa razy. Jako wynik rzutu przyjmij lepszy wynik.",
       "hoverText": "",
-      "fi": 174.99999999999997,
-      "theta": 29.999999999999996,
+      "fi": 102.5,
+      "theta": 33.49999999999999,
       "requires": [
         "132"
       ],
@@ -2199,8 +2199,8 @@
       "name": "Wiecznia Czujność",
       "desc": "Dzięki twojemu treningowi jesteś w stanie dostrzec i przewidzieć gdzie poruszy się twój cel w walce.\n\nZyskujesz poziom doświadczenia w umiejętności spostrzegawczość.\n\nZyskujesz poziom wprawy w używaniu broni miotających.\n\nDodatkowo zyskujesz atrybut „Wieczna Czujność”:\n\nWieczna Czujność:\nPrzeciwnicy nie mogą się przed tobą ukryć w walce, chyba, że są w pełni zasłonięci przed tobą. W takim wypadku zawsze pamietasz, gdzie ostatnio widziana była dana istota. Dodatkowo widzisz i możesz reagować na wszystkie ataki wykonane przez istoty w odległości nie większej niż 5 jednostek od ciebie.",
       "hoverText": "",
-      "fi": 175.99999999999997,
-      "theta": 37,
+      "fi": 103,
+      "theta": 38,
       "requires": [
         "567"
       ],
@@ -2231,8 +2231,8 @@
       "name": "Rzut Ukośny",
       "desc": "Uczysz się lepiej przewidywać tor lotu rzucanych przez Ciebie broni. \n\nZyskujesz poziom wprawy w używaniu broni miotanych oraz poziom doświadczenia w umiejętności spostrzegawczość.\n\nDodatkowo zyskujesz atrybut: „Rzut Ukośny”:\n\nRzut Ukośny:\nGdy wykonujesz rzut bronią poza jej efektywny zasięg, w przypadku trafienia zadajesz o 1 Punkt Zwykłych Obrażeń więcej.",
       "hoverText": "",
-      "fi": 210,
-      "theta": 24,
+      "fi": 119.99999999999999,
+      "theta": 31,
       "requires": [
         "100010"
       ],
@@ -2263,8 +2263,8 @@
       "name": "Przeszywający rzut",
       "desc": "Dzięki treningowi z bronią miotaną zyskujesz na sile. \n\nZyskujesz poziom doświadczenia w umiejetności siła. \n\nDodatkowo zyskujesz atrybut „Przeszywający Rzut”:\n\nPrzeszywający Rzut:\nJeżeli w linii prostej za celem ataku bronią miotaną stoi inny przeciwnik możesz w momencie deklarowania ataku wydać jeden punkt energii, by wykonać niezwykle silny rzut. W przypadku nietrafienia w cel lub trafienia w cel i zadania śmiertelnych obrażeń krytycznych, broń leci dalej wykonując atak w drugą kreaturę o celności zmniejszonej o 1.",
       "hoverText": "",
-      "fi": 210,
-      "theta": 28,
+      "fi": 119.99999999999999,
+      "theta": 33,
       "requires": [
         "224"
       ],
@@ -2290,8 +2290,8 @@
       "name": "Adept Broni Miotanej",
       "desc": "Dzięki swoim ekstensywnym treningom z bronią miotaną zaczynasz się czuć komfortowo z rzucaniem jednostkowymi patykami na nawet kilkanaście jednostek.\n\nZyskujesz poziom wprawy w używaniu broni miotanej.\n\nDodatkowo zyskujesz poziom doświadczenia w umiejętności zręczność.\n\nCo więcej, zyskujesz atrybut „Adept Broni Miotanej”:\n\nAdept Broni Miotanej:\nGdy używasz broni miotanej możesz wydać 3 Punkty Energii, by wykonać potężny rzut celując w płaskie elementy pacnerza przeciwnkia. W trakcie tego ataku traktuj pancerz przeciwnika tak, jakby jego poziom był mniejszy o 3.",
       "hoverText": "",
-      "fi": 210,
-      "theta": 29.999999999999996,
+      "fi": 119.99999999999999,
+      "theta": 34,
       "requires": [
         "136"
       ],
@@ -2323,7 +2323,7 @@
       "desc": "Rozpoczynając życie podróżnika łatwo odkryć w sobie nowe, nieznane talenty. \n\nZyskujesz 2 poziomy doświadczenia i 2 poziomy improwizacji w dowolnych wybranych umiejętnościach.\n\nCo więcej, zyskujesz jeden poziom w dowolnej wybranej charakterystyce.",
       "hoverText": "",
       "fi": 0,
-      "theta": 29.999999999999996,
+      "theta": 40,
       "requires": [
         "1"
       ],
@@ -2354,7 +2354,7 @@
       "desc": "Życie podróżnika wywiera dużą presję, która przytłacza i prowadzi do rozwoju. '\n\nZwiększ wybraną charakterystykę o 1.",
       "hoverText": "",
       "fi": 0,
-      "theta": 33,
+      "theta": 42,
       "requires": [
         "200"
       ],
@@ -2737,8 +2737,8 @@
       "name": "Rolnik",
       "desc": "Do niedawna twoim zajęciem była uprawa ziemi i/lub dbanie o zwierzęta. Ciężka fizyczna praca poprawiła także twoją fizyczną koordynację ruchową.\n\nZyskujesz poziom doświadczenia w umiejętności zręczność.\n\nZyskujesz przedmioty:\nSkromny zestaw startowy,\nTopór Bojowy,\n15 pierścieni konstancjum\n\n\nZyskujesz atrybut: \"Dola Rolnika\":\n\nDola Rolnika:\nDzięki swojemu doświadczeniu w pracy z roślinami wiesz, jakie plony są zbierane, transportowane lub przetwarzane w danej porze roku. Dzięki temu z łatwością jesteś w stanie znaleźć pracę dla siebie i swoich kompanów w zbieraniu, transporcie lub przetwarzaniu plonów płatną 2 nitki za 5 godzin pracy dla każdego zatrudnionego.",
       "hoverText": "",
-      "fi": 16,
-      "theta": 8,
+      "fi": 13.48,
+      "theta": 7.780000000000001,
       "requires": [],
       "cost": 2,
       "temperature": 6000,
@@ -2777,8 +2777,8 @@
       "name": "Student",
       "desc": "Przez jakiś czas było ci dane pobierać nauki w akademii lub na uczelni.\n\nZyskujesz poziom doświadczenia w umiejętności wiedza powszechna.\n\nZyskujesz przedmioty:\nSkromny Zestaw Startowy,\nPióro,\nKsięga na Notatki,\n11 Pierścieni Konstancjum,\nProca\n\nZyskujesz atrybut: \"Sposoby Studenta\":\n\nSposoby Studenta:\nGdy nocujesz w mieście jesteś w stanie znaleźć nocleg z wyżywieniem za 1 nitkę konstancjum. Dodatkowo jesteś w stanie udzielać nauk innym studentom za 2 nitki za 5 godzin nauk.",
       "hoverText": "",
-      "fi": 11.11,
-      "theta": 11.899999999999999,
+      "fi": 11.89,
+      "theta": 9.5,
       "requires": [],
       "cost": 2,
       "temperature": 6000,
@@ -2827,8 +2827,8 @@
       "name": "Łotr",
       "desc": "Twoją pracą do niedawna były wymuszenia, włamania, drobne kradzieże czy drobny sabotaż.\n\nZyskujesz poziom doświadczenia w umiejętności czas reakcji.\n\nZyskujesz przedmioty:\nSkromny zestaw startowy,\nNarzędzia włamywacza,\nProsty Sztylet,\n11 Pierścieni Konstancjum\n\nZyskujesz atrybut: \"Fucha Łotra\":\n\nFucha Łotra:\nDzięki swojemu obeznaniu w przestępczym podświatku jesteś w stanie z łatwością znaleźć zlecenia kradzieży, włamań, sabotarzów, wymuszeń czy nawet mordu dla swojej drużyny. Dokładną naturę zlecenia ustala MG.",
       "hoverText": "",
-      "fi": 11.11,
-      "theta": 4.1,
+      "fi": 11.45,
+      "theta": 6.6,
       "requires": [],
       "cost": 2,
       "temperature": 6000,
@@ -2872,8 +2872,8 @@
       "name": "Rzemieślnik",
       "desc": "Być może kiedyś w twoim posiadaniu znajował się warsztat, albo udało ci się znaleźć pracę w roli pomocnika w cudzym.\n\nZyskujesz poziom doświadczenia w umiejętności majsterkowanie.\n\nZyskujesz przedmioty:\nSkromny Zestaw Startowy,\nMłot Bojowy,\nMłotek,\nPiła,\n25 Gwoździ,\n12 pierścieni konstancjum\n\nZyskujesz atrybut: \"Były Członek Cechu Rzemieślniczego\":\n\nByły Członek Cechu Rzemieślniczego:\nByłeś członkiem cechu rzemieślniczego. Znasz dobrych rzemieślników, którzy są w stanie wykonać dla ciebie przedmioty takie jak bronie, tarcze, zbroje czy narzędzia za 4/5 ceny rynkowej (zaokr. w górę). Dodatkowo znajomości te, w połączeniu z twoimi umiejętnościami pozwalają ci łatwo zatrudnić się na krótki okres czasu jako wyższy asystent w warsztacie za 3 nitki za 5 godzin ciężkiej pracy.",
       "hoverText": "",
-      "fi": 8.4,
-      "theta": 6.260000000000001,
+      "fi": 10.570000000000002,
+      "theta": 7.559999999999999,
       "requires": [],
       "cost": 2,
       "temperature": 6000,
@@ -2927,8 +2927,8 @@
       "name": "Początkujący Najemnik",
       "desc": "Przez pewien czas twoim zajęciem była ochrona miejscowości, kupców czy innych miejsc, za których ochronę inni byli gotowi Ci zapłacić bądź wykonałeś kilka zleceń na pozbycie się istot wyjętych spod prawa.\n\nZyskujesz poziom doświadczenia w umiejętności siła.\n\nZyskujesz przedmioty:\nSkromny Zestaw Startowy,\nPełna Przeszywanica,\nWłócznia,\n5 pierścieni konstancjum\n\nZyskujesz atrybut: \"Źródło Kontraktów Najemnika\":\n\nŹródło Kontraktów Najemnika:\nWiesz, gdzie znaleźć pracę dla siebie i swoich współpracowników. Możesz znaleźć stałą, bezpieczną pracę jako stróż, strażnik lub odstraszacz rabusi, płatną 4 nitki na osobę za pięć godzin pracy.\nAlternatywnie w każdym zamieszkanym miejscu jesteś w stanie znaleźć niebezpieczne zlecenie, którego wartość i naturę określa MG.",
       "hoverText": "",
-      "fi": 8.4,
-      "theta": 9.74,
+      "fi": 13.119999999999997,
+      "theta": 9.02,
       "requires": [],
       "cost": 2,
       "temperature": 6000,
@@ -2972,8 +2972,8 @@
       "name": "Wędrowny Trubadur",
       "desc": "Dzięki swojemu talentowi muzycznemu lub aktorskiemu udało Ci się utrzymywać z rozbawiania tłumów w tawernach czy na ulicach.\n\nZyskujesz poziom doświadczenia w umiejętności Instynkt.\n\nZyskujesz przedmioty:\nPorządny zestaw startowy,\nLekki Instrument Muzyczny, na którym potrafisz grać,\nZestaw aktora,\nMiecz Krótki,\n11 pierścieni konstancjum\n\nZyskujesz atrybut: \"Grajek\":\n\nGrajek:\nDzięki twojemu talentowi muzycznemu możesz liczyć na zarobek grając na ulicach. Za każde 5 godzin grania na ulicach zyskujesz 1d6-2 nitek. Ujemna liczba w rzucie oznacza negatywną aprobatę dla twojej sztuki i o ile nie powoduje straty pieniędzy oznacza otrzymanie 1 punktu zwykłych obrażeń. Dodatkowo możesz próbować przekonać właściciela tawerny, by wynajął twoją drużynę do zabawiania gości. Szczegóły takiego kontraktu ustala MG.",
       "hoverText": "",
-      "fi": 14.489999999999998,
-      "theta": 4.87,
+      "fi": 12.75,
+      "theta": 6.699999999999999,
       "requires": [],
       "cost": 2,
       "temperature": 6000,
@@ -3016,8 +3016,8 @@
       "name": "Zielarz",
       "desc": "Przez jakiś czas twoim źródłem utrzymania było leczenie stworzeń za pomocą tanich leków i ziół.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna.\n\n\nZyskujesz przedmioty:\nSkromny Zestaw Startowy,\n16 Pierścieni Konstancjum,\nZestaw Zielarza,\nProsty Sztylet\n\nZyskujesz atrybut: \"Wiedza Zielarza\"\n\nMożesz zatrudnić się jako zielarz w lecznicy zarabiając 2 nitki konstancjum za 5 godzin pracy. Możesz także szukać ziół poza miastem. Za każdą godzinę szukania wykonaj test wiedzy medycznej. Wynik testu to wartość ilości znalezionych ziół w nitkach konstancjum. Po znalezieniu ziół o wartości 36 nitek dodaj do swojego ekwipunku przedmiot \"Zioła Lecznicze\". Jeżeli inni członkowie twojej drużyny pomagają Ci w poszukiwaniach możesz (ale nie musisz) przerzucić kość improwizacji testu raz za każdą pomagającą osobę, zatrzymując przerzucony wynik.",
       "hoverText": "",
-      "fi": 14.489999999999998,
-      "theta": 11.13,
+      "fi": 10.76,
+      "theta": 8.840000000000002,
       "requires": [],
       "cost": 2,
       "temperature": 6000,
@@ -3061,8 +3061,8 @@
       "name": "Upadły Szlachcic",
       "desc": "Niegdyś szczęśliwe urodzenie dało ci być członkiem arystokratycznej rodziny, jednakże udało Ci się stracić prawie wszystkie posiadłości i tytuł.\n\nZyskujesz dwa poziomy doświadczenia w wybranych umiejętnościach.\n\nZyskujesz przedmioty:\nPorządny zestaw startowy,\nMiecz krótki,\n60 pierścieni konstancjum\n\nZyskujesz atrybut: \"Obeznanie w Polityce\":\n\nObeznanie w Polityce:\nWiesz wiele na temat każdego regionu Imperium i nie musisz wykonywać testów na wiedzę odnośnie podstawowych informacji na ich temat. Dodatkowo jesteś w stanie zawsze zidentyfikować miejsce przebywania bogatych i wpływowych ludzi w okolicy.",
       "hoverText": "",
-      "fi": 14.159999999999998,
-      "theta": 14.660000000000002,
+      "fi": 13.5,
+      "theta": 10.600000000000001,
       "requires": [],
       "cost": 3,
       "temperature": 6000,
@@ -3096,8 +3096,8 @@
       "name": "Zubożały Kupiec",
       "desc": "Pomimo pochodzenia z rodziny kupieckiej lub trudzenia się tym niezwykle dochodowym, lecz niebezpicznym fachem, udało ci się utracić wszystko z wyjątkiem tego co masz na sobie oraz jednej srebrnej monety.\n\nZyskujesz poziom doświadczenia w jednej wybranej umiejętności.\n\nZyskujesz przedmioty:\nPorządny zestaw startowy,\n1 sztuka konstancjum\n\nZyskujesz atrybut \"Dola Zubożałego Kupca\":\n\nDola Zubożałego Kupca:\n\nMasz umiejętności z czasów gdy handel był bliski twojemu życiu: zawsze jesteś w stanie stwierdzić czy sztuka, pierścień lub nitka jest fałśzywa lub niewymiarowa. Znasz także ceny rynkowe wszystkich powszechnie sprzedawanych przedmiotów. Poza umiejętnościami z tamtego okresu masz także wrogów: do twojego upadku mogli przyczynić się bogaci i wpływowi rywale lub niebezpieczni bandyci, których od tego czasu wystrzegasz się jak ognia. Wpleć swoich rywali w historię swojej postaci. Gdy wykonujesz test w konflikcie przeciwko swoim rywalom zyskujesz +1 do takowego testu, z racji na znajomość ich metod działania.",
       "hoverText": "",
-      "fi": 14.159999999999998,
-      "theta": 1.34,
+      "fi": 12.31,
+      "theta": 5.02,
       "requires": [],
       "cost": 3,
       "temperature": 6000,
@@ -3131,8 +3131,8 @@
       "name": "Zaklinacz",
       "desc": "Dane Ci było studiować potężne zaklęte artefakty lub informacje na ich temat. Dało Ci to możliwość bardzo rudamentarnego zaklinania przedmiotów.\n\nZyskujesz dwa poziomy doświadczenia w umiejętności Zaklinanie.\n\nZyskujesz przedmioty:\nPorządny zestaw startowy,\nProsty Sztylet,\nMagiczna Soczewka,\n25 pierścieni konstancjum\n\n\nZyskujesz atrybut: \"Początkujący Zaklinacz\":\n\nPoczątkujący Zaklinacz:\nWykonując test zaklinania możesz, w trakcie co najmniej godzinnego odpoczynku tymczasowo zaklnąć jeden z posiadanych przedmiotów:\n\nMożesz zaklnąć broń by zadawała zwiększone obrażenia. Zużyj liczbę punktów energii równą minimalnej ilości zadawanych obrażeń przez najsilniejszy typ ataku bronią. Następnie wykonaj test zaklinania. Każdy tryb ataku tą bronią przez następne 25 godzin zadaje dodatkowo jedną piątą wyniku testu (zaokrągloną w dół) obrażeń każdego zadawanego typu obrażeń.\n\nMożesz zaklnąć pancerz by lekko odpychał nadchodzące ciosy utrudniając celne trafienia. Zużyj liczbę punktów energii równą poziomowi pancerza zaklinanego elementu pancerza. Następnie wykonaj test zaklinania. Na następne 25 godzin ten element pancerza ma zwiększony poziom pancerza o jedną piątą wyniku testu (zaokrągloną w dół).",
       "hoverText": "",
-      "fi": 6.340000000000001,
-      "theta": 3.8900000000000006,
+      "fi": 9.26,
+      "theta": 6.78,
       "requires": [],
       "cost": 3,
       "temperature": 6000,
@@ -3176,8 +3176,8 @@
       "name": "Uczony",
       "desc": "Twoje nauki poskutkowały zostaniem początkującym ekspertem w jednej wąskiej dziedzinie wiedzy.\n\nZyskujesz poziom doświadczenia w wybranej umiejętności oraz poziom doświadczenia w umiejętności Wiedza Powszechna.\n\nZyakujesz przedmioty:\nPorządny Zestaw Startowy,\nKopia autorskich prac,\nProca,\n25 pierścieni konstancjum\n\nZyskujesz atrybut: \"Dorobek naukowy\":\n\nDorobek naukowy:\nWybierasz jedną bardzo specyficzną dziedzinę powiązaną z jedną z swoich umiejętności. Nie musisz wykonywać testów, by ocenić czy Twoja postać zna informacje dotyczące tej dziedziny, jeżeli miała okazje dowiedzieć się ich przed przygodą. (Przykaładowo jeżeli wybierzesz dziedzinę związaną z alchemią nie musisz wykonywać testów na alchemię w celu sprawdzenia czy wiesz jak wykonać ogień alchemiczny. Jednakże nie oznacza to, iż potrafisz wykonać każdy alchemiczny przedmiot - jedynie (bądź aż), wiesz jak go wykonać.",
       "hoverText": "",
-      "fi": 19,
-      "theta": 8,
+      "fi": 14.93,
+      "theta": 7.38,
       "requires": [],
       "cost": 3,
       "temperature": 6000,
@@ -3226,8 +3226,8 @@
       "name": "Alchemik",
       "desc": "Od zawsze interesowały Cię różne zabawnie działające płyny produkowane przez alchemików i dopisało Ci szczęście bycia na tyle bogatym, by móc samemu pogrzebać w alchemii.\n\nZyskujesz dwa poziomy doświadczenia w umiejętności Alchemia.\n\nZyskujesz przedmioty:\nPorządny Zestaw Startowy,\nTrzy fiolki Ognia Alchemicznego,\nProca kosturowa,\n30 pierścieni konstancjum\n\nZyskujesz atrybut: \"Początkujący Alchemik Bojowy\"\n\nPoczątkujący Alchemik Bojowy:\nUczysz się jak wytwarzać ogień alchemiczny z dostępnych na rynku minerałów. W ciągu godziny jesteś w stanie wypełnić fiolkę ogniem alchemicznym płacąc 2 pierścienie konstancjum za składniki. Możesz się także zatrudnić w pracowni alchemicznej w każdym dużym mieście zarabiając 4 nitki konstancjum za każde 5 godzin pracy. Dodatkowo twój maksymalny i efektywny zasięg rzucania flaszek i fiolek zwiększa się o 2 oraz gdy używasz flaszek i fiolek jako amunicji do procy kosturowej podstawowa celność wykonanego tą bronią ataku nie może być mniejsza niz 0.",
       "hoverText": "",
-      "fi": 6.340000000000001,
-      "theta": 12.11,
+      "fi": 9.99,
+      "theta": 10.23,
       "requires": [],
       "cost": 3,
       "temperature": 6000,
@@ -3449,8 +3449,8 @@
       "name": "Analfabeta",
       "desc": "W trakcie swojej przeszłości twoja postać nigdy nie nauczyła się czytać ani pisać. W tym czasie robiła inne rzeczy.\n\n(Jeżeli nie posiadasz tego atutu twoja postać potrafi czytać i pisać w powszechenj mowie)",
       "hoverText": "",
-      "fi": 31,
-      "theta": 13.000000000000004,
+      "fi": 35,
+      "theta": 14.6,
       "requires": [],
       "cost": -2,
       "temperature": 6000,
@@ -3462,7 +3462,7 @@
       "name": "Czytelnik",
       "desc": "Potrafisz czytać w powszechnej mowie. (Jeżeli nie masz atutu „Anaflabeta” twoja postać potrafi czytać tekst zapisany w powszechnej mowie bez posiadania tego atutu).",
       "hoverText": "",
-      "fi": 32,
+      "fi": 35,
       "theta": 16,
       "requires": [
         "524"
@@ -3477,7 +3477,7 @@
       "name": "Piśmienny",
       "desc": "Twoja postać potrafi pisać tekst w powszechnej mowie.  (Jeżeli nie masz atutu „Anaflabeta” twoja postać potrafi pisać w powszechnej mowie bez posiadania tego atutu).",
       "hoverText": "",
-      "fi": 31,
+      "fi": 34,
       "theta": 18,
       "requires": [
         "145"
@@ -3493,7 +3493,7 @@
       "desc": "Skupiasz się na nauce walki o swój los do samego końca.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności \"Determinacja\".\n\nZyskujesz atrybut: \"Zmotywowanie\":\n\nZmotywowanie:\nJesteś w stanie zużyć jeden punkt motywacji by przerzucić kość wykorzystywaną do określenia wyniku wykonywanego przez ciebie testu lub kości odpowiedzialnych za zadawane bronią obrażenia. Wynikiem rzutu kością staje się wynik nowego rzutu, a stary nie ma znaczenia. Możesz przerzucić wynik jednej kości kilkukrotnie, wydając kolejne punkty motywacji. \n\nMożesz mieć maksymalnie 5 punktów motywacji.\n\nPo pełnym odpoczynku możesz zyskać jeden punkt motywacji (twój wybór). Jeżeli zyskasz w ten sposób punkt motywacji po odpoczynku, następny możesz w ten sposób zdobyć dopiero po pięciu kolejnych odpoczynkach.\n\nDodatkowo MG może przyznać twojej postaci punkt(y) motywacji gdy twoja postać osiągnie swój cel.",
       "hoverText": "",
       "fi": -6,
-      "theta": 33,
+      "theta": 35,
       "requires": [
         "200"
       ],
@@ -3562,7 +3562,7 @@
       "desc": "Przeżyte przez ciebie przygody znacznie cię wzmocniły. \n\nZwiększ wybraną charakterystykę o 1.",
       "hoverText": "",
       "fi": 0,
-      "theta": 36,
+      "theta": 43.99999999999999,
       "requires": [
         "1009"
       ],
@@ -3583,14 +3583,9 @@
       "desc": "Podróżowanie stało się dla ciebie powszednie. Dni pełne rozwiązywania niebezpiecznych problemów i zadań pozwalają ci rozwijać się w oszałamiającym tępie. \n\nZwyększ wybraną charakterystykę o 2 lub dwie wybrane charakterystyki o 1.",
       "hoverText": "",
       "fi": 0,
-      "theta": 39,
+      "theta": 46,
       "requires": [
-        [
-          "777",
-          "414",
-          "4536",
-          "7778"
-        ]
+        "414"
       ],
       "cost": 7,
       "temperature": 6000,
@@ -3608,10 +3603,10 @@
       "name": "Ukierunkowane Uzdolnienie",
       "desc": "Z racji na zainteresowanie, nakaz lub potrzebę udało ci się rozwinąć niektóre umiejętności w stopniu dużo wyższym niż zwykle.\n\nZyskujesz poziom doświadczenia w dowolnej umiejętności.",
       "hoverText": "",
-      "fi": 7,
+      "fi": 20,
       "theta": 50,
       "requires": [
-        "200"
+        "1"
       ],
       "cost": 1,
       "temperature": 7500,
@@ -3735,8 +3730,8 @@
       "name": "Prosto w Cel",
       "desc": "Udaje Ci się uzyskać dobrą celność przy rzutach bronią miotaną.\n\nZyskujesz jeden poziom wprawy w używaniu broni miotanych.\n\nZyskujesz atrybut „Prosto w Cel”:\n\nProsto w Cel:\nGdy wykonujesz atak w trybie typu „Rzut Bronią” zamiast losować, w którą część ciała trafiasz, możesz to wybrać.",
       "hoverText": "",
-      "fi": 210,
-      "theta": 26.000000000000007,
+      "fi": 119.99999999999999,
+      "theta": 32,
       "requires": [
         "135"
       ],
@@ -3832,8 +3827,8 @@
       "name": "Bij-zabij",
       "desc": "Wojownicy Szkoły Squamy znani są z zadawania śmiertelnych uderzeń zdolnych do dekapitacji czy innych śmiertelnych obrażeń\n\nZyskujesz poziom wprawy w używaniu krótkiej broni drzewcowej.\n\nDodatkowo zyskujesz atrybut „Bij-zabij”:\n\nBij-zabij:\nJeżeli zadasz obrażenia krytyczne możesz wydać 6 punktów energii zanim rzucisz jakimikolwiek kośćmi na obrażenia. Przyjmujesz wtedy maksymalne wartości wszystkich rzucanych kości.",
       "hoverText": "",
-      "fi": 110,
-      "theta": 58,
+      "fi": 72,
+      "theta": 37,
       "requires": [
         "100018",
         "100014"
@@ -3860,8 +3855,8 @@
       "name": "Mistrz Dam-hu",
       "desc": "Dzięki długiemu treningowi stajesz się mistrzem walki bez broni.\n\nZyskujesz jeden poziom wprawy w atakach wykonywanych bez broni oraz w używaniu tarcz.\n\nZdobywasz atrybut:\n\nMistrz Dam‒hu:\nAtrybut ten zastępuja atrybut „Adept Dam‒hu”.\nDo mistrzowskiego stopnia opanowywujesz sztukę bezpiecznego przekierowywania ataków własnymi dłońmi. Każda z twoich dłoni zyskuje +6 bonusu do odbicia i +3 bonusu do blokowania.\n\nDodatkowo wykonywane przez ciebie ataki bez broni zadają 1d10 obrażeń obuchowych.\n\nCo więcej możesz zużyć Punkty Energii, w trakcie deklarowania ataku, by zwiększyć obrażenia obuchowe zadawane przez atak bez broni o połowę liczby wydanych Punktów Energii (zaokrąloną w górę).\n\nJakby tego było mało możesz jeszcze wybrać, w którą część ciała uderzają twoje ataki będące atakami bez broni, zamiast losować części ciała.",
       "hoverText": "",
-      "fi": 155,
-      "theta": 41,
+      "fi": 92,
+      "theta": 34.49999999999999,
       "requires": [
         "100020"
       ],
@@ -3892,8 +3887,8 @@
       "name": "Postawa Mistrzowska",
       "desc": "Uczysz się mistrzowsko dobrze kontrolować swój chód w walce, dzięki czemu:\n\nZyskujesz poziom wprawy w walce mieczem.\n\nZyskujesz atrybut „Postawa Mistrzowska”:\n\nPostawa Mistrzowska:\nAkcje Uniku, Blokowania, Odbicia i Kontry nie zwiększają swojego kosztu z racji na wielokrotne użycie.",
       "hoverText": "",
-      "fi": 90,
-      "theta": 59.99999999999999,
+      "fi": 59.99999999999999,
+      "theta": 38,
       "requires": [
         "104"
       ],
@@ -3919,8 +3914,8 @@
       "name": "Śmiertelna Celność",
       "desc": "Postanawiasz nauczyć się imprementowania fantastycznie brutalnych technik walki mieczem, co udaje ci się dzięki twojej niezwykłej celności.\n\nZyskujesz poziom wprawy w walce mieczem.\n\nZyskujesz atrybut „Śmiertelna Celność”:\n\nŚmiertelna Celność:\nMożesz wybrać, w którą część ciała trafiasz, gdy atakujesz mieczem, zamiast jej losować.\n\nDodatkowo zadając krytyczne obrażenia od Obrażeń Wewnętrznych możesz zostawić swoją broń w ciele przeciwnika. Uniemożliwia to wykorzystywanie jej do obrony, ale jako akcja ataku możesz wykonać atak zakotwiczoną już w ciele przeciwnika bronią, zawsze trafiając krytycznie, lecz zadając jedynie połowę obrażeń. Jeżeli przeciwnik jest od ciebie o co najmniej jeden rozmiar większy, aby wykonać taki atak musisz dodatkowo wygrać z nim konkurs czasu reakcji, by chwycić zakotwiczony miecz.",
       "hoverText": "",
-      "fi": 90,
-      "theta": 65,
+      "fi": 59.99999999999999,
+      "theta": 40,
       "requires": [
         "964"
       ],
@@ -3946,8 +3941,8 @@
       "name": "Przemykacz",
       "desc": "Nie da się przecenić umiejętności szybkiego i dyskretnego poruszania się po polu bitwy. Stąd ekstensywnie ćwiczysz się w sztuce szybkiego skradania się.\n\nZyskujesz poziom wprawy w używaniu sztyletów.\n\nTwoja szybkość zwiększa się o 3.\n\nDodatkowo zyskujesz dwa poziomy doświadczenia i improwizacji w umiejętności Skradanie Się.\n\nCo więcej zyskujesz atrybut: „Przemykacz”:\n\nPrzemykacz:\nJeżeli poruszasz się w ciemności lub słabym świetle do momentu wejścia w jasne światło otrzymujesz dwa poziomy doświadczenia i improwizacji w umiejętności skradanie się.",
       "hoverText": "",
-      "fi": 25,
-      "theta": 36,
+      "fi": 28,
+      "theta": 32,
       "requires": [
         "122"
       ],
@@ -3988,8 +3983,8 @@
       "name": "Bezbłędna dokładność",
       "desc": "Uczysz się nowych sposobów na odbijanie ataków, dochodząc do mistrzostwa, pozwalającego na przekierowywanie nawet niezwykle szybkich ataków.\n\nZyskujesz poziom wprawy w używaniu sztyletów.\n\nDodatkowo, zyskujesz poziom doświadczenia i improwizacji w umiejętności czas reakcji.\n\nCo więcej zyskujesz atrybut „Bezbłędna Dokładność”:\n\nBezbłędna dokładność:\nMożesz używać sztyletów i mieczy do odbijania ataków dystansowych z broni miotanych i miotających.",
       "hoverText": "",
-      "fi": 35,
-      "theta": 36,
+      "fi": 32,
+      "theta": 32,
       "requires": [
         "121"
       ],
@@ -4025,8 +4020,8 @@
       "name": "Kat",
       "desc": "Uczysz się precyzyjnie kontrolować trejetorię lostu głowicy twojej broni.\n\nZyskujesz poziom wprawy w długich broniach drzewcowych.\n\nZyskujesz atrybut „Kat”:\n\nDzięki swojemu doświadczeniu zamiast losować część ciała, w którą trafi akat wykonany długą bronią drzewcową, możesz ją wybrać.\n\nDodatkowo, jeżeli zadasz obrażenia krytyczne równe połowie wytrzymałości istoty i istota jest pochwycona przez twojego sojusznika lub unieruchomiona, możesz zdecydować, iż trafiona przez ciebie kończyna lub głowa została odrąbana. W przypadku odrąbania głowy oznacza to natychmiastową śmierć celu.",
       "hoverText": "",
-      "fi": 50,
-      "theta": 70,
+      "fi": 43,
+      "theta": 42,
       "requires": [
         "129",
         "9468"
@@ -4053,8 +4048,8 @@
       "name": "Żniwiarz",
       "desc": "Dzięki swojemu treningowi możesz z łatwością jesteś w stanie przerzynać się przez duże ilości słąbych przeciwników.\n\nZyskujesz poziom wprawy w używaniu długich broni drzewcowych.\n\nZyskujesz atrybut „Żniwiarz”:\n\nŻniwiarz:\nGdy zabijesz istotę atakiem wykonanym długą bronią drzewcową, lub dowolną inną bronią białą o zasięgu większym niż 1 jednostka, możesz zużyć 2 Punkty Energii by wykonać darmową akcję ataku w znajdujący się w zasięgu broni inny cel. Jednakże celność drugiego ataku jest mniejsza o 1d4.",
       "hoverText": "",
-      "fi": 52.000000000000014,
-      "theta": 55,
+      "fi": 43,
+      "theta": 35,
       "requires": [
         "130"
       ],
@@ -4080,8 +4075,8 @@
       "name": "Mistrz Broni Miotanej",
       "desc": "TBD",
       "hoverText": "",
-      "fi": 210,
-      "theta": 35,
+      "fi": 119.99999999999999,
+      "theta": 38,
       "requires": [
         "453",
         "97848"
@@ -4096,8 +4091,8 @@
       "name": "Daleki Rzut",
       "desc": "TBD",
       "hoverText": "",
-      "fi": 212,
-      "theta": 32,
+      "fi": 121,
+      "theta": 36,
       "requires": [
         "137"
       ],
@@ -4111,8 +4106,8 @@
       "name": "Bliski Rzut",
       "desc": "Uczysz się używać efektywnie broni miotanej z bliska, co pozwala ci dokonywać przerażających obrażeń tym typem broni w walce wręcz.\n\nZyskujesz poziom wprawy w używaniu broni miotanej.\n\nZyskujesz atrybut „Rzut z Bliska”:\n\nRzut z Bliska:\nMinimalny zasięg rzutu bronią, wynosi 0 dla wyszstkich wykonywanych przez ciebie ataków.",
       "hoverText": "",
-      "fi": 208.00000000000006,
-      "theta": 32,
+      "fi": 119,
+      "theta": 36,
       "requires": [
         "137"
       ],
@@ -4138,8 +4133,8 @@
       "name": "Nie do Zdarcia",
       "desc": "Uczysz się jak strzelać w szybki i nie obciążajacy sposób.\n\nZyskujesz poziom doświadczenia w umiejętności zręczność.\n\nDodatkowo zyskujesz atrybut „Nie do Zdarcia”:\n\nNie do Zdarcia:\nKiedy wykonujesz akcje ataku bronią miotającą nie bierz jej pod uwagi w uwzględnianiu kosztu następnej akcji ataku (czyli atakowanie bronią miotającą nie zwiększa kosztu kolejnych akcji ataku).",
       "hoverText": "",
-      "fi": 174,
-      "theta": 32.5,
+      "fi": 102,
+      "theta": 35,
       "requires": [
         "133"
       ],
@@ -4165,8 +4160,8 @@
       "name": "Wielostrzał",
       "desc": "Strzelanie kilkoma pociskami naraz jest bardzo niecelne, jednakże może być opłacalne, przy dużej ilości przeciwników.\n\nZyskujesz poziom wprawy w używaniu broni miotającej.\n\nZyskujesz atrybut „Wielostrzał”:\nNauczono cię używać broni miotającej do wystrzeliwania  kilku pocisków jednocześnie. Każdy załadowany pocisk zmniejsza zadawane przez atak obrażenia o 1. Wybierz cel ataku. Następnie rozlosuj, w którym kierunku od celu poleci każdy pocisk. Każdy pocisk ląduje 1d4 - 1 jednostek od celu. Jeżeli pocisk ma wylądować w twojej pozycji, lub bliżej ciebie niż celu, ląduje on pod twoimi nogami, niezadając żadnej szkody. W przeciwnym razie jeżeli pocisk wylądował 0.5 jednostki od istoty lub bliżej trafiasz w obręb tej istoty.",
       "hoverText": "",
-      "fi": 174.99999999999997,
-      "theta": 35,
+      "fi": 102.5,
+      "theta": 36.5,
       "requires": [
         "7654"
       ],
@@ -4192,8 +4187,8 @@
       "name": "Procarz",
       "desc": "Opanowywujesz w stopniu adekwatnym posługiwanie się tanimi, lecz wymagająceymi wielkiej wprawy procami.\n\nZyskujesz przedmioty: Proca, 10 stalowych kulek, świetnie nadającyh się na amunicję do procy.\n\nZyskujesz atrybut „Procarz”:\n\nProcarz:\nJeżeli podstawowa celność trybu ataku z broni miotającej wykonywanego przez ciebie jest mniejsza niż 1, gdy wykonujesz taki atak przyjmij, iż celność podstawowa tego trybu jest równa 1.",
       "hoverText": "",
-      "fi": 180,
-      "theta": 32.5,
+      "fi": 105,
+      "theta": 35,
       "requires": [
         "100011"
       ],
@@ -4218,8 +4213,8 @@
       "name": "Smocze Zdrowie",
       "desc": "Według podań smoki były tak potężne, iż nawet najpotężniejszy cios nie mógł doprowadzić do ich kresu. Dbając o siebie udaje ci się wyrobić przypominający tą cechę owych legendarnych stworzeń poziom wytrzymałości.\n\nZyskujesz jeden poziom doświadczenia i improwizacji w umiejętności Wigor.\n\nZyskujesz atrybut „Smocze Zdrowie”:\n\nSmocze Zdrowie:\nJeżeli akcja zada ci śmiertelną ilość obrażeń krytycznych gdy nie masz żadnych punktów obrażeń krytycznych, zamień tyle otrzymanych obrażeń krytycznych na zwykłe obrażenia, by być o jeden punkt obrażeń krytycznych od śmierci.",
       "hoverText": "",
-      "fi": 10,
-      "theta": 33,
+      "fi": 5,
+      "theta": 38,
       "requires": [
         "200"
       ],
@@ -4250,8 +4245,8 @@
       "name": "Nie do Zabicia",
       "desc": "Łączysz wiele naturalnych i mistycznych sposobów na zwiększenie swojej wytrzymałości wstrząsające obrażenia.\n\nZyskujesz jeden poziom Formy.\n\nZyskujesz jeden poziom doświadczenia i improwizacji w umiejętności Wigor.\n\nZyskujesz atrybut „Nie do Zabicia”:\n\nNie do Zabicia:\nGdy masz otrzymać śmiertelne obrażenia, możesz zużyć wszystkie posiadane Punkty Energii oraz Punkty Akcji w celu zmienienia otrzymanych punktów obrażeń krytycznych na zwykłe obrażenia.",
       "hoverText": "",
-      "fi": 17,
-      "theta": 35,
+      "fi": 10,
+      "theta": 32,
       "requires": [
         "4536"
       ],
@@ -4287,8 +4282,8 @@
       "name": "Mistrzowski Podróżnik",
       "desc": "Po dłuższym okresie podróżowania udało ci się nabyć bezcenne doświadczenie posiadane przez garstkę istot na całym świecie. \n\nZwyększ wybraną charakterystykę o 2 lub dwie wybrane charakterystyki o 1.",
       "hoverText": "",
-      "fi": 0,
-      "theta": 48,
+      "fi": 1,
+      "theta": 50,
       "requires": [
         "99"
       ],
@@ -4308,10 +4303,13 @@
       "name": "Niestrudzoność Wiwerny",
       "desc": "Uczysz się forsowania się w dowolnej wymagającej tego sytuacji.\n\nZyskujesz poziom doświadcznia i improwizacji w umiejętności czas reakcji.\n\nZyskujesz atrybut „Niestrudzoność Wiwerny”:\n\nNiestrudzoność Wiwerny:\nMożesz w dowolnym momencie wydać Punkt(y) Energii, by zyskać Punkt(y) Akcji. Za każdy wydany Punkt Energii zyskujesz Punkt Akcji.",
       "hoverText": "",
-      "fi": 9,
-      "theta": 28,
+      "fi": 6,
+      "theta": 47,
       "requires": [
-        "200"
+        [
+          "99",
+          "200"
+        ]
       ],
       "cost": 2,
       "temperature": 6000,
@@ -4340,8 +4338,8 @@
       "name": "Nie do Zamęczenia",
       "desc": "Dzięki mieszance medytacji i badania granic swoich możliwości uczysz się aktywnie działać do samego końca.\n\nZyskujesz poziom doświadcznia i improwizacji w umiejętności czas reakcji.\n\nZyskujesz jeden poziom Bystrości.\n\nZyskujesz atrybut „Nie do Zamęczenia”:\nGdy masz co najmniej jeden Punkt Energii, możesz wydać wszystkie posiadane Punkty Energii, by odzyskać Punkty Akcji w ilości równej poziomowi twojej Bystrości.",
       "hoverText": "",
-      "fi": 13.000000000000004,
-      "theta": 31,
+      "fi": 13.000000000000002,
+      "theta": 50,
       "requires": [
         "7778"
       ],
@@ -4497,8 +4495,8 @@
       "name": "Mistrz Walki",
       "desc": "Dzięki ekstensywnemu treningowi udało ci się osiągnąć mistrzostwo w przynajmniej jednej szkole walki. Jednakże nawet mistrz może osiągnąć więcej wkładając jeszcze więcej wysiłku w regularny trening.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.\n\nDodatkowo zyskujesz atrybut „Misztrz Walki”:\n\nMistrz Walki:\nWykonując ataki lub odbicia dowolną bronią przyjmujesz, iż masz przynajmniej 1 poziom wprawy w każdym typie broni (1d6).",
       "hoverText": "",
-      "fi": 180,
-      "theta": 58,
+      "fi": 75.00000000000001,
+      "theta": 52.00000000000001,
       "requires": [
         [
           "124",
@@ -4527,8 +4525,8 @@
       "name": "Trening Siłowy",
       "desc": "Ćwiczysz swoje mięśnie pod kątem zwiększenia ich siły tak, aby dzierżona przez ciebie broń była w twoich ©ekach lekka i dokładna jak pióro cenionego pisarza.\n\nZyskujesz jeden poziom doświadczenia i improwizacji w umiejętności Siła.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
       "hoverText": "",
-      "fi": 174.99999999999997,
-      "theta": 66.99999999999999,
+      "fi": 73,
+      "theta": 56,
       "requires": [
         "95"
       ],
@@ -4553,8 +4551,8 @@
       "name": "Trening Strategiczny",
       "desc": "Czytasz podręczniki o fechtunku poszerzając swoją wiedzę na temat technik bojowych.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Widza Powszechna.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
       "hoverText": "",
-      "fi": 185,
-      "theta": 66.99999999999999,
+      "fi": 77.00000000000001,
+      "theta": 56,
       "requires": [
         "95"
       ],
@@ -4579,8 +4577,8 @@
       "name": "Trening Wiedzy Tajemnej",
       "desc": "Studiujesz techniki walki magów, czarodzieji, okultystów, fenomenów i czarnoksiężników. Nauka ta pozwala ci lepiej zrozumieć jak atakować istoty nawet najzwyklejszą bronią.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności wiedza tajemna.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
       "hoverText": "",
-      "fi": 210,
-      "theta": 67.2,
+      "fi": 85,
+      "theta": 57,
       "requires": [
         "64363"
       ],
@@ -4605,8 +4603,8 @@
       "name": "Trening Anatomii",
       "desc": "Czytasz księgi na temat anatomii z nadzieją zidentyfikowania słachych punktów istot i adekwatnej modyfikacji swojej techniki walki.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Medyczna.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
       "hoverText": "",
-      "fi": 185,
-      "theta": 71,
+      "fi": 77.00000000000001,
+      "theta": 58,
       "requires": [
         "2525"
       ],
@@ -4631,8 +4629,8 @@
       "name": "Trening Zręcznościowy",
       "desc": "Ćwiczysz swoją koordynację ruchową, by jeszcze lepiej kontrolować swoją broń w trakcie uderzenia.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności zręczność.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
       "hoverText": "",
-      "fi": 145.00000000000003,
-      "theta": 67.2,
+      "fi": 65,
+      "theta": 57,
       "requires": [
         "6356"
       ],
@@ -4654,11 +4652,11 @@
     },
     {
       "id": "5363",
-      "name": "Trening Czasu Reakcji",
+      "name": "Trening Reakcji",
       "desc": "Ćwiczysz swój czas reakcji, by móc dostosowywać trejektorię swojej broni do ruchów, które wykonuje przeciwnik w trakcie gdy ty go atakujesz.\n\nZyskujesz poziom doświadczenia i improwaizacji w umiejętności czas reakcji.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
       "hoverText": "",
-      "fi": 174.99999999999997,
-      "theta": 71,
+      "fi": 73,
+      "theta": 58,
       "requires": [
         "6363"
       ],
@@ -4683,8 +4681,8 @@
       "name": "Arcymistrz Walki",
       "desc": "Udało ci się poświęcić niezliczone godziny na trening swojego ciała i umysłu z intencją poprawy swoich umiejętności walki bronią czy walki bez broni. W tym czasie udało ci się także zebrać wiele różnych doświadczeń i nauczyć się pozwiązanych z treningiem umiejętności.\n\nZyskujesz poizom doświadczenia i improwizacji w dowolnej umiejętności.\n\nDodatkowo zyskujesz atrybut „Arcymisztrz Walki”:\n\nArcymistrz Walki:\nWykonując ataki lub odbicia dowolną bronią przyjmujesz, iż masz przynajmniej 5 poziomów wprawy w każdym typie broni (1d12).\n\nDodatkowo, możesz poświęcić pełen odpoczynek na studiowanie szkoły walki. Jeżeli tak zrobisz tymczasowo zyskujesz jeden atrybut z drzewka szkoły walki na następne 25 godzin.",
       "hoverText": "",
-      "fi": 180,
-      "theta": 80,
+      "fi": 75.00000000000001,
+      "theta": 62,
       "requires": [
         "5363",
         "53534"
@@ -4717,7 +4715,7 @@
       "desc": "Walka, przeszukiwanie cudzych pomieszczeń czy próby dogadania się z pozoru nieprzekonywalnymi istotami to twój lep powszedni. Teraz mało co może cię zaskoczyć.\n\nZwiększ poziom dowolnej charakterystyki o 1.",
       "hoverText": "",
       "fi": 0,
-      "theta": 43.00000000000001,
+      "theta": 48,
       "requires": [
         "6312"
       ],
@@ -4737,8 +4735,8 @@
       "name": "Moc Świeżej Krwi",
       "desc": "Świeża krew daje ci energię, którą uczysz się wykorzystywać w ten sam sposób co energię magów czy czarodzieji.\n\nZyskujesz atrybut „Moc Świeżej Krwi”:\nGdy zdobywasz Punkt Mocy Krwi zyskujesz Punkt Energii. Możesz także wydać Punkt Mocy Krwi by odzyskać 1d4 Punktów Energii.",
       "hoverText": "",
-      "fi": 54,
-      "theta": 21.999999999999996,
+      "fi": 51,
+      "theta": 17.5,
       "requires": [
         "674"
       ],
@@ -4759,8 +4757,8 @@
       "name": "Pijawka",
       "desc": "Uczysz się ignorować uczucie sytości krwią i pić tyle ile tylko możesz.\n\nZyskujesz atrybut: „Worek Krwi”:\nMaksymalna ilość Punktów Mocy Krwi, które możesz posiadać równa jest twojej Formie.",
       "hoverText": "",
-      "fi": 46,
-      "theta": 16,
+      "fi": 49,
+      "theta": 15.25,
       "requires": [
         "100003"
       ],
@@ -4781,8 +4779,8 @@
       "name": "Trupojad",
       "desc": "Desperackie czasy zmuszają czasami do desperackich czynów. W twoim przypadku jest to pożywianie się krwią (niedawno) zmarłych istot.\n\nZyskujesz atrybut: „Trupojad”:\nZyskuejsz dostęp do akcji posiil się Truchłem (koszt 7 PA): Możesz uzyskać jeden Punkt Mocy Krwi posilając się krwią stworzenia, zmarłego nie więcej niż 1 minutę (6 tur) temu. Akcję tą możesz wykonać do pięciu razy na zmarłej świadomej istocie, raz małym zmartłym zwierzęciu i do dziesięciu razy na dużym zmarłym zwierzęciu.",
       "hoverText": "",
-      "fi": 55,
-      "theta": 19,
+      "fi": 51.5,
+      "theta": 16.5,
       "requires": [
         "647"
       ],
@@ -4803,8 +4801,8 @@
       "name": "Wampiryczna Regeneracja",
       "desc": "Uczysz się trawić posiadaną moc krwi w celu szybszej regeneracji.\n\nZyskujesz atrybut: „Wampiryczna Regeneracja”:\n\nWampiryczna Regeneracja:\nGdy masz Punkty Mocy Krwi natychmiastowo zmniejszasz poziom wykrwawienia o ilość posiadanych Punktów Mocy Krwi lub do zera. Za każdy wyleczony w ten sposób poziom wykrwawienia tracisz jeden Punkt Mocy Krwi.\n\nDodatkowo w dowolnym momencie możesz wydać jeden Punkt Mocy Krwi by usunąć jeden Punkt Zaleczonych Obrażeń.",
       "hoverText": "",
-      "fi": 46,
-      "theta": 21.999999999999996,
+      "fi": 49.20000000000001,
+      "theta": 18,
       "requires": [
         "6423"
       ],
@@ -4825,8 +4823,8 @@
       "name": "Żywienie",
       "desc": "Uczysz się zadawać rany, z których łątwo ci się żywić.\n\nZyskujesz atrybut „Żywienie”:\n\nŻywienie:\nJako darmowa akcja, raz na turę, możesz zadać 1 punkt obrażeń krytycznych typu głębokie rany pochwyconemu lub obezwładnionemu przez siebie lub sojusznika stworzeniu.",
       "hoverText": "",
-      "fi": 54,
-      "theta": 16,
+      "fi": 51,
+      "theta": 15.25,
       "requires": [
         "100003"
       ],
@@ -4847,8 +4845,8 @@
       "name": "Rosły Wampir",
       "desc": "Wampiry, które przeżyją pierwsze kilka tygodni swojej egzystencji nazywane są rosłymi wampirami. Mniej więcej po tym czasie ukazuje się cała gama negatywnych i pozytywnych efektów związanych z byciem Wampirem.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętnościach: siła, wigor, zręczność, czas reakcji, spostrzegawczość i skradanie się.\n\nZyskujesz atrybut: „Rosły Wampir”:\nTwoja blada skóra jest niezwykle wrażliwa na światło. Przez każdą minutę, gdy w trakcie dnia masz odsłonięty kawałek skóry wielkości swojej pięści lub większy zyskujesz jeden punkt obrażeń krytycznych od temperatury na minutę (6 tur).\n\nDodatkowo otrzymujesz jeden punkt krytycznych obrażeń wewnętrznych za każdym razem gdy wejdziesz na lub zaczniesz swoją turę w przestrzeni chronionej pentagramem osłabiającym magię przywoływania.\n",
       "hoverText": "",
-      "fi": 50.42000000000001,
-      "theta": 29,
+      "fi": 50,
+      "theta": 19,
       "requires": [
         [
           "745",
@@ -4932,8 +4930,8 @@
       "name": "Kolekcjoner",
       "desc": "Czasami trzeba oszczędzać na czarną godzinę. Uczysz się zaspokajać swój głód krwi pijąc mało świeżą krew z fiolek:\n\nZyskujesz atrybut: „Kolekcjoner”:\nJeżeli nie masz Punktów Mocy Krwi, możesz zyskać jeden Punkt Mocy Krwi konsumując 10 Fiolek Świeżej Krwi.",
       "hoverText": "",
-      "fi": 45,
-      "theta": 19,
+      "fi": 48.5,
+      "theta": 16.5,
       "requires": [
         "532"
       ],
@@ -4955,13 +4953,275 @@
       "label": "origins",
       "max": 1,
       "members": [
+        "100002",
+        "-1001",
+        "100001",
+        "-1003",
         "-1004",
         "-1002",
-        "-1003",
-        "100002",
-        "100001",
-        "-1005",
-        "-1001"
+        "-1005"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "1",
+      "center": {
+        "fi": 24,
+        "theta": 10
+      },
+      "label": {
+        "text": "Pochodzenia",
+        "fi": 24,
+        "theta": 12
+      },
+      "clickArea": [
+        {
+          "fiMin": 22,
+          "fiMax": 25,
+          "thetaMin": 8,
+          "thetaMax": 12
+        }
+      ]
+    },
+    {
+      "id": "Przeszłości",
+      "center": {
+        "fi": 12,
+        "theta": 8
+      },
+      "label": {
+        "text": "Przeszłości",
+        "fi": 12.5,
+        "theta": 11.5
+      },
+      "clickArea": [
+        {
+          "fiMin": 8,
+          "fiMax": 16,
+          "thetaMin": 4,
+          "thetaMax": 13
+        }
+      ]
+    },
+    {
+      "id": "Sztylety",
+      "center": {
+        "fi": 30,
+        "theta": 32.5
+      },
+      "label": {
+        "text": "Sztylety",
+        "fi": 30,
+        "theta": 36
+      },
+      "clickArea": [
+        {
+          "fiMin": 22.5,
+          "fiMax": 37.5,
+          "thetaMin": 29,
+          "thetaMax": 37
+        }
+      ]
+    },
+    {
+      "id": "Długa Broń Drzewcowa",
+      "center": {
+        "fi": 44,
+        "theta": 36
+      },
+      "label": {
+        "text": "Długa Broń Drzewcowa",
+        "fi": 45,
+        "theta": 43
+      },
+      "clickArea": [
+        {
+          "fiMin": 37.5,
+          "fiMax": 52.5,
+          "thetaMin": 29,
+          "thetaMax": 44
+        }
+      ]
+    },
+    {
+      "id": "Miecze",
+      "center": {
+        "fi": 60,
+        "theta": 35
+      },
+      "label": {
+        "text": "Miecze",
+        "fi": 60,
+        "theta": 41
+      },
+      "clickArea": [
+        {
+          "fiMin": 52.5,
+          "fiMax": 67.5,
+          "thetaMin": 29,
+          "thetaMax": 42
+        }
+      ]
+    },
+    {
+      "id": "Krótka Broń Drzewcowa",
+      "center": {
+        "fi": 75,
+        "theta": 33.5
+      },
+      "label": {
+        "text": "Krótka Broń Drzewcowa",
+        "fi": 75,
+        "theta": 38
+      },
+      "clickArea": [
+        {
+          "fiMin": 67.5,
+          "fiMax": 82.5,
+          "thetaMin": 29,
+          "thetaMax": 39
+        }
+      ]
+    },
+    {
+      "id": "Bez Broni / Tarcze",
+      "center": {
+        "fi": 90,
+        "theta": 34
+      },
+      "label": {
+        "text": "Bez Broni / Tarcze",
+        "fi": 90,
+        "theta": 39
+      },
+      "clickArea": [
+        {
+          "fiMin": 82.5,
+          "fiMax": 97.5,
+          "thetaMin": 29,
+          "thetaMax": 40
+        }
+      ]
+    },
+    {
+      "id": "Broń Miotająca",
+      "center": {
+        "fi": 105,
+        "theta": 35
+      },
+      "label": {
+        "text": "Broń Miotająca",
+        "fi": 105,
+        "theta": 41
+      },
+      "clickArea": [
+        {
+          "fiMin": 97.5,
+          "fiMax": 112.5,
+          "thetaMin": 29,
+          "thetaMax": 42
+        }
+      ]
+    },
+    {
+      "id": "Broń Miotana",
+      "center": {
+        "fi": 120,
+        "theta": 34
+      },
+      "label": {
+        "text": "Broń Miotana",
+        "fi": 120,
+        "theta": 39
+      },
+      "clickArea": [
+        {
+          "fiMin": 112.5,
+          "fiMax": 127.5,
+          "thetaMin": 29,
+          "thetaMax": 40
+        }
+      ]
+    },
+    {
+      "id": "Sztuka Walki Klasycznej",
+      "center": {
+        "fi": 45,
+        "theta": 25
+      },
+      "label": {
+        "text": "Sztuka Walki Klasycznej",
+        "fi": 45,
+        "theta": 26.5
+      },
+      "clickArea": [
+        {
+          "fiMin": 40,
+          "fiMax": 60,
+          "thetaMin": 26,
+          "thetaMax": 29
+        }
+      ]
+    },
+    {
+      "id": "Mistrzostwo w Walce",
+      "center": {
+        "fi": 75,
+        "theta": 57
+      },
+      "label": {
+        "text": "Mistrzostwo w Walce",
+        "fi": 75,
+        "theta": 63
+      },
+      "clickArea": [
+        {
+          "fiMin": 60,
+          "fiMax": 90,
+          "thetaMin": 50,
+          "thetaMax": 64
+        }
+      ]
+    },
+    {
+      "id": "Rozwój Charakterystyk",
+      "center": {
+        "fi": 0,
+        "theta": 41
+      },
+      "label": {
+        "text": "Rozwój Charakterystyk",
+        "fi": 0,
+        "theta": 51
+      },
+      "clickArea": [
+        {
+          "fiMin": -13,
+          "fiMax": 13,
+          "thetaMin": 32,
+          "thetaMax": 52
+        }
+      ]
+    },
+    {
+      "id": "Utrudnienia",
+      "center": {
+        "fi": 31.5,
+        "theta": 16
+      },
+      "label": {
+        "text": "Utrudnienia",
+        "fi": 32,
+        "theta": 19
+      },
+      "clickArea": [
+        {
+          "fiMin": 27,
+          "fiMax": 36,
+          "thetaMin": 14,
+          "thetaMax": 20
+        }
       ]
     }
   ]
