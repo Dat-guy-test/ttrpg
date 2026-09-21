@@ -4957,7 +4957,7 @@
       "requires": [
         "1455"
       ],
-      "cost": 5,
+      "cost": 3,
       "temperature": 2500,
       "exclGroup": null,
       "effects": [
@@ -4989,7 +4989,7 @@
       "requires": [
         "7401"
       ],
-      "cost": 6,
+      "cost": 4,
       "temperature": 3000,
       "exclGroup": null,
       "effects": [
@@ -5016,7 +5016,7 @@
       "requires": [
         "2546"
       ],
-      "cost": 5,
+      "cost": 3,
       "temperature": 2700,
       "exclGroup": null,
       "effects": [
@@ -5043,7 +5043,7 @@
       "requires": [
         "8972"
       ],
-      "cost": 6,
+      "cost": 4,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
@@ -5070,7 +5070,7 @@
       "requires": [
         "8972"
       ],
-      "cost": 6,
+      "cost": 4,
       "temperature": 3200,
       "exclGroup": null,
       "effects": [
@@ -5097,7 +5097,7 @@
       "requires": [
         "2546"
       ],
-      "cost": 5,
+      "cost": 3,
       "temperature": 3500,
       "exclGroup": null,
       "effects": [
@@ -5119,12 +5119,12 @@
       "name": "Siłowe Włamanie",
       "desc": "Uczysz precyzyjnie przykładać siłę do precyzyjnych mechanizmów.\n\nZyskujesz poziom improwizacji w umiejętności siła.\n\nZyskujesz atrybut „Siłowe Otwieranie”:\n\nSiłowe Otwieranie:\nGdy używasz siły do złamania zabezpieczenia by uszkodzić je w nieoczywisty sposób (np. zamiast wyrywać drzwi z zawiasów, próbujesz siłą zepsuć mehcanizm zamka) nie zwiększa to poziomu trudności testu, a wynik testu jest poziomem trudności testu spostrzegawczości na to, że uszkodzenie nie było losowe.",
       "hoverText": "",
-      "fi": -6.300000000000001,
+      "fi": -6.3,
       "theta": 23,
       "requires": [
         "7401"
       ],
-      "cost": 6,
+      "cost": 4,
       "temperature": 2500,
       "exclGroup": null,
       "effects": [
@@ -5151,7 +5151,7 @@
       "requires": [
         "5743"
       ],
-      "cost": 7,
+      "cost": 3,
       "temperature": 3500,
       "exclGroup": null,
       "effects": [
@@ -5183,7 +5183,7 @@
       "requires": [
         "4829"
       ],
-      "cost": 6,
+      "cost": 3,
       "temperature": 3000,
       "exclGroup": null,
       "effects": [
@@ -5210,7 +5210,7 @@
       "requires": [
         "4829"
       ],
-      "cost": 6,
+      "cost": 3,
       "temperature": 3100,
       "exclGroup": null,
       "effects": [
@@ -5237,7 +5237,7 @@
       "requires": [
         "6491"
       ],
-      "cost": 6,
+      "cost": 3,
       "temperature": 3300,
       "exclGroup": null,
       "effects": [
@@ -5259,8 +5259,8 @@
       "name": "Nie do Złamania",
       "desc": "Dzięki dbaniu o swój organizm oraz ćwiczeniu wszystkich jego systemów jesteś w stanie przyjąć obrażenia, które powaliłyby na ziemię najtwardszych wojowników, póki nie zagrażają one twojemu życiu.\n\nZyskujesz dwa poziomy doświadczenia i poziom improwizacji w umiejętności wigor.\n\nCo więcej zyskujesz atrybut „Niezłomny Organizm”:\nOtrzymujesz połowę zadanych tobie obrażeń zwykłych.",
       "hoverText": "",
-      "fi": -13.000000000000004,
-      "theta": 26.000000000000007,
+      "fi": -13.000000000000002,
+      "theta": 26.000000000000004,
       "requires": [
         "9047",
         "6451"
@@ -5292,12 +5292,12 @@
       "name": "Zdrowy jak Damh",
       "desc": "Zwracasz dużo więcej uwagi na własne zdrowie niz przeciętna świadoma istota.\n\nZyskujesz jeden poziom doświadczenia i improwizacji w umiejętności wigor.\n\nCo więcej zyskujesz atrybut: „Zdrowy jak Damh”:\n\nZdrowy jak Damh:\nGdy zaleczasz punkty obrażeń, zaleczasz ich dwa razy więcej niż inni.",
       "hoverText": "",
-      "fi": -13.000000000000004,
+      "fi": -13.000000000000002,
       "theta": 21.999999999999996,
       "requires": [
         "1455"
       ],
-      "cost": 4,
+      "cost": 3,
       "temperature": 2800,
       "exclGroup": null,
       "effects": [
@@ -5324,12 +5324,12 @@
       "name": "Mistyczna Regeneracja",
       "desc": "Odkąd udało ci się powziąć kroki ku lepszemu dbaniu o własne zdrowie pracujesz nad magicznymi sztuczkami wspomagającymi samoistną regenerację twojego organizmu.\n\nZyskujesz atrybut „Mistyczna Regeneracja”:\n\nMistyczna Regeneracja:\nPodczas pełnego odpoczynku, w którym udaje ci się usunąć punkt(y) obrażeń możesz wydać dwa punkty energii by usunąć dodatkowy punkt obrażeń. Możesz użytć tego atrybutu wiele razy w trakcie jednego odpoczynku póki masz odpowiednią ilość punktów energii. ",
       "hoverText": "",
-      "fi": -13.000000000000004,
+      "fi": -13.000000000000002,
       "theta": 24,
       "requires": [
         "4829"
       ],
-      "cost": 4,
+      "cost": 3,
       "temperature": 3150,
       "exclGroup": null,
       "effects": [
@@ -5351,7 +5351,7 @@
       "requires": [
         "1455"
       ],
-      "cost": 5,
+      "cost": 3,
       "temperature": 4500,
       "exclGroup": null,
       "effects": [
@@ -5383,7 +5383,7 @@
       "requires": [
         "4651"
       ],
-      "cost": 7,
+      "cost": 6,
       "temperature": 4700,
       "exclGroup": null,
       "effects": [
@@ -5429,6 +5429,53 @@
           "bonuses": []
         }
       ]
+    },
+    {
+      "id": "2094",
+      "name": "Perfekcyjny Balans",
+      "desc": "Uczysz się jak utrzymywać z pozoru idealną równowagę.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności zręczność.\n\nDodatkowo zyskujesz atrybut „Idealnie Balans”:\n\nIdealny Balans:\nNa początku każdej tury tracisz wszystkie poziomy wytrącenia z równowagi. Dodatkowo, gdy masz zyskać status przy ziemi możesz wybrać, iż nie otrzymujesz tego statusu. Co więcej, możesz poruszać się po napiętych linach z normalną prędkością i wykonywać podobnie imponujące czyny akrobatyczne.",
+      "hoverText": "",
+      "fi": -23,
+      "theta": 27,
+      "requires": [
+        "5731"
+      ],
+      "cost": 3,
+      "temperature": 4800,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Idealny Balans",
+          "description": "Na początku każdej tury tracisz wszystkie poziomy wytrącenia z równowagi. Dodatkowo, gdy masz zyskać status przy ziemi możesz wybrać, iż nie otrzymujesz tego statusu. Co więcej, możesz poruszać się po napiętych linach z normalną prędkością i wykonywać podobnie imponujące czyny akrobatyczne.",
+          "bonuses": []
+        },
+        {
+          "type": "skillExperience",
+          "key": "zrecznosc",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "zrecznosc",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "3281",
+      "name": "Precyzyjne Ruchy",
+      "desc": "",
+      "hoverText": "",
+      "fi": -24,
+      "theta": 26.5,
+      "requires": [
+        "5731"
+      ],
+      "cost": 3,
+      "temperature": 5100,
+      "exclGroup": null,
+      "effects": []
     }
   ],
   "mutuallyExclusive": [
