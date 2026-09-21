@@ -10,24 +10,46 @@
 // All logic lives in the imported modules.  Refer to those files
 // for detailed comments.
 //
+// LOADING OVERLAY
+// ------------------------------------------------------------
+// Boot also drives loadingProgress.js's weighted progress bar (see
+// that file's header comment for the stage weights) so the splash
+// screen in index.html (#loadingOverlay) hides the parchment/3D
+// scene assembling underneath it and gives the player a sense of
+// how far along loading is, rather than a blank/frozen page.
+//
+// finishLoading() is called two ways, whichever comes first:
+//   - normally, once every node's StarModel has reported ready
+//     (see the texture-tracking block in sec() below), followed by
+//     the first animate() frame actually painting; or
+//   - via a hard 8-second setTimeout fallback set right after
+//     setTotalTextures(), in case a StarModel's texture load ever
+//     rejects (see StarModel.js's loadTextures().catch()) — that
+//     node's onReady() callback would otherwise never fire, and the
+//     "wait for every texture" count would never complete, hanging
+//     the splash screen forever over a single bad node.
+// finishLoading() itself guards against running twice, so whichever
+// of these fires first simply wins.
+//
 // Module dependency graph (no cycles):
 //
-//   appState       ← (no local imports)
-//   constants      ← (no local imports)
-//   colorScience   ← (no local imports)
-//   StarModel      ← THREE, colorScience
-//   cameraControls ← appState, constants
-//   sceneSetup     ← appState, constants, THREE, postprocessing
+//   appState        ← (no local imports)
+//   constants       ← (no local imports)
+//   colorScience    ← (no local imports)
+//   loadingProgress ← (no local imports)
+//   StarModel       ← THREE, colorScience
+//   cameraControls  ← appState, constants
+//   sceneSetup      ← appState, constants, THREE, postprocessing
 //   treePersistence ← (no local imports)
-//   TreeNode       ← appState, constants, THREE, StarModel, cameraControls, editMode, perkEffects, treePersistence
-//   Tree           ← appState, THREE, TreeNode, cameraControls
-//   inputHandlers  ← appState, cameraControls, editMode, constants
-//   editMode       ← appState
-//   equipmentState ← items.json (no local module imports)
-//   equipmentSheet ← equipmentState
-//   manualState    ← manual.json (no local module imports)
-//   manualSheet    ← manualState, manualEditor
-//   main           ← all of the above
+//   TreeNode        ← appState, constants, THREE, StarModel, cameraControls, editMode, perkEffects, treePersistence
+//   Tree            ← appState, THREE, TreeNode, cameraControls, loadingProgress
+//   inputHandlers   ← appState, cameraControls, editMode, constants
+//   editMode        ← appState
+//   equipmentState  ← items.json (no local module imports)
+//   equipmentSheet  ← equipmentState
+//   manualState     ← manual.json (no local module imports)
+//   manualSheet     ← manualState, manualEditor
+//   main            ← all of the above
 // ============================================================
 
 import AppState from './appState.js';
@@ -52,6 +74,21 @@ import { LABEL_MIN_SCALE, LABEL_MAX_SCALE, BASE_CAMERA_FOV, MIN_CAMERA_FOV, MAX_
 import { restoreActiveNodes } from './treePersistence.js';
 import { refreshPerksTaken } from './perkEffects.js';
 import { initPremadeCharacterPicker } from './premadeCharacters.js';
+import {
+  initLoadingOverlay,
+  reportSceneReady,
+  reportFetchDone,
+  setTotalTextures,
+  reportTextureReady,
+  reportFirstFrame,
+  finishLoading,
+} from './loadingProgress.js';
+
+// How long to wait, at most, for every node's texture to report ready
+// before giving up and revealing the tree anyway — see this file's
+// header comment for why a single failed texture load could otherwise
+// hang the splash screen forever.
+const LOADING_HARD_TIMEOUT_MS = 8000;
 
 // ============================================================
 // BOOT SEQUENCE
@@ -60,8 +97,12 @@ import { initPremadeCharacterPicker } from './premadeCharacters.js';
 // reference in AppState.tr for the Escape debug key.
 // ============================================================
 
+// 0. Show the splash screen and start tracking boot progress against it.
+initLoadingOverlay();
+
 // 1. Create renderer, cameras, lights, skybox, ground, telescope
 initScene();
+reportSceneReady();
 
 // 2. Create the skill tree container (adds the debug sphere to the scene)
 AppState.tr = new Tree(0, 40, 20, 60);
@@ -85,6 +126,7 @@ registerInputHandlers();
 //    the camera toward the root node (ID 1).
 async function sec() {
   await treeGen(AppState.tr);
+  reportFetchDone();
   AppState.tr.init();
 
   // Bring back every node that was active before the last reload —
@@ -95,6 +137,42 @@ async function sec() {
   // and before anything reads "Wybrane Perki" or the character sheet.
   restoreActiveNodes(AppState.tr);
   refreshPerksTaken();
+
+  // ---- Loading overlay: track each node's StarModel texture load --
+  // Every TreeNode already owns a StarModel with an onReady() hook
+  // (see StarModel.js) — this is the dominant cost of booting a tree
+  // with 150+ nodes (two texture fetches + a synchronous canvas
+  // recolor pass each), so it gets the lion's share of the progress
+  // bar's weight (see loadingProgress.js's WEIGHTS.textures).
+  const totalNodes = AppState.tr.nodes.length;
+  setTotalTextures(totalNodes);
+
+  // Hard-timeout fallback: if any single StarModel's texture load
+  // rejects, its onReady() never fires, so the "every texture ready"
+  // count below would never complete on its own. This guarantees the
+  // splash screen is revealed anyway after LOADING_HARD_TIMEOUT_MS,
+  // rather than hanging forever over one bad node. finishLoading()
+  // itself no-ops on a second call, so this simply loses the race
+  // harmlessly on a normal, healthy load.
+  setTimeout(finishLoading, LOADING_HARD_TIMEOUT_MS);
+
+  let readyCount = 0;
+  AppState.tr.nodes.forEach((node) => {
+    const starModel = AppState.starClasses[node.starID];
+    starModel.onReady(() => {
+      reportTextureReady();
+      readyCount++;
+      if (readyCount === totalNodes) {
+        // Wait one extra frame after the last texture actually swaps
+        // in before revealing the scene, so the very first thing the
+        // player sees isn't a flash of not-yet-textured nodes.
+        requestAnimationFrame(() => {
+          reportFirstFrame();
+          finishLoading();
+        });
+      }
+    });
+  });
 
   // ---- Initial zoom level, adapted to the current window size --------
   // A narrow viewport (typically mobile, where #canvas ends up tall and

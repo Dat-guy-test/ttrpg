@@ -615,3 +615,105 @@ body {
   flex: 1;
   margin-top: 0.25em;
 }
+
+/* ============================================================
+   LOADING OVERLAY  (loadingProgress.js / main.js)
+   ------------------------------------------------------------
+   Full-screen splash shown while the 3D scene, nodes.json, and
+   every node's StarModel texture load. Faded out and removed by
+   loadingProgress.js's finishLoading() once boot completes (or its
+   hard-timeout fallback in main.js fires). Reuses the parchment/
+   wax-seal tokens declared above so it matches the rest of the site.
+   ============================================================ */
+#loadingOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #241a2c 0%, #120a17 100%);
+  transition: opacity 0.6s ease;
+}
+#loadingOverlay.loading-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-card {
+  box-sizing: border-box;
+  width: min(28em, 90vw);
+  padding: 2em 2.5em;
+  text-align: center;
+  background: url('./parchment.jpg') center / cover, #e8dcbe;
+  border: 0.2em solid var(--parchment-ink-soft, #3e1f4b);
+  border-radius: 0.6em;
+  box-shadow: 0 1em 3em rgba(0, 0, 0, 0.6);
+  color: var(--parchment-ink, #34183b);
+  font-family: 'MedievalSharp', 'Luminari', fantasy, serif;
+}
+
+.loading-title {
+  font-size: 1.3em;
+  letter-spacing: 0.02em;
+  margin: 0.3em 0 1em;
+  font-weight: normal;
+}
+
+/* Spinning wax-seal medallion, echoing #text::before's motif — swaps
+   from spinning to visibly paused+desaturated when loadingProgress.js
+   detects no forward progress for a while (see STALL_MS there), so a
+   genuine stall reads differently from ordinary loading. */
+.loading-spinner {
+  width: 3em;
+  height: 3em;
+  margin: 0 auto 1em;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--parchment-seal, #5d147a) 0%, var(--parchment-seal-dark, #32094a) 75%);
+  box-shadow:
+    0 0.2em 0.6em rgba(0, 0, 0, 0.5),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.25);
+  position: relative;
+  animation: loading-spin 1.1s linear infinite;
+}
+.loading-spinner::after {
+  content: '\2726'; /* ✦ */
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--parchment-gold, #b8b5b0);
+  font-size: 1.3em;
+}
+.loading-spinner.loading-stalled {
+  animation-play-state: paused;
+  filter: grayscale(0.6) brightness(0.8);
+}
+@keyframes loading-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.loading-barTrack {
+  width: 100%;
+  height: 0.6em;
+  border-radius: 1em;
+  background: rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  margin-bottom: 0.6em;
+}
+.loading-barFill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--parchment-seal-dark, #32094a), var(--parchment-seal, #5d147a));
+  transition: width 0.25s ease-out;
+}
+
+.loading-status {
+  font-size: 0.85em;
+  font-style: italic;
+  font-family: var(--font-body, Georgia, serif);
+  color: var(--parchment-ink-soft, #58286b);
+  margin: 0;
+}

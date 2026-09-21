@@ -7,6 +7,25 @@
     <title>System</title>
   </head>
   <body>
+      <!-- ============================================================
+           LOADING OVERLAY
+           Hides the parchment/3D scene while it boots (scene setup,
+           nodes.json fetch, TreeNode/StarModel construction, and each
+           node's texture load). Driven by loadingProgress.js, wired up
+           in main.js. Removed from the DOM once finishLoading() runs
+           (either normal completion or the hard-timeout fallback).
+           ============================================================ -->
+      <div id="loadingOverlay">
+        <div class="loading-card">
+          <div class="loading-spinner"></div>
+          <h1 class="loading-title">Ładowanie Drzewka Umiejętności…</h1>
+          <div class="loading-barTrack">
+            <div class="loading-barFill" id="loadingBarFill"></div>
+          </div>
+          <p class="loading-status" id="loadingStatus">Przygotowywanie sceny…</p>
+        </div>
+      </div>
+
       <noscript>
         You need to enable JavaScript to run this.
       </noscript>
