@@ -1,0 +1,653 @@
+{
+  "formatVersion": 1,
+  "exportedAt": "2026-09-21T12:07:35.856Z",
+  "data": {
+    "ttrpgCharacterSheet.v2": {
+      "name": "Wojownik",
+      "potential": {
+        "total": 25
+      },
+      "resources": {
+        "actionPoints": {
+          "current": 0
+        },
+        "energyPoints": {
+          "current": 0
+        },
+        "endurance": {}
+      },
+      "damage": {
+        "rany": {
+          "nZal": 0,
+          "zal": 0
+        },
+        "zlamania": {
+          "nZal": 0,
+          "zal": 0
+        },
+        "wewnetrzne": {
+          "nZal": 0,
+          "zal": 0
+        },
+        "temperatura": {
+          "nZal": 0,
+          "zal": 0
+        },
+        "choroby": {
+          "nZal": 0,
+          "zal": 0
+        },
+        "krytyczne": {
+          "nZal": 0,
+          "zal": 0
+        },
+        "zwykle": {
+          "nZal": 0,
+          "zal": 0
+        }
+      },
+      "characteristics": {
+        "forma": {
+          "base": 0,
+          "modifiers": [
+            {
+              "sourceId": "node:-1001:0",
+              "amount": 12,
+              "label": "Zwiększ Charakterystykę (stała wartość): Człowiek"
+            }
+          ]
+        },
+        "bystrosc": {
+          "base": 0,
+          "modifiers": [
+            {
+              "sourceId": "node:-1001:1",
+              "amount": 9,
+              "label": "Zwiększ Charakterystykę (stała wartość): Człowiek"
+            },
+            {
+              "sourceId": "pool:characteristicPoints",
+              "amount": 1,
+              "label": "Punkty Charakterystyki"
+            }
+          ]
+        },
+        "silaWoli": {
+          "base": 0,
+          "modifiers": [
+            {
+              "sourceId": "node:-1001:2",
+              "amount": 9,
+              "label": "Zwiększ Charakterystykę (stała wartość): Człowiek"
+            }
+          ]
+        },
+        "szybkosc": {
+          "base": 0,
+          "modifiers": [
+            {
+              "sourceId": "node:-1001:5",
+              "amount": 7,
+              "label": "Zwiększ Charakterystykę (stała wartość): Człowiek"
+            }
+          ]
+        },
+        "udzwig": {
+          "base": 0,
+          "modifiers": [
+            {
+              "sourceId": "node:-1001:3",
+              "amount": 5,
+              "label": "Zwiększ Charakterystykę (stała wartość): Człowiek"
+            }
+          ]
+        }
+      },
+      "abilities": {
+        "sila": {
+          "experience": {
+            "base": 0,
+            "modifiers": [
+              {
+                "sourceId": "node:48758:0",
+                "amount": 1,
+                "label": "Zwiększ Doświadczenie Umiejętności (stała wartość): Początkujący Najemnik"
+              },
+              {
+                "sourceId": "node:100000:0",
+                "amount": 1,
+                "label": "Zwiększ Doświadczenie Umiejętności (stała wartość): Fechtunek"
+              }
+            ]
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "wigor": {
+          "experience": {
+            "base": 0,
+            "modifiers": [
+              {
+                "sourceId": "attr:node:-1001:4:2:0",
+                "amount": 1,
+                "label": "Atrybut: Wytrwali"
+              },
+              {
+                "sourceId": "node:4536:0",
+                "amount": 1,
+                "label": "Zwiększ Doświadczenie Umiejętności (stała wartość): Smocze Zdrowie"
+              }
+            ]
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": [
+              {
+                "sourceId": "attr:node:-1001:4:2:1",
+                "amount": 1,
+                "label": "Atrybut: Wytrwali"
+              },
+              {
+                "sourceId": "node:4536:1",
+                "amount": 1,
+                "label": "Zwiększ Poziom Improwizacji (stała wartość): Smocze Zdrowie"
+              }
+            ]
+          }
+        },
+        "zrecznosc": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "czasReakcji": {
+          "experience": {
+            "base": 0,
+            "modifiers": [
+              {
+                "sourceId": "node:6:0",
+                "amount": 1,
+                "label": "Zwiększ Doświadczenie Umiejętności (stała wartość): Sztuka Walki"
+              },
+              {
+                "sourceId": "pool:skillExperiencePoints",
+                "amount": 3,
+                "label": "Punkty Doświadczenia"
+              }
+            ]
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": [
+              {
+                "sourceId": "pool:skillImprovisationPoints",
+                "amount": 3,
+                "label": "Punkty Improwizacji"
+              }
+            ]
+          }
+        },
+        "instynkt": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "determinacja": {
+          "experience": {
+            "base": 0,
+            "modifiers": [
+              {
+                "sourceId": "node:777:0",
+                "amount": 1,
+                "label": "Zwiększ Doświadczenie Umiejętności (stała wartość): Motywacja Makira"
+              }
+            ]
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": [
+              {
+                "sourceId": "node:777:1",
+                "amount": 1,
+                "label": "Zwiększ Poziom Improwizacji (stała wartość): Motywacja Makira"
+              }
+            ]
+          }
+        },
+        "spostrzegawczosc": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "skradanieSie": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "alchemia": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "majsterkowanie": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "zaklinanie": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "wiedzaMedyczna": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "wiedzaPowszechna": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "wiedzaMagiczna": {
+          "experience": {
+            "base": 0,
+            "modifiers": [
+              {
+                "sourceId": "node:5555:0",
+                "amount": 1,
+                "label": "Zwiększ Doświadczenie Umiejętności (stała wartość): Podstawy Wiedzy Tajemnej"
+              }
+            ]
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "wykuwanieZaklec": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "kreacja": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "projekcja": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "transmutacja": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "przywolywanie": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        },
+        "destrukcja": {
+          "experience": {
+            "base": 0,
+            "modifiers": []
+          },
+          "improvisation": {
+            "base": 1,
+            "modifiers": []
+          }
+        }
+      },
+      "pointPools": {
+        "characteristicPoints": {
+          "granted": {
+            "base": 0,
+            "modifiers": [
+              {
+                "sourceId": "node:200:2",
+                "amount": 1,
+                "label": "Przyznaj Punkty Charakterystyki (Forma / Bystrość / Siła Woli): Utalentowany Podróżnik"
+              }
+            ]
+          }
+        },
+        "skillExperiencePoints": {
+          "granted": {
+            "base": 0,
+            "modifiers": [
+              {
+                "sourceId": "node:200:0",
+                "amount": 2,
+                "label": "Przyznaj Punkty Doświadczenia (dowolna Umiejętność): Utalentowany Podróżnik"
+              },
+              {
+                "sourceId": "node:666:1",
+                "amount": 1,
+                "label": "Przyznaj Punkty Doświadczenia (dowolna Umiejętność): Początkujący Czarodziej"
+              }
+            ]
+          }
+        },
+        "skillImprovisationPoints": {
+          "granted": {
+            "base": 0,
+            "modifiers": [
+              {
+                "sourceId": "node:200:1",
+                "amount": 2,
+                "label": "Przyznaj Punkty Improwizacji (dowolna Umiejętność): Utalentowany Podróżnik"
+              },
+              {
+                "sourceId": "node:666:2",
+                "amount": 1,
+                "label": "Przyznaj Punkty Improwizacji (dowolna Umiejętność): Początkujący Czarodziej"
+              }
+            ]
+          }
+        }
+      },
+      "proficiencies": {
+        "Miecze": {
+          "base": 0,
+          "modifiers": [
+            {
+              "sourceId": "node:100005:0",
+              "amount": 1,
+              "label": "Zwiększ Poziom Wprawy (dowolna nazwa): Szkoła Makira"
+            }
+          ]
+        }
+      },
+      "attributes": {
+        "Źródło Kontraktów Najemnika": {
+          "description": "Wiesz, gdzie znaleźć pracę dla siebie i swoich współpracowników. Możesz znaleźć stałą, bezpieczną pracę jako stróż, strażnik lub odstraszacz rabusi, płatną 4 nitki na osobę za pięć godzin pracy.\nAlternatywnie w każdym zamieszkanym miejscu jesteś w stanie znaleźć niebezpieczne zlecenie, którego wartość i naturę określa MG.",
+          "sources": {
+            "node:48758:5": {
+              "description": "Wiesz, gdzie znaleźć pracę dla siebie i swoich współpracowników. Możesz znaleźć stałą, bezpieczną pracę jako stróż, strażnik lub odstraszacz rabusi, płatną 4 nitki na osobę za pięć godzin pracy.\nAlternatywnie w każdym zamieszkanym miejscu jesteś w stanie znaleźć niebezpieczne zlecenie, którego wartość i naturę określa MG.",
+              "bonuses": []
+            }
+          }
+        },
+        "Pewni Siebie": {
+          "description": "Wielu ludzi ma tendencje do mającej różne konsekwencje nadmiernej pewności siebie:\n\nZyskujesz możliwość powtórzenia testu lub konkursu, w którym osiągnięty został sukces, w celu podjęcie próby uzyskania krytycznego sukcesu. Jeżeli po przerzuceniu uzyskasz niższy wynik, niż przed przerzuceniem, test lub konkurs kończy się porażką. [w przypadku otrzymania sukcesu o wyższym lub równym wyniku możesz użyć tej umiejętności ponownie]",
+          "sources": {
+            "node:-1001:4:1": {
+              "description": "Wielu ludzi ma tendencje do mającej różne konsekwencje nadmiernej pewności siebie:\n\nZyskujesz możliwość powtórzenia testu lub konkursu, w którym osiągnięty został sukces, w celu podjęcie próby uzyskania krytycznego sukcesu. Jeżeli po przerzuceniu uzyskasz niższy wynik, niż przed przerzuceniem, test lub konkurs kończy się porażką. [w przypadku otrzymania sukcesu o wyższym lub równym wyniku możesz użyć tej umiejętności ponownie]",
+              "bonuses": []
+            }
+          }
+        },
+        "Wytrwali": {
+          "description": "Organizmy wielu ludzi regenerują się szybciej niż organizmy innych inteligentnych stworzeń:\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wigor. Po każdej godzinie odpoczynku zaleczasz 1d4 Punkt Niezaleczonych Zwykłych Obrażeń, po czym odzyskujesz 1 Punkt Zaleczonych Zwykłych Obrażeń.",
+          "sources": {
+            "node:-1001:4:2": {
+              "description": "Organizmy wielu ludzi regenerują się szybciej niż organizmy innych inteligentnych stworzeń:\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wigor. Po każdej godzinie odpoczynku zaleczasz 1d4 Punkt Niezaleczonych Zwykłych Obrażeń, po czym odzyskujesz 1 Punkt Zaleczonych Zwykłych Obrażeń.",
+              "bonuses": [
+                {
+                  "key": "wigor",
+                  "kind": "experience",
+                  "amount": 1
+                },
+                {
+                  "key": "wigor",
+                  "kind": "improvisation",
+                  "amount": 1
+                }
+              ]
+            }
+          }
+        },
+        "Podróżnik": {
+          "description": "Możesz przerzucić dowolną kość wykorzystywaną w teście umiejętności, wprawy lub kość używaną do określenia ilości zadanych obrażeń zużywając 5 Punktów Energii.",
+          "sources": {
+            "node:1:0": {
+              "description": "Możesz przerzucić dowolną kość wykorzystywaną w teście umiejętności, wprawy lub kość używaną do określenia ilości zadanych obrażeń zużywając 5 Punktów Energii.",
+              "bonuses": []
+            }
+          }
+        },
+        "Postawa Defensywna": {
+          "description": "Zużywając jeden Punkt Akcji możesz przybrać Postawę Defensywną. W Postawie Defensywnej:\nAkcja Blokowania i Akcja Kontrakcji zużywa o 1 Punkt Akcji mniej.\nZyskujesz bonus do blokowania równy poziomowi wprawy w jednej trzymanej broni (wybierasz przy każdej akcji blokowania).\nTwoja szybkość spada o 2.\n\nNa końcu każdej swojej tury tracisz 1 Punkt Energii.\nJeżeli ilosć twoich Punktów Energii osiągnie 0 wychodzisz z Postawy Defensywnej.\nMożesz wyjść z Postawy Defensywnej w dowolnym momencie.\n\nBez atrybutu Zaawansowane Postawy Bojowe możesz być tylko w jednej postawie jednocześnie!",
+          "sources": {
+            "node:103:0": {
+              "description": "Zużywając jeden Punkt Akcji możesz przybrać Postawę Defensywną. W Postawie Defensywnej:\nAkcja Blokowania i Akcja Kontrakcji zużywa o 1 Punkt Akcji mniej.\nZyskujesz bonus do blokowania równy poziomowi wprawy w jednej trzymanej broni (wybierasz przy każdej akcji blokowania).\nTwoja szybkość spada o 2.\n\nNa końcu każdej swojej tury tracisz 1 Punkt Energii.\nJeżeli ilosć twoich Punktów Energii osiągnie 0 wychodzisz z Postawy Defensywnej.\nMożesz wyjść z Postawy Defensywnej w dowolnym momencie.\n\nBez atrybutu Zaawansowane Postawy Bojowe możesz być tylko w jednej postawie jednocześnie!",
+              "bonuses": []
+            }
+          }
+        },
+        "Smocze Zdrowie": {
+          "description": "Jeżeli akcja zada ci śmiertelną ilość obrażeń krytycznych gdy nie masz żadnych punktów obrażeń krytycznych, zamień tyle otrzymanych obrażeń krytycznych na zwykłe obrażenia, by być o jeden punkt obrażeń krytycznych od śmierci.",
+          "sources": {
+            "node:4536:2": {
+              "description": "Jeżeli akcja zada ci śmiertelną ilość obrażeń krytycznych gdy nie masz żadnych punktów obrażeń krytycznych, zamień tyle otrzymanych obrażeń krytycznych na zwykłe obrażenia, by być o jeden punkt obrażeń krytycznych od śmierci.",
+              "bonuses": []
+            }
+          }
+        },
+        "Zmotywowanie": {
+          "description": "Jesteś w stanie zużyć jeden punkt motywacji by przerzucić kość wykorzystywaną do określenia wyniku wykonywanego przez ciebie testu lub kości odpowiedzialnych za zadawane bronią obrażenia. Wynikiem rzutu kością staje się wynik nowego rzutu, a stary nie ma znaczenia. Możesz przerzucić wynik jednej kości kilkukrotnie, wydając kolejne punkty motywacji.",
+          "sources": {
+            "node:777:2": {
+              "description": "Jesteś w stanie zużyć jeden punkt motywacji by przerzucić kość wykorzystywaną do określenia wyniku wykonywanego przez ciebie testu lub kości odpowiedzialnych za zadawane bronią obrażenia. Wynikiem rzutu kością staje się wynik nowego rzutu, a stary nie ma znaczenia. Możesz przerzucić wynik jednej kości kilkukrotnie, wydając kolejne punkty motywacji.",
+              "bonuses": []
+            }
+          }
+        },
+        "Magia Uczonych": {
+          "description": "Rzucając czary posługujesz się księgą z swoimi notatkami. Jeżeli stracisz księgę, możesz odtworzyć jej zawartość z pamięci w tępie jednej godziny na każde zaklęcie. Dzięki dogłębnemu zrozumieniu swoich zaklęć jesteś w stanie stosunkowo niewielkim wysiłkiem wprowadzać drobne modyfikacje do rzucanych czarów w trakcie ich rzucania:\n1.) Możesz wydawać Punkty Energii by zwiększyć wynik dowolnego testu, który musisz wykonać jako element rzucania czaru. Każdy zużyty Punkt Energii zwiększa wynik testu o 1. Decyzję o wydaniu Punktów Energii w ten sposób podejmujesz zaraz po wykonaniu testu.\n2.) Możesz wydać Punkty Energii by zwiększyć ilość obrażeń zadawanych przez zaklęcie. Wydając ilość Punktów Energii równą kosztowi rzucenia zaklęcia możesz podwoić zadanych obrażeń. Decyzję tą możesz podjąć najpóźniej w momencie zobaczenia wyniku pierwszego rzutu na obrażenia związanego z zaklęciem.",
+          "sources": {
+            "node:666:4": {
+              "description": "Rzucając czary posługujesz się księgą z swoimi notatkami. Jeżeli stracisz księgę, możesz odtworzyć jej zawartość z pamięci w tępie jednej godziny na każde zaklęcie. Dzięki dogłębnemu zrozumieniu swoich zaklęć jesteś w stanie stosunkowo niewielkim wysiłkiem wprowadzać drobne modyfikacje do rzucanych czarów w trakcie ich rzucania:\n1.) Możesz wydawać Punkty Energii by zwiększyć wynik dowolnego testu, który musisz wykonać jako element rzucania czaru. Każdy zużyty Punkt Energii zwiększa wynik testu o 1. Decyzję o wydaniu Punktów Energii w ten sposób podejmujesz zaraz po wykonaniu testu.\n2.) Możesz wydać Punkty Energii by zwiększyć ilość obrażeń zadawanych przez zaklęcie. Wydając ilość Punktów Energii równą kosztowi rzucenia zaklęcia możesz podwoić zadanych obrażeń. Decyzję tą możesz podjąć najpóźniej w momencie zobaczenia wyniku pierwszego rzutu na obrażenia związanego z zaklęciem.",
+              "bonuses": []
+            }
+          }
+        }
+      },
+      "perksTaken": [
+        {
+          "id": "1",
+          "name": "Podróżnik",
+          "cost": 0
+        },
+        {
+          "id": "-1001",
+          "name": "Człowiek",
+          "cost": 0
+        },
+        {
+          "id": "6",
+          "name": "Sztuka Walki",
+          "cost": 1
+        },
+        {
+          "id": "100000",
+          "name": "Fechtunek",
+          "cost": 1
+        },
+        {
+          "id": "100005",
+          "name": "Szkoła Makira",
+          "cost": 3
+        },
+        {
+          "id": "103",
+          "name": "Postawa Defensywna",
+          "cost": 5
+        },
+        {
+          "id": "200",
+          "name": "Utalentowany Podróżnik",
+          "cost": 3
+        },
+        {
+          "id": "5555",
+          "name": "Podstawy Wiedzy Tajemnej",
+          "cost": 1
+        },
+        {
+          "id": "666",
+          "name": "Początkujący Czarodziej",
+          "cost": 5
+        },
+        {
+          "id": "48758",
+          "name": "Początkujący Najemnik",
+          "cost": 2
+        },
+        {
+          "id": "777",
+          "name": "Motywacja Makira",
+          "cost": 2
+        },
+        {
+          "id": "4536",
+          "name": "Smocze Zdrowie",
+          "cost": 2
+        }
+      ]
+    },
+    "ttrpgEquipment.v1": {
+      "currency": 9,
+      "inventory": {
+        "custom-1785707279427-ghbek": 1,
+        "custom-1785020652629-9ldtr": 1,
+        "custom-1786310816440-3yc43": 1,
+        "custom-1785712313703-nz188": 1,
+        "custom-1784056048918-s9c8n": 1,
+        "custom-1784068774618-dh6oe": 1,
+        "custom-1784069295220-vneqw": 1,
+        "custom-1784122371430-9zst3": 1,
+        "custom-1783458345228-gyqao": 1,
+        "custom-1785100453110-d0jox": 1
+      },
+      "itemStates": {
+        "custom-1785707279427-ghbek": "equipped",
+        "custom-1785712313703-nz188": "equipped",
+        "custom-1784122371430-9zst3": "equipped",
+        "custom-1785100453110-d0jox": "equipped"
+      }
+    },
+    "ttrpgKnownSpells.v1": {},
+    "ttrpgSpellSchoolGrants.v1": {
+      "node:666:0": {
+        "schools": [
+          "creation",
+          "projection",
+          "transmutation",
+          "summoning",
+          "destruction"
+        ],
+        "maxComplexity": 1,
+        "chosenSpellId": "custom-spell-1789304398480-bm3lj"
+      }
+    },
+    "ttrpgProgression.v1": {
+      "stage": "creation",
+      "lockedNodeIds": []
+    },
+    "ttrpgTreeState.v1": {
+      "activeNodeIds": [
+        "48758",
+        "-1001",
+        "1",
+        "6",
+        "100000",
+        "100005",
+        "103",
+        "200",
+        "4536",
+        "777",
+        "5555",
+        "666"
+      ],
+      "attributeChoiceSelections": {
+        "-1001": {
+          "4": [
+            1,
+            2
+          ]
+        }
+      },
+      "spellSchoolChoiceSelections": {
+        "666": {
+          "0": "custom-spell-1789304398480-bm3lj"
+        }
+      }
+    }
+  }
+}
