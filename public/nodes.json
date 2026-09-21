@@ -2617,7 +2617,7 @@
       "desc": "Pogłębiasz swoją wiedzę na temat potężnej magii transmutacji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Transmutacji oraz Wiedzy Tajemnej.\n\nZyskujesz także jedną jednostkę ołowieu transmutacyjnego.",
       "hoverText": "",
       "fi": -45,
-      "theta": 43.00000000000001,
+      "theta": 43,
       "requires": [
         "666"
       ],
@@ -2625,13 +2625,6 @@
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
-        {
-          "type": "spellSchoolUnlock",
-          "schools": [
-            "projection"
-          ],
-          "maxComplexity": 1
-        },
         {
           "type": "skillExperience",
           "key": "transmutacja",
@@ -2646,6 +2639,13 @@
           "type": "item",
           "key": "custom-1785415285370-miqs9",
           "amount": 1
+        },
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "projection"
+          ],
+          "maxComplexity": 1
         }
       ]
     },
@@ -4578,7 +4578,7 @@
       "desc": "Studiujesz techniki walki magów, czarodzieji, okultystów, fenomenów i czarnoksiężników. Nauka ta pozwala ci lepiej zrozumieć jak atakować istoty nawet najzwyklejszą bronią.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności wiedza tajemna.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
       "hoverText": "",
       "fi": 85,
-      "theta": 57.00000000000001,
+      "theta": 57.000000000000014,
       "requires": [
         "64363"
       ],
@@ -4630,7 +4630,7 @@
       "desc": "Ćwiczysz swoją koordynację ruchową, by jeszcze lepiej kontrolować swoją broń w trakcie uderzenia.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności zręczność.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.",
       "hoverText": "",
       "fi": 65,
-      "theta": 57.00000000000001,
+      "theta": 57.000000000000014,
       "requires": [
         "6356"
       ],
@@ -4954,7 +4954,9 @@
       "hoverText": "",
       "fi": -21.999999999999996,
       "theta": 58,
-      "requires": [],
+      "requires": [
+        "1455"
+      ],
       "cost": 5,
       "temperature": 2500,
       "exclGroup": null,
@@ -4983,7 +4985,7 @@
       "desc": "Uczysz się jak lepiej wykorzystywać swoją siłę do zastraszania.\n\nZyskujesz poziom improwizacji w umiejętności siła. \n\nCo więcej, zyskujesz atrybut „Przerażająca Siła”:\n\nPrzerażająca Siła:\nGdy używasz swojej siły by spróbować zastraszyć inną istotę możesz mocno w coś uderzyć lub zniszczyć w dłoniach coś twardego i otrzymać jeden punkt zwykłych obrażeń. W zamian przyjmij najwyższy możliwy wyniku rzutu kością improwizacji jako wynik rzutu kością improwizacji.",
       "hoverText": "",
       "fi": -27,
-      "theta": 59,
+      "theta": 59.00000000000001,
       "requires": [
         "7401"
       ],
@@ -5037,7 +5039,7 @@
       "desc": "Skupiasz się nad konsekwentnością i powtarzalnością w swoich treningach.\n\nZyskujesz trzy poziomy doświadczenia w umiejętności siła,\n\nDodatkowo zyskujesz atrybut „Konsekwentność nad Rekordami”:\n\nKonsekwentność nad Rekordami:\nZamiast rzucać kością improwizacji siły możesz wziąć średni wynik jej rzutu (zaokrąglony w dół: 2 dla d4, 3 dla d6, 4 dla d8, 5 dla d10, 6 dla d12 i 10 dla d20).",
       "hoverText": "",
       "fi": -17,
-      "theta": 59,
+      "theta": 59.00000000000001,
       "requires": [
         "8972"
       ],
@@ -5064,7 +5066,7 @@
       "desc": "Dzięki swojemu treningowi nawet w zły dzień masz dużo więcej siły niż możnaby się było spodziewać.\n\nZyskujesz dwa poziomy doświadczenia w umiejętności siła.\n\nDodatkowo zyskujesz atrybut „Zawsze w Pełni Sił”:\n\nZawsze w Pełni Sił:\nGdy wykorzystujesz kość improwizacji siły możesz zużywając 3 Punkty Energii przerzucić ją. ",
       "hoverText": "",
       "fi": -17,
-      "theta": 57,
+      "theta": 57.00000000000001,
       "requires": [
         "8972"
       ],
@@ -5118,7 +5120,7 @@
       "desc": "Uczysz precyzyjnie przykładać siłę do precyzyjnych mechanizmów.\n\nZyskujesz poziom improwizacji w umiejętności siła.\n\nZyskujesz atrybut „Siłowe Otwieranie”:\n\nSiłowe Otwieranie:\nGdy używasz siły do złamania zabezpieczenia by uszkodzić je w nieoczywisty sposób (np. zamiast wyrywać drzwi z zawiasów, próbujesz siłą zepsuć mehcanizm zamka) nie zwiększa to poziomu trudności testu, a wynik testu jest poziomem trudności testu spostrzegawczości na to, że uszkodzenie nie było losowe.",
       "hoverText": "",
       "fi": -27,
-      "theta": 57,
+      "theta": 57.00000000000001,
       "requires": [
         "7401"
       ],
@@ -5135,6 +5137,206 @@
           "type": "attribute",
           "key": "Siłowe Otwieranie",
           "description": "Gdy używasz siły do złamania zabezpieczenia by uszkodzić je w nieoczywisty sposób (np. zamiast wyrywać drzwi z zawiasów, próbujesz siłą zepsuć mehcanizm zamka) nie zwiększa to poziomu trudności testu, a wynik testu jest poziomem trudności testu spostrzegawczości na to, że uszkodzenie nie było losowe.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "9047",
+      "name": "W Zdrowym Ciele Zdrowy Duch",
+      "desc": "Dbasz o swoje ciało tak dobrze jak tylko możesz, co daje ci więcej energii każdego dnia.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności wigor.\n\nZyskujesz atrybut „Zdrowy Duch”:\n\nZdrowy Duch:\nGdy nie masz żadnych punktów obrażeń twoja Siła Woli jest większa o 5 od normalnej wartości.",
+      "hoverText": "",
+      "fi": -3,
+      "theta": 59.99999999999999,
+      "requires": [
+        "5743"
+      ],
+      "cost": 7,
+      "temperature": 3500,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "wigor",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "wigor",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Zdrowy Duch",
+          "description": "Gdy nie masz żadnych punktów obrażeń twoja Siła Woli jest większa o 5 od normalnej wartości.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "5743",
+      "name": "Wysoki Standard Higieny",
+      "desc": "Nawet podczas najbardziej paskudnych przygód znajdujesz czas i sposób na utrzymanie czystości każdej części swojego ciała.\n\nZyskujesz dwa poziomy improwizacji w umiejętności wigor.\n\nCo więcej zyskujesz atrybut „Wieczna Czystość”:\n\nWieczna Czystość:\nGdy wykonujesz test intuicji masz przewagę, jeżeli twój dobry wygląd może pomóc w teście.",
+      "hoverText": "",
+      "fi": -2,
+      "theta": 58,
+      "requires": [
+        "4829"
+      ],
+      "cost": 6,
+      "temperature": 3000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Wieczna Czystość",
+          "description": "Gdy wykonujesz test intuicji masz przewagę, jeżeli twój dobry wygląd może pomóc w teście.",
+          "bonuses": []
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "wigor",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "6491",
+      "name": "Zahartowany Organizm",
+      "desc": "Wystawiając się na zimno i gorąc przyzwyczajasz swój organizm do ekstremalnych temperatur.\n\nZyskujesz dwa poziomy doświadczenia w umiejętności wigor.\n\nZdobywasz atrybut „Zahartowany Organizm”:\nOtrzymujesz połowę obrażeń krytycznych od temperatury (zaokrąloną w dół).",
+      "hoverText": "",
+      "fi": -10,
+      "theta": 58,
+      "requires": [
+        "4829"
+      ],
+      "cost": 6,
+      "temperature": 3100,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Zahartowany Organizm",
+          "description": "Otrzymujesz połowę obrażeń krytycznych od temperatury (zaokrąloną w dół).",
+          "bonuses": []
+        },
+        {
+          "type": "skillExperience",
+          "key": "wigor",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "6451",
+      "name": "Odporność na Toksyny",
+      "desc": "Twoja postać celowo podtruwa się małymi dawkami jadu czy wchodzi w kontakt z chorymi w celu budowania odporności.\n\nZyskujesz trzy poziomy doświadczenia w umiejętności wigor.\n\nCo więcej zyskujesz atrybut „Odporność na Trucizny i Choroby”:\nOtrzymujesz połowę zadawanych ci obrażeń od chorób i trucizn.",
+      "hoverText": "",
+      "fi": -9,
+      "theta": 59.99999999999999,
+      "requires": [
+        "6491"
+      ],
+      "cost": 6,
+      "temperature": 3300,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "wigor",
+          "amount": 3
+        },
+        {
+          "type": "attribute",
+          "key": "Odporność na Trucizny i Choroby",
+          "description": "Otrzymujesz połowę zadawanych ci obrażeń od chorób i trucizn.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "7391",
+      "name": "Nie do Złamania",
+      "desc": "Dzięki dbaniu o swój organizm oraz ćwiczeniu wszystkich jego systemów jesteś w stanie przyjąć obrażenia, które powaliłyby na ziemię najtwardszych wojowników, póki nie zagrażają one twojemu życiu.\n\nZyskujesz dwa poziomy doświadczenia i poziom improwizacji w umiejętności wigor.\n\nCo więcej zyskujesz atrybut „Niezłomny Organizm”:\nOtrzymujesz połowę zadanych tobie obrażeń zwykłych.",
+      "hoverText": "",
+      "fi": -6,
+      "theta": 59,
+      "requires": [
+        "9047",
+        "6451"
+      ],
+      "cost": 7,
+      "temperature": 2900,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillImprovisation",
+          "key": "wigor",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "wigor",
+          "amount": 2
+        },
+        {
+          "type": "attribute",
+          "key": "Niezłomny Organizm",
+          "description": "Otrzymujesz połowę zadanych tobie obrażeń zwykłych.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "4829",
+      "name": "Zdrowy jak Damh",
+      "desc": "Zwracasz dużo więcej uwagi na własne zdrowie niz przeciętna świadoma istota.\n\nZyskujesz jeden poziom doświadczenia i improwizacji w umiejętności wigor.\n\nCo więcej zyskujesz atrybut: „Zdrowy jak Damh”:\n\nZdrowy jak Damh:\nGdy zaleczasz punkty obrażeń, zaleczasz ich dwa razy więcej niż inni.",
+      "hoverText": "",
+      "fi": -6,
+      "theta": 56,
+      "requires": [
+        "1455"
+      ],
+      "cost": 4,
+      "temperature": 2800,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Zdrowy jak Damh",
+          "description": "Gdy zaleczasz punkty obrażeń, zaleczasz ich dwa razy więcej niż inni.",
+          "bonuses": []
+        },
+        {
+          "type": "skillExperience",
+          "key": "wigor",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "wigor",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "4902",
+      "name": "Mistyczna Regeneracja",
+      "desc": "Odkąd udało ci się powziąć kroki ku lepszemu dbaniu o własne zdrowie pracujesz nad magicznymi sztuczkami wspomagającymi samoistną regenerację twojego organizmu.\n\nZyskujesz atrybut „Mistyczna Regeneracja”:\n\nMistyczna Regeneracja:\nPodczas pełnego odpoczynku, w którym udaje ci się usunąć punkt(y) obrażeń możesz wydać dwa punkty energii by usunąć dodatkowy punkt obrażeń. Możesz użytć tego atrybutu wiele razy w trakcie jednego odpoczynku póki masz odpowiednią ilość punktów energii. ",
+      "hoverText": "",
+      "fi": -6,
+      "theta": 57,
+      "requires": [
+        "4829"
+      ],
+      "cost": 4,
+      "temperature": 3150,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Mistyczna Regeneracja",
+          "description": "Podczas pełnego odpoczynku, w którym udaje ci się usunąć punkt(y) obrażeń możesz wydać dwa punkty energii by usunąć dodatkowy punkt obrażeń. Możesz użytć tego atrybutu wiele razy w trakcie jednego odpoczynku póki masz odpowiednią ilość punktów energii.",
           "bonuses": []
         }
       ]
