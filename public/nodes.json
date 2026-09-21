@@ -2395,8 +2395,8 @@
       "name": "Podstawy Wiedzy Medycznej",
       "desc": "Poznajesz działanie i metody przetwarzania wielu ziół oraz podstawy działania ciał świadomych istot.\n\nZyskujesz dwa poziomy doświadczenia i improwizacji w umiejętnościach Wiedza Medyczna. Dodatkowo zyskujesz zestaw zielarza.",
       "hoverText": "",
-      "fi": 10,
-      "theta": 58,
+      "fi": -123.00000000000001,
+      "theta": 21.999999999999996,
       "requires": [
         "1455"
       ],
@@ -2617,7 +2617,7 @@
       "desc": "Pogłębiasz swoją wiedzę na temat potężnej magii transmutacji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Transmutacji oraz Wiedzy Tajemnej.\n\nZyskujesz także jedną jednostkę ołowieu transmutacyjnego.",
       "hoverText": "",
       "fi": -45,
-      "theta": 43,
+      "theta": 43.00000000000001,
       "requires": [
         "666"
       ],
@@ -3272,7 +3272,7 @@
       "desc": "Twoja postać wierzy w oraz regularnie czci co najmniej jednego z Pięciu Bogów−Patronów Imperium:\n\nŚwiatłą Alysolę, patronkę Władców, Architektów, Urzędników, Rolników, Zielarzy, Lekarzy, Posłańców i Przywódców. Jej kult podkreśla wagę budowania lepszej przyszłości dla innych, ogólnie pojętego altruizmu oraz dbania o zachowanie istniejącego ładu. Jest on krytykowany z racji na bezczynność wobec członków oskarżonych o nadużycia swojej pozycji w społeczeństwie i władzy. Jej świątynie rozdają jedzenie ubogim, oferują pomoc rannym i służą jako centra administracyjne.\n\nOdważną Ritogę, patronkę najemników, dyplomatów, żołnieży, wojowników, podróżników, włóczęgów i ubogich. Jej kult podkreśla wagę aktywnej walki z zagrożeniami dla pokoju i porządku oraz walki z własnymi słabościami i problemami; zarówno w formie bezpośredniej jak i pośredniej. Wielu uważa jej kult za niebezpieczny w samej swojej naturze, choć są to głównie przesądy. Jej świątynie często stanowią schronienie dla osób sprzeciwiającym się lokalnym władzom w czasach nieprawości.\n\nPotężne Magni, które przyświeca studentom, uczonym, magom, kowalom zaklęć, alchemikom i zaklinaczom.  Kult Magni kładzie wagę na wartość wiedzy jako wartości samej w sobie oraz jako sposobowi na utrzymanie istniejącego porządku w obliczu nowych wyzwań i zagrożeń. Kult magni i wysuwane przez jego członków tezy często spotykają się z niezrozumieniem ze strony niewtajemniczonych w praktyki wyznawców Martwego Boga oraz z wizytami od Imperialnych Inkwizytorów weryfikujących bezpieczeństwo badań jego członków. Świątynie Magni zawierają wiele cennych i dostępnych dla wszystkich chętnych księgozbiorów, służąc także jako źródła wiedzy dla wszystkich mieszkańców Imperium − od ubogich rolników do królów.\n\nStworzyciela Valmaca, który jest patronem rzemieślników, majsterkowiczy, alchemików, kowali zaklęć, budowniczych oraz kreatorów. Jego kult kładzie nacisk na doskonalenie swoich umiejętności jako służba wobec korzystającej z nich szerszej społeczności. Wielu twierdzi, iż jego kult jest jedynie miejscem spotkań  kolaborujących między sobą w celu podwyższania cen cechów i kryjących się przed sprawiedliwością szarlatanów. Jego świątynie są często zarówno miejscami spotkań rzemieślników, gdzie dzielą się swoimi mniej cenionymi sekretami jak i miejscami gdzie można łatwo znaleźć pracę jako pomocnik rzemieślnika czy uzyskać zlecenie od przewodniczących cechów rzemieślniczych.\n\nZmiennego Endri, który jest patronem wędrownych trubadurów, innych muzyków, aktorów, łotrów, wyjętych spod prawa, alkoholików, chorych, kupców i ubogich. Jego kult jest kultem akcentującym podstawową wartość świadomej istoty niezaleźnie od jej stanu, potencjał do czynienia dobra przez każdego. Jest on krytykowany za krycie przestępców przed imperialną sprawiedliwością oraz za udział kupców w kulcie wierzących w to, iż oddawanie czci Endriemu da im szczęście w prowadzeniu biznesów. Jego świątynie są zwykle bogate i fundowane przez kupców i nie mają nic wspólnego z czczeniem jakiegokolwiek boga, choć istnieje kilka uboższych świątyni, których kapłąni często działając nielegalnie próbują rehabilitować najgorszych z najgorszych. Dodatkowo według Imperialnego prawa na terenie świątyni Endriego nie można dokonywać aresztowań ani wykonywać wyroków, choć nierzadko zdarza się, iż ścigani chowający się w tych świątycniach są z nich wyrzucani siłą.\n\nMożesz także znaleźć się w grupie osób czczących Imperatora jako Boga, pomimo faktu, iż sam Imperaotr wydaje się być jedynie bardzo potężnym magiem. Dyktaty Imperatora (czyli jego oficjalne słowo, uznawane w Imperium za podstawę prawa) stają się dla ciebie świętością. Dyktaty Imperatora naciskają na szacunek dla porządku, starszych, równe traktowanie wszystkich świadomych istot oraz potępienie jakichkolwiek innego podejścia do demonów, ludów ich krwi oraz opętanych niż bezlitosna eksterminacja. Jego wielbiciele i czciciele często należą do wojska, a ich poglądy i zachowania najbliższe są chyba czcicielom Alysol. O ile kult Imperatora nie jest oficjalnie uznawany, to wiele miejsc poświęconych historii Imperium od stuleci jest miejscami jego kultu. Kult Imperatora składa się niemalże tylko z fanatyków, których głównym celem jest pięcie się po drabinie administracyjnej Imperium w celu „Zbliżenia się do Światła Imperatora”.\n\n\nZyskujesz mały symbol boga, w którego wierzy Twoja Postać. Jeżeli nie masz pomysłu na to jak ma wyglądać twój symbol, możesz skorzystać z poniższych sugestii:\n\nW przypadku Alysoli jest to mały złoty łańcuszek z złotym wisiorkiem z symbolem słońca.\n\nW przypadku Ritogi jest to srebrny łańcuszek z wisiorkiem z srebrnym symbolem tarczy, włóczni i pióra.\n\nW przypadku Magni jest to pierścionek z bronzu z wizerunkiem księgi.\n\nW przypadku Valmaca jest to stalowa branzoleta z symbolem młota.\n\nW przypadku Endri jest to miedziana przypinka o nieregularnym kształcie.\n\nW przypadku Imperatora jego symbolem jest symbol humanoida, trzymającego kamienną tarczę, uskrzydloną włócznię, otoczonego wodą odpierającą płomienie z emanującymi z niego promieniami światła. Z racji na skomplikowanie tego symbolu większość czcicieli Imperatora nosi jego część (np. uskrzydloną włócznię, figurę humanoidalną z promieniami światła, czy wodę odpierającą płomienie).\n\nDodatkowo religijna praktyka pomogła się rozwinąć twojej postaci. Zyskujesz poziom improwizacji w wybranej umiejętności.",
       "hoverText": "",
       "fi": -100,
-      "theta": 25,
+      "theta": 28,
       "requires": [
         "1"
       ],
@@ -3603,8 +3603,8 @@
       "name": "Ukierunkowane Uzdolnienie",
       "desc": "Z racji na zainteresowanie, nakaz lub potrzebę udało ci się rozwinąć niektóre umiejętności w stopniu dużo wyższym niż zwykle.\n\nZyskujesz poziom doświadczenia w dowolnej umiejętności.",
       "hoverText": "",
-      "fi": 20,
-      "theta": 50,
+      "fi": -29.999999999999996,
+      "theta": 16,
       "requires": [
         "1"
       ],
@@ -3624,8 +3624,8 @@
       "name": "Medyk Polowy",
       "desc": "Dzięki nauce i ćwiczeniom jesteś w stanie  szybciej leczyć stworzenia, co jest nieodzowną umiejętnością na polu walki.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna.\nZyskujesz atrybut \"Medyk Polowy\":\n\nMedyk Polowy:\nGdy zaleczasz obrażenia za pomocą przedmiotu, wiesz dokłądnie ile remedium potrzebujesz, dzięki czemu każdy przedmiot użyty w leczeniu możesz użyć dwa razy więcej razy.\n\nDodatkowo próba zaleczenia obrażeń wykonana przez ciebie nie może poskutkować zadaniem obrażeń.\n\nCo więcej, gdy zaleczasz obrażenia wykonując test wiedzy medycznej, wykonujesz to w połowę zwykłego czasu (zwykłe zaleczasz teraz w 5 minut, krytyczne od ran w 4 punkty akcji, złamania w 10 punktów akcji, obrażenia wewnętrzne w 60 punktów akcji lub pół minuty).",
       "hoverText": "",
-      "fi": 10,
-      "theta": 59.99999999999999,
+      "fi": -123.00000000000001,
+      "theta": 24,
       "requires": [
         "1526"
       ],
@@ -3645,8 +3645,8 @@
       "name": "Zaawansowana Wiedza Medyczna",
       "desc": "Dzięki ekstensywnemu studiowaniu ciał świadomych stworzeń i rzeczy im zagrażającym udało ci się dojść do bardzo dobrego poziomu zrozumienia medycyny.\n\nZyskujesz dwa poziomy doświadczenia i improwizacji w umiejętności Wiedza Medyczna.\nDodatkowo zyskujesz atrybut: \"Lekarz\":\n\nLekarz:\nGdy używasz wiedzy medycznej do zaleczenia obrażeń traktujesz każdy sukces jak krytyczny sukces.\n\nDodatkowo zawsze jesteś w stanie określić czy istota jest w stanie zagrożenia życia, jak daleko jest po śmierci oraz ile czasu temu zmarła istota po inspekcji. Taka inspekcja istoty zajmuje 3 Punkt Akcji.\n\nCo więcej, po zbadaniu chorego lub zatrutego pacjenta oraz obserwowaniu go przez 15 minut jesteś w stanie zaproponować lek/odtrutkę, która zaleczy wszystkie obrażenia od chorób i trucizny danego stworzenia, jeżeli takowa istnieje.",
       "hoverText": "",
-      "fi": 14.5,
-      "theta": 59.99999999999999,
+      "fi": -120.50000000000001,
+      "theta": 24,
       "requires": [
         "3467"
       ],
@@ -3677,8 +3677,8 @@
       "name": "Chirurg",
       "desc": "Dzięki ekstensywnym ćwiczeniom jesteś w stanie operować sprawnie nawet w bojowych warunkach.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna.\n\nDodatkowo zyskujesz atrybut \"Chirurg\":\n\nChirurg:\nUczysz się jak szybko i sprawnie operować na istotach bliskich śmierci. Świadoma istota nie może otrzymać prowadzących do śmierci obrażeń lub prowadzących do śmierci poziomów wykrwawienia, gdy jesteś w trakcie jej leczenia, chyba, że ich źródłem jest coś innego niż ty, istota, nad którą operujesz lub jej stan.\n\nDodatkowo zanim wykonasz test wiedzy medycznej, będący elementem rzutu na leczenie obrażeń, rzuć kością d4. W przypadku wyniku innego niż 1 na kości możesz stwierdzić, iż test zakończył się sukcesem. Nie wykonujesz wtedy owego rzutu na Wiedzę Medyczną.\n\nCo więcej, w przypadku zaleczania obrażeń wewnętrznych, usuń połowę zaleczonych punktów obrażeń (zaokrąglając w górę) w przypadku sukcesu, lub krytycznego sukcesu.",
       "hoverText": "",
-      "fi": 5.499999999999999,
-      "theta": 59.99999999999999,
+      "fi": -125.50000000000001,
+      "theta": 24,
       "requires": [
         "3467"
       ],
@@ -3698,8 +3698,8 @@
       "name": "Mistyczny Konsyliarz",
       "desc": "Uczysz się tworzyć magicznie narzędzia potrzebne do leczenia.\n\nZyskujesz poziom doświadczenia w umiejętności Wiedza Medyczna oraz Wiedza Tajemna.\n\nZyskujesz atrybut: \"Mistyczny Konsyliarz\":\n\nMistyczny Konsyliarz:\nMożesz zużyć pięć Punktów Energii w celu dokonania magicznego zaleczania. Działa ono tak samo, jak zaleczanie za pomocą testu wiedzy medycznej, ale jesteś w stanie wykonywać je niezwykle szybko, zużywając zaledwie 7 Punktów Akcji (odpowidnik kilku sekund).",
       "hoverText": "",
-      "fi": 10,
-      "theta": 62,
+      "fi": -123.00000000000001,
+      "theta": 26.000000000000007,
       "requires": [
         "3467"
       ],
@@ -4952,8 +4952,8 @@
       "name": "Siła Fizyczna",
       "desc": "Gdy inni odpoczywają zmuszasz się do poświęcenia czasu na treningi siłowe.\n\nZyskujesz dwa poziomy doświadczenia i jeden poziom improwizacji w umiejętności siła.\n\nDodatkowo zyskujesz atrybut: „Jeszcze jedno powtórzenie”:\n\nJeszcze jedno powtórzenie:\nDzięki ćwiczeniom siłowym jesteś w stanie zmusić się do dużych wysiłków. Zużywając jeden Punkt Energii możesz w trakcie akcji, w której korzystasz z umiejętności siła możesz przerzucić kość improwizacji. Możesz użyć tej umiejętności dowolną liczbę razy na danym rzucie póki masz punkty energii.",
       "hoverText": "",
-      "fi": -21.999999999999996,
-      "theta": 58,
+      "fi": -2,
+      "theta": 23,
       "requires": [
         "1455"
       ],
@@ -4984,8 +4984,8 @@
       "name": "Przerażająca Siła",
       "desc": "Uczysz się jak lepiej wykorzystywać swoją siłę do zastraszania.\n\nZyskujesz poziom improwizacji w umiejętności siła. \n\nCo więcej, zyskujesz atrybut „Przerażająca Siła”:\n\nPrzerażająca Siła:\nGdy używasz swojej siły by spróbować zastraszyć inną istotę możesz mocno w coś uderzyć lub zniszczyć w dłoniach coś twardego i otrzymać jeden punkt zwykłych obrażeń. W zamian przyjmij najwyższy możliwy wyniku rzutu kością improwizacji jako wynik rzutu kością improwizacji.",
       "hoverText": "",
-      "fi": -27,
-      "theta": 59.00000000000001,
+      "fi": -5.7,
+      "theta": 25,
       "requires": [
         "7401"
       ],
@@ -5011,8 +5011,8 @@
       "name": "Regularne Treningi Siłowe",
       "desc": "Niezależnie tego ile masz czasu starasz się regularnie ćwiczyć wieczorami, dzięki czemu czujesz się silniej następnego dnia.\n\nZyskujesz dwa poziomy doświadczenia w umiejętnosci siła.\n\nZyskujesz atrybut „Regularne Treningi Siłowe”:\n\nRegularne Treningi Siłowe:\nMożesz poświęcić jeden punkt energii na początku pełnego odpoczynku, by wykonać trening siłowy. Po zakończeniu tego pełnego odpoczynku do następnego takiego odpocznyku za każdym razem, gdy używasz kości improwizacji siły możesz ją raz przerzucić.",
       "hoverText": "",
-      "fi": -17,
-      "theta": 58,
+      "fi": 2,
+      "theta": 21.999999999999996,
       "requires": [
         "2546"
       ],
@@ -5038,8 +5038,8 @@
       "name": "Konsekwentność nad Rekordami",
       "desc": "Skupiasz się nad konsekwentnością i powtarzalnością w swoich treningach.\n\nZyskujesz trzy poziomy doświadczenia w umiejętności siła,\n\nDodatkowo zyskujesz atrybut „Konsekwentność nad Rekordami”:\n\nKonsekwentność nad Rekordami:\nZamiast rzucać kością improwizacji siły możesz wziąć średni wynik jej rzutu (zaokrąglony w dół: 2 dla d4, 3 dla d6, 4 dla d8, 5 dla d10, 6 dla d12 i 10 dla d20).",
       "hoverText": "",
-      "fi": -17,
-      "theta": 59.00000000000001,
+      "fi": 2.3,
+      "theta": 23,
       "requires": [
         "8972"
       ],
@@ -5065,8 +5065,8 @@
       "name": "Zawsze w Pełni Sił",
       "desc": "Dzięki swojemu treningowi nawet w zły dzień masz dużo więcej siły niż możnaby się było spodziewać.\n\nZyskujesz dwa poziomy doświadczenia w umiejętności siła.\n\nDodatkowo zyskujesz atrybut „Zawsze w Pełni Sił”:\n\nZawsze w Pełni Sił:\nGdy wykorzystujesz kość improwizacji siły możesz zużywając 3 Punkty Energii przerzucić ją. ",
       "hoverText": "",
-      "fi": -17,
-      "theta": 57.00000000000001,
+      "fi": 1.7,
+      "theta": 21,
       "requires": [
         "8972"
       ],
@@ -5092,8 +5092,8 @@
       "name": "Trening Wyczynowy",
       "desc": "Każdy trening to dla ciebie kolejna okazja na nowy rekord i przesuwanie granic wytrzymałości swojego ciała.\n\nZyskujesz dwa poziomy improwizacji w umiejętności siła.\n\nCo więcej zyskujesz atrybut: „Trening Wyczynowy”:\n\nTrening Wyczynowy:\nGdy wykonujesz test używający kości improwizacji siły możesz zużyć dwa punkty energii by zmienić sukces w krytyczny sukces.",
       "hoverText": "",
-      "fi": -27,
-      "theta": 58,
+      "fi": -6,
+      "theta": 24,
       "requires": [
         "2546"
       ],
@@ -5119,8 +5119,8 @@
       "name": "Siłowe Włamanie",
       "desc": "Uczysz precyzyjnie przykładać siłę do precyzyjnych mechanizmów.\n\nZyskujesz poziom improwizacji w umiejętności siła.\n\nZyskujesz atrybut „Siłowe Otwieranie”:\n\nSiłowe Otwieranie:\nGdy używasz siły do złamania zabezpieczenia by uszkodzić je w nieoczywisty sposób (np. zamiast wyrywać drzwi z zawiasów, próbujesz siłą zepsuć mehcanizm zamka) nie zwiększa to poziomu trudności testu, a wynik testu jest poziomem trudności testu spostrzegawczości na to, że uszkodzenie nie było losowe.",
       "hoverText": "",
-      "fi": -27,
-      "theta": 57.00000000000001,
+      "fi": -6.300000000000001,
+      "theta": 23,
       "requires": [
         "7401"
       ],
@@ -5146,8 +5146,8 @@
       "name": "W Zdrowym Ciele Zdrowy Duch",
       "desc": "Dbasz o swoje ciało tak dobrze jak tylko możesz, co daje ci więcej energii każdego dnia.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności wigor.\n\nZyskujesz atrybut „Zdrowy Duch”:\n\nZdrowy Duch:\nGdy nie masz żadnych punktów obrażeń twoja Siła Woli jest większa o 5 od normalnej wartości.",
       "hoverText": "",
-      "fi": -3,
-      "theta": 59.99999999999999,
+      "fi": -10.999999999999998,
+      "theta": 27,
       "requires": [
         "5743"
       ],
@@ -5178,8 +5178,8 @@
       "name": "Wysoki Standard Higieny",
       "desc": "Nawet podczas najbardziej paskudnych przygód znajdujesz czas i sposób na utrzymanie czystości każdej części swojego ciała.\n\nZyskujesz dwa poziomy improwizacji w umiejętności wigor.\n\nCo więcej zyskujesz atrybut „Wieczna Czystość”:\n\nWieczna Czystość:\nGdy wykonujesz test intuicji masz przewagę, jeżeli twój dobry wygląd może pomóc w teście.",
       "hoverText": "",
-      "fi": -2,
-      "theta": 58,
+      "fi": -10,
+      "theta": 25,
       "requires": [
         "4829"
       ],
@@ -5205,8 +5205,8 @@
       "name": "Zahartowany Organizm",
       "desc": "Wystawiając się na zimno i gorąc przyzwyczajasz swój organizm do ekstremalnych temperatur.\n\nZyskujesz dwa poziomy doświadczenia w umiejętności wigor.\n\nZdobywasz atrybut „Zahartowany Organizm”:\nOtrzymujesz połowę obrażeń krytycznych od temperatury (zaokrąloną w dół).",
       "hoverText": "",
-      "fi": -10,
-      "theta": 58,
+      "fi": -16,
+      "theta": 25,
       "requires": [
         "4829"
       ],
@@ -5232,8 +5232,8 @@
       "name": "Odporność na Toksyny",
       "desc": "Twoja postać celowo podtruwa się małymi dawkami jadu czy wchodzi w kontakt z chorymi w celu budowania odporności.\n\nZyskujesz trzy poziomy doświadczenia w umiejętności wigor.\n\nCo więcej zyskujesz atrybut „Odporność na Trucizny i Choroby”:\nOtrzymujesz połowę zadawanych ci obrażeń od chorób i trucizn.",
       "hoverText": "",
-      "fi": -9,
-      "theta": 59.99999999999999,
+      "fi": -14.999999999999998,
+      "theta": 27,
       "requires": [
         "6491"
       ],
@@ -5259,8 +5259,8 @@
       "name": "Nie do Złamania",
       "desc": "Dzięki dbaniu o swój organizm oraz ćwiczeniu wszystkich jego systemów jesteś w stanie przyjąć obrażenia, które powaliłyby na ziemię najtwardszych wojowników, póki nie zagrażają one twojemu życiu.\n\nZyskujesz dwa poziomy doświadczenia i poziom improwizacji w umiejętności wigor.\n\nCo więcej zyskujesz atrybut „Niezłomny Organizm”:\nOtrzymujesz połowę zadanych tobie obrażeń zwykłych.",
       "hoverText": "",
-      "fi": -6,
-      "theta": 59,
+      "fi": -13.000000000000004,
+      "theta": 26.000000000000007,
       "requires": [
         "9047",
         "6451"
@@ -5292,8 +5292,8 @@
       "name": "Zdrowy jak Damh",
       "desc": "Zwracasz dużo więcej uwagi na własne zdrowie niz przeciętna świadoma istota.\n\nZyskujesz jeden poziom doświadczenia i improwizacji w umiejętności wigor.\n\nCo więcej zyskujesz atrybut: „Zdrowy jak Damh”:\n\nZdrowy jak Damh:\nGdy zaleczasz punkty obrażeń, zaleczasz ich dwa razy więcej niż inni.",
       "hoverText": "",
-      "fi": -6,
-      "theta": 56,
+      "fi": -13.000000000000004,
+      "theta": 21.999999999999996,
       "requires": [
         "1455"
       ],
@@ -5324,8 +5324,8 @@
       "name": "Mistyczna Regeneracja",
       "desc": "Odkąd udało ci się powziąć kroki ku lepszemu dbaniu o własne zdrowie pracujesz nad magicznymi sztuczkami wspomagającymi samoistną regenerację twojego organizmu.\n\nZyskujesz atrybut „Mistyczna Regeneracja”:\n\nMistyczna Regeneracja:\nPodczas pełnego odpoczynku, w którym udaje ci się usunąć punkt(y) obrażeń możesz wydać dwa punkty energii by usunąć dodatkowy punkt obrażeń. Możesz użytć tego atrybutu wiele razy w trakcie jednego odpoczynku póki masz odpowiednią ilość punktów energii. ",
       "hoverText": "",
-      "fi": -6,
-      "theta": 57,
+      "fi": -13.000000000000004,
+      "theta": 24,
       "requires": [
         "4829"
       ],
@@ -5337,6 +5337,95 @@
           "type": "attribute",
           "key": "Mistyczna Regeneracja",
           "description": "Podczas pełnego odpoczynku, w którym udaje ci się usunąć punkt(y) obrażeń możesz wydać dwa punkty energii by usunąć dodatkowy punkt obrażeń. Możesz użytć tego atrybutu wiele razy w trakcie jednego odpoczynku póki masz odpowiednią ilość punktów energii.",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "4651",
+      "name": "Sprawność Rąk",
+      "desc": "Poszerzasz swoje zainteresowania związane z wykonywaniem precyzyjnych ruchów rękami, dzięki czemu coraz rzadziej zdarza ci się popełniać poważne błędy w czynnościach wymagającyhc zręcznych ruchów.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności zręczność.\n\nCo więcej zyskujesz atrybut „Sprawne Ręce”:\n\nSprawne Ręce:\nJeżeli masz ponieść krytyczną porażkę w teście zręczności możesz zwiększyć wynik testu o cztery. Nie otrzymujesz tego bonusu, jeżeli doprowadziłoby to do odneisienia sukcesu lub krytycznego sukcesu w teście.",
+      "hoverText": "",
+      "fi": -23,
+      "theta": 21.999999999999996,
+      "requires": [
+        "1455"
+      ],
+      "cost": 5,
+      "temperature": 4500,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "attribute",
+          "key": "Sprawne Ręce",
+          "description": "Jeżeli masz ponieść krytyczną porażkę w teście zręczności możesz zwiększyć wynik testu o cztery. Nie otrzymujesz tego bonusu, jeżeli doprowadziłoby to do odneisienia sukcesu lub krytycznego sukcesu w teście.",
+          "bonuses": []
+        },
+        {
+          "type": "skillExperience",
+          "key": "zrecznosc",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "zrecznosc",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "5731",
+      "name": "Trening Zręcznościowy",
+      "desc": "Rozwijając swoje zręcznościowe hobby wykonujesz je tak regularnie, że staje się ono niezłym codziennym treningiem.\n\nZyskujesz dwa poziomy doświadczenia w umiejętności zręczność.\n\nCo więcej zyskujesz atrybut „Trening Zręcznościowy”:\n\nTrening Zręcznościowy:\nGdy wykonujesz pełen odpoczynek możesz zużyć trzy punkty energii, by wykonać intensywny trening. Po zakończeniu tego pełnego odpoczynku do następnego takiego odpocznyku za każdym razem, gdy używasz kości improwizacji zręczności możesz przerzucić ją dodatkowy raz .",
+      "hoverText": "",
+      "fi": -23,
+      "theta": 24,
+      "requires": [
+        "4651"
+      ],
+      "cost": 7,
+      "temperature": 4700,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "zrecznosc",
+          "amount": 2
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "zrecznosc",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Trening Zręcznościowy",
+          "description": "Gdy wykonujesz pełen odpoczynek możesz zużyć trzy punkty energii, by wykonać intensywny trening. Po zakończeniu tego pełnego odpoczynku do następnego takiego odpocznyku za każdym razem, gdy używasz kości improwizacji zręczności możesz przerzucić ją dodatkowy raz .",
+          "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "1749",
+      "name": "Bez Ręki",
+      "desc": "Z racji na wypadek, przegraną walke, chorobę czy wrodzoną wadę nie masz jednej ręki.\n\nTracisz dwa poziomy doświadczenia w umiejętności zręczność.\n\nZyskujesz atrybut „Bez Ręki”:\nNie posiadasz co najmniej znaczącej części jednej ręki. Nie możesz wyposażyć dwóch przedmiotów wymagających jednej ręki na raz ani przedmiotu wymagającego obu rąk do użycia.",
+      "hoverText": "",
+      "fi": 32,
+      "theta": 14.600000000000001,
+      "requires": [],
+      "cost": -3,
+      "temperature": 4500,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "zrecznosc",
+          "amount": -2
+        },
+        {
+          "type": "attribute",
+          "key": "Bez Ręki",
+          "description": "Nie posiadasz co najmniej znaczącej części jednej ręki. Nie możesz wyposażyć dwóch przedmiotów wymagających jednej ręki na raz ani przedmiotu wymagającego obu rąk do użycia.",
           "bonuses": []
         }
       ]
@@ -5619,22 +5708,42 @@
       ]
     },
     {
-      "id": "Wiedza Medyczna",
+      "id": "Siła",
       "center": {
-        "fi": 10,
-        "theta": 62
+        "fi": -2,
+        "theta": 23
       },
       "label": {
-        "text": "Wiedza Medyczna",
-        "fi": 10,
-        "theta": 63
+        "text": "Siła",
+        "fi": -2,
+        "theta": 24
       },
       "clickArea": [
         {
-          "fiMin": 5,
-          "fiMax": 15,
-          "thetaMin": 56,
-          "thetaMax": 64
+          "fiMin": -7,
+          "fiMax": 4,
+          "thetaMin": 20,
+          "thetaMax": 27
+        }
+      ]
+    },
+    {
+      "id": "Wigor",
+      "center": {
+        "fi": -13,
+        "theta": 24.5
+      },
+      "label": {
+        "text": "Wigor",
+        "fi": -13,
+        "theta": 28
+      },
+      "clickArea": [
+        {
+          "fiMin": -17,
+          "fiMax": -7.1,
+          "thetaMin": 21,
+          "thetaMax": 29
         }
       ]
     }
