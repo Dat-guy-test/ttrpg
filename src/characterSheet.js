@@ -60,6 +60,7 @@ import {
 import { resetEverything } from './resetAll.js';
 import { downloadCharacterExport, importCharacterFromObject } from './characterExport.js';
 import { printCharacterSheet } from './characterPrintSheet.js';
+import { refreshPremadeCharacterButton } from './premadeCharacters.js';
 
 const CHARACTERISTIC_POOL = POINT_POOLS_CONFIG.find(p => p.key === 'characteristicPoints');
 
@@ -531,7 +532,7 @@ function attachHandlers() {
         }
         if (confirmMsg && !window.confirm(confirmMsg)) return;
 
-        if (advanceStage(tr)) render();
+        if (advanceStage(tr)) { render(); refreshPremadeCharacterButton(); }
     });
 
     // ---- Resources ("current" only — "max" is derived from Charakterystyki) ----

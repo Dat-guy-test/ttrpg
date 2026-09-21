@@ -51,7 +51,7 @@ import { initEditMode } from './editMode.js';
 import { LABEL_MIN_SCALE, LABEL_MAX_SCALE, BASE_CAMERA_FOV, MIN_CAMERA_FOV, MAX_CAMERA_FOV } from './constants.js';
 import { restoreActiveNodes } from './treePersistence.js';
 import { refreshPerksTaken } from './perkEffects.js';
-
+import { initPremadeCharacterPicker } from './premadeCharacters.js';
 
 // ============================================================
 // BOOT SEQUENCE
@@ -76,6 +76,7 @@ initEquipmentSheet();
 initArcanaSheet();
 // 3e. Build the Instrukcja Obsługi (manual) module
 initManualSheet();
+initPremadeCharacterPicker();
 // 4. Attach all DOM event listeners
 registerInputHandlers();
 
