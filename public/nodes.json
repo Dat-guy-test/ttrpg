@@ -2617,7 +2617,7 @@
       "desc": "Pogłębiasz swoją wiedzę na temat potężnej magii transmutacji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Transmutacji oraz Wiedzy Tajemnej.\n\nZyskujesz także jedną jednostkę ołowieu transmutacyjnego.",
       "hoverText": "",
       "fi": -45,
-      "theta": 43.00000000000001,
+      "theta": 43,
       "requires": [
         "666"
       ],
@@ -2643,7 +2643,7 @@
         {
           "type": "spellSchoolUnlock",
           "schools": [
-            "projection"
+            "transmutation"
           ],
           "maxComplexity": 1
         }
@@ -5558,7 +5558,7 @@
       "name": "Mistrzowska Zręczność",
       "desc": "Potrafisz sprawić wrażenie, jakby najbardziej skomplikowane ruchy były w twoim figuratywnym małym palcu.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności zręczność.\n\nCo więcej zyskujesz atrybut: „Mistrzowska Zręczność”:\n\nMistrzowska Zręczność:\nGdy osiągniesz sukces w teście używającym kości improwizacji zręczności możesz wydać dwa punkty energii by odnieść krytyczny sukces w tym teście.",
       "hoverText": "",
-      "fi": -21.5,
+      "fi": -21.500000000000004,
       "theta": 25.5,
       "requires": [
         "5731"
