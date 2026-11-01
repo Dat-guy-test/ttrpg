@@ -1972,7 +1972,7 @@
       "requires": [
         "100008"
       ],
-      "cost": 3,
+      "cost": 4,
       "temperature": 8000,
       "exclGroup": null,
       "effects": [
@@ -2009,7 +2009,7 @@
       "requires": [
         "125"
       ],
-      "cost": 3,
+      "cost": 4,
       "temperature": 8000,
       "exclGroup": null,
       "effects": [
@@ -2068,7 +2068,7 @@
       "requires": [
         "130"
       ],
-      "cost": 3,
+      "cost": 5,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
@@ -2095,7 +2095,7 @@
       "requires": [
         "128"
       ],
-      "cost": 3,
+      "cost": 5,
       "temperature": 10000,
       "exclGroup": null,
       "effects": [
@@ -2427,7 +2427,7 @@
       "desc": "Czytając prace magów dowiadujesz się jak rzucać zaklęcia w sposób określany jako \"magia uczonych\". Jest to styl rzucania zaklęć oparty na głębokim zrozumieniu manipulacji i natury eteru.\n\nUczysz się jednego zaklęcia o złożoności równej 1. \n\nZyskujesz także jeden poziom doświadczenia i improwizacji w wybranej przez siebie umiejętności.\n\nDodatkowo zyskujesz możliwość rzucania zaklęć przez \"Magię Uczonych\", co odzwierciedla poniższy atrybut:\n\nMagia Uczonych:\nRzucając czary posługujesz się księgą z swoimi notatkami. Jeżeli stracisz księgę, możesz odtworzyć jej zawartość z pamięci w tępie jednej godziny na każde zaklęcie. Dzięki dogłębnemu zrozumieniu swoich zaklęć jesteś w stanie stosunkowo niewielkim wysiłkiem wprowadzać drobne modyfikacje do rzucanych czarów w trakcie ich rzucania:\n1.) Możesz wydawać Punkty Energii by zwiększyć wynik dowolnego testu, który musisz wykonać jako element rzucania czaru. Każdy zużyty Punkt Energii zwiększa wynik testu o 1. Decyzję o wydaniu Punktów Energii w ten sposób podejmujesz zaraz po wykonaniu testu.\n2.) Możesz wydać Punkty Energii by zwiększyć ilość obrażeń zadawanych przez zaklęcie. Wydając ilość Punktów Energii równą kosztowi rzucenia zaklęcia możesz podwoić zadanych obrażeń. Decyzję tą możesz podjąć najpóźniej w momencie zobaczenia wyniku pierwszego rzutu na obrażenia związanego z zaklęciem.",
       "hoverText": "",
       "fi": -35,
-      "theta": 41,
+      "theta": 45,
       "requires": [
         "5555"
       ],
@@ -2471,11 +2471,11 @@
     },
     {
       "id": "55555",
-      "name": "Zainteresowanie Szkołą Kreacji",
-      "desc": "Skupiasz się na rozwijaniu swoich umiejętności w szkole kreacji.\nUczysz się jednego zaklęcia o maksymalnej złożoności równej 1 z szkoły kreacji.\nZyskujesz poziom doświadczenia w kreacji i wiedzy tajemnej.",
+      "name": "Szkoła Kreacji",
+      "desc": "Skupiasz się na rozwijaniu swoich umiejętności w badaniu i rzucaniu czarów należących do „Szkoły Kreacji”. Są to czary pozwalające tworzyć proste materiały z eteru. Czary te pozwalają na przykład na tworzenie kul ognia, przywoływanie wody czy lepu oraz nadawanie niebezpiecznych prędości tworzonym obiektom. \n\nUczysz się jednego zaklęcia o maksymalnej złożoności równej 1 z szkoły kreacji.\n\nZyskujesz poziom doświadczenia i improwizaji w umiejętności kreacja.",
       "hoverText": "",
-      "fi": -75.00000000000001,
-      "theta": 43.00000000000001,
+      "fi": -40,
+      "theta": 48,
       "requires": [
         "666"
       ],
@@ -2489,26 +2489,26 @@
           "amount": 1
         },
         {
-          "type": "skillExperience",
-          "key": "wiedzaMagiczna",
-          "amount": 1
-        },
-        {
           "type": "spellSchoolUnlock",
           "schools": [
             "creation"
           ],
           "maxComplexity": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "kreacja",
+          "amount": 1
         }
       ]
     },
     {
       "id": "43636",
-      "name": "Początkujący Adept Kreacji",
-      "desc": "Pogłębiając swoją wiedzę na temat magii kreacji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności kreacja i poziom doświadczenia w umiejętności wiedza tajemna.",
+      "name": "Adept Kreacji",
+      "desc": "Pogłębiając swoją wiedzę na temat magii kreacji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2..\n\nDodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności kreacja.",
       "hoverText": "",
-      "fi": -75.00000000000001,
-      "theta": 47,
+      "fi": -40,
+      "theta": 50,
       "requires": [
         "55555"
       ],
@@ -2532,21 +2532,16 @@
           "type": "skillExperience",
           "key": "kreacja",
           "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "wiedzaMagiczna",
-          "amount": 1
         }
       ]
     },
     {
       "id": "5236",
-      "name": "Zainteresowanie Szkołą Projekcji",
-      "desc": "Pogłębiasz swoją wiedzę na temat ezoterycznej magii projekcji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Projekcji oraz Wiedzy Tajemnej.",
+      "name": "Szkoła Projekcji",
+      "desc": "Pogłębiasz swoją wiedzę na temat ezoterycznej magii projekcji. Czary te potrafią niewielkim kosztem tworzyć oszukujące zmysły projekcje bardzo niewielkim wysiłkiem. Za pomocą takich czarów możesz na przykład udawać potężniejszego niż jesteś, szybko się ukryć lub zmylić porzeciwników.\n\nUczysz się jednego zaklęcia z tej szkoły o złożoności równej 1.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Projekcja.",
       "hoverText": "",
-      "fi": -59.99999999999999,
-      "theta": 43.00000000000001,
+      "fi": -45,
+      "theta": 48,
       "requires": [
         "666"
       ],
@@ -2563,11 +2558,11 @@
         },
         {
           "type": "skillExperience",
-          "key": "wiedzaMagiczna",
+          "key": "projekcja",
           "amount": 1
         },
         {
-          "type": "skillExperience",
+          "type": "skillImprovisation",
           "key": "projekcja",
           "amount": 1
         }
@@ -2575,11 +2570,11 @@
     },
     {
       "id": "14634",
-      "name": "Początkujący Adept Projekcji",
-      "desc": "Pogłębiając swoją wiedzę na temat magii projekcji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności Projekcja i poziom doświadczenia w umiejętności wiedza tajemna.",
+      "name": "Adept Projekcji",
+      "desc": "Pogłębiając swoją wiedzę na temat magii projekcji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. \n\nDodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności Projekcja.",
       "hoverText": "",
-      "fi": -59.99999999999999,
-      "theta": 47,
+      "fi": -45,
+      "theta": 50,
       "requires": [
         "5236"
       ],
@@ -2590,11 +2585,6 @@
         {
           "type": "skillExperience",
           "key": "projekcja",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "wiedzaMagiczna",
           "amount": 1
         },
         {
@@ -2613,11 +2603,11 @@
     },
     {
       "id": "12314",
-      "name": "Zainteresowanie Szkołą Transmutacji",
-      "desc": "Pogłębiasz swoją wiedzę na temat potężnej magii transmutacji. Uczysz się jednego zaklęcia z tej szkoły o złożoności równej 1. Zyskujesz poziom doświadczenia w Transmutacji oraz Wiedzy Tajemnej.\n\nZyskujesz także jedną jednostkę ołowieu transmutacyjnego.",
+      "name": "Szkoła Transmutacji",
+      "desc": "Pogłębiasz swoją wiedzę na temat potężnej magii transmutacji. Czary tej szkoły skupiają się na przemianie prostych strukturalnie materiałów w inne materiały. Możesz na przykład zamienić kulę ołowiu transmutacyjnego w kulę ognia, wybuchającą masę powietrza czy pasujący do dziurki w drzwiach kluczyk.\n\nUczysz się jednego zaklęcia z tej szkoły o złożoności równej 1.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Transmutacja.\n\nZyskujesz także jedną jednostkę ołowiu transmutacyjnego.",
       "hoverText": "",
-      "fi": -45,
-      "theta": 43,
+      "fi": -50,
+      "theta": 48,
       "requires": [
         "666"
       ],
@@ -2631,11 +2621,6 @@
           "amount": 1
         },
         {
-          "type": "skillExperience",
-          "key": "wiedzaMagiczna",
-          "amount": 1
-        },
-        {
           "type": "item",
           "key": "custom-1785415285370-miqs9",
           "amount": 1
@@ -2646,16 +2631,21 @@
             "transmutation"
           ],
           "maxComplexity": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "transmutacja",
+          "amount": 1
         }
       ]
     },
     {
       "id": "45322",
-      "name": "Początkujący Adept Transmutacji",
-      "desc": "Pogłębiając swoją wiedzę na temat magii Transmutacji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. Dodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności Transmutacja i poziom doświadczenia w umiejętności wiedza tajemna. ",
+      "name": "Adept Transmutacji",
+      "desc": "Pogłębiając swoją wiedzę na temat magii Transmutacji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. \n\nDodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności Transmutacja.",
       "hoverText": "",
-      "fi": -45,
-      "theta": 47,
+      "fi": -50,
+      "theta": 50,
       "requires": [
         "12314"
       ],
@@ -2678,11 +2668,6 @@
         {
           "type": "skillImprovisation",
           "key": "transmutacja",
-          "amount": 1
-        },
-        {
-          "type": "skillExperience",
-          "key": "wiedzaMagiczna",
           "amount": 1
         }
       ]
@@ -3758,7 +3743,7 @@
       "desc": "Udało ci się zrozumieć zastosowanie magicznych właściwośici krwi żywych stworzeń. Dowiadujesz się jak rzucać zaklęcia w sposób określany jako \"Rytuały Krwi\". Jest to styl rzucania zaklęć oparty na głębokim zrozumieniu magicznych run krwi.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nUczysz się jednego zaklęcia o złożoności równej 1.\n\nDodatkowo zyskujesz możliwość rzucania zaklęć przez \"Rytuały Krwi\", co odzwierciedla poniższy atrybut:\n\nRytuały Krwi:\nDzięki wiedzy na temat magicznych właściwości krwi, możesz rzucać zaklęcia za pomocą wcześniej przygotowanych rytuałów:\n1.) Aby rzucić czar w ten sposób potrzebujesz najpierw przygotować rytuał. Do przygotowania rytuału potrzebujesz tyle fiolek świeżej krwi, ile Punktów Energii i Punktów Akcji łącznie kosztuje rzucenie czaru (świeża krew krepnie i przestaje być przydatna sześć godzin po pobraniu). Jeżeli czar tansmutuje lub niszczy materialny komponent nadal musisz go mieć.\n1a.) Przygotowując rytuał możesz zużyć dodatkową fiolkę krwi na każdy Punkt Energii w jego koszcie rzucenia, by zmniejszyć jego koszt jego rzucenia i podtrzymywania o połowę.\n1b.) Jeżeli chcesz móc aktywować rytuał wszędzie, inskrypcji krwią możesz dokonać na kawałku skóry, pergaminu, papieru lub stronie zeszytu lub książki.\n2.) Przygotowany rytuał aktywujesz z odległości nie większej niż pięć jednostek, traktując środek inskrypcji jako punkt, z którego rzucasz zaklęcie. Jeżeli chcesz, by rytuał przemieścił komponent materialny, z którego korzysta, zwiększa to koszt jego przygotowania o jedną fiolkę na każdą jednostkę obciążenia na jednostkę przesunięcia.",
       "hoverText": "",
       "fi": -80,
-      "theta": 41,
+      "theta": 45,
       "requires": [
         "5555"
       ],
@@ -4020,13 +4005,13 @@
       "name": "Kat",
       "desc": "Uczysz się precyzyjnie kontrolować trejetorię lostu głowicy twojej broni.\n\nZyskujesz poziom wprawy w długich broniach drzewcowych.\n\nZyskujesz atrybut „Kat”:\n\nDzięki swojemu doświadczeniu zamiast losować część ciała, w którą trafi akat wykonany długą bronią drzewcową, możesz ją wybrać.\n\nDodatkowo, jeżeli zadasz obrażenia krytyczne równe połowie wytrzymałości istoty i istota jest pochwycona przez twojego sojusznika lub unieruchomiona, możesz zdecydować, iż trafiona przez ciebie kończyna lub głowa została odrąbana. W przypadku odrąbania głowy oznacza to natychmiastową śmierć celu.",
       "hoverText": "",
-      "fi": 43.00000000000001,
+      "fi": 43,
       "theta": 42,
       "requires": [
         "129",
         "9468"
       ],
-      "cost": 4,
+      "cost": 5,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
@@ -4048,12 +4033,12 @@
       "name": "Żniwiarz",
       "desc": "Dzięki swojemu treningowi możesz z łatwością jesteś w stanie przerzynać się przez duże ilości słąbych przeciwników.\n\nZyskujesz poziom wprawy w używaniu długich broni drzewcowych.\n\nZyskujesz atrybut „Żniwiarz”:\n\nŻniwiarz:\nGdy zabijesz istotę atakiem wykonanym długą bronią drzewcową, lub dowolną inną bronią białą o zasięgu większym niż 1 jednostka, możesz zużyć 2 Punkty Energii by wykonać darmową akcję ataku w znajdujący się w zasięgu broni inny cel. Jednakże celność drugiego ataku jest mniejsza o 1d4.",
       "hoverText": "",
-      "fi": 43.00000000000001,
+      "fi": 43,
       "theta": 35,
       "requires": [
         "130"
       ],
-      "cost": 4,
+      "cost": 5,
       "temperature": 6000,
       "exclGroup": null,
       "effects": [
@@ -4376,7 +4361,7 @@
       "desc": "Rzucanie zaklęć Magią Uczonych wymaga niezwykle dokładnych ruchów, w których wykonywaniu niezwykle pomagają bardzo dokładnie naszkicowane diagramy. Jednakże w teorii można się nauczyć wykonywania odpowiednich ruchów, bez żadnej pomocy...\n\nZyskujesz atrybut: „Fotograficzna Pamięć”:\n\nFotograficzna Pamięć:\nMożesz uczyć się zaklęć na pamięć. To jak długo zajmuje nauczenie się rzucania zaklęć Magią Uczonych bez żadnych notatek zależy od złożoności zaklęć:\n\nZłożoność 1 − 5 godzin\nZłożoność 2 − 25 godzin\nZłożoność 3  −125 godzin\nZłożoność 4 − 625 godzin\nZłożoność 5 − 3125 godzin\n\nGdy rzucasz zapamiętane zaklęcia nie musisz posługiwać się swoją księgą zaklęć. Jeżeli tworzysz postać z tym atrybutem przyjmij, że mogłą ona spędzić 500 godzin na uczeniu się zaklęć.",
       "hoverText": "",
       "fi": -40,
-      "theta": 45,
+      "theta": 45.5,
       "requires": [
         "666"
       ],
@@ -4394,11 +4379,11 @@
     },
     {
       "id": "793",
-      "name": "Zaawansowany Czarodziej",
+      "name": "Doświadczony Czarodziej",
       "desc": "Uczysz się dokładniejszego szkicowania i odtwarzania zaklęć.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętnościach: kreacja, projekcja, transmutacja, przywoływanie, destrukcja oraz wiedza tajemna.\n\nDodatkowo poznajesz jedno zaklęcie o złożoności równej 1 oraz jedno zaklęcie o złożoności równej 2.",
       "hoverText": "",
-      "fi": -30.030000000000005,
-      "theta": 44.730000000000004,
+      "fi": -35,
+      "theta": 52.00000000000001,
       "requires": [
         "666"
       ],
@@ -4492,11 +4477,11 @@
     },
     {
       "id": "95",
-      "name": "Mistrz Walki",
+      "name": "Mistrzowstwo w Walce",
       "desc": "Dzięki ekstensywnemu treningowi udało ci się osiągnąć mistrzostwo w przynajmniej jednej szkole walki. Jednakże nawet mistrz może osiągnąć więcej wkładając jeszcze więcej wysiłku w regularny trening.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.\n\nDodatkowo zyskujesz atrybut „Misztrz Walki”:\n\nMistrz Walki:\nWykonując ataki lub odbicia dowolną bronią przyjmujesz, iż masz przynajmniej 1 poziom wprawy w każdym typie broni (1d6).",
       "hoverText": "",
       "fi": 75.00000000000001,
-      "theta": 52.000000000000014,
+      "theta": 52.00000000000001,
       "requires": [
         [
           "124",
@@ -4678,7 +4663,7 @@
     },
     {
       "id": "642",
-      "name": "Arcymistrz Walki",
+      "name": "Arcymistrzowstwo w Walce",
       "desc": "Udało ci się poświęcić niezliczone godziny na trening swojego ciała i umysłu z intencją poprawy swoich umiejętności walki bronią czy walki bez broni. W tym czasie udało ci się także zebrać wiele różnych doświadczeń i nauczyć się pozwiązanych z treningiem umiejętności.\n\nZyskujesz poizom doświadczenia i improwizacji w dowolnej umiejętności.\n\nDodatkowo zyskujesz atrybut „Arcymisztrz Walki”:\n\nArcymistrz Walki:\nWykonując ataki lub odbicia dowolną bronią przyjmujesz, iż masz przynajmniej 5 poziomów wprawy w każdym typie broni (1d12).\n\nDodatkowo, możesz poświęcić pełen odpoczynek na studiowanie szkoły walki. Jeżeli tak zrobisz tymczasowo zyskujesz jeden atrybut z drzewka szkoły walki na następne 25 godzin.",
       "hoverText": "",
       "fi": 75.00000000000001,
@@ -5582,6 +5567,138 @@
           "key": "Mistrzowska Zręczność",
           "description": "Gdy osiągniesz sukces w teście używającym kości improwizacji zręczności możesz wydać dwa punkty energii by odnieść krytyczny sukces w tym teście.",
           "bonuses": []
+        }
+      ]
+    },
+    {
+      "id": "63463",
+      "name": "Szkoła Przywoływania",
+      "desc": "Pogłębiasz swoją wiedzę na temat mistycznej i zakazanej magii przywoływania. Magia ta pozwala w tajemniczy sposób przemieszczać, lokalizować i manipulować żywe istoty.\n\nUczysz się jednego zaklęcia z tej szkoły o złożoności równej 1.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Przywoływanie.",
+      "hoverText": "",
+      "fi": -55,
+      "theta": 48,
+      "requires": [
+        "666"
+      ],
+      "cost": 4,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "summoning"
+          ],
+          "maxComplexity": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "przywolywanie",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "przywolywanie",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "52543",
+      "name": "Szkoła Destrukcji",
+      "desc": "Pogłębiasz swoją wiedzę w dewastujących i kontrowersyjnych czarach szkoły destrukcji pozwalających na przemienianie nieożywianej materii w eteryczną energię. Czary te pozwolą ci permamentnie uszkodzić lub zniszczyć broń i opancerzenie przeciwnika.\n\nUczysz się jednego zaklęcia z tej szkoły o złożoności równej 1.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Destrukcja.",
+      "hoverText": "",
+      "fi": -59.99999999999999,
+      "theta": 48,
+      "requires": [
+        "666"
+      ],
+      "cost": 4,
+      "temperature": 9000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillImprovisation",
+          "key": "destrukcja",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "destrukcja",
+          "amount": 1
+        },
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "destruction"
+          ],
+          "maxComplexity": 1
+        }
+      ]
+    },
+    {
+      "id": "96699",
+      "name": "Adept Przywoływania",
+      "desc": "Pogłębiając swoją wiedzę na temat magii Przywoływania uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. \n\nDodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności Przywoływanie.",
+      "hoverText": "",
+      "fi": -55,
+      "theta": 50,
+      "requires": [
+        "63463"
+      ],
+      "cost": 4,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "summoning"
+          ],
+          "maxComplexity": 2
+        },
+        {
+          "type": "skillExperience",
+          "key": "przywolywanie",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "przywolywanie",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "78356",
+      "name": "Adept Destrukcji",
+      "desc": "Pogłębiając swoją wiedzę na temat magii Destrukcji uczysz się kolejnego zaklęcia o maksymalnej złożoności równej 2. \n\nDodatkowo zyskujesz poziom doświadczenia i improwizacji w umiejętności Destrukcja.",
+      "hoverText": "",
+      "fi": -59.99999999999999,
+      "theta": 50,
+      "requires": [
+        "52543"
+      ],
+      "cost": 5,
+      "temperature": 9580,
+      "exclGroup": null,
+      "effects": [
+        {
+          "type": "skillImprovisation",
+          "key": "destrukcja",
+          "amount": 1
+        },
+        {
+          "type": "skillExperience",
+          "key": "destrukcja",
+          "amount": 1
+        },
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "destruction"
+          ],
+          "maxComplexity": 2
         }
       ]
     }
