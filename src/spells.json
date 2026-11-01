@@ -443,6 +443,124 @@
       "materialCost": 1,
       "otherPrerequisites": "",
       "effects": []
+    },
+    {
+      "id": "custom-spell-1793544393612-4l5xx",
+      "name": "Lokalizacja",
+      "desc": "Zaklęcie to pozwala zlokalizować żywą istotę. Wybierz istotę, którą chcesz śledzić. Wykonaj test na rzucenie zaklęcia wykonując test przywoływania. Trudność testu określ następująco:\nPodstawowa trudność testu wynosi 25.\nPoziom trudności zmniejszasz o:\n5 jeżeli wiesz coś o istocie co wyróżnia ją spośród wszystkich innych stworzeń na świecie,\n5 jeżeli rzucasz zaklęcie w obecności rodzica, dziadka lub dziecka istoty.\n5 jeżeli posiadasz część ciała istoty, którą naturalnie zrzuca lub regeneruje (np. włosy, łuski, paznokcie, naskórek, krew),\n10 jeżeli posiadasz pozostałości dawnej części ciała istoty której istota naturalnie nie zrzuca ani nie regeneruje (np. palec, kończynę lub zakonserwowany narząd).\n\nW przypadku krytycznego sukcesu zaklęcie śledzi zamierzony cel. Dodatkowo cel musi zdać test spostrzegawczości o poziomie trudności równym wynikowi twojego testu na rzucanie zaklęcia by móc wyczuć, że jest obserwowany.\n\nW przypadku sukcesu zaklęcie śledzi zamierzony cel.\n\nW przypadku porażki w teście, zaklęcie śledzi istotę pokrewną zamierzonemu celowi lub istotę o podobnym przysposobieniu, lecz posiadasz świadomość, że nie śledzisz celu.\n\nW przypadku krytycznej porażki mistrz gry informuje cię, że udało ci się odnieść sukces w teście, lecz zaklęcie śledzi jedynie istotę pokrewną zamierzonemu celowi lub istotę o podobnym przysposobieniu.\n\nŚledzona istota czuje się obserwowana i może zidentyfikować odczucie jako efekt zaklęcia lokalizacji wykonując test wiedzy tajemnej lub przywoływania o trudności równej wynikowi twojego testu na rzucenie zaklęcia.\n\nGdy podtrzymujesz zaklęcie masz intuicyjną świadomość w jakim kierunku względem ciebie znajduje się śledzona przez zaklęcie istota. Dodatkowo jesteś w stanie określić jak daleko od ciebie jest śledzona istota: rozróżniasz między dystansenm kilku, kilkunastu, kilkudziesięciu, kilkuset jednostek oraz dystansem paru i wielu staji.",
+      "schools": [
+        "summoning"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "wordsOfPower",
+        "gesture"
+      ],
+      "channeling": true,
+      "channelingMethods": [
+        "thought",
+        "gesture"
+      ],
+      "actionPointCost": 10,
+      "channelingActionPointCost": 4,
+      "invocationCost": 5,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1793545393470-wew16",
+      "name": "Mignięcie",
+      "desc": "Próbujesz szybko przywołać siebie w widoczne miejsce wraz z swoim wyposażeniem. Wykonaj test na rzucanie zaklęcia będący testem Przywoływania. Poziom trudności testu dla dystansu jednej jednostki wynosi 0 i zwiększa się o 5 za każdą jednostkę dystansu między twoim obecnym położeniem a położeniem docelowym.\n\nJeżeli twoją pozycję i pozycję docelową dzieli konstantanowa siatka, krata, inna przeszkoda z tego materiału lub wokół ciebie owinięty jest przedmiot z tego materiału dodaj 20 do poziomu trudności testu na rzucanie zaklęcia.\n\nW przypadku krytycznego sukcesu znikasz i pojawiasz się niemalże natychmiastowo wraz z swoim pełnym rynsztunkiem w miejscu docelowym.\n\nW przypadku sukcesu znikasz z głośnym hukiem i pojawiasz się niemalże natychmaistowo wraz z swoim pełnym rynsztunkiem w miejscu docelowym.\n\nW przypadku porażki pozostajesz w miejscu.\n\nW przypadku krytycznej porażki znikasz z przerażająco głośnym hukiem, z wyjątkiem jednego trzymanego przez ciebie przedmiotu, który pozostaje w miejsu twojego zniknięcia i pojawiasz się w takim miejscu jakbyś wskazał przeciwny kierunek docelowy. Jeżeli w tamtym miejscu jest płyn lub stały obiekt pojawiasz się tam gdzie zniknąłeś otrzymując 1 punkt zwykłych obrażeń.",
+      "schools": [
+        "summoning"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "wordsOfPower",
+        "gesture"
+      ],
+      "channeling": false,
+      "channelingMethods": [],
+      "actionPointCost": 1,
+      "channelingActionPointCost": 0,
+      "invocationCost": 2,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1793546563975-fpoqc",
+      "name": "Przywołaj Trepluma",
+      "desc": "Przywołujesz wygłodniałego dziekiego trepluma - dużego wygłodniałego dwunożnego nielotnego ptaka. Jeżeli został on przywołany w walce zacznie on atakować najbliższą istotę. Przywołany poza walką może zostać nakarmiony jedną racją i służyć za wierzchowca. Wykonaj test na rzucanie zaklęcia będący testem przyowływania.\n\nPoziom trudności testu określa się następująco: podstawowy poziom trudności wynosi 10. Zwiększa się on o 1 za każdą jednostkę między tobą a miejscem gdzie chcesz przywołać trepluma.\n\nW przypadku krytycznego sukcesu przywołujesz trepluma i ptak nie zaatakuje cię zanim nie zaatakujesz jego nawet jeżeli jesteś najbliższą do niego istotą i został przywołany w trakcie walki.\n\nW przypadku sukcesu przywołujesz trepluma.\n\nW przypadku porażki nie przywołujesz trepluma.\n\nW przypadku krytycznej porażki przywołujesz trepluma zaraz koło ciebie. Jako reakcję na bycie przywołanym treplum wykonuje przeciw tobie jedną akcje ataku, następnie znika.\n\nPrzywołany treplum ma 10 Punktów Akcji, 15 Punktów Wytrzymałości i 5 Punktów Energii. Posiada 0 punktów doświadczenia i improwizacji we wszystkich umiejętnościach z wyjątkiem wigoru (3 p.D. 1 p.I.), Siły (2 p.D., 1 p.I.), Zręczności (2 p.D., 2 p.I.) oraz Spostrzegawczości (3 p.D. 3 p.I.). Gdy wykonuje akcje ataku może korzystać z swoich szponów, zadających 1d8 obrażeń z celnością równą 1d10 + 2. Gdy treplum otrzyma 10 punktów obrażeń zaczyna próbować uciekać z pola walki.",
+      "schools": [
+        "summoning"
+      ],
+      "complexity": 1,
+      "castingMethods": [
+        "thought",
+        "gesture",
+        "arcaneLens"
+      ],
+      "channeling": false,
+      "channelingMethods": [],
+      "actionPointCost": 4,
+      "channelingActionPointCost": 0,
+      "invocationCost": 6,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1793548273264-1qkmz",
+      "name": "Przywołaj pomniejszego Demona",
+      "desc": "Przywołujesz zaraz przed sobą częściowo pomniejszego Demona. Wykonaj test rzucania zaklęcia będący testem przywoływania o poziomie trudności równym 10.\n\nW przypadku krytycznego sukcesu możesz określić przysposobienie pomniejszego demona, którego przywołujesz (Intrygi, Wiedzy, Potęgi, Dewastacji, Rewerencji)\n\nW przypadku sukcesu przywołujesz demona o losowym przysposobieniu.\n\nW przypadku porażki nie przywołujesz demona.\n\nW przypadku krytycznej porażki demon atakuje wszystkie obiekty w zasięgu 6 jednostek niszcząc je i wykrzywając. Tyczy się to także wszystkich wyposażonych przez ciebie przedmiotów.\n\nJeżeli przywołasz demona możesz zawrzeć z nim pomnijszy pakt, lub może udzielić ci on drobnej przysługi jeżeli przysługa ta wielce pomoże jego własnym celom. O dokładnej naturze takiej przysługi i paktu decyduje Mistrz Gry posługując się rozszerzonymi zasadami gry. Po zakończeniu rozmowy demon znika. W przypadku zawarcia paktu zwykle musisz przywołać demona drugi raz by okazać wypełnienie warunków paktu. W takim wypadku jednak poziom trudności przywołania tego konkretnego demona wynosi 5.",
+      "schools": [
+        "summoning"
+      ],
+      "complexity": 2,
+      "castingMethods": [],
+      "channeling": false,
+      "channelingMethods": [],
+      "actionPointCost": 66,
+      "channelingActionPointCost": 0,
+      "invocationCost": 6,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
+    },
+    {
+      "id": "custom-spell-1793551999292-a6hh0",
+      "name": "Szarpnięcie",
+      "desc": "Jako reakcja na działania przeciwnika (na przykład rzucanie zaklęcia lub atak) próbujesz szarpnąć przeciwnikiem zmieniając jego położenie o jedną lub dwie jednostki w losowym kierunku. Wykonaj test na rzucanie zaklęcia będący testem Przywoływania. Wynik testu przywoływania to poziom trudności testu determinacji jaki musi wykonać istota, kßórą próbujesz szarpnąć:\n\nW przypadku krytycznego sukcesu istota nie zmienia położenia.\n\nW przypadku sukcesu istota nie zmienia położenia, lecz otrzymuje jeden poziom wytrącenia z równowagi.\n\nW przypadku porażki istota zmienia położenie.\n\nW przypadku krytycznej porażki istota zmienia położenie, jeżeli atakuje jej atak nie może trafić oraz jeżeli rzuca ona czar wszystkie testy, które musi wykonać w celu rzucenia zaklęcia zwiększają swój poziom trudności o 10.",
+      "schools": [
+        "summoning"
+      ],
+      "complexity": 2,
+      "castingMethods": [
+        "thought",
+        "gesture"
+      ],
+      "channeling": false,
+      "channelingMethods": [],
+      "actionPointCost": 1,
+      "channelingActionPointCost": 0,
+      "invocationCost": 2,
+      "channelingCost": 0,
+      "requiresTransmutativeMaterial": false,
+      "materialCost": 0,
+      "otherPrerequisites": "",
+      "effects": []
     }
   ]
 }
