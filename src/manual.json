@@ -546,6 +546,22 @@
           "content": "Każda istota ma Pole Widzenia określone przez jej zwrot. W praktyce określa się je przez narysowanie linii prostopadłej do zwrotu istoty, przechodzącej przez jej środek. Wszystko od strony zwrotu postaci do tej linii jest w polu widzenia postaci, chyba, że coś znajduje się za przedmiotem lub elementem terenu. Jeżeli coś jest częściowo w polu widzenia, traktujemy to jakby było w polu widzenia."
         }
       ]
+    },
+    {
+      "id": "custom-page-1793637513030-s2m6j",
+      "title": "Informacje o Świecie: Sprawy codzienne",
+      "sections": [
+        {
+          "id": "cyfry-i-liczby",
+          "name": "Cyfry i Liczby",
+          "content": "W Imperium do zapisów ilości, czasu i rachunków używa się systemu piątkowego tzn. takiego posiadającego tylko 5 cyfr:\n\n0: ⴵ (Na codzień pisane jako \"ⴴ\" lub \"γ\")\n\n1:   ‎̲ (Na codzień pisane jako \"‒\" lub \"~\")\n\n2:   ‎̲̅ (Na codzień pisane jako \"⊃\" lub \"Ↄ\")\n\n3: Ξ (Na codzień pisane jako \"∋\" lub \"Ȝ\")\n\n4: 𖫤 (Na codzień pisane jako \"∌\" lub \"δ\")\n\nPrzykładowy zapis liczb:\n\n0 - ⴵ \n\n1 -   ‎̲\n\n2 -   ‎̲̅ \n\n3 - Ξ \n\n4 - 𖫤\n\n5 -   ‎̲ⴵ [liczba bogów - liczba dni w tygodniu (nazywanego pentadą) - liczba tygodni w miesiącu - liczba nitek w pierścieniu konstancjum - pierwsza święta liczba]\n\n6 -   ‎̲  ‎̲ [pierwsza przeklęta liczba]\n\n7 -   ‎̲  ‎̲̅ [pierwsza fortunna liczba]\n\n8 -   ‎̲ Ξ\n\n9 -   ‎̲𖫤\n\n10 -   ‎̲̅ ⴵ \n\n25 -   ‎̲ ⴵⴵ [liczba godzin w dniu - liczba dni w miesiącu - w wielu kulturach wiek dojrzałości - druga święta liczba]\n\n36 -   ‎̲  ‎̲̅  ‎̲ [w niektórych kulturach liczba lat uważana za koniec okresu młodości - druga przeklęta liczba]\n\n100 - 𖫤ⴵⴵ [liczba pierścieni konstancjum odpowiadająca wartości jednej sztuki kontancjum]\n\n125 -   ‎̲ ⴵⴵⴵ [liczba dni w cyklu na Inddominie - liczba lat w wieku - trzecia święta liczba]\n\n375 - Ξⴵⴵⴵ [liczba dni w roku na Inddominie]\n\n625 -   ‎̲ ⴵⴵⴵⴵ [liczba lat w erze - liczba sztuk konstancjum odpowiadających jednej uncji konstancjum - czwarta święta liczba]\n\n3125  -   ‎̲ ⴵⴵⴵⴵⴵ [ilość jednostek imperialnych w staji - liczba lat w eonie - piąta święta liczba]\n\nW zastosowaniach estetycznych dla liczb świętych często pomija się poprzedzającą jedynkę (\"_\") i zamiast tego stosuje się zmianę koloru dolnej kreski symbolu \"ⴵ\" lub jej pogrubienie.\n\nDodatkowo stosuje się następujące operatory:\nI - dodawanie\nƗ - odejmowanie\nV - mnożenie\nΛ - dzielenie"
+        },
+        {
+          "id": "czas-i-kalendarz",
+          "name": "Czas i Kalendarz",
+          "content": "W Imperium doba dzieli się na 25 równych godzin. Tydzień (nazywany także pentadą) trwa pięć dób i każdy jego dzień poświęcony jest i nazwany jest od innego Boga. Każdy miesiąc trwa 5 tygodni (czyli 25 dni, lub 625 godzin). Każdy cykl (zima, wiosna, lato, jesień) trwa natomiast 5 miesięcy, czyli 125 dni. Imperialna godzina trwa tyle samo czasu co nasza.\n\nWiele roślin na Inddominie dojrzewa jednakże dwa cykle i trzeciego daje plony. Stąd trzy cykle nazywane są pełnym rokiem mający 375 dni. Długość życia mierzy się w tych właśnie latach. Według tych lat obchodzi się także uroczyztości osobiste i rocznice."
+        }
+      ]
     }
   ]
 }
