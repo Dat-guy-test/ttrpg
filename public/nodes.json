@@ -4005,7 +4005,7 @@
       "name": "Kat",
       "desc": "Uczysz się precyzyjnie kontrolować trejetorię lostu głowicy twojej broni.\n\nZyskujesz poziom wprawy w długich broniach drzewcowych.\n\nZyskujesz atrybut „Kat”:\n\nDzięki swojemu doświadczeniu zamiast losować część ciała, w którą trafi akat wykonany długą bronią drzewcową, możesz ją wybrać.\n\nDodatkowo, jeżeli zadasz obrażenia krytyczne równe połowie wytrzymałości istoty i istota jest pochwycona przez twojego sojusznika lub unieruchomiona, możesz zdecydować, iż trafiona przez ciebie kończyna lub głowa została odrąbana. W przypadku odrąbania głowy oznacza to natychmiastową śmierć celu.",
       "hoverText": "",
-      "fi": 43,
+      "fi": 43.00000000000001,
       "theta": 42,
       "requires": [
         "129",
@@ -4033,7 +4033,7 @@
       "name": "Żniwiarz",
       "desc": "Dzięki swojemu treningowi możesz z łatwością jesteś w stanie przerzynać się przez duże ilości słąbych przeciwników.\n\nZyskujesz poziom wprawy w używaniu długich broni drzewcowych.\n\nZyskujesz atrybut „Żniwiarz”:\n\nŻniwiarz:\nGdy zabijesz istotę atakiem wykonanym długą bronią drzewcową, lub dowolną inną bronią białą o zasięgu większym niż 1 jednostka, możesz zużyć 2 Punkty Energii by wykonać darmową akcję ataku w znajdujący się w zasięgu broni inny cel. Jednakże celność drugiego ataku jest mniejsza o 1d4.",
       "hoverText": "",
-      "fi": 43,
+      "fi": 43.00000000000001,
       "theta": 35,
       "requires": [
         "130"
@@ -4383,7 +4383,7 @@
       "desc": "Uczysz się dokładniejszego szkicowania i odtwarzania zaklęć.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętnościach: kreacja, projekcja, transmutacja, przywoływanie, destrukcja oraz wiedza tajemna.\n\nDodatkowo poznajesz jedno zaklęcie o złożoności równej 1 oraz jedno zaklęcie o złożoności równej 2.",
       "hoverText": "",
       "fi": -35,
-      "theta": 52.00000000000001,
+      "theta": 52.000000000000014,
       "requires": [
         "666"
       ],
@@ -4481,7 +4481,7 @@
       "desc": "Dzięki ekstensywnemu treningowi udało ci się osiągnąć mistrzostwo w przynajmniej jednej szkole walki. Jednakże nawet mistrz może osiągnąć więcej wkładając jeszcze więcej wysiłku w regularny trening.\n\nZwiększ bonus do celności każdego ataku wykonywanego bronią bądź ataku bez broni o 1.\n\nDodatkowo zyskujesz atrybut „Misztrz Walki”:\n\nMistrz Walki:\nWykonując ataki lub odbicia dowolną bronią przyjmujesz, iż masz przynajmniej 1 poziom wprawy w każdym typie broni (1d6).",
       "hoverText": "",
       "fi": 75.00000000000001,
-      "theta": 52.00000000000001,
+      "theta": 52.000000000000014,
       "requires": [
         [
           "124",
@@ -6036,6 +6036,26 @@
           "fiMax": -20,
           "thetaMin": 22,
           "thetaMax": 29
+        }
+      ]
+    },
+    {
+      "id": "Czarownictwo",
+      "center": {
+        "fi": -47.5,
+        "theta": 48.5
+      },
+      "label": {
+        "text": "Czarownictwo",
+        "fi": -47.5,
+        "theta": 45
+      },
+      "clickArea": [
+        {
+          "fiMin": -62,
+          "fiMax": -33,
+          "thetaMin": 43,
+          "thetaMax": 54
         }
       ]
     }
