@@ -559,7 +559,32 @@
         {
           "id": "czas-i-kalendarz",
           "name": "Czas i Kalendarz",
-          "content": "W Imperium doba dzieli się na 25 równych godzin. Tydzień (nazywany także pentadą) trwa pięć dób i każdy jego dzień poświęcony jest i nazwany jest od innego Boga. Każdy miesiąc trwa 5 tygodni (czyli 25 dni, lub 625 godzin). Każdy cykl (zima, wiosna, lato, jesień) trwa natomiast 5 miesięcy, czyli 125 dni. Imperialna godzina trwa tyle samo czasu co nasza.\n\nWiele roślin na Inddominie dojrzewa jednakże dwa cykle i trzeciego daje plony. Stąd trzy cykle nazywane są pełnym rokiem mający 375 dni. Długość życia mierzy się w tych właśnie latach. Według tych lat obchodzi się także uroczyztości osobiste i rocznice."
+          "content": "W Imperium doba dzieli się na 25 równych godzin. Tydzień (nazywany także pentadą) trwa pięć dób i każdy jego dzień poświęcony jest i nazwany jest od innego Boga. Każdy miesiąc trwa 5 tygodni (czyli 25 dni, lub 625 godzin). Każdy cykl (zima, wiosna, lato, jesień) trwa natomiast 5 miesięcy, czyli 125 dni. Imperialna godzina trwa tyle samo czasu co nasza.\n\nKażdy miesiąc ma swoją nazwę i dedykowany jest innemu bogowi: Magni to drugi miesiąc zimy, uznawany za pierwszy miesiąc w roku. Valmak to drugi miesiąc, w którego połowie, wraz z początkiem wiosny, obchodzone są różnorakie święta urodzaju. Trzeci miesiąc Alysol, przynosi ciepło przechodzące niekiedy nawet w gorąc. W połowie Alysolu obchodzi się święto wiecznego słońca, gdzie w niektórych miejscach w Imperium słońce przez ten jeden dzień nie zachodzi nawet w środku nocy. Czwarty miesiąc, Ritoga to miesiąc walki z ozimniającą się naturą, gdyż przez jego większość zwykle trwa jesień. Jest to miesiąc późnych zbiorów i związanych z nimi uroczystości. Piąty miesiąc, Endri, to pierwszy miesiąc zimy i miesiąc dziękczynienia. W trakcie owego miesiąca obchodzi się wiele świąt związanych z tradycjami opartymi na gościnności i życzliwości.\n\nWiele roślin na Inddominie dojrzewa jednakże dwa cykle i trzeciego daje plony. Stąd trzy cykle nazywane są pełnym rokiem mający 375 dni. Długość życia mierzy się w tych właśnie latach. Według tych lat obchodzi się także uroczyztości osobiste i rocznice."
+        },
+        {
+          "id": "zwierzęta",
+          "name": "Zwierzęta",
+          "content": "Inddomin zamieszkuje wiele gatunków zwierząt, z czego żaden nie jest identyczny z tymi, które spotykamy w naszym świecie. Stąd warto przybliżyć sobie to z jakimi zwierzętami spotykają się mieszkańcy naszego fantastycznego świata."
+        },
+        {
+          "id": "zwierzęta-codzienne-praktyki",
+          "name": "Zwierzęta: Codzienne Praktyki",
+          "content": "Wszystkie gospodarskie i domowe zwierzęta tradycyjnie obdarowywane są obrożą wykonaną przynajmniej częściowo z konstancujm z wyrytym lub wypisanym imieniem zwierzęcia. Ta sama tradycja mówi także o tym, że zwierzęta nienazwane porywane są przez demony. \n\nWiększość ze zwierząt traktowana jest z poziomem szacunku i troski podobnym to tego okazywanego członkom dalszej rodziny. Stąd też rzadkością jest hodowanie zwierząt pod ubój a mięso dobrej jakości jest towarem luksusowym i w niektórych kręgach kontrowersyjnym.\n\nTaki szacunek dla zwierząt jest ważnym elementem wielu kultur nizołków i elfów."
+        },
+        {
+          "id": "zwierzęta-treplum",
+          "name": "Zwierzęta: Treplum",
+          "content": "Treplumy zwane także „biegaczami” to ogromne dwunogie nielotne ptaki używane jako wierzchowce oraz do ciągnięcia lub noszenia lekkich ładunków i maszyn. Podróżując na Treplumie można pokonywać dwie staje w ciągu godziny bez przemęczania wierzchowca.\n\nSą one zaskakująco zwinne, szybkie i są w stanie bez większego problemu pokonać słabo przygotowanego wojownika celnymi ciosami pazurami."
+        },
+        {
+          "id": "zwierzęta-squama",
+          "name": "Zwierzęta: Squama",
+          "content": "Squamy zwane także „Jaszczurami” to ogromne czworonożne pokryte twardymi jak stal łuskami zwierzęta gadowate. Oprócz opancerzenia w postaci łusek posiadają one także pokryty łuską wachlarz chroniący szyje, który mogą doborwolnie rozkładać w celu odstraszenia przeciwników. Jakby tego było mało są to także zwierzęta jadowite i posiadające grube wypustki na ogonie zamieniające go w potężną broń obuchową.\n\nSquamy są stosowane powszechnie w armiach z racji na swoją potęgę fizyczną i naturalny pancerz. Formacje rycerzy dosiadających squam z długimi brońmi są jednymi z najbardziej przerażających na świecie."
+        },
+        {
+          "id": "zwierzętal-wiwerna",
+          "name": "ZwierzętaL Wiwerna",
+          "content": "Wiwerny omylnie nazywane przez niektórych smokami, choć nie mające z nimi niczego wspólnego to duże gadowate stworzenia o twardych, lecz putsych w środku łuskach, ogromnych rozmiarach i przekształconych w skrzydła przednimi kończynami. Są one także znane ze swojej nadelfiej zręczności i zaskakująco dużej inteligencji.\n\nWiwerny są niezwykle trudne i kosztowne w utrzymaniu i tresurze, dlatego w Imperium używane są jedynie jako wierzchowce dla najelitarniejszej formacji armii zwanej Jasnym Legionem."
         }
       ]
     }
