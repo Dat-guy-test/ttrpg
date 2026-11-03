@@ -106,10 +106,16 @@
   row-gap: 0.5em;
   margin-bottom: 0.6em;
 }
-.marketFilters-section input[type="text"],
-.marketFilters-section input[type="number"],
-.marketFilters-section select {
-  min-width: 9em;
+.listFilters-section input[type="text"],
+.listFilters-section input[type="number"],
+.listFilters-section select {
+  box-sizing: border-box;
+  background: rgba(255, 253, 245, 0.55);
+  border: 1px solid var(--parchment-line, #8a6432);
+  border-radius: 0.3em;
+  padding: 0.4em 0.6em;
+  font-family: var(--font-body, Georgia, serif);
+  color: var(--parchment-ink, #34183b);
 }
 
 /* ---- Item Editor (Tryb Edycji) ---------------------------------- */

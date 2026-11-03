@@ -31,14 +31,32 @@ import {
 } from './spellState.js';
 import { SPELL_SCHOOLS, CASTING_METHODS, SPELL_EFFECT_TYPES } from './spellSchema.js';
 import { resetSpellEditor, renderSpellEditorHTML, wireSpellEditorHandlers } from './spellEditor.js';
+import {
+    renderFiltersHTML, wireFilterControls, renderPreservingFocus,
+    parseBound, matchesText, sortWithComparators,
+} from './listControls.js';
 
 let rootEl = null;
 
 const view = {
-    subTab: 'known',       // 'known' | 'compendium' | 'forging'
-    compendiumPage: 'list', // 'list' | 'detail' | 'edit'
+    subTab: 'known',
+    compendiumPage: 'list',
     selectedSpellId: null,
     editingSpellId: null,
+    spellFilters: {
+        search: '',
+        searchDesc: false,   // also search inside the description
+        school: '',
+        complexityMin: '',
+        complexityMax: '',
+        casting: '',         // a CASTING_METHODS value
+        channeling: '',      // '' | 'yes' | 'no'
+        material: '',        // '' | 'yes' | 'no'  (transmutes material)
+        apMin: '',
+        apMax: '',
+        knownOnly: false,
+        sortBy: 'name',
+    },
 };
 
 function isCustomSpellId(id) {
@@ -170,6 +188,97 @@ function renderKnownSpellsPage() {
 // Subtab 2 — Wielka Księga Zaklęć  (list / detail / edit)
 // ============================================================
 
+const num = (v) => Number(v) || 0;
+const spellCmp = (field, dir) => (a, b) => dir * (num(a[field]) - num(b[field]));
+
+const SPELL_COMPARATORS = {
+    complexityAsc:  spellCmp('complexity', 1),
+    complexityDesc: spellCmp('complexity', -1),
+    apAsc:          spellCmp('actionPointCost', 1),
+    apDesc:         spellCmp('actionPointCost', -1),
+    invocationAsc:  spellCmp('invocationCost', 1),
+    invocationDesc: spellCmp('invocationCost', -1),
+};
+
+const YES_NO_OPTIONS = (anyLabel, yesLabel, noLabel) => [
+    { value: '', label: anyLabel },
+{ value: 'yes', label: yesLabel },
+{ value: 'no', label: noLabel },
+];
+
+function spellFilterRows() {
+    return [
+        [
+            { type: 'text', id: 'spell-search-input', key: 'search', placeholder: 'Szukaj zaklęcia po nazwie…', flex: 2 },
+            { type: 'checkbox', id: 'spell-searchdesc-cb', key: 'searchDesc', label: 'Szukaj też w opisie' },
+            { type: 'checkbox', id: 'spell-knownonly-cb', key: 'knownOnly', label: 'Tylko znane zaklęcia' },
+        ],
+        [
+            { type: 'select', id: 'spell-school-filter', key: 'school', flex: 1, options: [
+                { value: '', label: '— Dowolna szkoła —' },
+                ...SPELL_SCHOOLS.map(s => ({ value: s.value, label: s.label })),
+            ] },
+            { type: 'select', id: 'spell-casting-filter', key: 'casting', flex: 1, options: [
+                { value: '', label: '— Dowolny sposób rzucania —' },
+                ...CASTING_METHODS.map(m => ({ value: m.value, label: m.label })),
+            ] },
+        ],
+        [
+            { type: 'number', id: 'spell-complexity-min', key: 'complexityMin', placeholder: 'Złożoność min.', attrs: 'min="0" step="1"' },
+            { type: 'number', id: 'spell-complexity-max', key: 'complexityMax', placeholder: 'Złożoność maks.', attrs: 'min="0" step="1"' },
+            { type: 'number', id: 'spell-ap-min', key: 'apMin', placeholder: 'Punkty Akcji min.', attrs: 'min="0" step="1"' },
+            { type: 'number', id: 'spell-ap-max', key: 'apMax', placeholder: 'Punkty Akcji maks.', attrs: 'min="0" step="1"' },
+        ],
+        [
+            { type: 'select', id: 'spell-channeling-filter', key: 'channeling', flex: 1,
+                options: YES_NO_OPTIONS('— Podtrzymywane: dowolnie —', 'Tylko podtrzymywane', 'Tylko niepodtrzymywane') },
+                { type: 'select', id: 'spell-material-filter', key: 'material', flex: 1,
+                    options: YES_NO_OPTIONS('— Materiał: dowolnie —', 'Transmutują materiał', 'Nie transmutują materiału') },
+        ],
+        [
+            { type: 'select', id: 'spell-sort-select', key: 'sortBy', label: 'Sortuj wg:', options: [
+                { value: 'name', label: 'Nazwy (A-Z)' },
+                { value: 'complexityAsc', label: 'Złożoności (rosnąco)' },
+                { value: 'complexityDesc', label: 'Złożoności (malejąco)' },
+                { value: 'apAsc', label: 'Kosztu w PA (rosnąco)' },
+                { value: 'apDesc', label: 'Kosztu w PA (malejąco)' },
+                { value: 'invocationAsc', label: 'Kosztu Inwokacji (rosnąco)' },
+                { value: 'invocationDesc', label: 'Kosztu Inwokacji (malejąco)' },
+            ] },
+        ],
+    ];
+}
+
+function filterAndSortSpells(spells) {
+    const f = view.spellFilters;
+    const known = f.knownOnly ? new Set(getKnownSpells().map(s => s.id)) : null;
+    const cMin = parseBound(f.complexityMin), cMax = parseBound(f.complexityMax);
+    const aMin = parseBound(f.apMin),         aMax = parseBound(f.apMax);
+
+    const filtered = spells.filter(s => {
+        if (!matchesText(f.searchDesc ? `${s.name}\n${s.desc || ''}` : s.name, f.search)) return false;
+        if (known && !known.has(s.id)) return false;
+        if (f.school && !(s.schools || []).includes(f.school)) return false;
+        if (f.casting && !(s.castingMethods || []).includes(f.casting)) return false;
+
+        const complexity = num(s.complexity);
+        if (cMin !== null && complexity < cMin) return false;
+        if (cMax !== null && complexity > cMax) return false;
+
+        const ap = num(s.actionPointCost);
+        if (aMin !== null && ap < aMin) return false;
+        if (aMax !== null && ap > aMax) return false;
+
+        if (f.channeling === 'yes' && !s.channeling) return false;
+        if (f.channeling === 'no'  &&  s.channeling) return false;
+        if (f.material === 'yes' && !s.requiresTransmutativeMaterial) return false;
+        if (f.material === 'no'  &&  s.requiresTransmutativeMaterial) return false;
+        return true;
+    });
+
+    return sortWithComparators(filtered, f.sortBy, SPELL_COMPARATORS);
+}
+
 function renderCompendiumPage() {
     if (view.compendiumPage === 'detail') return renderCompendiumDetailPage();
     if (view.compendiumPage === 'edit') return renderCompendiumEditPage();
@@ -177,25 +286,29 @@ function renderCompendiumPage() {
 }
 
 function renderCompendiumListPage() {
-    const spells = getAllSpells();
+    const all = getAllSpells();
+    const spells = filterAndSortSpells(all);
+
     const rows = spells.length === 0
-        ? '<p class="charSection-hint">Brak zaklęć w bazie danych.</p>'
-        : `<ul class="equipListRows">${spells.map(s => `
-            <li class="equipListRow" data-open-spell="${escapeHtml(s.id)}">
-                <span class="equipListRow-name">${escapeHtml(s.name)}</span>
-                <span class="equipListRow-qty">Złożoność ${s.complexity ?? 0}</span>
-            </li>
+    ? `<p class="charSection-hint">${all.length === 0 ? 'Brak zaklęć w bazie danych.' : 'Brak zaklęć pasujących do wyszukiwania/filtrów.'}</p>`
+    : `<ul class="equipListRows">${spells.map(s => `
+        <li class="equipListRow" data-open-spell="${escapeHtml(s.id)}">
+        <span class="equipListRow-name">${escapeHtml(s.name)}</span>
+        <span class="equipListRow-qty">Złożoność ${s.complexity ?? 0} · PA ${s.actionPointCost ?? 0}</span>
+        </li>
         `).join('')}</ul>`;
 
-    return `
+        return `
         <section class="charSection">
-            <h2 class="charSection-title">Wielka Księga Zaklęć</h2>
-            <div class="equipSheet-toolbar">
-                <button hidden class="charBtn" id="arcana-edit-toggle">Tryb Edycji</button>
-            </div>
-            ${rows}
+        <h2 class="charSection-title">Wielka Księga Zaklęć</h2>
+        <div class="equipSheet-toolbar">
+        <button hidden class="charBtn" id="arcana-edit-toggle">Tryb Edycji</button>
+        </div>
+        ${renderFiltersHTML(spellFilterRows(), view.spellFilters)}
+        <p class="charSection-hint">Wyświetlono ${spells.length} z ${all.length} zaklęć.</p>
+        ${rows}
         </section>
-    `;
+        `;
 }
 
 function renderCompendiumDetailPage() {

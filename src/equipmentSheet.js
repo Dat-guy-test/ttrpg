@@ -10,7 +10,7 @@
 //              Market mode additionally shows a live search box plus
 //              type / price / proficiency-category / ability-
 //              requirement filters (see MARKET SEARCH & FILTERS
-//              below) and always lists results alphabetically.
+//              below) and a sort selector.
 //   'detail' — full description of one item, reached by clicking a
 //              row on either list. Shows a Buy button in market mode,
 //              plus Sprzedaj (sell)/Wyrzuć (discard) buttons for
@@ -28,6 +28,13 @@
 // ------------------------------------------------------------
 // MARKET SEARCH & FILTERS
 // ------------------------------------------------------------
+// The toolbar itself (markup, event wiring, focus-preserving
+// re-render, text matching, sorting) lives in listControls.js and is
+// shared with the Arkana tab's spell compendium. This file only
+// supplies the market-specific parts: the control layout
+// (marketFilterRows()), the predicate (filterAndSortMarketItems())
+// and the price/bulk comparators.
+//
 // Tracked in view.marketFilters:
 //   search            — substring match against item name (live,
 //                        case-insensitive)
@@ -47,6 +54,8 @@
 //   abilityOnly       — when true, hides any item whose Wymagania
 //                        (Umiejętności) the player doesn't currently
 //                        meet; items with no requirements always pass
+//   sortBy            — 'name' (default), 'priceAsc'/'priceDesc',
+//                        'bulkAsc'/'bulkDesc'
 //
 // builtInProficiencyCategories is the drop-down's option list: every
 // distinct, non-empty proficiencyCategory found across built-in
@@ -55,7 +64,7 @@
 // time Tryb Edycji is left, since editing/overriding a built-in item
 // there could add or remove a category.
 //
-// Filtering + alphabetical sorting is applied only in market mode
+// Filtering + sorting is applied only in market mode
 // (filterAndSortMarketItems()) — the owned-items list is unaffected.
 //
 // Exports:
@@ -83,6 +92,10 @@ import {
     EQUIP_REQUIREMENT_SKILLS, ACCESSORY_SIZES, formatDiceExpression,
 } from './itemSchema.js';
 import { resetItemEditor, renderItemEditorHTML, wireItemEditorHandlers } from './itemEditor.js';
+import {
+    renderFiltersHTML, wireFilterControls, renderPreservingFocus,
+    parseBound, matchesText, sortWithComparators,
+} from './listControls.js';
 
 let rootEl = null;
 
@@ -102,7 +115,7 @@ const view = {
         proficiency: '',
         abilityOnly: false,
         // 'name' (alphabetical, default), 'priceAsc' / 'priceDesc', or
-        // 'bulkAsc' / 'bulkDesc' — see filterAndSortMarketItems() below.
+        // 'bulkAsc' / 'bulkDesc' — see MARKET_COMPARATORS below.
         // "Nie Sprzedawany" items have no numeric price, so a price sort
         // always pushes them to the end regardless of direction.
         sortBy: 'name',
@@ -155,7 +168,7 @@ function render() {
 }
 
 // ============================================================
-// Market search & filters — pure helpers
+// Market search & filters
 // ============================================================
 
 /** @returns {boolean} whether the player currently meets every Wymagania (Umiejętności) entry on `item` — true (vacuously) for an item with none. */
@@ -170,22 +183,38 @@ function meetsAbilityRequirements(item) {
     });
 }
 
+// "Nie Sprzedawany" items have no numeric price to compare — they
+// always sink to the end, regardless of direction.
+const priceComparator = (dir) => (a, b) => {
+    const an = isNotForSale(a.price), bn = isNotForSale(b.price);
+    if (an && !bn) return 1;
+    if (bn && !an) return -1;
+    if (an && bn) return 0;
+    return dir * ((Number(a.price) || 0) - (Number(b.price) || 0));
+};
+const bulkComparator = (dir) => (a, b) => dir * ((Number(a.bulk) || 0) - (Number(b.bulk) || 0));
+
+const MARKET_COMPARATORS = {
+    priceAsc:  priceComparator(1),
+    priceDesc: priceComparator(-1),
+    bulkAsc:   bulkComparator(1),
+    bulkDesc:  bulkComparator(-1),
+};
+
 /**
  * Applies view.marketFilters (search/type/price/proficiency/ability)
- * to `items`, then sorts the result alphabetically by name. Only
- * used for the market (Rynek) list — the owned-items list is shown
- * unfiltered/unsorted, as before.
+ * to `items`, then sorts the result. Only used for the market
+ * (Rynek) list — the owned-items list is shown unfiltered/unsorted.
  * @param {object[]} items
  * @returns {object[]}
  */
 function filterAndSortMarketItems(items) {
     const f = view.marketFilters;
-    const search = f.search.trim().toLowerCase();
-    const min = f.priceMin !== '' && Number.isFinite(Number(f.priceMin)) ? Number(f.priceMin) : null;
-    const max = f.priceMax !== '' && Number.isFinite(Number(f.priceMax)) ? Number(f.priceMax) : null;
+    const min = parseBound(f.priceMin);
+    const max = parseBound(f.priceMax);
 
     const filtered = items.filter(item => {
-        if (search && !item.name.toLowerCase().includes(search)) return false;
+        if (!matchesText(item.name, f.search)) return false;
         if (f.type === 'armourSet') {
             if (item.type !== 'armour' || !item.isSet) return false;
         } else if (f.type && item.type !== f.type) return false;
@@ -202,73 +231,42 @@ function filterAndSortMarketItems(items) {
         return true;
     });
 
-    filtered.sort((a, b) => {
-        if (f.sortBy === 'priceAsc' || f.sortBy === 'priceDesc') {
-            const aNotForSale = isNotForSale(a.price);
-            const bNotForSale = isNotForSale(b.price);
-            // "Nie Sprzedawany" items have no numeric price to compare —
-            // always sink them to the end, regardless of direction.
-            if (aNotForSale && !bNotForSale) return 1;
-            if (bNotForSale && !aNotForSale) return -1;
-            if (aNotForSale && bNotForSale) return a.name.localeCompare(b.name, 'pl');
-
-            const diff = (Number(a.price) || 0) - (Number(b.price) || 0);
-            if (diff !== 0) return f.sortBy === 'priceDesc' ? -diff : diff;
-            return a.name.localeCompare(b.name, 'pl'); // tie-break alphabetically
-        }
-        if (f.sortBy === 'bulkAsc' || f.sortBy === 'bulkDesc') {
-            const diff = (Number(a.bulk) || 0) - (Number(b.bulk) || 0);
-            if (diff !== 0) return f.sortBy === 'bulkDesc' ? -diff : diff;
-            return a.name.localeCompare(b.name, 'pl'); // tie-break alphabetically
-        }
-        return a.name.localeCompare(b.name, 'pl');
-    });
-    return filtered;
+    return sortWithComparators(filtered, f.sortBy, MARKET_COMPARATORS);
 }
 
-/** The search box + filter controls shown above the market list. */
-function renderMarketFiltersHTML() {
-    const f = view.marketFilters;
-    return `
-        <section class="charSection marketFilters-section">
-            <div class="editor-row">
-                <input id="market-search-input" type="text" placeholder="Szukaj przedmiotu po nazwie…" value="${escapeHtml(f.search)}" style="flex:2;" />
-                <select id="market-type-filter" style="flex:1;">
-                    <option value="">— Wszystkie typy —</option>
-                    ${ITEM_TYPES.map(t => `<option value="${t.value}" ${f.type === t.value ? 'selected' : ''}>${escapeHtml(t.label)}</option>`).join('')}
-                    <option value="armourSet" ${f.type === 'armourSet' ? 'selected' : ''}>Pełne Pancerze</option>
-                </select>
-            </div>
-            <div class="editor-row">
-                <input id="market-price-min" type="number" min="0" step="1" placeholder="Cena min." value="${escapeHtml(f.priceMin)}" />
-                <input id="market-price-max" type="number" min="0" step="1" placeholder="Cena maks." value="${escapeHtml(f.priceMax)}" />
-                <label style="display:flex; align-items:center; gap:0.4em; white-space:nowrap;">
-                    <input type="checkbox" id="market-shownotforsale-cb" ${f.showNotForSale ? 'checked' : ''}/> Pokaż niesprzedawane
-                </label>
-            </div>
-            <div class="editor-row">
-                <select id="market-proficiency-filter" style="flex:1;">
-                    <option value="">— Dowolna kategoria wprawy —</option>
-                    ${builtInProficiencyCategories.map(c => `<option value="${escapeHtml(c)}" ${f.proficiency === c ? 'selected' : ''}>${escapeHtml(c)}</option>`).join('')}
-                </select>
-                <label style="display:flex; align-items:center; gap:0.4em; white-space:nowrap; flex:1;">
-                    <input type="checkbox" id="market-abilityonly-cb" ${f.abilityOnly ? 'checked' : ''}/> Tylko przedmioty spełniające moje wymagania umiejętności
-                </label>
-            </div>
-            <div class="editor-row">
-                <label style="display:flex; align-items:center; gap:0.4em; white-space:nowrap;">
-                    Sortuj wg:
-                    <select id="market-sort-select">
-                        <option value="name" ${f.sortBy === 'name' ? 'selected' : ''}>Nazwy (A-Z)</option>
-                        <option value="priceAsc" ${f.sortBy === 'priceAsc' ? 'selected' : ''}>Ceny (rosnąco)</option>
-                        <option value="priceDesc" ${f.sortBy === 'priceDesc' ? 'selected' : ''}>Ceny (malejąco)</option>
-                        <option value="bulkAsc" ${f.sortBy === 'bulkAsc' ? 'selected' : ''}>Obciążenia (rosnąco)</option>
-                        <option value="bulkDesc" ${f.sortBy === 'bulkDesc' ? 'selected' : ''}>Obciążenia (malejąco)</option>
-                    </select>
-                </label>
-            </div>
-        </section>
-    `;
+/** Toolbar layout. Built on demand — the proficiency options depend on builtInProficiencyCategories. */
+function marketFilterRows() {
+    return [
+        [
+            { type: 'text', id: 'market-search-input', key: 'search', placeholder: 'Szukaj przedmiotu po nazwie…', flex: 2 },
+            { type: 'select', id: 'market-type-filter', key: 'type', flex: 1, options: [
+                { value: '', label: '— Wszystkie typy —' },
+                ...ITEM_TYPES.map(t => ({ value: t.value, label: t.label })),
+                { value: 'armourSet', label: 'Pełne Pancerze' },
+            ] },
+        ],
+        [
+            { type: 'number', id: 'market-price-min', key: 'priceMin', placeholder: 'Cena min.', attrs: 'min="0" step="1"' },
+            { type: 'number', id: 'market-price-max', key: 'priceMax', placeholder: 'Cena maks.', attrs: 'min="0" step="1"' },
+            { type: 'checkbox', id: 'market-shownotforsale-cb', key: 'showNotForSale', label: 'Pokaż niesprzedawane' },
+        ],
+        [
+            { type: 'select', id: 'market-proficiency-filter', key: 'proficiency', flex: 1, options: [
+                { value: '', label: '— Dowolna kategoria wprawy —' },
+                ...builtInProficiencyCategories.map(c => ({ value: c, label: c })),
+            ] },
+            { type: 'checkbox', id: 'market-abilityonly-cb', key: 'abilityOnly', flex: 1, label: 'Tylko przedmioty spełniające moje wymagania umiejętności' },
+        ],
+        [
+            { type: 'select', id: 'market-sort-select', key: 'sortBy', label: 'Sortuj wg:', options: [
+                { value: 'name', label: 'Nazwy (A-Z)' },
+                { value: 'priceAsc', label: 'Ceny (rosnąco)' },
+                { value: 'priceDesc', label: 'Ceny (malejąco)' },
+                { value: 'bulkAsc', label: 'Obciążenia (rosnąco)' },
+                { value: 'bulkDesc', label: 'Obciążenia (malejąco)' },
+            ] },
+        ],
+    ];
 }
 
 function renderListPage() {
@@ -315,8 +313,8 @@ function renderListPage() {
                 <button class="charBtn" id="equip-market-toggle">${view.marketMode ? 'Wróć do ekwipunku' : 'Otwórz rynek'}</button>
                 <button hidden class="charBtn" id="equip-edit-toggle">Tryb Edycji</button>
             </div>
-            ${view.marketMode ? '<p class="charSection-hint">Rynek — wszystkie przedmioty dostępne w grze wraz z ceną. Szukaj i filtruj poniżej; lista aktualizuje się na bieżąco i jest posortowana alfabetycznie. Kliknij przedmiot, by zobaczyć szczegóły.</p>' : ''}
-            ${view.marketMode ? renderMarketFiltersHTML() : ''}
+            ${view.marketMode ? '<p class="charSection-hint">Rynek — wszystkie przedmioty dostępne w grze wraz z ceną. Szukaj i filtruj poniżej; lista aktualizuje się na bieżąco i jest posortowana alfabetycznie (chyba że wybierzesz inne sortowanie). Kliknij przedmiot, by zobaczyć szczegóły.</p>' : ''}
+            ${view.marketMode ? renderFiltersHTML(marketFilterRows(), view.marketFilters) : ''}
             ${rows}
         </section>
     `;
@@ -626,34 +624,6 @@ function renderDetailPage() {
     `;
 }
 
-/**
- * Re-renders the whole tab while preserving keyboard focus (and text
- * selection/cursor position, where applicable) on whichever element
- * currently has it — a plain render() call recreates every element,
- * which would otherwise steal focus away from the search/price inputs
- * on every keystroke (same issue manualSheet.js's search box has, and
- * fixes the same way).
- */
-function renderPreservingFocus() {
-    const active = document.activeElement;
-    const activeId = active && active.id;
-    const hasSelection = active && typeof active.selectionStart === 'number';
-    const selStart = hasSelection ? active.selectionStart : null;
-    const selEnd   = hasSelection ? active.selectionEnd   : null;
-
-    render();
-
-    if (activeId) {
-        const el = rootEl.querySelector(`#${activeId}`);
-        if (el) {
-            el.focus();
-            if (selStart !== null && typeof el.setSelectionRange === 'function') {
-                try { el.setSelectionRange(selStart, selEnd); } catch (e) { /* not a text input — ignore */ }
-            }
-        }
-    }
-}
-
 function attachHandlers() {
     rootEl.querySelector('#equip-print-btn').addEventListener('click', () => window.print());
     rootEl.querySelector('#equip-reset-btn').addEventListener('click', () => {
@@ -696,53 +666,8 @@ function attachHandlers() {
 
         // ---- Market search & filters (only present while marketMode) ----
         if (view.marketMode) {
-            const searchInput = rootEl.querySelector('#market-search-input');
-            if (searchInput) searchInput.addEventListener('input', (e) => {
-                view.marketFilters.search = e.target.value;
-                renderPreservingFocus();
-            });
-
-            const typeFilter = rootEl.querySelector('#market-type-filter');
-            if (typeFilter) typeFilter.addEventListener('change', (e) => {
-                view.marketFilters.type = e.target.value;
-                render();
-            });
-
-            const priceMinInput = rootEl.querySelector('#market-price-min');
-            if (priceMinInput) priceMinInput.addEventListener('input', (e) => {
-                view.marketFilters.priceMin = e.target.value;
-                renderPreservingFocus();
-            });
-
-            const priceMaxInput = rootEl.querySelector('#market-price-max');
-            if (priceMaxInput) priceMaxInput.addEventListener('input', (e) => {
-                view.marketFilters.priceMax = e.target.value;
-                renderPreservingFocus();
-            });
-
-            const showNotForSaleCb = rootEl.querySelector('#market-shownotforsale-cb');
-            if (showNotForSaleCb) showNotForSaleCb.addEventListener('change', (e) => {
-                view.marketFilters.showNotForSale = e.target.checked;
-                render();
-            });
-
-            const proficiencyFilter = rootEl.querySelector('#market-proficiency-filter');
-            if (proficiencyFilter) proficiencyFilter.addEventListener('change', (e) => {
-                view.marketFilters.proficiency = e.target.value;
-                render();
-            });
-
-            const abilityOnlyCb = rootEl.querySelector('#market-abilityonly-cb');
-            if (abilityOnlyCb) abilityOnlyCb.addEventListener('change', (e) => {
-                view.marketFilters.abilityOnly = e.target.checked;
-                render();
-            });
-
-            const sortSelect = rootEl.querySelector('#market-sort-select');
-            if (sortSelect) sortSelect.addEventListener('change', (e) => {
-                view.marketFilters.sortBy = e.target.value;
-                render();
-            });
+            wireFilterControls(rootEl, marketFilterRows(), view.marketFilters,
+                () => renderPreservingFocus(rootEl, render));
         }
     } else if (view.page === 'edit') {
         rootEl.querySelector('#equip-edit-back-btn').addEventListener('click', () => {
