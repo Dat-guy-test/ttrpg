@@ -429,6 +429,10 @@ function attachHandlers() {
                 render();
             });
         });
+
+        // ---- Spell search & filters ----
+        wireFilterControls(rootEl, spellFilterRows(), view.spellFilters,
+                           () => renderPreservingFocus(rootEl, render));
     } else if (view.compendiumPage === 'detail') {
         const backBtn = rootEl.querySelector('#arcana-back-btn');
         if (backBtn) backBtn.addEventListener('click', () => {
