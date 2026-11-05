@@ -24,6 +24,11 @@ import Stats from 'three/examples/jsm/libs/stats.module.js';
 import AppState from './appState.js';
 import { BLOOM_LAYER, BASE_CAMERA_FOV } from './constants.js';
 
+// Camera far plane (both cameras below). The skybox radius MUST stay
+// comfortably INSIDE this — see the skybox section for why.
+const CAMERA_FAR = 100000;
+const SKY_RADIUS = CAMERA_FAR * 0.5;
+
 
 // ============================================================
 // addToBloom
@@ -55,7 +60,7 @@ export function initScene() {
         BASE_CAMERA_FOV,
         AppState.container.clientWidth / AppState.container.clientHeight,
         1,
-        100000
+        CAMERA_FAR
     );
     AppState.camera.position.set(0, 0, 0);
     AppState.camera.rotation.order = 'YXZ'; // prevents gimbal lock for sky-looking rotations
@@ -66,7 +71,7 @@ export function initScene() {
         BASE_CAMERA_FOV,
         AppState.container.clientWidth / AppState.container.clientHeight,
         0.00001,
-        100000
+        CAMERA_FAR
     );
     AppState.freeCamera.position.set(0, 0, 0);
     AppState.freeCamera.rotation.order = 'YXZ';
@@ -120,61 +125,46 @@ export function initScene() {
     AppState.effectPass.renderToScreen = true;
     AppState.composer.addPass(AppState.effectPass);
 
-    // ---- Skybox + procedural starfield ----------------------------
-    // A giant inside-rendered sphere with a dark-teal-to-black gradient
-    // AND the decorative background stars, both painted directly in
-    // this ONE fragment shader, per-pixel.
+    // ---- Skybox + procedural starfield + nebula --------------------
+    // A giant inside-rendered sphere painted per-pixel by one fragment
+    // shader (sky gradient, nebula clouds, procedural stars) — see the
+    // shader comments below for how each layer works.
     //
-    // ROOT-CAUSE FIX — "stars visible only facing a certain, seemingly
-    // random direction":
-    // The stars used to be a separate THREE.Points cloud with a FIXED
-    // number of stars (12000) scattered across the WHOLE sphere (4π
-    // steradians). BASE_CAMERA_FOV is only 1° at full zoom-in (this is
-    // deliberately a "looking through a telescope eyepiece" view — see
-    // constants.js), and even a generously zoomed-out view only reaches
-    // ~30-60°. A camera view cone that narrow covers a tiny fraction of
-    // the sphere's total solid angle, so whether any given direction
-    // happened to contain one of those 12000 fixed points was basically
-    // a coin flip — most directions showed nothing at all, and only the
-    // rare, essentially random direction that lined up with an actual
-    // star showed one. (An earlier attempt fixed a real but secondary
-    // depth-precision issue between the skybox and that Points cloud —
-    // see depthWrite/depthTest below — but that never addressed this
-    // sparse-coverage problem, which is why stars stayed effectively
-    // invisible in most directions afterward.)
+    // ROOT-CAUSE FIX — "nebula partially obscured by flickering black
+    // triangles on some browsers/devices":
+    // The sphere used to have radius 100000 — EXACTLY the cameras' far
+    // plane (see CAMERA_FAR). Every vertex of the sphere therefore sat
+    // precisely ON the far clipping plane, so whether a given triangle
+    // was clipped away came down to floating-point rounding in the
+    // projection math. That rounding differs between GPUs, drivers and
+    // browser back-ends (e.g. Firefox vs. ANGLE/D3D in Chromium vs.
+    // mobile GPUs), and changes as the camera rotates — hence triangles
+    // that flicker in and out, revealing the black clear colour behind
+    // them. Fix: keep the sphere well INSIDE the far plane
+    // (SKY_RADIUS = CAMERA_FAR / 2). The sky is camera-enclosing with
+    // depth test/write disabled, so its apparent size never changes.
     //
-    // The fix: stop relying on a finite, pre-placed point cloud and a
-    // separate render pass entirely. Instead, generate the stars
-    // PROCEDURALLY, per-pixel, from a hash of the normalized view
-    // direction (`vPosition` on this giant enclosing sphere IS that
-    // direction, up to scale) — directly inside the same shader that
-    // already reliably paints the sky gradient in every direction. This
-    // has no "count" to run out of: whatever slice of the sky is
-    // actually on screen gets its own fair sampling of star cells, so
-    // density no longer depends on how narrow the FOV happens to be,
-    // and there's no separate object whose culling/blending/z-fighting
-    // against the skybox can go wrong.
-    //
-    // (The skybox itself still keeps depthWrite/depthTest disabled and
-    // a very low renderOrder — with near=1/far=100000 giving a
-    // 100,000:1 depth ratio, this opaque, camera-enclosing sphere would
-    // otherwise be able to needlessly win/lose depth tests against
-    // other far-away geometry by pure floating-point rounding. Doesn't
-    // matter for the stars anymore since they're part of this same
-    // shader now, but it's still correct practice for a skybox and
-    // costs nothing to keep.)
-    const skyGeo = new THREE.SphereGeometry(100000, 25, 25);
+    // Secondary hardening:
+    //   - the gradient now uses the normalized view direction instead of
+    //     dividing vPosition.y by a hard-coded 100000, so it no longer
+    //     silently depends on the sphere's radius;
+    //   - tessellation raised (25x25 -> 64x32) so flat triangles deviate
+    //     less from a true sphere;
+    //   - the material requests highp precision, since the hash/noise
+    //     maths loses precision under mediump (default on some mobile GPUs).
+    const skyGeo = new THREE.SphereGeometry(SKY_RADIUS, 64, 32);
     const skyMat = new THREE.ShaderMaterial({
         side: THREE.BackSide,
         depthWrite: false,
         depthTest: false,
+        precision: 'highp',
         uniforms: {
             color1: { value: new THREE.Color(0x002f2f) }, // dark teal — horizon
-                                            color2: { value: new THREE.Color(0x000000) }, // black    — zenith
-                                            // ---- Nebula ----
-                                            nebulaColorA:   { value: new THREE.Color(0xA145AD) }, // violet
-                                            nebulaColorB:   { value: new THREE.Color(0x6D45AD) }, // teal-blue
-                                            nebulaStrength: { value: 0.3 }, // 0 = off; tune to taste
+            color2: { value: new THREE.Color(0x000000) }, // black    — zenith
+            // ---- Nebula ----
+            nebulaColorA:   { value: new THREE.Color(0xA145AD) }, // violet
+            nebulaColorB:   { value: new THREE.Color(0x6D45AD) }, // teal-blue
+            nebulaStrength: { value: 0.3 }, // 0 = off; tune to taste
         },
         vertexShader: `
         varying vec3 vPosition;
@@ -193,19 +183,15 @@ export function initScene() {
 
         // Cheap 3D hash → pseudo-random float in [0, 1). Deterministic
         // per input vector, so a given sky direction always hashes to
-        // the same value — this is what makes stars (and now nebula
-        // clouds) hold still as the camera rotates instead of
-        // flickering/shifting per frame.
+        // the same value — this is what makes stars (and nebula
+        // clouds) hold still as the camera rotates.
         float hash3(vec3 p) {
             p = fract(p * vec3(443.8975, 397.2973, 491.1871));
             p += dot(p, p.yzx + 19.19);
             return fract((p.x + p.y) * p.z);
         }
 
-        // Smooth (trilinear-interpolated) 3D value noise — built from the
-        // same hash3() above, but continuous rather than per-cell blocky,
-        // which is what the nebula needs (stars deliberately stay blocky
-        // per-cell, that's unrelated and untouched below).
+        // Smooth (trilinear-interpolated) 3D value noise.
         float valueNoise(vec3 p) {
             vec3 i = floor(p);
             vec3 f = fract(p);
@@ -229,10 +215,7 @@ export function initScene() {
             return mix(nxy0, nxy1, f.z);
         }
 
-        // Fractal Brownian Motion — several octaves of valueNoise summed
-        // at increasing frequency/decreasing amplitude. A single noise
-        // sample looks like blobby static; this is what gives the wispy,
-        // cloud-like silhouette.
+        // Fractal Brownian Motion — several octaves of valueNoise.
         float fbm(vec3 p) {
             float sum = 0.0;
             float amp = 0.5;
@@ -245,25 +228,22 @@ export function initScene() {
         }
 
         void main() {
-            float gradient = (vPosition.y + 100000.0) / 200000.0;
+            // View direction (camera never translates, so the sphere's
+            // local position IS the direction, up to scale).
+            vec3 dir = normalize(vPosition);
+
+            // Same 0..1 vertical value as before ((y + R) / 2R), but
+            // derived from the normalized direction so it is independent
+            // of the sphere's radius.
+            float gradient = dir.y * 0.5 + 0.5;
             gradient       = smoothstep(-1.0, 1.0, gradient);
             vec3 skyColor  = mix(color1, color2, gradient);
 
-            // Direction from the origin (camera never translates — see
-            // appState.js — so this sphere's local position already IS
-            // the view direction, just scaled by the 100000-unit radius).
-            vec3 dir = normalize(vPosition);
-
             // ---- Nebula clouds ----
-            // Sampled at a much coarser scale than the star grid so it
-            // reads as smooth gas, not more stars. Domain-warping the
-            // sampling coordinate through a second fbm() call (rather
-            // than sampling dir directly) is what makes the cloud
-            // edges look organic instead of like a plain noise contour.
             vec3 warpedDir = dir + 0.4 * vec3(
                 fbm(dir * 3.0 + 5.2),
-                                              fbm(dir * 3.0 + 1.3),
-                                              fbm(dir * 3.0 + 8.7)
+                fbm(dir * 3.0 + 1.3),
+                fbm(dir * 3.0 + 8.7)
             );
             float density = fbm(warpedDir * 2.5);
             density = smoothstep(0.35, 0.85, density); // carve out clear patches of empty sky
@@ -273,25 +253,25 @@ export function initScene() {
 
             vec3 finalColor = skyColor + nebulaColor * density * nebulaStrength;
 
-            // ---- Stars (unchanged — layered on top of the nebula) ----
+            // ---- Stars (layered on top of the nebula) ----
             float stars = 0.0;
             vec3 starColor = vec3(1.0);
             for (int i = 0; i < 5; i++) {
                 float cellSize = 200.0 + float(i) * 500.0; // finer grid each octave
                 vec3 scaledDir = dir * cellSize;
                 vec3 cell      = floor(scaledDir);
-                vec3 localPos  = fract(scaledDir) - 0.5; // pixel's position within the cell, centered at 0
+                vec3 localPos  = fract(scaledDir) - 0.5;
                 float h = hash3(cell + float(i) * 13.0);
                 float brightnessThreshold = 0.9975 - float(i) * 0.001; // rarer stars each octave
                 vec3 jitter = vec3(
                     hash3(cell + float(i) * 13.0 + 3.0),
-                                   hash3(cell + float(i) * 13.0 + 5.0),
-                                   hash3(cell + float(i) * 13.0 + 9.0)
+                    hash3(cell + float(i) * 13.0 + 5.0),
+                    hash3(cell + float(i) * 13.0 + 9.0)
                 ) - 0.5;
-                vec3 starCenter = jitter * 0.6; // keep the center comfortably inside the cell
+                vec3 starCenter = jitter * 0.6;
                 float dist   = length(localPos - starCenter);
-                float radius = mix(0.06, 0.22, smoothstep(brightnessThreshold, 1.0, h)); // brighter hash = bigger dot
-                float circle = 1.0 - smoothstep(radius * 0.4, radius, dist); // soft circular falloff
+                float radius = mix(0.06, 0.22, smoothstep(brightnessThreshold, 1.0, h));
+                float circle = 1.0 - smoothstep(radius * 0.4, radius, dist);
                 float isStar = step(brightnessThreshold, h);
                 float b = isStar * circle * (1.0 - float(i) * 0.25);
                 if (b > stars) {
@@ -307,28 +287,26 @@ export function initScene() {
         `,
     });
     const skyboxMesh = new THREE.Mesh(skyGeo, skyMat);
-    skyboxMesh.renderOrder = -1000; // draw before everything else — see the note above
+    skyboxMesh.renderOrder = -1000; // draw before everything else
     skyboxMesh.frustumCulled = false; // camera-enclosing shell, always visible regardless of view direction
     AppState.scene.add(skyboxMesh);
 
     // ---- Ground plane (grass) ------------------------------------
     // Assets live in public/, so their URL must be built from the
     // current base (see constants.js's NODE_DATA_URL for the same
-    // reasoning) rather than a bare filename — a bare 'grass.jpg'
-    // only resolves by accident in dev (base === '/') and 404s once
-    // base becomes '/repo-name/' in a GitHub Pages build.
+    // reasoning).
     const horizonTexture = new THREE.TextureLoader().load(`${import.meta.env.BASE_URL}grass.jpg`);
     horizonTexture.wrapS = horizonTexture.wrapT = THREE.RepeatWrapping;
     horizonTexture.repeat.set(50, 50);
 
     const horizon = new THREE.Mesh(
         new THREE.PlaneGeometry(50, 50, 1, 1),
-                                   new THREE.MeshBasicMaterial({
-                                       map:         horizonTexture,
-                                       side:        THREE.DoubleSide,
-                                       transparent: false,
-                                       opacity:     1.0,
-                                   })
+        new THREE.MeshBasicMaterial({
+            map:         horizonTexture,
+            side:        THREE.DoubleSide,
+            transparent: false,
+            opacity:     1.0,
+        })
     );
     horizon.rotation.x = -Math.PI / 2;
     horizon.position.set(0, -1, 0);
