@@ -1,0 +1,214 @@
+/* ============================================================
+   CHOICE DIALOG  (choiceDialog.js)
+   Pick-from-a-list pop-up used when activating a perk that grants an
+   'attributeChoice' or 'spellSchoolUnlock' effect. Uses the parchment/
+   seal tokens from style.css and characterSheet.css (with fallbacks).
+   Must live in src/ next to parchment.jpg.
+   ============================================================ */
+
+.choiceModal {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    background: rgba(18, 8, 26, 0.8);
+}
+
+.choicePanel {
+    box-sizing: border-box;
+    width: min(48em, 100%);
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1.25em 1.5em 1em;
+    background: url('./parchment.jpg') center / cover, #e8dcbe;
+    color: var(--parchment-ink, #34183b);
+    border: 0.2em solid var(--parchment-ink-soft, #3e1f4b);
+    border-radius: 0.5em;
+    box-shadow: 0 1em 3em rgba(0, 0, 0, 0.6);
+    font-family: var(--font-body, Georgia, serif);
+}
+
+.choicePanel-title {
+    margin: 0 0 0.4em;
+    padding-bottom: 0.3em;
+    border-bottom: 0.15em solid var(--parchment-line, #8a6432);
+    font-family: var(--font-display, 'MedievalSharp', 'Luminari', fantasy, serif);
+    font-size: 1.4em;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+}
+
+.choicePanel-intro {
+    margin: 0 0 0.6em;
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+.choicePanel-locked {
+    margin: 0 0 0.5em;
+    font-size: 0.85em;
+    font-style: italic;
+    color: var(--parchment-seal-dark, #32094a);
+}
+
+/* Filter toolbar (rendered by listControls.js's renderFiltersHTML) */
+.choicePanel .listFilters-section {
+    margin-bottom: 0.4em;
+}
+.choicePanel .listFilters-section .editor-row {
+    flex-wrap: wrap;
+    row-gap: 0.4em;
+    margin-bottom: 0.4em;
+}
+.choicePanel .listFilters-section input[type="number"] {
+    flex: 1 1 7em;
+    min-width: 0;
+    width: 7em;
+}
+.choicePanel .listFilters-section input[type="text"] {
+    min-width: 8em;
+}
+.choicePanel .listFilters-section input:disabled {
+    opacity: 0.65;
+    border-style: dashed;
+    cursor: not-allowed;
+}
+
+.choicePanel-counter {
+    margin: 0.2em 0 0.4em;
+    font-family: var(--font-display, 'MedievalSharp', fantasy, serif);
+    font-size: 0.95em;
+    color: var(--parchment-seal-dark, #32094a);
+}
+
+/* ---- List ---------------------------------------------------- */
+.choiceList {
+    flex: 1 1 auto;
+    min-height: 8em;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    padding-right: 0.25em;
+    scrollbar-width: thin;
+    scrollbar-color: var(--parchment-ink-soft, #3e1f4b) transparent;
+}
+
+.choiceRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7em;
+    padding: 0.5em 0.7em;
+    background-color: var(--parchment-card, rgba(255, 250, 235, 0.6));
+    border: 1px solid var(--parchment-line-soft, rgba(138, 100, 50, 0.35));
+    border-radius: 0.3em;
+    cursor: pointer;
+}
+.choiceRow:hover {
+    background-color: var(--parchment-hover, #ecdcb0);
+}
+.choiceRow:has(input:checked) {
+    border-color: var(--parchment-seal, #5d147a);
+    box-shadow: inset 0.2em 0 0 var(--parchment-seal, #5d147a);
+}
+.choiceRow:has(input:disabled) {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.choiceRow input[type="checkbox"] {
+    flex: 0 0 auto;
+    width: 1.2em;
+    height: 1.2em;
+    margin-top: 0.15em;
+    accent-color: var(--parchment-seal, #5d147a);
+    cursor: inherit;
+}
+
+.choiceRow-text {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15em;
+}
+.choiceRow-name {
+    font-weight: 700;
+}
+.choiceRow-meta {
+    font-size: 0.82em;
+    color: var(--parchment-ink-soft, #3e1f4b);
+}
+.choiceRow-desc {
+    margin-top: 0.2em;
+    font-size: 0.85em;
+    line-height: 1.4;
+    white-space: pre-line;
+    color: var(--parchment-ink-soft, #3e1f4b);
+}
+.choiceRow-desc[hidden] { display: none; }
+
+/* Small "i" button: shows the description inline (for touch screens, where hover doesn't exist) */
+.choiceRow-info {
+    flex: 0 0 auto;
+    width: 1.6em;
+    height: 1.6em;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid var(--parchment-line, #8a6432);
+    background: transparent;
+    color: var(--parchment-ink, #34183b);
+    font-family: var(--font-display, 'MedievalSharp', fantasy, serif);
+    font-size: 0.85em;
+    line-height: 1;
+    cursor: pointer;
+}
+.choiceRow-info:hover {
+    background-color: var(--parchment-seal, #5d147a);
+    color: #f3e6c8;
+}
+
+/* ---- Footer -------------------------------------------------- */
+.choicePanel-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.6em;
+    margin-top: 0.8em;
+    padding-top: 0.7em;
+    border-top: 0.1em solid var(--parchment-line, #8a6432);
+}
+.choicePanel .charBtn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.choicePanel .charBtn:focus-visible,
+.choiceRow-info:focus-visible,
+.choiceRow input:focus-visible {
+    outline: 2px solid var(--parchment-seal, #5d147a);
+    outline-offset: 2px;
+}
+
+/* ---- Hover tooltip ------------------------------------------- */
+.choiceTooltip {
+    position: fixed;
+    z-index: 3100;
+    max-width: 26em;
+    box-sizing: border-box;
+    padding: 0.6em 0.8em;
+    background-color: #201024;
+    color: #f3e6c8;
+    border: 1px solid var(--parchment-line, #8a6432);
+    border-radius: 0.3em;
+    box-shadow: 0 0.2em 0.9em rgba(0, 0, 0, 0.6);
+    font-family: var(--font-body, Georgia, serif);
+    font-size: 0.85em;
+    line-height: 1.4;
+    white-space: pre-line;
+    pointer-events: none;
+}
+.choiceTooltip[hidden] { display: none; }

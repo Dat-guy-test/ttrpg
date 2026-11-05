@@ -26,30 +26,37 @@
 //
 // `effects` (stored as `this.effects`) is an array — possibly empty —
 // of { type, key, amount } entries describing what this node does to
-// the Character Data tab when active. A node can carry any number of
-// effects (e.g. one node granting +1 Forma AND +1 Siła Woli). See
-// perkEffects.js and characterState.js's EFFECT_TYPES for the
-// available types. applyNodeEffect()/removeNodeEffect() are called
-// from onClick() below, on activation/deactivation respectively.
+// the Character Data tab when active. See perkEffects.js and
+// characterState.js's EFFECT_TYPES. applyNodeEffect()/removeNodeEffect()
+// are called from onClick() below, on activation/deactivation.
 //
 // A node whose effects include granted currency/items can only be
-// DEACTIVATED (i.e. its perk "revoked") while the player still has
-// at least as much of that currency/item as was originally granted —
-// see perkEffects.js's canRevokeNodeEffect(), checked below before
-// removeNodeEffect() is ever called.
+// DEACTIVATED while the player still has at least as much of that
+// currency/item as was originally granted — see perkEffects.js's
+// canRevokeNodeEffect().
+//
+// ------------------------------------------------------------
+// PLAYER CHOICES ON ACTIVATION
+// ------------------------------------------------------------
+// A node with an 'attributeChoice' / 'spellSchoolUnlock' effect asks the
+// player to pick from a list (choiceDialog.js — a modal with search/
+// filters, checkboxes and description-on-hover). onClick() is therefore
+// async: once every normal activation check has passed, it awaits
+// perkEffects.js's collectNodeChoices() BEFORE flipping nodeActive. If the
+// player presses "Zrezygnuj z wybierania tego atrybutu" the result is
+// null and the node is simply never activated (it stays deselected).
+// Nodes without such effects take the exact same synchronous path as
+// before (see nodeNeedsChoices()).
 //
 // ------------------------------------------------------------
 // PERSISTENCE (see treePersistence.js)
 // ------------------------------------------------------------
 // Every activation/deactivation in onClick() below also calls
 // markNodeActive()/markNodeInactive() so a page reload knows which
-// nodes to bring back. restoreActive() (called from
-// treePersistence.js's restoreActiveNodes(), itself called once from
-// main.js's sec() at boot) re-activates a node the same way onClick's
-// activation branch does, but WITHOUT re-checking requirements/cost/
-// mutual-exclusion (already valid when originally picked), WITHOUT
-// panning the camera, and WITHOUT re-prompting for an
-// 'attributeChoice' effect (reuses the saved selection instead).
+// nodes to bring back. restoreActive() re-activates a node the same way
+// onClick's activation branch does, but WITHOUT re-checking
+// requirements/cost/mutual-exclusion, WITHOUT panning the camera, and
+// WITHOUT opening the choice dialog (reuses the saved selection).
 // ============================================================
 
 import * as THREE from 'three';
@@ -59,7 +66,10 @@ import { BLOOM_LAYER, LABEL_FONT_URL, LABEL_MIN_SCALE } from './constants.js';
 import { StarModel } from './StarModel.js';
 import { computePanCamera } from './cameraControls.js';
 import { handleEditModeNodeClick } from './editMode.js';
-import { applyNodeEffect, removeNodeEffect, refreshPerksTaken, canRevokeNodeEffect } from './perkEffects.js';
+import {
+    applyNodeEffect, removeNodeEffect, refreshPerksTaken, canRevokeNodeEffect,
+    collectNodeChoices, nodeNeedsChoices,
+} from './perkEffects.js';
 import { computePotentialAvailable } from './characterState.js';
 import { canPickPerks, canRevokePerk, getStage, STAGES } from './progressionState.js';
 import { markNodeActive, markNodeInactive } from './treePersistence.js';
@@ -88,6 +98,7 @@ export class TreeNode extends THREE.Mesh {
         this.isHovered   = false;
         this.skyLines    = []; // arc Line objects connected to this node
         this.reqTubes    = []; // [mesh1h, mesh2h] pairs for each requirement arc
+        this._choosing   = false; // true while the choice dialog for this node is open
 
         // Visual size scales with cost
         this.nodeSize = anodeCost < 1
@@ -108,25 +119,17 @@ export class TreeNode extends THREE.Mesh {
 
         // ---- 3D text label ---------------------------------------------
         // Rendered via troika-three-text (SDF text sampled from a real
-        // font file — see constants.js's LABEL_FONT_URL) instead of
-        // three's TextGeometry + a pre-baked typeface JSON. This fixes
-        // two things at once: the font file can be any real TTF/OTF (so
-        // it actually contains Polish diacritics like ą/ę/ł/ó/ż/ź/ć/ś/ń,
-        // which the old hand-converted typeface JSON was simply missing),
-        // and its geometry is regenerated cheaply, so restyling (colour,
-        // outline, size) never needs a manual TextGeometry rebuild.
-        //
-        // anchorX: 'left' / anchorY: 'middle' replace the old manual
-        // `centerOffset` bounding-box math — troika centers/aligns the
-        // glyphs relative to `.position` for us, so `.position` can just
-        // be "the point on the sphere surface next to the node" exactly
-        // as before, with no extra vertical offset needed.
+        // font file — see constants.js's LABEL_FONT_URL). The font file can
+        // be any real TTF/OTF, so it contains Polish diacritics.
+        // anchorX: 'left' / anchorY: 'middle' — troika aligns the glyphs
+        // relative to `.position`, i.e. "the point on the sphere surface
+        // next to the node".
         this.nameText = new Text();
         this.nameText.text        = anodeName;
         this.nameText.font        = LABEL_FONT_URL;
         this.nameText.fontSize    = 0.01;      // baseline size — see LABEL_MIN_SCALE in constants.js
         this.nameText.color       = 0xfafafa;
-        this.nameText.outlineWidth = '8%';      // stands in for the old side/depth face colour
+        this.nameText.outlineWidth = '8%';
         this.nameText.outlineColor = 0xaa2bef;
         this.nameText.anchorX     = 'left';
         this.nameText.anchorY     = 'middle';
@@ -138,13 +141,9 @@ export class TreeNode extends THREE.Mesh {
                                    this.position.z + (this.nodeSize + 0.01) * Math.cos(this.fi)
         );
         // Face the label toward the origin (where the camera sits) at any latitude.
-        // lookAt() points local -Z at the target, so we aim at a point further
-        // out along the same radial line — that puts local +Z (the readable
-        // front face) back toward the origin, matching the original intent.
         const outward = this.position.clone().multiplyScalar(0.5);
         this.nameText.lookAt(outward);
         // Zoom-driven size (see updateLabelScale() below / main.js's animate())
-        // starts at the floor — i.e. today's on-screen size at full zoom-in.
         this.nameText.scale.setScalar(LABEL_MIN_SCALE);
         AppState.scene.add(this.nameText);
 
@@ -164,7 +163,6 @@ export class TreeNode extends THREE.Mesh {
 
         // ---- Visible star mesh (starts invisible) --------------------
         // Assigned to the bloom layer so it glows when the lava shader is active.
-        // addToBloom() is inlined here (avoids a circular import with sceneSetup.js):
         this.star = new THREE.Mesh(
             new THREE.SphereGeometry(this.nodeSize / 4, 16, 16),
                                    new THREE.MeshBasicMaterial({ color: 0x000000, opacity: 0.0, transparent: true, depthWrite: false })
@@ -174,302 +172,293 @@ export class TreeNode extends THREE.Mesh {
 
         this.star.position.set(posX, posY, posZ);
         AppState.scene.add(this.star);
-                }
+    }
 
-                // ----------------------------------------------------------------
-                // Hover
-                // ----------------------------------------------------------------
+    // ----------------------------------------------------------------
+    // Hover
+    // ----------------------------------------------------------------
 
-                onPointerOver(e) {
-                    this.scale.set(2, 2, 2);
-                    this.star.scale.set(2, 2, 2);
-                    this.isHovered = true;
+    onPointerOver(e) {
+        this.scale.set(2, 2, 2);
+        this.star.scale.set(2, 2, 2);
+        this.isHovered = true;
 
-                    this.nameText.position.set(
-                        this.position.x + (this.nodeSize + 0.01) * Math.sin(this.fi) * this.scale.x,
-                                               this.position.y,
-                                               this.position.z + (this.nodeSize + 0.01) * Math.cos(this.fi) * this.scale.z
-                    );
+        this.nameText.position.set(
+            this.position.x + (this.nodeSize + 0.01) * Math.sin(this.fi) * this.scale.x,
+                                   this.position.y,
+                                   this.position.z + (this.nodeSize + 0.01) * Math.cos(this.fi) * this.scale.z
+        );
 
-                    document.getElementById('nodeName').textContent = this.nodeName;
+        document.getElementById('nodeName').textContent = this.nodeName;
 
-                    const nodeDescEl = document.getElementById('nodeDesc');
-                    nodeDescEl.textContent = '';
-                    const parts = this.nodeDesc.split('<D>');
-                    const br    = document.createElement('br');
-                    for (let i = 0; i < parts.length; i++) {
-                        nodeDescEl.innerText += parts[i];
-                        if (i < parts.length - 1) nodeDescEl.appendChild(br);
-                    }
+        const nodeDescEl = document.getElementById('nodeDesc');
+        nodeDescEl.textContent = '';
+        const parts = this.nodeDesc.split('<D>');
+        const br    = document.createElement('br');
+        for (let i = 0; i < parts.length; i++) {
+            nodeDescEl.innerText += parts[i];
+            if (i < parts.length - 1) nodeDescEl.appendChild(br);
+        }
 
-                    document.getElementById('nodeCost').textContent  = 'Koszt: ' + this.nodeCost + ' punktów potencjału.';
-                    document.getElementById('perkPoints').textContent = computePotentialAvailable();
-                }
+        document.getElementById('nodeCost').textContent  = 'Koszt: ' + this.nodeCost + ' punktów potencjału.';
+        document.getElementById('perkPoints').textContent = computePotentialAvailable();
+    }
 
-                onPointerOut(e) {
-                    this.scale.set(1, 1, 1);
-                    this.star.scale.set(1, 1, 1);
-                    this.isHovered = false;
+    onPointerOut(e) {
+        this.scale.set(1, 1, 1);
+        this.star.scale.set(1, 1, 1);
+        this.isHovered = false;
 
-                    this.nameText.position.set(
-                        this.position.x + (this.nodeSize + 0.01) * Math.sin(this.fi),
-                                               this.position.y,
-                                               this.position.z + (this.nodeSize + 0.01) * Math.cos(this.fi)
-                    );
-                }
+        this.nameText.position.set(
+            this.position.x + (this.nodeSize + 0.01) * Math.sin(this.fi),
+                                   this.position.y,
+                                   this.position.z + (this.nodeSize + 0.01) * Math.cos(this.fi)
+        );
+    }
 
-                /**
-                 * Rescales just the nameText label (not the node's
-                 * hit-sphere/star) based on the current zoom level. Cheap —
-                 * it's a plain Object3D.scale write, no re-layout/re-sync of
-                 * the underlying troika text geometry — so it's safe to call
-                 * every frame for every node (see main.js's animate() loop).
-                 * @param {number} scaleFactor
-                 */
-                updateLabelScale(scaleFactor) {
-                    this.nameText.scale.setScalar(scaleFactor);
-                }
+    /**
+     * Rescales just the nameText label (not the node's hit-sphere/star)
+     * based on the current zoom level. Cheap — a plain Object3D.scale
+     * write — so it's safe to call every frame for every node.
+     * @param {number} scaleFactor
+     */
+    updateLabelScale(scaleFactor) {
+        this.nameText.scale.setScalar(scaleFactor);
+    }
 
-                // ----------------------------------------------------------------
-                // Click
-                // ----------------------------------------------------------------
+    // ----------------------------------------------------------------
+    // Click
+    // ----------------------------------------------------------------
 
-                onClick(e) {
-                    // ---- Edit mode -------------------------------------------------
-                    // While the editor is on, clicking a node selects it for the
-                    // read-only inspector instead of running perk activation. This
-                    // is the only edit-mode branch point right now — writing to
-                    // fields, adding nodes, and connecting nodes are later steps.
-                    if (AppState.editMode) {
-                        handleEditModeNodeClick(this);
-                        return;
-                    }
+    async onClick(e) {
+        // ---- Edit mode -------------------------------------------------
+        // While the editor is on, clicking a node selects it for the
+        // inspector instead of running perk activation.
+        if (AppState.editMode) {
+            handleEditModeNodeClick(this);
+            return;
+        }
 
-                    const tr = AppState.tr;
+        // The choice dialog for this node is already open.
+        if (this._choosing) return;
 
-                    // ---- isNextActive --------------------------------------------
-                    // Returns true if any currently-active node lists `id` as a
-                    // prerequisite, preventing premature deactivation.
-                    function isNextActive(id) {
-                        for (let i = 0; i < tr.nodes.length; i++) {
-                            for (let j = 0; j < tr.nodes[i].requires.length; j++) {
-                                const req = tr.nodes[i].requires[j];
-                                if (Array.isArray(req)) {
-                                    const group = req;
-                                    let inactiveCount = 0;
-                                    let isInGroup     = false;
-                                    for (const memberId of group) {
-                                        if (memberId == id && tr.nodes[i].nodeActive && !(id == 1 && tr.nodes[i].nodeId < 0)) {
-                                            isInGroup = true;
-                                        } else {
-                                            const member = tr.resolveNode(memberId);
-                                            if (!member || !member.nodeActive) inactiveCount++;
-                                        }
-                                    }
-                                    if (inactiveCount === group.length - 1 && isInGroup) return true;
-                                } else {
-                                    if (req == id && tr.nodes[i].nodeActive && !(id == 1 && tr.nodes[i].nodeId < 0)) {
-                                        return true;
-                                    }
-                                }
+        const tr = AppState.tr;
+
+        // ---- isNextActive --------------------------------------------
+        // Returns true if any currently-active node lists `id` as a
+        // prerequisite, preventing premature deactivation.
+        function isNextActive(id) {
+            for (let i = 0; i < tr.nodes.length; i++) {
+                for (let j = 0; j < tr.nodes[i].requires.length; j++) {
+                    const req = tr.nodes[i].requires[j];
+                    if (Array.isArray(req)) {
+                        const group = req;
+                        let inactiveCount = 0;
+                        let isInGroup     = false;
+                        for (const memberId of group) {
+                            if (memberId == id && tr.nodes[i].nodeActive && !(id == 1 && tr.nodes[i].nodeId < 0)) {
+                                isInGroup = true;
+                            } else {
+                                const member = tr.resolveNode(memberId);
+                                if (!member || !member.nodeActive) inactiveCount++;
                             }
                         }
-                        return false;
-                    }
-
-                    // ---- isMutExclCritMet ----------------------------------------
-                    // Returns false if activating `passedIdNum` would exceed the
-                    // simultaneous-active limit for its mutual-exclusion group.
-                    function isMutExclCritMet(passedIdNum) {
-                        const selfNode = tr.resolveNode(passedIdNum);
-                        const group = selfNode ? selfNode.excl : null;
-                        if (!group || !Array.isArray(group.members)) return true;
-                        let count = 0;
-                        for (const memberId of group.members) {
-                            const member = tr.resolveNode(memberId);
-                            if (member && member.nodeActive) count++;
-                        }
-                        return count < group.max;
-                    }
-
-                    if (this.nodeActive && !isNextActive(this.nodeId)) {
-                        // Deactivate — gated first by the current progression
-                        // stage (progressionState.js): nothing may be revoked
-                        // during 'usage', and a node permanently locked by a
-                        // past Character Creation or Level Up session can
-                        // never be revoked again, regardless of stage. Only
-                        // once that passes do we fall back to the existing
-                        // currency/item refund check.
-                        if (!canRevokePerk(this.nodeId)) {
-                            window.alert(
-                                getStage() === STAGES.USAGE
-                                ? `Nie można cofnąć perku "${this.nodeName}" — wybór perków jest zablokowany podczas etapu Użytkowania.`
-                                : `Nie można cofnąć perku "${this.nodeName}" — został on trwale zablokowany we wcześniejszym etapie.`
-                            );
-                        } else if (!canRevokeNodeEffect(this)) {
-                            window.alert(
-                                `Nie można cofnąć perku "${this.nodeName}" — przyznana waluta lub przedmioty zostały już częściowo wydane/zużyte. Odzyskaj wystarczającą ilość, by móc go cofnąć.`
-                            );
-                        } else {
-                            this.nodeActive   = false;
-                            this.star.material = new THREE.MeshBasicMaterial({
-                                color: 0x000000, opacity: 0.0, transparent: true, depthWrite: false,
-                            });
-                            removeNodeEffect(this);
-                            markNodeInactive(this.nodeId); // persist across reloads — see treePersistence.js
-                            refreshPerksTaken();
-                        }
-
-                    } else if (
-                        canPickPerks() &&
-                        computePotentialAvailable() >= this.nodeCost &&
-                        tr.areReqsMet(this.requires) &&
-                        isMutExclCritMet(this.nodeId) &&
-                        !this.nodeActive
-                    ) {
-                        this.nodeActive    = true;
-                        this._applyActiveStarVisual();
-                        applyNodeEffect(this);
-                        markNodeActive(this.nodeId); // persist across reloads — see treePersistence.js
-                        refreshPerksTaken();
-                    }
-
-                    document.getElementById('perkPoints').textContent = computePotentialAvailable();
-
-                    // Pan the camera to face this node
-                    if (!AppState.panCamBool && !AppState.zoomCamBool) {
-                        AppState.panCamBool = true;
-                        computePanCamera(
-                            AppState.camera.rotation.x,
-                            AppState.camera.rotation.y,
-                            this.theta,
-                            this.fi - Math.PI / 2
-                        );
-                    }
-                }
-
-                /**
-                 * Re-activates this node WITHOUT checking requirements/cost/
-                 * mutual-exclusion, WITHOUT panning the camera, and WITHOUT
-                 * prompting for an 'attributeChoice' effect — used ONLY to
-                 * restore a previously-active node after a page reload (see
-                 * treePersistence.js's restoreActiveNodes(), called once from
-                 * main.js's sec() right after AppState.tr.init()). The node was
-                 * already validly active before the reload; this just rebuilds
-                 * its visuals and character-sheet effects to match.
-                 *
-                 * Does NOT call markNodeActive() itself — the node is already
-                 * recorded as active in treePersistence.js (that's WHY it's
-                 * being restored), so there's nothing new to persist here.
-                 *
-                 * @param {{[effectIndex:string]:number[]}|null} savedChoices — this node's persisted attributeChoice selections, if any (see treePersistence.js's getSavedChoicesForNode())
-                 * @param {{[effectIndex:string]:string|null}|null} savedSpellChoices — this node's persisted spellSchoolUnlock spell choices, if any (see treePersistence.js's getSavedSpellSchoolChoicesForNode())
-                 */
-                restoreActive(savedChoices, savedSpellChoices) {
-                    this.nodeActive   = true;
-                    this._applyActiveStarVisual();
-                    applyNodeEffect(this, { restoring: true, savedChoices, savedSpellChoices });
-                }
-
-                /**
-                 * Safely swaps this node's star mesh onto its StarModel's
-                 * animated lava material — but only once that material
-                 * actually exists.
-                 *
-                 * StarModel loads its textures asynchronously (two image
-                 * fetches — see StarModel.js), so at the exact moment a
-                 * node is activated (onClick()) or restored
-                 * (restoreActive(), which runs for every previously-active
-                 * perk right at boot) its StarModel may not be ready yet.
-                 * Assigning `customMaterial` before it exists would set
-                 * `this.star.material` to `undefined` — and Three.js's
-                 * renderer crashes on the very next frame trying to read
-                 * `material.visible`, with no guard for a single (non-array)
-                 * material being undefined. If the model isn't ready, this
-                 * instead queues the assignment via StarModel.onReady() and
-                 * re-checks `this.nodeActive` once it fires, so a node that
-                 * gets deactivated again before its textures finish loading
-                 * doesn't have its material stomped back on afterward.
-                 */
-                _applyActiveStarVisual() {
-                    const starModel = AppState.starClasses[this.starID];
-                    if (starModel.isModelReady()) {
-                        this.star.material = starModel.customMaterial;
+                        if (inactiveCount === group.length - 1 && isInGroup) return true;
                     } else {
-                        starModel.onReady(() => {
-                            if (this.nodeActive) this.star.material = starModel.customMaterial;
-                        });
+                        if (req == id && tr.nodes[i].nodeActive && !(id == 1 && tr.nodes[i].nodeId < 0)) {
+                            return true;
+                        }
                     }
                 }
+            }
+            return false;
+        }
 
-                getFi()    { return this.fi;    }
-                getTheta() { return this.theta; }
+        // ---- isMutExclCritMet ----------------------------------------
+        // Returns false if activating `passedIdNum` would exceed the
+        // simultaneous-active limit for its mutual-exclusion group.
+        function isMutExclCritMet(passedIdNum) {
+            const selfNode = tr.resolveNode(passedIdNum);
+            const group = selfNode ? selfNode.excl : null;
+            if (!group || !Array.isArray(group.members)) return true;
+            let count = 0;
+            for (const memberId of group.members) {
+                const member = tr.resolveNode(memberId);
+                if (member && member.nodeActive) count++;
+            }
+            return count < group.max;
+        }
 
-                // ----------------------------------------------------------------
-                // reposition  (edit mode)
-                // ----------------------------------------------------------------
+        if (this.nodeActive && !isNextActive(this.nodeId)) {
+            // Deactivate — gated first by the current progression stage
+            // (progressionState.js), then by the currency/item refund check.
+            if (!canRevokePerk(this.nodeId)) {
+                window.alert(
+                    getStage() === STAGES.USAGE
+                    ? `Nie można cofnąć perku "${this.nodeName}" — wybór perków jest zablokowany podczas etapu Użytkowania.`
+                    : `Nie można cofnąć perku "${this.nodeName}" — został on trwale zablokowany we wcześniejszym etapie.`
+                );
+            } else if (!canRevokeNodeEffect(this)) {
+                window.alert(
+                    `Nie można cofnąć perku "${this.nodeName}" — przyznana waluta lub przedmioty zostały już częściowo wydane/zużyte. Odzyskaj wystarczającą ilość, by móc go cofnąć.`
+                );
+            } else {
+                this.nodeActive   = false;
+                this.star.material = new THREE.MeshBasicMaterial({
+                    color: 0x000000, opacity: 0.0, transparent: true, depthWrite: false,
+                });
+                removeNodeEffect(this);
+                markNodeInactive(this.nodeId); // persist across reloads — see treePersistence.js
+                refreshPerksTaken();
+            }
 
-                /**
-                 * Recomputes this node's world position from new fi/theta
-                 * (in DEGREES) and moves every visual piece — hit-sphere,
-                 * star, and label — to match. Mirrors the placement math
-                 * used by the constructor and by Tree.js's treeGen().
-                 *
-                 * Does NOT redraw arcs itself — call AppState.tr.rebuildArcs()
-                 * afterward (edit-mode's save flow does this), since arc
-                 * geometry is baked in at draw time and won't follow a
-                 * node that moves later.
-                 *
-                 * @param {number} fiDeg
-                 * @param {number} thetaDeg
-                 */
-                reposition(fiDeg, thetaDeg) {
-                    const R     = AppState.tr.sphereRadius;
-                    const fiRad = fiDeg    * Math.PI / 180;
-                    const thRad = thetaDeg * Math.PI / 180;
-
-                    const x = R * Math.cos(thRad) * Math.cos(fiRad);
-                    const y = R * Math.sin(thRad);
-                    const z = R * Math.cos(thRad) * Math.sin(fiRad);
-
-                    this.position.set(x, y, z);
-                    this.star.position.set(x, y, z);
-
-                    this.fi    = -fiRad; // negated, matching the constructor's convention
-                    this.theta = thRad;
-
-                    this.nameText.position.set(
-                        this.position.x + (this.nodeSize + 0.01) * Math.sin(this.fi),
-                                               this.position.y,
-                                               this.position.z + (this.nodeSize + 0.01) * Math.cos(this.fi)
-                    );
-                    const outward = this.position.clone().multiplyScalar(0.5);
-                    this.nameText.lookAt(outward);
+        } else if (
+            canPickPerks() &&
+            computePotentialAvailable() >= this.nodeCost &&
+            tr.areReqsMet(this.requires) &&
+            isMutExclCritMet(this.nodeId) &&
+            !this.nodeActive
+        ) {
+            // Perks with 'attributeChoice' / 'spellSchoolUnlock' effects first ask
+            // the player to pick from a list. Giving up there means the perk is
+            // never activated. Perks without such effects stay fully synchronous.
+            let choices;
+            if (nodeNeedsChoices(this)) {
+                this._choosing = true;
+                try {
+                    choices = await collectNodeChoices(this);
+                } finally {
+                    this._choosing = false;
                 }
+                if (choices === null) return; // "Zrezygnuj z wybierania…" — perk stays deselected
 
-                // ----------------------------------------------------------------
-                // toJSON  (edit mode export)
-                // ----------------------------------------------------------------
+                // The dialog was modal, but re-check in case something changed meanwhile.
+                if (this.nodeActive || !canPickPerks() || computePotentialAvailable() < this.nodeCost) return;
+            } else {
+                choices = { attr: {}, spell: {} };
+            }
 
-                /**
-                 * Serializes this node back into the nodes.json node shape.
-                 * fi/theta are recovered (in degrees) from the same
-                 * negated-radian fields the constructor/reposition() set,
-                 * so export round-trips exactly with what treeGen() reads.
-                 */
-                toJSON() {
-                    return {
-                        id:          this.nodeId,
-                        name:        this.nodeName,
-                        desc:        this.nodeDesc,
-                        hoverText:   this.hovertext,
-                        fi:          -this.fi * 180 / Math.PI,
-                        theta:        this.theta * 180 / Math.PI,
-                        requires:    this.requires,
-                        cost:        this.nodeCost,
-                        temperature: this.temperature,
-                        exclGroup:   this.excl ? this.excl.label : null,
-                        effects:     this.effects,
-                    };
-                }
-     }
+            this.nodeActive    = true;
+            this._applyActiveStarVisual();
+            applyNodeEffect(this, { choices });
+            markNodeActive(this.nodeId); // persist across reloads — see treePersistence.js
+            refreshPerksTaken();
+        }
+
+        document.getElementById('perkPoints').textContent = computePotentialAvailable();
+
+        // Pan the camera to face this node
+        if (!AppState.panCamBool && !AppState.zoomCamBool) {
+            AppState.panCamBool = true;
+            computePanCamera(
+                AppState.camera.rotation.x,
+                AppState.camera.rotation.y,
+                this.theta,
+                this.fi - Math.PI / 2
+            );
+        }
+    }
+
+    /**
+     * Re-activates this node WITHOUT checking requirements/cost/
+     * mutual-exclusion, WITHOUT panning the camera, and WITHOUT opening
+     * the choice dialog — used ONLY to restore a previously-active node
+     * after a page reload (see treePersistence.js's restoreActiveNodes()).
+     *
+     * Does NOT call markNodeActive() itself — the node is already
+     * recorded as active in treePersistence.js.
+     *
+     * @param {{[effectIndex:string]:number[]}|null} savedChoices — persisted attributeChoice selections
+     * @param {{[effectIndex:string]:string|null}|null} savedSpellChoices — persisted spellSchoolUnlock spell choices
+     */
+    restoreActive(savedChoices, savedSpellChoices) {
+        this.nodeActive   = true;
+        this._applyActiveStarVisual();
+        applyNodeEffect(this, { restoring: true, savedChoices, savedSpellChoices });
+    }
+
+    /**
+     * Safely swaps this node's star mesh onto its StarModel's animated
+     * lava material — but only once that material actually exists.
+     * StarModel loads its textures asynchronously; assigning
+     * `customMaterial` before it exists would set `this.star.material`
+     * to `undefined` and crash the renderer on the next frame. If the
+     * model isn't ready, the assignment is queued via StarModel.onReady()
+     * and re-checks `this.nodeActive` once it fires.
+     */
+    _applyActiveStarVisual() {
+        const starModel = AppState.starClasses[this.starID];
+        if (starModel.isModelReady()) {
+            this.star.material = starModel.customMaterial;
+        } else {
+            starModel.onReady(() => {
+                if (this.nodeActive) this.star.material = starModel.customMaterial;
+            });
+        }
+    }
+
+    getFi()    { return this.fi;    }
+    getTheta() { return this.theta; }
+
+    // ----------------------------------------------------------------
+    // reposition  (edit mode)
+    // ----------------------------------------------------------------
+
+    /**
+     * Recomputes this node's world position from new fi/theta
+     * (in DEGREES) and moves every visual piece — hit-sphere,
+     * star, and label — to match. Does NOT redraw arcs itself — call
+     * AppState.tr.rebuildArcs() afterward.
+     *
+     * @param {number} fiDeg
+     * @param {number} thetaDeg
+     */
+    reposition(fiDeg, thetaDeg) {
+        const R     = AppState.tr.sphereRadius;
+        const fiRad = fiDeg    * Math.PI / 180;
+        const thRad = thetaDeg * Math.PI / 180;
+
+        const x = R * Math.cos(thRad) * Math.cos(fiRad);
+        const y = R * Math.sin(thRad);
+        const z = R * Math.cos(thRad) * Math.sin(fiRad);
+
+        this.position.set(x, y, z);
+        this.star.position.set(x, y, z);
+
+        this.fi    = -fiRad; // negated, matching the constructor's convention
+        this.theta = thRad;
+
+        this.nameText.position.set(
+            this.position.x + (this.nodeSize + 0.01) * Math.sin(this.fi),
+                                   this.position.y,
+                                   this.position.z + (this.nodeSize + 0.01) * Math.cos(this.fi)
+        );
+        const outward = this.position.clone().multiplyScalar(0.5);
+        this.nameText.lookAt(outward);
+    }
+
+    // ----------------------------------------------------------------
+    // toJSON  (edit mode export)
+    // ----------------------------------------------------------------
+
+    /**
+     * Serializes this node back into the nodes.json node shape.
+     * fi/theta are recovered (in degrees) from the same negated-radian
+     * fields the constructor/reposition() set.
+     */
+    toJSON() {
+        return {
+            id:          this.nodeId,
+            name:        this.nodeName,
+            desc:        this.nodeDesc,
+            hoverText:   this.hovertext,
+            fi:          -this.fi * 180 / Math.PI,
+            theta:        this.theta * 180 / Math.PI,
+            requires:    this.requires,
+            cost:        this.nodeCost,
+            temperature: this.temperature,
+            exclGroup:   this.excl ? this.excl.label : null,
+            effects:     this.effects,
+        };
+    }
+}
