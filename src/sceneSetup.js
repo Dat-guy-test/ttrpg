@@ -386,8 +386,8 @@ export function initScene() {
             vec2 xz = dir.xz;
 
             // Slowly drifting patches where the aurora is active
-            float patch = smoothstep(0.35, 0.75, valueNoise(vec3(xz * 1.3 + vec2(t * 0.012, -t * 0.008), 7.0)));
-            if (patch <= 0.0) return vec3(0.0);
+            float auroraPatch = smoothstep(0.35, 0.75, valueNoise(vec3(xz * 1.3 + vec2(t * 0.012, -t * 0.008), 7.0)));
+            if (auroraPatch <= 0.0) return vec3(0.0);
 
             // Wavy lower edge
             float wave  = valueNoise(vec3(xz * 3.0 + vec2(t * 0.04, 0.0), t * 0.03));
@@ -405,12 +405,12 @@ export function initScene() {
 
             // Green at the bright lower edge, teal/violet higher up
             float k = clamp(h / 0.35, 0.0, 1.0);
-            vec3 low  = vec3(0.15, 1.00, 0.45);
-            vec3 mid  = vec3(0.10, 0.75, 0.80);
-            vec3 high = vec3(0.60, 0.30, 0.90);
-            vec3 c = k < 0.5 ? mix(low, mid, k * 2.0) : mix(mid, high, (k - 0.5) * 2.0);
+            vec3 colLow  = vec3(0.15, 1.00, 0.45);
+            vec3 colMid  = vec3(0.10, 0.75, 0.80);
+            vec3 colHigh = vec3(0.60, 0.30, 0.90);
+            vec3 c = k < 0.5 ? mix(colLow, colMid, k * 2.0) : mix(colMid, colHigh, (k - 0.5) * 2.0);
 
-            return c * band * rays * shimmer * patch * auroraStrength;
+            return c * band * rays * shimmer * auroraPatch * auroraStrength;
         }
 
         void main() {
