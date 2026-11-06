@@ -36,12 +36,12 @@ import { BLOOM_LAYER, BASE_CAMERA_FOV } from './constants.js';
 // ============================================================
 export const CLUSTER_FI_DEG     = 150;  // longitude of the cluster centre
 export const CLUSTER_THETA_DEG  = 30;   // latitude of the cluster centre
-export const CLUSTER_SPAN_DEG   = 20;   // full angular diameter of the cluster
+export const CLUSTER_SPAN_DEG   = 40;   // full angular diameter of the cluster
 export const CLUSTER_STRENGTH   = 1.0;  // overall brightness multiplier
 
 export const AURORA_STRENGTH    = 0.22; // 0 = off. Keep low: it is meant to be faint
-export const AURORA_BASE_HEIGHT = 0.12; // sin(latitude) of the curtains' lower edge (0 = horizon, 1 = zenith)
-export const AURORA_SPEED       = 1.0;  // time multiplier
+export const AURORA_BASE_HEIGHT = 0.06; // sin(latitude) of the curtains' lower edge (0 = horizon, 1 = zenith)
+export const AURORA_SPEED       = 2.0;  // time multiplier
 
 
 // ============================================================
@@ -133,7 +133,7 @@ export function initScene() {
     AppState.composer.addPass(AppState.rendek);
 
     AppState.bloomEffect = new SelectiveBloomEffect(AppState.scene, AppState.activeCamera, {
-        intensity:           2,
+        intensity:           1,
         mipmapBlur:          true,
         luminanceThreshold:  0,
         luminanceSmoothing:  0.2,
