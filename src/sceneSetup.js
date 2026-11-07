@@ -34,7 +34,7 @@ import { BLOOM_LAYER, BASE_CAMERA_FOV } from './constants.js';
 // with fi=30, theta=20 would. (Tree nodes span roughly fi -125..125,
 // theta 4..64, so the defaults below sit just outside that.)
 // ============================================================
-export const CLUSTER_FI_DEG     = 150;  // longitude of the cluster centre
+export const CLUSTER_FI_DEG     = 180;  // longitude of the cluster centre
 export const CLUSTER_THETA_DEG  = 30;   // latitude of the cluster centre
 export const CLUSTER_SPAN_DEG   = 40;   // full angular diameter of the cluster
 export const CLUSTER_STRENGTH   = 1.0;  // overall brightness multiplier
@@ -42,6 +42,27 @@ export const CLUSTER_STRENGTH   = 1.0;  // overall brightness multiplier
 export const AURORA_STRENGTH    = 0.22; // 0 = off. Keep low: it is meant to be faint
 export const AURORA_BASE_HEIGHT = 0.06; // sin(latitude) of the curtains' lower edge (0 = horizon, 1 = zenith)
 export const AURORA_SPEED       = 2.0;  // time multiplier
+
+
+// ============================================================
+// GROUND TUNING — easy-to-edit knobs for the procedural ground
+// ------------------------------------------------------------
+// The ground is a flat plane drawn by a small shader (see "Ground
+// plane" in initScene()): a faceted, low-poly-looking field of
+// triangles in two dark, moody colours, fading into the horizon
+// colour with distance so the plane's edge is never visible.
+// ============================================================
+export const GROUND_COLOR_DARK   = 0x1a4a2a; // darkest facets
+export const GROUND_COLOR_LIGHT  = 0x4f8f44; // lightest facets
+export const GROUND_FOG_COLOR    = 0x0a3a38; // colour the ground fades into at the horizon (≈ sky horizon)
+export const GROUND_TRI_SCALE    = 1.1;      // facets per world unit (higher = smaller triangles)
+export const GROUND_FOG_START    = 3.0;      // distance where the fade begins
+export const GROUND_FOG_END      = 21.0;     // distance where the ground is fully faded (keep < 25, the plane's half-size)
+
+
+export const GRASS_BLADE_COUNT  = 6000;     // number of low-poly blades (one draw call; 0 = no grass)
+export const GRASS_MIN_RADIUS   = 1.0;       // keep blades off the spot right below the camera
+export const GRASS_TIP_COLOR    = 0x8ccf5a;  // colour of blade tips
 
 
 // ============================================================
@@ -193,10 +214,9 @@ export function initScene() {
     // LAYERS PAINTED BY THIS SHADER (in order):
     //   1. sky gradient
     //   2. nebula clouds
-    //   3. [reserved — layer 3 of the requested design, not specified yet]
-    //   4. globular cluster (see globularCluster() — centre/size set by CLUSTER_* above)
-    //   5. aurorae, animated by the `time` uniform (see aurora())
-    //   6. sparse random background stars
+    //   3. globular cluster (see globularCluster() — centre/size set by CLUSTER_* above)
+    //   4. aurorae, animated by the `time` uniform (see aurora())
+    //   5. sparse random background stars
     //
     // The `time` uniform is advanced from skyboxMesh.onBeforeRender below,
     // so no changes to main.js's animate() loop are needed.
@@ -320,10 +340,16 @@ export function initScene() {
         // geometrically shrinking cells is laid over p; a cell holds a star
         // with a probability that follows a King-like profile
         // 1 / (1 + (r/rc)^2), raised to a higher power for the finer
-        // grids, so the sparse outskirts are made of a few big-cell stars
-        // and the core fills up with many tiny ones. Cells smaller than a
-        // screen pixel fade out (the soft core glow stands in for them), so
-        // the cluster stays clean when zoomed out.
+        // grids, so the core fills up with many tiny stars. Cells smaller
+        // than a screen pixel fade out (the soft core glow stands in for
+        // them), so the cluster stays clean when zoomed out.
+        //
+        // The three COARSEST grids of the original design (the big,
+        // blurry / enlarged bluish stars that stood out) have been
+        // removed: the loop starts at grid 3 instead of 0. To make up for
+        // the lost stars, the remaining (finer) grids are populated more
+        // densely, two more fine grids were added, and the unresolved-
+        // starlight haze behind the stars is brighter and a bit wider.
         // ------------------------------------------------------------
         vec3 globularCluster(vec3 dir) {
             float fw = dot(dir, clusterForward);
@@ -334,15 +360,19 @@ export function initScene() {
             if (r >= 1.0) return vec3(0.0);
 
             float edge = 1.0 - smoothstep(0.7, 1.0, r);   // soft outer boundary
-            float dens = 1.0 / (1.0 + (r * r) / 0.04);    // core radius ~0.2 of the span
+            float dens = 1.0 / (1.0 + (r * r) / 0.06);    // core radius ~0.25 of the span (a bit wider than before)
 
             float pix = max(fwidth(p.x) + fwidth(p.y), 1e-7); // roughly one pixel, in p units
 
-            // Unresolved-starlight haze: strongest in the core
-            vec3 col = vec3(1.0, 0.88, 0.68) * 0.16 * dens * dens * edge;
+            // Unresolved-starlight haze: strongest in the core. Brighter than
+            // before (0.16 -> 0.30) with a gentler falloff, to fill in for the
+            // removed large stars.
+            vec3 col = vec3(1.0, 0.88, 0.68) * 0.30 * pow(dens, 1.6) * edge;
+            col += vec3(1.0, 0.90, 0.75) * 0.05 * dens * edge; // faint wide veil reaching the outskirts
 
-            for (int i = 0; i < 7; i++) {
+            for (int i = 3; i < 9; i++) {
                 float fi   = float(i);
+                float k    = fi - 3.0;                       // 0 for the first (coarsest remaining) grid
                 float cell = clusterTanRadius * 0.12 * pow(0.5, fi);
 
                 float resolved = smoothstep(0.8, 2.2, cell / pix); // fade out sub-pixel layers
@@ -354,16 +384,18 @@ export function initScene() {
 
                 vec3 seed = vec3(id, fi * 17.0 + 3.0);
                 float h   = hash3(seed);
-                float prob = 0.55 * pow(dens, 1.0 + 0.45 * fi) * edge;
+                float prob = 0.85 * pow(dens, 1.0 + 0.30 * k) * edge; // denser than before (was 0.55 / 0.45 slope, from grid 0)
                 if (h >= prob) continue;
 
                 vec2 jitter = vec2(hash3(seed + 1.7), hash3(seed + 5.3)) - 0.5;
                 float d      = length(f - jitter * 0.6);
-                float radius = mix(0.12, 0.30, hash3(seed + 9.1));
+                float radius = mix(0.12, 0.26, hash3(seed + 9.1));
                 float dotV   = 1.0 - smoothstep(radius * 0.3, radius, d);
 
-                float bright = (1.0 - 0.1 * fi) * mix(0.45, 1.0, hash3(seed + 2.9));
-                vec3 tint    = mix(vec3(1.0, 0.86, 0.66), vec3(0.78, 0.88, 1.0), hash3(seed + 7.7));
+                float bright = (1.0 - 0.08 * k) * mix(0.5, 1.0, hash3(seed + 2.9));
+                // Warm-white tints only: the strong blue tint was what made
+                // the big stars look odd, so it is toned down to a faint cool white.
+                vec3 tint    = mix(vec3(1.0, 0.88, 0.70), vec3(0.92, 0.95, 1.0), hash3(seed + 7.7));
                 col += tint * dotV * bright * resolved;
             }
             return col * clusterStrength;
@@ -496,30 +528,146 @@ export function initScene() {
     AppState.skyMaterial = skyMat; // exposed so other modules can tweak uniforms at runtime
     AppState.scene.add(skyboxMesh);
 
-    // ---- Ground plane (grass) ------------------------------------
-    // Assets live in public/, so their URL must be built from the
-    // current base (see constants.js's NODE_DATA_URL for the same
-    // reasoning) rather than a bare filename — a bare 'grass.jpg'
-    // only resolves by accident in dev (base === '/') and 404s once
-    // base becomes '/repo-name/' in a GitHub Pages build.
-    const horizonTexture = new THREE.TextureLoader().load(`${import.meta.env.BASE_URL}grass.jpg`);
-    horizonTexture.wrapS = horizonTexture.wrapT = THREE.RepeatWrapping;
-    horizonTexture.repeat.set(50, 50);
+    // NOTE: the old grass.jpg texture is no longer used anywhere — the ground
+    // and grass below are 100% procedural, so grass.jpg can be deleted.
+    console.info('sceneSetup: procedural ground + grass active (no grass.jpg)');
 
-    const horizon = new THREE.Mesh(
-        new THREE.PlaneGeometry(50, 50, 1, 1),
-                                   new THREE.MeshBasicMaterial({
-                                       map:         horizonTexture,
-                                       side:        THREE.DoubleSide,
-                                       transparent: false,
-                                       opacity:     1.0,
-                                   })
-    );
+    // ---- Ground plane (procedural, low-poly look) -----------------
+    // No textures: every pixel's colour comes from its world-space
+    // (x, z) position. The plane is divided into a square grid and each
+    // square is split along a diagonal into two triangles; each
+    // triangle gets ONE flat colour from a hash of its id, which reads
+    // as faceted low-poly terrain. A very low-frequency noise gently
+    // varies the overall tone so it does not look like a uniform
+    // pattern, and a faint lighter "ridge" line along the triangle
+    // diagonals adds a hint of crisp edges. With distance the ground
+    // fades into GROUND_FOG_COLOR (≈ the sky's horizon colour), so the
+    // edge of the finite plane is never visible.
+    const groundMat = new THREE.ShaderMaterial({
+        side: THREE.DoubleSide,
+        uniforms: {
+            colorDark:  { value: new THREE.Color(GROUND_COLOR_DARK) },
+            colorLight: { value: new THREE.Color(GROUND_COLOR_LIGHT) },
+            fogColor:   { value: new THREE.Color(GROUND_FOG_COLOR) },
+            triScale:   { value: GROUND_TRI_SCALE },
+            fogStart:   { value: GROUND_FOG_START },
+            fogEnd:     { value: GROUND_FOG_END },
+        },
+        vertexShader: `
+        varying vec3 vWorld;
+        void main() {
+            vec4 wp = modelMatrix * vec4(position, 1.0);
+            vWorld = wp.xyz;
+            gl_Position = projectionMatrix * viewMatrix * wp;
+        }
+        `,
+        fragmentShader: `
+        uniform vec3  colorDark;
+        uniform vec3  colorLight;
+        uniform vec3  fogColor;
+        uniform float triScale;
+        uniform float fogStart;
+        uniform float fogEnd;
+        varying vec3 vWorld;
+
+        float hash2(vec2 p) {
+            p = fract(p * vec2(123.34, 456.21));
+            p += dot(p, p + 45.32);
+            return fract(p.x * p.y);
+        }
+
+        float vnoise(vec2 p) {
+            vec2 i = floor(p);
+            vec2 f = fract(p);
+            f = f * f * (3.0 - 2.0 * f);
+            return mix(mix(hash2(i), hash2(i + vec2(1.0, 0.0)), f.x),
+                       mix(hash2(i + vec2(0.0, 1.0)), hash2(i + vec2(1.0, 1.0)), f.x), f.y);
+        }
+
+        void main() {
+            vec2 p  = vWorld.xz * triScale;
+            vec2 g  = floor(p);
+            vec2 f  = fract(p);
+
+            // Which of the square's two triangles are we in?
+            float tri = step(f.y, f.x);                       // 1 below the diagonal, 0 above
+            float h   = hash2(g + tri * vec2(37.1, 11.7));    // flat value per triangle
+
+            // Gentle large-scale tone variation (soft areas of lighter/darker ground)
+            float tone = vnoise(vWorld.xz * 0.15);
+
+            float t = clamp(0.15 + 0.55 * h + 0.45 * (tone - 0.5), 0.0, 1.0);
+            vec3 col = mix(colorDark, colorLight, t);
+
+            // Faint lighter line along the diagonal edges between facets
+            float edge = 1.0 - smoothstep(0.0, 0.035, abs(f.x - f.y));
+            col += colorLight * 0.10 * edge;
+
+            // Fade into the horizon colour with distance (hides the plane's border)
+            float d   = length(vWorld.xz);
+            float fog = smoothstep(fogStart, fogEnd, d);
+            col = mix(col, fogColor, fog);
+
+            gl_FragColor = vec4(col, 1.0);
+        }
+        `,
+    });
+
+    const horizon = new THREE.Mesh(new THREE.PlaneGeometry(50, 50, 1, 1), groundMat);
     horizon.rotation.x = -Math.PI / 2;
     horizon.position.set(0, -1, 0);
     horizon.layers.set(0); // keep on default layer — must NOT bloom
     AppState.bloomEffect.selection.delete(horizon);
     AppState.scene.add(horizon);
+
+    // ---- Low-poly grass blades -----------------------------------
+    // One single merged BufferGeometry (ONE draw call, ~18k vertices):
+    // every blade is a flat triangle standing on the ground, with a
+    // random position, yaw, height, width and a slight lean. Colours are
+    // baked per vertex (dark at the base, lighter at the tip) and blended
+    // into the ground's fog colour with distance, so far blades melt into
+    // the horizon exactly like the ground shader does. Static, no
+    // per-frame cost. Tune with the GRASS_* constants at the top.
+    {
+        const dark  = new THREE.Color(GROUND_COLOR_DARK);
+        const light = new THREE.Color(GRASS_TIP_COLOR);
+        const fogC  = new THREE.Color(GROUND_FOG_COLOR);
+        const pos = new Float32Array(GRASS_BLADE_COUNT * 9);
+        const col = new Float32Array(GRASS_BLADE_COUNT * 9);
+        const base = new THREE.Color(), tip = new THREE.Color();
+        const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+
+        for (let i = 0; i < GRASS_BLADE_COUNT; i++) {
+            const r   = GRASS_MIN_RADIUS + Math.sqrt(Math.random()) * (GROUND_FOG_END - GRASS_MIN_RADIUS);
+            const ang = Math.random() * Math.PI * 2;
+            const cx  = Math.cos(ang) * r, cz = Math.sin(ang) * r;
+
+            const grow = 1 + r * 0.04;                       // far blades a bit bigger so they stay visible
+            const h    = (0.15 + Math.random() * 0.30) * grow;
+            const w    = (0.03 + Math.random() * 0.04) * grow;
+            const yaw  = Math.random() * Math.PI;
+            const dx   = Math.cos(yaw) * w, dz = Math.sin(yaw) * w;
+            const lx   = (Math.random() - 0.5) * 0.25 * h, lz = (Math.random() - 0.5) * 0.25 * h;
+            const y0   = -1;
+
+            const o = i * 9;
+            pos.set([cx - dx, y0, cz - dz,  cx + dx, y0, cz + dz,  cx + lx, y0 + h, cz + lz], o);
+
+            const fog = smooth(GROUND_FOG_START, GROUND_FOG_END, r);
+            const shade = 0.6 + Math.random() * 0.4;
+            base.copy(dark).multiplyScalar(shade).lerp(fogC, fog);
+            tip.copy(dark).lerp(light, shade).lerp(fogC, fog);
+            col.set([base.r, base.g, base.b,  base.r, base.g, base.b,  tip.r, tip.g, tip.b], o);
+        }
+
+        const grassGeo = new THREE.BufferGeometry();
+        grassGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        grassGeo.setAttribute('color',    new THREE.BufferAttribute(col, 3));
+        const grass = new THREE.Mesh(grassGeo, new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.DoubleSide }));
+        grass.frustumCulled = false; // camera sits at the centre of it; always visible
+        grass.layers.set(0);         // default layer — must NOT bloom
+        AppState.scene.add(grass);
+    }
 
     // ---- Lights --------------------------------------------------
     AppState.scene.add(new THREE.AmbientLight(0xffffff, 1));
