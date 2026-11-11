@@ -6,57 +6,30 @@
 //   • An invisible sphere (the Mesh itself) — raycaster hit target
 //   • A small star mesh      — visible glowing dot, added to bloom
 //   • A 3D text label mesh   — node name, tangent to the sphere
-//   • A StarModel            — async lava-shader, applied on activation
+//   • A StarModel            — shared lava-shader, applied on activation
 //
-// Formerly-global variables (scene, camera, tr, panCamBool, …) are
-// all accessed through AppState. computePanCamera() is imported
-// from cameraControls.js.
+// `requires`: array whose entries are a plain id string (AND) or an
+// array of id strings (OR group) — see Tree.js.
+// `excl`: null or a shared group object { label, max, members }.
+// `effects`: array of effects applied to the sheets when active — see
+// perkEffects.js / characterState.js.
 //
-// Note: addToBloom is inlined here (two lines) to avoid a circular
-// import with sceneSetup.js — TreeNode is imported by Tree.js which
-// is imported by main.js which imports sceneSetup.js.
+// PLAYER CHOICES ON ACTIVATION: nodes with 'attributeChoice' /
+// 'spellSchoolUnlock' effects open choiceDialog.js before activating;
+// giving up there leaves the node deselected. onClick() is async for
+// that reason.
 //
-// `requires` format (post-JSON-migration): an array whose entries
-// are each either a plain id string (AND) or an array of id strings
-// (OR group) — see the header comment in Tree.js for details.
+// PERSISTENCE: every (de)activation calls markNodeActive()/
+// markNodeInactive(); restoreActive() re-activates silently after a reload.
 //
-// `exclStuff` (stored as `this.excl`) is either null or a shared
-// group object { label, max, members }, built once in Tree's
-// treeGen() and referenced by every member node.
-//
-// `effects` (stored as `this.effects`) is an array — possibly empty —
-// of { type, key, amount } entries describing what this node does to
-// the Character Data tab when active. See perkEffects.js and
-// characterState.js's EFFECT_TYPES. applyNodeEffect()/removeNodeEffect()
-// are called from onClick() below, on activation/deactivation.
-//
-// A node whose effects include granted currency/items can only be
-// DEACTIVATED while the player still has at least as much of that
-// currency/item as was originally granted — see perkEffects.js's
-// canRevokeNodeEffect().
-//
-// ------------------------------------------------------------
-// PLAYER CHOICES ON ACTIVATION
-// ------------------------------------------------------------
-// A node with an 'attributeChoice' / 'spellSchoolUnlock' effect asks the
-// player to pick from a list (choiceDialog.js — a modal with search/
-// filters, checkboxes and description-on-hover). onClick() is therefore
-// async: once every normal activation check has passed, it awaits
-// perkEffects.js's collectNodeChoices() BEFORE flipping nodeActive. If the
-// player presses "Zrezygnuj z wybierania tego atrybutu" the result is
-// null and the node is simply never activated (it stays deselected).
-// Nodes without such effects take the exact same synchronous path as
-// before (see nodeNeedsChoices()).
-//
-// ------------------------------------------------------------
-// PERSISTENCE (see treePersistence.js)
-// ------------------------------------------------------------
-// Every activation/deactivation in onClick() below also calls
-// markNodeActive()/markNodeInactive() so a page reload knows which
-// nodes to bring back. restoreActive() re-activates a node the same way
-// onClick's activation branch does, but WITHOUT re-checking
-// requirements/cost/mutual-exclusion, WITHOUT panning the camera, and
-// WITHOUT opening the choice dialog (reuses the saved selection).
+// PERFORMANCE NOTES (changes vs. the previous version)
+//   - Sphere geometries are shared between nodes (keyed by radius) and
+//     the hit-sphere / inactive-star materials are single shared
+//     instances, instead of 2 geometries + 2 materials per node.
+//   - An INACTIVE star used to be drawn as a fully transparent mesh
+//     (opacity 0) every frame, in the main pass AND in the selective-
+//     bloom pass — 150+ pointless draw calls each. It is now simply
+//     `visible = false` until the node is activated. Pixel-identical.
 // ============================================================
 
 import * as THREE from 'three';
@@ -74,21 +47,30 @@ import { computePotentialAvailable } from './characterState.js';
 import { canPickPerks, canRevokePerk, getStage, STAGES } from './progressionState.js';
 import { markNodeActive, markNodeInactive } from './treePersistence.js';
 
+// ---- Shared GPU resources ---------------------------------------------
+const sphereGeometryCache = new Map();
+function getSphereGeometry(radius) {
+    let geo = sphereGeometryCache.get(radius);
+    if (!geo) {
+        geo = new THREE.SphereGeometry(radius, 16, 16);
+        sphereGeometryCache.set(radius, geo);
+    }
+    return geo;
+}
+
+// The faint wireframe (1% opacity) is an intentional visual — keep it drawn.
+// One shared material for all nodes (this is also what the raycaster hits).
+const HIT_MATERIAL = new THREE.MeshBasicMaterial({
+    color: 0x999999, wireframe: true, opacity: 0.01, transparent: true, depthWrite: false,
+});
+
+// Placeholder material for an inactive star (the mesh is invisible anyway).
+const INACTIVE_STAR_MATERIAL = new THREE.MeshBasicMaterial({
+    color: 0x000000, opacity: 0.0, transparent: true, depthWrite: false,
+});
+
+
 export class TreeNode extends THREE.Mesh {
-    /**
-     * @param {string|number} anodeId
-     * @param {string}        anodeName
-     * @param {string}        anodeDesc    — use "<D>" for line breaks
-     * @param {string}        ahoverText
-     * @param {number}        posX, posY, posZ  — world position on the skill sphere
-     * @param {number}        afi               — fi (longitude) in radians
-     * @param {number}        atheta            — theta (latitude) in radians
-     * @param {(string|string[])[]} requires    — prerequisite entries; [] means none
-     * @param {number}        anodeCost
-     * @param {{label:string,max:number,members:string[]}|null} exclStuff — shared mutual-exclusion group, or null
-     * @param {number}        temperature       — blackbody colour temp in Kelvin
-     * @param {{type:string,key:string,amount:number}[]} [effects] — Character Data tab effects; [] or omitted = none
-     */
     constructor(anodeId, anodeName, anodeDesc, ahoverText,
                 posX, posY, posZ, afi, atheta,
                 requires, anodeCost, exclStuff, temperature, effects) {
@@ -111,23 +93,15 @@ export class TreeNode extends THREE.Mesh {
         this.theta = atheta;
 
         // ---- Invisible hit sphere ------------------------------------
-        this.geometry = new THREE.SphereGeometry(this.nodeSize, 16, 16);
-        this.material = new THREE.MeshBasicMaterial({
-            color: 0x999999, wireframe: true, opacity: 0.01, transparent: true, depthWrite: false,
-        });
+        this.geometry = getSphereGeometry(this.nodeSize);
+        this.material = HIT_MATERIAL;
         this.position.set(posX, posY, posZ);
 
         // ---- 3D text label ---------------------------------------------
-        // Rendered via troika-three-text (SDF text sampled from a real
-        // font file — see constants.js's LABEL_FONT_URL). The font file can
-        // be any real TTF/OTF, so it contains Polish diacritics.
-        // anchorX: 'left' / anchorY: 'middle' — troika aligns the glyphs
-        // relative to `.position`, i.e. "the point on the sphere surface
-        // next to the node".
         this.nameText = new Text();
         this.nameText.text        = anodeName;
         this.nameText.font        = LABEL_FONT_URL;
-        this.nameText.fontSize    = 0.01;      // baseline size — see LABEL_MIN_SCALE in constants.js
+        this.nameText.fontSize    = 0.01;
         this.nameText.color       = 0xfafafa;
         this.nameText.outlineWidth = '8%';
         this.nameText.outlineColor = 0xaa2bef;
@@ -140,14 +114,12 @@ export class TreeNode extends THREE.Mesh {
                                    this.position.y,
                                    this.position.z + (this.nodeSize + 0.01) * Math.cos(this.fi)
         );
-        // Face the label toward the origin (where the camera sits) at any latitude.
         const outward = this.position.clone().multiplyScalar(0.5);
         this.nameText.lookAt(outward);
-        // Zoom-driven size (see updateLabelScale() below / main.js's animate())
         this.nameText.scale.setScalar(LABEL_MIN_SCALE);
         AppState.scene.add(this.nameText);
 
-        // ---- StarModel (async texture load + lava shader) ------------
+        // ---- StarModel (shared textures/material) --------------------
         this.starID = AppState.starClasses.length;
         AppState.starClasses.push(new StarModel(this.temperature));
 
@@ -161,12 +133,9 @@ export class TreeNode extends THREE.Mesh {
 
         this.requires = requires || [];
 
-        // ---- Visible star mesh (starts invisible) --------------------
-        // Assigned to the bloom layer so it glows when the lava shader is active.
-        this.star = new THREE.Mesh(
-            new THREE.SphereGeometry(this.nodeSize / 4, 16, 16),
-                                   new THREE.MeshBasicMaterial({ color: 0x000000, opacity: 0.0, transparent: true, depthWrite: false })
-        );
+        // ---- Visible star mesh (hidden until the node is activated) ----
+        this.star = new THREE.Mesh(getSphereGeometry(this.nodeSize / 4), INACTIVE_STAR_MATERIAL);
+        this.star.visible = false;
         this.star.layers.set(BLOOM_LAYER);
         AppState.bloomEffect.selection.add(this.star);
 
@@ -216,12 +185,7 @@ export class TreeNode extends THREE.Mesh {
         );
     }
 
-    /**
-     * Rescales just the nameText label (not the node's hit-sphere/star)
-     * based on the current zoom level. Cheap — a plain Object3D.scale
-     * write — so it's safe to call every frame for every node.
-     * @param {number} scaleFactor
-     */
+    /** Rescales just the nameText label based on the current zoom level. */
     updateLabelScale(scaleFactor) {
         this.nameText.scale.setScalar(scaleFactor);
     }
@@ -231,22 +195,16 @@ export class TreeNode extends THREE.Mesh {
     // ----------------------------------------------------------------
 
     async onClick(e) {
-        // ---- Edit mode -------------------------------------------------
-        // While the editor is on, clicking a node selects it for the
-        // inspector instead of running perk activation.
         if (AppState.editMode) {
             handleEditModeNodeClick(this);
             return;
         }
 
-        // The choice dialog for this node is already open.
         if (this._choosing) return;
 
         const tr = AppState.tr;
 
-        // ---- isNextActive --------------------------------------------
-        // Returns true if any currently-active node lists `id` as a
-        // prerequisite, preventing premature deactivation.
+        // True if any currently-active node lists `id` as a prerequisite.
         function isNextActive(id) {
             for (let i = 0; i < tr.nodes.length; i++) {
                 for (let j = 0; j < tr.nodes[i].requires.length; j++) {
@@ -274,9 +232,7 @@ export class TreeNode extends THREE.Mesh {
             return false;
         }
 
-        // ---- isMutExclCritMet ----------------------------------------
-        // Returns false if activating `passedIdNum` would exceed the
-        // simultaneous-active limit for its mutual-exclusion group.
+        // False if activating `passedIdNum` would exceed its mutual-exclusion group's limit.
         function isMutExclCritMet(passedIdNum) {
             const selfNode = tr.resolveNode(passedIdNum);
             const group = selfNode ? selfNode.excl : null;
@@ -290,8 +246,7 @@ export class TreeNode extends THREE.Mesh {
         }
 
         if (this.nodeActive && !isNextActive(this.nodeId)) {
-            // Deactivate — gated first by the current progression stage
-            // (progressionState.js), then by the currency/item refund check.
+            // Deactivate — gated by progression stage, then by the currency/item refund check.
             if (!canRevokePerk(this.nodeId)) {
                 window.alert(
                     getStage() === STAGES.USAGE
@@ -303,12 +258,10 @@ export class TreeNode extends THREE.Mesh {
                     `Nie można cofnąć perku "${this.nodeName}" — przyznana waluta lub przedmioty zostały już częściowo wydane/zużyte. Odzyskaj wystarczającą ilość, by móc go cofnąć.`
                 );
             } else {
-                this.nodeActive   = false;
-                this.star.material = new THREE.MeshBasicMaterial({
-                    color: 0x000000, opacity: 0.0, transparent: true, depthWrite: false,
-                });
+                this.nodeActive = false;
+                this._applyInactiveStarVisual();
                 removeNodeEffect(this);
-                markNodeInactive(this.nodeId); // persist across reloads — see treePersistence.js
+                markNodeInactive(this.nodeId);
                 refreshPerksTaken();
             }
 
@@ -319,9 +272,6 @@ export class TreeNode extends THREE.Mesh {
             isMutExclCritMet(this.nodeId) &&
             !this.nodeActive
         ) {
-            // Perks with 'attributeChoice' / 'spellSchoolUnlock' effects first ask
-            // the player to pick from a list. Giving up there means the perk is
-            // never activated. Perks without such effects stay fully synchronous.
             let choices;
             if (nodeNeedsChoices(this)) {
                 this._choosing = true;
@@ -330,9 +280,8 @@ export class TreeNode extends THREE.Mesh {
                 } finally {
                     this._choosing = false;
                 }
-                if (choices === null) return; // "Zrezygnuj z wybierania…" — perk stays deselected
+                if (choices === null) return; // gave up — perk stays deselected
 
-                // The dialog was modal, but re-check in case something changed meanwhile.
                 if (this.nodeActive || !canPickPerks() || computePotentialAvailable() < this.nodeCost) return;
             } else {
                 choices = { attr: {}, spell: {} };
@@ -341,7 +290,7 @@ export class TreeNode extends THREE.Mesh {
             this.nodeActive    = true;
             this._applyActiveStarVisual();
             applyNodeEffect(this, { choices });
-            markNodeActive(this.nodeId); // persist across reloads — see treePersistence.js
+            markNodeActive(this.nodeId);
             refreshPerksTaken();
         }
 
@@ -360,16 +309,9 @@ export class TreeNode extends THREE.Mesh {
     }
 
     /**
-     * Re-activates this node WITHOUT checking requirements/cost/
-     * mutual-exclusion, WITHOUT panning the camera, and WITHOUT opening
-     * the choice dialog — used ONLY to restore a previously-active node
-     * after a page reload (see treePersistence.js's restoreActiveNodes()).
-     *
-     * Does NOT call markNodeActive() itself — the node is already
-     * recorded as active in treePersistence.js.
-     *
-     * @param {{[effectIndex:string]:number[]}|null} savedChoices — persisted attributeChoice selections
-     * @param {{[effectIndex:string]:string|null}|null} savedSpellChoices — persisted spellSchoolUnlock spell choices
+     * Re-activates this node WITHOUT checking requirements/cost/exclusion,
+     * panning, or opening the choice dialog — used only to restore a node
+     * after a page reload (see treePersistence.js).
      */
     restoreActive(savedChoices, savedSpellChoices) {
         this.nodeActive   = true;
@@ -378,23 +320,29 @@ export class TreeNode extends THREE.Mesh {
     }
 
     /**
-     * Safely swaps this node's star mesh onto its StarModel's animated
-     * lava material — but only once that material actually exists.
-     * StarModel loads its textures asynchronously; assigning
-     * `customMaterial` before it exists would set `this.star.material`
-     * to `undefined` and crash the renderer on the next frame. If the
-     * model isn't ready, the assignment is queued via StarModel.onReady()
-     * and re-checks `this.nodeActive` once it fires.
+     * Shows the star with its shared lava material — but only once that
+     * material can exist (StarModel loads asynchronously; assigning an
+     * undefined material would crash the renderer). Otherwise deferred
+     * via StarModel.onReady(), re-checking `nodeActive` when it fires.
      */
     _applyActiveStarVisual() {
         const starModel = AppState.starClasses[this.starID];
         if (starModel.isModelReady()) {
             this.star.material = starModel.customMaterial;
+            this.star.visible  = true;
         } else {
             starModel.onReady(() => {
-                if (this.nodeActive) this.star.material = starModel.customMaterial;
+                if (this.nodeActive) {
+                    this.star.material = starModel.customMaterial;
+                    this.star.visible  = true;
+                }
             });
         }
+    }
+
+    _applyInactiveStarVisual() {
+        this.star.visible  = false;
+        this.star.material = INACTIVE_STAR_MATERIAL;
     }
 
     getFi()    { return this.fi;    }
@@ -405,13 +353,8 @@ export class TreeNode extends THREE.Mesh {
     // ----------------------------------------------------------------
 
     /**
-     * Recomputes this node's world position from new fi/theta
-     * (in DEGREES) and moves every visual piece — hit-sphere,
-     * star, and label — to match. Does NOT redraw arcs itself — call
-     * AppState.tr.rebuildArcs() afterward.
-     *
-     * @param {number} fiDeg
-     * @param {number} thetaDeg
+     * Recomputes world position from fi/theta (DEGREES) and moves the
+     * hit-sphere, star and label. Call AppState.tr.rebuildArcs() afterwards.
      */
     reposition(fiDeg, thetaDeg) {
         const R     = AppState.tr.sphereRadius;
@@ -425,7 +368,7 @@ export class TreeNode extends THREE.Mesh {
         this.position.set(x, y, z);
         this.star.position.set(x, y, z);
 
-        this.fi    = -fiRad; // negated, matching the constructor's convention
+        this.fi    = -fiRad;
         this.theta = thRad;
 
         this.nameText.position.set(
@@ -441,11 +384,6 @@ export class TreeNode extends THREE.Mesh {
     // toJSON  (edit mode export)
     // ----------------------------------------------------------------
 
-    /**
-     * Serializes this node back into the nodes.json node shape.
-     * fi/theta are recovered (in degrees) from the same negated-radian
-     * fields the constructor/reposition() set.
-     */
     toJSON() {
         return {
             id:          this.nodeId,

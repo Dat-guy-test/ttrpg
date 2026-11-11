@@ -3,43 +3,36 @@
 //
 // Exports:
 //   Tree class    — holds nodes, draws arcs, provides lookups
-//   treeGen(tree) — async: loads data (now local JSON), populates tree
+//   treeGen(tree) — async: loads data (local JSON), populates tree
 //
-// areReqsMet() is a method on Tree (not a standalone export).
-// TreeNode calls it via AppState.tr.areReqsMet(…).
-// This is the key design choice that prevents the
-//   Tree → TreeNode → Tree
-// circular import that would occur if areReqsMet were exported
-// from this file and imported by TreeNode.
+// areReqsMet() is a method on Tree (not a standalone export) so
+// TreeNode can call it via AppState.tr.areReqsMet(…) without a
+// Tree → TreeNode → Tree circular import.
 //
-// ------------------------------------------------------------
-// DATA FORMAT (as of the JSON migration)
-// ------------------------------------------------------------
-// Requirements are now real arrays instead of delimiter-encoded
-// strings:
-//   "5"                          — AND: node 5 must be active
-//   ["-1001", "-1002", "-1003"]  — OR: at least one member must be active
-// A node's `requires` field is an array whose entries are each
-// either a plain id string (AND) or an array of id strings (OR
-// group). This replaces the old "-1001o-1002o-1003" string format,
-// which broke down as soon as an id or delimiter collided.
+// DATA FORMAT
+// A node's `requires` is an array whose entries are each a plain id
+// string (AND), an array of id strings (OR group), or a
+// { type:'characteristic', stat, min } gate.
+// Mutual-exclusion groups are shared objects { label, max, members }.
+// A node's `effects` is an array (old single `effect` objects are
+// wrapped by normalizeEffects()).
 //
-// Mutual-exclusion groups are shared objects: { label, max, members }.
-// Every member TreeNode's `.excl` points at the SAME object, so all
-// members of a group are always looking at one shared max/members —
-// convenient once edit-mode code starts mutating groups live.
-//
-// A node's `effects` (optional) is an array of { type, key, amount }
-// entries describing its contribution(s) to the Character Data tab —
-// see characterState.js's EFFECT_TYPES and perkEffects.js. A node can
-// carry any number of effects. addNodeEffect()/removeNodeEffectAt()
-// below are the two places that mutate the list, so an active node's
-// contribution always stays in sync with its current effects.
-//
-// Backward compatibility: nodes.json exported before this array-based
-// format used a single `effect: {...}` object. normalizeEffects()
-// below reads that transparently and wraps it into a one-item array,
-// so older exported files keep working without editing.
+// PERFORMANCE NOTES (changes vs. the previous version)
+//   - The two invisible click-target tubes per arc (hundreds of
+//     meshes) used to be drawn every frame as fully transparent
+//     meshes. Their material is now `visible: false`: they are never
+//     rendered, but Raycaster ignores material visibility so they
+//     stay clickable. Pixel-identical.
+//   - All arcs share one solid and one dashed line material, and all
+//     tubes share one material (previously one per arc / per tube).
+//   - ALL visible arcs are now batched into just two LineSegments objects
+//     (one solid, one dashed) built at the end of rebuildArcs(), instead
+//     of one THREE.Line (= one draw call) per arc. The dashed batch gets
+//     a hand-built `lineDistance` attribute (cumulative per arc), so the
+//     dash pattern is identical to the old per-arc lines. Because the
+//     arcs no longer belong to a single node, `node.skyLines` stays empty;
+//     the batches live in `tree.arcLineObjects`.
+//   - Click tubes use 10 tubular x 6 radial segments (was 20 x 8).
 // ============================================================
 
 import * as THREE from 'three';
@@ -53,19 +46,19 @@ import { CharacterState, computeStatValue } from './characterState.js';
 import { Group } from './Group.js';
 import { GROUP_PAN_MIN_FOV, MIN_CAMERA_FOV, MAX_CAMERA_FOV } from './constants.js';
 
-// small helper, used in a couple of places
+// ---- Shared materials for arcs / click tubes ---------------------------
+const SOLID_ARC_MATERIAL  = new THREE.LineBasicMaterial({ color: 0x666666 });
+const DASHED_ARC_MATERIAL = new THREE.LineDashedMaterial({ color: 0x666666, dashSize: 0.01, gapSize: 0.01 });
+// Never drawn (visible:false) — only ever used as a raycast target.
+const TUBE_MATERIAL = new THREE.MeshBasicMaterial({
+    wireframe: true, opacity: 0.0, transparent: true, depthWrite: false, visible: false,
+});
+
 function isCharacteristicReq(req) {
     return !!req && typeof req === 'object' && !Array.isArray(req) && req.type === 'characteristic';
 }
 
-/**
- * Reads a node's effects off either the current array format
- * (`effects: [...]`) or the older single-object format
- * (`effect: {...}`), always returning an array. Used by both
- * treeGen() (loading nodes.json) and addNode() (edit-mode creation).
- * @param {object} source — a nodeData object or an addNode() data object
- * @returns {{type:string,key:string,amount:number}[]}
- */
+/** Reads a node's effects off either the array format or the older single-object format. */
 function normalizeEffects(source) {
     if (Array.isArray(source.effects)) return source.effects;
     if (source.effect) return [source.effect];
@@ -81,26 +74,22 @@ export class Tree {
      */
     constructor(smolFi, highFi, smolTh, highTh) {
         this.nodes         = [];   // TreeNode[]
-        this.mutExclGroups = [];   // [{ label, max, members }, …] — filled in by treeGen()
+        this.mutExclGroups = [];   // [{ label, max, members }, …]
         this.nodeIDs       = [];   // sparse map: nodeId → index in this.nodes
         this.span          = [smolFi, highFi, smolTh, highTh];
-        this.groups = [];           // Group[] — filled in by treeGen() / addGroup()
+        this.groups = [];           // Group[]
+
+        // Arc batching (see header). Filled by createLinesNTubes(), flushed by rebuildArcs().
+        this.arcLineObjects = [];   // the LineSegments currently in the scene
+        this._solidArcPos = [];     // flat xyz pairs, 2 points per segment
+        this._dashedArcPos = [];
+        this._dashedArcDist = [];   // lineDistance per vertex, matching _dashedArcPos
 
         this.sphereRadius = 30;
 
-        // Semi-transparent debug sphere showing the tree's extent.
-        // In edit mode's "addNode" submode, clicking it places a new node
-        // at the clicked fi/theta — see handleTreesphereClick() in editMode.js.
-        //
-        // IMPORTANT: side must be DoubleSide. AppState.camera sits at the
-        // origin — the exact center of this sphere — so every ray fired
-        // outward from it hits the sphere's BACK face (normals point
-        // outward, same direction as the ray, which is the definition of
-        // a back face). With the default FrontSide material, THREE.js's
-        // raycaster silently back-face-culls that hit and Add Node never
-        // fires at all, even though the sphere still renders fine (same
-        // reason sceneSetup.js's skybox — also camera-enclosing — uses
-        // BackSide instead of the default).
+        // Semi-transparent debug sphere showing the tree's extent. Must be
+        // DoubleSide: the camera sits at its centre, so every ray hits the
+        // BACK face (see the original note in handleTreesphereClick()).
         this.treesphere = new THREE.Mesh(
             new THREE.SphereGeometry(this.sphereRadius, 32, 16),
                                          new THREE.MeshBasicMaterial({ color: 'black', transparent: true, opacity: 0.25, side: THREE.DoubleSide })
@@ -119,17 +108,7 @@ export class Tree {
     // resolveNode  (defensive lookup)
     // ----------------------------------------------------------------
 
-    /**
-     * Safely resolves a node by id. Returns undefined — and logs a
-     * one-time console error naming the bad id — if no node matches,
-     * instead of letting callers crash on `undefined.star` /
-     * `undefined.nodeActive`. This is what keeps a single typo in a
-     * hand-edited requires/exclGroup entry from taking down arc
-     * drawing, camera setup, and every other node's activation with it.
-     *
-     * @param {string|number} id
-     * @returns {TreeNode|undefined}
-     */
+    /** Safely resolves a node by id; logs once per bad id and returns undefined instead of crashing callers. */
     resolveNode(id) {
         const node = this.nodes[this.nodeIDs[id]];
         if (!node) {
@@ -144,22 +123,9 @@ export class Tree {
     }
 
     // ----------------------------------------------------------------
-    // areReqsMet  (instance method — avoids a circular import)
+    // areReqsMet
     // ----------------------------------------------------------------
 
-    /**
-     * Returns true if every requirement in `reqs` is satisfied.
-     *
-     * Formats:
-     *   "nodeId"        — AND: that node must be active
-     *   ["idA","idB"]   — OR: at least one of idA, idB must be active
-     *
-     * An id that doesn't resolve to a real node (bad data) is treated
-     * as inactive/unsatisfied rather than throwing.
-     *
-     * @param {(string|string[])[]} reqs
-     * @returns {boolean}
-     */
     areReqsMet(reqs) {
         for (const req of reqs) {
             if (Array.isArray(req)) {
@@ -201,7 +167,6 @@ export class Tree {
      * @param {string[]} ej         — OR-group member array
      */
     createLinesNTubes(pointStart, pointEnd, smoothness, clockWise, dashed, a, b, kej, ej) {
-        // Great-circle rotation axis = cross(origin−end, start−end) normalised
         const cb = new THREE.Vector3(), ab = new THREE.Vector3(), normal = new THREE.Vector3();
         cb.subVectors(new THREE.Vector3(), pointEnd);
         ab.subVectors(pointStart, pointEnd);
@@ -218,24 +183,21 @@ export class Tree {
         }
 
         // Visible arc line
-        const path         = new THREE.CatmullRomCurve3(pnts);
-        const pathGeometry = new THREE.BufferGeometry().setFromPoints(path.getPoints(50));
+        const path = new THREE.CatmullRomCurve3(pnts);
 
-        if (dashed) {
-            const arc = new THREE.Line(
-                pathGeometry,
-                new THREE.LineDashedMaterial({ color: 0x666666, dashSize: 0.01, gapSize: 0.01 })
-            );
-            arc.computeLineDistances();
-            AppState.scene.add(arc);
-            this.nodes[a].skyLines.push(arc);
-        } else {
-            const arc = new THREE.Line(
-                pathGeometry,
-                new THREE.LineBasicMaterial({ color: 0x666666 })
-            );
-            AppState.scene.add(arc);
-            this.nodes[a].skyLines.push(arc);
+        // Accumulate this arc as line SEGMENTS into the shared batch (flushed
+        // into two LineSegments objects by rebuildArcs()).
+        const arcPoints = path.getPoints(50);
+        const batchPos  = dashed ? this._dashedArcPos : this._solidArcPos;
+        let runLength = 0;
+        for (let i = 0; i < arcPoints.length - 1; i++) {
+            const p = arcPoints[i], q = arcPoints[i + 1];
+            batchPos.push(p.x, p.y, p.z, q.x, q.y, q.z);
+            if (dashed) {
+                const next = runLength + p.distanceTo(q);
+                this._dashedArcDist.push(runLength, next); // cumulative distance along THIS arc
+                runLength = next;
+            }
         }
 
         // Split arc into two invisible click-target tubes
@@ -245,19 +207,17 @@ export class Tree {
         for (let i = mid + 1; i < pnts.length; i++)            pnts2h.push(pnts[i]);
 
         const mesh1h = new THREE.Mesh(
-            new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pnts1h), 20, 0.02, 8, false),
-                                      new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true, opacity: 0.0, transparent: true, depthWrite: false })
+            new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pnts1h), 10, 0.02, 6, false),
+            TUBE_MATERIAL
         );
         mesh1h.isReqTube = true;
         const mesh2h = new THREE.Mesh(
-            new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pnts2h), 20, 0.01, 8, false),
-                                      new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe: true, opacity: 0.0, transparent: true, depthWrite: false })
+            new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pnts2h), 10, 0.01, 6, false),
+            TUBE_MATERIAL
         );
         mesh2h.isReqTube = true;
 
-        // Click handlers close over the loop variables a, b, kej, ej.
-        // All global state accessed via AppState; computePanCamera imported above.
-        const self = this; // capture tree instance for the closures below
+        const self = this;
 
         if (kej === -1) {
             // AND link
@@ -315,13 +275,10 @@ export class Tree {
     }
 
     // ----------------------------------------------------------------
-    // init  — call once after all nodes are loaded
+    // init / arcs
     // ----------------------------------------------------------------
 
-    /**
-     * 1) Builds the nodeIDs sparse map (nodeId → array index).
-     * 2) Draws every requirement arc via rebuildArcs().
-     */
+    /** Builds the nodeIDs map, then draws every requirement arc. */
     init() {
         for (let i = 0; i < this.nodes.length; i++) {
             this.nodeIDs[this.nodes[i].nodeId] = i;
@@ -329,17 +286,27 @@ export class Tree {
         this.rebuildArcs();
     }
 
-    /**
-     * Removes every currently-drawn arc/tube-pair from the scene and
-     * clears each node's skyLines/reqTubes bookkeeping. Always call
-     * this before redrawing, or arcs pile up as duplicates.
-     */
+    /** Removes every drawn arc/tube pair from the scene (geometry is disposed; materials are shared). */
     clearArcs() {
+        for (const obj of this.arcLineObjects) {
+            AppState.scene.remove(obj);
+            obj.geometry.dispose();
+        }
+        this.arcLineObjects = [];
+        this._solidArcPos = [];
+        this._dashedArcPos = [];
+        this._dashedArcDist = [];
+
         for (const node of this.nodes) {
-            for (const line of node.skyLines) AppState.scene.remove(line);
+            for (const line of node.skyLines) {
+                AppState.scene.remove(line);
+                line.geometry.dispose();
+            }
             for (const pair of node.reqTubes) {
                 AppState.scene.remove(pair[0]);
                 AppState.scene.remove(pair[1]);
+                pair[0].geometry.dispose();
+                pair[1].geometry.dispose();
             }
             node.skyLines = [];
             node.reqTubes = [];
@@ -347,15 +314,9 @@ export class Tree {
     }
 
     /**
-     * (Re)draws every requirement arc from scratch, using each node's
-     * CURRENT world position. Safe to call any time node positions or
-     * requirements change — e.g. edit-mode's save flow calls this
-     * after TreeNode.reposition() so arcs follow a moved node instead
-     * of staying pinned to its old spot. Always clears first.
-     *
-     * A requirement id that doesn't resolve to a real node (typo,
-     * dangling reference) is logged via resolveNode() and that ONE
-     * arc is skipped — the rest of the tree still draws normally.
+     * (Re)draws every requirement arc from each node's CURRENT position.
+     * A requirement id that doesn't resolve is logged and just that one
+     * arc is skipped.
      */
     rebuildArcs() {
         this.clearArcs();
@@ -363,16 +324,15 @@ export class Tree {
         for (let i = 0; i < this.nodes.length; i++) {
             for (let j = 0; j < this.nodes[i].requires.length; j++) {
                 const req = this.nodes[i].requires[j];
-                if (isCharacteristicReq(req)) continue; // no node-to-node arc for a stat gate
+                if (isCharacteristicReq(req)) continue;
                 const endD = new THREE.Vector3();
                 this.nodes[i].star.getWorldPosition(endD);
 
                 if (Array.isArray(req)) {
-                    // OR group — one dashed arc per member
                     const group = req;
                     for (let k = 0; k < group.length; k++) {
                         const startNode = this.resolveNode(group[k]);
-                        if (!startNode) continue; // bad id in this OR group — skip just this arc
+                        if (!startNode) continue;
 
                         const startT = new THREE.Vector3();
                         const endD2  = new THREE.Vector3();
@@ -381,9 +341,8 @@ export class Tree {
                         this.createLinesNTubes(startT, endD2, 50, false, true, i, j, k, group);
                     }
                 } else {
-                    // AND — single solid arc
                     const startNode = this.resolveNode(req);
-                    if (!startNode) continue; // bad id — skip just this arc
+                    if (!startNode) continue;
 
                     const startT = new THREE.Vector3();
                     startNode.star.getWorldPosition(startT);
@@ -391,26 +350,42 @@ export class Tree {
                 }
             }
         }
+
+        this._flushArcBatches();
+    }
+
+    /** Turns the accumulated arc segments into (at most) two LineSegments objects in the scene. */
+    _flushArcBatches() {
+        const make = (positions, distances, material) => {
+            if (positions.length === 0) return;
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            if (distances) geometry.setAttribute('lineDistance', new THREE.Float32BufferAttribute(distances, 1));
+            const lines = new THREE.LineSegments(geometry, material);
+            lines.frustumCulled = false; // the camera sits inside this shell; always visible
+            AppState.scene.add(lines);
+            this.arcLineObjects.push(lines);
+        };
+
+        make(this._solidArcPos, null, SOLID_ARC_MATERIAL);
+        make(this._dashedArcPos, this._dashedArcDist, DASHED_ARC_MATERIAL);
+
+        this._solidArcPos = [];
+        this._dashedArcPos = [];
+        this._dashedArcDist = [];
     }
 
     // ----------------------------------------------------------------
     // Helpers
     // ----------------------------------------------------------------
 
-    /**
-     * @param {string|number} ID
-     * @returns {THREE.Vector2}  x = fi, y = theta
-     */
+    /** @returns {THREE.Vector2} x = fi, y = theta */
     getNodeSphericalCoordinates(ID) {
         const node = this.resolveNode(ID);
         if (!node) return new THREE.Vector2(0, 0);
         return new THREE.Vector2(node.getFi(), node.getTheta());
     }
 
-    /**
-     * @param {string|number} ID
-     * @returns {THREE.Vector3}
-     */
     getNodeWorldPosition(ID) {
         const v = new THREE.Vector3();
         const node = this.resolveNode(ID);
@@ -418,14 +393,7 @@ export class Tree {
         return v;
     }
 
-    /**
-     * Serializes the whole tree back into the nodes.json shape — the
-     * same shape treeGen() reads. Used by edit-mode's Export button.
-     * Mutual-exclusion groups are deduplicated (each is a single
-     * shared object referenced by every member node's `.excl`).
-     *
-     * @returns {{nodes: object[], mutuallyExclusive: object[]}}
-     */
+    /** Serializes the tree back into the nodes.json shape (edit-mode Export). */
     toJSON() {
         const groups = new Set();
         for (const n of this.nodes) if (n.excl) groups.add(n.excl);
@@ -442,19 +410,10 @@ export class Tree {
     }
 
     // ----------------------------------------------------------------
-    // Editor mutations (add node / add / remove requirement / effect)
+    // Editor mutations
     // ----------------------------------------------------------------
 
-    /**
-     * Converts a world-space point ON the sphere (e.g. a raycaster hit
-     * against this.treesphere) back into fi/theta degrees — the exact
-     * inverse of the x/y/z math in treeGen()/TreeNode.reposition().
-     * Used by handleTreesphereClick() in editMode.js to place a new
-     * node where the user clicked.
-     *
-     * @param {THREE.Vector3} point
-     * @returns {{fiDeg: number, thetaDeg: number}}
-     */
+    /** Inverse of the x/y/z math in treeGen(): world point on the sphere → fi/theta degrees. */
     worldPointToFiTheta(point) {
         const r = this.sphereRadius;
         const thetaRad = Math.asin(Math.max(-1, Math.min(1, point.y / r)));
@@ -466,13 +425,9 @@ export class Tree {
     }
 
     /**
-     * Non-edit-mode treesphere click handler: if the camera is zoomed
-     * out past GROUP_PAN_MIN_FOV and the click didn't ALSO hit a node
-     * or a requirement arc/tube (see createLinesNTubes's `isReqTube`
-     * marker below), tests the point where the ray hit the sphere
-     * against every group's click area and pans to the first match's
-     * center.
-     * @param {THREE.Intersection} hit
+     * Non-edit-mode treesphere click: when zoomed out far enough and the
+     * click didn't ALSO hit a node or requirement tube, pans/zooms to the
+     * group whose click area contains the point.
      */
     _handleGroupPanClick(hit) {
         if (AppState.camera.fov < GROUP_PAN_MIN_FOV) return;
@@ -487,18 +442,15 @@ export class Tree {
         const group = this.findGroupAtPoint(fiDeg, thetaDeg);
         if (!group) return;
 
-        // Same fi-negation convention TreeNode.onClick uses for its own pan target.
         const fiRad = -(group.center.fi * Math.PI / 180);
         const thetaRad = group.center.theta * Math.PI / 180;
 
-        // Steps 1–5: fit the group's whole area on this device's viewport, clamped to the camera's FOV range
         const aspect = AppState.container.clientWidth / Math.max(AppState.container.clientHeight, 1);
         const fitFov = group.computeFitFov(aspect);
         const targetFov = fitFov === null
             ? null
             : Math.max(MIN_CAMERA_FOV, Math.min(MAX_CAMERA_FOV, fitFov));
 
-        // Step 6: panCamera() eases the FOV to targetFov while rotating
         AppState.panCamBool = true;
         computePanCamera(
             AppState.camera.rotation.x,
@@ -509,25 +461,15 @@ export class Tree {
         );
     }
 
-    /** @param {string|number} id @returns {Group|undefined} */
     resolveGroup(id) {
         return this.groups.find(g => g.id === String(id));
     }
 
-    /**
-     * @param {number} fiDeg
-     * @param {number} thetaDeg
-     * @returns {Group|undefined} the first group whose click area contains this point.
-     */
     findGroupAtPoint(fiDeg, thetaDeg) {
         return this.groups.find(g => g.containsPoint(fiDeg, thetaDeg));
     }
 
-    /**
-     * Creates and registers a new Group from edit mode's group manager.
-     * @param {{id?:string, nodeIds:string[], center:object, label:object, clickArea:object[]}} data
-     * @returns {Group|null} null if `id` was already taken
-     */
+    /** Creates and registers a new Group. @returns {Group|null} null if `id` was taken */
     addGroup(data) {
         const id = (data.id !== undefined && data.id !== null && data.id !== '')
             ? String(data.id)
@@ -543,13 +485,6 @@ export class Tree {
         return group;
     }
 
-    /**
-     * Updates an existing group's fields in place and refreshes its
-     * label mesh.
-     * @param {string} id
-     * @param {object} data
-     * @returns {boolean} whether a group with this id existed
-     */
     updateGroup(id, data) {
         const group = this.resolveGroup(id);
         if (!group) return false;
@@ -572,7 +507,6 @@ export class Tree {
         return true;
     }
 
-    /** Removes a group (and its label mesh) by id. @returns {boolean} */
     removeGroup(id) {
         const idx = this.groups.findIndex(g => g.id === String(id));
         if (idx === -1) return false;
@@ -582,14 +516,9 @@ export class Tree {
     }
 
     /**
-     * Creates and inserts a new TreeNode from edit-mode's "Add Node"
-     * form. New nodes start with no requirements — link them up
-     * afterward via addRequirement() / connect submode.
-     *
-     * @param {object} data - {id?, name, desc, hoverText, cost, temperature, fi, theta, exclGroup?, effects?}
-     *   id is auto-generated (AppState.nextCustomNodeId) if omitted.
-     *   fi/theta are in DEGREES.
-     * @returns {TreeNode|null} the new node, or null if `id` was already taken
+     * Creates and inserts a new TreeNode from edit-mode's "Add Node" form.
+     * @param {object} data - {id?, name, desc, hoverText, cost, temperature, fi, theta, exclGroup?, effects?} (fi/theta in DEGREES)
+     * @returns {TreeNode|null} null if `id` was already taken
      */
     addNode(data) {
         const id = (data.id !== undefined && data.id !== null && data.id !== '')
@@ -629,15 +558,7 @@ export class Tree {
         return node;
     }
 
-    /**
-     * Appends a requirement entry to a node's `requires` and redraws
-     * arcs so the new connection is visible immediately.
-     *
-     * @param {string} nodeId
-     * @param {string|string[]} reqEntry  — a single id (AND) or an
-     *   array of ids (OR group)
-     * @returns {boolean} whether it was added
-     */
+    /** Appends a requirement entry (id = AND, id[] = OR) and redraws arcs. */
     addRequirement(nodeId, reqEntry) {
         const node = this.resolveNode(nodeId);
         if (!node) return false;
@@ -646,15 +567,7 @@ export class Tree {
         return true;
     }
 
-    /**
-     * Removes one requirement entry (by index into `requires`) from a
-     * node and redraws arcs. Used both by the inspector's per-entry
-     * "✕" buttons and by clicking an arc directly in edit mode.
-     *
-     * @param {string} nodeId
-     * @param {number} reqIndex
-     * @returns {boolean} whether it was removed
-     */
+    /** Removes one requirement entry by index and redraws arcs. */
     removeRequirement(nodeId, reqIndex) {
         const node = this.resolveNode(nodeId);
         if (!node || node.requires[reqIndex] === undefined) return false;
@@ -663,18 +576,7 @@ export class Tree {
         return true;
     }
 
-    /**
-     * Appends one effect to a node's `effects` list — e.g. a second
-     * characteristic bump on top of one it already grants. Mirrors
-     * addRequirement()'s live-edit pattern: applied immediately, no
-     * separate "Save" step. If the node is currently active, its
-     * existing contribution is removed first and the whole (now
-     * longer) effects list is reapplied, so nothing double-counts.
-     *
-     * @param {string} nodeId
-     * @param {{type:string, key:string, amount:number}} effect
-     * @returns {boolean}
-     */
+    /** Appends one effect; if the node is active its contribution is removed and re-applied so nothing double-counts. */
     addNodeEffect(nodeId, effect) {
         const node = this.resolveNode(nodeId);
         if (!node) return false;
@@ -686,14 +588,7 @@ export class Tree {
         return true;
     }
 
-    /**
-     * Removes one effect (by index into `effects`) from a node. Same
-     * live-edit pattern as removeRequirement().
-     *
-     * @param {string} nodeId
-     * @param {number} effectIndex
-     * @returns {boolean}
-     */
+    /** Removes one effect by index (same live-edit pattern as removeRequirement()). */
     removeNodeEffectAt(nodeId, effectIndex) {
         const node = this.resolveNode(nodeId);
         if (!node || node.effects[effectIndex] === undefined) return false;
@@ -705,26 +600,7 @@ export class Tree {
         return true;
     }
 
-    /**
-     * Replaces one effect (by index into `effects`) with a brand-new
-     * effect object — used to EDIT an existing effect (e.g. an
-     * 'attributeChoice' whose options were changed in the editor) in
-     * place, rather than removing and re-adding it, which would move
-     * it to the end of the list. Same live-edit pattern as
-     * addNodeEffect()/removeNodeEffectAt(): if the node is currently
-     * active, its existing contribution is removed first and the
-     * whole effects list (with the replacement swapped in) is
-     * reapplied — for an 'attributeChoice' effect specifically, this
-     * means any previously-chosen options are cleared and the player
-     * is prompted again against the NEW option list, since the old
-     * choice's indexes may no longer even correspond to the same
-     * options.
-     *
-     * @param {string} nodeId
-     * @param {number} effectIndex
-     * @param {{type:string, key?:string, amount?:number}} effect
-     * @returns {boolean}
-     */
+    /** Replaces one effect in place (keeps its position in the list). */
     updateNodeEffectAt(nodeId, effectIndex, effect) {
         const node = this.resolveNode(nodeId);
         if (!node || node.effects[effectIndex] === undefined) return false;
@@ -737,23 +613,11 @@ export class Tree {
     }
 
     /**
-     * Deletes a node entirely: removes its meshes (hit-sphere, star,
-     * label, and any arcs touching it) from the scene, scrubs every
-     * OTHER node's `requires` of any reference to it (a dangling
-     * reference would otherwise crash the next areReqsMet() call),
-     * removes it from its mutual-exclusion group's members if any,
-     * removes its character-sheet contribution if it was active,
-     * rebuilds nodeIDs (indices shift after the splice), and redraws
-     * arcs.
-     *
-     * Note: this node's StarModel entry in AppState.starClasses is
-     * left in place rather than reindexed — every other node's
-     * `starID` is an index into that array, so removing an entry
-     * would silently point them at the wrong shader. The orphaned
-     * entry just sits idle; harmless, if a little wasteful.
-     *
-     * @param {string} id
-     * @returns {boolean} whether a node was actually removed
+     * Deletes a node: removes its meshes and arcs, scrubs every other
+     * node's `requires` of references to it, fixes its exclusion group,
+     * removes its sheet contribution if active, rebuilds nodeIDs and arcs.
+     * (Its StarModel stays in AppState.starClasses — other nodes' starID
+     * values index into that array.)
      */
     removeNode(id) {
         const idx  = this.nodeIDs[id];
@@ -795,23 +659,8 @@ export class Tree {
     }
 
     /**
-     * Assigns, reassigns, or clears a node's mutual-exclusion group,
-     * and sets that group's `max`. Since a group is a single object
-     * shared by every member's `.excl`, updating `max` here instantly
-     * applies to every other member too — there's no per-node max,
-     * only a per-group one.
-     *
-     * - Always detaches the node from whatever group it was in first.
-     *   If that leaves the old group with zero members, the group is
-     *   dropped from mutExclGroups entirely (no orphaned groups).
-     * - `groupLabel` falsy (null/'') just clears the node's group.
-     * - Otherwise finds a group with that label, or creates one (with
-     *   the given `max`, minimum 1) if none exists yet.
-     *
-     * @param {string} nodeId
-     * @param {string|null} groupLabel
-     * @param {number} [max]  — used/updated when groupLabel is truthy
-     * @returns {boolean}
+     * Assigns, reassigns, or clears a node's mutual-exclusion group and
+     * sets that group's `max`. Empty groups are dropped.
      */
     setNodeExclGroup(nodeId, groupLabel, max) {
         const node = this.resolveNode(nodeId);
@@ -842,79 +691,63 @@ export class Tree {
         node.excl = group;
         return true;
     }
-     }
+}
 
 
-     // ============================================================
-     // treeGen
-     // Loads node data + mutually-exclusive group definitions from a
-     // local JSON file (see constants.js → NODE_DATA_URL), then fills
-     // `tree` with TreeNode instances.
-     //
-     // fi / theta in the JSON are already in degrees within the
-     // tree's angular span — no more cross-dataset grid normalisation
-     // (the old code rescaled every node's position based on the
-     // min/max grid coordinate across the WHOLE dataset, which meant
-     // adding a single outlier node could silently reflow every other
-     // node's position — not something you want while hand-editing).
-     // ============================================================
+// ============================================================
+// treeGen — loads nodes.json and fills `tree` with TreeNode instances.
+// fi / theta in the JSON are degrees within the tree's angular span.
+// ============================================================
 
-     export async function treeGen(tree) {
+export async function treeGen(tree) {
 
-         const res  = await fetch(NODE_DATA_URL);
-         const data = await res.json();
+    const res  = await fetch(NODE_DATA_URL);
+    const data = await res.json();
 
-         // ---- Mutually-exclusive groups ---------------------------
-         // Shared objects: every member TreeNode's `.excl` points at
-         // the SAME object, so there's exactly one source of truth
-         // per group (matters once edit-mode can add/remove members).
-         // `members` is validated here — a malformed/missing members
-         // array becomes [] with a console error instead of crashing
-         // the first time something tries to iterate it.
-         tree.mutExclGroups = (data.mutuallyExclusive || []).map(g => {
-             if (!Array.isArray(g.members)) {
-                 console.error(`Tree: mutual-exclusion group "${g.label}" has no valid "members" array — treating it as empty. Check nodes.json.`);
-             }
-             return {
-                 label:   g.label,
-                 max:     g.max,
-                 members: Array.isArray(g.members) ? [...g.members] : [],
-             };
-         });
+    // ---- Mutually-exclusive groups (shared objects) --------------------
+    tree.mutExclGroups = (data.mutuallyExclusive || []).map(g => {
+        if (!Array.isArray(g.members)) {
+            console.error(`Tree: mutual-exclusion group "${g.label}" has no valid "members" array — treating it as empty. Check nodes.json.`);
+        }
+        return {
+            label:   g.label,
+            max:     g.max,
+            members: Array.isArray(g.members) ? [...g.members] : [],
+        };
+    });
 
-         // ---- Nodes -------------------------------------------------
-         for (const nodeData of data.nodes) {
-             const fiRad = nodeData.fi    * (Math.PI / 180);
-             const thRad = nodeData.theta * (Math.PI / 180);
+    // ---- Nodes -----------------------------------------------------------
+    for (const nodeData of data.nodes) {
+        const fiRad = nodeData.fi    * (Math.PI / 180);
+        const thRad = nodeData.theta * (Math.PI / 180);
 
-             const x = tree.sphereRadius * Math.cos(thRad) * Math.cos(fiRad);
-             const y = tree.sphereRadius * Math.sin(thRad);
-             const z = tree.sphereRadius * Math.cos(thRad) * Math.sin(fiRad);
+        const x = tree.sphereRadius * Math.cos(thRad) * Math.cos(fiRad);
+        const y = tree.sphereRadius * Math.sin(thRad);
+        const z = tree.sphereRadius * Math.cos(thRad) * Math.sin(fiRad);
 
-             let exclGroup = null;
-             if (nodeData.exclGroup) {
-                 exclGroup = tree.mutExclGroups.find(g => g.label === nodeData.exclGroup) || null;
-                 if (!exclGroup) {
-                     console.error(`Tree: node "${nodeData.id}" references exclGroup "${nodeData.exclGroup}", but no mutuallyExclusive entry has that label. Check nodes.json.`);
-                 }
-             }
+        let exclGroup = null;
+        if (nodeData.exclGroup) {
+            exclGroup = tree.mutExclGroups.find(g => g.label === nodeData.exclGroup) || null;
+            if (!exclGroup) {
+                console.error(`Tree: node "${nodeData.id}" references exclGroup "${nodeData.exclGroup}", but no mutuallyExclusive entry has that label. Check nodes.json.`);
+            }
+        }
 
-             const node = new TreeNode(
-                 String(nodeData.id), nodeData.name, nodeData.desc, nodeData.hoverText,
-                                       x, y, z, fiRad, thRad,
-                                       nodeData.requires || [], nodeData.cost, exclGroup, nodeData.temperature,
-                                       normalizeEffects(nodeData)
-             );
-
-             tree.nodes.push(node);
-             AppState.scene.add(node);
-         }
-        // ---- Groups -------------------------------------------------
-        tree.groups = (data.groups || []).map(g =>
-            new Group(g.id, g.center, g.label, g.clickArea, tree.sphereRadius)
+        const node = new TreeNode(
+            String(nodeData.id), nodeData.name, nodeData.desc, nodeData.hoverText,
+                                  x, y, z, fiRad, thRad,
+                                  nodeData.requires || [], nodeData.cost, exclGroup, nodeData.temperature,
+                                  normalizeEffects(nodeData)
         );
 
-        AppState.cameraRotationOffsetFromTree = -Math.PI / 2;
-         AppState.cameraRotationOffsetFromTree = -Math.PI / 2;
-     }
+        tree.nodes.push(node);
+        AppState.scene.add(node);
+    }
 
+    // ---- Groups -----------------------------------------------------------
+    tree.groups = (data.groups || []).map(g =>
+        new Group(g.id, g.center, g.label, g.clickArea, tree.sphereRadius)
+    );
+
+    AppState.cameraRotationOffsetFromTree = -Math.PI / 2;
+}

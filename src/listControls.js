@@ -1,9 +1,9 @@
 // ============================================================
 // LIST CONTROLS  (shared search / filter / sort toolbar)
 //
-// Used by the Equipment tab's market (Rynek) and the Arkana tab's
-// "Wielka Księga Zaklęć". A toolbar is described declaratively as
-// rows of control specs:
+// Used by the Equipment tab's market (Rynek), the Arkana tab's
+// "Wielka Księga Zaklęć" and choiceDialog.js. A toolbar is described
+// declaratively as rows of control specs:
 //
 //   { type: 'text' | 'number' | 'select' | 'checkbox',
 //     id:    DOM id (must be unique on the page),
@@ -13,9 +13,18 @@
 //
 // renderFiltersHTML() builds the markup from the specs + current
 // filter state; wireFilterControls() binds events that write back
-// into that state and call `rerender`. The domain code (equipment,
-// spells) keeps only its own predicate + comparators.
+// into that state and call `rerender`.
+//
+// PERFORMANCE NOTE: text and number inputs used to trigger a full list
+// re-render on EVERY keystroke. The filter state is still updated
+// immediately, but the re-render is now debounced (TEXT_INPUT_DEBOUNCE_MS)
+// so typing "miecz" rebuilds the list once instead of five times.
+// Selects and checkboxes still re-render immediately. Set the constant
+// to 0 to restore the old per-keystroke behaviour.
 // ============================================================
+
+/** Delay, in ms, before a text/number input re-renders the list. 0 = immediately (old behaviour). */
+export const TEXT_INPUT_DEBOUNCE_MS = 120;
 
 export function escapeHtml(str) {
     return String(str ?? '')
@@ -103,19 +112,41 @@ export function renderFiltersHTML(rows, filters) {
 
 /**
  * Binds every control in `rows` so that changing it writes into
- * `filters[spec.key]` and then calls `rerender()`.
+ * `filters[spec.key]` and then calls `rerender()` (debounced for
+ * text/number inputs — see the header note).
  */
 export function wireFilterControls(rootEl, rows, filters, rerender) {
+    let timer = null;
+    let anchor = null; // any wired element; used to tell whether this toolbar is still on the page
+
+    const rerenderDebounced = () => {
+        if (TEXT_INPUT_DEBOUNCE_MS <= 0) { rerender(); return; }
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            timer = null;
+            // The page may have changed (e.g. an item was opened) while we waited.
+            if (anchor && !anchor.isConnected) return;
+            rerender();
+        }, TEXT_INPUT_DEBOUNCE_MS);
+    };
+
+    /** Runs a pending debounced render right away (used before an immediate one so state is never stale). */
+    const rerenderNow = () => {
+        if (timer) { clearTimeout(timer); timer = null; }
+        rerender();
+    };
+
     for (const spec of rows.flat()) {
         const el = rootEl.querySelector(`#${spec.id}`);
         if (!el) continue;
+        if (!anchor) anchor = el;
 
         if (spec.type === 'text' || spec.type === 'number') {
-            el.addEventListener('input', (e) => { filters[spec.key] = e.target.value; rerender(); });
+            el.addEventListener('input', (e) => { filters[spec.key] = e.target.value; rerenderDebounced(); });
         } else if (spec.type === 'select') {
-            el.addEventListener('change', (e) => { filters[spec.key] = e.target.value; rerender(); });
+            el.addEventListener('change', (e) => { filters[spec.key] = e.target.value; rerenderNow(); });
         } else if (spec.type === 'checkbox') {
-            el.addEventListener('change', (e) => { filters[spec.key] = e.target.checked; rerender(); });
+            el.addEventListener('change', (e) => { filters[spec.key] = e.target.checked; rerenderNow(); });
         }
     }
 }
@@ -124,7 +155,7 @@ export function wireFilterControls(rootEl, rows, filters, rerender) {
  * Runs `renderFn` (a full re-render of rootEl) while keeping keyboard
  * focus and text selection on whichever element had it — a plain
  * re-render recreates every element and would otherwise steal focus
- * from the search/price inputs on every keystroke.
+ * from the search/price inputs.
  */
 export function renderPreservingFocus(rootEl, renderFn) {
     const active = document.activeElement;

@@ -2,51 +2,39 @@
 // PREMADE CHARACTERS  (skill-tree tab → "Wybierz przygotowaną postać")
 //
 // Adds a banner with a button to the skill-tree tab (inside #bor,
-// overlaid on the 3D canvas) for players who can't decide how to build
-// their character. Clicking it:
-//   1. warns that picking a premade character DELETES every piece of
-//      current character data on the site (window.confirm),
-//   2. lists every character export found in src/char/ — the names
-//      shown are the character names stored INSIDE each file (the
-//      "name" field of the exported character sheet), not file names,
-//   3. on selection, imports that file with the very same routine
-//      "Wczytaj Postać" uses (characterExport.js's
-//      importCharacterFromObject()) and reloads the page so every
-//      module rebuilds itself from the freshly written localStorage.
+// overlaid on the 3D canvas). Clicking it:
+//   1. loads every character export found in src/char/,
+//   2. warns that picking one DELETES all current character data,
+//   3. lists the characters (names come from INSIDE each file),
+//   4. on selection imports it with characterExport.js's
+//      importCharacterFromObject() and reloads the page.
 //
-// FILES
-// ------------------------------------------------------------
-// Drop any file produced by "Zapisz Postać" into src/char/ (this
-// module lives in src/ too). They're picked up with Vite's
-// import.meta.glob at build time, so they end up bundled with the
-// site — which is what makes this work on a static host such as
-// GitHub Pages, where a folder can't be listed at runtime. In
-// `npm run dev` a newly added file is picked up automatically; for a
-// deployed site, rebuild after adding/removing files.
+// FILES: drop any "Zapisz Postać" export into src/char/. They are
+// discovered with Vite's import.meta.glob at build time, so they are
+// bundled with the site (works on GitHub Pages). Rebuild after
+// adding/removing files for a deployed site.
 //
-// VISIBILITY
-// ------------------------------------------------------------
-// The banner is only shown while progressionState.js's stage is
-// STAGES.CREATION — i.e. it disappears once "Zakończ Tworzenie
-// Postaci" has been used. The "×" button next to it hides the banner
-// (and itself) for the rest of the page session. Because the stage can
-// change without a reload, characterSheet.js calls
-// refreshPremadeCharacterButton() right after advancing the stage.
+// PERFORMANCE NOTE: the glob used to be `eager: true`, which put every
+// premade character's full JSON into the main bundle that must be
+// downloaded and parsed before the site boots. It is now lazy — each file
+// becomes its own chunk, fetched only when the player clicks the banner
+// button. Behaviour is unchanged apart from a (near-instant) fetch on click.
 //
-// This module only imports progressionState.js and characterExport.js
-// (neither imports anything tree/sheet-related), so characterSheet.js
-// and main.js can import it without creating a cycle.
+// VISIBILITY: shown only while progressionState's stage is
+// STAGES.CREATION; "×" hides it for the rest of the page session.
+// characterSheet.js calls refreshPremadeCharacterButton() after
+// advancing the stage.
 //
 // Exports:
-//   initPremadeCharacterPicker()     — call once at boot, after the DOM exists.
-//   refreshPremadeCharacterButton()  — re-evaluates whether the banner should show.
+//   initPremadeCharacterPicker()
+//   refreshPremadeCharacterButton()
 // ============================================================
 
 import { getStage, STAGES } from './progressionState.js';
 import { importCharacterFromObject } from './characterExport.js';
 import './premadeCharacters.css';
 
-/** localStorage key characterState.js saves the character sheet under — the export file keeps it under payload.data[...]. */
+/** localStorage key characterState.js saves the character sheet under — the export keeps it under payload.data[...]. */
 const CHARACTER_SHEET_KEY = 'ttrpgCharacterSheet.v2';
 
 const BUTTON_LABEL = 'Nie mogę się zdecydować - Wybierz przygotowaną wcześniej postać';
@@ -56,13 +44,14 @@ const CONFIRM_MESSAGE =
     'UWAGA: wybranie postaci USUNIE wszystkie obecne dane na stronie — wybrane atuty, kartę postaci, ' +
     'ekwipunek, znane zaklęcia i etap gry — i zastąpi je danymi wybranej postaci. Tej operacji nie można cofnąć.';
 
-// Every JSON file in src/char/, already parsed. An empty/missing folder just yields {}.
-const characterFiles = import.meta.glob('./char/*.json', { eager: true, import: 'default' });
+// path -> () => Promise<parsed JSON>. An empty/missing folder just yields {}.
+const characterLoaders = import.meta.glob('./char/*.json', { import: 'default' });
 
 let bannerEl = null;
 let dismissed = false;   // set by the "×" button; lasts until the page is reloaded
 let modalEl = null;
 let removeKeyListener = null;
+let loading = false;     // guards against double-clicks while the files are being fetched
 
 
 // ============================================================
@@ -74,15 +63,26 @@ function fileBaseName(path) {
 }
 
 /**
- * @returns {{path:string, name:string, payload:object}[]} every valid
- *   character export in src/char/, sorted by character name. `name` is
- *   read from the file's contents; the file name is only a fallback for
- *   a character that was exported without a name.
+ * Loads every file in src/char/ and returns the valid character exports,
+ * sorted by character name. `name` is read from the file's contents; the
+ * file name is only a fallback for a character exported without a name.
+ * @returns {Promise<{path:string, name:string, payload:object}[]>}
  */
-function listPremadeCharacters() {
-    const out = [];
+async function listPremadeCharacters() {
+    const loaded = await Promise.all(
+        Object.entries(characterLoaders).map(async ([path, load]) => {
+            try {
+                return [path, await load()];
+            } catch (e) {
+                console.warn(`premadeCharacters: couldn't load "${path}" — skipping it.`, e);
+                return [path, null];
+            }
+        })
+    );
 
-    for (const [path, payload] of Object.entries(characterFiles)) {
+    const out = [];
+    for (const [path, payload] of loaded) {
+        if (payload === null) continue;
         if (!payload || typeof payload !== 'object' || !payload.data || typeof payload.data !== 'object') {
             console.warn(`premadeCharacters: "${path}" isn't a character export (no "data" section) — skipping it.`);
             continue;
@@ -143,11 +143,20 @@ export function initPremadeCharacterPicker() {
 
 
 // ============================================================
-// Flow: confirm → list → import
+// Flow: load → confirm → list → import
 // ============================================================
 
-function onPickClick() {
-    const characters = listPremadeCharacters();
+async function onPickClick() {
+    if (loading) return;
+    loading = true;
+
+    let characters;
+    try {
+        characters = await listPremadeCharacters();
+    } finally {
+        loading = false;
+    }
+
     if (characters.length === 0) {
         window.alert('Nie znaleziono żadnych przygotowanych postaci (folder src/char/ jest pusty).');
         return;

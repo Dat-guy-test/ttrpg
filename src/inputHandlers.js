@@ -1,60 +1,72 @@
 // ============================================================
 // INPUT HANDLERS
 //
-// Exports one function:
-//   registerInputHandlers() — attaches every DOM event listener.
-//                             Call once after initScene().
+// Exports registerInputHandlers() — attaches every DOM event listener.
+// Call once after initScene(). State lives in AppState; camera
+// animation functions come from cameraControls.js.
 //
-// All state is read / written through AppState.
-// Camera animation functions are imported from cameraControls.js.
+// Listeners: pointermove (hover raycast), click (node activation),
+// keydown/keyup, wheel (zoom), mouse drag (free camera), touch
+// (pinch-zoom / swipe-pan), resize.
 //
-// Listeners registered here:
-//   pointermove — raycasting for hover (onPointerOver / onPointerOut)
-//   click       — node activation (onClick)
-//   keydown     — arrow keys (AppState.keys) + special keys (=, -, Tab, 1, 2, E, Esc)
-//   keyup       — clears AppState.keys
-//   wheel       — zoom in/out
-//   mousedown   — begin free-camera drag
-//   mouseup     — end free-camera drag
-//   mousemove   — free-camera drag rotation
-//   touchstart/touchmove/touchend/touchcancel (on #canvas)
-//               — two-finger pinch-to-zoom, and one-finger swipe-to-pan
-//                 (mirrors the wheel/arrow-key behavior for touch devices)
-//   resize      — camera aspect + renderer size
+// PERFORMANCE NOTES (changes vs. the previous version)
+//   - Hover raycasting used to run on EVERY pointermove event against
+//     `scene.children` recursively — i.e. also the skybox sphere, the
+//     ground, the 6000-triangle grass mesh, ~200 arc lines (with
+//     Line.threshold = 1 on a radius-30 sphere!) and ~170 text meshes,
+//     none of which have any handler. It now:
+//       1. tests ONLY the objects that actually have handlers
+//          (nodes, requirement click-tubes, the tree sphere) — see
+//          buildPickTargets(); and
+//       2. coalesces pointer movement to at most one raycast per
+//          animation frame (high-poll-rate mice fire >100 events/s).
+//     A click flushes any pending move first, so the object under the
+//     cursor at click time is exactly what it was before.
 // ============================================================
 
 import AppState from './appState.js';
 import { computePanCamera } from './cameraControls.js';
 import { toggleEditMode } from './editMode.js';
 import { BASE_CAMERA_FOV } from './constants.js';
+import { getRenderPixelRatio } from './performanceTuning.js';
 
 export function registerInputHandlers() {
 
     // ============================================================
-    // POINTER MOVE — HOVER DETECTION
-    // Raycasts every frame to find which objects are under the
-    // pointer, then fires onPointerOver / onPointerOut as needed.
+    // POINTER MOVE — HOVER DETECTION (one raycast per frame)
     // ============================================================
-    window.addEventListener('pointermove', (e) => {
-        if (!AppState.container.contains(e.target)) {
-            // Pointer is over a UI overlay (e.g. the edit-mode panel), not the
-            // 3D canvas — clear any stale hover state and skip raycasting so
-            // clicks on buttons/inputs never get reinterpreted as scene clicks.
-            Object.keys(AppState.hovered).forEach((key) => {
-                const hoveredItem = AppState.hovered[key];
-                if (hoveredItem.object.onPointerOut) hoveredItem.object.onPointerOut(hoveredItem);
-                delete AppState.hovered[key];
-            });
-            AppState.intersects = [];
-            return;
-        }
 
+    let pendingPointer = null; // {x, y} of the latest unprocessed pointermove
+    let pointerRafId   = 0;
+
+    /** Everything in the scene that has an onClick / onPointerOver handler. */
+    function buildPickTargets() {
+        const targets = [];
+        const tr = AppState.tr;
+        if (!tr) return targets;
+        if (tr.treesphere) targets.push(tr.treesphere);
+        for (const node of tr.nodes) {
+            targets.push(node);
+            for (const pair of node.reqTubes) targets.push(pair[0], pair[1]);
+        }
+        return targets;
+    }
+
+    function clearHoverState() {
+        Object.keys(AppState.hovered).forEach((key) => {
+            const hoveredItem = AppState.hovered[key];
+            if (hoveredItem.object.onPointerOut) hoveredItem.object.onPointerOut(hoveredItem);
+            delete AppState.hovered[key];
+        });
+    }
+
+    function updateHover(x, y) {
         AppState.mouse.set(
-            (e.offsetX / AppState.container.clientWidth)  *  2 - 1,
-                           (e.offsetY / AppState.container.clientHeight) * -2 + 1
+            (x / AppState.container.clientWidth)  *  2 - 1,
+            (y / AppState.container.clientHeight) * -2 + 1
         );
         AppState.raycaster.setFromCamera(AppState.mouse, AppState.camera);
-        AppState.intersects = AppState.raycaster.intersectObjects(AppState.scene.children, true);
+        AppState.intersects = AppState.raycaster.intersectObjects(buildPickTargets(), false);
 
         Object.keys(AppState.hovered).forEach((key) => {
             const stillHit = AppState.intersects.find(hit => hit.object.uuid === key);
@@ -72,10 +84,35 @@ export function registerInputHandlers() {
             }
             if (hit.object.onPointerMove) hit.object.onPointerMove(hit);
         });
+    }
+
+    function flushPointer() {
+        pointerRafId = 0;
+        if (!pendingPointer) return;
+        const { x, y } = pendingPointer;
+        pendingPointer = null;
+        updateHover(x, y);
+    }
+
+    window.addEventListener('pointermove', (e) => {
+        if (!AppState.container.contains(e.target)) {
+            // Pointer is over a UI overlay, not the 3D canvas — clear stale
+            // hover state and skip raycasting so UI clicks never reach the scene.
+            pendingPointer = null;
+            clearHoverState();
+            AppState.intersects = [];
+            return;
+        }
+        pendingPointer = { x: e.offsetX, y: e.offsetY };
+        if (!pointerRafId) pointerRafId = requestAnimationFrame(flushPointer);
     });
 
     window.addEventListener('click', (e) => {
         if (!AppState.container.contains(e.target)) return; // clicks on UI panels never hit the 3D scene
+        if (pendingPointer) {            // make sure intersects reflects the latest cursor position
+            cancelAnimationFrame(pointerRafId);
+            flushPointer();
+        }
         AppState.intersects.forEach((hit) => {
             if (hit.object.onClick) hit.object.onClick(hit);
         });
@@ -84,21 +121,15 @@ export function registerInputHandlers() {
 
     // ============================================================
     // KEYDOWN
-    // Two responsibilities:
-    //   1. Track held keys in AppState.keys (used by freeCameraMovement
-    //      and freeCameraPositionUpdate every frame).
-    //   2. Handle one-shot special keys via a switch statement.
     // ============================================================
     window.addEventListener('keydown', function (e) {
         if (e.defaultPrevented) return;
 
-        // Track the key for per-frame polling (arrow keys, WASD, Space, Shift, …)
         AppState.keys[e.key] = true;
 
         switch (e.key) {
 
             case 'Escape':
-                // Debug: print camera orientation + first node angles to console
                 console.log(
                     AppState.camera.rotation.x,
                     AppState.camera.rotation.y,
@@ -108,56 +139,24 @@ export function registerInputHandlers() {
                 break;
 
             case '=':
-                // Zoom in — adds inward momentum instead of an immediate
-                // step (see cameraControls.js's updateZoomInertia(), run
-                // every frame from main.js's animate()), so holding/
-                // repeatedly tapping '=' keeps the view gliding inward
-                // briefly before coasting to a stop — the same "inertia"
-                // feel '-'/zoom-out already had.
-                if (AppState.zoomStage > 0 && !AppState.panCamBool) {
-                    // A deliberate zoom-in takes over from any outward
-                    // momentum still coasting from a previous scroll-down/
-                    // '-' press, instead of having to fight it off — see
-                    // touchstart's identical reset for pinch-to-zoom.
-                    if (AppState.zoomVelocity > 0) AppState.zoomVelocity = 0;
-                    AppState.zoomVelocity = Math.max(AppState.zoomVelocity - 6, -40);
-                }
-                break;
             case '+':
-                // Zoom in — adds inward momentum instead of an immediate
-                // step (see cameraControls.js's updateZoomInertia(), run
-                // every frame from main.js's animate()), so holding/
-                // repeatedly tapping '+' keeps the view gliding inward
-                // briefly before coasting to a stop — the same "inertia"
-                // feel '-'/zoom-out already had.
+                // Zoom in with inertia (see cameraControls.js's updateZoomInertia()).
                 if (AppState.zoomStage > 0 && !AppState.panCamBool) {
-                    // A deliberate zoom-in takes over from any outward
-                    // momentum still coasting from a previous scroll-down/
-                    // '-' press, instead of having to fight it off — see
-                    // touchstart's identical reset for pinch-to-zoom.
+                    // A deliberate zoom-in takes over from leftover outward momentum.
                     if (AppState.zoomVelocity > 0) AppState.zoomVelocity = 0;
                     AppState.zoomVelocity = Math.max(AppState.zoomVelocity - 6, -40);
                 }
                 break;
 
             case '-':
-                // Zoom out — adds outward momentum instead of an immediate
-                // step (see cameraControls.js's updateZoomInertia(), run
-                // every frame from main.js's animate()), so holding/
-                // repeatedly tapping '-' keeps the view gliding outward
-                // briefly before coasting to a stop, the same "inertia"
-                // feel the wheel gets below.
+                // Zoom out with inertia.
                 if (AppState.zoomStage < 60 && !AppState.panCamBool) {
-                    // A deliberate zoom-out takes over from any inward
-                    // momentum still coasting from a previous scroll-up/'='
-                    // press, instead of having to fight it off.
                     if (AppState.zoomVelocity < 0) AppState.zoomVelocity = 0;
                     AppState.zoomVelocity = Math.min(AppState.zoomVelocity + 6, 40);
                 }
                 break;
 
             case 'Tab':
-                // Toggle the Stats (FPS) performance overlay
                 if (!AppState.statsShown) {
                     AppState.statsShown = true;
                     document.body.appendChild(AppState.stats.dom);
@@ -165,7 +164,6 @@ export function registerInputHandlers() {
                 break;
 
             case '[':
-                // Switch to the main skill-tree camera
                 AppState.activeCamera      = AppState.camera;
                 AppState.rendek.camera     = AppState.activeCamera;
                 AppState.bloomEffect.camera = AppState.activeCamera;
@@ -174,7 +172,6 @@ export function registerInputHandlers() {
                 break;
 
             case ']':
-                // Switch to the free-fly camera
                 AppState.activeCamera      = AppState.freeCamera;
                 AppState.rendek.camera     = AppState.activeCamera;
                 AppState.bloomEffect.camera = AppState.activeCamera;
@@ -182,7 +179,6 @@ export function registerInputHandlers() {
                 console.log('Activating free camera…');
                 break;
             case '~':
-                // Toggle the skill-tree editor (edit mode + inspector panel)
                 toggleEditMode();
                 break;
 
@@ -190,64 +186,38 @@ export function registerInputHandlers() {
                 return; // Let unhandled keys propagate normally
         }
 
-        e.preventDefault(); // Suppress browser default for handled keys (e.g. Tab focus-shift)
+        e.preventDefault();
     }, true);
 
 
-    // ============================================================
-    // KEYUP — clear AppState.keys
-    // ============================================================
     window.addEventListener('keyup', (e) => {
         AppState.keys[e.key] = false;
     });
 
 
     // ============================================================
-    // MOUSE WHEEL — ZOOM
-    // Both directions add momentum instead of jumping the FOV directly
-    // — see cameraControls.js's updateZoomInertia() — so a fast scroll
-    // flick keeps gliding the view in or out briefly after the wheel
-    // stops, the way trackpad momentum scrolling feels.
-    //
-    // Only handles (and only preventDefault()s) wheel events over the
-    // 3D canvas itself — same AppState.container.contains(e.target)
-    // guard used for pointermove/click above. Without this, calling
-    // preventDefault() unconditionally on every wheel event blocks the
-    // browser's native scroll everywhere on the page, including inside
-    // the Character/Equipment/Arkana/Manual panels, even though those
-    // already have `overflow-y: auto` set in their CSS — so the wheel
-    // looked "broken" there when it was really just being swallowed here.
+    // MOUSE WHEEL — ZOOM (only over the 3D canvas, so panels scroll natively)
     // ============================================================
     window.addEventListener('wheel', function (e) {
-        if (!AppState.container.contains(e.target)) return; // let the page/panel scroll natively
+        if (!AppState.container.contains(e.target)) return;
         e.preventDefault();
 
         if (e.deltaY < 0) {
-            // Scroll up → zoom in, with inertia (see updateZoomInertia())
             if (AppState.zoomStage > 0 && !AppState.panCamBool) {
-                // A deliberate zoom-in takes over from any zoom-out momentum
-                // still coasting from a previous scroll-down — without this,
-                // updateZoomInertia() would keep applying that leftover
-                // outward velocity on top of the new inward one, fighting it.
                 if (AppState.zoomVelocity > 0) AppState.zoomVelocity = 0;
                 AppState.zoomVelocity = Math.max(AppState.zoomVelocity - 6, -40);
             }
         } else if (e.deltaY > 0) {
-            // Scroll down → zoom out, with inertia (see updateZoomInertia())
             if (AppState.zoomStage < 60 && !AppState.panCamBool) {
-                // Same reasoning in reverse — a deliberate zoom-out takes
-                // over from any leftover inward momentum.
                 if (AppState.zoomVelocity < 0) AppState.zoomVelocity = 0;
                 AppState.zoomVelocity = Math.min(AppState.zoomVelocity + 6, 40);
             }
         }
-    }, { passive: false }); // passive: false required so preventDefault() works
+    }, { passive: false });
 
 
     // ============================================================
     // MOUSE DRAG — FREE CAMERA ROTATION
-    // While LMB is held, horizontal/vertical mouse movement yaws
-    // and pitches the free camera. Pitch is clamped to ±90°.
     // ============================================================
     window.addEventListener('mousedown', () => { AppState.isMouseDown = true; });
     window.addEventListener('mouseup',   () => { AppState.isMouseDown = false; });
@@ -270,29 +240,9 @@ export function registerInputHandlers() {
 
     // ============================================================
     // TOUCH — pinch-to-zoom (2 fingers) and swipe-to-pan (1 finger)
-    // ------------------------------------------------------------
-    // Attached to #canvas specifically (not window) so touches over UI
-    // overlays (edit-mode panel, etc.) are left alone.
-    //
-    // Two fingers moving apart/together directly drives AppState.zoomStage
-    // /camera.fov, continuously (not stepped) — the touch equivalent of
-    // the wheel, but tracked live rather than tick-by-tick.
-    //
-    // One finger dragging instead feeds AppState.cameraAccelerationX/Y —
-    // the EXACT same momentum fields the arrow keys drive in
-    // cameraControls.js's freeCameraMovement(), which already runs every
-    // frame regardless of input source. That reuse is what gives a swipe
-    // the same "glide to a stop" inertia arrow-key panning already has,
-    // with no separate decay logic needed here.
-    //
-    // A one-finger touch only counts as a "swipe" once it's moved past
-    // SWIPE_DRAG_THRESHOLD px from where it started. Below that, nothing
-    // is touched (no acceleration, no preventDefault()) — this is what
-    // lets an ordinary tap on a node still reach it: preventDefault()ing
-    // touchmove (even for a couple of jittery pixels) stops the browser
-    // from ever synthesizing the click event TreeNode.onClick() relies
-    // on, which is what was turning every tap into a tiny, node-swallowing
-    // slide instead of an activation.
+    // Attached to #canvas so touches over UI overlays are left alone.
+    // A one-finger touch only counts as a swipe past SWIPE_DRAG_THRESHOLD,
+    // so ordinary taps still reach the click handler.
     // ============================================================
 
     let pinchStartDistance  = null;
@@ -321,7 +271,7 @@ export function registerInputHandlers() {
         if (e.touches.length === 2) {
             pinchStartDistance      = touchDistance(e.touches);
             pinchStartZoomStage     = AppState.zoomStage;
-            AppState.zoomVelocity = 0; // a deliberate pinch takes over from any wheel/key momentum
+            AppState.zoomVelocity = 0;
             resetSwipeTracking();
         } else if (e.touches.length === 1) {
             touchStartX = swipeLastX = e.touches[0].clientX;
@@ -332,8 +282,8 @@ export function registerInputHandlers() {
 
     AppState.container.addEventListener('touchmove', (e) => {
         if (e.touches.length === 2 && pinchStartDistance) {
-            e.preventDefault(); // stop the browser's own page-zoom/scroll gesture
-            const ratio = pinchStartDistance / touchDistance(e.touches); // fingers spreading apart (zoom in) -> ratio < 1
+            e.preventDefault();
+            const ratio = pinchStartDistance / touchDistance(e.touches);
             const targetStage = pinchStartZoomStage + (ratio - 1) * 60;
             AppState.zoomStage  = Math.max(0, Math.min(60, targetStage));
             AppState.camera.fov = BASE_CAMERA_FOV + AppState.zoomStage;
@@ -347,22 +297,20 @@ export function registerInputHandlers() {
                 const totalDx = clientX - touchStartX;
                 const totalDy = clientY - touchStartY;
                 if (Math.hypot(totalDx, totalDy) < SWIPE_DRAG_THRESHOLD) {
-                    return; // still within tap tolerance — leave it for the browser's own click synthesis
+                    return; // still within tap tolerance
                 }
                 isSwiping = true;
-                // Start the delta fresh from here rather than from touchstart,
-                // so crossing the threshold doesn't itself cause a jump.
                 swipeLastX = clientX;
                 swipeLastY = clientY;
             }
 
-            e.preventDefault(); // now a deliberate drag — stop the page from scrolling with it
+            e.preventDefault();
             const dx = clientX - swipeLastX;
             const dy = clientY - swipeLastY;
             swipeLastX = clientX;
             swipeLastY = clientY;
 
-            const TOUCH_PAN_SENSITIVITY = 0.003; // tuned so a typical swipe feels comparable to a couple of arrow-key taps
+            const TOUCH_PAN_SENSITIVITY = 0.003;
             AppState.cameraAccelerationX -= dy * TOUCH_PAN_SENSITIVITY;
             AppState.cameraAccelerationY -= dx * TOUCH_PAN_SENSITIVITY;
         }
@@ -376,8 +324,6 @@ export function registerInputHandlers() {
         if (e.touches.length === 0) {
             resetSwipeTracking();
         } else if (e.touches.length === 1) {
-            // Dropped from two fingers to one — restart swipe tracking from here
-            // instead of using the stale two-finger position on the next move.
             touchStartX = swipeLastX = e.touches[0].clientX;
             touchStartY = swipeLastY = e.touches[0].clientY;
             isSwiping = false;
@@ -393,7 +339,6 @@ export function registerInputHandlers() {
 
     // ============================================================
     // WINDOW RESIZE
-    // Updates camera aspect ratio and renderer dimensions.
     // ============================================================
     window.addEventListener('resize', () => {
         AppState.activeCamera.aspect =
@@ -403,6 +348,8 @@ export function registerInputHandlers() {
             AppState.container.clientWidth,
             AppState.container.clientHeight
         );
-        AppState.renderer.setPixelRatio(window.devicePixelRatio);
+        AppState.renderer.setPixelRatio(getRenderPixelRatio());
+        // Keep the post-processing buffers in sync with the drawing buffer.
+        if (AppState.composer) AppState.composer.setSize();
     });
 }
