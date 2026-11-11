@@ -36,7 +36,7 @@ import { BLOOM_LAYER, BASE_CAMERA_FOV } from './constants.js';
 // ============================================================
 export const CLUSTER_FI_DEG     = 180;  // longitude of the cluster centre
 export const CLUSTER_THETA_DEG  = 30;   // latitude of the cluster centre
-export const CLUSTER_SPAN_DEG   = 40;   // full angular diameter of the cluster
+export const CLUSTER_SPAN_DEG   = 80;   // full angular diameter of the cluster
 export const CLUSTER_STRENGTH   = 1.0;  // overall brightness multiplier
 
 export const AURORA_STRENGTH    = 0.22; // 0 = off. Keep low: it is meant to be faint
