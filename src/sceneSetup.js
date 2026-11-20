@@ -30,27 +30,28 @@ import { BLOOM_LAYER, BASE_CAMERA_FOV } from './constants.js';
 // ------------------------------------------------------------
 // Globular cluster position uses the SAME fi / theta convention (degrees)
 // as nodes.json and Tree.js's treeGen(): x = cosθ·cosφ, y = sinθ, z = cosθ·sinφ.
-// So a cluster at fi=30, theta=20 sits in the sky exactly where a node
-// with fi=30, theta=20 would. (Tree nodes span roughly fi -125..125,
-// theta 4..64, so the defaults below sit just outside that.)
 // ============================================================
 export const CLUSTER_FI_DEG     = 180;  // longitude of the cluster centre
 export const CLUSTER_THETA_DEG  = 30;   // latitude of the cluster centre
-export const CLUSTER_SPAN_DEG   = 80;   // full angular diameter of the cluster
+export const CLUSTER_SPAN_DEG   = 40;   // full angular diameter of the cluster
 export const CLUSTER_STRENGTH   = 1.0;  // overall brightness multiplier
 
 export const AURORA_STRENGTH    = 0.22; // 0 = off. Keep low: it is meant to be faint
 export const AURORA_BASE_HEIGHT = 0.06; // sin(latitude) of the curtains' lower edge (0 = horizon, 1 = zenith)
 export const AURORA_SPEED       = 2.0;  // time multiplier
 
+// Radius of the skybox sphere. MUST stay comfortably below the cameras'
+// far plane (100000, see initScene()). It used to equal the far plane
+// exactly: depth is measured along the view axis, so the sphere facets
+// straight ahead of the camera sat right ON the far plane and were
+// randomly clipped by floating-point rounding — showing up as a black,
+// rapidly-changing polygon near the screen centre. The sky shader only
+// uses the view DIRECTION, so the radius has no visual effect.
+export const SKY_RADIUS = 50000;
+
 
 // ============================================================
 // GROUND TUNING — easy-to-edit knobs for the procedural ground
-// ------------------------------------------------------------
-// The ground is a flat plane drawn by a small shader (see "Ground
-// plane" in initScene()): a faceted, low-poly-looking field of
-// triangles in two dark, moody colours, fading into the horizon
-// colour with distance so the plane's edge is never visible.
 // ============================================================
 export const GROUND_COLOR_DARK   = 0x1a4a2a; // darkest facets
 export const GROUND_COLOR_LIGHT  = 0x4f8f44; // lightest facets
@@ -97,7 +98,6 @@ export function initScene() {
     AppState.scene = new THREE.Scene();
 
     // ---- Main camera (skill-tree view) ---------------------------
-    // Fixed at the origin; the player navigates by rotating it.
     AppState.camera = new THREE.PerspectiveCamera(
         BASE_CAMERA_FOV,
         AppState.container.clientWidth / AppState.container.clientHeight,
@@ -168,59 +168,20 @@ export function initScene() {
     AppState.composer.addPass(AppState.effectPass);
 
     // ---- Skybox + procedural starfield ----------------------------
-    // A giant inside-rendered sphere with a dark-teal-to-black gradient
-    // AND the decorative background stars, both painted directly in
-    // this ONE fragment shader, per-pixel.
-    //
-    // ROOT-CAUSE FIX — "stars visible only facing a certain, seemingly
-    // random direction":
-    // The stars used to be a separate THREE.Points cloud with a FIXED
-    // number of stars (12000) scattered across the WHOLE sphere (4π
-    // steradians). BASE_CAMERA_FOV is only 1° at full zoom-in (this is
-    // deliberately a "looking through a telescope eyepiece" view — see
-    // constants.js), and even a generously zoomed-out view only reaches
-    // ~30-60°. A camera view cone that narrow covers a tiny fraction of
-    // the sphere's total solid angle, so whether any given direction
-    // happened to contain one of those 12000 fixed points was basically
-    // a coin flip — most directions showed nothing at all, and only the
-    // rare, essentially random direction that lined up with an actual
-    // star showed one. (An earlier attempt fixed a real but secondary
-    // depth-precision issue between the skybox and that Points cloud —
-    // see depthWrite/depthTest below — but that never addressed this
-    // sparse-coverage problem, which is why stars stayed effectively
-    // invisible in most directions afterward.)
-    //
-    // The fix: stop relying on a finite, pre-placed point cloud and a
-    // separate render pass entirely. Instead, generate the stars
-    // PROCEDURALLY, per-pixel, from a hash of the normalized view
-    // direction (`vPosition` on this giant enclosing sphere IS that
-    // direction, up to scale) — directly inside the same shader that
-    // already reliably paints the sky gradient in every direction. This
-    // has no "count" to run out of: whatever slice of the sky is
-    // actually on screen gets its own fair sampling of star cells, so
-    // density no longer depends on how narrow the FOV happens to be,
-    // and there's no separate object whose culling/blending/z-fighting
-    // against the skybox can go wrong.
-    //
-    // (The skybox itself still keeps depthWrite/depthTest disabled and
-    // a very low renderOrder — with near=1/far=100000 giving a
-    // 100,000:1 depth ratio, this opaque, camera-enclosing sphere would
-    // otherwise be able to needlessly win/lose depth tests against
-    // other far-away geometry by pure floating-point rounding. Doesn't
-    // matter for the stars anymore since they're part of this same
-    // shader now, but it's still correct practice for a skybox and
-    // costs nothing to keep.)
+    // A giant inside-rendered sphere painted per-pixel by one fragment
+    // shader from the normalized view direction (stars are procedural,
+    // so density doesn't depend on a fixed point count / the narrow FOV).
     //
     // LAYERS PAINTED BY THIS SHADER (in order):
     //   1. sky gradient
     //   2. nebula clouds
-    //   3. globular cluster (see globularCluster() — centre/size set by CLUSTER_* above)
-    //   4. aurorae, animated by the `time` uniform (see aurora())
+    //   3. globular cluster
+    //   4. aurorae, animated by the `time` uniform
     //   5. sparse random background stars
     //
-    // The `time` uniform is advanced from skyboxMesh.onBeforeRender below,
-    // so no changes to main.js's animate() loop are needed.
-    const skyGeo = new THREE.SphereGeometry(100000, 25, 25);
+    // The sphere radius is SKY_RADIUS (< camera far plane) — see the
+    // note at its definition for why it must not touch the far plane.
+    const skyGeo = new THREE.SphereGeometry(SKY_RADIUS, 25, 25);
 
     // Cluster tangent-plane basis (camera-like frame looking at the cluster centre)
     const clusterForward = fiThetaToVec3(CLUSTER_FI_DEG, CLUSTER_THETA_DEG);
@@ -236,22 +197,22 @@ export function initScene() {
         depthTest: false,
         uniforms: {
             color1: { value: new THREE.Color(0x002f2f) }, // dark teal — horizon
-                                            color2: { value: new THREE.Color(0x000000) }, // black    — zenith
-                                            // ---- Nebula ----
-                                            nebulaColorA:   { value: new THREE.Color(0xA145AD) }, // violet
-                                            nebulaColorB:   { value: new THREE.Color(0x6D45AD) }, // teal-blue
-                                            nebulaStrength: { value: 0.3 }, // 0 = off; tune to taste
-                                            // ---- Time (seconds) ----
-                                            time: { value: 0 },
-                                            // ---- Globular cluster ----
-                                            clusterForward:   { value: clusterForward },
-                                            clusterRight:     { value: clusterRight },
-                                            clusterUp:        { value: clusterUp },
-                                            clusterTanRadius: { value: clusterTanRadius },
-                                            clusterStrength:  { value: CLUSTER_STRENGTH },
-                                            // ---- Aurora ----
-                                            auroraStrength:   { value: AURORA_STRENGTH },
-                                            auroraBaseHeight: { value: AURORA_BASE_HEIGHT },
+            color2: { value: new THREE.Color(0x000000) }, // black    — zenith
+            // ---- Nebula ----
+            nebulaColorA:   { value: new THREE.Color(0xA145AD) }, // violet
+            nebulaColorB:   { value: new THREE.Color(0x6D45AD) }, // teal-blue
+            nebulaStrength: { value: 0.3 }, // 0 = off; tune to taste
+            // ---- Time (seconds) ----
+            time: { value: 0 },
+            // ---- Globular cluster ----
+            clusterForward:   { value: clusterForward },
+            clusterRight:     { value: clusterRight },
+            clusterUp:        { value: clusterUp },
+            clusterTanRadius: { value: clusterTanRadius },
+            clusterStrength:  { value: CLUSTER_STRENGTH },
+            // ---- Aurora ----
+            auroraStrength:   { value: AURORA_STRENGTH },
+            auroraBaseHeight: { value: AURORA_BASE_HEIGHT },
         },
         vertexShader: `
         varying vec3 vPosition;
@@ -279,21 +240,14 @@ export function initScene() {
 
         varying vec3 vPosition;
 
-        // Cheap 3D hash → pseudo-random float in [0, 1). Deterministic
-        // per input vector, so a given sky direction always hashes to
-        // the same value — this is what makes stars (and now nebula
-        // clouds) hold still as the camera rotates instead of
-        // flickering/shifting per frame.
+        // Cheap 3D hash → pseudo-random float in [0, 1).
         float hash3(vec3 p) {
             p = fract(p * vec3(443.8975, 397.2973, 491.1871));
             p += dot(p, p.yzx + 19.19);
             return fract((p.x + p.y) * p.z);
         }
 
-        // Smooth (trilinear-interpolated) 3D value noise — built from the
-        // same hash3() above, but continuous rather than per-cell blocky,
-        // which is what the nebula needs (stars deliberately stay blocky
-        // per-cell, that's unrelated and untouched below).
+        // Smooth (trilinear-interpolated) 3D value noise.
         float valueNoise(vec3 p) {
             vec3 i = floor(p);
             vec3 f = fract(p);
@@ -317,10 +271,7 @@ export function initScene() {
             return mix(nxy0, nxy1, f.z);
         }
 
-        // Fractal Brownian Motion — several octaves of valueNoise summed
-        // at increasing frequency/decreasing amplitude. A single noise
-        // sample looks like blobby static; this is what gives the wispy,
-        // cloud-like silhouette.
+        // Fractal Brownian Motion — several octaves of valueNoise.
         float fbm(vec3 p) {
             float sum = 0.0;
             float amp = 0.5;
@@ -334,22 +285,6 @@ export function initScene() {
 
         // ------------------------------------------------------------
         // GLOBULAR CLUSTER
-        // The view direction is projected (gnomonic projection) onto the
-        // plane tangent to the sky at the cluster centre, giving a flat 2D
-        // coordinate p ~ angle in radians. A stack of grids with
-        // geometrically shrinking cells is laid over p; a cell holds a star
-        // with a probability that follows a King-like profile
-        // 1 / (1 + (r/rc)^2), raised to a higher power for the finer
-        // grids, so the core fills up with many tiny stars. Cells smaller
-        // than a screen pixel fade out (the soft core glow stands in for
-        // them), so the cluster stays clean when zoomed out.
-        //
-        // The three COARSEST grids of the original design (the big,
-        // blurry / enlarged bluish stars that stood out) have been
-        // removed: the loop starts at grid 3 instead of 0. To make up for
-        // the lost stars, the remaining (finer) grids are populated more
-        // densely, two more fine grids were added, and the unresolved-
-        // starlight haze behind the stars is brighter and a bit wider.
         // ------------------------------------------------------------
         vec3 globularCluster(vec3 dir) {
             float fw = dot(dir, clusterForward);
@@ -360,19 +295,16 @@ export function initScene() {
             if (r >= 1.0) return vec3(0.0);
 
             float edge = 1.0 - smoothstep(0.7, 1.0, r);   // soft outer boundary
-            float dens = 1.0 / (1.0 + (r * r) / 0.06);    // core radius ~0.25 of the span (a bit wider than before)
+            float dens = 1.0 / (1.0 + (r * r) / 0.06);    // core radius ~0.25 of the span
 
             float pix = max(fwidth(p.x) + fwidth(p.y), 1e-7); // roughly one pixel, in p units
 
-            // Unresolved-starlight haze: strongest in the core. Brighter than
-            // before (0.16 -> 0.30) with a gentler falloff, to fill in for the
-            // removed large stars.
             vec3 col = vec3(1.0, 0.88, 0.68) * 0.30 * pow(dens, 1.6) * edge;
             col += vec3(1.0, 0.90, 0.75) * 0.05 * dens * edge; // faint wide veil reaching the outskirts
 
             for (int i = 3; i < 9; i++) {
                 float fi   = float(i);
-                float k    = fi - 3.0;                       // 0 for the first (coarsest remaining) grid
+                float k    = fi - 3.0;
                 float cell = clusterTanRadius * 0.12 * pow(0.5, fi);
 
                 float resolved = smoothstep(0.8, 2.2, cell / pix); // fade out sub-pixel layers
@@ -384,7 +316,7 @@ export function initScene() {
 
                 vec3 seed = vec3(id, fi * 17.0 + 3.0);
                 float h   = hash3(seed);
-                float prob = 0.85 * pow(dens, 1.0 + 0.30 * k) * edge; // denser than before (was 0.55 / 0.45 slope, from grid 0)
+                float prob = 0.85 * pow(dens, 1.0 + 0.30 * k) * edge;
                 if (h >= prob) continue;
 
                 vec2 jitter = vec2(hash3(seed + 1.7), hash3(seed + 5.3)) - 0.5;
@@ -393,8 +325,6 @@ export function initScene() {
                 float dotV   = 1.0 - smoothstep(radius * 0.3, radius, d);
 
                 float bright = (1.0 - 0.08 * k) * mix(0.5, 1.0, hash3(seed + 2.9));
-                // Warm-white tints only: the strong blue tint was what made
-                // the big stars look odd, so it is toned down to a faint cool white.
                 vec3 tint    = mix(vec3(1.0, 0.88, 0.70), vec3(0.92, 0.95, 1.0), hash3(seed + 7.7));
                 col += tint * dotV * bright * resolved;
             }
@@ -403,13 +333,6 @@ export function initScene() {
 
         // ------------------------------------------------------------
         // AURORA
-        // Vertical "curtains": noise sampled at high frequency across the
-        // horizontal plane (xz) and low frequency vertically gives
-        // streaks that run up the sky; a wavy lower edge and a soft upper
-        // falloff shape the band; a slowly drifting patch mask keeps it
-        // from being a uniform ring. Everything scrolls/shimmers with
-        // time. Sampling dir.xz directly (instead of an angle) keeps it
-        // free of a longitude seam.
         // ------------------------------------------------------------
         vec3 aurora(vec3 dir) {
             if (auroraStrength <= 0.0 || dir.y < 0.0) return vec3(0.0);
@@ -417,25 +340,20 @@ export function initScene() {
             float t = time;
             vec2 xz = dir.xz;
 
-            // Slowly drifting patches where the aurora is active
             float auroraPatch = smoothstep(0.35, 0.75, valueNoise(vec3(xz * 1.3 + vec2(t * 0.012, -t * 0.008), 7.0)));
             if (auroraPatch <= 0.0) return vec3(0.0);
 
-            // Wavy lower edge
             float wave  = valueNoise(vec3(xz * 3.0 + vec2(t * 0.04, 0.0), t * 0.03));
             float lower = auroraBaseHeight + 0.10 * wave;
             float h     = dir.y - lower;
             float band  = smoothstep(0.0, 0.04, h) * (1.0 - smoothstep(0.08, 0.40, h));
             if (band <= 0.0) return vec3(0.0);
 
-            // Vertical rays: fine horizontally, stretched vertically, drifting sideways
             float rays = valueNoise(vec3(xz * 26.0 + vec2(t * 0.15, 0.0), dir.y * 2.0 + t * 0.05));
             rays = pow(rays, 2.2) * 2.0;
 
-            // Slow shimmer travelling along the curtain
             float shimmer = 0.65 + 0.35 * sin(t * 0.7 + wave * 8.0 + xz.x * 5.0);
 
-            // Green at the bright lower edge, teal/violet higher up
             float k = clamp(h / 0.35, 0.0, 1.0);
             vec3 colLow  = vec3(0.15, 1.00, 0.45);
             vec3 colMid  = vec3(0.10, 0.75, 0.80);
@@ -446,25 +364,23 @@ export function initScene() {
         }
 
         void main() {
-            float gradient = (vPosition.y + 100000.0) / 200000.0;
+            // Direction from the origin (the camera never translates, so
+            // this sphere's local position IS the view direction scaled
+            // by the sphere radius — normalizing makes everything below
+            // independent of that radius).
+            vec3 dir = normalize(vPosition);
+
+            // Same gradient as before ((y/R + 1) / 2, then smoothstep), but
+            // computed from the unit direction instead of a hard-coded radius.
+            float gradient = (dir.y + 1.0) / 2.0;
             gradient       = smoothstep(-1.0, 1.0, gradient);
             vec3 skyColor  = mix(color1, color2, gradient);
 
-            // Direction from the origin (camera never translates — see
-            // appState.js — so this sphere's local position already IS
-            // the view direction, just scaled by the 100000-unit radius).
-            vec3 dir = normalize(vPosition);
-
             // ---- Nebula clouds ----
-            // Sampled at a much coarser scale than the star grid so it
-            // reads as smooth gas, not more stars. Domain-warping the
-            // sampling coordinate through a second fbm() call (rather
-            // than sampling dir directly) is what makes the cloud
-            // edges look organic instead of like a plain noise contour.
             vec3 warpedDir = dir + 0.4 * vec3(
                 fbm(dir * 3.0 + 5.2),
-                                              fbm(dir * 3.0 + 1.3),
-                                              fbm(dir * 3.0 + 8.7)
+                fbm(dir * 3.0 + 1.3),
+                fbm(dir * 3.0 + 8.7)
             );
             float density = fbm(warpedDir * 2.5);
             density = smoothstep(0.35, 0.85, density); // carve out clear patches of empty sky
@@ -480,25 +396,25 @@ export function initScene() {
             // ---- Aurorae (animated) ----
             finalColor += aurora(dir);
 
-            // ---- Stars (unchanged — layered on top of the nebula) ----
+            // ---- Stars ----
             float stars = 0.0;
             vec3 starColor = vec3(1.0);
             for (int i = 0; i < 5; i++) {
                 float cellSize = 200.0 + float(i) * 500.0; // finer grid each octave
                 vec3 scaledDir = dir * cellSize;
                 vec3 cell      = floor(scaledDir);
-                vec3 localPos  = fract(scaledDir) - 0.5; // pixel's position within the cell, centered at 0
+                vec3 localPos  = fract(scaledDir) - 0.5;
                 float h = hash3(cell + float(i) * 13.0);
                 float brightnessThreshold = 0.9975 - float(i) * 0.001; // rarer stars each octave
                 vec3 jitter = vec3(
                     hash3(cell + float(i) * 13.0 + 3.0),
-                                   hash3(cell + float(i) * 13.0 + 5.0),
-                                   hash3(cell + float(i) * 13.0 + 9.0)
+                    hash3(cell + float(i) * 13.0 + 5.0),
+                    hash3(cell + float(i) * 13.0 + 9.0)
                 ) - 0.5;
-                vec3 starCenter = jitter * 0.6; // keep the center comfortably inside the cell
+                vec3 starCenter = jitter * 0.6;
                 float dist   = length(localPos - starCenter);
-                float radius = mix(0.06, 0.22, smoothstep(brightnessThreshold, 1.0, h)); // brighter hash = bigger dot
-                float circle = 1.0 - smoothstep(radius * 0.4, radius, dist); // soft circular falloff
+                float radius = mix(0.06, 0.22, smoothstep(brightnessThreshold, 1.0, h));
+                float circle = 1.0 - smoothstep(radius * 0.4, radius, dist);
                 float isStar = step(brightnessThreshold, h);
                 float b = isStar * circle * (1.0 - float(i) * 0.25);
                 if (b > stars) {
@@ -514,12 +430,10 @@ export function initScene() {
         `,
     });
     const skyboxMesh = new THREE.Mesh(skyGeo, skyMat);
-    skyboxMesh.renderOrder = -1000; // draw before everything else — see the note above
-    skyboxMesh.frustumCulled = false; // camera-enclosing shell, always visible regardless of view direction
+    skyboxMesh.renderOrder = -1000; // draw before everything else
+    skyboxMesh.frustumCulled = false; // camera-enclosing shell, always visible
 
-    // Drives the aurora animation. Runs whenever the skybox is drawn, so
-    // main.js's animate() loop needs no changes. (Selective bloom draws the
-    // scene more than once per frame; setting an absolute time is idempotent.)
+    // Drives the aurora animation (idempotent absolute time).
     const skyClock = new THREE.Clock();
     skyboxMesh.onBeforeRender = () => {
         skyMat.uniforms.time.value = skyClock.getElapsedTime() * AURORA_SPEED;
@@ -528,21 +442,9 @@ export function initScene() {
     AppState.skyMaterial = skyMat; // exposed so other modules can tweak uniforms at runtime
     AppState.scene.add(skyboxMesh);
 
-    // NOTE: the old grass.jpg texture is no longer used anywhere — the ground
-    // and grass below are 100% procedural, so grass.jpg can be deleted.
     console.info('sceneSetup: procedural ground + grass active (no grass.jpg)');
 
     // ---- Ground plane (procedural, low-poly look) -----------------
-    // No textures: every pixel's colour comes from its world-space
-    // (x, z) position. The plane is divided into a square grid and each
-    // square is split along a diagonal into two triangles; each
-    // triangle gets ONE flat colour from a hash of its id, which reads
-    // as faceted low-poly terrain. A very low-frequency noise gently
-    // varies the overall tone so it does not look like a uniform
-    // pattern, and a faint lighter "ridge" line along the triangle
-    // diagonals adds a hint of crisp edges. With distance the ground
-    // fades into GROUND_FOG_COLOR (≈ the sky's horizon colour), so the
-    // edge of the finite plane is never visible.
     const groundMat = new THREE.ShaderMaterial({
         side: THREE.DoubleSide,
         uniforms: {
@@ -589,21 +491,17 @@ export function initScene() {
             vec2 g  = floor(p);
             vec2 f  = fract(p);
 
-            // Which of the square's two triangles are we in?
-            float tri = step(f.y, f.x);                       // 1 below the diagonal, 0 above
-            float h   = hash2(g + tri * vec2(37.1, 11.7));    // flat value per triangle
+            float tri = step(f.y, f.x);
+            float h   = hash2(g + tri * vec2(37.1, 11.7));
 
-            // Gentle large-scale tone variation (soft areas of lighter/darker ground)
             float tone = vnoise(vWorld.xz * 0.15);
 
             float t = clamp(0.15 + 0.55 * h + 0.45 * (tone - 0.5), 0.0, 1.0);
             vec3 col = mix(colorDark, colorLight, t);
 
-            // Faint lighter line along the diagonal edges between facets
             float edge = 1.0 - smoothstep(0.0, 0.035, abs(f.x - f.y));
             col += colorLight * 0.10 * edge;
 
-            // Fade into the horizon colour with distance (hides the plane's border)
             float d   = length(vWorld.xz);
             float fog = smoothstep(fogStart, fogEnd, d);
             col = mix(col, fogColor, fog);
@@ -621,13 +519,6 @@ export function initScene() {
     AppState.scene.add(horizon);
 
     // ---- Low-poly grass blades -----------------------------------
-    // One single merged BufferGeometry (ONE draw call, ~18k vertices):
-    // every blade is a flat triangle standing on the ground, with a
-    // random position, yaw, height, width and a slight lean. Colours are
-    // baked per vertex (dark at the base, lighter at the tip) and blended
-    // into the ground's fog colour with distance, so far blades melt into
-    // the horizon exactly like the ground shader does. Static, no
-    // per-frame cost. Tune with the GRASS_* constants at the top.
     {
         const dark  = new THREE.Color(GROUND_COLOR_DARK);
         const light = new THREE.Color(GRASS_TIP_COLOR);
