@@ -162,12 +162,12 @@
         {
           "id": "obszar-stołeczny",
           "name": "Obszar Stołeczny",
-          "content": "Obszar Stołeczny obejmuje teren zamknięty w pięciokątnych murach Srebrnego Miasta oraz przedmieścia miasta. Za jego zachodnią granicę uznaje się Stołeczną Grań, za północną Stołeczny Wał, za wschodnią brzeg wyspy a za południową Płomienną Dolinę. W Srebrnym Mieście i jego przedmieściach żyją inteligentne stworzenia o wszystkich możliwych cechach, choć najwięcej jest ludzi (lecz nie stanowią oni większości). Zgodnie z tradycją ordynator Srebrnego Miasta jest regularnym lub młodszym członkiem Rady Pięciu."
+          "content": "Obszar Stołeczny obejmuje teren zamknięty w pięciokątnych murach Srebrnego Miasta oraz przedmieścia miasta. Za jego zachodnią granicę uznaje się Stołeczną Grań, za północną Stołeczny Wał, za wschodnią brzeg wyspy a za południową Płomienną Dolinę. W Srebrnym Mieście i jego przedmieściach żyją inteligentne stworzenia o wszystkich możliwych cechach, choć najwięcej jest ludzi (lecz nie stanowią oni większości). Zgodnie z tradycją ordynator Srebrnego Miasta jest regularnym lub młodszym członkiem Rady Pięciu. Obszar stołeczny dzieli się na jedenaście dystryktów. Pięć z nich to przedmurza znajdujące się poza murami miasta. Północno-zachodnie przedmieście to Wyższe Sanktuarium, zachodnie przedmieście to Barbakan, południowe to Rudnica, wschodnie to Hawen, a północno-wschodnie to Ścierwowisko. Kolejne pięć z nich to rozległe dzielnice wewnątrz miasta: północno-zachodnia to Dworzyszcze, zachodnia to Baszta, południowa nazywana jest Hutą, wschodnia to Faktoria, a północno-wschodnia to Ustronie. W samym środku miasta znajduje się natomiast dystrykt nazywany Iglicą. Więcej o dzielnicach możecie się dowiedzieć na poświęconej Srebrnemu Miastu stronie."
         },
         {
           "id": "prowincje-pomniejsze",
           "name": "Prowincje Pomniejsze",
-          "content": "Prowincje pomniejsze to mało zamieszkane obszary Imperium, mające mniejsze kulturowe, ekonomiczne oraz polityczne znaczenie. Ich mieszkańcy często czują się zaniedbani i porzuceni przez władzę, w szczególności w czasach kryzysu. Za pomniejsze prowincje Imperium uważa się następujące krainy: Lodowe Wodzostwo, Wschodnie Pustkowie, Wyspy Wschodnie, Góry Piekielne i Roztrzaskane Wybżerze."
+          "content": "Prowincje pomniejsze to mało zamieszkane obszary Imperium, mające mniejsze kulturowe, ekonomiczne oraz polityczne znaczenie. Ich mieszkańcy często czują się zaniedbani i porzuceni przez władzę, w szczególności w czasach kryzysu. Za pomniejsze prowincje Imperium uważa się następujące krainy: Lodowe Wodzostwo, Przeklętą Pustynię, Jałowy Cypel, Puszczę Zachodnią, Białe Klifowisko, Wyspy Wschodnie, Piekielne Wzgórza, Płomienną Strugę, Tarczę Imperatora i Roztrzaskane Wybżerze."
         }
       ]
     },
@@ -554,7 +554,7 @@
         {
           "id": "cyfry-i-liczby",
           "name": "Cyfry i Liczby",
-          "content": "W Imperium do zapisów ilości, czasu i rachunków używa się systemu piątkowego tzn. takiego posiadającego tylko 5 cyfr:\n\n0: ⴵ (Na codzień pisane jako \"ⴴ\" lub \"γ\")\n\n1:   ‎̲ (Na codzień pisane jako \"‒\" lub \"~\")\n\n2:   ‎̲̅ (Na codzień pisane jako \"⊃\" lub \"Ↄ\")\n\n3: Ξ (Na codzień pisane jako \"∋\" lub \"Ȝ\")\n\n4: 𖫤 (Na codzień pisane jako \"∌\" lub \"δ\")\n\nPrzykładowy zapis liczb:\n\n0 - ⴵ \n\n1 -   ‎̲\n\n2 -   ‎̲̅ \n\n3 - Ξ \n\n4 - 𖫤\n\n5 -   ‎̲ⴵ [liczba bogów - liczba dni w tygodniu (nazywanego pentadą) - liczba tygodni w miesiącu - liczba nitek w pierścieniu konstancjum - pierwsza święta liczba]\n\n6 -   ‎̲  ‎̲ [pierwsza przeklęta liczba]\n\n7 -   ‎̲  ‎̲̅ [pierwsza fortunna liczba]\n\n8 -   ‎̲ Ξ\n\n9 -   ‎̲𖫤\n\n10 -   ‎̲̅ ⴵ \n\n25 -   ‎̲ ⴵⴵ [liczba godzin w dniu - liczba dni w miesiącu - w wielu kulturach wiek dojrzałości - druga święta liczba]\n\n36 -   ‎̲  ‎̲̅  ‎̲ [w niektórych kulturach liczba lat uważana za koniec okresu młodości - druga przeklęta liczba]\n\n100 - 𖫤ⴵⴵ [liczba pierścieni konstancjum odpowiadająca wartości jednej sztuki kontancjum]\n\n125 -   ‎̲ ⴵⴵⴵ [liczba dni w cyklu na Inddominie - liczba lat w wieku - trzecia święta liczba]\n\n375 - Ξⴵⴵⴵ [liczba dni w roku na Inddominie]\n\n625 -   ‎̲ ⴵⴵⴵⴵ [liczba lat w erze - liczba sztuk konstancjum odpowiadających jednej uncji konstancjum - czwarta święta liczba]\n\n3125  -   ‎̲ ⴵⴵⴵⴵⴵ [ilość jednostek imperialnych w staji - liczba lat w eonie - piąta święta liczba]\n\nW zastosowaniach estetycznych dla liczb świętych często pomija się poprzedzającą jedynkę (\"_\") i zamiast tego stosuje się zmianę koloru dolnej kreski symbolu \"ⴵ\" lub jej pogrubienie.\n\nDodatkowo stosuje się następujące operatory:\nI - dodawanie\nƗ - odejmowanie\nV - mnożenie\nΛ - dzielenie"
+          "content": "W Imperium do zapisów ilości, czasu i rachunków używa się systemu piątkowego tzn. takiego posiadającego tylko 5 cyfr:\n\n0: ⴵ (Na codzień pisane jako \"ⴴ\" lub \"γ\")\n\n1: ‎– (Na codzień pisane jako \"‒\" lub \"~\")\n\n2: ‎̵̲ (Na codzień pisane jako \"⊃\" lub \"Ↄ\")\n \n3: Ξ (Na codzień pisane jako \"∋\" lub \"Ȝ\")\n\n4: 𖫤 (Na codzień pisane jako \"∌\" lub \"δ\")\n\nPrzykładowy zapis liczb:\n\n0 - ⴵ \n\n1 - -\n\n2 - ‎̵̲ \n\n3 - Ξ \n\n4 - 𖫤\n\n5 - ‎̲ⴵ [liczba bogów - liczba dni w tygodniu (nazywanego pentadą) - liczba tygodni w miesiącu - liczba nitek w pierścieniu konstancjum - pierwsza święta liczba]\n\n6 - --[pierwsza przeklęta liczba]\n\n7 - - ‎̵̲ [pierwsza fortunna liczba]\n\n8 - -‎Ξ\n\n9 - -‎𖫤\n\n10 -  ‎̵̲ ⴵ \n\n25 - -‎ⴵⴵ [liczba godzin w dniu - liczba dni w miesiącu - w wielu kulturach wiek dojrzałości - druga święta liczba]\n\n36 - - ‎̵̲ -[w niektórych kulturach liczba lat uważana za koniec okresu młodości - druga przeklęta liczba]\n\n100 - 𖫤ⴵⴵ [liczba pierścieni konstancjum odpowiadająca wartości jednej sztuki kontancjum]\n\n125 - -ⴵⴵⴵ [liczba dni w cyklu na Inddominie - liczba lat w wieku - trzecia święta liczba]\n\n375 - Ξⴵⴵⴵ [liczba dni w roku na Inddominie]\n\n625 - -ⴵⴵⴵⴵ [liczba lat w erze - liczba sztuk konstancjum odpowiadających jednej uncji konstancjum - czwarta święta liczba]\n\n3125  - -ⴵⴵⴵⴵⴵ [ilość jednostek imperialnych w staji - liczba lat w eonie - piąta święta liczba]\n\nW zastosowaniach estetycznych dla liczb świętych często pomija się poprzedzającą jedynkę (\"-\") i zamiast tego stosuje się zmianę koloru dolnej kreski symbolu \"ⴵ\" lub jej pogrubienie.\n\nDodatkowo stosuje się następujące operatory:\nI - dodawanie\nƗ - odejmowanie\nV - mnożenie\nΛ - dzielenie"
         },
         {
           "id": "czas-i-kalendarz",
@@ -583,8 +583,84 @@
         },
         {
           "id": "zwierzętal-wiwerna",
-          "name": "ZwierzętaL Wiwerna",
+          "name": "Zwierzęta: Wiwerna",
           "content": "Wiwerny omylnie nazywane przez niektórych smokami, choć nie mające z nimi niczego wspólnego to duże gadowate stworzenia o twardych, lecz putsych w środku łuskach, ogromnych rozmiarach i przekształconych w skrzydła przednimi kończynami. Są one także znane ze swojej nadelfiej zręczności i zaskakująco dużej inteligencji.\n\nWiwerny są niezwykle trudne i kosztowne w utrzymaniu i tresurze, dlatego w Imperium używane są jedynie jako wierzchowce dla najelitarniejszej formacji armii zwanej Jasnym Legionem."
+        }
+      ]
+    },
+    {
+      "id": "custom-page-1795211144707-92xew",
+      "title": "Informacje o Świecie: Srebrne Miasto",
+      "sections": [
+        {
+          "id": "srebrne-miasto",
+          "name": "Srebrne Miasto",
+          "content": "Srebrne Miasto (Arigaol) to zbudowane ponad tysiąc lat temu miasto o murach i wieżach z białego, mieniącego się srebrem granitu z wyrytymi potężnymi srebrzącymi się runami. Miasto współcześnie dzieli się na 11 dystryktów, każdy o zupełnie innym charakterze."
+        },
+        {
+          "id": "przedmurza-srebrnego-miasta",
+          "name": "Przedmurza Srebrnego Miasta",
+          "content": "Pięć z dystryktów to tzw. Przedmurza (nazywane także przedmieściami) znajdujące się poza murami miasta. Północno-zachodnie przedmieście to Wyższe Sanktuarium, zachodnie przedmieście to Barbakan, południowe to Rudnica, wschodnie to Hawen, a północno-wschodnie to Ścierwowisko."
+        },
+        {
+          "id": "wyższe-sanktuarium-przedmurze-dystrykt-srebrnego-miasta",
+          "name": "Wyższe Sanktuarium (przedmurze / dystrykt Srebrnego Miasta)",
+          "content": "Jest to jedno z najstarszych przedmurzy, położone na stokach Gór Białych - na północny zachód od centrum miasta. Znajdują się tam głównie świątynie, parki, pomniki, teatry i inne konstrukcje o charakterze sakralnym, choć bez problemu znajdzie się tam również zwyczajne domy czy sklepy. Większość ludzi zamieszkująca tą dzielnicę to nowonawróceni, pielgrzymi czy inni mocno wierzący odprawiający religijne rytuały. W okolicach wyższego sanktuarium operują także najbliższe stolicy kamieniołomy."
+        },
+        {
+          "id": "barbakan-przedmurze-dystrykt-srebrnego-miasta",
+          "name": "Barbakan (przedmurze / dystrykt Srebrnego Miasta)",
+          "content": "Zachodnim przedmurzem stolicy jest Barbakan. Jak sama nazwa może wskazywać jest to silnie ufortyfikowane przedmurze służące głównie jako kwatery wojskowe, ale także jako miejsce do ćwiczeń, rekonstrukcji czy poligin inżynieryjny. Na Barbakanie znajdują się także główne centra rekrutacji zarówno wojowników zwukłych jak i wojsk zaciężnych. Większość konstrukcji na Barbakanie to namioty wojskowe, z kilkudziesięciona drewnianymi budynkami. Znajduje się też tutaj kilka zakładów kowalskich i płatnerskich produkujących na wyłączność dla Imperialnej armii."
+        },
+        {
+          "id": "rudnica-przedmurze-dystrykt-srebrnego-miasta",
+          "name": "Rudnica (przedmurze / dystrykt Srebrnego Miasta)",
+          "content": "Południowym przedmurzem jest tzw. Rudnica. Jest to miejsce stacjonowania i zamieszkiwania górników operujących na bogatych i ryzykownych w eksploatacji złożach Tarczy Imperatora, tj. gigantycznego wulkanu tarczowego znajdującego się na południowy–zachód od centrum miasta. W Rudnicy docenia się odwagę każdego górnika i chętnego do zostania takowym. Trwają tam wieczne przygotowania do kolejnej wyprawy do wydrążonych w wulkanie szybów czy naturalnie uformowanych grot."
+        },
+        {
+          "id": "hawen-przedmurze-dystrykt-srebrnego-miasta",
+          "name": "Hawen (przedmurze / dystrykt Srebrnego Miasta):",
+          "content": "Hawen to dystrykt portowy Srebrnego Miasta odseparowany od reszty przedmurzy przez morze. Żyją tam głównie ludzie związani z załadunkiem i rozładunkiem towarów ze statków, szkutnicy, rybacy, przemytnicy oraz między wyprawami także marynarze. W Hawen większość zabudowy to niskie, lecz piętrowe, drewniane budynki. Jest to miejsce, gdzie najważniejsze są dwie rzeczy – pieniądze i braterstwo."
+        },
+        {
+          "id": "ścierwowisko-przedmurze-dystrykt-srebrnego-miasta",
+          "name": "Ścierwowisko (przedmurze / dystrykt Srebrnego Miasta)",
+          "content": "Ścierwowisko (przedmurze / dystrykt Srebrnego Miasta)"
+        },
+        {
+          "id": "dzielnice-srebrnego-miasta",
+          "name": "Dzielnice Srebrnego Miasta",
+          "content": "Dystrykty Srebrnego Miasta położone wewnątrz jego murów (z wyjątkiem Iglicy) zwykło nazywać się dzielnicami. Są to miejsca gdzie zamieszkuje i pracuje prawie cała populacja miasta. Dzielnice mają taką samą powierzchnię i są przedzielone wysokimi na pięć jednostek murami dzielnicowymi patrolowanymi przez straż. Z racji na ten fakt, ludzie wyjęcie spod prawa zwykle trzymają się jednej dzielnicy."
+        },
+        {
+          "id": "dworzyszcze-dzielnica-dystrykt-srebrnego-miasta",
+          "name": "Dworzyszcze (dzielnica / dystrykt Srebrnego Miasta)",
+          "content": "Dworzyszcze to dzielnica mieszkalna Srebrnego Miasta. Znajduje się tu wiele kamienic i wielopokoleniowych domów. W zasadzie można tu znaleźć praktycznie wszystko, jeżeli wie się gdzie szukać. Większość ludzi pracuje tu jako drobni rzemieślnicy lub usługodawcy."
+        },
+        {
+          "id": "baszta-dzielnica-dystrykt-srebrnego-miasta",
+          "name": "Baszta (dzielnica / dystrykt Srebrnego Miasta)",
+          "content": "Baszta to dzielnica magicznych wież, strzelistych budynków i pnących się ku niebu pałacy stanowiąca miejsce zamieszkania najbogatszych mieszczan, polityków, starostów gildii, potężnych magów i innych osobistości, których stać na zamieszkanie w takiej dzielnicy. Nie brakuje tu niczego, a zaklęte, runiczne czy w inny sposób magiczne przedmioty czy zabudowania to tu powszechność."
+        },
+        {
+          "id": "huta-dzielnica-dystrykt-srebrnego-miasta",
+          "name": "Huta (dzielnica / dystrykt Srebrnego Miasta)",
+          "content": "Huta to dzielnica przemysłowa będąca miejscem pracy i zamieszkania wielu rzemieślników sztuk ścisłych i magicznych. W Hucie zawsze wre praca a czas odmierzany jest rytmicznym uderzeniami młotów i innych narzędzi. Pomimo słabszych warunków (związanych głównie z hałasem biegnącym od nigdy niezamykających się warsztatów), żyje tu stosunkowo dużo ludzi – mniej więcej tyle samo co w Dworzyszczu."
+        },
+        {
+          "id": "ustronie-dzielnica-dystrykt-srebrnego-miasta",
+          "name": "Faktoria (dzielnica / dystrykt Srebrnego Miasta)",
+          "content": "Faktoria to dzielnica pełna sklepów, magazynów, rynków i siedzib specjalistycznych rzemieślników"
+        },
+        {
+          "id": "ustronie-dzielnica-dystrykt-srebrnego-miasta-2",
+          "name": "Ustronie (dzielnica / dystrykt Srebrnego Miasta)",
+          "content": "Ustronie było niegdyś dzielnicą biedoty i podupadłego mieszczaństwa, dopóki nie rozpoczęto wielkiego programu asymilacji (który poskutkował ustatkowaniem się części z mieszkańców i ucieczką za mury miejskie reszty, powodując efektywnie powstanie Ścierwowiska). Obecnie Ustronie to dzielnica pokryta w większości terenami zielonymi, w tym ogródkami bogatszych mieszczan, rozległymi, pięknymi parkami i szklarniami. Jest tam stosunkowo niewiele \"zwykłych\" zabudowań i niewielu ludzi, poza może botanikami pracującymi w szklarniach, może nazywać to miejsce domem."
+        },
+        {
+          "id": "iglica-centralny-dystrykt-srebrnego-miasta",
+          "name": "Iglica (centralny dystrykt Srebrnego Miasta):",
+          "content": "To centrum Srebrengo Miasta zdominowane przez gartantuiczych rozmiarów granitową, pokrytą wielkimi srebrnymi runami centralną wieżę. W wieży wydrążone są siedziby i sale obrad parlamentu i innych organów rządzących jest to najpilniej strzeżone miejsce w całym Imperium. Poza samą wieżą Iglica otoczona jest także murem, niemalże dorównującym majestatowi muru zewnętrznego, głównie z racji na pięć chylących się (lub krzywych) wież, lecz dużo od niego młodszym. Do owego muru przylegają strzeliste budynki akademii sztuk magicznych, ścisłych i pięknych, siedziby najbogatszych gildii kupieckich, biblioteki Imperialnej, akademii oficerskiej czy domu Endriego."
         }
       ]
     }
