@@ -3748,7 +3748,7 @@
         "5555"
       ],
       "cost": 3,
-      "temperature": 6000,
+      "temperature": 3500,
       "exclGroup": null,
       "effects": [
         {
@@ -3790,8 +3790,8 @@
           "2543"
         ]
       ],
-      "cost": 1,
-      "temperature": 6000,
+      "cost": 3,
+      "temperature": 3000,
       "exclGroup": null,
       "effects": [
         {
@@ -5723,7 +5723,7 @@
         ]
       ],
       "cost": 3,
-      "temperature": 7800,
+      "temperature": 3000,
       "exclGroup": null,
       "effects": [
         {
@@ -5759,8 +5759,8 @@
           "74744"
         ]
       ],
-      "cost": 1,
-      "temperature": 6000,
+      "cost": 3,
+      "temperature": 3000,
       "exclGroup": null,
       "effects": []
     },
@@ -5779,15 +5779,15 @@
           "74744"
         ]
       ],
-      "cost": 1,
-      "temperature": 6000,
+      "cost": 3,
+      "temperature": 3000,
       "exclGroup": null,
       "effects": []
     },
     {
       "id": "4525",
       "name": "Precyzyjne Glify",
-      "desc": "",
+      "desc": "Jedną z najważniejszych umiejętności, którą musi posiąść każdy aspirujący mag jest uważność i cierpliwość podczas odtwarzania glifów. Doskonaląc tą cnotę uczysz się rzucania potężniejszych zaklęć.\n\nUczysz się jednego zaklęcia o złożoności nie większej niż 2.\n\nDodatkowo zyskujesz atut „Precyzyjne Glify”:\nGdy tworzysz glify możesz wydłużyć czas ich tworzenia o 1 PA na zużytą fiolkę krwi dłużej. Aktywowanie wykonanego tak glifu lub wszystkie czary i rytuały wykonywane z jego pomocą kosztuje o 1 PE mniej.  ",
       "hoverText": "",
       "fi": -61.23,
       "theta": 46.05,
@@ -5799,10 +5799,22 @@
           "522532"
         ]
       ],
-      "cost": 1,
-      "temperature": 6000,
+      "cost": 3,
+      "temperature": 3500,
       "exclGroup": null,
-      "effects": []
+      "effects": [
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction"
+          ],
+          "maxComplexity": 2
+        }
+      ]
     },
     {
       "id": "2543",
@@ -5819,8 +5831,8 @@
           "96562"
         ]
       ],
-      "cost": 1,
-      "temperature": 6000,
+      "cost": 3,
+      "temperature": 3500,
       "exclGroup": null,
       "effects": []
     },
@@ -5839,8 +5851,8 @@
           "63643"
         ]
       ],
-      "cost": 1,
-      "temperature": 6000,
+      "cost": 3,
+      "temperature": 3000,
       "exclGroup": null,
       "effects": []
     },
@@ -5859,15 +5871,15 @@
           "96562"
         ]
       ],
-      "cost": 1,
-      "temperature": 6000,
+      "cost": 3,
+      "temperature": 3500,
       "exclGroup": null,
       "effects": []
     },
     {
       "id": "96562",
       "name": "Jak się człowiek spieszy...",
-      "desc": "wawdfaf",
+      "desc": "Uczysz się ",
       "hoverText": "",
       "fi": -85.99,
       "theta": 57.64,
@@ -5879,8 +5891,8 @@
           "522532"
         ]
       ],
-      "cost": 1,
-      "temperature": 6000,
+      "cost": 3,
+      "temperature": 3500,
       "exclGroup": null,
       "effects": []
     },
@@ -5898,8 +5910,8 @@
         "564",
         "412523"
       ],
-      "cost": 1,
-      "temperature": 6000,
+      "cost": 6,
+      "temperature": 3750,
       "exclGroup": null,
       "effects": []
     }
@@ -6269,7 +6281,7 @@
       "label": {
         "text": "Magia",
         "fi": -75,
-        "theta": 60
+        "theta": 59
       },
       "clickArea": [
         {
