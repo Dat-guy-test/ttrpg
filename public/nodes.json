@@ -3742,8 +3742,8 @@
       "name": "Początkujący Mag",
       "desc": "Udało ci się zrozumieć zastosowanie magicznych właściwośici krwi żywych stworzeń. Dowiadujesz się jak rzucać zaklęcia w sposób określany jako \"Rytuały Krwi\". Jest to styl rzucania zaklęć oparty na głębokim zrozumieniu magicznych run krwi.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nUczysz się jednego zaklęcia o złożoności równej 1.\n\nDodatkowo zyskujesz możliwość rzucania zaklęć przez \"Rytuały Krwi\", co odzwierciedla poniższy atrybut:\n\nRytuały Krwi:\nDzięki wiedzy na temat magicznych właściwości krwi, możesz rzucać zaklęcia za pomocą wcześniej przygotowanych rytuałów:\n1.) Aby rzucić czar w ten sposób potrzebujesz najpierw przygotować rytuał. Do przygotowania rytuału potrzebujesz tyle fiolek świeżej krwi, ile Punktów Energii i Punktów Akcji łącznie kosztuje rzucenie czaru (świeża krew krepnie i przestaje być przydatna sześć godzin po pobraniu). Jeżeli czar tansmutuje lub niszczy materialny komponent nadal musisz go mieć.\n1a.) Przygotowując rytuał możesz zużyć dodatkową fiolkę krwi na każdy Punkt Energii w jego koszcie rzucenia, by zmniejszyć jego koszt jego rzucenia i podtrzymywania o połowę.\n1b.) Jeżeli chcesz móc aktywować rytuał wszędzie, inskrypcji krwią możesz dokonać na kawałku skóry, pergaminu, papieru lub stronie zeszytu lub książki.\n2.) Przygotowany rytuał aktywujesz z odległości nie większej niż pięć jednostek, traktując środek inskrypcji jako punkt, z którego rzucasz zaklęcie. Jeżeli chcesz, by rytuał przemieścił komponent materialny, z którego korzysta, zwiększa to koszt jego przygotowania o jedną fiolkę na każdą jednostkę obciążenia na jednostkę przesunięcia.\n3.) Po jednej aktywacji i zakończeniu trwania wywołanego przez glif zaklęcia glif wypala się i staje się bezużyteczny.",
       "hoverText": "",
-      "fi": -80,
-      "theta": 45,
+      "fi": -75.00000000000001,
+      "theta": 40,
       "requires": [
         "5555"
       ],
@@ -3780,10 +3780,15 @@
       "name": "Pentagramologia",
       "desc": "Pentagramologia to nauka studiująca runy pentagramowe, wzmacniające lub osłabiające zaklęcia wybranej szkoły magii.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nZyskujesz Atrybut „Krwawe Pentagramy”:\n\nKrwawe Pentagramy:\n\nJesteś w rozpoznać typ pentagramów jakie napotykasz. Możesz użyć krwi w celu naszkicowania przenośnego lub dużego pentagramu.\n\nPentagram przenośny ma rozmiar nie większy niż 1/3 jednostki i możesz go wykonać na kartce papieru, zwoju pergaminu, kawałku skóry czy stronie księgi. Koszt inskrypcji takiego pentagramu wynosi 6 fiolek. Pentagram ten działa jedynie przez jedną turę, po czym wypala się, stając się bezużytecznym. Wykonanie takiej inskrypcji zajmuje 5 minut.\n\nDuży pentagram ma rozmiar od jednej do siedmiu jednostek. Koszt takiego pentagramu wynosi trzy fiolki za każdą jednostkę kwadratową (lub heksagonalną) za każde zaklęcie, które pentagram wzmocni/osłabi przed wypaleniem. To znaczy, iż pentagram pokrywający 9 jednostek, który jest w stanie wpłynąć na 5 zaklęć kosztuje 135 fiolek krwi. Świadome istoty posiadają w sobie 50 fiolek krwi. Wykonanie inskrypcji trwa jedną minutę za każdą fiolkę kosztu insprypcji na osobę dokonującą inskrypcji. Częściowo wykonany pentagram, traktuje się jak ukończony jeżeli łączna ilość fiolek krwi starcza na wpłynięcie na choćby jedno zaklęcie na takim obszarze. \n\nPentagramy wykonane z krwi dezaktywują się po 25 godzinach od stworzenia lub jeżeli zostaną przerwane w każdym wierzchołku, albo całkowicie zostanie usinięta co najmniej jedna linia.\n\nIstnieją dwa typy pentagramu, spośród których wybierasz konstruując pentagram: Pentagram wzmacniający i osłabiający. \n\nPentagram wzmacniający wzmacnia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnym kosztem osłabiania innych. Wszystkie istoty wewnątrz dużego pentagramu wzmacniającego wydają połowę energii (zaokrąglamy w górę) rzucając czary należące do wzmacnianej szkoły. Wzmacniający pentagram przenośny ma zaś taki sam efekt dla jednego zaklęcia, gdy trzymany jest odpowiednio przez osobę je rzucającą, ale wypala się po jednym zaklęciu.\n\nPentagram osłabiający osłabia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnie wzmacniając zaklęcia pozostałych szkół. Rzucenie zaklęć tego typu wewnątrz pentagramu kosztuje dwa razy więcej punktów energii, a próba rzucenia zaklęcia tej szkoły z zewnątrz dokonującego zmiany wewnątrz pentagramu kończy się stratą Punktów Energii potrzebnych do rzucenia zaklęcia i brakiem efektu. Pentagram osłabiający może także zniechęcać istoty magiczne do wejścia, jeżeli osłabia on odpowiednią szkołę. Osłabiający pentagram przenośny zaburza rzucenie jednego zaklęcia, którego ognisko jest nie dalej niż sześć jednostek od dzierżącego pentagram. Zaburzenie rzucenia zaklęcia powoduje zużycie Punktów Akcji i Energii przez Rzucającego oraz.brak efektów zaklęcia.",
       "hoverText": "",
-      "fi": -90,
-      "theta": 45,
+      "fi": -78.28,
+      "theta": 46.86,
       "requires": [
-        "4145"
+        [
+          "51352",
+          "4145",
+          "412523",
+          "2543"
+        ]
       ],
       "cost": 1,
       "temperature": 6000,
@@ -5707,10 +5712,15 @@
       "name": "Konstantanowe Ryutały",
       "desc": "Magia została wpierw odkryta za pomocą opiłków konstancjum. Dopiero później zaczęto używać tańszej i dostępniejszej krwi. Jednakże po dziś dzień bogaci używają tego cennego tematu do odprawiania rytuałów.\n\nZyskujesz poziom odświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nDodatkowo zyskujesz atrybut „Rytuały Metalu”:\n\nRytuały metalu:\nZamiast krwi możesz ptzygotowywać swoje rytuały za pomocą opiłków konstancjum. By zastąpić jedną fiolkę krwi potrzebujesz konstancjum o wartości 25 pierścieni. Ma to następujące efekty:\n1.) Rytualny glif możesz aktywować nieskończenie wiele razy, póki spełniasz inne wymagania (w tym posiadanie odpowiedniej ilości Punktów Energii).\n2,) Niszcząc glif, możesz odzyskać 4/5 użytych opiłków.\n3.) Gdy rzucasz czar z glifu używając wyłącznie opiłków konstancjum, który zużywan Punkty Energii, zużywasz o jeden Punkt Energii mniej.",
       "hoverText": "",
-      "fi": -80.4,
-      "theta": 46.809999999999995,
+      "fi": -71.72,
+      "theta": 46.86,
       "requires": [
-        "4145"
+        [
+          "63643",
+          "4145",
+          "564",
+          "4525"
+        ]
       ],
       "cost": 3,
       "temperature": 7800,
@@ -5739,9 +5749,155 @@
       "name": "Wytatuowany Glif",
       "desc": "Wytatuowane specjalnym tuszem glify mogą być aktywowane jak każdy inny.",
       "hoverText": "",
-      "fi": -80.44944206932064,
-      "theta": 50.00371218807764,
-      "requires": [],
+      "fi": -69.22,
+      "theta": 51.04,
+      "requires": [
+        [
+          "412523",
+          "4525",
+          "522532",
+          "74744"
+        ]
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "51352",
+      "name": "Czarnoksięstwo",
+      "desc": "Wchodzisz w posiadanie jednej z niezwykle rzadkich i kontrowersyjnych czarnych ksiąg.\n\nCzarnoksięstwo:\nZamiast zużywać krwi możesz przygotowywać swoje rytęuały ryjąc w czarnej księdze. Czarna księga jest w stanie ",
+      "hoverText": "",
+      "fi": -80.78,
+      "theta": 51.04,
+      "requires": [
+        [
+          "564",
+          "2543",
+          "96562",
+          "74744"
+        ]
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "4525",
+      "name": "Precyzyjne Glify",
+      "desc": "",
+      "hoverText": "",
+      "fi": -61.23,
+      "theta": 46.05,
+      "requires": [
+        [
+          "4145",
+          "412523",
+          "63643",
+          "522532"
+        ]
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "2543",
+      "name": "Szybko i Sprawnie",
+      "desc": "Zmniejsza czas nakreślania glifów (w Punktach Akcji) oraz ich koszt (w fiolkach krwi) o połowę (zaokrąglamy w górę).",
+      "hoverText": "",
+      "fi": -88.77,
+      "theta": 46.05,
+      "requires": [
+        [
+          "4145",
+          "564",
+          "51352",
+          "96562"
+        ]
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "74744",
+      "name": "Lewitujący Glif",
+      "desc": "",
+      "hoverText": "",
+      "fi": -75.00000000000001,
+      "theta": 53.82,
+      "requires": [
+        [
+          "51352",
+          "96562",
+          "522532",
+          "63643"
+        ]
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "522532",
+      "name": "Diabeł Tkwi w Szczegółach",
+      "desc": "wawa",
+      "hoverText": "",
+      "fi": -64.01,
+      "theta": 57.64,
+      "requires": [
+        [
+          "4525",
+          "63643",
+          "74744",
+          "96562"
+        ]
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "96562",
+      "name": "Jak się człowiek spieszy...",
+      "desc": "wawdfaf",
+      "hoverText": "",
+      "fi": -85.99,
+      "theta": 57.64,
+      "requires": [
+        [
+          "2543",
+          "51352",
+          "74744",
+          "522532"
+        ]
+      ],
+      "cost": 1,
+      "temperature": 6000,
+      "exclGroup": null,
+      "effects": []
+    },
+    {
+      "id": "3125",
+      "name": "Mistrzostwo Magii",
+      "desc": "",
+      "hoverText": "",
+      "fi": -75.00000000000001,
+      "theta": 50,
+      "requires": [
+        "63643",
+        "74744",
+        "51352",
+        "564",
+        "412523"
+      ],
       "cost": 1,
       "temperature": 6000,
       "exclGroup": null,
@@ -6101,6 +6257,26 @@
           "fiMax": -33,
           "thetaMin": 43,
           "thetaMax": 54
+        }
+      ]
+    },
+    {
+      "id": "Magia",
+      "center": {
+        "fi": -75,
+        "theta": 50
+      },
+      "label": {
+        "text": "Magia",
+        "fi": -75,
+        "theta": 60
+      },
+      "clickArea": [
+        {
+          "fiMin": -64,
+          "fiMax": -89,
+          "thetaMin": 40,
+          "thetaMax": 62
         }
       ]
     }
