@@ -3740,7 +3740,7 @@
     {
       "id": "4145",
       "name": "Początkujący Mag",
-      "desc": "Udało ci się zrozumieć zastosowanie magicznych właściwośici krwi żywych stworzeń. Dowiadujesz się jak rzucać zaklęcia w sposób określany jako \"Rytuały Krwi\". Jest to styl rzucania zaklęć oparty na głębokim zrozumieniu magicznych run krwi.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nUczysz się jednego zaklęcia o złożoności równej 1.\n\nDodatkowo zyskujesz możliwość rzucania zaklęć przez \"Rytuały Krwi\", co odzwierciedla poniższy atrybut:\n\nRytuały Krwi:\nDzięki wiedzy na temat magicznych właściwości krwi, możesz rzucać zaklęcia za pomocą wcześniej przygotowanych rytuałów:\n1.) Aby rzucić czar w ten sposób potrzebujesz najpierw przygotować rytuał. Do przygotowania rytuału potrzebujesz tyle fiolek świeżej krwi, ile Punktów Energii i Punktów Akcji łącznie kosztuje rzucenie czaru (świeża krew krepnie i przestaje być przydatna sześć godzin po pobraniu). Jeżeli czar tansmutuje lub niszczy materialny komponent nadal musisz go mieć.\n1a.) Przygotowując rytuał możesz zużyć dodatkową fiolkę krwi na każdy Punkt Energii w jego koszcie rzucenia, by zmniejszyć jego koszt jego rzucenia i podtrzymywania o połowę.\n1b.) Jeżeli chcesz móc aktywować rytuał wszędzie, inskrypcji krwią możesz dokonać na kawałku skóry, pergaminu, papieru lub stronie zeszytu lub książki.\n2.) Przygotowany rytuał aktywujesz z odległości nie większej niż pięć jednostek, traktując środek inskrypcji jako punkt, z którego rzucasz zaklęcie. Jeżeli chcesz, by rytuał przemieścił komponent materialny, z którego korzysta, zwiększa to koszt jego przygotowania o jedną fiolkę na każdą jednostkę obciążenia na jednostkę przesunięcia.\n3.) Po jednej aktywacji i zakończeniu trwania wywołanego przez glif zaklęcia glif wypala się i staje się bezużyteczny.",
+      "desc": "Udało ci się zrozumieć zastosowanie magicznych właściwośici krwi żywych stworzeń. Dowiadujesz się jak rzucać zaklęcia w sposób określany jako \"Rytuały Krwi\". Jest to styl rzucania zaklęć oparty na głębokim zrozumieniu magicznych run krwi.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nUczysz się jednego zaklęcia o złożoności równej 1.\n\nDodatkowo zyskujesz możliwość rzucania zaklęć przez \"Rytuały Krwi\", co odzwierciedla poniższy atrybut:\n\nRytuały Krwi:\nDzięki wiedzy na temat magicznych właściwości krwi, możesz rzucać zaklęcia za pomocą wcześniej przygotowanych rytuałów:\n1.) Aby rzucić czar w ten sposób potrzebujesz najpierw przygotować rytuał. Do przygotowania rytuału potrzebujesz tyle fiolek świeżej krwi, ile Punktów Energii i Punktów Akcji łącznie kosztuje rzucenie czaru (świeża krew krepnie i przestaje być przydatna sześć godzin po pobraniu). Jeżeli czar tansmutuje lub niszczy materialny komponent nadal musisz go mieć. Przygotowanie rytuału trwa 7 Punktów Akcji za zużytą fiolkę krwi lub jej zamiennik.\n1a.) Przygotowując rytuał możesz zużyć dodatkową fiolkę krwi na każdy Punkt Energii w jego koszcie rzucenia, by zmniejszyć jego koszt jego rzucenia i podtrzymywania o połowę.\n1b.) Jeżeli chcesz móc aktywować rytuał wszędzie, inskrypcji krwią możesz dokonać na kawałku skóry, pergaminu, papieru lub stronie zeszytu lub książki.\n2.) Przygotowany rytuał aktywujesz z odległości nie większej niż pięć jednostek, traktując środek inskrypcji jako punkt, z którego rzucasz zaklęcie. Jeżeli chcesz, by rytuał przemieścił komponent materialny, z którego korzysta, zwiększa to koszt jego przygotowania o jedną fiolkę na każdą jednostkę obciążenia na jednostkę przesunięcia.\n3.) Po jednej aktywacji i zakończeniu trwania wywołanego przez glif zaklęcia glif wypala się i staje się bezużyteczny.",
       "hoverText": "",
       "fi": -75.00000000000001,
       "theta": 40,
@@ -3772,13 +3772,19 @@
           "type": "skillImprovisation",
           "key": "wiedzaMagiczna",
           "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Rytuały Krwi",
+          "description": "Dzięki wiedzy na temat magicznych właściwości krwi, możesz rzucać zaklęcia za pomocą wcześniej przygotowanych rytuałów:\n1.) Aby rzucić czar w ten sposób potrzebujesz najpierw przygotować rytuał. Do przygotowania rytuału potrzebujesz tyle fiolek świeżej krwi, ile Punktów Energii i Punktów Akcji łącznie kosztuje rzucenie czaru (świeża krew krepnie i przestaje być przydatna sześć godzin po pobraniu). Jeżeli czar tansmutuje lub niszczy materialny komponent nadal musisz go mieć. Przygotowanie rytuału trwa 7 Punktów Akcji za zużytą fiolkę krwi lub jej zamiennik.\n1a.) Przygotowując rytuał możesz zużyć dodatkową fiolkę krwi na każdy Punkt Energii w jego koszcie rzucenia, by zmniejszyć jego koszt jego rzucenia i podtrzymywania o połowę.\n1b.) Jeżeli chcesz móc aktywować rytuał wszędzie, inskrypcji krwią możesz dokonać na kawałku skóry, pergaminu, papieru lub stronie zeszytu lub książki.\n2.) Przygotowany rytuał aktywujesz z odległości nie większej niż pięć jednostek, traktując środek inskrypcji jako punkt, z którego rzucasz zaklęcie. Jeżeli chcesz, by rytuał przemieścił komponent materialny, z którego korzysta, zwiększa to koszt jego przygotowania o jedną fiolkę na każdą jednostkę obciążenia na jednostkę przesunięcia.\n3.) Po jednej aktywacji i zakończeniu trwania wywołanego przez glif zaklęcia glif wypala się i staje się bezużyteczny.",
+          "bonuses": []
         }
       ]
     },
     {
       "id": "564",
       "name": "Pentagramologia",
-      "desc": "Pentagramologia to nauka studiująca runy pentagramowe, wzmacniające lub osłabiające zaklęcia wybranej szkoły magii.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nZyskujesz Atrybut „Krwawe Pentagramy”:\n\nKrwawe Pentagramy:\n\nJesteś w rozpoznać typ pentagramów jakie napotykasz. Możesz użyć krwi w celu naszkicowania przenośnego lub dużego pentagramu.\n\nPentagram przenośny ma rozmiar nie większy niż 1/3 jednostki i możesz go wykonać na kartce papieru, zwoju pergaminu, kawałku skóry czy stronie księgi. Koszt inskrypcji takiego pentagramu wynosi 6 fiolek. Pentagram ten działa jedynie przez jedną turę, po czym wypala się, stając się bezużytecznym. Wykonanie takiej inskrypcji zajmuje 5 minut.\n\nDuży pentagram ma rozmiar od jednej do siedmiu jednostek. Koszt takiego pentagramu wynosi trzy fiolki za każdą jednostkę kwadratową (lub heksagonalną) za każde zaklęcie, które pentagram wzmocni/osłabi przed wypaleniem. To znaczy, iż pentagram pokrywający 9 jednostek, który jest w stanie wpłynąć na 5 zaklęć kosztuje 135 fiolek krwi. Świadome istoty posiadają w sobie 50 fiolek krwi. Wykonanie inskrypcji trwa jedną minutę za każdą fiolkę kosztu insprypcji na osobę dokonującą inskrypcji. Częściowo wykonany pentagram, traktuje się jak ukończony jeżeli łączna ilość fiolek krwi starcza na wpłynięcie na choćby jedno zaklęcie na takim obszarze. \n\nPentagramy wykonane z krwi dezaktywują się po 25 godzinach od stworzenia lub jeżeli zostaną przerwane w każdym wierzchołku, albo całkowicie zostanie usinięta co najmniej jedna linia.\n\nIstnieją dwa typy pentagramu, spośród których wybierasz konstruując pentagram: Pentagram wzmacniający i osłabiający. \n\nPentagram wzmacniający wzmacnia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnym kosztem osłabiania innych. Wszystkie istoty wewnątrz dużego pentagramu wzmacniającego wydają połowę energii (zaokrąglamy w górę) rzucając czary należące do wzmacnianej szkoły. Wzmacniający pentagram przenośny ma zaś taki sam efekt dla jednego zaklęcia, gdy trzymany jest odpowiednio przez osobę je rzucającą, ale wypala się po jednym zaklęciu.\n\nPentagram osłabiający osłabia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnie wzmacniając zaklęcia pozostałych szkół. Rzucenie zaklęć tego typu wewnątrz pentagramu kosztuje dwa razy więcej punktów energii, a próba rzucenia zaklęcia tej szkoły z zewnątrz dokonującego zmiany wewnątrz pentagramu kończy się stratą Punktów Energii potrzebnych do rzucenia zaklęcia i brakiem efektu. Pentagram osłabiający może także zniechęcać istoty magiczne do wejścia, jeżeli osłabia on odpowiednią szkołę. Osłabiający pentagram przenośny zaburza rzucenie jednego zaklęcia, którego ognisko jest nie dalej niż sześć jednostek od dzierżącego pentagram. Zaburzenie rzucenia zaklęcia powoduje zużycie Punktów Akcji i Energii przez Rzucającego oraz.brak efektów zaklęcia.",
+      "desc": "Pentagramologia to nauka studiująca runy pentagramowe, wzmacniające lub osłabiające zaklęcia wybranej szkoły magii.\n\nUczysz się jednego zaklęcia o złożoności nie większej niż 3.\n\nZyskujesz Atrybut „Krwawe Pentagramy”:\n\nKrwawe Pentagramy:\n\nJesteś w rozpoznać typ pentagramów jakie napotykasz. Możesz użyć krwi w celu naszkicowania przenośnego lub dużego pentagramu.\n\nPentagram przenośny ma rozmiar nie większy niż 1/3 jednostki i możesz go wykonać na kartce papieru, zwoju pergaminu, kawałku skóry czy stronie księgi. Koszt inskrypcji takiego pentagramu wynosi 6 fiolek. Pentagram ten działa jedynie przez jedną turę, po czym wypala się, stając się bezużytecznym. Wykonanie takiej inskrypcji zajmuje 5 minut.\n\nDuży pentagram ma rozmiar od jednej do siedmiu jednostek. Koszt takiego pentagramu wynosi trzy fiolki za każdą jednostkę kwadratową (lub heksagonalną) za każde zaklęcie, które pentagram wzmocni/osłabi przed wypaleniem. To znaczy, iż pentagram pokrywający 9 jednostek, który jest w stanie wpłynąć na 5 zaklęć kosztuje 135 fiolek krwi. Świadome istoty posiadają w sobie 50 fiolek krwi. Wykonanie inskrypcji trwa jedną minutę za każdą fiolkę kosztu insprypcji na osobę dokonującą inskrypcji. Częściowo wykonany pentagram, traktuje się jak ukończony jeżeli łączna ilość fiolek krwi starcza na wpłynięcie na choćby jedno zaklęcie na takim obszarze. \n\nPentagramy wykonane z krwi dezaktywują się po 25 godzinach od stworzenia lub jeżeli zostaną przerwane w każdym wierzchołku, albo całkowicie zostanie usinięta co najmniej jedna linia.\n\nIstnieją dwa typy pentagramu, spośród których wybierasz konstruując pentagram: Pentagram wzmacniający i osłabiający. \n\nPentagram wzmacniający wzmacnia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnym kosztem osłabiania innych. Wszystkie istoty wewnątrz dużego pentagramu wzmacniającego wydają połowę energii (zaokrąglamy w górę) rzucając czary należące do wzmacnianej szkoły. Wzmacniający pentagram przenośny ma zaś taki sam efekt dla jednego zaklęcia, gdy trzymany jest odpowiednio przez osobę je rzucającą, ale wypala się po jednym zaklęciu.\n\nPentagram osłabiający osłabia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnie wzmacniając zaklęcia pozostałych szkół. Rzucenie zaklęć tego typu wewnątrz pentagramu kosztuje dwa razy więcej punktów energii, a próba rzucenia zaklęcia tej szkoły z zewnątrz dokonującego zmiany wewnątrz pentagramu kończy się stratą Punktów Energii potrzebnych do rzucenia zaklęcia i brakiem efektu. Pentagram osłabiający może także zniechęcać istoty magiczne do wejścia, jeżeli osłabia on odpowiednią szkołę. Osłabiający pentagram przenośny zaburza rzucenie jednego zaklęcia, którego ognisko jest nie dalej niż sześć jednostek od dzierżącego pentagram. Zaburzenie rzucenia zaklęcia powoduje zużycie Punktów Akcji i Energii przez Rzucającego oraz.brak efektów zaklęcia.",
       "hoverText": "",
       "fi": -78.28,
       "theta": 46.86,
@@ -3800,15 +3806,21 @@
           "amount": 1
         },
         {
-          "type": "skillImprovisation",
-          "key": "wiedzaMagiczna",
-          "amount": 1
-        },
-        {
           "type": "attribute",
           "key": "Krwawe Pentagramy",
           "description": "Jesteś w rozpoznać typ pentagramów jakie napotykasz. Możesz użyć krwi w celu naszkicowania przenośnego lub dużego pentagramu.\n\nPentagram przenośny ma rozmiar nie większy niż 1/3 jednostki i możesz go wykonać na kartce papieru, zwoju pergaminu, kawałku skóry czy stronie księgi. Koszt inskrypcji takiego pentagramu wynosi 6 fiolek. Pentagram ten działa jedynie przez jedną turę, po czym wypala się, stając się bezużytecznym. Wykonanie takiej inskrypcji zajmuje 5 minut.\n\nDuży pentagram ma rozmiar od jednej do siedmiu jednostek. Koszt takiego pentagramu wynosi trzy fiolki za każdą jednostkę kwadratową (lub heksagonalną) za każde zaklęcie, które pentagram wzmocni/osłabi przed wypaleniem. To znaczy, iż pentagram pokrywający 9 jednostek, który jest w stanie wpłynąć na 5 zaklęć kosztuje 135 fiolek krwi. Świadome istoty posiadają w sobie 50 fiolek krwi. Wykonanie inskrypcji trwa jedną minutę za każdą fiolkę kosztu insprypcji na osobę dokonującą inskrypcji. Częściowo wykonany pentagram, traktuje się jak ukończony jeżeli łączna ilość fiolek krwi starcza na wpłynięcie na choćby jedno zaklęcie na takim obszarze. \n\nPentagramy wykonane z krwi dezaktywują się po 25 godzinach od stworzenia lub jeżeli zostaną przerwane w każdym wierzchołku, albo całkowicie zostanie usinięta co najmniej jedna linia.\n\nIstnieją dwa typy pentagramu, spośród których wybierasz konstruując pentagram: Pentagram wzmacniający i osłabiający. \n\nPentagram wzmacniający wzmacnia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnym kosztem osłabiania innych. Wszystkie istoty wewnątrz dużego pentagramu wzmacniającego wydają połowę energii (zaokrąglamy w górę) rzucając czary należące do wzmacnianej szkoły. Wzmacniający pentagram przenośny ma zaś taki sam efekt dla jednego zaklęcia, gdy trzymany jest odpowiednio przez osobę je rzucającą, ale wypala się po jednym zaklęciu.\n\nPentagram osłabiający osłabia jedną szkołę magii (którą wybierasz w trakcie szkicowania), niemalże nieodczuwalnie wzmacniając zaklęcia pozostałych szkół. Rzucenie zaklęć tego typu wewnątrz pentagramu kosztuje dwa razy więcej punktów energii, a próba rzucenia zaklęcia tej szkoły z zewnątrz dokonującego zmiany wewnątrz pentagramu kończy się stratą Punktów Energii potrzebnych do rzucenia zaklęcia i brakiem efektu. Pentagram osłabiający może także zniechęcać istoty magiczne do wejścia, jeżeli osłabia on odpowiednią szkołę. Osłabiający pentagram przenośny zaburza rzucenie jednego zaklęcia, którego ognisko jest nie dalej niż sześć jednostek od dzierżącego pentagram. Zaburzenie rzucenia zaklęcia powoduje zużycie Punktów Akcji i Energii przez Rzucającego oraz.brak efektów zaklęcia.",
           "bonuses": []
+        },
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction"
+          ],
+          "maxComplexity": 3
         }
       ]
     },
@@ -5710,7 +5722,7 @@
     {
       "id": "412523",
       "name": "Konstantanowe Ryutały",
-      "desc": "Magia została wpierw odkryta za pomocą opiłków konstancjum. Dopiero później zaczęto używać tańszej i dostępniejszej krwi. Jednakże po dziś dzień bogaci używają tego cennego tematu do odprawiania rytuałów.\n\nZyskujesz poziom odświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nDodatkowo zyskujesz atrybut „Rytuały Metalu”:\n\nRytuały metalu:\nZamiast krwi możesz ptzygotowywać swoje rytuały za pomocą opiłków konstancjum. By zastąpić jedną fiolkę krwi potrzebujesz konstancjum o wartości 25 pierścieni. Ma to następujące efekty:\n1.) Rytualny glif możesz aktywować nieskończenie wiele razy, póki spełniasz inne wymagania (w tym posiadanie odpowiedniej ilości Punktów Energii).\n2,) Niszcząc glif, możesz odzyskać 4/5 użytych opiłków.\n3.) Gdy rzucasz czar z glifu używając wyłącznie opiłków konstancjum, który zużywan Punkty Energii, zużywasz o jeden Punkt Energii mniej.",
+      "desc": "Magia została wpierw odkryta za pomocą opiłków konstancjum. Dopiero później zaczęto używać tańszej i dostępniejszej krwi. Jednakże po dziś dzień bogaci używają tego cennego tematu do odprawiania rytuałów.\n\nUczysz się zaklęcia o poziomie złożoności nie większym niż 3.\n\nDodatkowo zyskujesz atrybut „Rytuały Metalu”:\n\nRytuały metalu:\nZamiast krwi możesz ptzygotowywać swoje rytuały za pomocą opiłków konstancjum. By zastąpić jedną fiolkę krwi potrzebujesz konstancjum o wartości 25 pierścieni. Ma to następujące efekty:\n1.) Rytualny glif możesz aktywować nieskończenie wiele razy, póki spełniasz inne wymagania (w tym posiadanie odpowiedniej ilości Punktów Energii).\n2,) Niszcząc glif, możesz odzyskać 4/5 użytych opiłków.\n3.) Gdy rzucasz czar z glifu używając wyłącznie opiłków konstancjum, który zużywan Punkty Energii, zużywasz o jeden Punkt Energii mniej.",
       "hoverText": "",
       "fi": -71.72,
       "theta": 46.86,
@@ -5727,27 +5739,28 @@
       "exclGroup": null,
       "effects": [
         {
-          "type": "skillExperience",
-          "key": "wiedzaMagiczna",
-          "amount": 1
-        },
-        {
-          "type": "skillImprovisation",
-          "key": "wiedzaMagiczna",
-          "amount": 1
-        },
-        {
           "type": "attribute",
           "key": "Rytuały metalu",
           "description": "Zamiast krwi możesz ptzygotowywać swoje rytuały za pomocą opiłków konstancjum. By zastąpić jedną fiolkę krwi potrzebujesz konstancjum o wartości 25 pierścieni. Ma to następujące efekty:\n1.) Rytualny glif możesz aktywować nieskończenie wiele razy, póki spełniasz inne wymagania (w tym posiadanie odpowiedniej ilości Punktów Energii).\n2,) Niszcząc glif, możesz odzyskać 4/5 użytych opiłków.\n3.) Gdy rzucasz czar z glifu używając wyłącznie opiłków konstancjum, który zużywan Punkty Energii, zużywasz o jeden Punkt Energii mniej.",
           "bonuses": []
+        },
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction"
+          ],
+          "maxComplexity": 3
         }
       ]
     },
     {
       "id": "63643",
       "name": "Wytatuowany Glif",
-      "desc": "Wytatuowane specjalnym tuszem glify mogą być aktywowane jak każdy inny.",
+      "desc": "Wpadasz na pomysł połączenia tuszu do tatuaży z konstancjum i tatuowania nim sobie glifów. Jest to droga i bolesna procedura, ale skutkuje ona zyskaniem możliwości rzuania potężnych zaklęć.\n\nW przerwach od nauki tatuażu uczysz się zaklęcia o złożoności nie wyższej niż 4.\n\nZyskujesz atrybut: „Tatuowane glify”:\n\nTatuowane glify:\nMożesz wykonać glif w postaci tatuażu. Tatuowanie glifu zadaje 1d4 zwykłych obrażeń i kosztuje tyle samo co wykonanie glifu za pomocą opiłków konstancjum. Wytatuowany Glif możne aktywować  jedynie jego właściciel i może to robić wielokrotnie. Zaklęcia rzucane w ten sposób zużywają standardową ilość punktów energii z opisu zaklęcia, ale zużywają jedynie jeden Punkt Akcji do aktywacji i zero Punktów Akcji do podrzymywania.",
       "hoverText": "",
       "fi": -69.22,
       "theta": 51.04,
@@ -5762,12 +5775,30 @@
       "cost": 3,
       "temperature": 3000,
       "exclGroup": null,
-      "effects": []
+      "effects": [
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction"
+          ],
+          "maxComplexity": 4
+        },
+        {
+          "type": "attribute",
+          "key": "Tatuowane glify",
+          "description": "Możesz wykonać glif w postaci tatuażu. Tatuowanie glifu zadaje 1d4 zwykłych obrażeń i kosztuje tyle samo co wykonanie glifu za pomocą opiłków konstancjum. Wytatuowany Glif możne aktywować  jedynie jego właściciel i może to robić wielokrotnie. Zaklęcia rzucane w ten sposób zużywają standardową ilość punktów energii z opisu zaklęcia, ale zużywają jedynie jeden Punkt Akcji do aktywacji i zero Punktów Akcji do podrzymywania.",
+          "bonuses": []
+        }
+      ]
     },
     {
       "id": "51352",
       "name": "Czarnoksięstwo",
-      "desc": "Wchodzisz w posiadanie jednej z niezwykle rzadkich i kontrowersyjnych czarnych ksiąg.\n\nCzarnoksięstwo:\nZamiast zużywać krwi możesz przygotowywać swoje rytęuały ryjąc w czarnej księdze. Czarna księga jest w stanie ",
+      "desc": "Wchodzisz w posiadanie jednej z niezwykle rzadkich i kontrowersyjnych czarnych ksiąg. Uczysz się także korzystania z niej.\n\nW trakcie nauki korzystania z księgi uczysz się czaru o złożoności nie większej niż 4.\n\nZyskujesz atrybut: „Czarnoksięstwo”:\n\nCzarnoksięstwo:\nZamiast zużywać krwi lub zamienników do kreślenia glifów możesz przygotowywać swoje rytuały ryjąc w czarnej księdze. Czarna księga może zastąpić Ci ilość fiolek krwi równą twojemu poziomowi doświadczenia w Wiedzy Tajemnej pomnożonemu przez 6. Liczbę tą nazywamy maksymalną liczbą ładunków. Ryjąc glif w czarnej księdze zużywasz liczbę ładunków równą ilości wymaganych przez glif fiolek krwi. Raz na 25 godzin możesz zresetować księgę, co usuwa wszystkie wyryte w niej glify i przywraca jej ilość ładunków równą twojej improwizacji Wiedzy Tajemnej pomnożonej przez 6. Jeżeli liczba ładunków spadnie do zera księga psuje się i nie może odzyskać ładunków. Musisz wtedy znaleźć nową księgę.",
       "hoverText": "",
       "fi": -80.78,
       "theta": 51.04,
@@ -5782,12 +5813,30 @@
       "cost": 3,
       "temperature": 3000,
       "exclGroup": null,
-      "effects": []
+      "effects": [
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction"
+          ],
+          "maxComplexity": 4
+        },
+        {
+          "type": "attribute",
+          "key": "Czarnoksięstwo",
+          "description": "Zamiast zużywać krwi lub zamienników do kreślenia glifów możesz przygotowywać swoje rytuały ryjąc w czarnej księdze. Czarna księga może zastąpić Ci ilość fiolek krwi równą twojemu poziomowi doświadczenia w Wiedzy Tajemnej pomnożonemu przez 6. Liczbę tą nazywamy maksymalną liczbą ładunków. Ryjąc glif w czarnej księdze zużywasz liczbę ładunków równą ilości wymaganych przez glif fiolek krwi. Raz na 25 godzin możesz zresetować księgę, co usuwa wszystkie wyryte w niej glify i przywraca jej ilość ładunków równą twojej improwizacji Wiedzy Tajemnej pomnożonej przez 6. Jeżeli liczba ładunków spadnie do zera księga psuje się i nie może odzyskać ładunków. Musisz wtedy znaleźć nową księgę.",
+          "bonuses": []
+        }
+      ]
     },
     {
       "id": "4525",
       "name": "Precyzyjne Glify",
-      "desc": "Jedną z najważniejszych umiejętności, którą musi posiąść każdy aspirujący mag jest uważność i cierpliwość podczas odtwarzania glifów. Doskonaląc tą cnotę uczysz się rzucania potężniejszych zaklęć.\n\nUczysz się jednego zaklęcia o złożoności nie większej niż 2.\n\nDodatkowo zyskujesz atut „Precyzyjne Glify”:\nGdy tworzysz glify możesz wydłużyć czas ich tworzenia o 1 PA na zużytą fiolkę krwi dłużej. Aktywowanie wykonanego tak glifu lub wszystkie czary i rytuały wykonywane z jego pomocą kosztuje o 1 PE mniej.  ",
+      "desc": "Jedną z najważniejszych umiejętności, którą musi posiąść każdy aspirujący mag jest uważność i cierpliwość podczas odtwarzania glifów. Doskonaląc tą cnotę uczysz się rzucania potężniejszych zaklęć.\n\nUczysz się jednego zaklęcia o złożoności nie większej niż 2.\n\nDodatkowo zyskujesz atut „Precyzyjne glify”:\n\nPrecyzyjne glify:\nGdy tworzysz glify możesz wydłużyć czas ich tworzenia o 1 PA na zużytą fiolkę krwi dłużej. Aktywowanie wykonanego tak glifu lub wszystkie czary i rytuały wykonywane z jego pomocą kosztuje o 1 PE mniej.  ",
       "hoverText": "",
       "fi": -61.23,
       "theta": 46.05,
@@ -5813,13 +5862,19 @@
             "destruction"
           ],
           "maxComplexity": 2
+        },
+        {
+          "type": "attribute",
+          "key": "Precyzyjne glify",
+          "description": "Gdy tworzysz glify możesz wydłużyć czas ich tworzenia o 1 PA na zużytą fiolkę krwi dłużej. Aktywowanie wykonanego tak glifu lub wszystkie czary i rytuały wykonywane z jego pomocą kosztuje o 1 PE mniej.",
+          "bonuses": []
         }
       ]
     },
     {
       "id": "2543",
       "name": "Szybko i Sprawnie",
-      "desc": "Zmniejsza czas nakreślania glifów (w Punktach Akcji) oraz ich koszt (w fiolkach krwi) o połowę (zaokrąglamy w górę).",
+      "desc": "Uczysz się szybkiego nakreślania glifów.\n\nUczysz się jednego zaklęcia o maksymalnej złożoności równej 2.\n\nZyskujesz także atrybut: „Szybko i sprawnie”:\n\nSzybko i sprawnie:\nZmniejsza czas nakreślania glifów (w Punktach Akcji) oraz ich koszt (w fiolkach krwi) o połowę (zaokrąglamy w górę).",
       "hoverText": "",
       "fi": -88.77,
       "theta": 46.05,
@@ -5834,12 +5889,30 @@
       "cost": 3,
       "temperature": 3500,
       "exclGroup": null,
-      "effects": []
+      "effects": [
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction"
+          ],
+          "maxComplexity": 2
+        },
+        {
+          "type": "attribute",
+          "key": "Szybko i sprawnie",
+          "description": "Zmniejsza czas nakreślania glifów (w Punktach Akcji) oraz ich koszt (w fiolkach krwi) o połowę (zaokrąglamy w górę).",
+          "bonuses": []
+        }
+      ]
     },
     {
       "id": "74744",
       "name": "Lewitujący Glif",
-      "desc": "",
+      "desc": "Uczysz się kontruować glify używając samej istoty eterycznej, co dla niewykształconego obserwatora wygląda jakby udawało ci się wykonywać je z powietrza.\n\nUczysz się jednego czaru o złożoności nie wyższej niż 5.\n\nDodatkowo zyskujesz atrybut: „Lewitujące glify”:\n\nLewitujące glify:\nMożesz konstruować lewitujące w przestrzeni lub „przyczepione” do jakiejś powierzchni (np.tarczy lub kartki książki) lewitujące eteryczne glify. Do kontrukcji tych glifów używasz punktów energii w ilości połowy kosztu zaklęcia (zaokrąglonego w dół). Aktywacja glifów wymaga Punktów Energii w ilości połowy kosztu zaklęcia.",
       "hoverText": "",
       "fi": -75.00000000000001,
       "theta": 53.82,
@@ -5854,12 +5927,30 @@
       "cost": 3,
       "temperature": 3000,
       "exclGroup": null,
-      "effects": []
+      "effects": [
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction"
+          ],
+          "maxComplexity": 5
+        },
+        {
+          "type": "attribute",
+          "key": "Lewitujące glify",
+          "description": "Możesz konstruować lewitujące w przestrzeni lub „przyczepione” do jakiejś powierzchni (np.tarczy lub kartki książki) lewitujące eteryczne glify. Do kontrukcji tych glifów używasz punktów energii w ilości połowy kosztu zaklęcia (zaokrąglonego w dół). Aktywacja glifów wymaga Punktów Energii w ilości połowy kosztu zaklęcia.",
+          "bonuses": []
+        }
+      ]
     },
     {
       "id": "522532",
       "name": "Diabeł Tkwi w Szczegółach",
-      "desc": "wawa",
+      "desc": "W teorii glify nie potrzebują żadnej energii do aktywacji, lecz niewielkie niedoskonałości powodują, że tak zwykle nie jest. I o ile ideału nie da się osiągnąć, z dostatecznie dużą ilością czasu i środków można zajść dowolnie blisko...\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności „Wiedza Tajemna” .\n\nZyskujesz także atrybut „Idealny glif”:\nIdealny glif:\nPodczas pełnego odpoczynku możesz, jeżeli jest to jedyna twoja aktywność w tym czasie (poza odpoczynkiem). Stworzyć perfekcyjny glif. Stworzenie go zużywa dwarazy więcej zasobów niż zwykle. Aktywacja takiego glifu nie wymaga Punktów Akcji ani Punktów Energii.",
       "hoverText": "",
       "fi": -64.01,
       "theta": 57.64,
@@ -5874,12 +5965,29 @@
       "cost": 3,
       "temperature": 3500,
       "exclGroup": null,
-      "effects": []
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "wiedzaMagiczna",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "wiedzaMagiczna",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "Idealny glif",
+          "description": "Podczas pełnego odpoczynku możesz, jeżeli jest to jedyna twoja aktywność w tym czasie (poza odpoczynkiem). Stworzyć perfekcyjny glif. Stworzenie go zużywa dwarazy więcej zasobów niż zwykle. Aktywacja takiego glifu nie wymaga Punktów Akcji ani Punktów Energii.",
+          "bonuses": []
+        }
+      ]
     },
     {
       "id": "96562",
       "name": "Jak się człowiek spieszy...",
-      "desc": "Uczysz się ",
+      "desc": "Uczysz się bardzo szybkiego kreślenia glifów. Niestety stowrzone tak glify są niestabline.\n\nZyskujesz poziom doświadczenia i improwizacji w umiejętności Wiedza Tajemna.\n\nDodatkowo zyskujesz atrybut: „...to się diabeł cieszy”\n\n...to się diabeł cieszy:\nMożesz stworzyć glif w dwukrotnie tyle Punktów Akcji ile zwykle potrzeba by rzucić wywoływane przez niego zaklęcie lub w 10 Punktów Akcji (obowiązuje wyższa wartość). Gdy tworzysz glif w ten sposób rzuć 1d6 gdy kończysz kreślić glif:\n\nJeżeli wypadnie 1 glif aktywuje się od razu.\nJeżeli wypadnie 2,3,4 lub 5 nic się nie dzieje.\njeżeli wypadnie 6 glif niszczy się sam w potężnej implozji zadając 1d4 obrażeń obuchowych wszyskim istotom w odległości 5 jednostek od środka glifu.",
       "hoverText": "",
       "fi": -85.99,
       "theta": 57.64,
@@ -5894,12 +6002,29 @@
       "cost": 3,
       "temperature": 3500,
       "exclGroup": null,
-      "effects": []
+      "effects": [
+        {
+          "type": "skillExperience",
+          "key": "wiedzaMagiczna",
+          "amount": 1
+        },
+        {
+          "type": "skillImprovisation",
+          "key": "wiedzaMagiczna",
+          "amount": 1
+        },
+        {
+          "type": "attribute",
+          "key": "...to się diabeł cieszy",
+          "description": "Możesz stworzyć glif w dwukrotnie tyle Punktów Akcji ile zwykle potrzeba by rzucić wywoływane przez niego zaklęcie lub w 10 Punktów Akcji (obowiązuje wyższa wartość). Gdy tworzysz glif w ten sposób rzuć 1d6 gdy kończysz kreślić glif:\n\nJeżeli wypadnie 1 glif aktywuje się od razu.\nJeżeli wypadnie 2,3,4 lub 5 nic się nie dzieje.\njeżeli wypadnie 6 glif niszczy się sam w potężnej implozji zadając 1d4 obrażeń obuchowych wszyskim istotom w odległości 5 jednostek od środka glifu.",
+          "bonuses": []
+        }
+      ]
     },
     {
       "id": "3125",
       "name": "Mistrzostwo Magii",
-      "desc": "",
+      "desc": "Używając glifów konstruujesz mistrzowskie filakterium. Pozwala ono przetrzymywać nieograniczoną ilość krwi.\n\nUczysz się jednego zaklęcia o poziomie złożoności nie wyższym niż 6.",
       "hoverText": "",
       "fi": -75.00000000000001,
       "theta": 50,
@@ -5913,7 +6038,19 @@
       "cost": 6,
       "temperature": 3750,
       "exclGroup": null,
-      "effects": []
+      "effects": [
+        {
+          "type": "spellSchoolUnlock",
+          "schools": [
+            "creation",
+            "projection",
+            "transmutation",
+            "summoning",
+            "destruction"
+          ],
+          "maxComplexity": 6
+        }
+      ]
     }
   ],
   "mutuallyExclusive": [
